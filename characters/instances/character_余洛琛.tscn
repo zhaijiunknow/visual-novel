@@ -196,6 +196,9 @@ resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_h3wkl")
 region = Rect2(270.00244, 14.997192, 415.1543, 447.7154)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_2s1x3"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
@@ -232,5 +235,17 @@ texture = ExtResource("22_67hvi")
 visible = false
 texture = ExtResource("23_2ajgh")
 
-[node name="TextureRect_Avatar" parent="." index="1" unique_id=919147274]
+[node name="Avatar" parent="." index="1" unique_id=919147274]
 texture = SubResource("AtlasTexture_lpavb")
+
+[node name="StoryModel" parent="." index="2" unique_id=816872337]
+offset_left = 234.0
+offset_top = 2.0
+offset_right = 234.0
+offset_bottom = 2.0
+
+[node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
+offset_left = -686.0
+offset_right = 318.0
+offset_bottom = 772.0
+texture = SubResource("ViewportTexture_2s1x3")

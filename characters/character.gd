@@ -5,12 +5,14 @@ extends Control
 @export var sv_container: SubViewportContainer
 @export var subviewport: SubViewport
 @export var texture_rect_avatar: TextureRect
+@export var texture_rect_model: TextureRect
+@export var story_model: Control
 
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D
 
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
-var character_image: Node2D
+var character_image: Control
 
 var body_scale_factor: float = 0.5:
 	set(value):
@@ -33,6 +35,9 @@ func _ready() -> void:
 	
 	texture_rect_avatar.visible = false
 	
+	texture_rect_model.size = sv_container.size
+	texture_rect_model.position = sv_container.position
+	
 	for body_part in body_parts:
 		var part_name = body_part.name
 		body_part_dict[part_name] = body_part
@@ -41,12 +46,6 @@ func _ready() -> void:
 		bonus_part_index_dict[part_name]["index"] = 0
 		bonus_part_index_dict[part_name]["options"] = \
 			Array(body_part_dict[part_name].sprite_frames.get_animation_names())
-	
-	DialogueManager.got_dialogue.connect(
-		func (line: DialogueLine):
-			if line.character == self.name:
-				Game.stage_page.avatar.texture = texture_rect_avatar.texture
-	)
 
 func update_bonus_part_index(part_name: String, increment: int) -> void:
 	bonus_part_index_dict[part_name].index += increment
@@ -71,12 +70,8 @@ func print_set_parts() -> void:
 #region Dialogue Commands
 
 func FadeIn(position_name: String, duration: float = 0) -> void:
-	character_image = Node2D.new()
-	var character_sprite = Sprite2D.new()
-	character_sprite.texture = subviewport.get_texture()
-	character_image.add_child(character_sprite)
-	character_sprite.position.y -= character_sprite.get_rect().size.y / 2 \
-	* character_image.scale.y
+	character_image = story_model.duplicate()
+	character_image.show()
 	character_image.modulate.a = 0
 	Game.stage_page.character_image_pool.add_child(character_image)
 	character_image.global_position = Game.stage_page.get_position_by_name(position_name)

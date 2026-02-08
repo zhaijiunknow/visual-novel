@@ -16,6 +16,7 @@ var chapters_dict: Dictionary[String, DialogueResource]
 
 @export var dialogue_screen: Control
 @export var dialogue_label: DialogueLabel
+@export var label_character_name: RichTextLabel
 @export var responses_menu: Control
 @export var subviewport: SubViewport
 @export var hbox_positions: HBoxContainer
@@ -59,7 +60,13 @@ var dialogue_line: DialogueLine:
 	set(value):
 		if value:
 			dialogue_line = value
-			print(dialogue_line.responses)
+			var character_name = dialogue_line.character
+			if character_name:
+				var has_avatar = Stage.character_dict.has(character_name)
+				if has_avatar:
+					avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
+				avatar.modulate.a = 1 if has_avatar else 0
+				label_character_name.text = dialogue_line.character
 			process_line()
 
 var finish_pause: float = 1

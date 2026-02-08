@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://di7qgo24s04cu" path="res://characters/character.gd" id="1_e3kty"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_54qew"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqr4u"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_54qew")
 
-[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "body_parts", "optionals_pool")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "story_model", "body_parts", "optionals_pool")]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -20,7 +24,9 @@ grow_vertical = 0
 script = ExtResource("1_e3kty")
 sv_container = NodePath("SubViewportContainer")
 subviewport = NodePath("SubViewportContainer/SubViewport")
-texture_rect_avatar = NodePath("TextureRect_Avatar")
+texture_rect_avatar = NodePath("Avatar")
+texture_rect_model = NodePath("StoryModel/TextureRect_Model")
+story_model = NodePath("StoryModel")
 body_parts = [NodePath("SubViewportContainer/SubViewport/Body"), NodePath("SubViewportContainer/SubViewport/Body/Eyebrows"), NodePath("SubViewportContainer/SubViewport/Body/Eyes"), NodePath("SubViewportContainer/SubViewport/Body/Mouth")]
 optionals_pool = NodePath("SubViewportContainer/SubViewport/Body/Optionals")
 
@@ -51,7 +57,7 @@ scale = Vector2(0.5986112, 0.5986112)
 
 [node name="Optionals" type="Node2D" parent="SubViewportContainer/SubViewport/Body" unique_id=703917704]
 
-[node name="TextureRect_Avatar" type="TextureRect" parent="." unique_id=919147274]
+[node name="Avatar" type="TextureRect" parent="." unique_id=919147274]
 visible = false
 layout_mode = 0
 offset_left = 740.0
@@ -61,3 +67,14 @@ offset_bottom = -404.0
 texture = SubResource("AtlasTexture_qqr4u")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="StoryModel" type="Control" parent="." unique_id=816872337]
+visible = false
+anchors_preset = 0
+
+[node name="TextureRect_Model" type="TextureRect" parent="StoryModel" unique_id=1204109800]
+layout_mode = 0
+offset_left = -459.0
+offset_top = -1365.0
+offset_right = 545.0
+texture = SubResource("ViewportTexture_qqr4u")
