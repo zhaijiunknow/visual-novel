@@ -43,3 +43,6 @@ func clear_children(container: Node) -> void:
 
 func add_voice_collection(voice_collection: VoiceCollection) -> void:
 	save_data.voice_collections.append(voice_collection)
+
+func save_collection_data() -> void:
+	ResourceSaver.save(collection_data, collection_path)

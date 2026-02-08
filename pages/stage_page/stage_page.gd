@@ -8,6 +8,9 @@ signal next_line
 var chapters_dict: Dictionary[String, DialogueResource]
 
 @export var dialogue: DialogueResource
+var chapter_name: String:
+	get:
+		return dialogue.resource_path.get_file().split(".")[0]
 
 @export var autoplay_pause_time: float = 1
 @export var normal_step_rate: float = 0.02
@@ -29,6 +32,13 @@ var chapters_dict: Dictionary[String, DialogueResource]
 @export var avatar: TextureRect
 
 @export var button_replay: TextureButton
+@export var button_favourite: TextureButton
+@export var texture_rect_favourite: TextureRect
+
+@export var texture_set_favourite: Texture2D
+@export var texture_cancel_favourite: Texture2D
+
+@export var voice_buttons: Control
 
 var skip: bool = false:
 	set(value):
@@ -49,9 +59,6 @@ func update_step_rate() -> void:
 	rate = skip_step_rate if skip else rate
 	dialogue_label.seconds_per_step = rate
 
-## The dialogue resource
-var resource: DialogueResource
-
 func get_position_by_name(position_name: String) -> Vector2:
 	var position_node: Control = hbox_positions.get_node(position_name + "/CenterPoint")
 	
@@ -62,22 +69,28 @@ var dialogue_line: DialogueLine:
 	set(value):
 		if value:
 			dialogue_line = value
-			var character_name = dialogue_line.character
-			if character_name:
-				var has_avatar = Stage.character_dict.has(character_name)
-				if has_avatar:
-					avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
-				avatar.modulate.a = 1 if has_avatar else 0
-				label_character_name.text = dialogue_line.character
 			process_line()
 
 var finish_pause: float = 1
 
+var voice_name: String:
+	get: return dialogue_line.get_tag_value("voice")
+
 func process_line() -> void:
+	var character_name = dialogue_line.character
+	if character_name:
+		var has_avatar = Stage.character_dict.has(character_name)
+		if has_avatar:
+			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
+		avatar.modulate.a = 1 if has_avatar else 0
+		label_character_name.text = dialogue_line.character
+	
 	responses_menu.visible = dialogue_line.responses.size()
 	dialogue_label.dialogue_line = dialogue_line
+	voice_buttons.visible = dialogue_line.has_tag("voice")
 	if dialogue_line.has_tag("voice"):
-		AudioManager.play_voice(dialogue_line.get_tag_value("voice"), true)
+		update_favourite()
+		AudioManager.play_voice(voice_name, true)
 	else:
 		AudioManager.audio_player_voice.stop()
 	dialogue_label.type_out()
@@ -115,8 +128,8 @@ func process_line() -> void:
 func _ready() -> void:
 	dialogue_label.visible_characters = 0
 	for chapter in chapters:
-		var chapter_name = chapter.resource_path.get_file()[0]
-		chapters_dict[chapter_name] = chapter
+		var _chapter_name = chapter.resource_path.get_file().split(".")[0]
+		chapters_dict[_chapter_name] = chapter
 	
 	dialogue_screen.gui_input.connect(
 		func (event: InputEvent):
@@ -128,6 +141,34 @@ func _ready() -> void:
 	)
 	
 	button_replay.pressed.connect(AudioManager.replay_voice)
+	button_favourite.pressed.connect(
+		func ():
+			if favourite:
+				Main.collection_data.voice_collections.erase(current_collection)
+			else:
+				var collection = VoiceCollection.new()
+				collection.chapter_name = chapter_name
+				collection.text = dialogue_line.text
+				collection.voice_filename = voice_name
+				Main.collection_data.voice_collections.append(collection)
+			Main.save_collection_data()
+			update_favourite()
+	)
 
 func start() -> void:
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [self, Stage])
+
+var favourite: bool:
+	get: return current_collection != null
+
+var current_collection: VoiceCollection:
+	get:
+		var collections: Array[VoiceCollection]
+		for collection in Main.collection_data.voice_collections:
+			if collection.voice_filename == voice_name:
+				collections.append(collection)
+		return collections.front() if collections else null
+
+func update_favourite() -> void:
+	texture_rect_favourite.texture = \
+		texture_cancel_favourite if favourite else texture_set_favourite

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ojfoyxcslkhd" path="res://prefabs/dialogue_button/dialogue_button.tscn" id="10_7jxs1"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="10_lda8k"]
 [ext_resource type="Script" uid="uid://dtnp35i10ike1" path="res://scripts/dialogue_button_controller.gd" id="10_lqv2x"]
+[ext_resource type="Texture2D" uid="uid://f4h8ovdyhao3" path="res://assets/sprites/ui/ui.sprites/botton_cancel.tres" id="11_rw8us"]
 [ext_resource type="Texture2D" uid="uid://cogpsthxtxebe" path="res://assets/sprites/ui/ui.sprites/menu_auto.tres" id="14_lda8k"]
 [ext_resource type="Texture2D" uid="uid://2wfnq8qx2pnn" path="res://assets/sprites/ui/ui.sprites/menu_save.tres" id="15_217kn"]
 [ext_resource type="Texture2D" uid="uid://dy464c6itakpi" path="res://assets/sprites/ui/ui.sprites/menu_load.tres" id="16_hovpu"]
@@ -86,7 +87,7 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sqldi")
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay")]
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons")]
 layer = 100
 script = ExtResource("1_wlgfe")
 chapters = Array[ExtResource("2_lda8k")]([ExtResource("2_ic8ca")])
@@ -103,7 +104,12 @@ texture_rect_blackscreen = NodePath("SubViewportContainer/SubViewport/TextureRec
 bg_common = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Common")
 bg_character = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character")
 avatar = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Avatar")
-button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Button_Replay")
+button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Replay")
+button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite")
+texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite/TextureRect_Favourite")
+texture_set_favourite = ExtResource("29_wuhph")
+texture_cancel_favourite = ExtResource("11_rw8us")
+voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]
 anchors_preset = 15
@@ -275,7 +281,7 @@ size_flags_vertical = 8
 theme_override_constants/separation = -19
 alignment = 1
 
-[node name="DialogueButtonController" type="Node" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1781078644 node_paths=PackedStringArray("button_skip", "button_auto", "button_save", "button_load", "button_log", "button_set", "button_voice", "button_phone", "button_book", "button_title", "button_replay", "button_star")]
+[node name="DialogueButtonController" type="Node" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1781078644 node_paths=PackedStringArray("button_skip", "button_auto", "button_save", "button_load", "button_log", "button_set", "button_voice", "button_phone", "button_book", "button_title")]
 script = ExtResource("10_lqv2x")
 button_skip = NodePath("../HBoxContainer_Buttons/DialogueButton_Skip")
 button_auto = NodePath("../HBoxContainer_Buttons/DialogueButton_Auto")
@@ -287,8 +293,6 @@ button_voice = NodePath("../HBoxContainer_Buttons/DialogueButton_Voice")
 button_phone = NodePath("../HBoxContainer_Buttons/DialogueButton_Phone")
 button_book = NodePath("../HBoxContainer_Buttons/DialogueButton_Book")
 button_title = NodePath("../HBoxContainer_Buttons/DialogueButton_Title")
-button_replay = NodePath("../Button_Replay")
-button_star = NodePath("../Button_Star")
 
 [node name="HBoxContainer_Buttons" type="HBoxContainer" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2120074705]
 layout_mode = 0
@@ -440,7 +444,12 @@ offset_right = 29.0
 offset_bottom = 247.0
 texture = ExtResource("25_lda8k")
 
-[node name="Button_Replay" type="TextureButton" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=521022224]
+[node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button_Replay" type="TextureButton" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons" unique_id=521022224]
 layout_mode = 0
 offset_left = 1750.0
 offset_top = 1111.0
@@ -450,7 +459,7 @@ focus_mode = 0
 texture_pressed = ExtResource("27_et2aa")
 texture_hover = ExtResource("26_an5lx")
 
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Button_Replay" unique_id=1962923498]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Replay" unique_id=1962923498]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 15.0
@@ -458,12 +467,22 @@ offset_right = 147.0
 offset_bottom = 48.0
 texture = ExtResource("28_8wbyc")
 
-[node name="Button_Star" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2012701076]
+[node name="Button_Favourite" type="TextureButton" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons" unique_id=1476650330]
 layout_mode = 0
-offset_left = 1938.0
-offset_top = 1126.0
-offset_right = 2052.0
-offset_bottom = 1159.0
+offset_left = 1906.0
+offset_top = 1111.0
+offset_right = 2084.0
+offset_bottom = 1174.0
+focus_mode = 0
+texture_pressed = ExtResource("27_et2aa")
+texture_hover = ExtResource("26_an5lx")
+
+[node name="TextureRect_Favourite" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite" unique_id=1040490949]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 147.0
+offset_bottom = 48.0
 texture = ExtResource("29_wuhph")
 
 [node name="TextureRect_Blackscreen" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=1839957560]
