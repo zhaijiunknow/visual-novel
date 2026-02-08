@@ -28,6 +28,8 @@ var chapters_dict: Dictionary[String, DialogueResource]
 @export var bg_character: TextureRect
 @export var avatar: TextureRect
 
+@export var button_replay: TextureButton
+
 var skip: bool = false:
 	set(value):
 		skip = value
@@ -75,7 +77,7 @@ func process_line() -> void:
 	responses_menu.visible = dialogue_line.responses.size()
 	dialogue_label.dialogue_line = dialogue_line
 	if dialogue_line.has_tag("voice"):
-		AudioManager.play_voice(dialogue_line.get_tag_value("voice"))
+		AudioManager.play_voice(dialogue_line.get_tag_value("voice"), true)
 	else:
 		AudioManager.audio_player_voice.stop()
 	dialogue_label.type_out()
@@ -124,6 +126,8 @@ func _ready() -> void:
 						dialogue_label.skip_typing()
 					next_line.emit()
 	)
+	
+	button_replay.pressed.connect(AudioManager.replay_voice)
 
 func start() -> void:
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [self, Stage])

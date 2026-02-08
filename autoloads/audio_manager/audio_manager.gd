@@ -8,6 +8,8 @@ extends Node
 
 @export_dir var voice_path: String
 
+var current_voice: AudioStreamWAV
+
 signal track_index_changed
 var track_index: int:
 	set(value):
@@ -35,11 +37,14 @@ func set_track_position_by_ratio(ratio: float):
 	audio_player_bonus.stop()
 	audio_player_bonus.play(target_position)
 
-#func play_
-
-func play_voice(filename: String) -> void:
+func play_voice(filename: String, set_current: bool = false) -> void:
 	var file_path = "%s/%s.wav" % [AudioManager.voice_path, filename]
-	var audio: AudioStreamWAV = load(file_path)
-	audio_player_voice.stream = audio
+	var voice: AudioStreamWAV = load(file_path)
+	if set_current:
+		current_voice = voice
+	audio_player_voice.stream = voice
 	audio_player_voice.play()
 	
+func replay_voice() -> void:
+	audio_player_voice.stream = current_voice
+	audio_player_voice.play()
