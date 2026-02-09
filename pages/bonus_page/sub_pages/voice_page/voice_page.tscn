@@ -2,20 +2,24 @@
 
 [ext_resource type="Script" uid="uid://r0777eg6rpqk" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.gd" id="1_feqe0"]
 [ext_resource type="Texture2D" uid="uid://b5v3o5x6ss4g5" path="res://assets/temp/voice.jpg" id="2_cs7ht"]
-[ext_resource type="PackedScene" uid="uid://c7qu2xafv1pld" path="res://prefabs/voice_card/voice_card.tscn" id="4_cs7ht"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="5_udoh6"]
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="6_n2gkn"]
 [ext_resource type="Texture2D" uid="uid://d3f8hfcm50sxl" path="res://assets/sprites/ui/ui.sprites/bigdata_background.tres" id="7_jy1e2"]
-[ext_resource type="Texture2D" uid="uid://dym4c4x0q0fti" path="res://assets/sprites/ui/ui.sprites/bigchr_yu.tres" id="8_cs7ht"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="9_luv7t"]
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="10_mnlhs"]
+[ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="11_oo64q"]
 [ext_resource type="Texture2D" uid="uid://btyh83dxjujev" path="res://assets/sprites/ui/ui.sprites/voice_title.tres" id="11_udoh6"]
 [ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="12_feqe0"]
 [ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="13_f3a7m"]
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="14_n2gkn"]
-[ext_resource type="Texture2D" uid="uid://f4h8ovdyhao3" path="res://assets/sprites/ui/ui.sprites/botton_cancel.tres" id="15_inet1"]
 
-[node name="VoicePage" type="Control" unique_id=21218107]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hw4vf"]
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="VoicePage" type="Control" unique_id=21218107 node_paths=PackedStringArray("voice_card_pool", "texture_rect_portrait", "label_character_name", "label_chapter_number", "label_chapter_name", "label_text", "voice_view", "button_replay", "button_favourite", "texture_rect_favourite")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +27,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_feqe0")
+voice_card_pool = NodePath("ScrollContainer/VoiceCardPool")
+texture_rect_portrait = NodePath("VoiceView/PortraitFrame/Control/TextureRect_Portrait")
+label_character_name = NodePath("VoiceView/Label_CharacterName")
+label_chapter_number = NodePath("VoiceView/Label_ChapterNumber")
+label_chapter_name = NodePath("VoiceView/Label_ChapterName")
+label_text = NodePath("VoiceView/Label_Text")
+voice_view = NodePath("VoiceView")
+button_replay = NodePath("VoiceView/Button_Replay")
+button_favourite = NodePath("VoiceView/Button_Favourite")
+texture_rect_favourite = NodePath("VoiceView/Button_Favourite/TextureRect_Favourite")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1559743973]
 layout_mode = 0
@@ -31,6 +45,7 @@ offset_bottom = 1440.0
 mouse_filter = 0
 
 [node name="Preview" type="TextureRect" parent="." unique_id=706821442]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,38 +63,11 @@ offset_bottom = 927.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer" unique_id=1772927936]
+[node name="VoiceCardPool" type="GridContainer" parent="ScrollContainer" unique_id=1772927936]
 layout_mode = 2
 theme_override_constants/h_separation = 21
 theme_override_constants/v_separation = 16
 columns = 2
-
-[node name="VoiceCard" parent="ScrollContainer/GridContainer" unique_id=1615778727 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard2" parent="ScrollContainer/GridContainer" unique_id=1079936159 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard3" parent="ScrollContainer/GridContainer" unique_id=400641416 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard4" parent="ScrollContainer/GridContainer" unique_id=174681892 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard5" parent="ScrollContainer/GridContainer" unique_id=1672832067 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard6" parent="ScrollContainer/GridContainer" unique_id=656927764 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard7" parent="ScrollContainer/GridContainer" unique_id=1206540754 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard8" parent="ScrollContainer/GridContainer" unique_id=1287008254 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
-
-[node name="VoiceCard9" parent="ScrollContainer/GridContainer" unique_id=1928300904 instance=ExtResource("4_cs7ht")]
-layout_mode = 2
 
 [node name="BackButton" parent="." unique_id=956369186 instance=ExtResource("5_udoh6")]
 layout_mode = 1
@@ -91,28 +79,49 @@ offset_bottom = -109.0
 [node name="VScrollBarEx" parent="." unique_id=269622795 node_paths=PackedStringArray("target_scroll_container") instance=ExtResource("6_n2gkn")]
 layout_mode = 1
 offset_top = 117.0
-offset_bottom = 907.0
+offset_bottom = 793.0
 target_scroll_container = NodePath("../ScrollContainer")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1009249008]
+[node name="VoiceView" type="TextureRect" parent="." unique_id=1009249008]
 layout_mode = 0
 offset_left = 586.0
-offset_top = 969.0
+offset_top = 856.0
 offset_right = 2453.0
-offset_bottom = 1340.0
+offset_bottom = 1227.0
 texture = ExtResource("7_jy1e2")
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=2139124040]
+[node name="PortraitFrame" type="PanelContainer" parent="VoiceView" unique_id=405710989]
+clip_children = 1
 layout_mode = 0
-offset_left = 12.0
+offset_left = 11.0
 offset_top = 8.0
-offset_right = 597.0
-offset_bottom = 361.0
-texture = ExtResource("8_cs7ht")
-expand_mode = 1
-stretch_mode = 6
+offset_right = 607.0
+offset_bottom = 362.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hw4vf")
 
-[node name="Label" type="Label" parent="TextureRect" unique_id=2057562331]
+[node name="Control" type="Control" parent="VoiceView/PortraitFrame" unique_id=657841729]
+layout_mode = 2
+
+[node name="TextureRect_Portrait" type="TextureRect" parent="VoiceView/PortraitFrame/Control" unique_id=986176691]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 349.0
+grow_vertical = 0
+expand_mode = 5
+
+[node name="Label_CharacterName" type="Label" parent="VoiceView" unique_id=979630272]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 247.0
+offset_right = 239.0
+offset_bottom = 317.0
+theme_override_fonts/font = ExtResource("9_luv7t")
+theme_override_font_sizes/font_size = 48
+text = "余洛琛"
+
+[node name="Label_ChapterName" type="Label" parent="VoiceView" unique_id=2057562331]
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 layout_mode = 0
 offset_left = 571.0
@@ -123,7 +132,7 @@ theme_override_fonts/font = ExtResource("9_luv7t")
 theme_override_font_sizes/font_size = 36
 text = "章节名称"
 
-[node name="Label_ChapterNo" type="Label" parent="TextureRect" unique_id=552030638]
+[node name="Label_ChapterNumber" type="Label" parent="VoiceView" unique_id=552030638]
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 layout_mode = 0
 offset_left = 574.0
@@ -132,16 +141,17 @@ offset_right = 718.0
 offset_bottom = 127.0
 theme_override_fonts/font = ExtResource("10_mnlhs")
 theme_override_font_sizes/font_size = 19
-text = "CHAPTER 01"
+text = "Chapter 01"
+uppercase = true
 
-[node name="Label2" type="Label" parent="TextureRect" unique_id=1650368569]
-modulate = Color(0.8538395, 0.80953, 0.9035055, 1)
+[node name="Label_Text" type="Label" parent="VoiceView" unique_id=1650368569]
 layout_mode = 0
 offset_left = 575.0
 offset_top = 179.0
 offset_right = 1773.0
 offset_bottom = 302.0
-theme_override_colors/font_shadow_color = Color(0.22311309, 0.21461564, 0.2741733, 1)
+theme_override_colors/font_color = Color(0.88235295, 0.8666667, 0.92156863, 1)
+theme_override_colors/font_shadow_color = Color(0.20784314, 0.2, 0.25490198, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 17
@@ -150,6 +160,42 @@ theme_override_font_sizes/font_size = 36
 text = "文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
 autowrap_mode = 1
 
+[node name="Button_Replay" type="TextureButton" parent="VoiceView" unique_id=199049034]
+layout_mode = 0
+offset_left = 1430.0
+offset_top = 91.0
+offset_right = 1608.0
+offset_bottom = 154.0
+focus_mode = 0
+texture_pressed = ExtResource("12_feqe0")
+texture_hover = ExtResource("13_f3a7m")
+
+[node name="TextureRect" type="TextureRect" parent="VoiceView/Button_Replay" unique_id=2104345786]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 147.0
+offset_bottom = 48.0
+texture = ExtResource("14_n2gkn")
+
+[node name="Button_Favourite" type="TextureButton" parent="VoiceView" unique_id=391484430]
+layout_mode = 0
+offset_left = 1589.0
+offset_top = 91.0
+offset_right = 1767.0
+offset_bottom = 154.0
+focus_mode = 0
+texture_pressed = ExtResource("12_feqe0")
+texture_hover = ExtResource("13_f3a7m")
+
+[node name="TextureRect_Favourite" type="TextureRect" parent="VoiceView/Button_Favourite" unique_id=694320642]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 147.0
+offset_bottom = 48.0
+texture = ExtResource("11_oo64q")
+
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=480589434]
 layout_mode = 0
 offset_left = 95.0
@@ -157,44 +203,3 @@ offset_top = 79.0
 offset_right = 552.0
 offset_bottom = 335.0
 texture = ExtResource("11_udoh6")
-
-[node name="TextureRect3" type="TextureRect" parent="." unique_id=330966506]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ReplayButton" type="TextureButton" parent="." unique_id=1572098101]
-layout_mode = 0
-offset_left = 2023.0
-offset_top = 1062.0
-offset_right = 2201.0
-offset_bottom = 1125.0
-texture_pressed = ExtResource("12_feqe0")
-texture_hover = ExtResource("13_f3a7m")
-
-[node name="TextureRect" type="TextureRect" parent="ReplayButton" unique_id=185336925]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 14.0
-offset_right = 141.0
-offset_bottom = 47.0
-mouse_filter = 2
-texture = ExtResource("14_n2gkn")
-
-[node name="CancelButton" type="TextureButton" parent="." unique_id=1651521196]
-layout_mode = 0
-offset_left = 2179.0
-offset_top = 1062.0
-offset_right = 2357.0
-offset_bottom = 1125.0
-texture_pressed = ExtResource("12_feqe0")
-texture_hover = ExtResource("13_f3a7m")
-
-[node name="TextureRect" type="TextureRect" parent="CancelButton" unique_id=1830314863]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 14.0
-offset_right = 141.0
-offset_bottom = 47.0
-mouse_filter = 2
-texture = ExtResource("15_inet1")

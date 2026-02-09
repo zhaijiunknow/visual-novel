@@ -35,9 +35,6 @@ var chapter_name: String:
 @export var button_favourite: TextureButton
 @export var texture_rect_favourite: TextureRect
 
-@export var texture_set_favourite: Texture2D
-@export var texture_cancel_favourite: Texture2D
-
 @export var voice_buttons: Control
 
 var skip: bool = false:
@@ -147,6 +144,7 @@ func _ready() -> void:
 				Main.collection_data.voice_collections.erase(current_collection)
 			else:
 				var collection = VoiceCollection.new()
+				collection.character_name = dialogue_line.character
 				collection.chapter_name = chapter_name
 				collection.text = dialogue_line.text
 				collection.voice_filename = voice_name
@@ -171,4 +169,4 @@ var current_collection: VoiceCollection:
 
 func update_favourite() -> void:
 	texture_rect_favourite.texture = \
-		texture_cancel_favourite if favourite else texture_set_favourite
+		Prefabs.texture_cancel_favourite if favourite else Prefabs.texture_set_favourite

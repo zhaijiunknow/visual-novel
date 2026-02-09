@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://ojfoyxcslkhd" path="res://prefabs/dialogue_button/dialogue_button.tscn" id="10_7jxs1"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="10_lda8k"]
 [ext_resource type="Script" uid="uid://dtnp35i10ike1" path="res://scripts/dialogue_button_controller.gd" id="10_lqv2x"]
-[ext_resource type="Texture2D" uid="uid://f4h8ovdyhao3" path="res://assets/sprites/ui/ui.sprites/botton_cancel.tres" id="11_rw8us"]
 [ext_resource type="Texture2D" uid="uid://cogpsthxtxebe" path="res://assets/sprites/ui/ui.sprites/menu_auto.tres" id="14_lda8k"]
 [ext_resource type="Texture2D" uid="uid://2wfnq8qx2pnn" path="res://assets/sprites/ui/ui.sprites/menu_save.tres" id="15_217kn"]
 [ext_resource type="Texture2D" uid="uid://dy464c6itakpi" path="res://assets/sprites/ui/ui.sprites/menu_load.tres" id="16_hovpu"]
@@ -107,8 +106,6 @@ avatar = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Avatar")
 button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Replay")
 button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite")
 texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite/TextureRect_Favourite")
-texture_set_favourite = ExtResource("29_wuhph")
-texture_cancel_favourite = ExtResource("11_rw8us")
 voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]

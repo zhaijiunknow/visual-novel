@@ -8,4 +8,4 @@ extends Resource
 @export var voice_filename: String
 
 var chapter_number_text: String:
-	get: return str(chapter_number).pad_zeros(2)
+	get: return "CHAPTER %s" % str(chapter_number).pad_zeros(2)

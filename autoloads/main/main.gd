@@ -41,8 +41,11 @@ func clear_children(container: Node) -> void:
 		container.remove_child(child)
 		child.queue_free()
 
-func add_voice_collection(voice_collection: VoiceCollection) -> void:
-	save_data.voice_collections.append(voice_collection)
+func has_voice_collection(filename) -> bool:
+	return collection_data.voice_collections.filter(
+		func (collection: VoiceCollection):
+			return collection.voice_filename == filename
+	).size() > 0
 
 func save_collection_data() -> void:
 	ResourceSaver.save(collection_data, collection_path)
