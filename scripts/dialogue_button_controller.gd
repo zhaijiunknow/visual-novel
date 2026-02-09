@@ -38,6 +38,12 @@ func _ready() -> void:
 		func ():
 			pass
 	)
+	button_voice.clicked.connect(
+		func ():
+			Game.bonus_page.show()
+			Game.bonus_page.layer = 2
+			Main.bonus_tab_index = 3
+	)
 	button_phone.clicked.connect(
 		func (): Game.phone_page.show()
 	)

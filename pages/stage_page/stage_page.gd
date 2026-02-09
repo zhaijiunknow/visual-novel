@@ -80,7 +80,8 @@ func process_line() -> void:
 		if has_avatar:
 			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
 		avatar.modulate.a = 1 if has_avatar else 0
-		label_character_name.text = dialogue_line.character
+		label_character_name.text = dialogue_line.get_tag_value("nickname") \
+					if dialogue_line.has_tag("nickname") else dialogue_line.character
 	
 	responses_menu.visible = dialogue_line.responses.size()
 	dialogue_label.dialogue_line = dialogue_line

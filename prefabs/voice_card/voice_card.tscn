@@ -33,10 +33,12 @@ offset_left = 11.0
 offset_top = 8.0
 offset_right = 399.0
 offset_bottom = 240.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5y2fy")
 
 [node name="Control" type="Control" parent="PortraitFrame" unique_id=759831831]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="TextureRect_Portrait" type="TextureRect" parent="PortraitFrame/Control" unique_id=1202994218]
 layout_mode = 1
@@ -45,6 +47,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_right = 349.0
 grow_vertical = 0
+mouse_filter = 2
 expand_mode = 5
 
 [node name="NumberBackground" type="TextureRect" parent="." unique_id=2087905206]
