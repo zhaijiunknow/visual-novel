@@ -2,6 +2,8 @@
 class_name SliderEx
 extends PanelContainer
 
+var dragged: bool
+
 signal value_changed
 
 @export var initial_value: float = 0.5:
@@ -27,11 +29,17 @@ func _ready() -> void:
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					Main.dragged = true
+					dragged = true
 					value = event.position.x / size.x
-			if Main.dragged:
+			if dragged:
 				if event is InputEventMouseMotion:
 					value = event.position.x / size.x
 	)
 	
 	value = initial_value
+
+func _input(event: InputEvent) -> void:
+	if dragged:
+		if event is InputEventMouseButton:
+			if event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+				dragged = false

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cl7rruk6ifk6d" path="res://pages/debug_page/debug_page.gd" id="1_ul15k"]
 
 [node name="DebugPage" type="CanvasLayer" unique_id=727976554 node_paths=PackedStringArray("button_play_audio", "label_line_id")]
+visible = false
 script = ExtResource("1_ul15k")
 button_play_audio = NodePath("VBoxContainer/Button_PlayAudio")
 label_line_id = NodePath("VBoxContainer/Label_LineId")

@@ -74,14 +74,16 @@ var voice_name: String:
 	get: return dialogue_line.get_tag_value("voice")
 
 func process_line() -> void:
+	print(dialogue_line.tags)
 	var character_name = dialogue_line.character
-	if character_name:
-		var has_avatar = Stage.character_dict.has(character_name)
-		if has_avatar:
+	avatar.texture = null
+	var has_avatar = Stage.character_dict.has(character_name)
+	if has_avatar:
+		if not "hide_portrait" in dialogue_line.tags:
 			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
-		avatar.modulate.a = 1 if has_avatar else 0
-		label_character_name.text = dialogue_line.get_tag_value("nickname") \
-					if dialogue_line.has_tag("nickname") else dialogue_line.character
+	avatar.modulate.a = 1 if has_avatar else 0
+	label_character_name.text = dialogue_line.get_tag_value("nickname") \
+				if dialogue_line.has_tag("nickname") else dialogue_line.character
 	
 	responses_menu.visible = dialogue_line.responses.size()
 	dialogue_label.dialogue_line = dialogue_line

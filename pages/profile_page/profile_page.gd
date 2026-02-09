@@ -45,7 +45,7 @@ func save_game() -> void:
 			if Main.save_data.profiles.size() <= profile_index:
 				Main.save_data.profiles.insert(profile_index, ProfileData.new())
 			Main.save_data.profiles[profile_index].preview = resized_texture
-			ResourceSaver.save(Main.save_data, Main.file_path)
+			ResourceSaver.save(Main.save_data, Main.save_path)
 			
 			(
 				func ():
