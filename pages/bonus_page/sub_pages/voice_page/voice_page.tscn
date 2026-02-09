@@ -75,6 +75,12 @@ layout_mode = 2
 [node name="VoiceCard7" parent="ScrollContainer/GridContainer" unique_id=1206540754 instance=ExtResource("4_cs7ht")]
 layout_mode = 2
 
+[node name="VoiceCard8" parent="ScrollContainer/GridContainer" unique_id=1287008254 instance=ExtResource("4_cs7ht")]
+layout_mode = 2
+
+[node name="VoiceCard9" parent="ScrollContainer/GridContainer" unique_id=1928300904 instance=ExtResource("4_cs7ht")]
+layout_mode = 2
+
 [node name="BackButton" parent="." unique_id=956369186 instance=ExtResource("5_udoh6")]
 layout_mode = 1
 offset_left = 96.0

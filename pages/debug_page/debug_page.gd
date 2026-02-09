@@ -12,4 +12,4 @@ func _ready() -> void:
 	
 	#while Stage.resou
 	
-	Game.main_menu.button_start.clicked.emit()
+	#Game.main_menu.button_start.clicked.emit()

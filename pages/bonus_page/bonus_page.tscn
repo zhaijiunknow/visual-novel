@@ -50,16 +50,18 @@ layout_mode = 1
 
 [node name="VoicePage" parent="TabPages" unique_id=2028092101 instance=ExtResource("6_0lt8g")]
 visible = false
-layout_mode = 0
+layout_mode = 1
 
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1931057470]
-offset_left = 1838.0
+offset_left = 1261.0
 offset_top = 1268.0
 offset_right = 2422.0
 offset_bottom = 1311.0
-theme_override_constants/separation = 112
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_constants/separation = 130
+alignment = 2
 
-[node name="BonusTabItem_Character" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="BonusTabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 target_tab = NodePath("../../TabPages/CharacterPage")
 
@@ -74,6 +76,12 @@ layout_mode = 2
 title_zh = "音乐鉴赏"
 title_en = "Music Gallery"
 target_tab = NodePath("../../TabPages/MusicPage")
+
+[node name="BonusTabItem_Voice" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+layout_mode = 2
+title_zh = "录音鉴赏"
+title_en = "Voice Collection"
+target_tab = NodePath("../../TabPages/VoicePage")
 
 [node name="BackButton" parent="." unique_id=879433762 node_paths=PackedStringArray("target_page") instance=ExtResource("42_j7eld")]
 anchors_preset = 0
