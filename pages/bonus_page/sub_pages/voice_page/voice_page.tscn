@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bh1j660oi8dw8"]
 
 [ext_resource type="Script" uid="uid://r0777eg6rpqk" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.gd" id="1_feqe0"]
+[ext_resource type="Texture2D" uid="uid://b5v3o5x6ss4g5" path="res://assets/temp/voice.jpg" id="2_cs7ht"]
 [ext_resource type="PackedScene" uid="uid://c7qu2xafv1pld" path="res://prefabs/voice_card/voice_card.tscn" id="4_cs7ht"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="5_udoh6"]
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="6_n2gkn"]
@@ -16,7 +17,11 @@
 
 [node name="VoicePage" type="Control" unique_id=21218107]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_feqe0")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1559743973]
@@ -24,6 +29,15 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1440.0
 mouse_filter = 0
+
+[node name="Preview" type="TextureRect" parent="." unique_id=706821442]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_cs7ht")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1148493183]
 layout_mode = 0
