@@ -50,7 +50,7 @@
         <key>dxtCompressionMode</key>
         <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -74,7 +74,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png</enum>
+        <enum type="SettingsBase::TextureFormat">png8</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -124,7 +124,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>../sprites/characters/characters.tpsheet</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -211,10 +211,45 @@
             <key type="filename">../characters/常夏/眼睛/星星眼.png</key>
             <key type="filename">../characters/常夏/眼睛/眯眼.png</key>
             <key type="filename">../characters/常夏/眼睛/默认.png</key>
-            <key type="filename">../characters/常夏/身体/举手掌.png</key>
-            <key type="filename">../characters/常夏/身体/举食指.png</key>
-            <key type="filename">../characters/常夏/身体/叉腰.png</key>
+            <key type="filename">../characters/常夏/身体/常服-举手掌.png</key>
+            <key type="filename">../characters/常夏/身体/常服-举食指.png</key>
+            <key type="filename">../characters/常夏/身体/常服-叉腰.png</key>
+            <key type="filename">../characters/常夏/身体/校服-举手掌.png</key>
+            <key type="filename">../characters/常夏/身体/校服-举食指.png</key>
+            <key type="filename">../characters/常夏/身体/校服-叉腰.png</key>
             <key type="filename">../characters/常夏/附加/脸红.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/不满.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/大开口.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/小开口.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/开口.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/默认.png</key>
+            <key type="filename">../characters/林凌铃/嘴巴/鼓嘴.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/上扬.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/大幅上扬.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/悲伤.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/生气.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/疑惑.png</key>
+            <key type="filename">../characters/林凌铃/眉毛/默认.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/吃惊.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/微眯.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/悲伤.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/惊喜.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/星星眼.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/晕晕眼.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/眯眼.png</key>
+            <key type="filename">../characters/林凌铃/眼睛/默认.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服-两手交叉.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服-待机.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服-摊手.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服帽子-两手交叉.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服帽子-待机.png</key>
+            <key type="filename">../characters/林凌铃/身体/常服帽子-摊手.png</key>
+            <key type="filename">../characters/林凌铃/身体/校服-两手交叉.png</key>
+            <key type="filename">../characters/林凌铃/身体/校服-待机.png</key>
+            <key type="filename">../characters/林凌铃/身体/校服-摊手.png</key>
+            <key type="filename">../characters/林凌铃/附加/感叹号.png</key>
+            <key type="filename">../characters/林凌铃/附加/感叹号白.png</key>
+            <key type="filename">../characters/林凌铃/附加/脸红.png</key>
             <key type="filename">../characters/葛城/嘴巴/说话.png</key>
             <key type="filename">../characters/葛城/嘴巴/闭口不满.png</key>
             <key type="filename">../characters/葛城/嘴巴/闭口微笑.png</key>
@@ -243,9 +278,12 @@
             <key type="filename">../characters/辉夜奏/眼睛/悲伤.png</key>
             <key type="filename">../characters/辉夜奏/眼睛/眯眼.png</key>
             <key type="filename">../characters/辉夜奏/眼睛/默认.png</key>
-            <key type="filename">../characters/辉夜奏/身体/手放下.png</key>
-            <key type="filename">../characters/辉夜奏/身体/指脑门.png</key>
-            <key type="filename">../characters/辉夜奏/身体/默认.png</key>
+            <key type="filename">../characters/辉夜奏/身体/常服-手放下.png</key>
+            <key type="filename">../characters/辉夜奏/身体/常服-指脑门.png</key>
+            <key type="filename">../characters/辉夜奏/身体/常服-默认.png</key>
+            <key type="filename">../characters/辉夜奏/身体/校服-手放下.png</key>
+            <key type="filename">../characters/辉夜奏/身体/校服-指脑门.png</key>
+            <key type="filename">../characters/辉夜奏/身体/校服-默认.png</key>
             <key type="filename">../characters/辉夜奏/附加/脸红.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

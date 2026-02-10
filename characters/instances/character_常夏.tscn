@@ -1,51 +1,78 @@
 [gd_scene format=3 uid="uid://crtfb3f3rs7b1"]
 
 [ext_resource type="PackedScene" uid="uid://bpa5d8jlrcd16" path="res://characters/character.tscn" id="1_1d4w3"]
-[ext_resource type="Texture2D" uid="uid://b3qpnd5exitjk" path="res://assets/sprites/characters/characters.sprites/常夏/身体/举手掌.tres" id="2_cmy8o"]
-[ext_resource type="Texture2D" uid="uid://cxw76kx0msrdm" path="res://assets/sprites/characters/characters.sprites/常夏/身体/举食指.tres" id="3_p5ym6"]
-[ext_resource type="Texture2D" uid="uid://c8voi6fg5visj" path="res://assets/sprites/characters/characters.sprites/常夏/身体/叉腰.tres" id="4_h7f86"]
-[ext_resource type="Texture2D" uid="uid://b3bbdcqgdyvuq" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/上挑.tres" id="5_8q33n"]
-[ext_resource type="Texture2D" uid="uid://dw8588ius16jd" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/悲伤.tres" id="6_r613x"]
-[ext_resource type="Texture2D" uid="uid://cbkcvpfgseuy6" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/生气.tres" id="7_ktyj5"]
-[ext_resource type="Texture2D" uid="uid://es1uvcl7eyqa" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/认真.tres" id="8_qdyow"]
-[ext_resource type="Texture2D" uid="uid://bm53q355vca1r" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/默认.tres" id="9_vm0ad"]
-[ext_resource type="Texture2D" uid="uid://juw0dgpbsudq" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/微眯.tres" id="10_uwf68"]
-[ext_resource type="Texture2D" uid="uid://oy3dvrlru07k" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/悲伤.tres" id="11_fbx6l"]
-[ext_resource type="Texture2D" uid="uid://7aehjosqx24a" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/星星眼.tres" id="12_uhghm"]
-[ext_resource type="Texture2D" uid="uid://bqeq7fvxqudt" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/眯眼.tres" id="13_h036r"]
-[ext_resource type="Texture2D" uid="uid://bw28kxcjjei23" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/默认.tres" id="14_fhsx7"]
-[ext_resource type="Texture2D" uid="uid://5q23py1cnmlr" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/不满.tres" id="15_84dwk"]
-[ext_resource type="Texture2D" uid="uid://bn6oucwql66hk" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/大开口.tres" id="16_ilflx"]
-[ext_resource type="Texture2D" uid="uid://cow11tpwui25c" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/小开口.tres" id="17_hpak8"]
-[ext_resource type="Texture2D" uid="uid://c30rojb387b5p" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/微笑.tres" id="18_q4bqm"]
-[ext_resource type="Texture2D" uid="uid://ccg0nd641350y" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑嘻嘻.tres" id="19_ykg8j"]
-[ext_resource type="Texture2D" uid="uid://ckrx704u80ewq" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑开口.tres" id="20_4o7u1"]
-[ext_resource type="Texture2D" uid="uid://cg6ap7hqmbxk" path="res://assets/sprites/characters/characters.sprites/常夏/附加/脸红.tres" id="21_hdqmv"]
+[ext_resource type="Texture2D" uid="uid://p7o1l1n20xgk" path="res://assets/sprites/characters/characters.sprites/常夏/身体/常服-举手掌.tres" id="2_8q33n"]
+[ext_resource type="Texture2D" uid="uid://cp1ua2lh1yg2a" path="res://assets/sprites/characters/characters.sprites/常夏/身体/常服-举食指.tres" id="3_r613x"]
+[ext_resource type="Texture2D" uid="uid://4uvu7q16p1ya" path="res://assets/sprites/characters/characters.sprites/常夏/身体/常服-叉腰.tres" id="4_ktyj5"]
+[ext_resource type="Texture2D" uid="uid://dnaxx8wev2ykf" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/上挑.tres" id="5_8q33n"]
+[ext_resource type="Texture2D" uid="uid://dkm7i01ktktln" path="res://assets/sprites/characters/characters.sprites/常夏/身体/校服-举手掌.tres" id="5_qdyow"]
+[ext_resource type="Texture2D" uid="uid://d0y8g3u03mhjr" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/悲伤.tres" id="6_r613x"]
+[ext_resource type="Texture2D" uid="uid://d3qocrni630i5" path="res://assets/sprites/characters/characters.sprites/常夏/身体/校服-举食指.tres" id="6_vm0ad"]
+[ext_resource type="Texture2D" uid="uid://cghtwa17slrqf" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/生气.tres" id="7_ktyj5"]
+[ext_resource type="Texture2D" uid="uid://dmtbp0bav5ra4" path="res://assets/sprites/characters/characters.sprites/常夏/身体/校服-叉腰.tres" id="7_uwf68"]
+[ext_resource type="Texture2D" uid="uid://dp086ygqnjsbs" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/认真.tres" id="8_qdyow"]
+[ext_resource type="Texture2D" uid="uid://djy4v3qb8db7g" path="res://assets/sprites/characters/characters.sprites/常夏/眉毛/默认.tres" id="9_vm0ad"]
+[ext_resource type="Texture2D" uid="uid://bfw887pbtrtpo" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/微眯.tres" id="10_uwf68"]
+[ext_resource type="Texture2D" uid="uid://bgnvobcf4ejtr" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/悲伤.tres" id="11_fbx6l"]
+[ext_resource type="Texture2D" uid="uid://be0tcx4n3set4" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/星星眼.tres" id="12_uhghm"]
+[ext_resource type="Texture2D" uid="uid://dma5ij773y2ll" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/眯眼.tres" id="13_h036r"]
+[ext_resource type="Texture2D" uid="uid://72c2anje8euw" path="res://assets/sprites/characters/characters.sprites/常夏/眼睛/默认.tres" id="14_fhsx7"]
+[ext_resource type="Texture2D" uid="uid://sr4q6y4q716j" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/不满.tres" id="15_84dwk"]
+[ext_resource type="Texture2D" uid="uid://b2btely4lepxj" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/大开口.tres" id="16_ilflx"]
+[ext_resource type="Texture2D" uid="uid://cs5j06ocs3nm" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/小开口.tres" id="17_hpak8"]
+[ext_resource type="Texture2D" uid="uid://b2ro054rbsfhd" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/微笑.tres" id="18_q4bqm"]
+[ext_resource type="Texture2D" uid="uid://dec7vphpjb7rk" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑嘻嘻.tres" id="19_ykg8j"]
+[ext_resource type="Texture2D" uid="uid://ccde0kh351iqk" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑开口.tres" id="20_4o7u1"]
+[ext_resource type="Texture2D" uid="uid://k5qd53jvj2hu" path="res://assets/sprites/characters/characters.sprites/常夏/附加/脸红.tres" id="21_hdqmv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mflfp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_cmy8o")
+"texture": ExtResource("2_8q33n")
 }],
 "loop": true,
-"name": &"举手掌",
+"name": &"常服-举手掌",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_p5ym6")
+"texture": ExtResource("3_r613x")
 }],
 "loop": true,
-"name": &"举食指",
+"name": &"常服-举食指",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_h7f86")
+"texture": ExtResource("4_ktyj5")
 }],
 "loop": true,
-"name": &"叉腰",
+"name": &"常服-叉腰",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qdyow")
+}],
+"loop": true,
+"name": &"校服-举手掌",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vm0ad")
+}],
+"loop": true,
+"name": &"校服-举食指",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_uwf68")
+}],
+"loop": true,
+"name": &"校服-叉腰",
 "speed": 5.0
 }]
 
@@ -194,6 +221,9 @@ resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_cmy8o")
 region = Rect2(221.16089, 0, 561.6792, 527.8349)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_h7f86"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="常夏" unique_id=401531579 instance=ExtResource("1_1d4w3")]
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
@@ -204,7 +234,7 @@ size = Vector2i(1004, 2045)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 sprite_frames = SubResource("SpriteFrames_mflfp")
-animation = &"举手掌"
+animation = &"校服-叉腰"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_mpe7f")
@@ -222,5 +252,8 @@ animation = &"笑开口"
 visible = false
 texture = ExtResource("21_hdqmv")
 
-[node name="TextureRect_Avatar" parent="." index="1" unique_id=919147274]
+[node name="Avatar" parent="." index="1" unique_id=919147274]
 texture = SubResource("AtlasTexture_p5ym6")
+
+[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+texture = SubResource("ViewportTexture_h7f86")

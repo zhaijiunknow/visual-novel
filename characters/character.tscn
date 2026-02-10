@@ -8,6 +8,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqr4u"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_54qew")
+region = Rect2(0, 0, 14.123413, 14.122986)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")

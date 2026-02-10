@@ -1,48 +1,75 @@
 [gd_scene format=3 uid="uid://bnu8yy8c7d3pj"]
 
 [ext_resource type="PackedScene" uid="uid://bpa5d8jlrcd16" path="res://characters/character.tscn" id="1_mvhsb"]
-[ext_resource type="Texture2D" uid="uid://b3o6uan6n6ps6" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/手放下.tres" id="2_vdiis"]
-[ext_resource type="Texture2D" uid="uid://c5qma2xiupfgm" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/指脑门.tres" id="3_kn7nl"]
-[ext_resource type="Texture2D" uid="uid://bq0gdll6pbahs" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/默认.tres" id="4_h4psw"]
-[ext_resource type="Texture2D" uid="uid://bkohf4w4ettub" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/上挑.tres" id="5_cyvyr"]
-[ext_resource type="Texture2D" uid="uid://heu2xga2w5t0" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/悲伤.tres" id="6_kiw3g"]
-[ext_resource type="Texture2D" uid="uid://cqe5kb5rbcg42" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/生气.tres" id="7_plist"]
-[ext_resource type="Texture2D" uid="uid://nfskku4b73p6" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/疑惑.tres" id="8_hebva"]
-[ext_resource type="Texture2D" uid="uid://dtemelfa5568o" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/默认.tres" id="9_kp7wi"]
-[ext_resource type="Texture2D" uid="uid://di52k2eyvod3w" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/微眯.tres" id="10_v55vx"]
-[ext_resource type="Texture2D" uid="uid://di1jrj83soddn" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/悲伤.tres" id="11_wjjxb"]
-[ext_resource type="Texture2D" uid="uid://c4tydtx0ywllm" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/眯眼.tres" id="12_rqc6a"]
-[ext_resource type="Texture2D" uid="uid://bnhl77agowb1k" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/默认.tres" id="13_scakq"]
-[ext_resource type="Texture2D" uid="uid://p2ndoisnk3hu" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/不满开口.tres" id="14_ks8nn"]
-[ext_resource type="Texture2D" uid="uid://by58la33e3o84" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/微笑.tres" id="15_t1wpv"]
-[ext_resource type="Texture2D" uid="uid://dvqg0n3frqmi5" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/说话.tres" id="16_nos6t"]
-[ext_resource type="Texture2D" uid="uid://c0g7pmjj02idd" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/闭口.tres" id="17_8a0v5"]
-[ext_resource type="Texture2D" uid="uid://d3ketuxatece4" path="res://assets/sprites/characters/characters.sprites/辉夜奏/附加/脸红.tres" id="18_mchy6"]
+[ext_resource type="Texture2D" uid="uid://dfil4x1c117ux" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/常服-手放下.tres" id="2_cyvyr"]
+[ext_resource type="Texture2D" uid="uid://dwsvh56lfyj2f" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/常服-指脑门.tres" id="3_kiw3g"]
+[ext_resource type="Texture2D" uid="uid://bqsqsfsotvqbq" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/常服-默认.tres" id="4_plist"]
+[ext_resource type="Texture2D" uid="uid://d4a80u4usnuk8" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/上挑.tres" id="5_cyvyr"]
+[ext_resource type="Texture2D" uid="uid://t1euqn2gvh87" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/校服-手放下.tres" id="5_hebva"]
+[ext_resource type="Texture2D" uid="uid://dl8cstcuu3noh" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/悲伤.tres" id="6_kiw3g"]
+[ext_resource type="Texture2D" uid="uid://dnfihejpkhjyw" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/校服-指脑门.tres" id="6_kp7wi"]
+[ext_resource type="Texture2D" uid="uid://bw4ajc80vvhaa" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/生气.tres" id="7_plist"]
+[ext_resource type="Texture2D" uid="uid://cxmq4dymiihbk" path="res://assets/sprites/characters/characters.sprites/辉夜奏/身体/校服-默认.tres" id="7_v55vx"]
+[ext_resource type="Texture2D" uid="uid://dsyihdr08ekbi" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/疑惑.tres" id="8_hebva"]
+[ext_resource type="Texture2D" uid="uid://cmb3u5bpoa8jm" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眉毛/默认.tres" id="9_kp7wi"]
+[ext_resource type="Texture2D" uid="uid://b6se6r2vpdcee" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/微眯.tres" id="10_v55vx"]
+[ext_resource type="Texture2D" uid="uid://4rln83qor652" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/悲伤.tres" id="11_wjjxb"]
+[ext_resource type="Texture2D" uid="uid://bwl00sit3pcsp" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/眯眼.tres" id="12_rqc6a"]
+[ext_resource type="Texture2D" uid="uid://br0yuk6kjiiio" path="res://assets/sprites/characters/characters.sprites/辉夜奏/眼睛/默认.tres" id="13_scakq"]
+[ext_resource type="Texture2D" uid="uid://dxwr460ybsr37" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/不满开口.tres" id="14_ks8nn"]
+[ext_resource type="Texture2D" uid="uid://b0qc4y5rao68y" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/微笑.tres" id="15_t1wpv"]
+[ext_resource type="Texture2D" uid="uid://bv6145uqtwrlj" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/说话.tres" id="16_nos6t"]
+[ext_resource type="Texture2D" uid="uid://tjmjtkr1ggjt" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/闭口.tres" id="17_8a0v5"]
+[ext_resource type="Texture2D" uid="uid://2fbuxe1i3env" path="res://assets/sprites/characters/characters.sprites/辉夜奏/附加/脸红.tres" id="18_mchy6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mvhsb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_vdiis")
+"texture": ExtResource("2_cyvyr")
 }],
 "loop": true,
-"name": &"手放下",
+"name": &"常服-手放下",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_kn7nl")
+"texture": ExtResource("3_kiw3g")
 }],
 "loop": true,
-"name": &"指脑门",
+"name": &"常服-指脑门",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_h4psw")
+"texture": ExtResource("4_plist")
 }],
 "loop": true,
-"name": &"默认",
+"name": &"常服-默认",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hebva")
+}],
+"loop": true,
+"name": &"校服-手放下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kp7wi")
+}],
+"loop": true,
+"name": &"校服-指脑门",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_v55vx")
+}],
+"loop": true,
+"name": &"校服-默认",
 "speed": 5.0
 }]
 
@@ -167,6 +194,9 @@ resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_vdiis")
 region = Rect2(213.02051, 0, 561.67944, 511.55426)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_h4psw"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="辉夜奏" unique_id=961663325 instance=ExtResource("1_mvhsb")]
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
@@ -178,7 +208,7 @@ size = Vector2i(1004, 2218)
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(499, 1130)
 sprite_frames = SubResource("SpriteFrames_mvhsb")
-animation = &"默认"
+animation = &"校服-默认"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_lre8g")
@@ -196,5 +226,8 @@ animation = &"闭口"
 visible = false
 texture = ExtResource("18_mchy6")
 
-[node name="TextureRect_Avatar" parent="." index="1" unique_id=919147274]
+[node name="Avatar" parent="." index="1" unique_id=919147274]
 texture = SubResource("AtlasTexture_kn7nl")
+
+[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+texture = SubResource("ViewportTexture_h4psw")

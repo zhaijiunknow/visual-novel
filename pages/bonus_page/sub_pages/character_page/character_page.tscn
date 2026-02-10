@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="8_od5st"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="9_5lwtc"]
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="10_po4xj"]
+[ext_resource type="PackedScene" uid="uid://dvavxp5xvb7m1" path="res://characters/instances/character_林凌铃.tscn" id="11_dorhe"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="12_qgx8s"]
 [ext_resource type="PackedScene" uid="uid://biidn3huf1yac" path="res://prefabs/character_option/character_option.tscn" id="13_34roo"]
 [ext_resource type="PackedScene" uid="uid://bjgc7qq7fa0s3" path="res://prefabs/slider_ex/slider_ex.tscn" id="14_201mx"]
@@ -104,6 +105,19 @@ offset_right = 330.0
 offset_bottom = 504.0
 texture = ExtResource("7_od5st")
 
+[node name="CharacterSelection5" parent="CharacterSelections" unique_id=372530569 instance=ExtResource("3_dorhe")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 92.0
+offset_top = 435.0
+offset_right = 245.0
+offset_bottom = 588.0
+texture = ExtResource("7_od5st")
+
 [node name="Characters" type="Control" parent="." unique_id=1346683318]
 anchors_preset = 0
 offset_left = 1305.0
@@ -154,6 +168,10 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="林凌铃" parent="Characters" unique_id=809289517 instance=ExtResource("11_dorhe")]
+visible = false
+layout_mode = 1
 
 [node name="Preview" type="TextureRect" parent="." unique_id=327835344]
 visible = false

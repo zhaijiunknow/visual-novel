@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="9_uutle"]
 [ext_resource type="PackedScene" uid="uid://bnu8yy8c7d3pj" path="res://characters/instances/character_辉夜奏.tscn" id="10_cwi0x"]
 [ext_resource type="Resource" uid="uid://b0n2joy3a36wk" path="res://data/backgrounds/07_教室.tres" id="10_lv745"]
+[ext_resource type="PackedScene" uid="uid://dvavxp5xvb7m1" path="res://characters/instances/character_林凌铃.tscn" id="11_ag5rj"]
 
 [node name="Stage" type="Node" unique_id=1343709308 node_paths=PackedStringArray("character_pool")]
 script = ExtResource("1_ecxui")
@@ -65,3 +66,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="林凌铃" parent="Characters" unique_id=809289517 instance=ExtResource("11_ag5rj")]
+layout_mode = 1

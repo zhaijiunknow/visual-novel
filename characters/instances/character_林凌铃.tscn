@@ -1,0 +1,335 @@
+[gd_scene format=3 uid="uid://dvavxp5xvb7m1"]
+
+[ext_resource type="PackedScene" uid="uid://bpa5d8jlrcd16" path="res://characters/character.tscn" id="1_ivjag"]
+[ext_resource type="Texture2D" uid="uid://cd61dlqxrvp0m" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服-两手交叉.tres" id="2_smhud"]
+[ext_resource type="Texture2D" uid="uid://ddnoq4jdnfrvp" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服-待机.tres" id="3_tlbsv"]
+[ext_resource type="Texture2D" uid="uid://30s0d7tlwxk8" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服-摊手.tres" id="4_kjxhu"]
+[ext_resource type="Texture2D" uid="uid://cj6puxmge5xot" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服帽子-两手交叉.tres" id="5_w0f6g"]
+[ext_resource type="Texture2D" uid="uid://06slfwsv8mor" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服帽子-待机.tres" id="6_srfgc"]
+[ext_resource type="Texture2D" uid="uid://b5x0xwhi1kqco" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/常服帽子-摊手.tres" id="7_s3dsp"]
+[ext_resource type="Texture2D" uid="uid://bltxnww1a7gb4" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/校服-两手交叉.tres" id="8_6e0q8"]
+[ext_resource type="Texture2D" uid="uid://cpyheksijs1um" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/校服-待机.tres" id="9_uegh0"]
+[ext_resource type="Texture2D" uid="uid://qklsf2w7kdmv" path="res://assets/sprites/characters/characters.sprites/林凌铃/身体/校服-摊手.tres" id="10_2hopr"]
+[ext_resource type="Texture2D" uid="uid://c6jvldfkqklxp" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/上扬.tres" id="11_seug4"]
+[ext_resource type="Texture2D" uid="uid://c5hsxr0b3dkw" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/大幅上扬.tres" id="12_2co46"]
+[ext_resource type="Texture2D" uid="uid://b85jr4bae3xnw" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/悲伤.tres" id="13_k62ld"]
+[ext_resource type="Texture2D" uid="uid://c05jubx2iu5l4" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/生气.tres" id="14_6uw8g"]
+[ext_resource type="Texture2D" uid="uid://boo26am56n55g" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/疑惑.tres" id="15_dxo6x"]
+[ext_resource type="Texture2D" uid="uid://bad81hc6vcmeu" path="res://assets/sprites/characters/characters.sprites/林凌铃/眉毛/默认.tres" id="16_2iaa2"]
+[ext_resource type="Texture2D" uid="uid://cvm8ojfnt5lr5" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/吃惊.tres" id="17_ivjag"]
+[ext_resource type="Texture2D" uid="uid://613ggm15t0s" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/微眯.tres" id="18_7ljgm"]
+[ext_resource type="Texture2D" uid="uid://boq32b510dlef" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/悲伤.tres" id="19_pfxck"]
+[ext_resource type="Texture2D" uid="uid://cesa0qarmk1ve" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/惊喜.tres" id="20_3ptuv"]
+[ext_resource type="Texture2D" uid="uid://4u1vc811se3b" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/星星眼.tres" id="21_ieyld"]
+[ext_resource type="Texture2D" uid="uid://ci7su7opaxb7v" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/晕晕眼.tres" id="22_rh8d2"]
+[ext_resource type="Texture2D" uid="uid://wof2865s2k5h" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/眯眼.tres" id="23_de42s"]
+[ext_resource type="Texture2D" uid="uid://34dig4hagnb5" path="res://assets/sprites/characters/characters.sprites/林凌铃/眼睛/默认.tres" id="24_5h074"]
+[ext_resource type="Texture2D" uid="uid://cvsnu0rstps6a" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/不满.tres" id="25_ivjag"]
+[ext_resource type="Texture2D" uid="uid://ckxhuh3g3mgfu" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/大开口.tres" id="26_7ljgm"]
+[ext_resource type="Texture2D" uid="uid://dxk04niw0edyh" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/小开口.tres" id="27_pfxck"]
+[ext_resource type="Texture2D" uid="uid://cfkcnjf13ns3r" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/开口.tres" id="28_3ptuv"]
+[ext_resource type="Texture2D" uid="uid://cstatp5ttumkc" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/默认.tres" id="29_ieyld"]
+[ext_resource type="Texture2D" uid="uid://cbvxdle8hgx7m" path="res://assets/sprites/characters/characters.sprites/林凌铃/嘴巴/鼓嘴.tres" id="30_rh8d2"]
+[ext_resource type="Texture2D" uid="uid://j1s4taambkg3" path="res://assets/sprites/characters/characters.sprites/林凌铃/附加/脸红.tres" id="31_3ptuv"]
+[ext_resource type="Texture2D" uid="uid://dcja6des653ci" path="res://assets/sprites/characters/characters.sprites/林凌铃/附加/感叹号.tres" id="32_ieyld"]
+[ext_resource type="Texture2D" uid="uid://b8fnge0ggbkwk" path="res://assets/sprites/characters/characters.sprites/林凌铃/附加/感叹号白.tres" id="33_rh8d2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ha8hd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_smhud")
+}],
+"loop": true,
+"name": &"常服-两手交叉",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tlbsv")
+}],
+"loop": true,
+"name": &"常服-待机",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kjxhu")
+}],
+"loop": true,
+"name": &"常服-摊手",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_w0f6g")
+}],
+"loop": true,
+"name": &"常服帽子-两手交叉",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_srfgc")
+}],
+"loop": true,
+"name": &"常服帽子-待机",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_s3dsp")
+}],
+"loop": true,
+"name": &"常服帽子-摊手",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_6e0q8")
+}],
+"loop": true,
+"name": &"校服-两手交叉",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_uegh0")
+}],
+"loop": true,
+"name": &"校服-待机",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_2hopr")
+}],
+"loop": true,
+"name": &"校服-摊手",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8sp82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_seug4")
+}],
+"loop": true,
+"name": &"上扬",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_2co46")
+}],
+"loop": true,
+"name": &"大幅上扬",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_k62ld")
+}],
+"loop": true,
+"name": &"悲伤",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_6uw8g")
+}],
+"loop": true,
+"name": &"生气",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_dxo6x")
+}],
+"loop": true,
+"name": &"疑惑",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_2iaa2")
+}],
+"loop": true,
+"name": &"默认",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0t0je"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_ivjag")
+}],
+"loop": true,
+"name": &"吃惊",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_7ljgm")
+}],
+"loop": true,
+"name": &"微眯",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_pfxck")
+}],
+"loop": true,
+"name": &"悲伤",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_3ptuv")
+}],
+"loop": true,
+"name": &"惊喜",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_ieyld")
+}],
+"loop": true,
+"name": &"星星眼",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_rh8d2")
+}],
+"loop": true,
+"name": &"晕晕眼",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_de42s")
+}],
+"loop": true,
+"name": &"眯眼",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_5h074")
+}],
+"loop": true,
+"name": &"默认",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w6frx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_ivjag")
+}],
+"loop": true,
+"name": &"不满",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_7ljgm")
+}],
+"loop": true,
+"name": &"大开口",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_pfxck")
+}],
+"loop": true,
+"name": &"小开口",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_3ptuv")
+}],
+"loop": true,
+"name": &"开口",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_ieyld")
+}],
+"loop": true,
+"name": &"默认",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("30_rh8d2")
+}],
+"loop": true,
+"name": &"鼓嘴",
+"speed": 5.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o4paf"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a07eu"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_o4paf")
+region = Rect2(150.22382, 115.68597, 577.4711, 546.0868)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yfn1m"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[node name="林凌铃" unique_id=809289517 instance=ExtResource("1_ivjag")]
+
+[node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
+offset_left = -473.0
+offset_right = 452.0
+offset_bottom = 866.0
+
+[node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
+size = Vector2i(925, 2218)
+
+[node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
+position = Vector2(500, 948)
+sprite_frames = SubResource("SpriteFrames_ha8hd")
+animation = &"校服-摊手"
+
+[node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
+sprite_frames = SubResource("SpriteFrames_8sp82")
+animation = &"默认"
+
+[node name="Eyes" parent="SubViewportContainer/SubViewport/Body" index="1" unique_id=493810032]
+sprite_frames = SubResource("SpriteFrames_0t0je")
+animation = &"默认"
+
+[node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
+sprite_frames = SubResource("SpriteFrames_w6frx")
+animation = &"鼓嘴"
+
+[node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=1564997541]
+visible = false
+texture = ExtResource("31_3ptuv")
+
+[node name="感叹号" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="1" unique_id=93461048]
+visible = false
+texture = ExtResource("32_ieyld")
+
+[node name="感叹号白" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="2" unique_id=1151058811]
+visible = false
+texture = ExtResource("33_rh8d2")
+
+[node name="Avatar" parent="." index="1" unique_id=919147274]
+texture = SubResource("AtlasTexture_a07eu")
+
+[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+texture = SubResource("ViewportTexture_yfn1m")
