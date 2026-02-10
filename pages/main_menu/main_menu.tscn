@@ -2,8 +2,46 @@
 
 [ext_resource type="Script" uid="uid://c5tfa7c7bgv1b" path="res://pages/main_menu/main_menu.gd" id="1_563vs"]
 [ext_resource type="Texture2D" uid="uid://bxe31xgcmaiac" path="res://assets/ui_backgrounds/title_background.jpg" id="2_kxxlx"]
+[ext_resource type="Shader" uid="uid://bkb4yiv7ujaa2" path="res://shaders/title.gdshader" id="3_563vs"]
 [ext_resource type="Texture2D" uid="uid://dkl0wjuebbpm4" path="res://assets/sprites/ui/ui.sprites/logo_normal.tres" id="3_mtbyv"]
 [ext_resource type="PackedScene" uid="uid://lfcmnldfkrh" path="res://prefabs/main_menu_button/main_menu_button.tscn" id="4_e7v1n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tst2v"]
+resource_local_to_scene = true
+shader = ExtResource("3_563vs")
+shader_parameter/x = 0.0
+shader_parameter/size = 0.03
+shader_parameter/dark_alpha = 0.9210000437475
+shader_parameter/light_alpha = 1.57200007467
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_563vs"]
+viewport_path = NodePath("Logo/SubViewport_Logo")
+
+[sub_resource type="Animation" id="Animation_mtbyv"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_563vs"]
+resource_name = "shine"
+length = 3.3666666
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7334333, 1.4333333, 1.4334333, 2.0666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mtbyv"]
+_data = {
+&"RESET": SubResource("Animation_mtbyv"),
+&"shine": SubResource("Animation_563vs")
+}
 
 [node name="MainMenu" type="CanvasLayer" unique_id=494483393 node_paths=PackedStringArray("button_start", "button_load", "button_bonus", "button_book", "button_setting", "button_quit")]
 script = ExtResource("1_563vs")
@@ -25,6 +63,7 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1981438053]
+material = SubResource("ShaderMaterial_tst2v")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,8 +73,21 @@ offset_right = -658.0
 offset_bottom = -184.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("ViewportTexture_563vs")
+stretch_mode = 4
+
+[node name="SubViewport_Logo" type="SubViewport" parent="Logo" unique_id=1946347297]
+transparent_bg = true
+size = Vector2i(1244, 504)
+
+[node name="TextureRect" type="TextureRect" parent="Logo/SubViewport_Logo" unique_id=203407306]
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("3_mtbyv")
-stretch_mode = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo" unique_id=987219698]
+libraries/ = SubResource("AnimationLibrary_mtbyv")
+autoplay = &"shine"
 
 [node name="Buttons" type="Control" parent="." unique_id=295338161]
 layout_mode = 3
