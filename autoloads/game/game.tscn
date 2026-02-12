@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgckygupi53v2" path="res://autoloads/game/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://c0gag5i2v34e2" path="res://pages/main_menu/main_menu.tscn" id="2_84b8o"]
+[ext_resource type="Shader" uid="uid://dibjvl6cxuv8r" path="res://shaders/blur.gdshader" id="2_gkvkt"]
 [ext_resource type="PackedScene" uid="uid://ds2orcg0dncno" path="res://pages/bonus_page/bonus_page.tscn" id="3_g2bdr"]
 [ext_resource type="PackedScene" uid="uid://d1umh6ylt5pkt" path="res://pages/profile_page/profile_page.tscn" id="5_4j704"]
 [ext_resource type="PackedScene" uid="uid://bvnwmelln5gka" path="res://pages/travel_page/travel_page.tscn" id="6_kp23o"]
@@ -12,47 +13,66 @@
 [ext_resource type="PackedScene" uid="uid://c7tlr4l4j3tcp" path="res://pages/loading_page/loading_page.tscn" id="11_kp23o"]
 [ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
+shader = ExtResource("2_gkvkt")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/power = 2.0
+shader_parameter/iterations = 1.0
+
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page", "sv_container")]
 script = ExtResource("1_e2o6t")
-page_pool = NodePath("Pages")
-main_menu = NodePath("Pages/MainMenu")
-bonus_page = NodePath("Pages/BonusPage")
-stage_page = NodePath("Pages/StagePage")
-profile_page = NodePath("Pages/ProfilePage")
-travel_page = NodePath("Pages/TravelPage")
-book_page = NodePath("Pages/BookPage")
-log_page = NodePath("Pages/LogPage")
-phone_page = NodePath("Pages/PhonePage")
-setting_page = NodePath("Pages/SettingPage")
+page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
+main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
+bonus_page = NodePath("SubViewportContainer/SubViewport/Pages/BonusPage")
+stage_page = NodePath("SubViewportContainer/SubViewport/Pages/StagePage")
+profile_page = NodePath("SubViewportContainer/SubViewport/Pages/ProfilePage")
+travel_page = NodePath("SubViewportContainer/SubViewport/Pages/TravelPage")
+book_page = NodePath("SubViewportContainer/SubViewport/Pages/BookPage")
+log_page = NodePath("SubViewportContainer/SubViewport/Pages/LogPage")
+phone_page = NodePath("SubViewportContainer/SubViewport/Pages/PhonePage")
+setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 loading_page = NodePath("LoadingPage")
+sv_container = NodePath("SubViewportContainer")
 
-[node name="Pages" type="Node" parent="." unique_id=461717146]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
+material = SubResource("ShaderMaterial_2fepm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="MainMenu" parent="Pages" unique_id=494483393 instance=ExtResource("2_84b8o")]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2016917359]
+size = Vector2i(2560, 1440)
 
-[node name="BonusPage" parent="Pages" unique_id=998352437 instance=ExtResource("3_g2bdr")]
+[node name="Pages" type="Node" parent="SubViewportContainer/SubViewport" unique_id=461717146]
+
+[node name="MainMenu" parent="SubViewportContainer/SubViewport/Pages" unique_id=494483393 instance=ExtResource("2_84b8o")]
+
+[node name="BonusPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=998352437 instance=ExtResource("3_g2bdr")]
 visible = false
 
-[node name="StagePage" parent="Pages" unique_id=2061072662 instance=ExtResource("92_dadqe")]
+[node name="StagePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=2061072662 instance=ExtResource("92_dadqe")]
 layer = 1
 visible = false
 
-[node name="ProfilePage" parent="Pages" unique_id=899662598 instance=ExtResource("5_4j704")]
+[node name="ProfilePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=899662598 instance=ExtResource("5_4j704")]
 visible = false
 
-[node name="TravelPage" parent="Pages" unique_id=574453905 instance=ExtResource("6_kp23o")]
+[node name="TravelPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=574453905 instance=ExtResource("6_kp23o")]
 visible = false
 
-[node name="BookPage" parent="Pages" unique_id=139379015 instance=ExtResource("7_5jirj")]
+[node name="BookPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=139379015 instance=ExtResource("7_5jirj")]
 visible = false
 
-[node name="LogPage" parent="Pages" unique_id=1793174608 instance=ExtResource("8_vaxfo")]
+[node name="LogPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1793174608 instance=ExtResource("8_vaxfo")]
 visible = false
 
-[node name="PhonePage" parent="Pages" unique_id=1191743071 instance=ExtResource("9_ftsea")]
+[node name="PhonePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1191743071 instance=ExtResource("9_ftsea")]
 visible = false
 
-[node name="SettingPage" parent="Pages" unique_id=1362674666 instance=ExtResource("10_otnwt")]
+[node name="SettingPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1362674666 instance=ExtResource("10_otnwt")]
 visible = false
 
 [node name="LoadingPage" parent="." unique_id=79654088 instance=ExtResource("11_kp23o")]

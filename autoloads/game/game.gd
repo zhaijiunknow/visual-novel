@@ -12,6 +12,7 @@ extends Node
 @export var phone_page: PhonePage
 @export var setting_page: SettingPage
 @export var loading_page: LoadingPage
+@export var sv_container: SubViewportContainer
 
 var loading: bool:
 	set(value):
@@ -31,3 +32,12 @@ func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():
 		page.layer = 1
 		page.visible = false
+
+func fade(fade_in: bool) -> void:
+	var start_value = 20 if fade_in else 1
+	var end_value = 1 if fade_in else 20
+	
+	await create_tween().tween_method(
+		func(value): sv_container.material.set_shader_parameter("iterations", value),
+		start_value, end_value, 0.4
+	).finished

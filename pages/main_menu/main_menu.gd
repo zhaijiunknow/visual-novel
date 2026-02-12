@@ -27,7 +27,9 @@ func _ready() -> void:
 	)
 	button_bonus.clicked.connect(
 		func ():
+			await Game.fade(false)
 			Game.bonus_page.show()
+			await Game.fade(true)
 	)
 	button_book.clicked.connect(
 		func (): Game.book_page.show()
