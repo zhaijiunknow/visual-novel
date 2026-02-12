@@ -10,13 +10,23 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tst2v"]
 resource_local_to_scene = true
 shader = ExtResource("3_563vs")
-shader_parameter/x = 1.0
+shader_parameter/x = 0.0
 shader_parameter/size = 0.03
 shader_parameter/dark_alpha = 0.9210000437475
 shader_parameter/light_alpha = 1.57200007467
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_563vs"]
-viewport_path = NodePath("Logo/SubViewport_Logo")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_563vs"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1280, 100, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1280, 100, 0)
+direction = Vector3(0.375, 1, 0)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+color = Color(1, 1, 1, 0.5411765)
 
 [sub_resource type="Animation" id="Animation_mtbyv"]
 length = 0.001
@@ -43,19 +53,6 @@ _data = {
 &"RESET": SubResource("Animation_mtbyv"),
 &"shine": SubResource("Animation_563vs")
 }
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_563vs"]
-particle_flag_disable_z = true
-emission_shape_offset = Vector3(1280, 100, 0)
-emission_shape = 3
-emission_box_extents = Vector3(1280, 100, 0)
-direction = Vector3(0.375, 1, 0)
-spread = 20.0
-initial_velocity_min = 20.0
-initial_velocity_max = 80.0
-gravity = Vector3(0, 10, 0)
-scale_min = 0.5
-color = Color(1, 1, 1, 0.5411765)
 
 [node name="MainMenu" type="CanvasLayer" unique_id=494483393 node_paths=PackedStringArray("particle", "button_start", "button_load", "button_bonus", "button_book", "button_setting", "button_quit")]
 script = ExtResource("1_563vs")
@@ -88,21 +85,8 @@ offset_right = -658.0
 offset_bottom = -184.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("ViewportTexture_563vs")
-stretch_mode = 4
-
-[node name="SubViewport_Logo" type="SubViewport" parent="Logo" unique_id=1946347297]
-transparent_bg = true
-size = Vector2i(1244, 504)
-
-[node name="TextureRect" type="TextureRect" parent="Logo/SubViewport_Logo" unique_id=203407306]
-offset_right = 40.0
-offset_bottom = 40.0
 texture = ExtResource("3_mtbyv")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Logo" unique_id=987219698]
-libraries/ = SubResource("AnimationLibrary_mtbyv")
-autoplay = &"shine"
+stretch_mode = 4
 
 [node name="Buttons" type="Control" parent="." unique_id=295338161]
 layout_mode = 3
@@ -191,6 +175,11 @@ texture = ExtResource("6_mtbyv")
 lifetime = 14.68
 visibility_rect = Rect2(0, 0, 2560, 1440)
 process_material = SubResource("ParticleProcessMaterial_563vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987219698]
+root_node = NodePath("../Logo")
+libraries/ = SubResource("AnimationLibrary_mtbyv")
+autoplay = &"shine"
 
 [editable path="Buttons/MainMenuButton_Load"]
 [editable path="Buttons/MainMenuButton_Bonus"]
