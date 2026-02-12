@@ -17,25 +17,40 @@ func _ready() -> void:
 	
 	button_start.clicked.connect(
 		func ():
-			hide()
-			Stage.start()
+			Game.transition(
+				func():
+					hide()
+					Stage.start()
+			)
 	)
 	button_load.clicked.connect(
 		func ():
-			Main.profile_mode = Main.ProfileMode.LOAD
-			Game.profile_page.show()
+			Game.transition(
+				func():
+					Main.profile_mode = Main.ProfileMode.LOAD
+					Game.profile_page.show()
+			)
 	)
 	button_bonus.clicked.connect(
 		func ():
-			await Game.fade(false)
-			Game.bonus_page.show()
-			await Game.fade(true)
+			Game.transition(
+				func():
+					Game.bonus_page.show()
+			)
 	)
 	button_book.clicked.connect(
-		func (): Game.book_page.show()
+		func ():
+			Game.transition(
+				func():
+					Game.book_page.show()
+			)
 	)
 	button_setting.clicked.connect(
-		func (): Game.setting_page.show()
+		func ():
+			Game.transition(
+				func():
+					Game.setting_page.show()
+			)
 	)
 	button_quit.clicked.connect(
 		func (): get_tree().quit()

@@ -1,8 +1,12 @@
 extends TextureButton
 
+@export var with_transition: bool
 @export var target_page: CanvasLayer
 
 func _ready() -> void:
 	pressed.connect(
-		func (): target_page.visible = false
+		func ():
+			await Game.fade(false)
+			target_page.visible = false
+			await Game.fade(true)
 	)

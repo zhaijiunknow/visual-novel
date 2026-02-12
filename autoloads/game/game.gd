@@ -41,3 +41,8 @@ func fade(fade_in: bool) -> void:
 		func(value): sv_container.material.set_shader_parameter("iterations", value),
 		start_value, end_value, 0.4
 	).finished
+
+func transition(callable: Callable):
+	await fade(false)
+	callable.call()
+	await fade(true)
