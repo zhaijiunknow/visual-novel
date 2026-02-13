@@ -87,10 +87,10 @@ layer = 4
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="." unique_id=671025129]
 stream = ExtResource("13_2fepm")
 autoplay = true
+bus = &"Theme"
 parameters/looping = true
 
 [node name="NoisePlayer" type="AudioStreamPlayer" parent="." unique_id=612074141]
 stream = ExtResource("14_ojh2r")
-volume_db = -17.254
 bus = &"Noise"
 parameters/looping = true
