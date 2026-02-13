@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cnqqbeyauw3gt" path="res://pages/setting_page/setting_page.tscn" id="10_otnwt"]
 [ext_resource type="PackedScene" uid="uid://c7tlr4l4j3tcp" path="res://pages/loading_page/loading_page.tscn" id="11_kp23o"]
 [ext_resource type="AudioStream" uid="uid://cufi58bsisb2v" path="res://assets/musics/凝雪馥语.mp3" id="13_2fepm"]
+[ext_resource type="AudioStream" uid="uid://mnixl7s4mo7a" path="res://assets/audio/noise.mp3" id="14_ojh2r"]
 [ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
@@ -20,7 +21,7 @@ shader_parameter/center = Vector2(0.5, 0.5)
 shader_parameter/power = 2.0
 shader_parameter/iterations = 1.0
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page", "sv_container", "bgm_player")]
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page", "sv_container", "bgm_player", "noise_player")]
 script = ExtResource("1_e2o6t")
 page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
 main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
@@ -35,6 +36,7 @@ setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 loading_page = NodePath("LoadingPage")
 sv_container = NodePath("SubViewportContainer")
 bgm_player = NodePath("BgmPlayer")
+noise_player = NodePath("NoisePlayer")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
 material = SubResource("ShaderMaterial_2fepm")
@@ -85,4 +87,10 @@ layer = 4
 [node name="BgmPlayer" type="AudioStreamPlayer" parent="." unique_id=671025129]
 stream = ExtResource("13_2fepm")
 autoplay = true
+parameters/looping = true
+
+[node name="NoisePlayer" type="AudioStreamPlayer" parent="." unique_id=612074141]
+stream = ExtResource("14_ojh2r")
+volume_db = -17.254
+bus = &"Noise"
 parameters/looping = true
