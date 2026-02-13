@@ -22,7 +22,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_mtbyv"]
-_data = [Vector2(0.012875535, 0), 0.0, 0.0, 0, 0, Vector2(0.3991416, 1), 0.0, 0.0, 0, 0, Vector2(0.8669528, 0.09900987), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.37623763), 0.0, 0.0, 0, 0, Vector2(0.46351928, 0.6633664), 0.0, 0.0, 0, 0, Vector2(1, 0.35643566), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_0kkdm"]
@@ -42,7 +42,6 @@ angular_velocity_max = 29.999983
 gravity = Vector3(0, 10, 0)
 scale_min = 0.29999998
 scale_max = 0.39999998
-color = Color(1, 1, 1, 0.46666667)
 alpha_curve = SubResource("CurveTexture_0kkdm")
 anim_offset_max = 1.0
 
