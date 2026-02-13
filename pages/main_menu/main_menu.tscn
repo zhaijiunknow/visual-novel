@@ -33,7 +33,7 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_563vs"]
 resource_name = "shine"
-length = 3.3666666
+length = 8.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
