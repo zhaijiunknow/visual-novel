@@ -15,7 +15,8 @@ extends Node
 @export var sv_container: SubViewportContainer
 @export var bgm_player: AudioStreamPlayer
 
-@onready var eq: AudioEffectEQ = AudioServer.get_bus_effect(0, 0)
+@onready var effect_eq: AudioEffectEQ = AudioServer.get_bus_effect(0, 0)
+@onready var effect_distortion: AudioEffectDistortion = AudioServer.get_bus_effect(0, 1)
 
 var loading: bool:
 	set(value):
@@ -48,7 +49,8 @@ func fade(fade_in: bool) -> void:
 			var add = 19 * value * modifier
 			var db_add = 60 * value * -modifier
 			for i in range(2, 4):
-				eq.set_band_gain_db(i, start_db + db_add)
+				effect_eq.set_band_gain_db(i, start_db + db_add)
+			effect_distortion.drive = value * modifier * 0.8
 			sv_container.material.set_shader_parameter("iterations", start_iteration + add),
 		0.0, 1.0, 0.4
 	).finished
