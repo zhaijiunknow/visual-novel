@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://bkb4yiv7ujaa2" path="res://shaders/title.gdshader" id="3_563vs"]
 [ext_resource type="Texture2D" uid="uid://dkl0wjuebbpm4" path="res://assets/sprites/ui/ui.sprites/logo_normal.tres" id="3_mtbyv"]
 [ext_resource type="PackedScene" uid="uid://lfcmnldfkrh" path="res://prefabs/main_menu_button/main_menu_button.tscn" id="4_e7v1n"]
-[ext_resource type="Texture2D" uid="uid://dddkobnvgod6e" path="res://assets/particles/snow.png" id="6_mtbyv"]
+[ext_resource type="Texture2D" uid="uid://crq4giyf66als" path="res://assets/particles/snow.png" id="6_mtbyv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tst2v"]
 resource_local_to_scene = true
@@ -14,6 +14,19 @@ shader_parameter/x = 0.0
 shader_parameter/size = 0.03
 shader_parameter/dark_alpha = 0.9210000437475
 shader_parameter/light_alpha = 1.57200007467
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mtbyv"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_mtbyv"]
+_data = [Vector2(0.012875535, 0), 0.0, 0.0, 0, 0, Vector2(0.3991416, 1), 0.0, 0.0, 0, 0, Vector2(0.8669528, 0.09900987), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0kkdm"]
+curve = SubResource("Curve_mtbyv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_563vs"]
 particle_flag_disable_z = true
@@ -24,9 +37,14 @@ direction = Vector3(0.375, 1, 0)
 spread = 20.0
 initial_velocity_min = 20.0
 initial_velocity_max = 80.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 29.999983
 gravity = Vector3(0, 10, 0)
-scale_min = 0.5
-color = Color(1, 1, 1, 0.5411765)
+scale_min = 0.29999998
+scale_max = 0.39999998
+color = Color(1, 1, 1, 0.46666667)
+alpha_curve = SubResource("CurveTexture_0kkdm")
+anim_offset_max = 1.0
 
 [sub_resource type="Animation" id="Animation_mtbyv"]
 length = 0.001
@@ -169,6 +187,7 @@ text = "退出游戏"
 text = "Exit Game"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=348056610]
+material = SubResource("CanvasItemMaterial_mtbyv")
 position = Vector2(0, -207)
 amount = 32
 texture = ExtResource("6_mtbyv")
