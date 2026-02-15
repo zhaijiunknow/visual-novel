@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cis66niolkoqm" path="res://assets/sprites/ui/ui.sprites/menu_set.tres" id="18_et2aa"]
 [ext_resource type="Texture2D" uid="uid://blugpowixbrrs" path="res://assets/sprites/ui/ui.sprites/menu_voice.tres" id="19_8wbyc"]
 [ext_resource type="FontFile" uid="uid://dd1ubdqp4elpg" path="res://assets/fonts/C4v.4-Regular（日期）.otf" id="20_4x5c0"]
+[ext_resource type="Texture2D" uid="uid://dhg4we755w2or" path="res://assets/sprites/ui/ui.sprites/date_background.tres" id="20_rw8us"]
 [ext_resource type="Texture2D" uid="uid://c8wpn52llvp10" path="res://assets/sprites/ui/ui.sprites/menu_phone.tres" id="20_wuhph"]
 [ext_resource type="Texture2D" uid="uid://bwjf1rj1qofn6" path="res://assets/sprites/ui/ui.sprites/menu_book.tres" id="21_1r163"]
 [ext_resource type="Texture2D" uid="uid://ba2mnw8omf7ab" path="res://assets/sprites/ui/ui.sprites/menu_title.tres" id="22_0afbx"]
@@ -373,19 +374,24 @@ layout_mode = 2
 texture = ExtResource("22_0afbx")
 
 [node name="Date" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=990267552]
+layout_mode = 1
 anchors_preset = 0
-offset_left = 158.0
-offset_top = 105.0
-offset_right = 445.0
-offset_bottom = 285.0
+offset_right = 287.0
+offset_bottom = 180.0
+
+[node name="Shade" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1378467412]
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 28.0
+texture = ExtResource("20_rw8us")
 
 [node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=19742695]
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
-offset_left = -55.0
-offset_top = -7.0
-offset_right = 157.0
-offset_bottom = 170.0
+offset_left = 92.0
+offset_top = 73.0
+offset_right = 304.0
+offset_bottom = 250.0
 theme_override_fonts/font = ExtResource("20_4x5c0")
 theme_override_font_sizes/font_size = 176
 text = "31"
@@ -393,10 +399,10 @@ horizontal_alignment = 1
 
 [node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=585375775]
 layout_mode = 0
-offset_left = 142.0
-offset_top = 40.0
-offset_right = 166.0
-offset_bottom = 140.0
+offset_left = 289.0
+offset_top = 120.0
+offset_right = 313.0
+offset_bottom = 220.0
 theme_override_colors/font_color = Color(0.5137255, 0.7764706, 1, 1)
 theme_override_colors/font_outline_color = Color(0.5137255, 0.7764706, 1, 1)
 theme_override_constants/outline_size = 3
@@ -407,38 +413,38 @@ text = "/"
 [node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1021873755]
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
-offset_left = 171.0
-offset_top = 39.0
-offset_right = 302.0
-offset_bottom = 157.0
+offset_left = 318.0
+offset_top = 119.0
+offset_right = 451.0
+offset_bottom = 237.0
 theme_override_fonts/font = ExtResource("20_4x5c0")
 theme_override_font_sizes/font_size = 117
 text = "02"
 
 [node name="Label_Date" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1042550106]
 layout_mode = 0
-offset_left = -53.0
-offset_top = 139.0
-offset_right = 139.0
-offset_bottom = 192.0
+offset_left = 94.0
+offset_top = 219.0
+offset_right = 286.0
+offset_bottom = 272.0
 theme_override_fonts/font = ExtResource("7_ke2v6")
 theme_override_font_sizes/font_size = 36
 text = "周四下午·晴"
 
 [node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=72667629]
 layout_mode = 0
-offset_left = 104.0
-offset_top = 95.0
-offset_right = 357.0
-offset_bottom = 210.0
+offset_left = 251.0
+offset_top = 175.0
+offset_right = 504.0
+offset_bottom = 290.0
 texture = ExtResource("24_lda8k")
 
 [node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1425571291]
 layout_mode = 0
-offset_left = -51.0
-offset_top = 219.0
-offset_right = 29.0
-offset_bottom = 247.0
+offset_left = 96.0
+offset_top = 299.0
+offset_right = 176.0
+offset_bottom = 327.0
 texture = ExtResource("25_lda8k")
 
 [node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]
