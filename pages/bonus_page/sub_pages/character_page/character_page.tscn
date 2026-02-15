@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bjgc7qq7fa0s3" path="res://prefabs/slider_ex/slider_ex.tscn" id="14_201mx"]
 [ext_resource type="Texture2D" uid="uid://h5xbqxw5brwr" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/name_deco.tres" id="14_po4xj"]
 
-[node name="CharacterPage" type="Control" unique_id=217028155 node_paths=PackedStringArray("label_character_name", "background", "character_pool", "body_part_options", "background_option", "variation_option", "slider_size")]
+[node name="CharacterPage" type="Control" unique_id=217028155 node_paths=PackedStringArray("label_character_name", "background", "character_pool", "body_part_options", "background_option", "variation_option", "slider_size", "optional_pool")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,7 @@ body_part_options = [NodePath("VBoxContainer_Options/CharacterOption_Body"), Nod
 background_option = NodePath("VBoxContainer_Options/CharacterOption_Background")
 variation_option = NodePath("VBoxContainer_Options/CharacterOption_Variation")
 slider_size = NodePath("SliderEx_Size")
+optional_pool = NodePath("VBoxContainer_Options/VBoxContainer_Optionals")
 
 [node name="Background" type="TextureRect" parent="." unique_id=954682134]
 layout_mode = 1
@@ -185,9 +186,9 @@ grow_vertical = 2
 [node name="Label_CharacterName" type="Label" parent="." unique_id=242887376]
 layout_mode = 0
 offset_left = 201.0
-offset_top = 795.0
+offset_top = 643.0
 offset_right = 381.0
-offset_bottom = 883.0
+offset_bottom = 731.0
 theme_override_colors/font_color = Color(0.72156864, 0.6901961, 0.75686276, 1)
 theme_override_fonts/font = ExtResource("12_qgx8s")
 theme_override_font_sizes/font_size = 60
@@ -205,9 +206,9 @@ texture = ExtResource("14_po4xj")
 [node name="VBoxContainer_Options" type="VBoxContainer" parent="." unique_id=890492560]
 layout_mode = 0
 offset_left = 97.0
-offset_top = 911.0
-offset_right = 557.0
-offset_bottom = 1195.0
+offset_top = 759.0
+offset_right = 619.0
+offset_bottom = 1047.0
 
 [node name="CharacterOption_Background" parent="VBoxContainer_Options" unique_id=1215976934 instance=ExtResource("13_34roo")]
 layout_mode = 2
@@ -248,6 +249,9 @@ body_part = "Mouth"
 
 [node name="Label" parent="VBoxContainer_Options/CharacterOption_Mouth" index="0" unique_id=706614607]
 text = "嘴巴"
+
+[node name="VBoxContainer_Optionals" type="VBoxContainer" parent="VBoxContainer_Options" unique_id=1059375223]
+layout_mode = 2
 
 [node name="SliderEx_Size" parent="." unique_id=1465816476 instance=ExtResource("14_201mx")]
 layout_mode = 0

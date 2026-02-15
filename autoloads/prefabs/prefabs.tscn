@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ft3erxxeesae" path="res://prefabs/dialogue_selection/dialogue_selection.tscn" id="5_u4y3h"]
 [ext_resource type="PackedScene" uid="uid://c7qu2xafv1pld" path="res://prefabs/voice_card/voice_card.tscn" id="6_hk78e"]
 [ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="7_7rbbt"]
+[ext_resource type="PackedScene" uid="uid://biidn3huf1yac" path="res://prefabs/character_option/character_option.tscn" id="7_kmrd5"]
 [ext_resource type="Texture2D" uid="uid://f4h8ovdyhao3" path="res://assets/sprites/ui/ui.sprites/botton_cancel.tres" id="8_kmrd5"]
 
 [node name="Prefabs" type="Node" unique_id=1848148607]
@@ -16,5 +17,6 @@ chat_message = ExtResource("3_nhaaj")
 reply_selection = ExtResource("4_u4y3h")
 dialogue_selection = ExtResource("5_u4y3h")
 voice_card = ExtResource("6_hk78e")
+character_option = ExtResource("7_kmrd5")
 texture_set_favourite = ExtResource("7_7rbbt")
 texture_cancel_favourite = ExtResource("8_kmrd5")

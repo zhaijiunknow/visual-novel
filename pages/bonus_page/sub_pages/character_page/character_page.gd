@@ -8,6 +8,7 @@ extends Control
 @export var background_option: CharacterOption
 @export var variation_option: CharacterOption
 @export var slider_size: SliderEx
+@export var optional_pool: Control
 
 var current_character: Character:
 	get:
@@ -34,13 +35,30 @@ var variation_index: int:
 		background.texture = background_data.variations[variation_key]
 		
 
+func toggle_optional(optional: Sprite2D) -> void:
+	optional.visible = not optional.visible
+
 func _ready() -> void:
 	Stage.character_selection_index_changed.connect(
 		func ():
 			update_characters()
 			slider_size.value = current_character.body_scale_factor
+			for child in optional_pool.get_children():
+				optional_pool.remove_child(child)
+				child.queue_free()
+			for optional: Sprite2D in current_character.optionals_pool.get_children():
+				var character_option: CharacterOption = Prefabs.character_option.instantiate()
+				character_option.label.text = optional.name
+				optional_pool.add_child(character_option)
+				Main.clear_connections(optional.visibility_changed)
+				optional.visibility_changed.connect(
+					func ():
+						character_option.label_option_name.text = "开启" if optional.visible else "关闭"
+				)
+				optional.visibility_changed.emit()
+				character_option.next_button.pressed.connect(toggle_optional.bind(optional))
+				character_option.previous_button.pressed.connect(toggle_optional.bind(optional))
 	)
-	
 	background_option.previous_button.pressed.connect(
 		func (): background_index -= 1
 	)
