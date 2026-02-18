@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bsvaglf0nlsdk"]
+
+[ext_resource type="Script" uid="uid://dwf2id0jkfrwj" path="res://prefabs/chat/chat.gd" id="1_asp5r"]
+[ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="1_hij43"]
+[ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="2_asp5r"]
+[ext_resource type="FontFile" uid="uid://6ydkdqqx8lgc" path="res://assets/fonts/Poppins-Medium（各种no）.ttf" id="3_5nnpx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7ami"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pdylm"]
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mq0w"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Chat" type="PanelContainer" unique_id=1372363922]
+self_modulate = Color(0.9647059, 0.9647059, 0.9764706, 1)
+custom_minimum_size = Vector2(660, 128)
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7ami")
+script = ExtResource("1_asp5r")
+
+[node name="Control" type="Control" parent="." unique_id=121716470]
+layout_mode = 2
+
+[node name="ProfileImage" type="PanelContainer" parent="Control" unique_id=942689601]
+clip_children = 1
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 18.0
+offset_right = 122.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pdylm")
+
+[node name="TextureRect" type="TextureRect" parent="Control/ProfileImage" unique_id=1365954661]
+layout_mode = 2
+texture = ExtResource("1_hij43")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Control" unique_id=588774975]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 144.0
+offset_top = 28.0
+offset_right = 336.0
+offset_bottom = 66.0
+theme_override_fonts/font = ExtResource("2_asp5r")
+theme_override_font_sizes/font_size = 30
+text = "对方昵称昵称"
+
+[node name="Label2" type="Label" parent="Control" unique_id=1911440513]
+modulate = Color(0.556953, 0.556953, 0.5569529, 1)
+layout_mode = 0
+offset_left = 146.0
+offset_top = 72.0
+offset_right = 590.0
+offset_bottom = 101.0
+theme_override_fonts/font = ExtResource("2_asp5r")
+theme_override_font_sizes/font_size = 24
+text = "消息内容消息内容消息内容消息内容"
+clip_text = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1447270038]
+self_modulate = Color(0.67058825, 0.654902, 0.7764706, 1)
+layout_mode = 0
+offset_left = 573.0
+offset_top = 19.0
+offset_right = 615.0
+offset_bottom = 46.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7mq0w")
+
+[node name="Label" type="Label" parent="Control/PanelContainer" unique_id=936463283]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5nnpx")
+theme_override_font_sizes/font_size = 19
+text = "1"
+horizontal_alignment = 1

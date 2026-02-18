@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
 [ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="18_31aqv"]
-[ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="19_fyc1j"]
+[ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="19_fyc1j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aggdw"]
 bg_color = Color(1, 1, 1, 0.3137255)
@@ -35,9 +35,6 @@ corner_radius_top_left = 128
 corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7ami"]
-bg_color = Color(1, 1, 1, 1)
 
 [node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("chat_node", "background", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "back_button")]
 script = ExtResource("1_xkddf")
@@ -257,55 +254,10 @@ stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Phone/Messenger" unique_id=663826737]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 211.0
+offset_left = 34.0
+offset_top = 337.0
 offset_right = 694.0
-offset_bottom = 339.0
+offset_bottom = 465.0
 
-[node name="Control" type="PanelContainer" parent="Phone/Messenger/VBoxContainer" unique_id=71638397]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 128)
+[node name="Chat" parent="Phone/Messenger/VBoxContainer" unique_id=1372363922 instance=ExtResource("19_fyc1j")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_a7ami")
-
-[node name="Control" type="Control" parent="Phone/Messenger/VBoxContainer/Control" unique_id=531375246]
-layout_mode = 2
-
-[node name="ProfileImage" type="PanelContainer" parent="Phone/Messenger/VBoxContainer/Control/Control" unique_id=231403868]
-clip_children = 1
-custom_minimum_size = Vector2(92, 92)
-layout_mode = 0
-offset_left = 13.0
-offset_top = 18.0
-offset_right = 105.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_pdylm")
-
-[node name="TextureRect" type="TextureRect" parent="Phone/Messenger/VBoxContainer/Control/Control/ProfileImage" unique_id=1090671373]
-layout_mode = 2
-texture = ExtResource("18_31aqv")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Label" type="Label" parent="Phone/Messenger/VBoxContainer/Control/Control" unique_id=683260804]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 127.0
-offset_top = 28.0
-offset_right = 255.0
-offset_bottom = 66.0
-theme_override_fonts/font = ExtResource("19_fyc1j")
-theme_override_font_sizes/font_size = 32
-text = "对方昵称昵称"
-
-[node name="Label2" type="Label" parent="Phone/Messenger/VBoxContainer/Control/Control" unique_id=1279370823]
-modulate = Color(0.556953, 0.556953, 0.5569529, 1)
-layout_mode = 0
-offset_left = 129.0
-offset_top = 72.0
-offset_right = 563.0
-offset_bottom = 101.0
-theme_override_fonts/font = ExtResource("19_fyc1j")
-theme_override_font_sizes/font_size = 24
-text = "消息内容消息内容消息内容消息内容"
-clip_text = true
