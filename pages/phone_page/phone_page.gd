@@ -13,6 +13,7 @@ extends CanvasLayer
 
 @export var chat_message_pool: Control
 @export var reply_selection_pool: Control
+@export var chat_pool: Control
 
 @export var back_button: TextureButton
 
