@@ -36,15 +36,17 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("chat_node", "background", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button")]
 script = ExtResource("1_xkddf")
 dialogue = ExtResource("2_ctgom")
-chat_node = NodePath("Phone/Chat")
+home_page = NodePath("Phone/Home")
+messenger_page = NodePath("Phone/Chat")
+chat_page = NodePath("Phone/Messenger")
 background = NodePath("Background")
-phone_icon_message = NodePath("Phone/Wallpaper/HBoxContainer/PhoneIcon_Message")
-phone_icon_photo = NodePath("Phone/Wallpaper/HBoxContainer/PhoneIcon_Photo")
-phone_icon_music = NodePath("Phone/Wallpaper/HBoxContainer/PhoneIcon_Music")
-phone_icon_book = NodePath("Phone/Wallpaper/HBoxContainer/PhoneIcon_Book")
+phone_icon_message = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Message")
+phone_icon_photo = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Photo")
+phone_icon_music = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Music")
+phone_icon_book = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Book")
 chat_message_pool = NodePath("Phone/Chat/VBoxContainer/ScrollContainer/ChatMessagePool")
 reply_selection_pool = NodePath("Phone/Chat/VBoxContainer/ReplySelectionPool")
 chat_pool = NodePath("Phone/Messenger/ChatPool")
@@ -72,7 +74,7 @@ grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("4_ctgom")
 
-[node name="Wallpaper" type="TextureRect" parent="Phone" unique_id=1033589326]
+[node name="Home" type="TextureRect" parent="Phone" unique_id=1033589326]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -87,7 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_31aqv")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Phone/Wallpaper" unique_id=1174843467]
+[node name="HBoxContainer" type="HBoxContainer" parent="Phone/Home" unique_id=1174843467]
 layout_mode = 0
 offset_left = 70.0
 offset_top = 1055.0
@@ -95,32 +97,32 @@ offset_right = 667.0
 offset_bottom = 1185.0
 theme_override_constants/separation = 25
 
-[node name="PhoneIcon_Message" parent="Phone/Wallpaper/HBoxContainer" unique_id=915122883 instance=ExtResource("5_pdylm")]
+[node name="PhoneIcon_Message" parent="Phone/Home/HBoxContainer" unique_id=915122883 instance=ExtResource("5_pdylm")]
 layout_mode = 2
 icon = ExtResource("7_ctgom")
 title = "信息"
 
-[node name="PhoneIcon_Photo" parent="Phone/Wallpaper/HBoxContainer" unique_id=176634025 instance=ExtResource("5_pdylm")]
+[node name="PhoneIcon_Photo" parent="Phone/Home/HBoxContainer" unique_id=176634025 instance=ExtResource("5_pdylm")]
 layout_mode = 2
 icon = ExtResource("8_31aqv")
 title = "相册"
 
-[node name="PhoneIcon_Music" parent="Phone/Wallpaper/HBoxContainer" unique_id=1894777181 instance=ExtResource("5_pdylm")]
+[node name="PhoneIcon_Music" parent="Phone/Home/HBoxContainer" unique_id=1894777181 instance=ExtResource("5_pdylm")]
 layout_mode = 2
 icon = ExtResource("9_fyc1j")
 title = "音乐"
 
-[node name="PhoneIcon_Book" parent="Phone/Wallpaper/HBoxContainer" unique_id=1913776249 instance=ExtResource("5_pdylm")]
+[node name="PhoneIcon_Book" parent="Phone/Home/HBoxContainer" unique_id=1913776249 instance=ExtResource("5_pdylm")]
 layout_mode = 2
 icon = ExtResource("10_pdylm")
 title = "奇迹书"
 
-[node name="Date" type="Control" parent="Phone/Wallpaper" unique_id=1612343402]
+[node name="Date" type="Control" parent="Phone/Home" unique_id=1612343402]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label_PhoneDate" type="Label" parent="Phone/Wallpaper/Date" unique_id=922845864]
+[node name="Label_PhoneDate" type="Label" parent="Phone/Home/Date" unique_id=922845864]
 layout_mode = 0
 offset_left = 170.0
 offset_top = 737.0

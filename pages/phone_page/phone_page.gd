@@ -3,7 +3,9 @@ extends CanvasLayer
 
 @export var dialogue: DialogueResource
 
-@export var chat_node: Control
+@export var home_page: Control
+@export var messenger_page: Control
+@export var chat_page: Control
 
 @export var background: Control
 @export var phone_icon_message: PhoneIcon
@@ -44,9 +46,9 @@ func get_next_line(next_id: String) -> void:
 	dialogue_line = await dialogue.get_next_dialogue_line(next_id)
 
 func _ready() -> void:
-	chat_node.visible = false
+	chat_page.visible = false
 	back_button.pressed.connect(
-		func (): chat_node.visible = false
+		func (): chat_page.visible = false
 	)
 	background.gui_input.connect(
 		func (event: InputEvent):
@@ -56,7 +58,7 @@ func _ready() -> void:
 	)
 	phone_icon_message.clicked.connect(
 		func ():
-			chat_node.visible = true
+			chat_page.visible = true
 	)
 	
 	phone_icon_photo.clicked.connect(
