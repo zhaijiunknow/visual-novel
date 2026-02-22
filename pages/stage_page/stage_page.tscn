@@ -87,7 +87,104 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sqldi")
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons")]
+[sub_resource type="Animation" id="Animation_ic8ca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shade:self_modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YMoveContent:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-300.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shade:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("XMoveContent:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-314.0]
+}
+
+[sub_resource type="Animation" id="Animation_rw8us"]
+resource_name = "ShowDate"
+length = 4.1666665
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 3.5666666, 4.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YMoveContent:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 2.1666667, 3.5666666, 4.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-300.0, 0.0, 0.0, -300.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("XMoveContent:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.53333336, 2.1666667, 3.5666666, 4.1666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-314.0, 0.0, 0.0, -314.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lda8k"]
+_data = {
+&"RESET": SubResource("Animation_ic8ca"),
+&"ShowDate": SubResource("Animation_rw8us")
+}
+
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "date_player", "label_month", "label_day", "label_date")]
 layer = 100
 script = ExtResource("1_wlgfe")
 chapters = Array[ExtResource("2_lda8k")]([ExtResource("2_ic8ca")])
@@ -108,6 +205,10 @@ button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceB
 button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite")
 texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite/TextureRect_Favourite")
 voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
+date_player = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/DatePlayer")
+label_month = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Month")
+label_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Day")
+label_date = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent/Label_Date")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]
 anchors_preset = 15
@@ -379,25 +480,51 @@ anchors_preset = 0
 offset_right = 287.0
 offset_bottom = 180.0
 
+[node name="DatePlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=828201241]
+libraries/ = SubResource("AnimationLibrary_lda8k")
+
 [node name="Shade" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1378467412]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-offset_right = 80.0
-offset_bottom = 28.0
+offset_right = 2446.0
+offset_bottom = 1104.0
 texture = ExtResource("20_rw8us")
 
-[node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=19742695]
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=72667629]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 175.0
+offset_right = 504.0
+offset_bottom = 290.0
+texture = ExtResource("24_lda8k")
+
+[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=1425571291]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 299.0
+offset_right = 176.0
+offset_bottom = 327.0
+texture = ExtResource("25_lda8k")
+
+[node name="YMoveContent" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1298951876]
+anchors_preset = 0
+offset_top = -300.0
+offset_bottom = -300.0
+
+[node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=19742695]
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
-offset_left = 92.0
+offset_left = 44.0
 offset_top = 73.0
-offset_right = 304.0
+offset_right = 289.0
 offset_bottom = 250.0
+pivot_offset_ratio = Vector2(1, 0)
 theme_override_fonts/font = ExtResource("20_4x5c0")
 theme_override_font_sizes/font_size = 176
-text = "31"
-horizontal_alignment = 1
+text = "12"
+horizontal_alignment = 2
 
-[node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=585375775]
+[node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=585375775]
 layout_mode = 0
 offset_left = 289.0
 offset_top = 120.0
@@ -410,42 +537,31 @@ theme_override_fonts/font = ExtResource("20_4x5c0")
 theme_override_font_sizes/font_size = 100
 text = "/"
 
-[node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1021873755]
+[node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=1021873755]
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
 offset_left = 318.0
 offset_top = 119.0
-offset_right = 451.0
+offset_right = 456.0
 offset_bottom = 237.0
 theme_override_fonts/font = ExtResource("20_4x5c0")
 theme_override_font_sizes/font_size = 117
-text = "02"
+text = "03"
 
-[node name="Label_Date" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1042550106]
+[node name="XMoveContent" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=834662092]
+anchors_preset = 0
+offset_left = -314.0
+offset_right = -314.0
+
+[node name="Label_Date" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent" unique_id=1042550106]
 layout_mode = 0
-offset_left = 94.0
+offset_left = 93.0
 offset_top = 219.0
-offset_right = 286.0
+offset_right = 285.0
 offset_bottom = 272.0
 theme_override_fonts/font = ExtResource("7_ke2v6")
 theme_override_font_sizes/font_size = 36
-text = "周四下午·晴"
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=72667629]
-layout_mode = 0
-offset_left = 251.0
-offset_top = 175.0
-offset_right = 504.0
-offset_bottom = 290.0
-texture = ExtResource("24_lda8k")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1425571291]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 299.0
-offset_right = 176.0
-offset_bottom = 327.0
-texture = ExtResource("25_lda8k")
+text = "周四下午"
 
 [node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]
 anchors_preset = 0

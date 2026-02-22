@@ -49,4 +49,9 @@ func SetBackground(background_name: String, variation_name: String,
 func Travel() -> void:
 	Game.travel_page.visible = true
 	await Game.travel_page.visibility_changed
+
+func SetDate() -> void:
+	var date_player = Game.stage_page.date_player
+	date_player.play("ShowDate")
+	await date_player.animation_finished
 #endregion

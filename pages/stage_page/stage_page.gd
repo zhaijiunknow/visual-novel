@@ -37,6 +37,11 @@ var chapter_name: String:
 
 @export var voice_buttons: Control
 
+@export var date_player: AnimationPlayer
+@export var label_month: Label
+@export var label_day: Label
+@export var label_date: Label
+
 var skip: bool = false:
 	set(value):
 		skip = value
