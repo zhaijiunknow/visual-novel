@@ -59,13 +59,13 @@ func update_bonus_part_index(part_name: String, increment: int) -> void:
 	Main.clear_connections(bonus_part_index_dict_updated)
 	bonus_part_index_dict_updated.emit()
 
-@export_tool_button("Print SetParts") var print_set_parts = func():
-	var part_texts = []
-	for part in body_parts:
-		part_texts.append("%s:%s" % [part.name, part.animation])
-	print("""Character("%s").SetParts("%s")""" % [name, ",".join(part_texts)])
+#@export_tool_button("Print SetParts") var print_set_parts = func():
+	#var part_texts = []
+	#for part in body_parts:
+		#part_texts.append("%s:%s" % [part.name, part.animation])
+	#print("""Character("%s").SetParts("%s")""" % [name, ",".join(part_texts)])
 
-@export_tool_button("To Clipboard") var to_clipboard = func():
+@export_tool_button("复制到剪贴板") var to_clipboard = func():
 	var part_texts: Array[String] = []
 	var part_tr = {
 		"Eyebrows": "眉毛",
