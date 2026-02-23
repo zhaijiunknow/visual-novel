@@ -184,7 +184,7 @@ _data = {
 &"ShowDate": SubResource("Animation_rw8us")
 }
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "date_player", "label_month", "label_day", "label_date")]
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "date_player", "label_month", "label_day", "label_week_day")]
 layer = 100
 script = ExtResource("1_wlgfe")
 chapters = Array[ExtResource("2_lda8k")]([ExtResource("2_ic8ca")])
@@ -208,7 +208,7 @@ voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceB
 date_player = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/DatePlayer")
 label_month = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Month")
 label_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Day")
-label_date = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent/Label_Date")
+label_week_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent/Label_WeekDay")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]
 anchors_preset = 15
@@ -553,7 +553,7 @@ anchors_preset = 0
 offset_left = -314.0
 offset_right = -314.0
 
-[node name="Label_Date" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent" unique_id=1042550106]
+[node name="Label_WeekDay" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent" unique_id=1042550106]
 layout_mode = 0
 offset_left = 93.0
 offset_top = 219.0

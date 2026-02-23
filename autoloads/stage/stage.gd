@@ -50,7 +50,10 @@ func Travel() -> void:
 	Game.travel_page.visible = true
 	await Game.travel_page.visibility_changed
 
-func SetDate() -> void:
+func ShowDate(month: int, day: int, week_day: String) -> void:
+	Game.stage_page.label_month.text = str(month).pad_zeros(2)
+	Game.stage_page.label_day.text = str(day).pad_zeros(2)
+	Game.stage_page.label_week_day.text = week_day
 	var date_player = Game.stage_page.date_player
 	date_player.play("ShowDate")
 	await date_player.animation_finished

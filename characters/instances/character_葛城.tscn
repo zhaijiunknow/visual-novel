@@ -164,7 +164,7 @@ size = Vector2i(1004, 2379)
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(468, 1249.0001)
 sprite_frames = SubResource("SpriteFrames_dacpq")
-animation = &"手放下"
+animation = &"手抬起"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_i7yso")

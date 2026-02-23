@@ -3,6 +3,7 @@
 ## A [Container] for dialogue responses provided by [b]Dialogue Manager[/b].
 class_name DialogueResponsesMenu extends Container
 
+
 ## Emitted when a response is focused.
 signal response_focused(response: Control)
 
@@ -11,7 +12,7 @@ signal response_selected(response: Control)
 
 
 ## Optionally specify a control to duplicate for each response
-@export var response_template: DialogueSelection
+@export var response_template: Control
 
 ## The action for accepting a response (is possibly overridden by parent dialogue balloon).
 @export var next_action: StringName = &""

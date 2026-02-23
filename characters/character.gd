@@ -59,13 +59,26 @@ func update_bonus_part_index(part_name: String, increment: int) -> void:
 	Main.clear_connections(bonus_part_index_dict_updated)
 	bonus_part_index_dict_updated.emit()
 
-@export_tool_button("Print SetParts") var print_set_parts_button = print_set_parts
-
-func print_set_parts() -> void:
+@export_tool_button("Print SetParts") var print_set_parts = func():
 	var part_texts = []
 	for part in body_parts:
 		part_texts.append("%s:%s" % [part.name, part.animation])
 	print("""Character("%s").SetParts("%s")""" % [name, ",".join(part_texts)])
+
+@export_tool_button("To Clipboard") var to_clipboard = func():
+	var part_texts: Array[String] = []
+	var part_tr = {
+		"Eyebrows": "眉毛",
+		"Eyes": "眼睛",
+		"Mouth": "嘴巴",
+	}
+	print()
+	print(name)
+	for part in body_parts:
+		if part.name == "Body": continue
+		part_texts.append(part.animation)
+		print("%s:%s" % [part_tr[part.name], part.animation])
+	DisplayServer.clipboard_set("	".join(part_texts))
 
 #region Dialogue Commands
 

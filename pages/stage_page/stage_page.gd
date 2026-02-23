@@ -40,7 +40,7 @@ var chapter_name: String:
 @export var date_player: AnimationPlayer
 @export var label_month: Label
 @export var label_day: Label
-@export var label_date: Label
+@export var label_week_day: Label
 
 var skip: bool = false:
 	set(value):
