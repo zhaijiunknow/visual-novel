@@ -46,6 +46,25 @@ func _ready() -> void:
 		bonus_part_index_dict[part_name]["index"] = 0
 		bonus_part_index_dict[part_name]["options"] = \
 			Array(body_part_dict[part_name].sprite_frames.get_animation_names())
+	
+	sv_container.gui_input.connect(
+		func (event: InputEvent):
+			if event is InputEventMouseButton:
+				if event.pressed:
+					Main.dragged = true
+					drag_offset = event.global_position - sv_container.global_position
+	)
+
+var drag_offset: Vector2
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_released():
+			Main.dragged = false
+	
+	if Main.dragged:
+		if event is InputEventMouseMotion:
+			sv_container.global_position = event.global_position - drag_offset
 
 func update_bonus_part_index(part_name: String, increment: int) -> void:
 	bonus_part_index_dict[part_name].index += increment
