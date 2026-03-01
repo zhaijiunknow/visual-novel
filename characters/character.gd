@@ -14,6 +14,8 @@ extends Control
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
 var character_image: Control
 
+@export var movable: bool
+
 var body_scale_factor: float = 0.5:
 	set(value):
 		body_scale_factor = value
@@ -58,6 +60,7 @@ func _ready() -> void:
 var drag_offset: Vector2
 
 func _input(event: InputEvent) -> void:
+	if not movable: return
 	if event is InputEventMouseButton:
 		if event.is_released():
 			Main.dragged = false

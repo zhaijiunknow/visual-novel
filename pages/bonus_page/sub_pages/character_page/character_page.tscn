@@ -136,6 +136,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+movable = true
 
 [node name="常夏" parent="Characters" unique_id=1713025133 instance=ExtResource("8_od5st")]
 visible = false
@@ -147,6 +148,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+movable = true
 
 [node name="余洛琛" parent="Characters" unique_id=316872221 instance=ExtResource("9_5lwtc")]
 visible = false
@@ -158,6 +160,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+movable = true
 
 [node name="葛城" parent="Characters" unique_id=360688654 instance=ExtResource("10_po4xj")]
 visible = false
@@ -169,10 +172,12 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
+movable = true
 
 [node name="林凌铃" parent="Characters" unique_id=809289517 instance=ExtResource("11_dorhe")]
 visible = false
 layout_mode = 1
+movable = true
 
 [node name="Preview" type="TextureRect" parent="." unique_id=327835344]
 visible = false
