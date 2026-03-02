@@ -479,6 +479,7 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 287.0
 offset_bottom = 180.0
+mouse_filter = 2
 
 [node name="DatePlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=828201241]
 libraries/ = SubResource("AnimationLibrary_lda8k")
@@ -488,6 +489,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 offset_right = 2446.0
 offset_bottom = 1104.0
+mouse_filter = 2
 texture = ExtResource("20_rw8us")
 
 [node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=72667629]
@@ -496,6 +498,7 @@ offset_left = 251.0
 offset_top = 175.0
 offset_right = 504.0
 offset_bottom = 290.0
+mouse_filter = 2
 texture = ExtResource("24_lda8k")
 
 [node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=1425571291]
@@ -504,12 +507,14 @@ offset_left = 96.0
 offset_top = 299.0
 offset_right = 176.0
 offset_bottom = 327.0
+mouse_filter = 2
 texture = ExtResource("25_lda8k")
 
 [node name="YMoveContent" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1298951876]
 anchors_preset = 0
 offset_top = -300.0
 offset_bottom = -300.0
+mouse_filter = 2
 
 [node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=19742695]
 modulate = Color(0.5137255, 0.7764706, 1, 1)
@@ -552,6 +557,7 @@ text = "03"
 anchors_preset = 0
 offset_left = -314.0
 offset_right = -314.0
+mouse_filter = 2
 
 [node name="Label_WeekDay" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent" unique_id=1042550106]
 layout_mode = 0
