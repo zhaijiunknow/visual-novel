@@ -3,10 +3,7 @@
 [ext_resource type="Script" uid="uid://d2ex0eewal7fh" path="res://pages/bonus_page/sub_pages/character_page/character_page.gd" id="1_02pp7"]
 [ext_resource type="Texture2D" uid="uid://bpnnrxr2pch6g" path="res://assets/ui_backgrounds/background_character.png" id="2_201mx"]
 [ext_resource type="PackedScene" uid="uid://buso3d823ic3e" path="res://prefabs/character_selection/character_selection.tscn" id="3_dorhe"]
-[ext_resource type="Texture2D" uid="uid://dqxpvn4tbvwmn" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_changxia.tres" id="5_t786o"]
-[ext_resource type="Texture2D" uid="uid://b04547jj613x" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_yuluochen.tres" id="6_58pd2"]
 [ext_resource type="PackedScene" uid="uid://bnu8yy8c7d3pj" path="res://characters/instances/character_辉夜奏.tscn" id="7_58pd2"]
-[ext_resource type="Texture2D" uid="uid://c6kccjdrghulr" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_gecheng.tres" id="7_od5st"]
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="8_od5st"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="9_5lwtc"]
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="10_po4xj"]
@@ -15,37 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://biidn3huf1yac" path="res://prefabs/character_option/character_option.tscn" id="13_34roo"]
 [ext_resource type="PackedScene" uid="uid://bjgc7qq7fa0s3" path="res://prefabs/slider_ex/slider_ex.tscn" id="14_201mx"]
 [ext_resource type="Texture2D" uid="uid://h5xbqxw5brwr" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/name_deco.tres" id="14_po4xj"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dorhe"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faxlc"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_khjfa"]
-viewport_path = NodePath("Characters/辉夜奏/SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t786o"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_khjfa")
-region = Rect2(194.125, 41.75, 570.375, 527.25)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khjfa"]
-bg_color = Color(0, 0, 0, 0.3529412)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_58pd2"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_od5st"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_58pd2")
-region = Rect2(213.02051, 0, 561.67944, 511.55426)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_5lwtc"]
-viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="CharacterPage" type="Control" unique_id=217028155 node_paths=PackedStringArray("label_character_name", "background", "character_pool", "body_part_options", "background_option", "variation_option", "slider_size", "optional_pool")]
 layout_mode = 3
@@ -86,133 +52,40 @@ stretch_mode = 6
 anchors_preset = 0
 mouse_filter = 1
 
-[node name="CharacterSelection" parent="CharacterSelections" unique_id=1767349569 instance=ExtResource("3_dorhe")]
+[node name="辉夜奏" parent="CharacterSelections" unique_id=2115129008 instance=ExtResource("3_dorhe")]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 92.0
-offset_top = 96.0
-offset_right = 245.0
-offset_bottom = 249.0
+offset_left = 168.0
+offset_top = 87.0
+offset_right = 286.0
+offset_bottom = 205.0
 
-[node name="CharacterSelection2" parent="CharacterSelections" unique_id=674357083 instance=ExtResource("3_dorhe")]
+[node name="常夏" parent="CharacterSelections" unique_id=1194559407 instance=ExtResource("3_dorhe")]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 177.0
-offset_top = 181.0
-offset_right = 330.0
-offset_bottom = 334.0
-texture = ExtResource("5_t786o")
+offset_left = 252.0
+offset_top = 173.0
+offset_right = 370.0
+offset_bottom = 291.0
 
-[node name="CharacterSelection3" parent="CharacterSelections" unique_id=1964285792 instance=ExtResource("3_dorhe")]
+[node name="余洛琛" parent="CharacterSelections" unique_id=951311714 instance=ExtResource("3_dorhe")]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 92.0
-offset_top = 266.0
-offset_right = 245.0
-offset_bottom = 419.0
-texture = ExtResource("6_58pd2")
+offset_left = 166.0
+offset_top = 259.0
+offset_right = 284.0
+offset_bottom = 377.0
 
-[node name="CharacterSelection4" parent="CharacterSelections" unique_id=1513801597 instance=ExtResource("3_dorhe")]
+[node name="葛城" parent="CharacterSelections" unique_id=583164786 instance=ExtResource("3_dorhe")]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 177.0
-offset_top = 351.0
-offset_right = 330.0
-offset_bottom = 504.0
-texture = ExtResource("7_od5st")
+offset_left = 251.0
+offset_top = 344.0
+offset_right = 369.0
+offset_bottom = 462.0
 
-[node name="CharacterSelection5" parent="CharacterSelections" unique_id=372530569 instance=ExtResource("3_dorhe")]
+[node name="林凌铃" parent="CharacterSelections" unique_id=469162859 instance=ExtResource("3_dorhe")]
 layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 92.0
-offset_top = 435.0
-offset_right = 245.0
-offset_bottom = 588.0
-texture = ExtResource("7_od5st")
-
-[node name="CharacterSelection6" type="Panel" parent="CharacterSelections" unique_id=1875564530]
-layout_mode = 0
-offset_left = 169.0
-offset_top = 89.000015
-offset_right = 287.0
-offset_bottom = 207.00002
-rotation = 0.7853982
-theme_override_styles/panel = SubResource("StyleBoxFlat_dorhe")
-
-[node name="MarginContainer" type="MarginContainer" parent="CharacterSelections/CharacterSelection6" unique_id=1562884893]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="Control" type="Panel" parent="CharacterSelections/CharacterSelection6/MarginContainer" unique_id=300148544]
-clip_children = 1
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_faxlc")
-
-[node name="Portrait" type="TextureRect" parent="CharacterSelections/CharacterSelection6/MarginContainer/Control" unique_id=1781030602]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -115.56855
-offset_top = 0.39696503
-offset_right = 48.43145
-offset_bottom = 161.39697
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.7853982
-texture = SubResource("AtlasTexture_t786o")
-expand_mode = 1
-stretch_mode = 6
-
-[node name="BlackoutShade" type="Panel" parent="CharacterSelections/CharacterSelection6" unique_id=1278541422]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
-
-[node name="HoverShade" type="Panel" parent="CharacterSelections/CharacterSelection6" unique_id=106712144]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
+offset_left = 166.0
+offset_top = 429.0
+offset_right = 284.0
+offset_bottom = 547.0
 
 [node name="Characters" type="Control" parent="." unique_id=1346683318]
 anchors_preset = 0
@@ -232,15 +105,6 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 movable = true
-
-[node name="SubViewport" parent="Characters/辉夜奏/SubViewportContainer" parent_id_path=PackedInt32Array(332644119, 2063694038) index="0" unique_id=2050918912]
-render_target_update_mode = 0
-
-[node name="Avatar" parent="Characters/辉夜奏" index="1" unique_id=919147274]
-texture = SubResource("AtlasTexture_od5st")
-
-[node name="TextureRect_Model" parent="Characters/辉夜奏/StoryModel" parent_id_path=PackedInt32Array(332644119, 816872337) index="0" unique_id=1204109800]
-texture = SubResource("ViewportTexture_5lwtc")
 
 [node name="常夏" parent="Characters" unique_id=1713025133 instance=ExtResource("8_od5st")]
 visible = false
@@ -370,7 +234,6 @@ offset_right = 3460.0
 offset_bottom = 1175.0
 rotation = -1.5707964
 
-[editable path="Characters/辉夜奏"]
 [editable path="VBoxContainer_Options/CharacterOption_Background"]
 [editable path="VBoxContainer_Options/CharacterOption_Variation"]
 [editable path="VBoxContainer_Options/CharacterOption_Body"]

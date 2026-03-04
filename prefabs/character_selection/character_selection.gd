@@ -1,10 +1,9 @@
 class_name CharacterSelection
-extends TextureRect
+extends Panel
 
-@export var texture_rect_frame: TextureRect
-@export var color_hovered: Color
-@export var color_selected: Color
-@export var selection_frame: Control
+@export var portrait: TextureRect
+@export var blackout_shade: Control
+@export var hover_shade: Control
 
 var selected: bool:
 	get:
@@ -16,13 +15,14 @@ var hovered: bool:
 		update()
 
 func _ready() -> void:
-	selection_frame.mouse_entered.connect(
-		func (): hovered = true
+	portrait.texture = Stage.character_dict[name].character_page_portrait.texture
+	mouse_entered.connect(
+		func (): hover_shade.visible = true
 	)
-	selection_frame.mouse_exited.connect(
-		func (): hovered = false
+	mouse_exited.connect(
+		func (): hover_shade.visible = false
 	)
-	selection_frame.gui_input.connect(
+	gui_input.connect(
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
@@ -33,5 +33,4 @@ func _ready() -> void:
 	update()
 
 func update() -> void:
-	texture_rect_frame.visible = selected
-	modulate = color_hovered if hovered else color_selected
+	blackout_shade.visible = not selected

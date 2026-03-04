@@ -6,6 +6,7 @@ extends Control
 @export var subviewport: SubViewport
 @export var texture_rect_avatar: TextureRect
 @export var texture_rect_model: TextureRect
+@export var character_page_portrait: TextureRect
 @export var story_model: Control
 
 @export var body_parts: Array[AnimatedSprite2D]

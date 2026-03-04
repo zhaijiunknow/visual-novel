@@ -152,6 +152,14 @@ region = Rect2(204.88013, 89.8569, 504.6975, 488.4169)
 [sub_resource type="ViewportTexture" id="ViewportTexture_jbeyg"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm650"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_jbeyg")
+region = Rect2(247.18799, 80.813, 432, 425.25)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6hyrk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
@@ -184,5 +192,8 @@ texture = ExtResource("16_wyfxs")
 [node name="Avatar" parent="." index="1" unique_id=919147274]
 texture = SubResource("AtlasTexture_ijtpr")
 
+[node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_xm650")
+
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
-texture = SubResource("ViewportTexture_jbeyg")
+texture = SubResource("ViewportTexture_6hyrk")

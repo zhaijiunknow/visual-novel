@@ -10,10 +10,17 @@ resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_54qew")
 region = Rect2(0, 0, 14.123413, 14.122986)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_3fwhk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54qew"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_3fwhk")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "story_model", "body_parts", "optionals_pool")]
+[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "character_page_portrait", "story_model", "body_parts", "optionals_pool")]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -27,6 +34,7 @@ sv_container = NodePath("SubViewportContainer")
 subviewport = NodePath("SubViewportContainer/SubViewport")
 texture_rect_avatar = NodePath("Avatar")
 texture_rect_model = NodePath("StoryModel/TextureRect_Model")
+character_page_portrait = NodePath("CharacterPagePortrait")
 story_model = NodePath("StoryModel")
 body_parts = [NodePath("SubViewportContainer/SubViewport/Body"), NodePath("SubViewportContainer/SubViewport/Body/Eyebrows"), NodePath("SubViewportContainer/SubViewport/Body/Eyes"), NodePath("SubViewportContainer/SubViewport/Body/Mouth")]
 optionals_pool = NodePath("SubViewportContainer/SubViewport/Body/Optionals")
@@ -68,6 +76,15 @@ offset_bottom = -404.0
 texture = SubResource("AtlasTexture_qqr4u")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="CharacterPagePortrait" type="TextureRect" parent="." unique_id=485843154]
+visible = false
+layout_mode = 0
+offset_left = -1615.0
+offset_top = -856.0
+offset_right = -1615.0
+offset_bottom = -856.0
+texture = SubResource("AtlasTexture_54qew")
 
 [node name="StoryModel" type="Control" parent="." unique_id=816872337]
 visible = false

@@ -213,15 +213,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cmy8o"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8q33n"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5ym6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r613x"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_cmy8o")
+atlas = SubResource("ViewportTexture_8q33n")
 region = Rect2(221.16089, 0, 561.6792, 527.8349)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h7f86"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ktyj5"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdyow"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_ktyj5")
+region = Rect2(233.68793, 11.688004, 523.125, 496.125)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vm0ad"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="常夏" unique_id=401531579 instance=ExtResource("1_1d4w3")]
@@ -253,7 +261,10 @@ visible = false
 texture = ExtResource("21_hdqmv")
 
 [node name="Avatar" parent="." index="1" unique_id=919147274]
-texture = SubResource("AtlasTexture_p5ym6")
+texture = SubResource("AtlasTexture_r613x")
+
+[node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_qdyow")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
-texture = SubResource("ViewportTexture_h7f86")
+texture = SubResource("ViewportTexture_vm0ad")

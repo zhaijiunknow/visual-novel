@@ -1,56 +1,83 @@
 [gd_scene format=3 uid="uid://buso3d823ic3e"]
 
-[ext_resource type="Texture2D" uid="uid://bjtw8ju4h4pft" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_kanade.tres" id="1_4303y"]
 [ext_resource type="Script" uid="uid://beghy6l0mwfw" path="res://prefabs/character_selection/character_selection.gd" id="2_bvhc2"]
-[ext_resource type="Texture2D" uid="uid://bsgowxgvjmfpx" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_select.tres" id="3_bvhc2"]
 
-[node name="CharacterSelection" type="TextureRect" unique_id=372530569 node_paths=PackedStringArray("texture_rect_frame", "selection_frame")]
-anchors_preset = -1
-anchor_left = 0.030000001
-anchor_top = 0.053000003
-anchor_right = 0.030000001
-anchor_bottom = 0.053000003
-offset_left = -76.8
-offset_top = -76.32001
-offset_right = 76.2
-offset_bottom = 76.67999
-pivot_offset = Vector2(76.5, 76.5)
-mouse_filter = 2
-texture = ExtResource("1_4303y")
-script = ExtResource("2_bvhc2")
-texture_rect_frame = NodePath("TextureRect_Frame")
-color_hovered = Color(1, 1, 1, 0.7019608)
-color_selected = Color(1, 1, 1, 1)
-selection_frame = NodePath("SelectionFrame")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dorhe"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
-[node name="TextureRect_Frame" type="TextureRect" parent="." unique_id=2099506129]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -83.5
-offset_top = -83.5
-offset_right = 83.5
-offset_bottom = 83.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("3_bvhc2")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faxlc"]
 
-[node name="SelectionFrame" type="Control" parent="." unique_id=507633568]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.5
-offset_top = -53.5
-offset_right = 53.5
-offset_bottom = 53.5
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khjfa"]
+bg_color = Color(0, 0, 0, 0.3529412)
+
+[node name="CharacterSelection" type="Panel" unique_id=2115129008 node_paths=PackedStringArray("portrait", "blackout_shade", "hover_shade")]
+offset_right = 118.0
+offset_bottom = 118.0
 rotation = 0.7853982
-pivot_offset = Vector2(53.5, 53.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_dorhe")
+script = ExtResource("2_bvhc2")
+portrait = NodePath("MarginContainer/Control/Portrait")
+blackout_shade = NodePath("BlackoutShade")
+hover_shade = NodePath("HoverShade")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1994759634]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Control" type="Panel" parent="MarginContainer" unique_id=2112021901]
+clip_children = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_faxlc")
+
+[node name="Portrait" type="TextureRect" parent="MarginContainer/Control" unique_id=458404707]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.56855
+offset_top = 0.39696503
+offset_right = 48.43145
+offset_bottom = 161.39697
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.7853982
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BlackoutShade" type="Panel" parent="." unique_id=698347563]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
+
+[node name="HoverShade" type="Panel" parent="." unique_id=1249778295]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")

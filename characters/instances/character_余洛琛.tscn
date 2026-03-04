@@ -199,6 +199,14 @@ region = Rect2(270.00244, 14.997192, 415.1543, 447.7154)
 [sub_resource type="ViewportTexture" id="ViewportTexture_2s1x3"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfdhf"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_2s1x3")
+region = Rect2(260.688, 13.812988, 401.625, 394.875)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iajx4"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
@@ -238,7 +246,10 @@ texture = ExtResource("23_2ajgh")
 [node name="Avatar" parent="." index="1" unique_id=919147274]
 texture = SubResource("AtlasTexture_lpavb")
 
-[node name="StoryModel" parent="." index="2" unique_id=816872337]
+[node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_gfdhf")
+
+[node name="StoryModel" parent="." index="3" unique_id=816872337]
 offset_left = 234.0
 offset_top = 2.0
 offset_right = 234.0
@@ -248,4 +259,4 @@ offset_bottom = 2.0
 offset_left = -686.0
 offset_right = 318.0
 offset_bottom = 772.0
-texture = SubResource("ViewportTexture_2s1x3")
+texture = SubResource("ViewportTexture_iajx4")
