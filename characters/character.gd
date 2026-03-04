@@ -54,21 +54,23 @@ func _ready() -> void:
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.pressed:
-					Main.dragged = true
+					dragged = true
 					drag_offset = event.global_position - sv_container.global_position
 	)
 
+var dragged: bool
 var drag_offset: Vector2
 
 func _input(event: InputEvent) -> void:
 	if not movable: return
 	if event is InputEventMouseButton:
 		if event.is_released():
-			Main.dragged = false
+			dragged = false
 	
-	if Main.dragged:
+	if dragged:
 		if event is InputEventMouseMotion:
 			sv_container.global_position = event.global_position - drag_offset
+			
 
 func update_bonus_part_index(part_name: String, increment: int) -> void:
 	bonus_part_index_dict[part_name].index += increment
