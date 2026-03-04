@@ -202,7 +202,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_gfdhf"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_2s1x3")
-region = Rect2(260.688, 13.812988, 401.625, 394.875)
+region = Rect2(159.43799, 13.812988, 617.625, 506.25)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iajx4"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -229,10 +229,9 @@ animation = &"默认"
 
 [node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
 sprite_frames = SubResource("SpriteFrames_bnq0n")
-animation = &"笑开口"
+animation = &"微笑"
 
 [node name="眼镜" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=736903750]
-visible = false
 texture = ExtResource("21_0ni7k")
 
 [node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="1" unique_id=349479754]
@@ -249,7 +248,10 @@ texture = SubResource("AtlasTexture_lpavb")
 [node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
 texture = SubResource("AtlasTexture_gfdhf")
 
-[node name="StoryModel" parent="." index="3" unique_id=816872337]
+[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
+texture = SubResource("AtlasTexture_gfdhf")
+
+[node name="StoryModel" parent="." index="4" unique_id=816872337]
 offset_left = 234.0
 offset_top = 2.0
 offset_right = 234.0
