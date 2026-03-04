@@ -200,7 +200,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_hebva"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_plist")
-region = Rect2(260.688, 34.06299, 489.375, 486)
+region = Rect2(213.43799, -23.312, 577.125, 577.125)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kp7wi"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -238,6 +238,9 @@ texture = ExtResource("18_mchy6")
 texture = SubResource("AtlasTexture_kiw3g")
 
 [node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_hebva")
+
+[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
 texture = SubResource("AtlasTexture_hebva")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
