@@ -52,6 +52,7 @@ func _ready() -> void:
 	
 	sv_container.gui_input.connect(
 		func (event: InputEvent):
+			if not movable: return
 			if event is InputEventMouseButton:
 				if event.pressed:
 					dragged = true
