@@ -13,14 +13,14 @@ do SetBackground("教室", "白天", 0, 0.5)
 余洛琛: [#nickname=广播][#hide_portrait]“今天抽中的是来自高三（3）班-周腾同学点的一首纯音乐……”
 余洛琛: [#nickname=广播][#hide_portrait]“接下来，就请各位在音乐声中享受珍贵的午休时间吧。”
 独白: ……
-do Character("葛城").SetParts("Body:手放下,Eyebrows:下挑,Eyes:微眯,Mouth:露齿笑")
+do Character("葛城").SetParts("Body:手放下")
 do Character("葛城").FadeIn("Center", 0.5)
 葛城: [#voice=葛城/啧啧啧，没想到]“啧啧啧，没想到今天居然抽中了你的歌，说！你和余洛琛两个是不是提前串通好了的？”
 do Character("葛城").SetParts("Body:手放下,Eyebrows:默认,Eyes:默认,Mouth:闭口微笑")
 周腾: “得了吧，我还不是和你们一样，都是走的同一个流程。”
 周腾: “把要点的歌写在小纸条上，然后投递到广播室门口专门的箱子里。”
 do Character("葛城").SetParts("Body:手放下,Eyebrows:上挑,Eyes:微眯,Mouth:说话")
-葛城: [#voice=葛城/意思是你又]“意思是你又‘狗运’了呗？”
+葛城: [#voice=葛城/意思是你又,#body=手放下,#expression=坏笑]“意思是你又‘狗运’了呗？”
 do Character("葛城").SetParts("Body:手放下,Eyebrows:默认,Eyes:默认,Mouth:闭口微笑")
 周腾: “不然呢？”
 do Character("葛城").SetParts("Body:手放下,Eyebrows:上挑,Eyes:微眯,Mouth:说话")

@@ -1,0 +1,30 @@
+# #nickname 昵称
+# #voice 语音
+# #hide_portrait 隐藏头像
+
+~ start
+do wait(0.01)
+do SetBackground("教室", "白天", 0, 0.5)
+余洛琛: [#nickname=广播][#hide_portrait]“……（设备调试的声音）”
+余洛琛: [#voice=余洛琛/余洛琛_0_1_1][#nickname=广播][#hide_portrait]“Hello各位白月高中的同学们中午好啊，欢迎收听每周两次的午休特别电台节目，这次的主持人依然是我，高三（10）班的小余~”
+余洛琛: [#voice=余洛琛/余洛琛_0_1_2][#nickname=广播][#hide_portrait]“在播放开始今天的节目之前呢先和大家说一件趣事儿。”
+余洛琛: [#voice=余洛琛/余洛琛_0_1_3][#nickname=广播][#hide_portrait]“大概前两天的时候呢，广播社的指导老师找到我说…”
+余洛琛: [#nickname=广播][#hide_portrait]“‘小余啊，你这个电台节目很受学生们欢迎，要是说话的语气再自然和轻松一点就好了，不要有太大的架子，节目内容也可以随意一点~’”
+余洛琛: [#nickname=广播][#hide_portrait]“所以呢，今天也就尝试了一下新的风格，说话尽量不那么的官方。”
+余洛琛: [#nickname=广播][#hide_portrait]“如果效果不错的话，之后的“午休电台”也会继续保持这种感觉。”
+余洛琛: [#nickname=广播][#hide_portrait]“同学们若有意见或者好的建议呢，还是老样子，可以在艺术楼顶楼的广播室门口留言。写好之后塞进旁边的‘小信箱’就行。”
+余洛琛: [#nickname=广播][#hide_portrait]“好了，题外话就说到这边~”
+余洛琛: [#nickname=广播][#hide_portrait]“今天抽中的是来自高三（3）班-周腾同学点的一首纯音乐……”
+余洛琛: [#nickname=广播][#hide_portrait]“接下来，就请各位在音乐声中享受珍贵的午休时间吧。”
+独白: ……
+do Character("葛城").SetParts("Body:手放下")
+do Character("葛城").FadeIn("Center", 0.5)
+葛城: [#voice=葛城/啧啧啧，没想到]“啧啧啧，没想到今天居然抽中了你的歌，说！你和余洛琛两个是不是提前串通好了的？”
+do Character("葛城").SetParts("Body:手放下,Eyebrows:默认,Eyes:默认,Mouth:闭口微笑")
+周腾: “得了吧，我还不是和你们一样，都是走的同一个流程。”
+周腾: “把要点的歌写在小纸条上，然后投递到广播室门口专门的箱子里。”
+do Character("葛城").SetParts("Body:手放下,Eyebrows:上挑,Eyes:微眯,Mouth:说话")
+葛城: [#voice=葛城/意思是你又,#body=手放下,#expression=坏笑]“意思是你又‘狗运’了呗？”
+do Character("葛城").SetParts("Body:手放下,Eyebrows:默认,Eyes:默认,Mouth:闭口微笑")
+周腾: “不然呢？”
+=> END

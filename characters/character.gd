@@ -133,6 +133,15 @@ func SetParts(parts_string: String) -> void:
 		var item_name = part_item[1]
 		body_part_dict[part_name].animation = item_name
 
+func SetBody(body_name: String) -> void:
+	body_part_dict["Body"].animation = body_name
+
+func SetExpression(expression_name: String) -> void:
+	var expression_data: Dictionary = Expressions.data[name][expression_name]
+	for part_name in expression_data.keys():
+		var part_value: String = expression_data[part_name]
+		body_part_dict[part_name].animation = part_value
+
 func ClearOptionals() -> void:
 	for additional: Sprite2D in optionals_pool.get_children():
 		additional.visible = false

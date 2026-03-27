@@ -86,6 +86,12 @@ func process_line() -> void:
 	if has_avatar:
 		if not "hide_portrait" in dialogue_line.tags:
 			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
+	
+	if dialogue_line.has_tag("body"):
+		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("body"))
+	if dialogue_line.has_tag("expression"):
+		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("expression"))
+	
 	avatar.modulate.a = 1 if has_avatar else 0
 	label_character_name.text = dialogue_line.get_tag_value("nickname") \
 				if dialogue_line.has_tag("nickname") else dialogue_line.character

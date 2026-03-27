@@ -26,11 +26,16 @@ var gallery_card_index: int:
 		gallery_card_index = value
 		emit_signal("gallery_card_index_changed")
 
+@export_file_path("json") var expression_json: String
+var expression_dict: Dictionary
+
 func _ready() -> void:
 	if FileAccess.file_exists(save_path):
 		save_data = load(save_path)
 	if FileAccess.file_exists(collection_path):
 		collection_data = load(collection_path)
+	
+	#expression_dict = JSON.parse_string()
 
 func clear_connections(target_signal: Signal) -> void:
 	for connection in target_signal.get_connections():

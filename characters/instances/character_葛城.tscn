@@ -24,7 +24,7 @@ animations = [{
 "texture": ExtResource("2_m4mpf")
 }],
 "loop": true,
-"name": &"手抬起",
+"name": &"默认-手抬起",
 "speed": 5.0
 }, {
 "frames": [{
@@ -32,7 +32,7 @@ animations = [{
 "texture": ExtResource("3_ijtpr")
 }],
 "loop": true,
-"name": &"手放下",
+"name": &"默认-手放下",
 "speed": 5.0
 }]
 
@@ -172,7 +172,7 @@ size = Vector2i(1004, 2379)
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(468, 1249.0001)
 sprite_frames = SubResource("SpriteFrames_dacpq")
-animation = &"手抬起"
+animation = &"默认-手放下"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_i7yso")
@@ -193,6 +193,9 @@ texture = ExtResource("16_wyfxs")
 texture = SubResource("AtlasTexture_ijtpr")
 
 [node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_xm650")
+
+[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
 texture = SubResource("AtlasTexture_xm650")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
