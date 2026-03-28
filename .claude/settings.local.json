@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python list_feishu_tables.py)",
+      "Bash(where python:*)",
+      "Bash(py --version)",
+      "Bash(py list_feishu_tables.py)",
+      "Bash(py -c \"from dotenv import load_dotenv; import os; load_dotenv\\(''feishu.env''\\); print\\(''APP_ID:'', os.getenv\\(''APP_ID''\\)\\); print\\(''APP_TOKEN:'', os.getenv\\(''APP_TOKEN''\\)\\)\")",
+      "Bash(py list_feishu_tables_debug.py)",
+      "Bash(py check_hidden_tables.py)",
+      "Bash(ping:*)",
+      "Bash(py check_tables_refresh.py)",
+      "Bash(py list_all_tables_debug.py)",
+      "Bash(py show_all_tables.py)",
+      "Bash(py extract_body_animations.py)",
+      "Bash(py export_body_animations_excel.py)",
+      "Bash(pip install:*)",
+      "Bash(py:*)"
+    ]
+  }
+}
