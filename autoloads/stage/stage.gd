@@ -27,7 +27,7 @@ func Character(character_name: String) -> Character:
 	return character_dict[character_name]
 
 func SetBackground(background_name: String, variation_name: String,
-	out_time: float = 0, in_time: float = 0) -> void:
+	out_time: float = 0.5, in_time: float = 0.5) -> void:
 	await create_tween().tween_property(
 		Game.stage_page.texture_rect_blackscreen,
 		"modulate:a",

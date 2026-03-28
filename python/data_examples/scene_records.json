@@ -1,0 +1,51 @@
+{
+  "code": 0,
+  "data": {
+    "has_more": false,
+    "items": [
+      {
+        "fields": {
+          "名称": [
+            {
+              "text": "教室",
+              "type": "text"
+            }
+          ],
+          "时段": [
+            "上午",
+            "下午"
+          ]
+        },
+        "record_id": "recvcUVJulhV6c"
+      },
+      {
+        "fields": {
+          "名称": [
+            {
+              "text": "操场",
+              "type": "text"
+            }
+          ],
+          "时段": [
+            "上午"
+          ]
+        },
+        "record_id": "recvcUVJulgjj9"
+      },
+      {
+        "fields": {},
+        "record_id": "recvcUVJulpf1G"
+      },
+      {
+        "fields": {},
+        "record_id": "recvcUVJuljbso"
+      },
+      {
+        "fields": {},
+        "record_id": "recvcUVJulljzU"
+      }
+    ],
+    "total": 5
+  },
+  "msg": "success"
+}

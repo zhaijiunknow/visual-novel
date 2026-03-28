@@ -108,7 +108,7 @@ func update_bonus_part_index(part_name: String, increment: int) -> void:
 
 #region Dialogue Commands
 
-func FadeIn(position_name: String, duration: float = 0) -> void:
+func FadeIn(position_name: String, duration: float = 0.5) -> void:
 	character_image = story_model.duplicate()
 	character_image.show()
 	character_image.modulate.a = 0
@@ -116,7 +116,7 @@ func FadeIn(position_name: String, duration: float = 0) -> void:
 	character_image.global_position = Game.stage_page.get_position_by_name(position_name)
 	await create_tween().tween_property(character_image, "modulate:a", 1, duration).finished
 
-func FadeOut(duration: float = 0) -> void:
+func FadeOut(duration: float = 0.5) -> void:
 	await create_tween().tween_property(character_image, "modulate:a", 0, duration).finished
 	character_image.queue_free()
 

@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://bxtj3k4m5l7op"]
+
+[ext_resource type="Script" path="res://addons/expression_editor/main_panel.gd" id="1_abc123"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abc456"]
+bg_color = Color(0.1, 0.1, 0.15, 1)
+border_width_left = 2.0
+border_width_top = 2.0
+border_width_right = 2.0
+border_width_bottom = 2.0
+border_color = Color(0.3, 0.5, 0.8, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_def789"]
+bg_color = Color(0.15, 0.15, 0.2, 1)
+
+[theme type="Theme"]
+Label/colors/font_color = Color(0.9, 0.9, 0.95, 1)
+LineEdit/colors/clear_button_color_pressed = Color(0.8, 0.3, 0.3, 1)
+Tree/colors/guide_color = Color(0.4, 0.4, 0.5, 1)
+Tree/colors/selected_bg = Color(0.2, 0.4, 0.7, 0.5)
+Tree/colors/selected_focus = Color(0.3, 0.5, 0.9, 0.6)
+Tree/colors/drop_position_color = Color(0.3, 0.8, 0.3, 1)
+Tree/constants/icon_max_width = 16.0
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_abc456")
+Panel/styles/panel = SubResource("StyleBoxFlat_def789")
+
+[node name="ExpressionEditor" type="PanelContainer"]
+layout_mode = 3
+theme = ExtResource("2_custom_theme")
+anchors_preset = 15
+grow_vertical = true
+
+[node name="MainPanel" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Header" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/Header"]
+text = "表情编辑器"
+horizontal_alignment = 1
+size_flags_horizontal = 3
+
+[node name="Section" type="HSeparator" parent="MainPanel"]
+layout_mode = 2
+
+[node name="CharacterSection" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainPanel/CharacterSection"]
+text = "角色"
+size_flags_horizontal = 0
+
+[node name="CharacterSelector" type="OptionButton" parent="MainPanel/CharacterSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+fit_to_longest_item = true
+
+[node name="Section2" type="HSeparator" parent="MainPanel"]
+layout_mode = 2
+
+[node name="ExpressionListSection" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="MainPanel/ExpressionListSection"]
+text = "表情列表"
+size_flags_horizontal = 0
+
+[node name="ExpressionTree" type="Tree" parent="MainPanel/ExpressionListSection"]
+layout_mode = 2
+columns = 1
+column_titles = ["表情名称"]
+hide_root = true
+size_flags_vertical = 3
+
+[node name="ExpressionButtons" type="HBoxContainer" parent="MainPanel/ExpressionListSection"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="MainPanel/ExpressionListSection/ExpressionButtons"]
+text = "+ 添加"
+size_flags_horizontal = 3
+
+[node name="DeleteButton" type="Button" parent="MainPanel/ExpressionListSection/ExpressionButtons"]
+text = "删除"
+size_flags_horizontal = 3
+
+[node name="DuplicateButton" type="Button" parent="MainPanel/ExpressionListSection/ExpressionButtons"]
+text = "复制"
+size_flags_horizontal = 3
+
+[node name="Section3" type="HSeparator" parent="MainPanel"]
+layout_mode = 2
+
+[node name="EditorSection" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label4" type="Label" parent="MainPanel/EditorSection"]
+text = "表情编辑"
+size_flags_horizontal = 0
+
+[node name="ExpressionNameLabel" type="Label" parent="MainPanel/EditorSection"]
+text = "表情名称:"
+
+[node name="ExpressionNameEdit" type="LineEdit" parent="MainPanel/EditorSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "输入表情名称"
+
+[node name="Container" type="VBoxContainer" parent="MainPanel/EditorSection"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BodySelector" type="OptionButton" parent="MainPanel/EditorSection/Container"]
+layout_mode = 2
+text = "Body: 未选择"
+
+[node name="EyebrowsSelector" type="OptionButton" parent="MainPanel/EditorSection/Container"]
+layout_mode = 2
+text = "眉毛: 未选择"
+
+[node name="YesSelector" type="OptionButton" parent="MainPanel/EditorSection/Container"]
+layout_mode = 2
+text = "眼睛: 未选择"
+
+[node name="MouthSelector" type="OptionButton" parent="MainPanel/EditorSection/Container"]
+layout_mode = 2
+text = "嘴巴: 未选择"
+
+[node name="Section4" type="HSeparator" parent="MainPanel"]
+layout_mode = 2
+
+[node name="PreviewSection" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label5" type="Label" parent="MainPanel/PreviewSection"]
+text = "预览"
+size_flags_horizontal = 0
+
+[node name="PreviewPanel" type="Panel" parent="MainPanel/PreviewSection"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 300)
+size_flags_vertical = 3
+
+[node name="PreviewSprite" type="AnimatedSprite2D" parent="MainPanel/PreviewSection/PreviewPanel"]
+layout_mode = 1
+position = Vector2(100, 150)
+centered = true

@@ -15,7 +15,31 @@
       "Bash(py extract_body_animations.py)",
       "Bash(py export_body_animations_excel.py)",
       "Bash(pip install:*)",
-      "Bash(py:*)"
+      "Bash(py:*)",
+      "Bash(cd:*)",
+      "Bash(' \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\addons\\\\expression_editor\\\\expressions_resource.tres\")",
+      "Bash(npx skills:*)",
+      "Bash(npx --yes add https://github.com/wshobson/agents.git)",
+      "Read(//c/Users/kotta/.claude/**)",
+      "Bash(npx --yes --global add https://github.com/wshobson/agents --skill godot-gdscript-patterns)",
+      "Bash(cp:*)",
+      "Read(//c/Users/kotta/**)",
+      "Bash(npx --yes add https://github.com/wshobson/agents.git --skill godot-gdscript-patterns)",
+      "Bash(where npm:*)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\npm.cmd\" install -g npx)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:open.feishu.cn)",
+      "Bash(python test_feishu_permission.py)",
+      "Bash(\"C:\\\\Users\\\\kotta\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" test_feishu_permission.py)",
+      "Bash(where py:*)",
+      "Bash(where python3:*)",
+      "Bash(where python3.11)",
+      "Bash(where python3.12)",
+      "Bash(where python3.12m)",
+      "Bash(\"C:\\\\Users\\\\kotta\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python3.12\\\\python.exe\" \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\python\\\\test_feishu_permission.py\")",
+      "Bash(\"C:\\\\Users\\\\kotta\\\\AppData\\\\Local\\\\Python\\\\python.exe\" \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\python\\\\test_feishu_permission.py\")",
+      "Bash(python upload_backgrounds_to_feishu.py)",
+      "Bash(python3 upload_backgrounds_to_feishu.py)"
     ]
   }
 }
