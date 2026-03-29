@@ -35,5 +35,5 @@ func _ready() -> void:
 					message.message_text.text = reply_text.text
 					Game.stage_page.dialogue_line = \
 						await Game.stage_page.dialogue \
-							.get_next_dialogue_line(next_id, [Stage])
+							.get_next_dialogue_line(next_id, [Game.stage_page, Stage])
 	)

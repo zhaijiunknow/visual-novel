@@ -86,12 +86,12 @@ var character: Character:
 
 func process_line() -> void:
 	var character_name = dialogue_line.character
-	print({
-		"character": dialogue_line.character,
-		"text": dialogue_line.text,
-		"responses": dialogue_line.responses,
-		"tags": dialogue_line.tags,
-	})
+	
+	if dialogue_line.has_tag("延迟"):
+		var delay = dialogue_line.get_tag_value("延迟")
+		delay = float(delay)
+		await get_tree().create_timer(delay).timeout
+	
 	if "手机" in dialogue_line.tags:
 		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 		Game.phone_page.chat_message_pool.add_child(chat_message)
