@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://iwept1rowo08"
+path="res://.godot/imported/章节1.dialogue-9298e6792d98f8953bc8b8f42fab2e04.tres"
+
+[deps]
+
+source_file="res://dialogue_manager/dialogues/章节1.dialogue"
+dest_files=["res://.godot/imported/章节1.dialogue-9298e6792d98f8953bc8b8f42fab2e04.tres"]
+
+[params]
+
+defaults=true

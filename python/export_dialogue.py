@@ -22,7 +22,7 @@ def get_all_records(token):
     all_records = []
     page_token = None
     while True:
-        params = {}
+        params = {"page_size": 100}
         if page_token:
             params["page_token"] = page_token
         resp = requests.get(
@@ -43,23 +43,6 @@ def get_all_records(token):
     return all_records
 
 
-def extract_text(field_value):
-    """从飞书字段值中提取纯文本"""
-    if field_value is None:
-        return ""
-    if isinstance(field_value, str):
-        return field_value
-    if isinstance(field_value, list):
-        return "".join(item.get("text", "") for item in field_value if isinstance(item, dict))
-    if isinstance(field_value, dict):
-        # Formula 字段的值通常在 value 里
-        if "value" in field_value:
-            return extract_text(field_value["value"])
-        if "text" in field_value:
-            return field_value["text"]
-    return str(field_value)
-
-
 def extract_field(fields, name):
     """提取字段值，处理各种飞书字段类型"""
     val = fields.get(name)
@@ -68,10 +51,10 @@ def extract_field(fields, name):
     # Checkbox
     if isinstance(val, bool):
         return val
-    # SingleSelect
+    # SingleSelect / 普通字符串
     if isinstance(val, str):
         return val
-    # Formula 结果
+    # 富文本或多值列表
     if isinstance(val, list):
         parts = []
         for item in val:
@@ -80,37 +63,31 @@ def extract_field(fields, name):
             elif isinstance(item, str):
                 parts.append(item)
         return "".join(parts)
+    # Formula 结果（嵌套在 value 里）
+    if isinstance(val, dict):
+        if "value" in val:
+            return extract_field({"_": val["value"]}, "_")
+        if "text" in val:
+            return val["text"]
     if isinstance(val, (int, float)):
         return str(val)
     return str(val)
 
 
-def record_to_dialogue_line(fields):
-    """将一条演出表记录转换为 dialogue 格式的行"""
-    character = extract_field(fields, "角色名称")
-    text = extract_field(fields, "文字")
-    instruction = extract_field(fields, "指令")
-    voice = extract_field(fields, "语音")
-    nickname = extract_field(fields, "昵称")
-    hide_avatar = fields.get("隐藏头像", False)
-    hide_portrait = fields.get("隐藏立绘", False)
-    body = extract_field(fields, "身体")
-    expression = extract_field(fields, "表情")
-    bg_name = extract_field(fields, "背景名称")
-    time_period = extract_field(fields, "时段")
-
+def record_to_data(fields):
+    """将一条演出表记录转换为结构化数据"""
     return {
-        "character": character,
-        "text": text,
-        "instruction": instruction,
-        "voice": voice,
-        "nickname": nickname,
-        "hide_avatar": hide_avatar,
-        "hide_portrait": hide_portrait,
-        "body": body,
-        "expression": expression,
-        "bg_name": bg_name,
-        "time_period": time_period,
+        "character": extract_field(fields, "角色名称"),
+        "text": extract_field(fields, "文字"),
+        "voice": extract_field(fields, "语音"),
+        "nickname": extract_field(fields, "昵称"),
+        "hide_avatar": fields.get("隐藏头像", False),
+        "hide_portrait": fields.get("隐藏立绘", False),
+        "body": extract_field(fields, "身体"),
+        "expression": extract_field(fields, "表情"),
+        "bg_name": extract_field(fields, "背景名称"),
+        "time_period": extract_field(fields, "时段"),
+        "chapter": extract_field(fields, "章节"),
     }
 
 
@@ -122,7 +99,7 @@ def build_dialogue_line(data):
     if not character and not text:
         return None
 
-    # 构建 tags
+    # 构建 tags（中文标签，合并在一个方括号内）
     tags = []
     if data["voice"]:
         tags.append(f"#语音={data['voice']}")
@@ -139,45 +116,43 @@ def build_dialogue_line(data):
 
     tag_str = f"[{', '.join(tags)}]" if tags else ""
 
-    # 确保文字有引号
-    if text and not text.startswith('\u201c') and not text.startswith('"'):
-        text = f"\u201c{text}\u201d"
-
-    char_name = character if character else "独白"
-    return f"{char_name}: {tag_str}{text}"
-
-
-def build_mutation_lines(data, prev_data):
-    """生成 do 指令行（场景切换等）"""
-    lines = []
-
-    # 场景/背景变化时插入 SetBackground
-    if data["bg_name"] and data["time_period"]:
-        if not prev_data or data["bg_name"] != prev_data["bg_name"] or data["time_period"] != prev_data["time_period"]:
-            lines.append(f'do SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)')
-
-    return lines
+    if character:
+        # 有角色的对话行：加中文引号
+        if text and not text.startswith("\u201c") and not text.startswith('"'):
+            text = f"\u201c{text}\u201d"
+        return f"{character}: {tag_str}{text}"
+    else:
+        # 独白行：不加引号
+        return f"独白: {text}"
 
 
-def convert_to_dialogue(records, chapter_filter=None):
+def build_background_line(data, prev_data):
+    """当背景或时段变化时，生成 do SetBackground() 行"""
+    if not data["bg_name"] or not data["time_period"]:
+        return None
+    if prev_data and data["bg_name"] == prev_data["bg_name"] and data["time_period"] == prev_data["time_period"]:
+        return None
+    return f'do SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)'
+
+
+def convert_to_dialogue(records, chapter_filter):
     """将演出表记录转换为 dialogue 文件内容"""
     lines = ["~ start"]
-
     prev_data = None
+
     for record in records:
         fields = record.get("fields", {})
-        data = record_to_dialogue_line(fields)
+        data = record_to_data(fields)
 
-        # 按章节过滤
-        chapter = extract_field(fields, "章节")
-        if chapter_filter and chapter != chapter_filter:
+        if data["chapter"] != chapter_filter:
             continue
 
-        # 生成 do 指令
-        mutations = build_mutation_lines(data, prev_data)
-        lines.extend(mutations)
+        # 背景变化时插入 do SetBackground
+        bg_line = build_background_line(data, prev_data)
+        if bg_line:
+            lines.append(bg_line)
 
-        # 生成对话行
+        # 对话行
         dialogue_line = build_dialogue_line(data)
         if dialogue_line:
             lines.append(dialogue_line)
@@ -199,7 +174,7 @@ def main():
     records = get_all_records(token)
     print(f"共 {len(records)} 条记录")
 
-    # 先检查数据结构：打印前几条记录的字段
+    # --dump 模式：打印前几条记录用于调试
     if "--dump" in sys.argv:
         print("\n[DUMP] 前 5 条记录:")
         for i, record in enumerate(records[:5]):
@@ -207,22 +182,14 @@ def main():
             print(f"\n--- 记录 {i+1} ---")
             for k, v in fields.items():
                 print(f"  {k}: {repr(v)}")
-        # 统计章节
         chapters = {}
         for record in records:
             ch = extract_field(record.get("fields", {}), "章节")
             chapters[ch] = chapters.get(ch, 0) + 1
         print(f"\n章节分布: {chapters}")
-        # 统计指令
-        instructions = {}
-        for record in records:
-            inst = extract_field(record.get("fields", {}), "指令")
-            if inst:
-                instructions[inst] = instructions.get(inst, 0) + 1
-        print(f"指令分布: {instructions}")
         return
 
-    # 获取章节列表
+    # 统计章节
     chapters = {}
     for record in records:
         ch = extract_field(record.get("fields", {}), "章节")
@@ -230,43 +197,29 @@ def main():
             chapters[ch] = chapters.get(ch, 0) + 1
     print(f"\n章节: {chapters}")
 
-    # 指定章节或全部导出
-    chapter_filter = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else None
+    # 确定要导出的章节
+    chapter_filter = next((a for a in sys.argv[1:] if not a.startswith("--")), None)
 
     if chapter_filter:
-        print(f"\n[2] 转换章节: {chapter_filter}")
-        content = convert_to_dialogue(records, chapter_filter)
-        filename = f"{chapter_filter}.dialogue"
+        # 导出指定章节
+        chapters_to_export = {chapter_filter: chapters.get(chapter_filter, 0)}
     else:
-        # 按章节分别导出
-        for ch_name, count in chapters.items():
-            print(f"\n[2] 转换章节: {ch_name} ({count} 条)")
-            content = convert_to_dialogue(records, ch_name)
-            filename = f"{ch_name}.dialogue"
-            filepath = os.path.join(OUTPUT_DIR, filename)
-            with open(filepath, "w", encoding="utf-8") as f:
-                f.write(content)
-            print(f"  已写入: {filepath}")
-            # 打印前几行预览
-            preview_lines = content.split("\n")[:10]
-            for line in preview_lines:
-                print(f"  | {line}")
-            if len(content.split("\n")) > 10:
-                print(f"  | ... (共 {len(content.split(chr(10)))} 行)")
-        return
+        # 导出全部章节
+        chapters_to_export = chapters
 
-    filepath = os.path.join(OUTPUT_DIR, filename)
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(content)
-    print(f"\n已写入: {filepath}")
-
-    # 预览
-    preview_lines = content.split("\n")[:20]
-    for line in preview_lines:
-        print(f"  | {line}")
-    total = len(content.split("\n"))
-    if total > 20:
-        print(f"  | ... (共 {total} 行)")
+    for ch_name, count in chapters_to_export.items():
+        print(f"\n[2] 转换章节: {ch_name} ({count} 条)")
+        content = convert_to_dialogue(records, ch_name)
+        filepath = os.path.join(OUTPUT_DIR, f"{ch_name}.dialogue")
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(content)
+        print(f"  已写入: {filepath}")
+        preview = content.split("\n")[:10]
+        for line in preview:
+            print(f"  | {line}")
+        total = len(content.split("\n"))
+        if total > 10:
+            print(f"  | ... (共 {total} 行)")
 
 
 if __name__ == "__main__":

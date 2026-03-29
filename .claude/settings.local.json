@@ -57,7 +57,8 @@
       "Bash(kill %1)",
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 update_voices.py --dry-run)",
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py --dry-run)",
-      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py)"
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py)",
+      "Bash(find /c/Users/kotta/Documents/Godot/visual-novel -name *.env* -o -name *config* -o -name *cred*)"
     ]
   }
 }
