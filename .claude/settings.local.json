@@ -39,7 +39,25 @@
       "Bash(\"C:\\\\Users\\\\kotta\\\\AppData\\\\Local\\\\Microsoft\\\\WindowsApps\\\\python3.12\\\\python.exe\" \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\python\\\\test_feishu_permission.py\")",
       "Bash(\"C:\\\\Users\\\\kotta\\\\AppData\\\\Local\\\\Python\\\\python.exe\" \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\python\\\\test_feishu_permission.py\")",
       "Bash(python upload_backgrounds_to_feishu.py)",
-      "Bash(python3 upload_backgrounds_to_feishu.py)"
+      "Bash(python3 upload_backgrounds_to_feishu.py)",
+      "Bash(ls -d \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\assets\\\\voice\"/*)",
+      "Bash(xargs -I {} basename {})",
+      "Bash(grep -r 演出 C:UserskottaDocumentsGodotvisual-novel --include=*.py --include=*.gd)",
+      "Bash(xargs grep:*)",
+      "Bash(grep -E \"\\\\.\\(py|gd\\)$\")",
+      "Bash(grep -r \"tbl\\\\|table_id\\\\|字段\\\\|field\" /c/Users/kotta/Documents/Godot/visual-novel/agent/*.py)",
+      "Bash(grep -r \"语音\\\\|voice\" /c/Users/kotta/Documents/Godot/visual-novel/agent/*.py)",
+      "Bash(sed 's/\\\\].*//')",
+      "Bash(python update_voices.py)",
+      "Bash(ls /c/Python*/python.exe)",
+      "Bash(ls /c/Users/kotta/AppData/Local/Programs/Python/*/python.exe)",
+      "Bash(python3 update_voices.py)",
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 --version)",
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 update_voices.py)",
+      "Bash(kill %1)",
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 update_voices.py --dry-run)",
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py --dry-run)",
+      "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py)"
     ]
   }
 }
