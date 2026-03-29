@@ -1,3 +1,13 @@
+你帮我把飞书“演出表”里的数据转换成dialogue resource
+具体API实现可以参考这里的代码 C:\Users\kotta\Documents\Godot\visual-novel\python
+
+输出的文件 res://dialogue_manager/dialogues/章节1.dialogue
+
+有什么不明白的地方你再问我
+
+你只能把python代码写到 C:\Users\kotta\Documents\Godot\visual-novel\python
+
+这个是godot dialogue manager的dialogue resource格式参考
 ~ start
 do SetBackground("教室", "白天")
 余洛琛: [#昵称=广播, #隐藏头像, #隐藏立绘]“……（设备调试的声音）”
