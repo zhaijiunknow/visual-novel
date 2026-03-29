@@ -24,19 +24,6 @@ extends HBoxContainer
 
 func _ready() -> void:
 	reset()
-	message_text.resized.connect(
-		func ():
-			var parent: Control = get_parent()
-			if size.x >= parent.size.x:
-				size_flags_horizontal = SIZE_EXPAND_FILL
-				bubble.size_flags_horizontal = SIZE_EXPAND_FILL
-				message_text.autowrap_mode = TextServer.AUTOWRAP_ARBITRARY
-			print("Resized")
-			print({
-				"size.x": size.x,
-				"parent.size.x": parent.size.x,
-			})
-	)
 
 func reset() -> void:
 	bubble.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN

@@ -56,4 +56,11 @@ func ShowDate(month: int, day: int, week_day: String) -> void:
 	var date_player = Game.stage_page.date_player
 	date_player.play("ShowDate")
 	await date_player.animation_finished
+
+func ShowPhone() -> void:
+	Game.phone_page.show()
+
+func HidePhone() -> void:
+	Game.phone_page.hide()
+
 #endregion

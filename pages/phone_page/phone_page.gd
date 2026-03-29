@@ -1,8 +1,6 @@
 class_name PhonePage
 extends CanvasLayer
 
-@export var dialogue: DialogueResource
-
 @export var home_page: Control
 @export var messenger_page: Control
 @export var chat_page: Control
@@ -18,32 +16,6 @@ extends CanvasLayer
 @export var chat_pool: Control
 
 @export var back_button: TextureButton
-
-var dialogue_line: DialogueLine:
-	set(value):
-		dialogue_line = value
-		if not dialogue_line: return
-		
-		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
-		chat_message_pool.add_child(chat_message)
-		match dialogue_line.character:
-			"Self":
-				chat_message.sender_type = Enums.SenderType.SELF
-			"Other":
-				chat_message.sender_type = Enums.SenderType.OTHER
-		chat_message.message_text.text = dialogue_line.text
-		if dialogue_line.responses:
-			for response: DialogueResponse in dialogue_line.responses:
-				var reply_selection: ReplySelection = Prefabs.reply_selection.instantiate()
-				reply_selection.reply_text.text = response.text
-				reply_selection.next_id = response.next_id
-				reply_selection_pool.add_child(reply_selection)
-			return
-		
-		get_next_line(dialogue_line.next_id)
-
-func get_next_line(next_id: String) -> void:
-	dialogue_line = await dialogue.get_next_dialogue_line(next_id)
 
 func _ready() -> void:
 	chat_page.visible = false
@@ -80,9 +52,6 @@ func _ready() -> void:
 			Game.book_page.show()
 			Game.book_page.layer = 2
 	)
-	
-	dialogue_line = await dialogue.get_next_dialogue_line("start")
-	
 
 func clear_reply_selections() -> void:
 	for child in reply_selection_pool.get_children():

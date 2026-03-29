@@ -79,73 +79,104 @@ var voice_name: String:
 	get: return dialogue_line.get_tag_value("语音")
 
 var character: Character:
-	get: return Stage.character_dict[dialogue_line.character]
+	get:
+		if Stage.character_dict.has(dialogue_line.character):
+			return Stage.character_dict[dialogue_line.character]
+		return null
 
 func process_line() -> void:
 	var character_name = dialogue_line.character
-	avatar.texture = null
-	var has_avatar = Stage.character_dict.has(character_name)
-	if has_avatar:
-		if not "隐藏头像" in dialogue_line.tags:
-			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
-		if not "隐藏立绘" in dialogue_line.tags:
-			character.FadeIn("Center")
-	
-	if dialogue_line.has_tag("身体"):
-		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("body"))
-	if dialogue_line.has_tag("表情"):
-		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("expression"))
-	
-	avatar.modulate.a = 1 if has_avatar else 0
-	label_character_name.text = dialogue_line.get_tag_value("昵称") \
-				if dialogue_line.has_tag("昵称") else dialogue_line.character
-	
-	responses_menu.visible = dialogue_line.responses.size()
-	dialogue_label.dialogue_line = dialogue_line
-	voice_buttons.visible = dialogue_line.has_tag("语音")
-	if dialogue_line.has_tag("语音"):
-		update_favourite()
-		AudioManager.play_voice(voice_name, true)
+	print({
+		"character": dialogue_line.character,
+		"text": dialogue_line.text,
+		"responses": dialogue_line.responses,
+		"tags": dialogue_line.tags,
+	})
+	if "手机" in dialogue_line.tags:
+		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
+		Game.phone_page.chat_message_pool.add_child(chat_message)
+		match dialogue_line.character:
+			"周腾":
+				chat_message.sender_type = Enums.SenderType.SELF
+			_:
+				chat_message.sender_type = Enums.SenderType.OTHER
+		chat_message.message_text.text = dialogue_line.text
+		if dialogue_line.responses:
+			for response: DialogueResponse in dialogue_line.responses:
+				var reply_selection: ReplySelection = Prefabs.reply_selection.instantiate()
+				reply_selection.reply_text.text = response.text
+				reply_selection.next_id = response.next_id
+				Game.phone_page.reply_selection_pool.add_child(reply_selection)
+			return
 	else:
-		AudioManager.audio_player_voice.stop()
-	dialogue_label.type_out()
-	while dialogue_label.is_typing:
-		await get_tree().process_frame
-	
-	if dialogue_line.responses:
-		for child in responses_menu.get_children():
-			responses_menu.remove_child(child)
-			child.queue_free()
-		for response: DialogueResponse in dialogue_line.responses:
-			var selection: DialogueSelection = Prefabs.dialogue_selection.instantiate()
-			selection.text = response.text
-			selection.pressed.connect(
-				func ():
-					dialogue_line = await dialogue.get_next_dialogue_line(response.next_id, [self, Stage])
-			)
-			responses_menu.add_child(selection)
-		return
-	else:
-		if autoplay or skip:
-			if skip:
-				next_line.emit()
-			else:
-				if dialogue_line.has_tag("语音"):
-					while AudioManager.audio_player_voice.playing:
-						await get_tree().process_frame
-				else:
-					await get_tree().create_timer(finish_pause).timeout
+		#print(dialogue_line.responses)
+		avatar.texture = null
+		var has_avatar = Stage.character_dict.has(character_name)
+		if has_avatar:
+			if not "隐藏头像" in dialogue_line.tags:
+				avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
+			if not "隐藏立绘" in dialogue_line.tags:
+				character.FadeIn("Center")
+		
+		if dialogue_line.has_tag("身体"):
+			Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("body"))
+		if dialogue_line.has_tag("表情"):
+			Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("expression"))
+		
+		avatar.modulate.a = 1 if has_avatar else 0
+		label_character_name.text = dialogue_line.get_tag_value("昵称") \
+					if dialogue_line.has_tag("昵称") else dialogue_line.character
+		
+		responses_menu.visible = dialogue_line.responses.size()
+		dialogue_label.dialogue_line = dialogue_line
+		voice_buttons.visible = dialogue_line.has_tag("语音")
+		if dialogue_line.has_tag("语音"):
+			update_favourite()
+			AudioManager.play_voice(voice_name, true)
 		else:
-			await next_line
+			AudioManager.audio_player_voice.stop()
+		dialogue_label.type_out()
+		while dialogue_label.is_typing:
+			await get_tree().process_frame
 		
-	if has_avatar:
-		if "隐藏立绘" in dialogue_line.tags:
-			await character.FadeOut()
-		
+		if dialogue_line.responses:
+			for child in responses_menu.get_children():
+				responses_menu.remove_child(child)
+				child.queue_free()
+			for response: DialogueResponse in dialogue_line.responses:
+				var selection: DialogueSelection = Prefabs.dialogue_selection.instantiate()
+				selection.text = response.text
+				selection.pressed.connect(
+					func ():
+						dialogue_line = await dialogue.get_next_dialogue_line(response.next_id, [self, Stage])
+				)
+				responses_menu.add_child(selection)
+			return
+		else:
+			if autoplay or skip:
+				if skip:
+					next_line.emit()
+				else:
+					if dialogue_line.has_tag("语音"):
+						while AudioManager.audio_player_voice.playing:
+							await get_tree().process_frame
+					else:
+						await get_tree().create_timer(finish_pause).timeout
+			else:
+				await next_line
+			
+		if has_avatar:
+			if "隐藏立绘" in dialogue_line.tags:
+				await character.FadeOut()
 	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
 
 
 func _ready() -> void:
+	#DialogueManager.mutated.connect(
+		#func (mutation):
+			#print(mutation)
+	#)
+	
 	dialogue_label.visible_characters = 0
 	for chapter in chapters:
 		var _chapter_name = chapter.resource_path.get_file().split(".")[0]

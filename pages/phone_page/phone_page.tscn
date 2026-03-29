@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d2hqmraljwruf"]
 
 [ext_resource type="Script" uid="uid://cxoi0upsselr" path="res://pages/phone_page/phone_page.gd" id="1_xkddf"]
-[ext_resource type="Resource" uid="uid://bpyjoodw7rgic" path="res://dialogue_manager/dialogues/chat.dialogue" id="2_ctgom"]
 [ext_resource type="Texture2D" uid="uid://6nyfpls8w74i" path="res://assets/sprites/ui/ui.sprites/phone.tres" id="4_ctgom"]
 [ext_resource type="Texture2D" uid="uid://bhk2kn1m7aq6c" path="res://assets/sprites/ui/ui.sprites/screen_image.tres" id="5_31aqv"]
 [ext_resource type="PackedScene" uid="uid://btkall20t660f" path="res://prefabs/phone_icon/phone_icon.tscn" id="5_pdylm"]
@@ -38,7 +37,6 @@ corner_radius_bottom_left = 128
 
 [node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button")]
 script = ExtResource("1_xkddf")
-dialogue = ExtResource("2_ctgom")
 home_page = NodePath("Phone/Home")
 messenger_page = NodePath("Phone/Chat")
 chat_page = NodePath("Phone/Messenger")
