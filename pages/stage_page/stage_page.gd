@@ -79,7 +79,6 @@ var voice_name: String:
 	get: return dialogue_line.get_tag_value("语音")
 
 func process_line() -> void:
-	print(dialogue_line.tags)
 	var character_name = dialogue_line.character
 	avatar.texture = null
 	var has_avatar = Stage.character_dict.has(character_name)
