@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://gn7fehedufmw" path="res://dialogue_manager/dialogues/chapter_1.dialogue" id="2_ic8ca"]
 [ext_resource type="Script" uid="uid://dbs4435dsf3ry" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_lda8k"]
 [ext_resource type="Texture2D" uid="uid://reggb0dey3tm" path="res://assets/backgrounds/2同兴里-白天.jpg" id="3_lqv2x"]
+[ext_resource type="Resource" uid="uid://b601stypwvvcg" path="res://dialogue_manager/dialogues/example.dialogue" id="4_ic8ca"]
 [ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="7_217kn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
 [ext_resource type="Texture2D" uid="uid://bsmb4d7itelyb" path="res://assets/sprites/ui/ui.sprites/dialogue_box.tres" id="8_hovpu"]
@@ -188,7 +189,7 @@ _data = {
 layer = 100
 script = ExtResource("1_wlgfe")
 chapters = Array[ExtResource("2_lda8k")]([ExtResource("2_ic8ca")])
-dialogue = ExtResource("2_ic8ca")
+dialogue = ExtResource("4_ic8ca")
 dialogue_screen = NodePath("SubViewportContainer/SubViewport/DialogueScreen")
 dialogue_label = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/DialogueLabel")
 label_character_name = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character/Label_CharacterName")

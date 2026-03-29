@@ -76,7 +76,7 @@ var dialogue_line: DialogueLine:
 var finish_pause: float = 1
 
 var voice_name: String:
-	get: return dialogue_line.get_tag_value("voice")
+	get: return dialogue_line.get_tag_value("语音")
 
 func process_line() -> void:
 	print(dialogue_line.tags)
@@ -84,22 +84,22 @@ func process_line() -> void:
 	avatar.texture = null
 	var has_avatar = Stage.character_dict.has(character_name)
 	if has_avatar:
-		if not "hide_portrait" in dialogue_line.tags:
+		if not "隐藏头像" in dialogue_line.tags:
 			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
 	
-	if dialogue_line.has_tag("body"):
+	if dialogue_line.has_tag("身体"):
 		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("body"))
-	if dialogue_line.has_tag("expression"):
+	if dialogue_line.has_tag("表情"):
 		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("expression"))
 	
 	avatar.modulate.a = 1 if has_avatar else 0
-	label_character_name.text = dialogue_line.get_tag_value("nickname") \
-				if dialogue_line.has_tag("nickname") else dialogue_line.character
+	label_character_name.text = dialogue_line.get_tag_value("昵称") \
+				if dialogue_line.has_tag("昵称") else dialogue_line.character
 	
 	responses_menu.visible = dialogue_line.responses.size()
 	dialogue_label.dialogue_line = dialogue_line
-	voice_buttons.visible = dialogue_line.has_tag("voice")
-	if dialogue_line.has_tag("voice"):
+	voice_buttons.visible = dialogue_line.has_tag("语音")
+	if dialogue_line.has_tag("语音"):
 		update_favourite()
 		AudioManager.play_voice(voice_name, true)
 	else:
@@ -126,7 +126,7 @@ func process_line() -> void:
 			if skip:
 				next_line.emit()
 			else:
-				if dialogue_line.has_tag("voice"):
+				if dialogue_line.has_tag("语音"):
 					while AudioManager.audio_player_voice.playing:
 						await get_tree().process_frame
 				else:

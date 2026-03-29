@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dhckqb4wog1cn" path="res://autoloads/stage/stage.gd" id="1_ecxui"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="2_3kwj0"]
-[ext_resource type="Resource" uid="uid://gn7fehedufmw" path="res://dialogue_manager/dialogues/chapter_1.dialogue" id="2_a221a"]
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="3_a221a"]
 [ext_resource type="Script" uid="uid://cv5xbdhucorap" path="res://data/_models/background_data.gd" id="4_pf3bu"]
 [ext_resource type="Resource" uid="uid://5p2jg6p6wwwt" path="res://data/backgrounds/02_同兴里.tres" id="5_cwi0x"]
@@ -14,7 +13,6 @@
 
 [node name="Stage" type="Node" unique_id=1343709308 node_paths=PackedStringArray("character_pool")]
 script = ExtResource("1_ecxui")
-main_dialogue = ExtResource("2_a221a")
 character_pool = NodePath("Characters")
 background_data_pool = Array[ExtResource("4_pf3bu")]([ExtResource("5_cwi0x"), ExtResource("6_lrsvv"), ExtResource("10_lv745")])
 
