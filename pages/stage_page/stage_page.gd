@@ -78,6 +78,9 @@ var finish_pause: float = 1
 var voice_name: String:
 	get: return dialogue_line.get_tag_value("语音")
 
+var character: Character:
+	get: return Stage.character_dict[dialogue_line.character]
+
 func process_line() -> void:
 	var character_name = dialogue_line.character
 	avatar.texture = null
@@ -85,6 +88,8 @@ func process_line() -> void:
 	if has_avatar:
 		if not "隐藏头像" in dialogue_line.tags:
 			avatar.texture = Stage.character_dict[character_name].texture_rect_avatar.texture
+		if not "隐藏立绘" in dialogue_line.tags:
+			character.FadeIn("Center")
 	
 	if dialogue_line.has_tag("身体"):
 		Stage.Character(character_name).SetBody(dialogue_line.get_tag_value("body"))
@@ -133,7 +138,12 @@ func process_line() -> void:
 		else:
 			await next_line
 		
+	if has_avatar:
+		if "隐藏立绘" in dialogue_line.tags:
+			await character.FadeOut()
+		
 	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
+
 
 func _ready() -> void:
 	dialogue_label.visible_characters = 0

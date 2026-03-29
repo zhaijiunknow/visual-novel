@@ -117,6 +117,7 @@ func FadeIn(position_name: String, duration: float = 0.5) -> void:
 	await create_tween().tween_property(character_image, "modulate:a", 1, duration).finished
 
 func FadeOut(duration: float = 0.5) -> void:
+	if not character_image: return
 	await create_tween().tween_property(character_image, "modulate:a", 0, duration).finished
 	character_image.queue_free()
 
