@@ -91,7 +91,13 @@
       "Read(//c/Users/kotta/Documents/Godot/visual-novel/**)",
       "Bash(done)",
       "Bash(检查同兴里文件内容)",
-      "Bash(grep -l \"\"\"晚上\"\"\" *.tres)"
+      "Bash(grep -l \"\"\"晚上\"\"\" *.tres)",
+      "WebSearch",
+      "Bash(python -c \"import py_compile; py_compile.compile\\(open\\(''update_backgrounds_in_feishu.py'', encoding=''utf-8''\\).read\\(\\)\\); print\\(''Syntax OK''\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(dir)",
+      "Bash(C:UserskottaAppDataRoamingnpmnpx @coding-solo/godot-mcp --version)",
+      "Bash(ls -la update*)"
     ]
   }
 }
