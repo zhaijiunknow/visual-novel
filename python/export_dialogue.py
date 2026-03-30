@@ -2,18 +2,15 @@ import requests
 import os
 import sys
 import json
+from collections import defaultdict
 from dotenv import load_dotenv
 from feishu_auth import get_tenant_token, APP_TOKEN
 
 load_dotenv("feishu.env")
 sys.stdout.reconfigure(encoding='utf-8')
 
-# 数据表ID
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"  # 演出表
-
 BASE_URL = "https://open.feishu.cn/open-apis"
-
-# 输出目录
 OUTPUT_DIR = r"C:\Users\kotta\Documents\Godot\visual-novel\dialogue_manager\dialogues"
 
 
@@ -48,13 +45,10 @@ def extract_field(fields, name):
     val = fields.get(name)
     if val is None:
         return ""
-    # Checkbox
     if isinstance(val, bool):
         return val
-    # SingleSelect / 普通字符串
     if isinstance(val, str):
         return val
-    # 富文本或多值列表
     if isinstance(val, list):
         parts = []
         for item in val:
@@ -63,7 +57,6 @@ def extract_field(fields, name):
             elif isinstance(item, str):
                 parts.append(item)
         return "".join(parts)
-    # Formula 结果（嵌套在 value 里）
     if isinstance(val, dict):
         if "value" in val:
             return extract_field({"_": val["value"]}, "_")
@@ -74,90 +67,176 @@ def extract_field(fields, name):
     return str(val)
 
 
+def get_parent_id(fields):
+    """提取父记录 ID（飞书子记录的父链接）"""
+    # 飞书字段名可能带后缀数字，如 "父记录 3"
+    parent = None
+    for key in fields:
+        if key.startswith("父记录"):
+            parent = fields[key]
+            break
+    if not parent:
+        return None
+    # 格式: [{record_ids: [...], table_id: ..., ...}] 或 {link_record_ids: [...]}
+    if isinstance(parent, list) and parent:
+        item = parent[0]
+        if isinstance(item, dict):
+            ids = item.get("record_ids", [])
+            return ids[0] if ids else None
+    if isinstance(parent, dict):
+        ids = parent.get("link_record_ids", []) or parent.get("record_ids", [])
+        return ids[0] if ids else None
+    return None
+
+
 def record_to_data(fields):
     """将一条演出表记录转换为结构化数据"""
     return {
         "character": extract_field(fields, "角色名称"),
         "text": extract_field(fields, "文字"),
+        "option": extract_field(fields, "选项"),
         "voice": extract_field(fields, "语音"),
         "nickname": extract_field(fields, "昵称"),
         "hide_avatar": fields.get("隐藏头像", False),
         "hide_portrait": fields.get("隐藏立绘", False),
         "body": extract_field(fields, "身体"),
         "expression": extract_field(fields, "表情"),
+        "phone": fields.get("手机", False),
+        "delay": extract_field(fields, "延迟"),
         "bg_name": extract_field(fields, "背景名称"),
         "time_period": extract_field(fields, "时段"),
         "chapter": extract_field(fields, "章节"),
     }
 
 
-def build_dialogue_line(data):
-    """构建一行 dialogue 格式的文本"""
-    character = data["character"]
-    text = data["text"]
+# ─── 树构建 ───
 
-    if not character and not text:
-        return None
+def build_tree(records):
+    """从扁平记录列表构建父子树"""
+    children_map = defaultdict(list)
+    roots = []
 
-    # 构建 tags（中文标签，合并在一个方括号内）
+    for record in records:
+        parent_id = get_parent_id(record.get("fields", {}))
+        if parent_id:
+            children_map[parent_id].append(record)
+        else:
+            roots.append(record)
+
+    return roots, children_map
+
+
+# ─── dialogue 行生成 ───
+
+def build_tags(data):
+    """构建 tag 字符串"""
     tags = []
+    if data["phone"]:
+        tags.append("#手机")
+    if data["delay"]:
+        tags.append(f"#延迟={data['delay']}")
     if data["voice"]:
         tags.append(f"#语音={data['voice']}")
     if data["nickname"]:
         tags.append(f"#昵称={data['nickname']}")
     if data["hide_avatar"]:
         tags.append("#隐藏头像")
-    if data["hide_portrait"]:
-        tags.append("#隐藏立绘")
-    if data["body"]:
+    if data["body"] and data["body"] != "-":
         tags.append(f"#身体={data['body']}")
-    if data["expression"]:
+    if data["expression"] and data["expression"] != "-":
         tags.append(f"#表情={data['expression']}")
+    return f"[{', '.join(tags)}]" if tags else ""
 
-    tag_str = f"[{', '.join(tags)}]" if tags else ""
+
+def build_dialogue_line(data):
+    """构建一行 dialogue 格式的文本（不含缩进）"""
+    character = data["character"]
+    text = data["text"]
+
+    if not character and not text:
+        return None
+
+    tag_str = build_tags(data)
 
     if character:
-        # 有角色的对话行：加中文引号
-        if text and not text.startswith("\u201c") and not text.startswith('"'):
-            text = f"\u201c{text}\u201d"
+        # 有角色的对话行（飞书数据已含引号，直接使用）
         return f"{character}: {tag_str}{text}"
     else:
-        # 独白行：不加引号
+        # 独白行
         return f"独白: {text}"
 
 
-def build_background_line(data, prev_data):
-    """当背景或时段变化时，生成 do SetBackground() 行"""
-    if not data["bg_name"] or not data["time_period"]:
-        return None
-    if prev_data and data["bg_name"] == prev_data["bg_name"] and data["time_period"] == prev_data["time_period"]:
-        return None
-    return f'do SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)'
+def generate_do_commands(data, state, lines, tabs):
+    """生成 do 指令行（背景切换、FadeIn、ShowPhone/HidePhone）"""
+
+    # 背景变化 → SetBackground + 清空可见角色
+    if data["bg_name"] and data["time_period"]:
+        if data["bg_name"] != state["bg_name"] or data["time_period"] != state["time_period"]:
+            lines.append(f'{tabs}do SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)')
+            state["bg_name"] = data["bg_name"]
+            state["time_period"] = data["time_period"]
+            state["visible_characters"].clear()
+
+    # 手机模式切换
+    is_phone = bool(data["phone"])
+    if is_phone and not state["phone_mode"]:
+        lines.append(f"{tabs}do ShowPhone()")
+        state["phone_mode"] = True
+    elif not is_phone and state["phone_mode"]:
+        lines.append(f"{tabs}do HidePhone()")
+        state["phone_mode"] = False
+
+    # 角色 FadeIn：有角色 + 隐藏立绘=false + 未在场
+    character = data["character"]
+    if character and not data["hide_portrait"] and character not in state["visible_characters"]:
+        lines.append(f'{tabs}do Character("{character}").FadeIn("Center")')
+        state["visible_characters"].add(character)
 
 
-def convert_to_dialogue(records, chapter_filter):
-    """将演出表记录转换为 dialogue 文件内容"""
-    lines = ["~ start"]
-    prev_data = None
+# ─── 递归遍历 ───
 
-    for record in records:
-        fields = record.get("fields", {})
-        data = record_to_data(fields)
+def walk(record, children_map, indent, lines, state):
+    """递归遍历记录树，生成 dialogue 文件内容"""
+    data = record_to_data(record.get("fields", {}))
+    children = children_map.get(record["record_id"], [])
+    tabs = "\t" * indent
 
-        if data["chapter"] != chapter_filter:
-            continue
-
-        # 背景变化时插入 do SetBackground
-        bg_line = build_background_line(data, prev_data)
-        if bg_line:
-            lines.append(bg_line)
-
-        # 对话行
+    if data["option"]:
+        # 选项行
+        lines.append(f"{tabs}- {data['option']}")
+        for child in children:
+            walk(child, children_map, indent + 1, lines, state)
+    else:
+        # 对话行：先生成 do 指令，再生成对话
+        generate_do_commands(data, state, lines, tabs)
         dialogue_line = build_dialogue_line(data)
         if dialogue_line:
-            lines.append(dialogue_line)
+            lines.append(f"{tabs}{dialogue_line}")
+        for child in children:
+            walk(child, children_map, indent, lines, state)
 
-        prev_data = data
+
+# ─── 章节导出 ───
+
+def convert_chapter(roots, children_map, chapter_filter):
+    """将指定章节的记录树转换为 dialogue 文件内容"""
+    lines = ["~ start"]
+    state = {
+        "visible_characters": set(),
+        "bg_name": "",
+        "time_period": "",
+        "phone_mode": False,
+    }
+
+    for root in roots:
+        data = record_to_data(root.get("fields", {}))
+        if data["chapter"] != chapter_filter:
+            continue
+        walk(root, children_map, 0, lines, state)
+
+    # 结束时关闭手机
+    if state["phone_mode"]:
+        lines.append("do HidePhone()")
 
     lines.append("=> END")
     return "\n".join(lines)
@@ -174,25 +253,40 @@ def main():
     records = get_all_records(token)
     print(f"共 {len(records)} 条记录")
 
-    # --dump 模式：打印前几条记录用于调试
+    # --dump 模式
     if "--dump" in sys.argv:
         print("\n[DUMP] 前 5 条记录:")
         for i, record in enumerate(records[:5]):
             fields = record.get("fields", {})
-            print(f"\n--- 记录 {i+1} ---")
+            print(f"\n--- 记录 {i+1} (id={record.get('record_id', '?')}) ---")
             for k, v in fields.items():
                 print(f"  {k}: {repr(v)}")
+
+        # 统计
+        roots, children_map = build_tree(records)
+        print(f"\n根记录: {len(roots)}, 有子记录的父记录: {len(children_map)}")
+
         chapters = {}
-        for record in records:
-            ch = extract_field(record.get("fields", {}), "章节")
+        for root in roots:
+            ch = extract_field(root.get("fields", {}), "章节")
             chapters[ch] = chapters.get(ch, 0) + 1
-        print(f"\n章节分布: {chapters}")
+        print(f"章节分布 (根记录): {chapters}")
+
+        # 统计特殊字段
+        option_count = sum(1 for r in records if extract_field(r.get("fields", {}), "选项"))
+        phone_count = sum(1 for r in records if r.get("fields", {}).get("手机", False))
+        parent_count = sum(1 for r in records if get_parent_id(r.get("fields", {})))
+        print(f"含选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
         return
+
+    # 构建树
+    roots, children_map = build_tree(records)
+    print(f"根记录: {len(roots)}, 有子记录的父记录: {len(children_map)}")
 
     # 统计章节
     chapters = {}
-    for record in records:
-        ch = extract_field(record.get("fields", {}), "章节")
+    for root in roots:
+        ch = extract_field(root.get("fields", {}), "章节")
         if ch:
             chapters[ch] = chapters.get(ch, 0) + 1
     print(f"\n章节: {chapters}")
@@ -201,24 +295,22 @@ def main():
     chapter_filter = next((a for a in sys.argv[1:] if not a.startswith("--")), None)
 
     if chapter_filter:
-        # 导出指定章节
         chapters_to_export = {chapter_filter: chapters.get(chapter_filter, 0)}
     else:
-        # 导出全部章节
         chapters_to_export = chapters
 
     for ch_name, count in chapters_to_export.items():
-        print(f"\n[2] 转换章节: {ch_name} ({count} 条)")
-        content = convert_to_dialogue(records, ch_name)
+        print(f"\n[2] 转换章节: {ch_name} ({count} 条根记录)")
+        content = convert_chapter(roots, children_map, ch_name)
         filepath = os.path.join(OUTPUT_DIR, f"{ch_name}.dialogue")
         with open(filepath, "w", encoding="utf-8") as f:
             f.write(content)
         print(f"  已写入: {filepath}")
-        preview = content.split("\n")[:10]
+        preview = content.split("\n")[:15]
         for line in preview:
             print(f"  | {line}")
         total = len(content.split("\n"))
-        if total > 10:
+        if total > 15:
             print(f"  | ... (共 {total} 行)")
 
 

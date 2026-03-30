@@ -3,18 +3,24 @@
 [ext_resource type="Script" uid="uid://dhckqb4wog1cn" path="res://autoloads/stage/stage.gd" id="1_ecxui"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="2_3kwj0"]
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="3_a221a"]
+[ext_resource type="Resource" uid="uid://7jvl0vqxy55f" path="res://data/backgrounds/01_泳池.tres" id="3_lcqe3"]
 [ext_resource type="Script" uid="uid://cv5xbdhucorap" path="res://data/_models/background_data.gd" id="4_pf3bu"]
 [ext_resource type="Resource" uid="uid://5p2jg6p6wwwt" path="res://data/backgrounds/02_同兴里.tres" id="5_cwi0x"]
 [ext_resource type="Resource" uid="uid://m03wvfwq416w" path="res://data/backgrounds/03_操场.tres" id="6_lrsvv"]
+[ext_resource type="Resource" uid="uid://giuufsoos0t2" path="res://data/backgrounds/04_马客茂.tres" id="6_mpeth"]
+[ext_resource type="Resource" uid="uid://d24qk46tjvlix" path="res://data/backgrounds/05_客厅.tres" id="7_17hvl"]
+[ext_resource type="Resource" uid="uid://d1nmy2owig1yn" path="res://data/backgrounds/06_教学楼.tres" id="8_j48a0"]
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="9_uutle"]
 [ext_resource type="PackedScene" uid="uid://bnu8yy8c7d3pj" path="res://characters/instances/character_辉夜奏.tscn" id="10_cwi0x"]
 [ext_resource type="Resource" uid="uid://b0n2joy3a36wk" path="res://data/backgrounds/07_教室.tres" id="10_lv745"]
+[ext_resource type="Resource" uid="uid://bo1argwl65ko4" path="res://data/backgrounds/08_广播社.tres" id="10_n6isd"]
 [ext_resource type="PackedScene" uid="uid://dvavxp5xvb7m1" path="res://characters/instances/character_林凌铃.tscn" id="11_ag5rj"]
+[ext_resource type="Resource" uid="uid://3a3ymt10val6" path="res://data/backgrounds/09_广播社门口.tres" id="11_i3l8f"]
 
 [node name="Stage" type="Node" unique_id=1343709308 node_paths=PackedStringArray("character_pool")]
 script = ExtResource("1_ecxui")
 character_pool = NodePath("Characters")
-background_data_pool = Array[ExtResource("4_pf3bu")]([ExtResource("5_cwi0x"), ExtResource("6_lrsvv"), ExtResource("10_lv745")])
+background_data_pool = Array[ExtResource("4_pf3bu")]([ExtResource("3_lcqe3"), ExtResource("5_cwi0x"), ExtResource("6_lrsvv"), ExtResource("6_mpeth"), ExtResource("7_17hvl"), ExtResource("8_j48a0"), ExtResource("10_lv745"), ExtResource("10_n6isd"), ExtResource("11_i3l8f")])
 
 [node name="Characters" type="Control" parent="." unique_id=1964690209]
 modulate = Color(1, 1, 1, 0)

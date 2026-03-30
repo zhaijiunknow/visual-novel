@@ -58,7 +58,9 @@
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 update_voices.py --dry-run)",
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py --dry-run)",
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py)",
-      "Bash(find /c/Users/kotta/Documents/Godot/visual-novel -name *.env* -o -name *config* -o -name *cred*)"
+      "Bash(find /c/Users/kotta/Documents/Godot/visual-novel -name *.env* -o -name *config* -o -name *cred*)",
+      "Bash(find /c/Users/kotta/Documents/Godot/visual-novel/characters/instances -type f -name *.tscn)",
+      "Bash(python export_dialogue.py --dump)"
     ]
   }
 }
