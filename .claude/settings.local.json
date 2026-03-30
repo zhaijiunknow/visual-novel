@@ -69,7 +69,29 @@
       "Bash(mv \"6教学楼-下午.jpg\" \"6教学楼-黄昏.jpg\")",
       "Bash(mv \"4马客茂-晚上.jpg\" \"4马客茂-夜晚.jpg\")",
       "Bash(mv \"7-教室-晚上-关灯.jpg\" \"7-教室-夜晚-关灯.jpg\")",
-      "Bash(mv \"7-教室-晚上-开灯.jpg\" \"7-教室-夜晚-开灯.jpg\")"
+      "Bash(mv \"7-教室-晚上-开灯.jpg\" \"7-教室-夜晚-开灯.jpg\")",
+      "Bash(claude mcp:*)",
+      "Bash(测试 godot-mcp:*)",
+      "Bash(npx @coding-solo/godot-mcp --version)",
+      "Bash(npx @ai-coding-solo/godot-mcp --version)",
+      "Bash(set GODOT_PATH=\"C:\\\\Users\\\\kotta\\\\OneDrive\\\\Desktop\\\\Godot_v4.6.1-stable_win64.exe\\\\Godot_v4.6.1-stable_win64.exe\")",
+      "Bash(set DEBUG=true)",
+      "Bash(where npx:*)",
+      "Bash(npx @coding-solo/godot-mcp --help)",
+      "Bash(\"C:\\\\Users\\\\kotta\\\\OneDrive\\\\Desktop\\\\Godot_v4.6.1-stable_win64.exe\\\\Godot_v4.6.1-stable_win64.exe\" --version)",
+      "Bash(npm install:*)",
+      "Bash(where godot-mcp:*)",
+      "mcp__godot__list_projects",
+      "Bash(godot-mcp --help)",
+      "Bash(powershell -Command \"$env:GODOT_PATH=''''C:\\\\Users\\\\kotta\\\\OneDrive\\\\Desktop\\\\Godot_v4.6.1-stable_win64.exe\\\\Godot_v4.6.1-stable_win64.exe''''; $env:DEBUG=''''true''''; godot-mcp --help\")",
+      "WebFetch(domain:github.com)",
+      "Bash(cat *.tres)",
+      "Bash(for file:*)",
+      "Bash(do echo:*)",
+      "Read(//c/Users/kotta/Documents/Godot/visual-novel/**)",
+      "Bash(done)",
+      "Bash(检查同兴里文件内容)",
+      "Bash(grep -l \"\"\"晚上\"\"\" *.tres)"
     ]
   }
 }
