@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b14khytoepi6w"
-path="res://.godot/imported/6教学楼-晚上.jpg-62ebbd610a508154a296e017187a4fb7.ctex"
+uid="uid://bubpwh2l1x1dc"
+path="res://.godot/imported/6教学楼-黄昏.jpg-98aba12e859513b5976c7dd893db6806.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/6教学楼-晚上.jpg"
-dest_files=["res://.godot/imported/6教学楼-晚上.jpg-62ebbd610a508154a296e017187a4fb7.ctex"]
+source_file="res://assets/backgrounds/6教学楼-黄昏.jpg"
+dest_files=["res://.godot/imported/6教学楼-黄昏.jpg-98aba12e859513b5976c7dd893db6806.ctex"]
 
 [params]
 

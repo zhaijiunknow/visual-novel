@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lwkudyd0m2a"
-path="res://.godot/imported/2同兴里-晚上.jpg-f70848a87b30c61139c1ea27748141f7.ctex"
+uid="uid://db874sc67otee"
+path="res://.godot/imported/1泳池-黄昏.jpg-94179a8fbfaf273c1d24a2134d64a796.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/2同兴里-晚上.jpg"
-dest_files=["res://.godot/imported/2同兴里-晚上.jpg-f70848a87b30c61139c1ea27748141f7.ctex"]
+source_file="res://assets/backgrounds/1泳池-黄昏.jpg"
+dest_files=["res://.godot/imported/1泳池-黄昏.jpg-94179a8fbfaf273c1d24a2134d64a796.ctex"]
 
 [params]
 

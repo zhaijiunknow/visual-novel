@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg0gtnps177rh"
-path="res://.godot/imported/7-教室-晚上-关灯.jpg-4222167871081f08c00483744fefe41a.ctex"
+uid="uid://deou7di47gbt6"
+path="res://.godot/imported/2同兴里-黄昏.jpg-5e3eeccfa1573262acbfe42cecc363b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/7-教室-晚上-关灯.jpg"
-dest_files=["res://.godot/imported/7-教室-晚上-关灯.jpg-4222167871081f08c00483744fefe41a.ctex"]
+source_file="res://assets/backgrounds/2同兴里-黄昏.jpg"
+dest_files=["res://.godot/imported/2同兴里-黄昏.jpg-5e3eeccfa1573262acbfe42cecc363b3.ctex"]
 
 [params]
 

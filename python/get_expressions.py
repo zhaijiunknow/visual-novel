@@ -4,20 +4,25 @@
 使用方法：
     1. 在下方"配置区域"填写你的飞书应用凭证
     2. 运行: python scripts/fetch_expression_data.py
-    
+
 如何获取飞书应用凭证：
     1. 访问 https://open.feishu.cn/app 创建应用
     2. 在"凭证与基础信息"获取 App ID 和 App Secret
     3. 在"权限管理"添加权限：bitable:record:read 和 bitable:record
     4. 在多维表格中添加应用为协作者
-    
+
 详细教程：docs/feishu_config_guide.md
 """
 
 import requests
 import json
 import os
+import sys
+import io
 from typing import Dict, List, Any
+
+# Fix encoding issue on Windows
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 # ==================== 配置区域 ====================
@@ -31,98 +36,93 @@ APP_SECRET = "7izYC4vTwwY0TOAuZ6jezhRUXjgUfWHH"   # 替换为你的 App Secret
 
 # 多维表格配置（无需修改）
 APP_TOKEN = "VVSGbFpmEaDwcjskj1qchmi0nAh"
-TABLE_ID = "tbli3JZz1BSky0F1"
+TABLE_ID = "tbl6BmpwfWlZZNql"
 VIEW_ID = "vew8UOqHBR"
-OUTPUT_PATH = "./expressions.gd"
+OUTPUT_PATH = "../autoloads/expressions.gd"
 
 
 class FeishuExpressionFetcher:
     """飞书多维表格表情数据获取器"""
-    
+
     def __init__(self, app_token: str, access_token: str):
         self.app_token = app_token
         self.access_token = access_token
         self.base_url = "https://open.larkoffice.com/open-apis"
-        
+
     def _headers(self) -> dict:
         return {
             "Authorization": f"Bearer {self.access_token}",
             "Content-Type": "application/json; charset=utf-8"
         }
-    
+
     def search_records(self, table_id: str, view_id: str = None) -> List[dict]:
         url = f"{self.base_url}/bitable/v1/apps/{self.app_token}/tables/{table_id}/records/search"
-        
+
         payload = {"automatic_fields": False}
         if view_id:
             payload["view_id"] = view_id
-        
+
         response = requests.post(
             url,
             headers=self._headers(),
             json=payload,
             timeout=30
         )
-        
+
         result = response.json()
-        
+
         if result.get("code") != 0:
             raise Exception(f"API错误: {result.get('msg')}")
-        
+
         return result.get("data", {}).get("items", [])
-    
-    def build_character_map(self, records: List[dict]) -> Dict[str, str]:
-        character_map = {}
-        
-        for record in records:
-            fields = record.get("fields", {})
-            name_field = fields.get("名称", {})
-            
-            if isinstance(name_field, list) and name_field:
-                name_text = name_field[0].get("text", "") if name_field[0] else ""
-                if name_text:
-                    record_id = record.get("record_id")
-                    character_map[record_id] = name_text
-        
-        return character_map
-    
-    def extract_expressions(self, records: List[dict], character_map: Dict[str, str]) -> Dict[str, Any]:
+
+    def extract_text_from_formula(self, formula_field: dict) -> str:
+        """从公式字段中提取文本"""
+        if not formula_field or not isinstance(formula_field, dict):
+            return ""
+
+        value = formula_field.get("value", [])
+        if isinstance(value, list) and value:
+            text_content = value[0].get("text", "")
+            return text_content
+
+        return ""
+
+    def extract_expressions(self, records: List[dict]) -> Dict[str, Any]:
+        """从记录中提取表情数据"""
         expression_data = {}
-        
+
         for record in records:
             fields = record.get("fields", {})
             expression_name = fields.get("表情")
-            
+
             if expression_name:
-                parent = fields.get("父记录", {})
-                parent_ids = parent.get("link_record_ids", [])
-                
-                if parent_ids:
-                    parent_id = parent_ids[0]
-                    character_name = character_map.get(parent_id, "未知")
-                    
+                # 从"角色名称"公式字段直接获取角色名
+                character_name_field = fields.get("角色名称", {})
+                character_name = self.extract_text_from_formula(character_name_field)
+
+                if character_name:
                     if character_name not in expression_data:
                         expression_data[character_name] = {}
-                    
+
                     expression_data[character_name][expression_name] = {
                         "Eyebrows": fields.get("眉毛", ""),
                         "Eyes": fields.get("眼睛", ""),
                         "Mouth": fields.get("嘴巴", "")
                     }
-        
+
         return expression_data
-    
+
     def fetch_expression_data(self, table_id: str, view_id: str = None) -> Dict[str, Any]:
         records = self.search_records(table_id, view_id)
-        character_map = self.build_character_map(records)
-        expression_data = self.extract_expressions(records, character_map)
+        expression_data = self.extract_expressions(records)
         return expression_data
 
 
 def get_tenant_access_token(app_id: str, app_secret: str) -> str:
     """获取 tenant_access_token"""
     url = "https://open.larkoffice.com/open-apis/auth/v3/tenant_access_token/internal"
-    
+
     response = requests.post(
         url,
         json={
@@ -131,12 +131,12 @@ def get_tenant_access_token(app_id: str, app_secret: str) -> str:
         },
         timeout=30
     )
-    
+
     result = response.json()
-    
+
     if result.get("code") != 0:
         raise Exception(f"获取token失败: {result.get('msg')}")
-    
+
     return result.get("tenant_access_token")
 
 
@@ -145,10 +145,10 @@ def dict_to_gdscript(data: dict, indent_level: int = 0) -> str:
     indent = "\t" * indent_level
     lines = []
     items = list(data.items())
-    
+
     for i, (key, value) in enumerate(items):
         is_last = (i == len(items) - 1)
-        
+
         if isinstance(value, dict):
             # 嵌套字典
             lines.append(f'{indent}"{key}": {{')
@@ -163,20 +163,20 @@ def dict_to_gdscript(data: dict, indent_level: int = 0) -> str:
                 lines.append(f'{indent}"{key}": "{value}"')
             else:
                 lines.append(f'{indent}"{key}": "{value}",')
-    
+
     return "\n".join(lines)
 
 
 def main():
     """主函数"""
-    
+
     print("=" * 80)
     print("从飞书多维表格获取表情数据")
     print("=" * 80)
-    
+
     # 检查配置
     if APP_ID.startswith("cli_") is False or APP_SECRET == "xxxxxxxxxxxxxxxxxx":
-        print("\n❌ 错误：请先配置飞书应用凭证！")
+        print("\n错误：请先配置飞书应用凭证！")
         print("\n请按照以下步骤操作：")
         print("1. 访问 https://open.feishu.cn/app")
         print("2. 创建企业自建应用")
@@ -187,62 +187,62 @@ def main():
         print("   - bitable:record")
         print("6. 在多维表格中添加应用为协作者")
         return
-    
+
     try:
         # 获取 access_token
         print("\n正在获取 access_token...")
         access_token = get_tenant_access_token(APP_ID, APP_SECRET)
-        print("✅ 成功获取 access_token")
-        
+        print("成功获取 access_token")
+
         # 创建获取器
         fetcher = FeishuExpressionFetcher(APP_TOKEN, access_token)
-        
+
         # 获取表情数据
         print("\n正在获取表情数据...")
-        expression_data = fetcher.fetch_expression_data(TABLE_ID, VIEW_ID)
-        
+        expression_data = fetcher.fetch_expression_data(TABLE_ID)
+
         # 生成GDScript格式
         print("\n" + "=" * 80)
         print("生成的GDScript代码：")
         print("=" * 80)
-        
+
         gdscript_code = """class_name Expressions
 
 static var data = {
 """
-        
+
         # 添加数据内容
         gdscript_code += dict_to_gdscript(expression_data, indent_level=1)
-        
+
         gdscript_code += "\n}\n"
-        
+
         print(gdscript_code)
-        
+
         # 保存到文件
         output_dir = os.path.dirname(OUTPUT_PATH)
         if output_dir:
             os.makedirs(output_dir, exist_ok=True)
-        
+
         with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
             f.write(gdscript_code)
-        
+
         print("\n" + "=" * 80)
-        print(f"✅ 已保存到: {OUTPUT_PATH}")
+        print(f"已保存到: {OUTPUT_PATH}")
         print("=" * 80)
-        
+
         # 统计信息
         total_characters = len(expression_data)
         total_expressions = sum(len(expressions) for expressions in expression_data.values())
-        
-        print(f"\n📊 统计：")
+
+        print(f"\n统计：")
         print(f"   - 角色数量: {total_characters}")
         print(f"   - 表情总数: {total_expressions}")
-        
+
         for char_name, expressions in expression_data.items():
             print(f"   - {char_name}: {len(expressions)} 个表情")
-        
+
     except Exception as e:
-        print(f"\n❌ 错误: {str(e)}")
+        print(f"\n错误: {str(e)}")
         import traceback
         traceback.print_exc()
 

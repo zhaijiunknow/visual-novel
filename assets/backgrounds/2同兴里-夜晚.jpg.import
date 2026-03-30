@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddso3fmle0lft"
-path="res://.godot/imported/5客厅-下午.jpg-d4fd0db402a6390825e45b25cd1f6c95.ctex"
+uid="uid://lwkudyd0m2a"
+path="res://.godot/imported/2同兴里-夜晚.jpg-7b82076e82afaeb33b7da86f67d00d46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/5客厅-下午.jpg"
-dest_files=["res://.godot/imported/5客厅-下午.jpg-d4fd0db402a6390825e45b25cd1f6c95.ctex"]
+source_file="res://assets/backgrounds/2同兴里-夜晚.jpg"
+dest_files=["res://.godot/imported/2同兴里-夜晚.jpg-7b82076e82afaeb33b7da86f67d00d46.ctex"]
 
 [params]
 

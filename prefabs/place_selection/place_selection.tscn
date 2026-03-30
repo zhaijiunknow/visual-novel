@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://csnhlalvd414g" path="res://assets/sprites/ui/ui.sprites/place_outline.tres" id="1_m77lu"]
 [ext_resource type="Script" uid="uid://c126co3y1clpo" path="res://prefabs/place_selection/place_selection.gd" id="2_pgumf"]
-[ext_resource type="Texture2D" uid="uid://db874sc67otee" path="res://assets/backgrounds/1泳池-下午.jpg" id="3_m77lu"]
+[ext_resource type="Texture2D" uid="uid://db874sc67otee" path="res://assets/backgrounds/1泳池-黄昏.jpg" id="3_m77lu"]
 
 [node name="PlaceSelection" type="TextureRect" unique_id=1473098296 node_paths=PackedStringArray("texture_rect_image")]
 z_index = 1

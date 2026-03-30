@@ -60,7 +60,16 @@
       "Bash(/c/Users/kotta/AppData/Local/Python/bin/python3 -u update_voices.py)",
       "Bash(find /c/Users/kotta/Documents/Godot/visual-novel -name *.env* -o -name *config* -o -name *cred*)",
       "Bash(find /c/Users/kotta/Documents/Godot/visual-novel/characters/instances -type f -name *.tscn)",
-      "Bash(python export_dialogue.py --dump)"
+      "Bash(python export_dialogue.py --dump)",
+      "Bash(python get_expressions.py)",
+      "Bash(ls \"C:\\\\Users\\\\kotta\\\\Documents\\\\Godot\\\\visual-novel\\\\assets\\\\backgrounds\"/*.jpg)",
+      "Bash(mv \"3操场-下午.jpg\" \"3操场-黄昏.jpg\")",
+      "Bash(mv \"4马客茂-下午.jpg\" \"4马客茂-黄昏.jpg\")",
+      "Bash(mv \"5客厅-下午.jpg\" \"5客厅-黄昏.jpg\")",
+      "Bash(mv \"6教学楼-下午.jpg\" \"6教学楼-黄昏.jpg\")",
+      "Bash(mv \"4马客茂-晚上.jpg\" \"4马客茂-夜晚.jpg\")",
+      "Bash(mv \"7-教室-晚上-关灯.jpg\" \"7-教室-夜晚-关灯.jpg\")",
+      "Bash(mv \"7-教室-晚上-开灯.jpg\" \"7-教室-夜晚-开灯.jpg\")"
     ]
   }
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brpjiuafpuyvn"
-path="res://.godot/imported/3操场-晚上.jpg-48b27f2e471ec577a7edba6ca2005160.ctex"
+uid="uid://b8ns4nebqpayi"
+path="res://.godot/imported/4马客茂-黄昏.jpg-f8804a4b5df635f645a50eeb31ca5422.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/3操场-晚上.jpg"
-dest_files=["res://.godot/imported/3操场-晚上.jpg-48b27f2e471ec577a7edba6ca2005160.ctex"]
+source_file="res://assets/backgrounds/4马客茂-黄昏.jpg"
+dest_files=["res://.godot/imported/4马客茂-黄昏.jpg-f8804a4b5df635f645a50eeb31ca5422.ctex"]
 
 [params]
 

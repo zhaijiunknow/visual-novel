@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgw3fa8sj6c07"
-path="res://.godot/imported/5客厅-晚上-关灯.jpg-6408fa6bf90effb1dbbb7ab653ca380b.ctex"
+uid="uid://ctd3dm10vxumm"
+path="res://.godot/imported/5客厅-黄昏.jpg-ee729a6eb1ce8b665099617679366c65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/5客厅-晚上-关灯.jpg"
-dest_files=["res://.godot/imported/5客厅-晚上-关灯.jpg-6408fa6bf90effb1dbbb7ab653ca380b.ctex"]
+source_file="res://assets/backgrounds/5客厅-黄昏.jpg"
+dest_files=["res://.godot/imported/5客厅-黄昏.jpg-ee729a6eb1ce8b665099617679366c65.ctex"]
 
 [params]
 

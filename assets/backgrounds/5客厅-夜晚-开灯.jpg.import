@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0cffjtnhdq6e"
-path="res://.godot/imported/7-教室-晚上-开灯.jpg-04e8721dc76b87421072c12b76a889c4.ctex"
+uid="uid://dym68yytupr3l"
+path="res://.godot/imported/5客厅-夜晚-开灯.jpg-7ba6beb5a463cea07257de6bd7adde16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/7-教室-晚上-开灯.jpg"
-dest_files=["res://.godot/imported/7-教室-晚上-开灯.jpg-04e8721dc76b87421072c12b76a889c4.ctex"]
+source_file="res://assets/backgrounds/5客厅-夜晚-开灯.jpg"
+dest_files=["res://.godot/imported/5客厅-夜晚-开灯.jpg-7ba6beb5a463cea07257de6bd7adde16.ctex"]
 
 [params]
 
