@@ -2,6 +2,7 @@
 class_name Character
 extends Control
 
+@export var speaking_mouth: String
 @export var sv_container: SubViewportContainer
 @export var subviewport: SubViewport
 @export var texture_rect_avatar: TextureRect
@@ -12,6 +13,7 @@ extends Control
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D
 
+var current_expression: String
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
 var character_image: Control
 
@@ -138,6 +140,7 @@ func SetBody(body_name: String) -> void:
 	body_part_dict["Body"].animation = body_name
 
 func SetExpression(expression_name: String) -> void:
+	current_expression = expression_name
 	var expression_data: Dictionary = Expressions.data[name][expression_name]
 	for part_name in expression_data.keys():
 		var part_value: String = expression_data[part_name]

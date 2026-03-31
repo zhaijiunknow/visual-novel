@@ -206,6 +206,7 @@ region = Rect2(213.43799, -23.312, 577.125, 577.125)
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="辉夜奏" unique_id=961663325 instance=ExtResource("1_mvhsb")]
+speaking_mouth = "说话"
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 866.0
@@ -228,7 +229,7 @@ animation = &"默认"
 
 [node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
 sprite_frames = SubResource("SpriteFrames_h0xcy")
-animation = &"闭口"
+animation = &"说话"
 
 [node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=2039543155]
 visible = false

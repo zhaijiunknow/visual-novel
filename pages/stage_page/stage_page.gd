@@ -125,7 +125,8 @@ func process_dialogue_line() -> void:
 		if dialogue_line.has_tag("身体"):
 			character.SetBody(dialogue_line.get_tag_value("身体"))
 		if dialogue_line.has_tag("表情"):
-			character.SetExpression(dialogue_line.get_tag_value("表情"))
+			var expression = dialogue_line.get_tag_value("表情")
+			character.SetExpression(expression)
 	avatar.modulate.a = 1 if has_avatar else 0
 
 	# 角色名 / 昵称

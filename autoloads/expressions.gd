@@ -51,6 +51,11 @@ static var data = {
 			"Eyebrows": "上挑",
 			"Eyes": "微眯",
 			"Mouth": "说话"
+		},
+		"默认": {
+			"Eyebrows": "默认",
+			"Eyes": "默认",
+			"Mouth": "闭口微笑"
 		}
 	},
 	"余洛琛": {
@@ -133,6 +138,11 @@ static var data = {
 			"Eyebrows": "上挑",
 			"Eyes": "开心眯眼",
 			"Mouth": "笑开口"
+		},
+		"默认": {
+			"Eyebrows": "默认",
+			"Eyes": "默认",
+			"Mouth": "微笑"
 		}
 	},
 	"林凌铃": {
@@ -210,6 +220,43 @@ static var data = {
 			"Eyebrows": "生气",
 			"Eyes": "默认",
 			"Mouth": "说话"
+		},
+		"默认": {
+			"Eyebrows": "默认",
+			"Eyes": "默认",
+			"Mouth": "默认"
+		}
+	},
+	"常夏": {
+		"微笑说": {
+			"Eyebrows": "上挑",
+			"Eyes": "眯眼开心",
+			"Mouth": "笑开口"
+		},
+		"说话": {
+			"Eyebrows": "默认",
+			"Eyes": "默认",
+			"Mouth": "笑开口"
+		},
+		"微笑": {
+			"Eyebrows": "上挑",
+			"Eyes": "眯眼开心",
+			"Mouth": "微笑"
+		},
+		"坏笑": {
+			"Eyebrows": "上挑",
+			"Eyes": "微眯",
+			"Mouth": "笑嘻嘻"
+		},
+		"坏笑说": {
+			"Eyebrows": "上挑",
+			"Eyes": "微眯",
+			"Mouth": "笑开口"
+		},
+		"惊讶": {
+			"Eyebrows": "上挑",
+			"Eyes": "星星眼",
+			"Mouth": "大声发"
 		}
 	}
 }

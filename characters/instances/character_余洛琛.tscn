@@ -208,6 +208,7 @@ region = Rect2(159.43799, 13.812988, 617.625, 506.25)
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
+speaking_mouth = "笑开口"
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 785.0
@@ -229,7 +230,7 @@ animation = &"默认"
 
 [node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
 sprite_frames = SubResource("SpriteFrames_bnq0n")
-animation = &"微笑"
+animation = &"笑开口"
 
 [node name="眼镜" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=736903750]
 texture = ExtResource("21_0ni7k")

@@ -161,6 +161,7 @@ region = Rect2(247.18799, 80.813, 432, 425.25)
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
+speaking_mouth = "说话"
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_top = -1414.0

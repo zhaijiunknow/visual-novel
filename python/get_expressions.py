@@ -37,8 +37,8 @@ APP_SECRET = "7izYC4vTwwY0TOAuZ6jezhRUXjgUfWHH"   # 替换为你的 App Secret
 # 多维表格配置（无需修改）
 APP_TOKEN = "VVSGbFpmEaDwcjskj1qchmi0nAh"
 TABLE_ID = "tbl6BmpwfWlZZNql"
-VIEW_ID = "vew8UOqHBR"
-OUTPUT_PATH = "../autoloads/expressions.gd"
+VIEW_ID = None  # 不指定视图，获取所有记录
+OUTPUT_PATH = "./autoloads/expressions.gd"
 
 
 class FeishuExpressionFetcher:
@@ -56,64 +56,104 @@ class FeishuExpressionFetcher:
         }
 
     def search_records(self, table_id: str, view_id: str = None) -> List[dict]:
-        url = f"{self.base_url}/bitable/v1/apps/{self.app_token}/tables/{table_id}/records/search"
+        """获取记录（支持分页）"""
+        all_records = []
+        page_token = None
+        
+        while True:
+            url = f"{self.base_url}/bitable/v1/apps/{self.app_token}/tables/{table_id}/records/search"
 
-        payload = {"automatic_fields": False}
-        if view_id:
-            payload["view_id"] = view_id
+            payload = {"automatic_fields": False}
+            if view_id:
+                payload["view_id"] = view_id
 
-        response = requests.post(
-            url,
-            headers=self._headers(),
-            json=payload,
-            timeout=30
-        )
+            response = requests.post(
+                url,
+                headers=self._headers(),
+                json=payload,
+                timeout=30
+            )
 
-        result = response.json()
+            result = response.json()
 
-        if result.get("code") != 0:
-            raise Exception(f"API错误: {result.get('msg')}")
+            if result.get("code") != 0:
+                raise Exception(f"API错误: {result.get('msg')}")
 
-        return result.get("data", {}).get("items", [])
+            data = result.get("data", {})
+            items = data.get("items", [])
+            all_records.extend(items)
+            
+            if not data.get("has_more"):
+                break
+            
+            page_token = data.get("page_token")
 
-    def extract_text_from_formula(self, formula_field: dict) -> str:
-        """从公式字段中提取文本"""
-        if not formula_field or not isinstance(formula_field, dict):
+        return all_records
+
+    def get_field_value(self, value) -> str:
+        """获取字段值，处理不同的字段类型
+        
+        当前数据表字段类型：
+        - 角色：单选字段（字符串）
+        - 表情：单选字段（字符串）
+        - 眉毛：单选字段（字符串）
+        - 眼睛：单选字段（字符串）
+        - 嘴巴：单选字段（字符串）
+        - 角色-表情：公式字段（可能不需要）
+        """
+        if value is None:
             return ""
-
-        value = formula_field.get("value", [])
-        if isinstance(value, list) and value:
-            text_content = value[0].get("text", "")
-            return text_content
-
+        
+        # 单选字段：直接是字符串
+        if isinstance(value, str):
+            return value
+        
+        # 文本字段：[{text: "xxx", type: "text"}]
+        if isinstance(value, list) and len(value) > 0:
+            if isinstance(value[0], dict) and "text" in value[0]:
+                return value[0].get("text", "")
+            # 多选字段：["选项1", "选项2"]
+            if isinstance(value[0], str):
+                return value[0]
+        
         return ""
 
     def extract_expressions(self, records: List[dict]) -> Dict[str, Any]:
-        """从记录中提取表情数据"""
+        """从记录中提取表情数据
+        
+        当前字段结构：
+        - 角色 (单选)：角色名称，如"葛城"、"余洛琛"等
+        - 表情 (单选)：表情名称
+        - 眉毛 (单选)：眉毛状态
+        - 眼睛 (单选)：眼睛状态
+        - 嘴巴 (单选)：嘴巴状态
+        """
         expression_data = {}
 
         for record in records:
             fields = record.get("fields", {})
-            expression_name = fields.get("表情")
+            
+            # 从"角色"字段获取角色名（单选字段）
+            character = self.get_field_value(fields.get("角色"))
+            expression_name = self.get_field_value(fields.get("表情"))
+            eyebrows = self.get_field_value(fields.get("眉毛"))
+            eyes = self.get_field_value(fields.get("眼睛"))
+            mouth = self.get_field_value(fields.get("嘴巴"))
 
-            if expression_name:
-                # 从"角色名称"公式字段直接获取角色名
-                character_name_field = fields.get("角色名称", {})
-                character_name = self.extract_text_from_formula(character_name_field)
+            if character and expression_name:
+                if character not in expression_data:
+                    expression_data[character] = {}
 
-                if character_name:
-                    if character_name not in expression_data:
-                        expression_data[character_name] = {}
-
-                    expression_data[character_name][expression_name] = {
-                        "Eyebrows": fields.get("眉毛", ""),
-                        "Eyes": fields.get("眼睛", ""),
-                        "Mouth": fields.get("嘴巴", "")
-                    }
+                expression_data[character][expression_name] = {
+                    "Eyebrows": eyebrows or "默认",
+                    "Eyes": eyes or "默认",
+                    "Mouth": mouth or "默认"
+                }
 
         return expression_data
 
     def fetch_expression_data(self, table_id: str, view_id: str = None) -> Dict[str, Any]:
+        """获取表情数据"""
         records = self.search_records(table_id, view_id)
         expression_data = self.extract_expressions(records)
         return expression_data
@@ -199,7 +239,7 @@ def main():
 
         # 获取表情数据
         print("\n正在获取表情数据...")
-        expression_data = fetcher.fetch_expression_data(TABLE_ID)
+        expression_data = fetcher.fetch_expression_data(TABLE_ID, VIEW_ID)
 
         # 生成GDScript格式
         print("\n" + "=" * 80)

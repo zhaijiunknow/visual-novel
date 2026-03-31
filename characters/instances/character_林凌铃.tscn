@@ -298,6 +298,7 @@ region = Rect2(268.125, 72.5, 496.125, 479.25)
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="林凌铃" unique_id=809289517 instance=ExtResource("1_ivjag")]
+speaking_mouth = "开口"
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_left = -473.0
@@ -322,7 +323,7 @@ animation = &"默认"
 
 [node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
 sprite_frames = SubResource("SpriteFrames_w6frx")
-animation = &"鼓嘴"
+animation = &"开口"
 
 [node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=1564997541]
 visible = false
@@ -340,6 +341,9 @@ texture = ExtResource("33_rh8d2")
 texture = SubResource("AtlasTexture_ieyld")
 
 [node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_de42s")
+
+[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
 texture = SubResource("AtlasTexture_de42s")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]

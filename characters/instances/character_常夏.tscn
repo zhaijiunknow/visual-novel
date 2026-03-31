@@ -233,6 +233,7 @@ region = Rect2(233.68793, 11.688004, 523.125, 496.125)
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="常夏" unique_id=401531579 instance=ExtResource("1_1d4w3")]
+speaking_mouth = "笑开口"
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 693.0
@@ -264,6 +265,9 @@ texture = ExtResource("21_hdqmv")
 texture = SubResource("AtlasTexture_r613x")
 
 [node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
+texture = SubResource("AtlasTexture_qdyow")
+
+[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
 texture = SubResource("AtlasTexture_qdyow")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
