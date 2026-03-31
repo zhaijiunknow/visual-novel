@@ -113,6 +113,9 @@ func process_phone_line() -> void:
 			reply_selection.next_id = response.next_id
 			Game.phone_page.reply_selection_pool.add_child(reply_selection)
 
+var expression: String:
+	get:
+		return dialogue_line.get_tag_value("表情")
 
 func process_dialogue_line() -> void:
 	var has_avatar = character != null
@@ -124,8 +127,7 @@ func process_dialogue_line() -> void:
 			avatar.texture = character.texture_rect_avatar.texture
 		if dialogue_line.has_tag("身体"):
 			character.SetBody(dialogue_line.get_tag_value("身体"))
-		if dialogue_line.has_tag("表情"):
-			var expression = dialogue_line.get_tag_value("表情")
+		if expression:
 			character.SetExpression(expression)
 	avatar.modulate.a = 1 if has_avatar else 0
 
@@ -135,7 +137,12 @@ func process_dialogue_line() -> void:
 
 	# 语音
 	voice_buttons.visible = dialogue_line.has_tag("语音")
-	if dialogue_line.has_tag("语音"):
+	if dialogue_line.has_tag("语音") and character:
+		character.body_part_dict["Mouth"].animation = character.speaking_mouth
+		AudioManager.audio_player_voice.finished.connect(
+			func ():
+				character.SetExpression(expression)
+		)
 		update_favourite()
 		AudioManager.play_voice(voice_name, true)
 	else:
