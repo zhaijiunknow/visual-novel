@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://ds2orcg0dncno" path="res://pages/bonus_page/bonus_page.tscn" id="3_g2bdr"]
 [ext_resource type="PackedScene" uid="uid://d1umh6ylt5pkt" path="res://pages/profile_page/profile_page.tscn" id="5_4j704"]
 [ext_resource type="PackedScene" uid="uid://bvnwmelln5gka" path="res://pages/travel_page/travel_page.tscn" id="6_kp23o"]
-[ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="6_ojh2r"]
 [ext_resource type="PackedScene" uid="uid://bdyg6g7ravihq" path="res://pages/book_page/book_page.tscn" id="7_5jirj"]
 [ext_resource type="PackedScene" uid="uid://y1pmr3blgg6s" path="res://pages/log_page/log_page.tscn" id="8_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://d2hqmraljwruf" path="res://pages/phone_page/phone_page.tscn" id="9_ftsea"]
@@ -59,7 +58,6 @@ visible = false
 [node name="StagePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=2061072662 instance=ExtResource("92_dadqe")]
 layer = 1
 visible = false
-dialogue = ExtResource("6_ojh2r")
 
 [node name="ProfilePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=899662598 instance=ExtResource("5_4j704")]
 visible = false

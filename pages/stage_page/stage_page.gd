@@ -72,7 +72,10 @@ var dialogue_line: DialogueLine:
 var finish_pause: float = 1
 
 var voice_name: String:
-	get: return dialogue_line.get_tag_value("语音")
+	get:
+		if dialogue_line.has_tag("语音"):
+			return dialogue_line.get_tag_value("语音")
+		return ""
 
 var character: Character:
 	get:
@@ -81,20 +84,32 @@ var character: Character:
 		return null
 
 
+var scene: String:
+	get:
+		if dialogue_line:
+			return dialogue_line.get_tag_value("场景")
+		return ""
+
 # ─── 对话处理 ───
 
 func process_line() -> void:
-	if dialogue_line.has_tag("延迟"):
-		await get_tree().create_timer(float(dialogue_line.get_tag_value("延迟"))).timeout
-
-	if "手机" in dialogue_line.tags:
-		process_phone_line()
-		if dialogue_line.responses:
-			return
+	
+	print(scene)
+	
+	if not dialogue_line.text:
+		pass
 	else:
-		await process_dialogue_line()
-		if dialogue_line.responses:
-			return
+		if dialogue_line.has_tag("延迟"):
+			await get_tree().create_timer(float(dialogue_line.get_tag_value("延迟"))).timeout
+
+		if "手机" in dialogue_line.tags:
+			process_phone_line()
+			if dialogue_line.responses:
+				return
+		else:
+			await process_dialogue_line()
+			if dialogue_line.responses:
+				return
 
 	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
 
