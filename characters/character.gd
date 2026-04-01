@@ -16,6 +16,7 @@ extends Control
 var current_expression: String
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
 var character_image: Control
+var current_position: String
 
 @export var movable: bool
 
@@ -108,6 +109,20 @@ func update_bonus_part_index(part_name: String, increment: int) -> void:
 		print("%s:%s" % [part_tr[part.name], part.animation])
 	DisplayServer.clipboard_set("	".join(part_texts))
 
+func get_character_data() -> CharacterData:
+	var character_data = CharacterData.new()
+	character_data.character_name = name
+	character_data.body = body_part_dict["Body"].animation
+	character_data.eyebrows = body_part_dict["Eyebrows"].animation
+	character_data.eyes = body_part_dict["Eyes"].animation
+	character_data.mouth = body_part_dict["Mouth"].animation
+	character_data.optionals = optionals_pool.get_children().filter(
+		func (optional: Node2D):
+			return optional.visible == true
+	)
+	#character_data.position = 
+	return character_data
+
 #region Dialogue Commands
 
 func FadeIn(position_name: String, duration: float = 0.5) -> void:
@@ -124,6 +139,7 @@ func FadeOut(duration: float = 0.5) -> void:
 	character_image.queue_free()
 
 func MoveTo(position_name: String, duration: float = 0.5) -> void:
+	current_position = position_name
 	var target_position: Vector2 = Game.stage_page.get_position_by_name(position_name)
 	await create_tween().tween_property(character_image, "global_position", target_position, duration).finished
 

@@ -3,6 +3,7 @@ extends Node
 @export var character_pool: Control
 @export var background_data_pool: Array[BackgroundData]
 @export var gallery_data_pool: Array[GalleryData]
+var current_background: Texture2D
 
 signal character_selection_index_changed
 var character_selection_index: int:
@@ -11,6 +12,12 @@ var character_selection_index: int:
 		emit_signal("character_selection_index_changed")
 
 var character_dict: Dictionary[String, Character]
+var character_array: Array[Character]:
+	get:
+		var characters: Array[Character]
+		for key in character_dict.keys():
+			characters.append(character_dict[key])
+		return characters
 
 func _ready() -> void:
 	for character: Character in character_pool.get_children():
@@ -37,6 +44,7 @@ func SetBackground(background_name: String, variation_name: String,
 		func (background: BackgroundData):
 			return background.title == background_name
 	).front().variations[variation_name]
+	current_background = target_background
 	Game.stage_page.texture_rect_background.texture = target_background
 	await create_tween().tween_property(
 		Game.stage_page.texture_rect_blackscreen,

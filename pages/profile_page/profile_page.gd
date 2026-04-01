@@ -44,7 +44,13 @@ func save_game() -> void:
 			var resized_texture = ImageTexture.create_from_image(image)
 			if Main.save_data.profiles.size() <= profile_index:
 				Main.save_data.profiles.insert(profile_index, ProfileData.new())
-			Main.save_data.profiles[profile_index].preview = resized_texture
+			var profile = Main.save_data.profiles[profile_index]
+			profile.preview = resized_texture
+			profile.dialogue_id = Game.stage_page.dialogue_line.id
+			for character: Character in Stage.character_array:
+				print(character.name)
+				print(character.body_part_dict["Body"].animation)
+			profile.background_texture = Stage.current_background
 			ResourceSaver.save(Main.save_data, Main.save_path)
 			
 			(

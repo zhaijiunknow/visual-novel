@@ -54,3 +54,6 @@ func has_voice_collection(filename) -> bool:
 
 func save_collection_data() -> void:
 	ResourceSaver.save(collection_data, collection_path)
+
+#func auto_save() -> void:
+	#ResourceSaver.save(sa)

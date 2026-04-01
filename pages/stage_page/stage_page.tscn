@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dwnsxsn6pit1f"]
 
 [ext_resource type="Script" uid="uid://d3q3evsgl40pc" path="res://pages/stage_page/stage_page.gd" id="1_wlgfe"]
-[ext_resource type="Resource" uid="uid://b601stypwvvcg" path="res://dialogue_manager/dialogues/example.dialogue" id="2_limwj"]
+[ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="2_limwj"]
 [ext_resource type="Texture2D" uid="uid://reggb0dey3tm" path="res://assets/backgrounds/2同兴里-白天.jpg" id="3_lqv2x"]
 [ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="7_217kn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
