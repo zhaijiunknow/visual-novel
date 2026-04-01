@@ -156,6 +156,7 @@ func process_dialogue_line() -> void:
 		character.body_part_dict["Mouth"].animation = character.speaking_mouth
 		AudioManager.audio_player_voice.finished.connect(
 			func ():
+				if not expression: return
 				character.SetExpression(expression)
 		)
 		update_favourite()

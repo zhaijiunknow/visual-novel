@@ -31,7 +31,7 @@ func _ready() -> void:
 			if Main.profile_mode == Main.ProfileMode.SAVE:
 				Game.profile_page.save_game()
 			if Main.profile_mode == Main.ProfileMode.LOAD:
-				pass
+				Game.profile_page.load_game()
 	)
 	
 	Game.profile_page.profile_index_changed.connect(

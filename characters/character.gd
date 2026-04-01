@@ -61,6 +61,8 @@ func _ready() -> void:
 					dragged = true
 					drag_offset = event.global_position - sv_container.global_position
 	)
+	
+	ClearOptionals()
 
 var dragged: bool
 var drag_offset: Vector2
@@ -116,16 +118,27 @@ func get_character_data() -> CharacterData:
 	character_data.eyebrows = body_part_dict["Eyebrows"].animation
 	character_data.eyes = body_part_dict["Eyes"].animation
 	character_data.mouth = body_part_dict["Mouth"].animation
-	character_data.optionals = optionals_pool.get_children().filter(
-		func (optional: Node2D):
-			return optional.visible == true
-	)
-	#character_data.position = 
+	var optionals: Array[String] = []
+	for optional: Node2D in optionals_pool.get_children():
+		if optional.visible:
+			optionals.append(optional.name)
+	character_data.optionals = optionals
+	character_data.position = current_position
 	return character_data
+
+func set_character_data(character_data: CharacterData) -> void:
+	body_part_dict["Body"].animation = character_data.body
+	body_part_dict["Eyebrows"].animation = character_data.eyebrows
+	body_part_dict["Eyes"].animation = character_data.eyes
+	body_part_dict["Mouth"].animation = character_data.mouth
+	ClearOptionals()
+	for optional: String in character_data.optionals:
+		SetOptionals(optional)
 
 #region Dialogue Commands
 
 func FadeIn(position_name: String, duration: float = 0.5) -> void:
+	current_position = position_name
 	character_image = story_model.duplicate()
 	character_image.show()
 	character_image.modulate.a = 0

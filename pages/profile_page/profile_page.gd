@@ -38,6 +38,9 @@ func save_game() -> void:
 	Game.loading = true
 	var _texture = Game.stage_page.subviewport.get_texture()
 	var image = _texture.get_image()
+	var character_datas: Array[CharacterData] = []
+	for character: Character in Stage.character_array:
+		character_datas.append(character.get_character_data())
 	save_thread.start(
 		func ():
 			image.resize(470, 265, Image.INTERPOLATE_NEAREST)
@@ -47,12 +50,10 @@ func save_game() -> void:
 			var profile = Main.save_data.profiles[profile_index]
 			profile.preview = resized_texture
 			profile.dialogue_id = Game.stage_page.dialogue_line.id
-			for character: Character in Stage.character_array:
-				print(character.name)
-				print(character.body_part_dict["Body"].animation)
-			profile.background_texture = Stage.current_background
+			profile.character_datas.clear()
+			profile.character_datas = character_datas
+			profile.background = Stage.current_background
 			ResourceSaver.save(Main.save_data, Main.save_path)
-			
 			(
 				func ():
 					save_thread.wait_to_finish()
@@ -60,4 +61,23 @@ func save_game() -> void:
 					Game.loading = false
 					update()
 			).call_deferred()
+	)
+
+func load_game() -> void:
+	var character_datas: Array[CharacterData] = []
+	var profile = Main.save_data.profiles[profile_index]
+	for character_data: CharacterData in profile.character_datas:
+		var character = Stage.Character(character_data.character_name)
+		character.set_character_data(character_data)
+		if character_data.position:
+			character.FadeIn(character_data.position, 0)
+	var background_split = profile.background.split("-")
+	var background_name = background_split[0]
+	var variation_name = background_split[1]
+	Stage.SetBackground(background_name, variation_name, 0, 0)
+	Game.transition(
+		func():
+			Game.hide_all_pages()
+			Game.stage_page.show()
+			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
 	)

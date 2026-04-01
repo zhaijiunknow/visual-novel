@@ -5,4 +5,4 @@ extends Resource
 @export var character_datas: Array[CharacterData]
 @export var chapter_name: String
 @export var dialogue_id: String
-@export var background_texture: Texture2D
+@export var background: String
