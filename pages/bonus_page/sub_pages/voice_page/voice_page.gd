@@ -59,4 +59,3 @@ func update() -> void:
 func update_favourite() -> void:
 	texture_rect_favourite.texture = \
 		Prefabs.texture_cancel_favourite if favourite else Prefabs.texture_set_favourite
-	update()

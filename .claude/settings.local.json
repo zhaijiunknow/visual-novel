@@ -97,7 +97,9 @@
       "Bash(python -c \":*)",
       "Bash(dir)",
       "Bash(C:UserskottaAppDataRoamingnpmnpx @coding-solo/godot-mcp --version)",
-      "Bash(ls -la update*)"
+      "Bash(ls -la update*)",
+      "Bash(find /c/Users/kotta/Documents/Godot/visual-novel/prefabs -name \"*.gd\" -exec grep -l \"for\\\\|while\\\\|instantiate\\\\|_physics_process\\\\|_process\" {} \\\\;)",
+      "Bash(grep -rn \"mode\\\\|stage_mode\\\\|stage_page\\\\|Mode\" /c/Users/kotta/Documents/Godot/visual-novel --include=\"*.gd\" ! -path \"*/addons/*\")"
     ]
   }
 }

@@ -93,9 +93,6 @@ var scene: String:
 # ─── 对话处理 ───
 
 func process_line() -> void:
-	
-	print(scene)
-	
 	if not dialogue_line.text:
 		pass
 	else:
@@ -152,6 +149,7 @@ func process_dialogue_line() -> void:
 
 	# 语音
 	voice_buttons.visible = dialogue_line.has_tag("语音")
+	Main.clear_connections(AudioManager.audio_player_voice.finished)
 	if dialogue_line.has_tag("语音") and character:
 		character.body_part_dict["Mouth"].animation = character.speaking_mouth
 		AudioManager.audio_player_voice.finished.connect(
