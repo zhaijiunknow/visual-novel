@@ -68,8 +68,7 @@ def extract_field(fields, name):
 
 
 def get_parent_id(fields):
-    """提取父记录 ID（飞书子记录的父链接）"""
-    # 飞书字段名可能带后缀数字，如 "父记录 3"
+    """提取父记录 ID"""
     parent = None
     for key in fields:
         if key.startswith("父记录"):
@@ -77,7 +76,6 @@ def get_parent_id(fields):
             break
     if not parent:
         return None
-    # 格式: [{record_ids: [...], table_id: ..., ...}] 或 {link_record_ids: [...]}
     if isinstance(parent, list) and parent:
         item = parent[0]
         if isinstance(item, dict):
@@ -91,19 +89,22 @@ def get_parent_id(fields):
 
 def record_to_data(fields):
     """将一条演出表记录转换为结构化数据"""
+    costume = extract_field(fields, "服装")
+    action = extract_field(fields, "动作")
+    body = f"{costume}-{action}" if costume and action else ""
+
     return {
-        "character": extract_field(fields, "角色名称"),
+        "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
-        "option": extract_field(fields, "选项"),
+        "option": extract_field(fields, "回应选项"),
         "voice": extract_field(fields, "语音"),
         "nickname": extract_field(fields, "昵称"),
         "hide_avatar": fields.get("隐藏头像", False),
         "hide_portrait": fields.get("隐藏立绘", False),
-        "body": extract_field(fields, "身体"),
+        "body": body,
         "expression": extract_field(fields, "表情"),
         "phone": fields.get("手机", False),
-        "delay": extract_field(fields, "延迟"),
-        "bg_name": extract_field(fields, "背景名称"),
+        "bg_name": extract_field(fields, "场景"),
         "time_period": extract_field(fields, "时段"),
         "chapter": extract_field(fields, "章节"),
     }
@@ -128,13 +129,13 @@ def build_tree(records):
 
 # ─── dialogue 行生成 ───
 
-def build_tags(data):
+def build_tags(data, add_delay=False):
     """构建 tag 字符串"""
     tags = []
+    if add_delay:
+        tags.append("#延迟=2")
     if data["phone"]:
         tags.append("#手机")
-    if data["delay"]:
-        tags.append(f"#延迟={data['delay']}")
     if data["voice"]:
         tags.append(f"#语音={data['voice']}")
     if data["nickname"]:
@@ -148,7 +149,7 @@ def build_tags(data):
     return f"[{', '.join(tags)}]" if tags else ""
 
 
-def build_dialogue_line(data):
+def build_dialogue_line(data, add_delay=False):
     """构建一行 dialogue 格式的文本（不含缩进）"""
     character = data["character"]
     text = data["text"]
@@ -156,13 +157,11 @@ def build_dialogue_line(data):
     if not character and not text:
         return None
 
-    tag_str = build_tags(data)
+    tag_str = build_tags(data, add_delay)
 
     if character:
-        # 有角色的对话行（飞书数据已含引号，直接使用）
         return f"{character}: {tag_str}{text}"
     else:
-        # 独白行
         return f"独白: {text}"
 
 
@@ -172,7 +171,7 @@ def generate_do_commands(data, state, lines, tabs):
     # 背景变化 → SetBackground + 清空可见角色
     if data["bg_name"] and data["time_period"]:
         if data["bg_name"] != state["bg_name"] or data["time_period"] != state["time_period"]:
-            lines.append(f'{tabs}do SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)')
+            lines.append(f'{tabs}$> SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)')
             state["bg_name"] = data["bg_name"]
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
@@ -180,36 +179,38 @@ def generate_do_commands(data, state, lines, tabs):
     # 手机模式切换
     is_phone = bool(data["phone"])
     if is_phone and not state["phone_mode"]:
-        lines.append(f"{tabs}do ShowPhone()")
+        lines.append(f"{tabs}$> ShowPhone()")
         state["phone_mode"] = True
     elif not is_phone and state["phone_mode"]:
-        lines.append(f"{tabs}do HidePhone()")
+        lines.append(f"{tabs}$> wait(2)")
+        lines.append(f"{tabs}$> HidePhone()")
         state["phone_mode"] = False
 
     # 角色 FadeIn：有角色 + 隐藏立绘=false + 未在场
     character = data["character"]
     if character and not data["hide_portrait"] and character not in state["visible_characters"]:
-        lines.append(f'{tabs}do Character("{character}").FadeIn("Center")')
+        lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         state["visible_characters"].add(character)
 
 
 # ─── 递归遍历 ───
 
-def walk(record, children_map, indent, lines, state):
+def walk(record, children_map, indent, lines, state, is_response_child=False):
     """递归遍历记录树，生成 dialogue 文件内容"""
     data = record_to_data(record.get("fields", {}))
     children = children_map.get(record["record_id"], [])
     tabs = "\t" * indent
 
     if data["option"]:
-        # 选项行
+        # 回应选项行 → 生成 "- 选项文本"
         lines.append(f"{tabs}- {data['option']}")
+        # 选项的子记录缩进一级，并标记为 response child（加延迟）
         for child in children:
-            walk(child, children_map, indent + 1, lines, state)
+            walk(child, children_map, indent + 1, lines, state, is_response_child=True)
     else:
-        # 对话行：先生成 do 指令，再生成对话
+        # 普通对话行：先生成 do 指令，再生成对话
         generate_do_commands(data, state, lines, tabs)
-        dialogue_line = build_dialogue_line(data)
+        dialogue_line = build_dialogue_line(data, add_delay=is_response_child)
         if dialogue_line:
             lines.append(f"{tabs}{dialogue_line}")
         for child in children:
@@ -228,15 +229,19 @@ def convert_chapter(roots, children_map, chapter_filter):
         "phone_mode": False,
     }
 
+    current_chapter = None
     for root in roots:
         data = record_to_data(root.get("fields", {}))
-        if data["chapter"] != chapter_filter:
+        if data["chapter"]:
+            current_chapter = data["chapter"]
+        if current_chapter != chapter_filter:
             continue
         walk(root, children_map, 0, lines, state)
 
     # 结束时关闭手机
     if state["phone_mode"]:
-        lines.append("do HidePhone()")
+        lines.append("$> wait(2)")
+        lines.append("$> HidePhone()")
 
     lines.append("=> END")
     return "\n".join(lines)
@@ -273,10 +278,10 @@ def main():
         print(f"章节分布 (根记录): {chapters}")
 
         # 统计特殊字段
-        option_count = sum(1 for r in records if extract_field(r.get("fields", {}), "选项"))
+        option_count = sum(1 for r in records if extract_field(r.get("fields", {}), "回应选项"))
         phone_count = sum(1 for r in records if r.get("fields", {}).get("手机", False))
         parent_count = sum(1 for r in records if get_parent_id(r.get("fields", {})))
-        print(f"含选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
+        print(f"含回应选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
         return
 
     # 构建树

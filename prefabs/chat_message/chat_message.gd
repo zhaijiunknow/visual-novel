@@ -22,8 +22,18 @@ extends HBoxContainer
 @export var bubble: PanelContainer
 @export var message_text: RichTextLabel
 
+var parent: Control:
+	get: return get_parent()
+
 func _ready() -> void:
 	reset()
+	resized.connect(
+		func ():
+			if size.x >= parent.size.x:
+				size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				bubble.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				message_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	)
 
 func reset() -> void:
 	bubble.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN

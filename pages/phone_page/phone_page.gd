@@ -22,12 +22,12 @@ func _ready() -> void:
 	back_button.pressed.connect(
 		func (): chat_page.visible = false
 	)
-	background.gui_input.connect(
-		func (event: InputEvent):
-			if event is InputEventMouseButton:
-				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					hide()
-	)
+	#background.gui_input.connect(
+		#func (event: InputEvent):
+			#if event is InputEventMouseButton:
+				#if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					#hide()
+	#)
 	phone_icon_message.clicked.connect(
 		func ():
 			chat_page.visible = true
