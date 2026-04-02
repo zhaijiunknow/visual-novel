@@ -231,7 +231,12 @@ stretch_mode = 6
 
 [node name="CharacterImages" type="Control" parent="SubViewportContainer/SubViewport" unique_id=1132370350]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="Positions" type="HBoxContainer" parent="SubViewportContainer/SubViewport" unique_id=1663383264]
 anchors_preset = 12

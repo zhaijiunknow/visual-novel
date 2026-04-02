@@ -138,12 +138,22 @@ func set_character_data(character_data: CharacterData) -> void:
 #region Dialogue Commands
 
 func FadeIn(position_name: String, duration: float = 0.5) -> void:
-	current_position = position_name
 	character_image = story_model.duplicate()
+	Game.stage_page.character_image_pool.add_child(character_image)
+	var character_count = Game.stage_page.character_image_pool.get_child_count()
+	var width = Game.stage_page.character_image_pool.size.x
+	var portion_width = width / character_count
+	var offset_x = portion_width / 2
+	for image: Control in Game.stage_page.character_image_pool.get_children():
+		var position_x = image.get_index() * portion_width + offset_x
+		if image == character_image:
+			image.position = Vector2(position_x, 0)
+		else:
+			create_tween().tween_property(image, "position:x", position_x, 0.3)
 	character_image.show()
 	character_image.modulate.a = 0
-	Game.stage_page.character_image_pool.add_child(character_image)
-	character_image.global_position = Game.stage_page.get_position_by_name(position_name)
+	
+	#character_image.global_position = Game.stage_page.get_position_by_name(position_name)
 	await create_tween().tween_property(character_image, "modulate:a", 1, duration).finished
 
 func FadeOut(duration: float = 0.5) -> void:
