@@ -64,6 +64,7 @@ func save_game() -> void:
 	)
 
 func load_game() -> void:
+	Tools.clear_children(Game.stage_page.character_image_pool)
 	var character_datas: Array[CharacterData] = []
 	var profile = Main.save_data.profiles[profile_index]
 	for character_data: CharacterData in profile.character_datas:
