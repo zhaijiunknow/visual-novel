@@ -65,8 +65,8 @@ func get_position_by_name(position_name: String) -> Vector2:
 
 var dialogue_line: DialogueLine:
 	set(value):
+		dialogue_line = value
 		if value:
-			dialogue_line = value
 			process_line()
 
 var finish_pause: float = 1
@@ -93,11 +93,13 @@ var scene: String:
 # ─── 对话处理 ───
 
 func process_line() -> void:
+	var current = dialogue_line
 	if not dialogue_line.text:
 		pass
 	else:
 		if dialogue_line.has_tag("延迟"):
 			await get_tree().create_timer(float(dialogue_line.get_tag_value("延迟"))).timeout
+			if dialogue_line != current: return
 
 		if "手机" in dialogue_line.tags:
 			process_phone_line()
@@ -105,6 +107,7 @@ func process_line() -> void:
 				return
 		else:
 			await process_dialogue_line()
+			if dialogue_line != current: return
 			if dialogue_line.responses:
 				return
 
