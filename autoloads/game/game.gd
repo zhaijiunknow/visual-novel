@@ -13,7 +13,6 @@ extends Node
 @export var setting_page: SettingPage
 @export var loading_page: LoadingPage
 @export var sv_container: SubViewportContainer
-@export var bgm_player: AudioStreamPlayer
 
 var loading: bool:
 	set(value):
@@ -25,11 +24,8 @@ func _ready() -> void:
 	hide_all_pages()
 	main_menu.show()
 	
-	stage_page.visibility_changed.connect(update_pause)
-
-func update_pause():
-	bgm_player.stream_paused = stage_page.visible
-
+	# TODO: sA
+	#stage_page.visibility_changed.connect(update_pause)
 
 func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():

@@ -40,7 +40,7 @@ func toggle_optional(optional: Sprite2D) -> void:
 
 func _ready() -> void:
 	Stage.character_selection_index_changed.connect(
-		func ():
+		func():
 			update_characters()
 			slider_size.value = current_character.body_scale_factor
 			for child in optional_pool.get_children():
@@ -50,9 +50,9 @@ func _ready() -> void:
 				var character_option: CharacterOption = Prefabs.character_option.instantiate()
 				character_option.label.text = optional.name
 				optional_pool.add_child(character_option)
-				Main.clear_connections(optional.visibility_changed)
+				Tools.clear_connections(optional.visibility_changed)
 				optional.visibility_changed.connect(
-					func ():
+					func():
 						character_option.label_option_name.text = "开启" if optional.visible else "关闭"
 				)
 				optional.visibility_changed.emit()
@@ -60,16 +60,16 @@ func _ready() -> void:
 				character_option.previous_button.pressed.connect(toggle_optional.bind(optional))
 	)
 	background_option.previous_button.pressed.connect(
-		func (): background_index -= 1
+		func(): background_index -= 1
 	)
 	background_option.next_button.pressed.connect(
-		func (): background_index += 1
+		func(): background_index += 1
 	)
 	variation_option.previous_button.pressed.connect(
-		func (): variation_index -= 1
+		func(): variation_index -= 1
 	)
 	variation_option.next_button.pressed.connect(
-		func (): variation_index += 1
+		func(): variation_index += 1
 	)
 	background_index = 0
 	
@@ -92,15 +92,15 @@ func update_characters() -> void:
 		var body_part: AnimatedSprite2D = current_character \
 			.body_part_dict[option.body_part]
 		var part_name = option.body_part
-		Main.clear_connections(option.previous_button.pressed)
-		Main.clear_connections(option.next_button.pressed)
+		Tools.clear_connections(option.previous_button.pressed)
+		Tools.clear_connections(option.next_button.pressed)
 		option.previous_button.pressed.connect(
-			func ():
+			func():
 				current_character.update_bonus_part_index(part_name, -1)
 				update_option_name(option)
 		)
 		option.next_button.pressed.connect(
-			func ():
+			func():
 				current_character.update_bonus_part_index(part_name, +1)
 				update_option_name(option)
 		)

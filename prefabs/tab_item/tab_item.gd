@@ -1,5 +1,5 @@
 @tool
-class_name BonusTabItem
+class_name TabItem
 extends Control
 
 @export var title_zh: String:
@@ -18,10 +18,6 @@ extends Control
 @export var label_title_zh: Label
 @export var label_title_en: Label
 
-var selected: bool:
-	get:
-		return Main.bonus_tab_index == get_index()
-
 var hovered: bool:
 	set(value):
 		hovered = value
@@ -29,7 +25,7 @@ var hovered: bool:
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	Main.bonus_tab_index_changed.connect(update)
+	#Main.bonus_tab_index_changed.connect(update)
 	mouse_entered.connect(
 		func (): hovered = true
 	)
@@ -40,12 +36,12 @@ func _ready() -> void:
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-					Main.bonus_tab_index = get_index()
+					select()
 	)
 	
 	hovered = false
-	update()
 
-func update() -> void:
-	target_tab.visible = selected
-	selected_frame.visible = selected
+func select() -> void:
+	for tab_item: TabItem in get_parent().get_children():
+		tab_item.target_tab.visible = tab_item == self
+		tab_item.selected_frame.visible = tab_item == self

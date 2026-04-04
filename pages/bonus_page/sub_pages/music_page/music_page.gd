@@ -82,7 +82,10 @@ func _ready() -> void:
 					progress_hovered = true
 					play_progress_line_ghost.set_progress(ratio)
 	)
-	Main.bonus_tab_index_changed.connect(update_pause)
+	Game.bonus_page.music_page.visibility_changed.connect(
+		func ():
+			update_pause()
+	)
 	progress_hovered = false
 	update_track_info()
 	update_pause()
@@ -92,11 +95,7 @@ var music_tab_selected: bool:
 		return Main.bonus_tab_index == get_index()
 
 func update_pause():
-	#audio_player.stream_paused = not music_tab_selected
 	audio_player.stream_paused = Game.stage_page.visible
-	#if music_tab_selected:
-		#if not audio_player.playing:
-			#audio_player.play()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

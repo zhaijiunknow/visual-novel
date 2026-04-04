@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://c4buwpxs7t84t" path="res://pages/setting_page/setting_page.gd" id="1_cqmhw"]
 [ext_resource type="Texture2D" uid="uid://gsd0mrvxyqpi" path="res://assets/ui_backgrounds/common_background.jpg" id="2_cqmhw"]
+[ext_resource type="Texture2D" uid="uid://dbo7821y14t2c" path="res://assets/temp/system.jpg" id="3_u8iwx"]
 [ext_resource type="PackedScene" uid="uid://2y0i8n3fcpn8" path="res://prefabs/selection_button/selection_button.tscn" id="5_175jp"]
 [ext_resource type="PackedScene" uid="uid://dshln3xvv24k4" path="res://prefabs/setting_label/setting_label.tscn" id="5_u8iwx"]
 [ext_resource type="PackedScene" uid="uid://bjgc7qq7fa0s3" path="res://prefabs/slider_ex/slider_ex.tscn" id="6_2c2te"]
 [ext_resource type="Texture2D" uid="uid://h8t4re234qtv" path="res://assets/sprites/ui/ui.sprites/textexample_background.tres" id="7_175jp"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="8_70vfm"]
+[ext_resource type="Texture2D" uid="uid://cjsnaq4ealc3h" path="res://assets/temp/audio_setting.jpg" id="8_evwb8"]
+[ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="10_evwb8"]
 
-[node name="SettingPage" type="CanvasLayer" unique_id=1362674666]
+[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item")]
 script = ExtResource("1_cqmhw")
+start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_System")
 
 [node name="Background2" type="TextureRect" parent="." unique_id=1987285052]
 offset_right = 2560.0
@@ -26,6 +30,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SystemPage" type="Control" parent="Pages" unique_id=1184190931]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Preview1" type="TextureRect" parent="Pages/SystemPage" unique_id=1494545726]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -33,6 +45,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_u8iwx")
 
 [node name="Labels" type="Control" parent="Pages/SystemPage" unique_id=74714070]
 anchors_preset = 0
@@ -42,9 +55,9 @@ offset_bottom = 40.0
 [node name="SettingLabel" parent="Pages/SystemPage/Labels" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_left = 0.0
-offset_top = 187.0
-offset_right = 872.0
-offset_bottom = 240.0
+offset_top = 0.0
+offset_right = 1528.0
+offset_bottom = 53.0
 text = "游戏窗口大小"
 title_zh = "游戏窗口大小"
 title_en = "Screen"
@@ -53,7 +66,7 @@ title_en = "Screen"
 layout_mode = 0
 offset_left = 0.0
 offset_top = 327.0
-offset_right = 872.0
+offset_right = 1528.0
 offset_bottom = 380.0
 text = "快进条件"
 title_zh = "快进条件"
@@ -63,7 +76,7 @@ title_en = "Skip Conditions"
 layout_mode = 0
 offset_left = 0.0
 offset_top = 465.0
-offset_right = 872.0
+offset_right = 1528.0
 offset_bottom = 518.0
 text = "二级确认"
 title_zh = "二级确认"
@@ -73,7 +86,7 @@ title_en = "Confirmation"
 layout_mode = 0
 offset_left = 0.0
 offset_top = 605.0
-offset_right = 872.0
+offset_right = 1528.0
 offset_bottom = 658.0
 text = "文本显示速度"
 title_zh = "文本显示速度"
@@ -83,7 +96,7 @@ title_en = "Text Speed"
 layout_mode = 0
 offset_left = 0.0
 offset_top = 988.0
-offset_right = 872.0
+offset_right = 1528.0
 offset_bottom = 1041.0
 text = "自动播放速度"
 title_zh = "自动播放速度"
@@ -93,7 +106,7 @@ title_en = "Auto Speed"
 layout_mode = 0
 offset_left = 0.0
 offset_top = 1127.0
-offset_right = 872.0
+offset_right = 1528.0
 offset_bottom = 1180.0
 text = "跳过未读文本"
 title_zh = "跳过未读文本"
@@ -196,6 +209,7 @@ offset_bottom = 943.0
 texture = ExtResource("7_175jp")
 
 [node name="AudioPage" type="Control" parent="Pages" unique_id=1534882373]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,15 +218,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Preview1" type="TextureRect" parent="Pages/AudioPage" unique_id=735597531]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("8_evwb8")
 
 [node name="Labels" type="Control" parent="Pages/AudioPage" unique_id=891592829]
 anchors_preset = 0
+offset_left = 656.0
+offset_right = 656.0
 
 [node name="SettingLabel" parent="Pages/AudioPage/Labels" unique_id=692833134 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
@@ -324,3 +342,24 @@ offset_top = -180.0
 offset_right = 153.0
 offset_bottom = -109.0
 target_page = NodePath("..")
+
+[node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1793807246]
+offset_left = 1261.0
+offset_top = 1268.0
+offset_right = 2422.0
+offset_bottom = 1311.0
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_constants/separation = 130
+alignment = 2
+
+[node name="TabItem_System" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("10_evwb8")]
+layout_mode = 2
+title_zh = "系统设置"
+title_en = "System Settings"
+target_tab = NodePath("../../Pages/SystemPage")
+
+[node name="TabItem_Audio" parent="HBoxContainer_Tabs" unique_id=1477829662 node_paths=PackedStringArray("target_tab") instance=ExtResource("10_evwb8")]
+layout_mode = 2
+title_zh = "声音设置"
+title_en = "Audio Settings"
+target_tab = NodePath("../../Pages/AudioPage")

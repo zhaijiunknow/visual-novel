@@ -54,7 +54,7 @@ func _ready() -> void:
 			Array(body_part_dict[part_name].sprite_frames.get_animation_names())
 	
 	sv_container.gui_input.connect(
-		func (event: InputEvent):
+		func(event: InputEvent):
 			if not movable: return
 			if event is InputEventMouseButton:
 				if event.pressed:
@@ -87,7 +87,7 @@ func update_bonus_part_index(part_name: String, increment: int) -> void:
 	var body_part: AnimatedSprite2D = body_part_dict[part_name]
 	index = bonus_part_index_dict[part_name].index
 	body_part.animation = bonus_part_index_dict[part_name].options[index]
-	Main.clear_connections(bonus_part_index_dict_updated)
+	Tools.clear_connections(bonus_part_index_dict_updated)
 	bonus_part_index_dict_updated.emit()
 
 #@export_tool_button("Print SetParts") var print_set_parts = func():

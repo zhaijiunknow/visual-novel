@@ -18,7 +18,7 @@
 shader = ExtResource("2_gkvkt")
 shader_parameter/iterations = 0.0
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page", "sv_container", "bgm_player")]
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "loading_page", "sv_container")]
 script = ExtResource("1_e2o6t")
 page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
 main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
@@ -32,7 +32,6 @@ phone_page = NodePath("SubViewportContainer/SubViewport/Pages/PhonePage")
 setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 loading_page = NodePath("LoadingPage")
 sv_container = NodePath("SubViewportContainer")
-bgm_player = NodePath("BgmPlayer")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
 material = SubResource("ShaderMaterial_2fepm")

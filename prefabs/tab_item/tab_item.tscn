@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdx8bibh1j6e4"]
 
 [ext_resource type="Texture2D" uid="uid://cnnyvc7v2a01t" path="res://assets/sprites/ui/ui.sprites/gallery_click_deco.tres" id="2_bnil1"]
-[ext_resource type="Script" uid="uid://1mo62ksp7417" path="res://prefabs/bonus_tab_item/bonus_tab_item.gd" id="2_xygy2"]
+[ext_resource type="Script" uid="uid://1mo62ksp7417" path="res://prefabs/tab_item/tab_item.gd" id="2_xygy2"]
 [ext_resource type="Texture2D" uid="uid://c32bdmf5uardd" path="res://assets/sprites/ui/ui.sprites/hover_deco.tres" id="3_3lslt"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="5_3lslt"]
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="6_esx1e"]

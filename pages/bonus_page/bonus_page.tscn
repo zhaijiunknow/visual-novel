@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dma0o1vwd13f8" path="res://pages/bonus_page/sub_pages/music_page/music_page.tscn" id="5_mi528"]
 [ext_resource type="PackedScene" uid="uid://bh1j660oi8dw8" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.tscn" id="6_0lt8g"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="42_j7eld"]
-[ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/bonus_tab_item/bonus_tab_item.tscn" id="51_nu3n8"]
+[ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="51_nu3n8"]
 
-[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page")]
+[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page", "start_tab_item")]
 script = ExtResource("1_kr8r3")
 music_page = NodePath("TabPages/MusicPage")
 voice_page = NodePath("TabPages/VoicePage")
+start_tab_item = NodePath("HBoxContainer_Tabs/BonusTabItem_Character")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1301707995]
 anchors_preset = 15
@@ -64,6 +65,8 @@ alignment = 2
 
 [node name="BonusTabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
+title_zh = "立绘鉴赏"
+title_en = "Character Gallery"
 target_tab = NodePath("../../TabPages/CharacterPage")
 
 [node name="BonusTabItem_Gallery" parent="HBoxContainer_Tabs" unique_id=1048788281 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]

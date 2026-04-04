@@ -14,12 +14,6 @@ var profile_mode: ProfileMode:
 	set(value):
 		profile_mode = value
 
-signal bonus_tab_index_changed
-var bonus_tab_index: int:
-	set(value):
-		bonus_tab_index = value
-		emit_signal("bonus_tab_index_changed")
-
 signal gallery_card_index_changed
 var gallery_card_index: int:
 	set(value):
@@ -36,15 +30,6 @@ func _ready() -> void:
 		collection_data = load(collection_path)
 	
 	#expression_dict = JSON.parse_string()
-
-func clear_connections(target_signal: Signal) -> void:
-	for connection in target_signal.get_connections():
-		target_signal.disconnect(connection.callable)
-
-func clear_children(container: Node) -> void:
-	for child in container.get_children():
-		container.remove_child(child)
-		child.queue_free()
 
 func has_voice_collection(filename) -> bool:
 	return collection_data.voice_collections.filter(

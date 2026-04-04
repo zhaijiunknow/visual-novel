@@ -111,7 +111,7 @@ func process_line() -> void:
 			if dialogue_line.responses:
 				return
 
-	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
+	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [ self , Stage])
 
 
 func process_phone_line() -> void:
@@ -152,11 +152,11 @@ func process_dialogue_line() -> void:
 
 	# 语音
 	voice_buttons.visible = dialogue_line.has_tag("语音")
-	Main.clear_connections(AudioManager.audio_player_voice.finished)
+	Tools.clear_connections(AudioManager.audio_player_voice.finished)
 	if dialogue_line.has_tag("语音") and character:
 		character.body_part_dict["Mouth"].animation = character.speaking_mouth
 		AudioManager.audio_player_voice.finished.connect(
-			func ():
+			func():
 				if not expression: return
 				character.SetExpression(expression)
 		)
@@ -186,8 +186,8 @@ func show_dialogue_responses() -> void:
 		var selection: DialogueSelection = Prefabs.dialogue_selection.instantiate()
 		selection.text = response.text
 		selection.pressed.connect(
-			func ():
-				dialogue_line = await dialogue.get_next_dialogue_line(response.next_id, [self, Stage])
+			func():
+				dialogue_line = await dialogue.get_next_dialogue_line(response.next_id, [ self , Stage])
 		)
 		responses_menu.add_child(selection)
 
@@ -215,7 +215,7 @@ func _ready() -> void:
 		chapters_dict[_chapter_name] = chapter
 
 	dialogue_screen.gui_input.connect(
-		func (event: InputEvent):
+		func(event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 					if dialogue_label.is_typing:
@@ -225,7 +225,7 @@ func _ready() -> void:
 
 	button_replay.pressed.connect(AudioManager.replay_voice)
 	button_favourite.pressed.connect(
-		func ():
+		func():
 			if favourite:
 				Main.collection_data.voice_collections.erase(current_collection)
 			else:
@@ -241,7 +241,7 @@ func _ready() -> void:
 
 
 func start() -> void:
-	dialogue_line = await dialogue.get_next_dialogue_line("start", [self, Stage])
+	dialogue_line = await dialogue.get_next_dialogue_line("start", [ self , Stage])
 
 
 # ─── 收藏 ───
