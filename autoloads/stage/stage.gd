@@ -3,6 +3,7 @@ extends Node
 @export var character_pool: Control
 @export var background_data_pool: Array[BackgroundData]
 @export var gallery_data_pool: Array[GalleryData]
+
 var current_background: String
 
 signal character_selection_index_changed

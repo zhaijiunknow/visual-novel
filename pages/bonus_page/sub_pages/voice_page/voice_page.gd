@@ -24,7 +24,7 @@ var current_collection: VoiceCollection:
 		label_chapter_number.text = current_collection.chapter_number_text
 		label_chapter_name.text = current_collection.chapter_name
 		label_text.text = current_collection.text
-		texture_rect_portrait.texture = Stage.character_dict[current_collection.character_name].texture_rect_avatar.texture
+		texture_rect_portrait.texture = Stage.Character(current_collection.character_name).texture_rect_avatar.texture
 		AudioManager.play_voice(current_collection.voice_filename, true)
 		update_favourite()
 

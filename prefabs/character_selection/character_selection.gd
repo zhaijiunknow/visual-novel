@@ -15,7 +15,7 @@ var hovered: bool:
 		update()
 
 func _ready() -> void:
-	portrait.texture = Stage.character_dict[name].character_page_portrait.texture
+	portrait.texture = Stage.Character(name).character_page_portrait.texture
 	mouse_entered.connect(
 		func (): hover_shade.visible = true
 	)

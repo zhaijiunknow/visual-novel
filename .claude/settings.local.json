@@ -104,7 +104,13 @@
       "Bash(python dump_performance_table.py)",
       "Bash(chcp 65001)",
       "Bash(sort -k2)",
-      "Bash(du -sh /c/Users/kotta/Documents/Godot/visual-novel/assets/*/)"
+      "Bash(du -sh /c/Users/kotta/Documents/Godot/visual-novel/assets/*/)",
+      "Bash(stat -L /c/Users/kotta/Documents/Godot/visual-novel/assets/fonts/*.ttf /c/Users/kotta/Documents/Godot/visual-novel/assets/fonts/*.ttc)",
+      "Bash(find autoloads:*)",
+      "Bash(du -sh data/*)",
+      "Bash(xargs ls:*)",
+      "Bash(ls -lh characters/instances/*.tscn)",
+      "Bash(find assets/sprites -name *.atlas -o -name *atlas*)"
     ]
   }
 }

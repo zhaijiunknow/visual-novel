@@ -16,11 +16,18 @@
 [ext_resource type="Resource" uid="uid://bo1argwl65ko4" path="res://data/backgrounds/08_广播社.tres" id="10_n6isd"]
 [ext_resource type="PackedScene" uid="uid://dvavxp5xvb7m1" path="res://characters/instances/character_林凌铃.tscn" id="11_ag5rj"]
 [ext_resource type="Resource" uid="uid://3a3ymt10val6" path="res://data/backgrounds/09_广播社门口.tres" id="11_i3l8f"]
+[ext_resource type="Script" uid="uid://lqr1upuurtst" path="res://data/_models/gallery_data.gd" id="12_gallery"]
+[ext_resource type="Resource" uid="uid://dtspa6wybftue" path="res://data/galleries/gallery_1.tres" id="13_g1"]
+[ext_resource type="Resource" uid="uid://besb6muoar2x4" path="res://data/galleries/gallery_2.tres" id="14_g2"]
+[ext_resource type="Resource" uid="uid://cen4assgpd65n" path="res://data/galleries/gallery_3.tres" id="15_g3"]
+[ext_resource type="Resource" uid="uid://cyaas0wqlx0de" path="res://data/galleries/gallery_4.tres" id="16_g4"]
+[ext_resource type="Resource" uid="uid://ccwti1wp1tp2p" path="res://data/galleries/gallery_5.tres" id="17_g5"]
 
 [node name="Stage" type="Node" unique_id=1343709308 node_paths=PackedStringArray("character_pool")]
 script = ExtResource("1_ecxui")
 character_pool = NodePath("Characters")
 background_data_pool = Array[ExtResource("4_pf3bu")]([ExtResource("3_lcqe3"), ExtResource("5_cwi0x"), ExtResource("6_lrsvv"), ExtResource("6_mpeth"), ExtResource("7_17hvl"), ExtResource("8_j48a0"), ExtResource("10_lv745"), ExtResource("10_n6isd"), ExtResource("11_i3l8f")])
+gallery_data_pool = Array[ExtResource("12_gallery")]([ExtResource("13_g1"), ExtResource("14_g2"), ExtResource("15_g3"), ExtResource("16_g4"), ExtResource("17_g5")])
 
 [node name="Characters" type="Control" parent="." unique_id=1964690209]
 modulate = Color(1, 1, 1, 0)

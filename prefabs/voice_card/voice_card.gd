@@ -12,7 +12,7 @@ var voice_page: VoicePage:
 var voice_collection: VoiceCollection:
 	set(value):
 		voice_collection = value
-		texture_rect_portrait.texture = Stage.character_dict[voice_collection.character_name].texture_rect_avatar.texture
+		texture_rect_portrait.texture = Stage.Character(voice_collection.character_name).texture_rect_avatar.texture
 		label_text.text = voice_collection.text
 
 func _ready() -> void:

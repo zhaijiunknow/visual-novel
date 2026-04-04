@@ -14,7 +14,7 @@ func _ready() -> void:
 		func():
 			particle.emitting = visible
 	)
-	
+
 	button_start.clicked.connect(
 		func():
 			Game.switch_to_page(Game.stage_page, true, true, Stage.start)

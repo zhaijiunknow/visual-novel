@@ -80,7 +80,7 @@ var voice_name: String:
 var character: Character:
 	get:
 		if Stage.character_dict.has(dialogue_line.character):
-			return Stage.character_dict[dialogue_line.character]
+			return Stage.Character(dialogue_line.character)
 		return null
 
 
