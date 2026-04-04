@@ -1,6 +1,6 @@
 extends TextureButton
 
-@export var with_transition: bool
+@export var with_transition: bool = true
 
 func _ready() -> void:
 	pressed.connect(
