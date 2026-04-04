@@ -38,7 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Preview1" type="TextureRect" parent="Pages/SystemPage" unique_id=1494545726]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,19 +53,17 @@ offset_bottom = 40.0
 
 [node name="SettingLabel" parent="Pages/SystemPage/Labels" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 1528.0
-offset_bottom = 53.0
+offset_top = 189.0
+offset_right = 2184.0
+offset_bottom = 242.0
 text = "游戏窗口大小"
 title_zh = "游戏窗口大小"
 title_en = "Screen"
 
 [node name="SettingLabel2" parent="Pages/SystemPage/Labels" unique_id=1001590183 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 327.0
-offset_right = 1528.0
+offset_right = 2184.0
 offset_bottom = 380.0
 text = "快进条件"
 title_zh = "快进条件"
@@ -74,9 +71,8 @@ title_en = "Skip Conditions"
 
 [node name="SettingLabel3" parent="Pages/SystemPage/Labels" unique_id=1657591942 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 465.0
-offset_right = 1528.0
+offset_right = 2184.0
 offset_bottom = 518.0
 text = "二级确认"
 title_zh = "二级确认"
@@ -84,9 +80,8 @@ title_en = "Confirmation"
 
 [node name="SettingLabel4" parent="Pages/SystemPage/Labels" unique_id=627802397 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 605.0
-offset_right = 1528.0
+offset_right = 2184.0
 offset_bottom = 658.0
 text = "文本显示速度"
 title_zh = "文本显示速度"
@@ -94,9 +89,8 @@ title_en = "Text Speed"
 
 [node name="SettingLabel5" parent="Pages/SystemPage/Labels" unique_id=1472875771 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 988.0
-offset_right = 1528.0
+offset_right = 2184.0
 offset_bottom = 1041.0
 text = "自动播放速度"
 title_zh = "自动播放速度"
@@ -104,9 +98,8 @@ title_en = "Auto Speed"
 
 [node name="SettingLabel6" parent="Pages/SystemPage/Labels" unique_id=470391390 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 1127.0
-offset_right = 1528.0
+offset_right = 2184.0
 offset_bottom = 1180.0
 text = "跳过未读文本"
 title_zh = "跳过未读文本"
@@ -336,12 +329,11 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BackButton" parent="." unique_id=967157290 node_paths=PackedStringArray("target_page") instance=ExtResource("8_70vfm")]
+[node name="BackButton" parent="." unique_id=967157290 instance=ExtResource("8_70vfm")]
 offset_left = 97.0
 offset_top = -180.0
 offset_right = 153.0
 offset_bottom = -109.0
-target_page = NodePath("..")
 
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1793807246]
 offset_left = 1261.0
