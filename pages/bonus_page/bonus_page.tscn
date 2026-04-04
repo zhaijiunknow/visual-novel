@@ -13,7 +13,7 @@
 script = ExtResource("1_kr8r3")
 music_page = NodePath("TabPages/MusicPage")
 voice_page = NodePath("TabPages/VoicePage")
-start_tab_item = NodePath("HBoxContainer_Tabs/BonusTabItem_Character")
+start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_Character")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1301707995]
 anchors_preset = 15
@@ -63,31 +63,31 @@ pivot_offset_ratio = Vector2(1, 0)
 theme_override_constants/separation = 130
 alignment = 2
 
-[node name="BonusTabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "立绘鉴赏"
 title_en = "Character Gallery"
 target_tab = NodePath("../../TabPages/CharacterPage")
 
-[node name="BonusTabItem_Gallery" parent="HBoxContainer_Tabs" unique_id=1048788281 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Gallery" parent="HBoxContainer_Tabs" unique_id=1048788281 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "插画鉴赏"
 title_en = "CG Gallery"
 target_tab = NodePath("../../TabPages/GalleryPage")
 
-[node name="BonusTabItem_Music" parent="HBoxContainer_Tabs" unique_id=883599580 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Music" parent="HBoxContainer_Tabs" unique_id=883599580 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "音乐鉴赏"
 title_en = "Music Gallery"
 target_tab = NodePath("../../TabPages/MusicPage")
 
-[node name="BonusTabItem_Voice" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Voice" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "录音鉴赏"
 title_en = "Voice Collection"
 target_tab = NodePath("../../TabPages/VoicePage")
 
-[node name="BackButton" parent="." unique_id=879433762 node_paths=PackedStringArray("target_page") instance=ExtResource("42_j7eld")]
+[node name="BackButton" parent="." unique_id=879433762 instance=ExtResource("42_j7eld")]
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
@@ -96,4 +96,3 @@ offset_top = 1260.0
 offset_right = 153.0
 offset_bottom = 1331.0
 grow_vertical = 1
-target_page = NodePath("..")
