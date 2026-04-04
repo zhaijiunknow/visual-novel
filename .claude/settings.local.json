@@ -102,7 +102,9 @@
       "Bash(grep -rn \"mode\\\\|stage_mode\\\\|stage_page\\\\|Mode\" /c/Users/kotta/Documents/Godot/visual-novel --include=\"*.gd\" ! -path \"*/addons/*\")",
       "Bash(ls -la /c/Users/kotta/Documents/Godot/visual-novel/python/*.py)",
       "Bash(python dump_performance_table.py)",
-      "Bash(chcp 65001)"
+      "Bash(chcp 65001)",
+      "Bash(sort -k2)",
+      "Bash(du -sh /c/Users/kotta/Documents/Godot/visual-novel/assets/*/)"
     ]
   }
 }

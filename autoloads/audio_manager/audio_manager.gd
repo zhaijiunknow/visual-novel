@@ -32,24 +32,6 @@ func _ready() -> void:
 			track_index += 1
 			audio_player_bonus.play()
 	)
-	
-	Game.stage_page.visibility_changed.connect(update_play)
-	Game.bonus_page.visibility_changed.connect(update_play)
-
-# TASK
-func update_play() -> void:
-	if Game.bonus_page.visible:
-		audio_player_bonus.playing = true
-		audio_player_music.stop()
-	else:
-		if not Game.stage_page.visible:
-			audio_player_music.stream = theme_music
-			audio_player_music.play()
-		else:
-			audio_player_music.stop()
-	
-	#audio_player_music.playing = not Game.bonus_page.visible
-	#audio_player_bonus.stream_paused = Game.bonus_page.visible
 
 func play_theme() -> void:
 	audio_player_music.stream = theme_music
