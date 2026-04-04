@@ -13,6 +13,7 @@ extends Node
 @export var setting_page: SettingPage
 
 var page_stack: Array[CanvasLayer] = []
+var loading: bool = false
 
 var current_page: CanvasLayer:
 	get:
@@ -58,6 +59,8 @@ func go_back(_transition: bool = true):
 		await fade(true)
 
 func update_audio():
+	var came_from_menu: bool = page_stack.size() >= 2 and page_stack[-2] == main_menu
+
 	if current_page == bonus_page:
 		AudioManager.audio_player_music.stop()
 		if AudioManager.audio_player_bonus.stream_paused:
@@ -68,9 +71,11 @@ func update_audio():
 		AudioManager.audio_player_bonus.stream_paused = true
 		if current_page == stage_page:
 			AudioManager.audio_player_music.stop()
-		else:
+		elif came_from_menu:
 			if AudioManager.audio_player_music.stream != AudioManager.theme_music or not AudioManager.audio_player_music.playing:
 				AudioManager.play_theme()
+		else:
+			AudioManager.audio_player_music.stop()
 
 func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():

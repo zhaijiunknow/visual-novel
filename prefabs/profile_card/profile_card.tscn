@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cgqkic1n3os2r"]
 
 [ext_resource type="Texture2D" uid="uid://xw0cutuvmqql" path="res://assets/sprites/ui/ui.sprites/data_background_normal.tres" id="1_47rjm"]
+[ext_resource type="Texture2D" uid="uid://d1frv2mcubp0d" path="res://assets/sprites/ui/ui.sprites/data_background_hover.tres" id="9_hover"]
+[ext_resource type="Texture2D" uid="uid://bugce1v55no8r" path="res://assets/sprites/ui/ui.sprites/data_background_click.tres" id="10_click"]
 [ext_resource type="Script" uid="uid://c8kumhshi054" path="res://prefabs/profile_card/profile_card.gd" id="2_ocbxf"]
 [ext_resource type="PackedScene" uid="uid://cdnnwlov248c" path="res://prefabs/components/drag_filter.tscn" id="3_ocbxf"]
 [ext_resource type="Texture2D" uid="uid://bjb3li7bkghk" path="res://assets/sprites/ui/ui.sprites/dataimage_empty.tres" id="4_47rjm"]
@@ -13,6 +15,9 @@
 texture = ExtResource("1_47rjm")
 stretch_mode = 4
 script = ExtResource("2_ocbxf")
+texture_normal = ExtResource("1_47rjm")
+texture_hover = ExtResource("9_hover")
+texture_click = ExtResource("10_click")
 texture_rect_preview = NodePath("TextureRect_Preview")
 drag_filter = NodePath("DragFilter")
 label_index = NodePath("TextureRect_Index/Label_Index")

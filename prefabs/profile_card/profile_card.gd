@@ -6,6 +6,9 @@ extends TextureRect
 @export var label_index: Label
 @export var label_chapter: Label
 @export var label_chapter_title: Label
+@export var texture_normal: Texture2D
+@export var texture_hover: Texture2D
+@export var texture_click: Texture2D
 
 var hovered: bool:
 	set(value):
@@ -43,13 +46,11 @@ func _ready() -> void:
 	
 func update():
 	if selected:
-		var c: float = 9.5
-		modulate = Color(c, c, c)
-		var p_c: float = 0.16
-		texture_rect_preview.modulate = Color(p_c, p_c, p_c)
+		texture = texture_click
+		texture_rect_preview.modulate = Color(1, 1, 1)
+	elif hovered:
+		texture = texture_hover
+		texture_rect_preview.modulate = Color(1, 1, 1)
 	else:
-		if hovered:
-			modulate = Color(1.35, 1.35, 1.35)
-		else:
-			modulate = Color(1, 1, 1)
+		texture = texture_normal
 		texture_rect_preview.modulate = Color(1, 1, 1)
