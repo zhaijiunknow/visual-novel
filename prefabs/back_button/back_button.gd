@@ -6,7 +6,5 @@ extends TextureButton
 func _ready() -> void:
 	pressed.connect(
 		func ():
-			await Game.fade(false)
-			target_page.visible = false
-			await Game.fade(true)
+			Game.switch_to_page(target_page, true, false)
 	)

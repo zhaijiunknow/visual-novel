@@ -1,6 +1,7 @@
 extends Node
 
 @export var playlist: Array[MusicData]
+@export var theme_music: AudioStreamMP3
 @export var audio_player_music: AudioStreamPlayer
 @export var audio_player_sound: AudioStreamPlayer
 @export var audio_player_voice: AudioStreamPlayer
@@ -32,6 +33,28 @@ func _ready() -> void:
 			audio_player_bonus.play()
 	)
 	
+	Game.stage_page.visibility_changed.connect(update_play)
+	Game.bonus_page.visibility_changed.connect(update_play)
+
+# TASK
+func update_play() -> void:
+	if Game.bonus_page.visible:
+		audio_player_bonus.playing = true
+		audio_player_music.stop()
+	else:
+		if not Game.stage_page.visible:
+			audio_player_music.stream = theme_music
+			audio_player_music.play()
+		else:
+			audio_player_music.stop()
+	
+	#audio_player_music.playing = not Game.bonus_page.visible
+	#audio_player_bonus.stream_paused = Game.bonus_page.visible
+
+func play_theme() -> void:
+	audio_player_music.stream = theme_music
+	audio_player_music.play()
+
 func set_track_position_by_ratio(ratio: float):
 	var target_position = audio_player_bonus.stream.get_length() * ratio
 	audio_player_bonus.stop()

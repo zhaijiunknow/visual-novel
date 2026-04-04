@@ -24,7 +24,7 @@ func _ready() -> void:
 var save_thread: Thread
 
 func update() -> void:
-	Main.clear_children(profile_card_pool)
+	Tools.clear_children(profile_card_pool)
 	for profile in Main.save_data.profiles:
 		var profile_card: ProfileCard = profile_card_model.duplicate()
 		profile_card.texture_rect_preview.texture = profile.preview

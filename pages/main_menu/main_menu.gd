@@ -11,47 +11,31 @@ extends CanvasLayer
 
 func _ready() -> void:
 	visibility_changed.connect(
-		func ():
+		func():
 			particle.emitting = visible
 	)
 	
 	button_start.clicked.connect(
-		func ():
-			Game.transition(
-				func():
-					hide()
-					Stage.start()
-			)
+		func():
+			Game.switch_to_page(Game.stage_page, true, true, Stage.start)
 	)
 	button_load.clicked.connect(
-		func ():
-			Game.transition(
-				func():
-					Main.profile_mode = Main.ProfileMode.LOAD
-					Game.profile_page.show()
-			)
+		func():
+			Main.profile_mode = Main.ProfileMode.LOAD
+			Game.switch_to_page(Game.profile_page, true, true)
 	)
 	button_bonus.clicked.connect(
-		func ():
-			Game.transition(
-				func():
-					Game.bonus_page.show()
-			)
+		func():
+			Game.switch_to_page(Game.bonus_page, true, true)
 	)
 	button_book.clicked.connect(
-		func ():
-			Game.transition(
-				func():
-					Game.book_page.show()
-			)
+		func():
+			Game.switch_to_page(Game.book_page, true, true)
 	)
 	button_setting.clicked.connect(
-		func ():
-			Game.transition(
-				func():
-					Game.setting_page.show()
-			)
+		func():
+			Game.switch_to_page(Game.setting_page, true, true)
 	)
 	button_quit.clicked.connect(
-		func (): get_tree().quit()
+		func(): get_tree().quit()
 	)

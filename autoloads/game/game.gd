@@ -14,6 +14,8 @@ extends Node
 @export var loading_page: LoadingPage
 @export var sv_container: SubViewportContainer
 
+var current_page: CanvasLayer
+
 var loading: bool:
 	set(value):
 		loading = value
@@ -21,11 +23,28 @@ var loading: bool:
 
 func _ready() -> void:
 	loading = false
-	hide_all_pages()
-	main_menu.show()
+	switch_to_page(main_menu, false, false)
+	AudioManager.update_play()
+
+# TASK
+func switch_to_page(page: CanvasLayer, _transition: bool, addition_mode: bool, callable: Callable = func():pass):
+	match page:
+		_:
+			if current_page != page:
+				AudioManager.audio_player_bonus.playing = false
+				AudioManager.play_theme()
+	AudioManager.audio_player_bonus.playing = page == bonus_page
+	AudioManager.audio_player_music.playing = page != bonus_page
+	current_page = page
+	if _transition:
+		await fade(false)
+		if not addition_mode:
+			hide_all_pages()
+		current_page.show()
+		await fade(true)
+		callable.call()
 	
-	# TODO: sA
-	#stage_page.visibility_changed.connect(update_pause)
+	
 
 func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():
