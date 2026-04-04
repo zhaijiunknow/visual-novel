@@ -24,32 +24,28 @@ func _ready() -> void:
 	button_save.clicked.connect(
 		func ():
 			Main.profile_mode = Main.ProfileMode.SAVE
-			Game.profile_page.show()
+			Game.switch_to_page(Game.profile_page, true, true)
 	)
 	button_load.clicked.connect(
 		func ():
 			Main.profile_mode = Main.ProfileMode.LOAD
-			Game.profile_page.show()
+			Game.switch_to_page(Game.profile_page, true, true)
 	)
 	button_log.clicked.connect(
-		func (): Game.log_page.show()
+		func (): Game.switch_to_page(Game.log_page, true, true)
 	)
 	button_set.clicked.connect(
-		func ():
-			pass
+		func (): Game.switch_to_page(Game.setting_page, true, true)
 	)
 	button_voice.clicked.connect(
-		func ():
-			Game.bonus_page.show()
+		func (): Game.switch_to_page(Game.bonus_page, true, true)
 	)
 	button_phone.clicked.connect(
-		func (): Game.phone_page.show()
+		func (): Game.switch_to_page(Game.phone_page, true, true)
 	)
 	button_book.clicked.connect(
-		func (): Game.book_page.show()
+		func (): Game.switch_to_page(Game.book_page, true, true)
 	)
 	button_title.clicked.connect(
-		func ():
-			Game.hide_all_pages()
-			Game.main_menu.show()
+		func (): Game.switch_to_page(Game.main_menu, true, true)
 	)

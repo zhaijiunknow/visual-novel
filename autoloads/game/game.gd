@@ -31,6 +31,7 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		page_stack.clear()
 
 	page_stack.append(page)
+	page.layer = page_stack.size()
 	page.show()
 	update_audio()
 
@@ -59,9 +60,10 @@ func go_back(_transition: bool = true):
 func update_audio():
 	if current_page == bonus_page:
 		AudioManager.audio_player_music.stop()
-		if not AudioManager.audio_player_bonus.playing:
+		if AudioManager.audio_player_bonus.stream_paused:
+			AudioManager.audio_player_bonus.stream_paused = false
+		elif not AudioManager.audio_player_bonus.playing:
 			AudioManager.audio_player_bonus.play()
-		AudioManager.audio_player_bonus.stream_paused = false
 	else:
 		AudioManager.audio_player_bonus.stream_paused = true
 		if current_page == stage_page:
