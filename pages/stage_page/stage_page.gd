@@ -55,9 +55,16 @@ var autoplay: bool = false:
 		update_step_rate()
 
 func update_step_rate() -> void:
+	apply_speed_settings()
 	var rate = auto_step_rate if autoplay else normal_step_rate
 	rate = skip_step_rate if skip else rate
 	dialogue_label.seconds_per_step = rate
+
+func apply_speed_settings() -> void:
+	var s = Main.setting_data
+	normal_step_rate = 0.05 - s.text_speed * 0.048
+	auto_step_rate = 0.05 - s.auto_speed * 0.048
+	finish_pause = 0.5 + (1.0 - s.auto_speed) * 3.0
 
 func get_position_by_name(position_name: String) -> Vector2:
 	var position_node: Control = hbox_positions.get_node(position_name + "/CenterPoint")
@@ -214,6 +221,7 @@ func wait_for_advance() -> void:
 
 func _ready() -> void:
 	dialogue_label.visible_characters = 0
+	Main.speed_settings_changed.connect(update_step_rate)
 	for chapter in chapters:
 		var _chapter_name = chapter.resource_path.get_file().split(".")[0]
 		chapters_dict[_chapter_name] = chapter

@@ -146,8 +146,8 @@ func _connect_signals() -> void:
 	_connect_selection_click(btn_skip_ignore_transitions, func(): _toggle_skip_condition("skip_ignore_transitions", btn_skip_ignore_transitions))
 
 	# Sliders
-	slider_text_speed.value_changed.connect(func(_v): _set_setting("text_speed", slider_text_speed.value); text_speed_preview.set_speed(0.05 - slider_text_speed.value * 0.048))
-	slider_auto_speed.value_changed.connect(func(_v): _set_setting("auto_speed", slider_auto_speed.value); auto_speed_preview.set_speed(0.05 - slider_auto_speed.value * 0.048))
+	slider_text_speed.value_changed.connect(func(_v): _set_setting("text_speed", slider_text_speed.value); text_speed_preview.set_speed(0.05 - slider_text_speed.value * 0.048); Main.speed_settings_changed.emit())
+	slider_auto_speed.value_changed.connect(func(_v): _set_setting("auto_speed", slider_auto_speed.value); auto_speed_preview.set_speed(0.05 - slider_auto_speed.value * 0.048); Main.speed_settings_changed.emit())
 	slider_music_volume.value_changed.connect(func(_v): _apply_audio())
 	slider_sound_volume.value_changed.connect(func(_v): _apply_audio())
 	slider_master_voice_volume.value_changed.connect(func(_v): _apply_audio())

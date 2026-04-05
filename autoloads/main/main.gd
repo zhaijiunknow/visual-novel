@@ -17,6 +17,7 @@ var profile_mode: ProfileMode:
 		profile_mode = value
 
 signal gallery_card_index_changed
+signal speed_settings_changed
 var gallery_card_index: int:
 	set(value):
 		gallery_card_index = value
