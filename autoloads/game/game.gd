@@ -11,6 +11,7 @@ extends Node
 @export var log_page: LogPage
 @export var phone_page: PhonePage
 @export var setting_page: SettingPage
+@export var confirm_page: ConfirmPage
 
 var page_stack: Array[CanvasLayer] = []
 var loading: bool = false
@@ -24,6 +25,10 @@ func _ready() -> void:
 	AudioManager.play_theme()
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass):
+	if loading:
+		return
+	loading = true
+
 	if _transition:
 		await fade(false)
 
@@ -42,9 +47,13 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 	else:
 		callable.call()
 
+	loading = false
+
 func go_back(_transition: bool = true):
-	if page_stack.size() <= 1:
+	if loading or page_stack.size() <= 1:
 		return
+
+	loading = true
 
 	if _transition:
 		await fade(false)
@@ -57,6 +66,8 @@ func go_back(_transition: bool = true):
 
 	if _transition:
 		await fade(true)
+
+	loading = false
 
 func update_audio():
 	var came_from_menu: bool = page_stack.size() >= 2 and page_stack[-2] == main_menu

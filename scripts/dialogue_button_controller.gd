@@ -47,5 +47,11 @@ func _ready() -> void:
 		func (): Game.switch_to_page(Game.book_page, true, true)
 	)
 	button_title.clicked.connect(
-		func (): Game.switch_to_page(Game.main_menu, true, true)
+		func ():
+			Game.confirm_page.show_confirm(
+				"特别提醒",
+				"确定要回到标题界面吗？\n未保存的进度将要丢失。",
+				func (): Game.switch_to_page(Game.main_menu, true, true)
+			)
+			Game.switch_to_page(Game.confirm_page, true, true)
 	)
