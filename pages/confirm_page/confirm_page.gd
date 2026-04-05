@@ -10,14 +10,8 @@ var on_confirm: Callable = func(): pass
 var on_cancel: Callable = func(): Game.go_back()
 
 func _ready() -> void:
-	button_confirm.pressed.connect(
-		func ():
-			on_confirm.call()
-	)
-	button_cancel.pressed.connect(
-		func ():
-			on_cancel.call()
-	)
+	button_confirm.pressed.connect(func(): on_confirm.call())
+	button_cancel.pressed.connect(func(): on_cancel.call())
 
 func show_confirm(title: String, message: String, _on_confirm: Callable, _on_cancel: Callable = func(): Game.go_back()) -> void:
 	label_title.text = title

@@ -29,7 +29,10 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		return
 	loading = true
 
-	if _transition:
+	var use_alpha = addition_mode and stage_page in page_stack
+
+	# 叠加+在游戏中：无前置过渡；其他：画面变黑
+	if _transition and not use_alpha:
 		await fade(false)
 
 	if not addition_mode:
@@ -43,7 +46,10 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 
 	if _transition:
 		callable.call()
-		await fade(true)
+		if use_alpha:
+			await fade_alpha(page, true)
+		else:
+			await fade(true)
 	else:
 		callable.call()
 
@@ -55,16 +61,21 @@ func go_back(_transition: bool = true):
 
 	loading = true
 
-	if _transition:
-		await fade(false)
-
+	var use_alpha = stage_page in page_stack
 	var old_page = page_stack.pop_back()
+
+	if _transition:
+		if use_alpha:
+			await fade_alpha(old_page, false)
+		else:
+			await fade(false)
+
 	old_page.visible = false
 
 	current_page.show()
 	update_audio()
 
-	if _transition:
+	if _transition and not use_alpha:
 		await fade(true)
 
 	loading = false
@@ -93,6 +104,7 @@ func hide_all_pages() -> void:
 		page.layer = 1
 		page.visible = false
 
+# 画面变黑过渡
 func fade(fade_in: bool) -> void:
 	var start_iteration = 1 if fade_in else 0
 	var tween = create_tween()
@@ -103,6 +115,18 @@ func fade(fade_in: bool) -> void:
 			sv_container.material.set_shader_parameter("iterations", start_iteration + (value * modifier)),
 		0.0, 1.0, 0.4
 	).finished
+
+# alpha过渡（用于叠加页面）
+func fade_alpha(page: CanvasLayer, fade_in: bool) -> void:
+	var from_a = 0.0 if fade_in else 1.0
+	var to_a = 1.0 if fade_in else 0.0
+	for child: CanvasItem in page.get_children():
+		child.modulate.a = from_a
+	var tween = create_tween()
+	tween.set_parallel(true)
+	for child: CanvasItem in page.get_children():
+		tween.tween_property(child, "modulate:a", to_a, 0.3)
+	await tween.finished
 
 func transition(callable: Callable):
 	await fade(false)
