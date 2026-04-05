@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://prefabs/text_speed_preview/text_speed_preview.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://h8t4re234qtv" path="res://assets/sprites/ui/ui.sprites/textexample_background.tres" id="2_bg"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_label"]
+[ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="4_font"]
+
+[node name="TextSpeedPreview" type="TextureRect" node_paths=PackedStringArray("dialogue_label")]
+custom_minimum_size = Vector2(1732, 250)
+offset_right = 1732.0
+offset_bottom = 250.0
+mouse_filter = 2
+texture = ExtResource("2_bg")
+script = ExtResource("1_script")
+dialogue_label = NodePath("DialogueLabel")
+
+[node name="DialogueLabel" parent="." instance=ExtResource("3_label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = 40.0
+offset_right = -78.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_font")
+theme_override_font_sizes/normal_font_size = 40
+text = "这是一段预览文字，用于展示文字显示速度。"
+pause_at_characters = ""

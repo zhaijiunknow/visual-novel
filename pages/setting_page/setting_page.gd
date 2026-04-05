@@ -43,6 +43,9 @@ const CHAR_TEXTURES := {
 @export var btn_confirmation_off: SelectionButton
 @export var btn_skip_unread_text_on: SelectionButton
 @export var btn_skip_unread_text_off: SelectionButton
+@export var text_speed_preview: TextureRect
+@export var auto_speed_preview: TextureRect
+
 @export var slider_text_speed: SliderEx
 @export var slider_auto_speed: SliderEx
 
@@ -90,6 +93,8 @@ func _load_settings() -> void:
 	btn_skip_after_choice.selected = s.skip_after_choice
 	btn_skip_ignore_transitions.selected = s.skip_ignore_transitions
 	slider_text_speed.set_value_silent(s.text_speed)
+	text_speed_preview.set_speed(0.05 - s.text_speed * 0.048)
+	auto_speed_preview.set_speed(0.05 - s.auto_speed * 0.048)
 	slider_auto_speed.set_value_silent(s.auto_speed)
 
 	# Audio
@@ -141,8 +146,8 @@ func _connect_signals() -> void:
 	_connect_selection_click(btn_skip_ignore_transitions, func(): _toggle_skip_condition("skip_ignore_transitions", btn_skip_ignore_transitions))
 
 	# Sliders
-	slider_text_speed.value_changed.connect(func(_v): _set_setting("text_speed", slider_text_speed.value))
-	slider_auto_speed.value_changed.connect(func(_v): _set_setting("auto_speed", slider_auto_speed.value))
+	slider_text_speed.value_changed.connect(func(_v): _set_setting("text_speed", slider_text_speed.value); text_speed_preview.set_speed(0.05 - slider_text_speed.value * 0.048))
+	slider_auto_speed.value_changed.connect(func(_v): _set_setting("auto_speed", slider_auto_speed.value); auto_speed_preview.set_speed(0.05 - slider_auto_speed.value * 0.048))
 	slider_music_volume.value_changed.connect(func(_v): _apply_audio())
 	slider_sound_volume.value_changed.connect(func(_v): _apply_audio())
 	slider_master_voice_volume.value_changed.connect(func(_v): _apply_audio())

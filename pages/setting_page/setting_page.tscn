@@ -16,8 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://cccd8lo00ednu" path="res://assets/sprites/ui/ui.sprites/reset_normal.tres" id="12_reset_n"]
 [ext_resource type="Texture2D" uid="uid://b20kuhb85jy6f" path="res://assets/sprites/ui/ui.sprites/reset_hover.tres" id="13_reset_h"]
 [ext_resource type="Texture2D" uid="uid://bmky68wvcylj8" path="res://assets/sprites/ui/ui.sprites/reset_click.tres" id="14_reset_c"]
+[ext_resource type="Script" uid="uid://rj7viyjo2c77" path="res://prefabs/text_speed_preview/text_speed_preview.gd" id="15_tsp"]
 
-[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
+[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "text_speed_preview", "auto_speed_preview", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
 script = ExtResource("1_cqmhw")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_System")
 btn_screen_fullscreen = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen/SelectionButton")
@@ -29,6 +30,8 @@ btn_confirmation_on = NodePath("Pages/SystemPage/Controls/ScrollContainer/Conten
 btn_confirmation_off = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation/SelectionButton2")
 btn_skip_unread_text_on = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues/SelectionButton")
 btn_skip_unread_text_off = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues/SelectionButton2")
+text_speed_preview = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/TextSpeedPreview")
+auto_speed_preview = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/TextSpeedPreview")
 slider_text_speed = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/SliderEx")
 slider_auto_speed = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/SliderEx2")
 slider_music_volume = NodePath("Pages/AudioPage/Controls/SliderEx_MusicVolume")
@@ -205,13 +208,16 @@ offset_top = 21.0
 offset_right = 1094.0
 offset_bottom = 36.0
 
-[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed" unique_id=594128774]
+[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed" unique_id=594128774 node_paths=PackedStringArray("dialogue_label")]
 layout_mode = 0
 offset_left = -11.0
 offset_top = 89.0
 offset_right = 1721.0
 offset_bottom = 339.0
+mouse_filter = 2
 texture = ExtResource("7_175jp")
+script = ExtResource("15_tsp")
+dialogue_label = NodePath("DialogueLabel")
 
 [node name="DialogueLabel" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/TextSpeedPreview" unique_id=172739019 instance=ExtResource("8_n7ybo")]
 layout_mode = 1
@@ -229,8 +235,6 @@ theme_override_fonts/normal_font = ExtResource("9_pr7ah")
 theme_override_font_sizes/normal_font_size = 40
 text = "文学社"
 pause_at_characters = ""
-
-[node name="MakeMeAPrefab" type="Node" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/TextSpeedPreview" unique_id=855688363]
 
 [node name="AutoTextDisplaySpeed" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=469106257]
 anchors_preset = 0
@@ -253,13 +257,16 @@ offset_top = 21.0
 offset_right = 1094.0
 offset_bottom = 36.0
 
-[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed" unique_id=2078195816]
+[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed" unique_id=2078195816 node_paths=PackedStringArray("dialogue_label")]
 layout_mode = 0
 offset_left = -11.0
 offset_top = 89.0
 offset_right = 1721.0
 offset_bottom = 339.0
+mouse_filter = 2
 texture = ExtResource("7_175jp")
+script = ExtResource("15_tsp")
+dialogue_label = NodePath("DialogueLabel")
 
 [node name="DialogueLabel" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/TextSpeedPreview" unique_id=1381950598 instance=ExtResource("8_n7ybo")]
 layout_mode = 1
@@ -277,8 +284,6 @@ theme_override_fonts/normal_font = ExtResource("9_pr7ah")
 theme_override_font_sizes/normal_font_size = 40
 text = "文学社"
 pause_at_characters = ""
-
-[node name="MakeMeAPrefab" type="Node" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/TextSpeedPreview" unique_id=734928853]
 
 [node name="SkipUnread" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1026284572]
 anchors_preset = 0
