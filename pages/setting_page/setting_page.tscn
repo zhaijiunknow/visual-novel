@@ -51,7 +51,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SystemPage" type="Control" parent="Pages" unique_id=1184190931]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,6 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Preview1" type="TextureRect" parent="Pages/SystemPage" unique_id=1494545726]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,59 +69,64 @@ grow_vertical = 2
 texture = ExtResource("3_u8iwx")
 
 [node name="Labels" type="Control" parent="Pages/SystemPage" unique_id=74714070]
+layout_mode = 1
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="SettingLabel" parent="Pages/SystemPage/Labels" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 656.0
 offset_top = 189.0
-offset_right = 2840.0
+offset_right = 872.0
 offset_bottom = 242.0
 text = "游戏窗口大小"
 title_zh = "游戏窗口大小"
 title_en = "Screen"
 
 [node name="SettingLabel2" parent="Pages/SystemPage/Labels" unique_id=1001590183 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 656.0
 offset_top = 327.0
-offset_right = 2840.0
+offset_right = 800.0
 offset_bottom = 380.0
 text = "快进条件"
 title_zh = "快进条件"
 title_en = "Skip Conditions"
 
 [node name="SettingLabel3" parent="Pages/SystemPage/Labels" unique_id=1657591942 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 656.0
 offset_top = 465.0
-offset_right = 2840.0
+offset_right = 800.0
 offset_bottom = 518.0
 text = "二级确认"
 title_zh = "二级确认"
 title_en = "Confirmation"
 
 [node name="SettingLabel4" parent="Pages/SystemPage/Labels" unique_id=627802397 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
-offset_top = 605.0
-offset_right = 2840.0
-offset_bottom = 658.0
+layout_mode = 1
+offset_left = 656.0
+offset_top = 604.0
+offset_right = 872.0
+offset_bottom = 657.0
 text = "文本显示速度"
 title_zh = "文本显示速度"
 title_en = "Text Speed"
 
 [node name="SettingLabel5" parent="Pages/SystemPage/Labels" unique_id=1472875771 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 656.0
 offset_top = 988.0
-offset_right = 2840.0
+offset_right = 872.0
 offset_bottom = 1041.0
 text = "自动播放速度"
 title_zh = "自动播放速度"
 title_en = "Auto Speed"
 
 [node name="SettingLabel6" parent="Pages/SystemPage/Labels" unique_id=470391390 instance=ExtResource("5_u8iwx")]
-layout_mode = 0
+layout_mode = 1
+offset_left = 656.0
 offset_top = 1127.0
-offset_right = 2840.0
+offset_right = 872.0
 offset_bottom = 1180.0
 text = "跳过未读文本"
 title_zh = "跳过未读文本"
@@ -215,7 +220,7 @@ offset_top = 1009.0
 offset_right = 1750.0
 offset_bottom = 1024.0
 
-[node name="TextureRect" type="TextureRect" parent="Pages/SystemPage/Controls" unique_id=594128774]
+[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls" unique_id=594128774]
 layout_mode = 0
 offset_left = 645.0
 offset_top = 693.0
@@ -233,6 +238,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Preview1" type="TextureRect" parent="Pages/AudioPage" unique_id=735597531]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -248,7 +254,6 @@ offset_right = 656.0
 
 [node name="SettingLabel" parent="Pages/AudioPage/Labels" unique_id=692833134 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 189.0
 offset_right = 872.0
 offset_bottom = 242.0
@@ -258,7 +263,6 @@ title_en = "Music Volume"
 
 [node name="SettingLabel2" parent="Pages/AudioPage/Labels" unique_id=1185230924 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 306.0
 offset_right = 872.0
 offset_bottom = 359.0
@@ -268,7 +272,6 @@ title_en = "Sound Volume"
 
 [node name="SettingLabel3" parent="Pages/AudioPage/Labels" unique_id=1500919314 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 423.0
 offset_right = 872.0
 offset_bottom = 476.0
@@ -278,7 +281,6 @@ title_en = "Voice Volume"
 
 [node name="SettingLabel4" parent="Pages/AudioPage/Labels" unique_id=1438301315 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 539.0
 offset_right = 944.0
 offset_bottom = 592.0
@@ -288,7 +290,6 @@ title_en = "Character Voice Volume"
 
 [node name="SettingLabel5" parent="Pages/AudioPage/Labels" unique_id=1330299271 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
-offset_left = 0.0
 offset_top = 1142.0
 offset_right = 944.0
 offset_bottom = 1195.0
@@ -358,8 +359,8 @@ offset_top = 1200.0
 offset_right = 2350.0
 offset_bottom = 1320.0
 texture_normal = ExtResource("12_reset_n")
-texture_hover = ExtResource("13_reset_h")
 texture_pressed = ExtResource("14_reset_c")
+texture_hover = ExtResource("13_reset_h")
 
 [node name="BackButton" parent="." unique_id=967157290 instance=ExtResource("8_70vfm")]
 offset_left = 97.0
