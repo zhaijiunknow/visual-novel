@@ -10,10 +10,31 @@
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="8_70vfm"]
 [ext_resource type="Texture2D" uid="uid://cjsnaq4ealc3h" path="res://assets/temp/audio_setting.jpg" id="8_evwb8"]
 [ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="10_evwb8"]
+[ext_resource type="Texture2D" uid="uid://cccd8lo00ednu" path="res://assets/sprites/ui/ui.sprites/reset_normal.tres" id="12_reset_n"]
+[ext_resource type="Texture2D" uid="uid://b20kuhb85jy6f" path="res://assets/sprites/ui/ui.sprites/reset_hover.tres" id="13_reset_h"]
+[ext_resource type="Texture2D" uid="uid://bmky68wvcylj8" path="res://assets/sprites/ui/ui.sprites/reset_click.tres" id="14_reset_c"]
 
-[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item")]
+[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
 script = ExtResource("1_cqmhw")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_System")
+btn_screen_fullscreen = NodePath("Pages/SystemPage/Controls/HBoxContainer_Screen/SelectionButton")
+btn_screen_window = NodePath("Pages/SystemPage/Controls/HBoxContainer_Screen/SelectionButton2")
+btn_skip_unread = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton")
+btn_skip_after_choice = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton2")
+btn_skip_ignore_transitions = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton3")
+btn_confirmation_on = NodePath("Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation/SelectionButton")
+btn_confirmation_off = NodePath("Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation/SelectionButton2")
+btn_skip_unread_text_on = NodePath("Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues/SelectionButton")
+btn_skip_unread_text_off = NodePath("Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues/SelectionButton2")
+slider_text_speed = NodePath("Pages/SystemPage/Controls/SliderEx")
+slider_auto_speed = NodePath("Pages/SystemPage/Controls/SliderEx2")
+slider_music_volume = NodePath("Pages/AudioPage/Controls/SliderEx_MusicVolume")
+slider_sound_volume = NodePath("Pages/AudioPage/Controls/SliderEx_SoundVolume")
+slider_master_voice_volume = NodePath("Pages/AudioPage/Controls/SliderEx_MasterVoiceVolume")
+slider_character_voice_volume = NodePath("Pages/AudioPage/Controls/SliderEx_CharacterVoiceVolume")
+character_voice_card_container = NodePath("Pages/AudioPage/Controls/CharacterVoiceCards")
+btn_mute_on = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionButton_MuteOn")
+btn_mute_off = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionButton_MuteOff")
 
 [node name="Background2" type="TextureRect" parent="." unique_id=1987285052]
 offset_right = 2560.0
@@ -306,28 +327,39 @@ offset_top = 560.0
 offset_right = 1752.0
 offset_bottom = 575.0
 
-[node name="CharacterVoiceCard" type="Control" parent="Pages/AudioPage/Controls" unique_id=1293636068]
-custom_minimum_size = Vector2(260, 458)
-anchors_preset = 0
+[node name="CharacterVoiceCards" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=1293636068]
+layout_mode = 0
 offset_left = 942.0
 offset_top = 632.0
-offset_right = 1202.0
+offset_right = 2450.0
 offset_bottom = 1090.0
+theme_override_constants/separation = 20
 
-[node name="Hover" type="TextureRect" parent="Pages/AudioPage/Controls/CharacterVoiceCard" unique_id=1635306219]
+[node name="HBoxContainer_Mute" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=114455678]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1053.0
+offset_top = 1148.0
+offset_right = 1373.0
+offset_bottom = 1194.0
+theme_override_constants/separation = 72
 
-[node name="Normal" type="TextureRect" parent="Pages/AudioPage/Controls/CharacterVoiceCard" unique_id=1307263361]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="SelectionButton_MuteOn" parent="Pages/AudioPage/Controls/HBoxContainer_Mute" unique_id=224466880 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "开启"
 
-[node name="Selected" type="TextureRect" parent="Pages/AudioPage/Controls/CharacterVoiceCard" unique_id=1603066377]
+[node name="SelectionButton_MuteOff" parent="Pages/AudioPage/Controls/HBoxContainer_Mute" unique_id=335577991 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "关闭"
+
+[node name="ResetButton" type="TextureButton" parent="Pages/AudioPage/Controls" unique_id=446688002]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 2100.0
+offset_top = 1200.0
+offset_right = 2350.0
+offset_bottom = 1320.0
+texture_normal = ExtResource("12_reset_n")
+texture_hover = ExtResource("13_reset_h")
+texture_pressed = ExtResource("14_reset_c")
 
 [node name="BackButton" parent="." unique_id=967157290 instance=ExtResource("8_70vfm")]
 offset_left = 97.0

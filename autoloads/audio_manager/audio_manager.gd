@@ -64,6 +64,18 @@ func play_theme() -> void:
 	audio_player_music.stream = theme_music
 	audio_player_music.play()
 
+func apply_settings(settings: SettingData) -> void:
+	if settings.mute_all:
+		audio_player_music.volume_db = -80.0
+		audio_player_sound.volume_db = -80.0
+		audio_player_voice.volume_db = -80.0
+		audio_player_bonus.volume_db = -80.0
+	else:
+		audio_player_music.volume_db = linear_to_db(settings.music_volume)
+		audio_player_sound.volume_db = linear_to_db(settings.sound_volume)
+		audio_player_voice.volume_db = linear_to_db(settings.voice_volume)
+		audio_player_bonus.volume_db = linear_to_db(settings.music_volume)
+
 func set_track_position_by_ratio(ratio: float):
 	var target_position = audio_player_bonus.stream.get_length() * ratio
 	audio_player_bonus.stop()

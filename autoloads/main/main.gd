@@ -6,6 +6,8 @@ var save_data: SaveData = SaveData.new()
 var save_path = "user://save_data.tres"
 var collection_data: CollectionData = CollectionData.new()
 var collection_path = "user://collection_data.tres"
+var setting_data: SettingData = SettingData.new()
+var setting_path = "user://setting_data.tres"
 
 var clicked: bool
 var dragged: bool
@@ -28,6 +30,8 @@ func _ready() -> void:
 		save_data = load(save_path)
 	if FileAccess.file_exists(collection_path):
 		collection_data = load(collection_path)
+	if FileAccess.file_exists(setting_path):
+		setting_data = load(setting_path)
 	
 	#expression_dict = JSON.parse_string()
 
@@ -39,6 +43,9 @@ func has_voice_collection(filename) -> bool:
 
 func save_collection_data() -> void:
 	ResourceSaver.save(collection_data, collection_path)
+
+func save_setting_data() -> void:
+	ResourceSaver.save(setting_data, setting_path)
 
 #func auto_save() -> void:
 	#ResourceSaver.save(sa)
