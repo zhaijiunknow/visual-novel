@@ -17,6 +17,11 @@ var current_expression: String
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
 var character_image: Control
 var current_position: String
+var _viewport_always_update: bool = false
+
+func _request_viewport_update() -> void:
+	if not _viewport_always_update:
+		subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 @export var movable: bool
 
@@ -38,7 +43,8 @@ var bonus_part_index_dict: Dictionary[String, Dictionary]
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	
+
+	subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	texture_rect_avatar.visible = false
 	
 	texture_rect_model.size = sv_container.size
@@ -174,9 +180,11 @@ func SetParts(parts_string: String) -> void:
 		var part_name = part_item[0]
 		var item_name = part_item[1]
 		body_part_dict[part_name].animation = item_name
+		_request_viewport_update()
 
 func SetBody(body_name: String) -> void:
 	body_part_dict["Body"].animation = body_name
+	_request_viewport_update()
 
 func SetExpression(expression_name: String) -> void:
 	current_expression = expression_name
@@ -184,15 +192,18 @@ func SetExpression(expression_name: String) -> void:
 	for part_name in expression_data.keys():
 		var part_value: String = expression_data[part_name]
 		body_part_dict[part_name].animation = part_value
+		_request_viewport_update()
 
 func ClearOptionals() -> void:
 	for additional: Sprite2D in optionals_pool.get_children():
 		additional.visible = false
+		_request_viewport_update()
 
 func SetOptionals(optionals_string: String) -> void:
 	var optionals_array = optionals_string.split(",")
 	for additional in optionals_array:
 		var addtional_sprite: Sprite2D = optionals_pool.get_node(additional)
 		addtional_sprite.visible = true
+		_request_viewport_update()
 
 #endregion

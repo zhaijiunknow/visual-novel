@@ -75,5 +75,5 @@ visible = false
 [node name="SettingPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1362674666 instance=ExtResource("10_otnwt")]
 visible = false
 
-[node name="ConfirmPage" parent="SubViewportContainer/SubViewport/Pages" instance=ExtResource("11_confirm")]
+[node name="ConfirmPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=24059510 instance=ExtResource("11_confirm")]
 visible = false

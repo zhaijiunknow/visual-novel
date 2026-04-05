@@ -10,6 +10,7 @@ extends Node
 @export_dir var voice_path: String
 
 var current_voice: AudioStreamWAV
+var voice_cache: Dictionary = {}
 
 signal track_index_changed
 var track_index: int:
@@ -26,12 +27,38 @@ var current_track: MusicData:
 
 func _ready() -> void:
 	track_index = 0
-	
+
 	audio_player_bonus.finished.connect(
 		func ():
 			track_index += 1
 			audio_player_bonus.play()
 	)
+
+func play_voice(filename: String, set_current: bool = false) -> void:
+	if voice_cache.has(filename):
+		var voice = voice_cache[filename]
+		if set_current:
+			current_voice = voice
+		audio_player_voice.stream = voice
+		audio_player_voice.play()
+		return
+
+	var file_path = "%s/%s.wav" % [AudioManager.voice_path, filename]
+	ResourceLoader.load_threaded_request(file_path)
+	var status = ResourceLoader.load_threaded_get_status(file_path)
+	while status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
+		await get_tree().process_frame
+		status = ResourceLoader.load_threaded_get_status(file_path)
+	var voice = ResourceLoader.load_threaded_get(file_path)
+	voice_cache[filename] = voice
+	if set_current:
+		current_voice = voice
+	audio_player_voice.stream = voice
+	audio_player_voice.play()
+
+func replay_voice() -> void:
+	audio_player_voice.stream = current_voice
+	audio_player_voice.play()
 
 func play_theme() -> void:
 	audio_player_music.stream = theme_music
@@ -41,15 +68,3 @@ func set_track_position_by_ratio(ratio: float):
 	var target_position = audio_player_bonus.stream.get_length() * ratio
 	audio_player_bonus.stop()
 	audio_player_bonus.play(target_position)
-
-func play_voice(filename: String, set_current: bool = false) -> void:
-	var file_path = "%s/%s.wav" % [AudioManager.voice_path, filename]
-	var voice: AudioStreamWAV = load(file_path)
-	if set_current:
-		current_voice = voice
-	audio_player_voice.stream = voice
-	audio_player_voice.play()
-	
-func replay_voice() -> void:
-	audio_player_voice.stream = current_voice
-	audio_player_voice.play()

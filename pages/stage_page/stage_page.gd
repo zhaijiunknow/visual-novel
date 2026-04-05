@@ -154,16 +154,20 @@ func process_dialogue_line() -> void:
 	voice_buttons.visible = dialogue_line.has_tag("语音")
 	Tools.clear_connections(AudioManager.audio_player_voice.finished)
 	if dialogue_line.has_tag("语音") and character:
+		character.subviewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 		character.body_part_dict["Mouth"].animation = character.speaking_mouth
 		AudioManager.audio_player_voice.finished.connect(
 			func():
 				if not expression: return
+				character.subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 				character.SetExpression(expression)
 		)
 		update_favourite()
 		AudioManager.play_voice(voice_name, true)
 	else:
 		AudioManager.audio_player_voice.stop()
+		if character:
+			character.subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 
 	# 打字
 	responses_menu.visible = dialogue_line.responses.size() > 0
