@@ -51,7 +51,7 @@ func _ready() -> void:
 			Game.confirm_page.show_confirm(
 				"特别提醒",
 				"确定要回到标题界面吗？\n未保存的进度将要丢失。",
-				func (): Game.switch_to_page(Game.main_menu, true, true)
+				func (): Game.switch_to_page(Game.main_menu, true, false)
 			)
 			Game.switch_to_page(Game.confirm_page, true, true)
 	)

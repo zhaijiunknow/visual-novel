@@ -30,6 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SystemPage" type="Control" parent="Pages" unique_id=1184190931]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,7 +55,7 @@ offset_bottom = 40.0
 [node name="SettingLabel" parent="Pages/SystemPage/Labels" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 189.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 242.0
 text = "游戏窗口大小"
 title_zh = "游戏窗口大小"
@@ -63,7 +64,7 @@ title_en = "Screen"
 [node name="SettingLabel2" parent="Pages/SystemPage/Labels" unique_id=1001590183 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 327.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 380.0
 text = "快进条件"
 title_zh = "快进条件"
@@ -72,7 +73,7 @@ title_en = "Skip Conditions"
 [node name="SettingLabel3" parent="Pages/SystemPage/Labels" unique_id=1657591942 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 465.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 518.0
 text = "二级确认"
 title_zh = "二级确认"
@@ -81,7 +82,7 @@ title_en = "Confirmation"
 [node name="SettingLabel4" parent="Pages/SystemPage/Labels" unique_id=627802397 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 605.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 658.0
 text = "文本显示速度"
 title_zh = "文本显示速度"
@@ -90,7 +91,7 @@ title_en = "Text Speed"
 [node name="SettingLabel5" parent="Pages/SystemPage/Labels" unique_id=1472875771 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 988.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 1041.0
 text = "自动播放速度"
 title_zh = "自动播放速度"
@@ -99,7 +100,7 @@ title_en = "Auto Speed"
 [node name="SettingLabel6" parent="Pages/SystemPage/Labels" unique_id=470391390 instance=ExtResource("5_u8iwx")]
 layout_mode = 0
 offset_top = 1127.0
-offset_right = 2184.0
+offset_right = 2840.0
 offset_bottom = 1180.0
 text = "跳过未读文本"
 title_zh = "跳过未读文本"
@@ -110,7 +111,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=745257921]
+[node name="HBoxContainer_Screen" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=745257921]
 layout_mode = 0
 offset_left = 1052.0
 offset_top = 195.0
@@ -118,16 +119,16 @@ offset_right = 1372.0
 offset_bottom = 241.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer" unique_id=933418496 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_Screen" unique_id=933418496 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "全屏"
 selected = true
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer" unique_id=1321865905 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_Screen" unique_id=1321865905 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "窗口"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=963179415]
+[node name="HBoxContainer_FastForwardMode" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=963179415]
 layout_mode = 0
 offset_left = 1053.0
 offset_top = 334.0
@@ -135,19 +136,19 @@ offset_right = 1779.0
 offset_bottom = 380.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer3" unique_id=1949140740 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1949140740 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "未读文本"
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer3" unique_id=1861008268 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1861008268 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "选项后继续"
 
-[node name="SelectionButton3" parent="Pages/SystemPage/Controls/HBoxContainer3" unique_id=1196587353 instance=ExtResource("5_175jp")]
+[node name="SelectionButton3" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1196587353 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "忽略转场"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1166273292]
+[node name="HBoxContainer_NeedConfirmation" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1166273292]
 layout_mode = 0
 offset_left = 1053.0
 offset_top = 472.0
@@ -155,15 +156,15 @@ offset_right = 1373.0
 offset_bottom = 518.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer2" unique_id=884711893 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation" unique_id=884711893 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "开启"
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer2" unique_id=1473274842 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation" unique_id=1473274842 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "关闭"
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1013534801]
+[node name="HBoxContainer_SkipUnreadDialogues" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1013534801]
 layout_mode = 0
 offset_left = 1053.0
 offset_top = 1133.0
@@ -171,11 +172,11 @@ offset_right = 1373.0
 offset_bottom = 1179.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer4" unique_id=1729314141 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues" unique_id=1729314141 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "开启"
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer4" unique_id=684277295 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues" unique_id=684277295 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "关闭"
 
@@ -211,7 +212,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Preview1" type="TextureRect" parent="Pages/AudioPage" unique_id=735597531]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,28 +278,28 @@ title_en = "Mute All"
 [node name="Controls" type="Control" parent="Pages/AudioPage" unique_id=1773462436]
 anchors_preset = 0
 
-[node name="SliderEx" parent="Pages/AudioPage/Controls" unique_id=2134620853 instance=ExtResource("6_2c2te")]
+[node name="SliderEx_MusicVolume" parent="Pages/AudioPage/Controls" unique_id=2134620853 instance=ExtResource("6_2c2te")]
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 210.0
 offset_right = 1752.0
 offset_bottom = 225.0
 
-[node name="SliderEx2" parent="Pages/AudioPage/Controls" unique_id=2084992075 instance=ExtResource("6_2c2te")]
+[node name="SliderEx_SoundVolume" parent="Pages/AudioPage/Controls" unique_id=2084992075 instance=ExtResource("6_2c2te")]
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 326.0
 offset_right = 1752.0
 offset_bottom = 341.0
 
-[node name="SliderEx3" parent="Pages/AudioPage/Controls" unique_id=215573349 instance=ExtResource("6_2c2te")]
+[node name="SliderEx_MasterVoiceVolume" parent="Pages/AudioPage/Controls" unique_id=215573349 instance=ExtResource("6_2c2te")]
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 445.0
 offset_right = 1752.0
 offset_bottom = 460.0
 
-[node name="SliderEx4" parent="Pages/AudioPage/Controls" unique_id=1385521828 instance=ExtResource("6_2c2te")]
+[node name="SliderEx_CharacterVoiceVolume" parent="Pages/AudioPage/Controls" unique_id=1385521828 instance=ExtResource("6_2c2te")]
 layout_mode = 0
 offset_left = 1048.0
 offset_top = 560.0
