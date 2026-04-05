@@ -81,8 +81,6 @@ func go_back(_transition: bool = true):
 	loading = false
 
 func update_audio():
-	var came_from_menu: bool = page_stack.size() >= 2 and page_stack[-2] == main_menu
-
 	if current_page == bonus_page:
 		AudioManager.audio_player_music.stop()
 		if AudioManager.audio_player_bonus.stream_paused:
@@ -93,8 +91,8 @@ func update_audio():
 		AudioManager.audio_player_bonus.stream_paused = true
 		if current_page == stage_page:
 			AudioManager.audio_player_music.stop()
-		elif came_from_menu:
-			if AudioManager.audio_player_music.stream != AudioManager.theme_music or not AudioManager.audio_player_music.playing:
+		elif main_menu in page_stack:
+			if not AudioManager.audio_player_music.playing:
 				AudioManager.play_theme()
 		else:
 			AudioManager.audio_player_music.stop()
