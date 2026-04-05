@@ -89,13 +89,13 @@ func _load_settings() -> void:
 	btn_skip_unread.selected = s.skip_unread_text
 	btn_skip_after_choice.selected = s.skip_after_choice
 	btn_skip_ignore_transitions.selected = s.skip_ignore_transitions
-	slider_text_speed.value = s.text_speed
-	slider_auto_speed.value = s.auto_speed
+	slider_text_speed.set_value_silent(s.text_speed)
+	slider_auto_speed.set_value_silent(s.auto_speed)
 
 	# Audio
-	slider_music_volume.value = s.music_volume
-	slider_sound_volume.value = s.sound_volume
-	slider_master_voice_volume.value = s.voice_volume
+	slider_music_volume.set_value_silent(s.music_volume)
+	slider_sound_volume.set_value_silent(s.sound_volume)
+	slider_master_voice_volume.set_value_silent(s.voice_volume)
 
 	if s.mute_all:
 		_select_exclusive(btn_mute_on, btn_mute_off, true)
@@ -222,7 +222,7 @@ func _select_character_card(card: CharacterVoiceCard) -> void:
 			c.selected = (c == card)
 	selected_character = card.character_name
 	var vol = Main.setting_data.character_volumes.get(selected_character, 1.0)
-	slider_character_voice_volume.value = vol
+	slider_character_voice_volume.set_value_silent(vol)
 
 func _reset_settings() -> void:
 	Main.setting_data = SettingData.new()
