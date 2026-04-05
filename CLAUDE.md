@@ -57,6 +57,20 @@ Main → DialogueManager → AudioManager → Stage → Game → Prefabs → Deb
 - Persistence: `Resource` subclasses → `ResourceSaver.save()` / `load()`
 - Bilingual labels: `title_zh` + `title_en` properties
 - Chinese comments for domain-specific logic
+- **DRY principle**: Never repeat yourself — extract shared logic into helpers, base classes, or autoloads
+
+## Skip/Fast-Forward System
+
+Three toggleable conditions stored in `SettingData`:
+
+| Condition | Field | ON | OFF |
+|-----------|-------|----|-----|
+| 未读文本 (Skip Unread) | `skip_unread` | Skip ALL text incl. unread | Stop at unread text |
+| 选项后继续 (After Choice) | `skip_after_choice` | Pause at choice → auto-resume after selecting | Return to normal after choice |
+| 忽略转场 (Skip Transitions) | `skip_ignore_transitions` | Skip transition/performance animations | Play normally |
+
+The skip unread ON/OFF toggle (`btn_skip_unread_text_on/off`) sets `skip_unread`.
+The three multi-select buttons set `skip_unread_text`, `skip_after_choice`, `skip_ignore_transitions`.
 
 ## Known Issues
 
