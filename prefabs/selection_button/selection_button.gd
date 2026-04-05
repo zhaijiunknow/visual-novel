@@ -2,9 +2,11 @@
 class_name SelectionButton
 extends PanelContainer
 
-@export var select_rect: ColorRect
-@export var hover_rect: ColorRect
 @export var label_title: Label
+
+@export var click_color: Color = Color(1.0, 1.0, 1.0)
+@export var click_hover: Color = Color(1.0, 1.0, 1.0, 0.831)
+@export var click_selected: Color = Color(0.722, 0.722, 0.722)
 
 @export var title: String:
 	set(value):
@@ -20,4 +22,9 @@ extends PanelContainer
 @export var hovered: bool:
 	set(value):
 		hovered = value
-		hover_rect.visible = hovered
+		hover_rect.visible = hovered and not selected
+
+
+func _ready() -> void:
+	mouse_entered.connect(func(): hovered = true)
+	mouse_exited.connect(func(): hovered = false)

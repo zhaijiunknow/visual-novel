@@ -4,21 +4,27 @@
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="1_jkra5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iafw3"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+bg_color = Color(0.267, 0.271, 0.318, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+shadow_color = Color(1.3080386, 1.3080386, 1.3080386, 0.13725491)
+shadow_size = 1
+anti_aliasing_size = 4.161
 
 [node name="SelectionButton" type="PanelContainer" unique_id=933418496 node_paths=PackedStringArray("select_rect", "hover_rect", "label_title")]
-clip_children = 1
+self_modulate = Color(0.72156864, 0.72156864, 0.72156864, 1)
 offset_right = 124.0
 offset_bottom = 53.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_iafw3")
 script = ExtResource("1_iafw3")
-select_rect = NodePath("SelectRect")
-hover_rect = NodePath("HoverRect")
+select_rect = NodePath("")
+hover_rect = NodePath("")
 label_title = NodePath("MarginContainer/Label_Title")
+click_color = null
+click_hover = null
+click_selected = null
 title = "标题"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1835303418]
@@ -33,13 +39,3 @@ theme_override_fonts/font = ExtResource("1_jkra5")
 theme_override_font_sizes/font_size = 30
 text = "标题"
 horizontal_alignment = 1
-
-[node name="SelectRect" type="ColorRect" parent="." unique_id=2040444431]
-visible = false
-layout_mode = 2
-color = Color(0, 0, 0.07450981, 0.41568628)
-
-[node name="HoverRect" type="ColorRect" parent="." unique_id=363568572]
-visible = false
-layout_mode = 2
-color = Color(1, 1, 1, 0.27058825)
