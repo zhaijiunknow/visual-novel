@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://h8t4re234qtv" path="res://assets/sprites/ui/ui.sprites/textexample_background.tres" id="7_175jp"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="8_70vfm"]
 [ext_resource type="Texture2D" uid="uid://cjsnaq4ealc3h" path="res://assets/temp/audio_setting.jpg" id="8_evwb8"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="8_n7ybo"]
+[ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="9_pr7ah"]
 [ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="10_evwb8"]
+[ext_resource type="Script" uid="uid://c451u0wxoyvl7" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.gd" id="10_pr7ah"]
 [ext_resource type="Texture2D" uid="uid://cccd8lo00ednu" path="res://assets/sprites/ui/ui.sprites/reset_normal.tres" id="12_reset_n"]
 [ext_resource type="Texture2D" uid="uid://b20kuhb85jy6f" path="res://assets/sprites/ui/ui.sprites/reset_hover.tres" id="13_reset_h"]
 [ext_resource type="Texture2D" uid="uid://bmky68wvcylj8" path="res://assets/sprites/ui/ui.sprites/reset_click.tres" id="14_reset_c"]
@@ -17,17 +20,17 @@
 [node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
 script = ExtResource("1_cqmhw")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_System")
-btn_screen_fullscreen = NodePath("Pages/SystemPage/Controls/HBoxContainer_Screen/SelectionButton")
-btn_screen_window = NodePath("Pages/SystemPage/Controls/HBoxContainer_Screen/SelectionButton2")
-btn_skip_unread = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton")
-btn_skip_after_choice = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton2")
-btn_skip_ignore_transitions = NodePath("Pages/SystemPage/Controls/HBoxContainer_FastForwardMode/SelectionButton3")
-btn_confirmation_on = NodePath("Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation/SelectionButton")
-btn_confirmation_off = NodePath("Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation/SelectionButton2")
-btn_skip_unread_text_on = NodePath("Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues/SelectionButton")
-btn_skip_unread_text_off = NodePath("Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues/SelectionButton2")
-slider_text_speed = NodePath("Pages/SystemPage/Controls/SliderEx")
-slider_auto_speed = NodePath("Pages/SystemPage/Controls/SliderEx2")
+btn_screen_fullscreen = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen/SelectionButton")
+btn_screen_window = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen/SelectionButton2")
+btn_skip_unread = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode/SelectionButton")
+btn_skip_after_choice = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode/SelectionButton2")
+btn_skip_ignore_transitions = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode/SelectionButton3")
+btn_confirmation_on = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation/SelectionButton")
+btn_confirmation_off = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation/SelectionButton2")
+btn_skip_unread_text_on = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues/SelectionButton")
+btn_skip_unread_text_off = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues/SelectionButton2")
+slider_text_speed = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/SliderEx")
+slider_auto_speed = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/SliderEx2")
 slider_music_volume = NodePath("Pages/AudioPage/Controls/SliderEx_MusicVolume")
 slider_sound_volume = NodePath("Pages/AudioPage/Controls/SliderEx_SoundVolume")
 slider_master_voice_volume = NodePath("Pages/AudioPage/Controls/SliderEx_MasterVoiceVolume")
@@ -68,165 +71,254 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_u8iwx")
 
-[node name="Labels" type="Control" parent="Pages/SystemPage" unique_id=74714070]
+[node name="Controls" type="Control" parent="Pages/SystemPage" unique_id=74714070]
 layout_mode = 1
 anchors_preset = 0
 
-[node name="SettingLabel" parent="Pages/SystemPage/Labels" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
+[node name="ScrollContainer" type="ScrollContainer" parent="Pages/SystemPage/Controls" unique_id=720155950]
+layout_mode = 0
+offset_left = 628.0
+offset_top = 133.0
+offset_right = 2395.0
+offset_bottom = 1209.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Content" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer" unique_id=1369355078]
+custom_minimum_size = Vector2(0, 1280)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScreenMode" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=400215696]
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 55.0
+offset_right = 27.0
+offset_bottom = 55.0
+
+[node name="SettingLabel" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode" unique_id=1727516438 instance=ExtResource("5_u8iwx")]
 layout_mode = 1
-offset_left = 656.0
-offset_top = 189.0
-offset_right = 872.0
-offset_bottom = 242.0
+offset_right = 216.0
 text = "游戏窗口大小"
 title_zh = "游戏窗口大小"
 title_en = "Screen"
 
-[node name="SettingLabel2" parent="Pages/SystemPage/Labels" unique_id=1001590183 instance=ExtResource("5_u8iwx")]
-layout_mode = 1
-offset_left = 656.0
-offset_top = 327.0
-offset_right = 800.0
-offset_bottom = 380.0
-text = "快进条件"
-title_zh = "快进条件"
-title_en = "Skip Conditions"
-
-[node name="SettingLabel3" parent="Pages/SystemPage/Labels" unique_id=1657591942 instance=ExtResource("5_u8iwx")]
-layout_mode = 1
-offset_left = 656.0
-offset_top = 465.0
-offset_right = 800.0
-offset_bottom = 518.0
-text = "二级确认"
-title_zh = "二级确认"
-title_en = "Confirmation"
-
-[node name="SettingLabel4" parent="Pages/SystemPage/Labels" unique_id=627802397 instance=ExtResource("5_u8iwx")]
-layout_mode = 1
-offset_left = 656.0
-offset_top = 604.0
-offset_right = 872.0
-offset_bottom = 657.0
-text = "文本显示速度"
-title_zh = "文本显示速度"
-title_en = "Text Speed"
-
-[node name="SettingLabel5" parent="Pages/SystemPage/Labels" unique_id=1472875771 instance=ExtResource("5_u8iwx")]
-layout_mode = 1
-offset_left = 656.0
-offset_top = 988.0
-offset_right = 872.0
-offset_bottom = 1041.0
-text = "自动播放速度"
-title_zh = "自动播放速度"
-title_en = "Auto Speed"
-
-[node name="SettingLabel6" parent="Pages/SystemPage/Labels" unique_id=470391390 instance=ExtResource("5_u8iwx")]
-layout_mode = 1
-offset_left = 656.0
-offset_top = 1127.0
-offset_right = 872.0
-offset_bottom = 1180.0
-text = "跳过未读文本"
-title_zh = "跳过未读文本"
-title_en = "Skip Unread"
-
-[node name="Controls" type="Control" parent="Pages/SystemPage" unique_id=1754973072]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer_Screen" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=745257921]
+[node name="HBoxContainer_Screen" type="HBoxContainer" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode" unique_id=745257921]
 layout_mode = 0
-offset_left = 1052.0
-offset_top = 195.0
-offset_right = 1372.0
-offset_bottom = 241.0
+offset_left = 397.0
+offset_top = 6.0
+offset_right = 717.0
+offset_bottom = 52.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_Screen" unique_id=933418496 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen" unique_id=933418496 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "全屏"
 selected = true
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_Screen" unique_id=1321865905 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen" unique_id=1321865905 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "窗口"
 
-[node name="HBoxContainer_FastForwardMode" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=963179415]
+[node name="FastForward" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1607890397]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 194.0
+offset_right = 68.0
+offset_bottom = 234.0
+
+[node name="SettingLabel2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward" unique_id=1001590183 instance=ExtResource("5_u8iwx")]
+layout_mode = 1
+offset_right = 144.0
+text = "快进条件"
+title_zh = "快进条件"
+title_en = "Skip Conditions"
+
+[node name="HBoxContainer_FastForwardMode" type="HBoxContainer" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward" unique_id=963179415]
 layout_mode = 0
-offset_left = 1053.0
-offset_top = 334.0
-offset_right = 1779.0
-offset_bottom = 380.0
+offset_left = 397.0
+offset_top = 7.0
+offset_right = 1123.0
+offset_bottom = 53.0
 theme_override_constants/separation = 72
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1949140740 instance=ExtResource("5_175jp")]
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1949140740 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "未读文本"
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1861008268 instance=ExtResource("5_175jp")]
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1861008268 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "选项后继续"
 
-[node name="SelectionButton3" parent="Pages/SystemPage/Controls/HBoxContainer_FastForwardMode" unique_id=1196587353 instance=ExtResource("5_175jp")]
+[node name="SelectionButton3" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1196587353 instance=ExtResource("5_175jp")]
 layout_mode = 2
 title = "忽略转场"
 
-[node name="HBoxContainer_NeedConfirmation" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1166273292]
+[node name="ConfirmDialogue" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1219303697]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 332.0
+offset_right = 68.0
+offset_bottom = 372.0
+
+[node name="SettingLabel3" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue" unique_id=1657591942 instance=ExtResource("5_u8iwx")]
+layout_mode = 1
+offset_right = 144.0
+text = "二级确认"
+title_zh = "二级确认"
+title_en = "Confirmation"
+
+[node name="HBoxContainer_NeedConfirmation" type="HBoxContainer" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue" unique_id=1166273292]
 layout_mode = 0
-offset_left = 1053.0
+offset_left = 397.0
+offset_top = 7.0
+offset_right = 717.0
+offset_bottom = 53.0
+theme_override_constants/separation = 72
+
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation" unique_id=884711893 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "开启"
+
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation" unique_id=1473274842 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "关闭"
+
+[node name="TextDisplaySpeed" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=139642694]
+anchors_preset = 0
+offset_left = 27.0
 offset_top = 472.0
-offset_right = 1373.0
-offset_bottom = 518.0
-theme_override_constants/separation = 72
+offset_right = 67.0
+offset_bottom = 512.0
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation" unique_id=884711893 instance=ExtResource("5_175jp")]
-layout_mode = 2
-title = "开启"
+[node name="SettingLabel4" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed" unique_id=627802397 instance=ExtResource("5_u8iwx")]
+layout_mode = 1
+offset_right = 216.0
+text = "文本显示速度"
+title_zh = "文本显示速度"
+title_en = "Text Speed"
 
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_NeedConfirmation" unique_id=1473274842 instance=ExtResource("5_175jp")]
-layout_mode = 2
-title = "关闭"
-
-[node name="HBoxContainer_SkipUnreadDialogues" type="HBoxContainer" parent="Pages/SystemPage/Controls" unique_id=1013534801]
+[node name="SliderEx" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed" unique_id=1465816476 instance=ExtResource("6_2c2te")]
 layout_mode = 0
-offset_left = 1053.0
-offset_top = 1133.0
-offset_right = 1373.0
-offset_bottom = 1179.0
-theme_override_constants/separation = 72
+offset_left = 393.0
+offset_top = 21.0
+offset_right = 1094.0
+offset_bottom = 36.0
 
-[node name="SelectionButton" parent="Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues" unique_id=1729314141 instance=ExtResource("5_175jp")]
-layout_mode = 2
-title = "开启"
-
-[node name="SelectionButton2" parent="Pages/SystemPage/Controls/HBoxContainer_SkipUnreadDialogues" unique_id=684277295 instance=ExtResource("5_175jp")]
-layout_mode = 2
-title = "关闭"
-
-[node name="SliderEx" parent="Pages/SystemPage/Controls" unique_id=1465816476 instance=ExtResource("6_2c2te")]
+[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed" unique_id=594128774]
 layout_mode = 0
-offset_left = 1049.0
-offset_top = 625.0
-offset_right = 1750.0
-offset_bottom = 640.0
-
-[node name="SliderEx2" parent="Pages/SystemPage/Controls" unique_id=1063544853 instance=ExtResource("6_2c2te")]
-layout_mode = 0
-offset_left = 1049.0
-offset_top = 1009.0
-offset_right = 1750.0
-offset_bottom = 1024.0
-
-[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls" unique_id=594128774]
-layout_mode = 0
-offset_left = 645.0
-offset_top = 693.0
-offset_right = 2377.0
-offset_bottom = 943.0
+offset_left = -11.0
+offset_top = 89.0
+offset_right = 1721.0
+offset_bottom = 339.0
 texture = ExtResource("7_175jp")
+
+[node name="DialogueLabel" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/TextSpeedPreview" unique_id=172739019 instance=ExtResource("8_n7ybo")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -206.0
+offset_right = 1642.0
+offset_bottom = -74.0
+grow_horizontal = 1
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_pr7ah")
+theme_override_font_sizes/normal_font_size = 40
+text = "文学社"
+pause_at_characters = ""
+
+[node name="MakeMeAPrefab" type="Node" parent="Pages/SystemPage/Controls/ScrollContainer/Content/TextDisplaySpeed/TextSpeedPreview" unique_id=855688363]
+
+[node name="AutoTextDisplaySpeed" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=469106257]
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 855.0
+offset_right = 67.0
+offset_bottom = 895.0
+
+[node name="SettingLabel5" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed" unique_id=1472875771 instance=ExtResource("5_u8iwx")]
+layout_mode = 1
+offset_right = 216.0
+text = "自动播放速度"
+title_zh = "自动播放速度"
+title_en = "Auto Speed"
+
+[node name="SliderEx2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed" unique_id=1063544853 instance=ExtResource("6_2c2te")]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 21.0
+offset_right = 1094.0
+offset_bottom = 36.0
+
+[node name="TextSpeedPreview" type="TextureRect" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed" unique_id=2078195816]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 89.0
+offset_right = 1721.0
+offset_bottom = 339.0
+texture = ExtResource("7_175jp")
+
+[node name="DialogueLabel" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/TextSpeedPreview" unique_id=1381950598 instance=ExtResource("8_n7ybo")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -206.0
+offset_right = 1642.0
+offset_bottom = -74.0
+grow_horizontal = 1
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("9_pr7ah")
+theme_override_font_sizes/normal_font_size = 40
+text = "文学社"
+pause_at_characters = ""
+
+[node name="MakeMeAPrefab" type="Node" parent="Pages/SystemPage/Controls/ScrollContainer/Content/AutoTextDisplaySpeed/TextSpeedPreview" unique_id=734928853]
+
+[node name="SkipUnread" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1026284572]
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 1194.0
+offset_right = 67.0
+offset_bottom = 1234.0
+
+[node name="SettingLabel6" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread" unique_id=470391390 instance=ExtResource("5_u8iwx")]
+layout_mode = 1
+offset_right = 216.0
+text = "跳过未读文本"
+title_zh = "跳过未读文本"
+title_en = "Skip Unread"
+
+[node name="HBoxContainer_SkipUnreadDialogues" type="HBoxContainer" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6" unique_id=1013534801]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 6.0
+offset_right = 717.0
+offset_bottom = 52.0
+theme_override_constants/separation = 72
+
+[node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues" unique_id=1729314141 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "开启"
+
+[node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues" unique_id=684277295 instance=ExtResource("5_175jp")]
+layout_mode = 2
+title = "关闭"
+
+[node name="VScrollBarEx" type="VScrollBar" parent="Pages/SystemPage/Controls" unique_id=2120888028 node_paths=PackedStringArray("target_scroll_container")]
+layout_mode = 0
+offset_left = 2441.0
+offset_top = 187.0
+offset_right = 2449.0
+offset_bottom = 1200.0
+script = ExtResource("10_pr7ah")
+target_scroll_container = NodePath("../ScrollContainer")
+metadata/_custom_type_script = "uid://c451u0wxoyvl7"
 
 [node name="AudioPage" type="Control" parent="Pages" unique_id=1534882373]
 visible = false
