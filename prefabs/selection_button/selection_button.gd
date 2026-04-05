@@ -4,7 +4,7 @@ extends PanelContainer
 
 @export var label_title: Label
 
-@export var click_color: Color = Color(1.0, 1.0, 1.0)
+@export var click_color: Color = Color(1.0, 1.0, 1.0, 0.0)
 @export var click_hover: Color = Color(1.0, 1.0, 1.0, 0.831)
 @export var click_selected: Color = Color(0.722, 0.722, 0.722)
 
@@ -17,14 +17,24 @@ extends PanelContainer
 @export var selected: bool:
 	set(value):
 		selected = value
-		select_rect.visible = selected
+		_update_modulate()
 
 @export var hovered: bool:
 	set(value):
 		hovered = value
-		hover_rect.visible = hovered and not selected
+		_update_modulate()
 
 
 func _ready() -> void:
 	mouse_entered.connect(func(): hovered = true)
 	mouse_exited.connect(func(): hovered = false)
+	_update_modulate()
+
+
+func _update_modulate() -> void:
+	if selected:
+		self_modulate = click_selected
+	elif hovered:
+		self_modulate = click_hover
+	else:
+		self_modulate = click_color

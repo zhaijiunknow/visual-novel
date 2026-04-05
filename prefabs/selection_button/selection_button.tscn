@@ -13,14 +13,12 @@ shadow_color = Color(1.3080386, 1.3080386, 1.3080386, 0.13725491)
 shadow_size = 1
 anti_aliasing_size = 4.161
 
-[node name="SelectionButton" type="PanelContainer" unique_id=933418496 node_paths=PackedStringArray("select_rect", "hover_rect", "label_title")]
+[node name="SelectionButton" type="PanelContainer" unique_id=933418496 node_paths=PackedStringArray("label_title")]
 self_modulate = Color(0.72156864, 0.72156864, 0.72156864, 1)
 offset_right = 124.0
 offset_bottom = 53.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_iafw3")
 script = ExtResource("1_iafw3")
-select_rect = NodePath("")
-hover_rect = NodePath("")
 label_title = NodePath("MarginContainer/Label_Title")
 click_color = null
 click_hover = null
