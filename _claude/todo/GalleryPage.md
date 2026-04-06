@@ -1,0 +1,15 @@
+res://pages/bonus_page/sub_pages/gallery_page/
+res://prefabs/gallery_card/
+res://data/galleries/
+
+# GalleryPage
+ScrollContainer/GalleryCardPool里面，res://data/galleries/有多少个gallery data就生成多少个GalleryCard，其variation就取第一个
+
+# GalleryCard
+点开GalleryCard的时候，GalleryView首先set好texture和Variation的texture为该GalleryCard的base和variation，然后将GalleryView的位置大小都对齐GalleryCard的TextureRect_Base，接下来就把GalleryView的大小扩展至整个屏幕
+
+# GalleryView
+Option_Variation你可以参考VBoxContainer_Options/CharacterOption_Background是如何实现的
+实际就是要靠它来切换Variation
+Button_Hide点了要隐藏Frame
+Button_Close点了就关闭当前GalleryView，GalleryView不要直接消失，也要像开始那样的过渡，只不过是倒过来，从全屏大小缩至其GalleryCard的TextureRect_Base

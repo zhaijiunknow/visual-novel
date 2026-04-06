@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bg15vxvu5533s" path="res://pages/bonus_page/sub_pages/gallery_page/gallery_page.gd" id="1_s5tye"]
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="2_8y25x"]
+[ext_resource type="Texture2D" uid="uid://cue1maxr5247u" path="res://assets/sprites/galleries/galleries.sprites/CG1/CG01-背景.tres" id="3_8y25x"]
+[ext_resource type="Texture2D" uid="uid://qvctjtwopkrn" path="res://assets/sprites/galleries/galleries.sprites/CG1/CG01-害羞撇嘴.tres" id="4_xqqoh"]
+[ext_resource type="Texture2D" uid="uid://bejxvf0b47myg" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/gallery_frame.tres" id="5_0878j"]
+[ext_resource type="PackedScene" uid="uid://biidn3huf1yac" path="res://prefabs/character_option/character_option.tscn" id="6_iw6sv"]
+[ext_resource type="Texture2D" uid="uid://hye07exv6r3f" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_normal.tres" id="7_u0is1"]
+[ext_resource type="Texture2D" uid="uid://b7xrilfnikpbf" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_click.tres" id="8_t4biu"]
+[ext_resource type="Texture2D" uid="uid://l6kux0uld8xr" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_hover.tres" id="9_2doyf"]
+[ext_resource type="Texture2D" uid="uid://da2dgb564f0ag" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_normal.tres" id="10_73jdd"]
+[ext_resource type="Texture2D" uid="uid://co51hxdlxwgf8" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_click.tres" id="11_wc5bc"]
+[ext_resource type="Texture2D" uid="uid://dq1rxrfg8xlbl" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_hover.tres" id="12_8vyhy"]
 
 [node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool")]
 layout_mode = 3
@@ -33,3 +43,76 @@ layout_mode = 2
 theme_override_constants/h_separation = -9
 theme_override_constants/v_separation = -10
 columns = 4
+
+[node name="GalleryView" type="TextureRect" parent="." unique_id=839419726]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8y25x")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Variation" type="TextureRect" parent="GalleryView" unique_id=1247710999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_xqqoh")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Frame" type="TextureRect" parent="GalleryView" unique_id=2036586571]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1045.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_0878j")
+
+[node name="Option_Variation" parent="GalleryView/Frame" unique_id=555581031 instance=ExtResource("6_iw6sv")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -201.5
+offset_top = -154.0
+offset_right = 201.5
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+body_part = "Body"
+
+[node name="Label" parent="GalleryView/Frame/Option_Variation" index="0" unique_id=706614607]
+text = "身体"
+
+[node name="Button_Hide" type="TextureButton" parent="GalleryView/Frame" unique_id=337641631]
+layout_mode = 0
+offset_left = 2330.0
+offset_top = 889.0
+offset_right = 2377.0
+offset_bottom = 930.0
+texture_normal = ExtResource("7_u0is1")
+texture_pressed = ExtResource("8_t4biu")
+texture_hover = ExtResource("9_2doyf")
+
+[node name="Button_Close" type="TextureButton" parent="GalleryView/Frame" unique_id=2102809351]
+layout_mode = 0
+offset_left = 2432.0
+offset_top = 892.0
+offset_right = 2469.0
+offset_bottom = 933.0
+texture_normal = ExtResource("10_73jdd")
+texture_pressed = ExtResource("11_wc5bc")
+texture_hover = ExtResource("12_8vyhy")
+
+[editable path="GalleryView/Frame/Option_Variation"]
