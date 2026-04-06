@@ -12,7 +12,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="DialogueButton" type="TextureRect" unique_id=1310080083 node_paths=PackedStringArray("select_frame", "icon", "click_rect", "hint_panel")]
+[node name="DialogueButton" type="TextureRect" unique_id=1310080083 node_paths=PackedStringArray("select_frame", "icon", "click_rect", "hint_panel", "_hint_label")]
 offset_right = 76.0
 offset_bottom = 89.0
 mouse_filter = 2
@@ -22,6 +22,7 @@ select_frame = NodePath(".")
 icon = NodePath("Icon")
 click_rect = NodePath("ClickRect")
 hint_panel = NodePath("TopPoint/HintPanel")
+_hint_label = NodePath("TopPoint/HintPanel/MarginContainer/Label")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1758427880]
 layout_mode = 1

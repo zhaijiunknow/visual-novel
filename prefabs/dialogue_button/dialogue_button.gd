@@ -20,7 +20,7 @@ var color_normal = Color(1.0, 1.0, 1.0)
 var color_hover = Color(0.7, 0.7, 0.7)
 var color_click = Color(0.5, 0.5, 0.5)
 
-var _hint_label: Label
+@export var _hint_label: Label
 
 @export var toggled: bool:
 	set(value):
@@ -44,9 +44,7 @@ var disabled: bool:
 		modulate.a = 0.3 if disabled else 1.0
 
 func _ready() -> void:
-	_hint_label = hint_panel.find_child("Label", false, false) as Label
-	if _hint_label:
-		_hint_label.text = hint_text
+	_hint_label.text = hint_text
 
 	hint_panel.visible = false
 
