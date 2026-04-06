@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d3q3evsgl40pc" path="res://pages/stage_page/stage_page.gd" id="1_wlgfe"]
 [ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="2_limwj"]
 [ext_resource type="Texture2D" uid="uid://reggb0dey3tm" path="res://assets/backgrounds/2同兴里-白天.jpg" id="3_lqv2x"]
+[ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="4_lda8k"]
 [ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="7_217kn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
 [ext_resource type="Texture2D" uid="uid://bsmb4d7itelyb" path="res://assets/sprites/ui/ui.sprites/dialogue_box.tres" id="8_hovpu"]
@@ -25,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="26_an5lx"]
 [ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="27_et2aa"]
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="28_8wbyc"]
+[ext_resource type="Texture2D" uid="uid://bh3ur6tue5b3l" path="res://assets/sprites/ui/ui.sprites/auto.tres" id="28_217kn"]
+[ext_resource type="Texture2D" uid="uid://be65uyih35kmk" path="res://assets/sprites/ui/ui.sprites/skip.tres" id="29_hovpu"]
 [ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="29_wuhph"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j08cx"]
@@ -226,6 +229,14 @@ render_target_update_mode = 4
 offset_right = 2560.0
 offset_bottom = 1440.0
 texture = ExtResource("3_lqv2x")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Preview" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1079442569]
+visible = false
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("4_lda8k")
 expand_mode = 1
 stretch_mode = 6
 
@@ -622,6 +633,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Tags" type="Control" parent="." unique_id=1786234838]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="AutoTag" type="TextureRect" parent="Tags" unique_id=1266276912]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -484.0
+offset_top = 67.0
+offset_bottom = 236.0
+grow_horizontal = 0
+texture = ExtResource("28_217kn")
+
+[node name="SkipTag" type="TextureRect" parent="Tags" unique_id=1188517766]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -484.0
+offset_top = 69.0
+offset_bottom = 238.0
+grow_horizontal = 0
+texture = ExtResource("29_hovpu")
 
 [editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Skip"]
 [editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Auto"]
