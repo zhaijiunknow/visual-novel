@@ -48,5 +48,8 @@ func save_collection_data() -> void:
 func save_setting_data() -> void:
 	ResourceSaver.save(setting_data, setting_path)
 
+func save_save_data() -> void:
+	ResourceSaver.save(save_data, save_path)
+
 #func auto_save() -> void:
 	#ResourceSaver.save(sa)

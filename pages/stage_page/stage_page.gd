@@ -2,6 +2,7 @@ class_name StagePage
 extends CanvasLayer
 
 signal next_line
+signal skip_cancelled
 
 @export var chapters: Array[DialogueResource]
 var chapters_dict: Dictionary[String, DialogueResource]
@@ -124,6 +125,8 @@ func process_line() -> void:
 			if dialogue_line.responses:
 				return
 
+	# 标记已读（在skip检查之后）
+	Main.save_data.mark_read(chapter_name, dialogue_line.id.to_int())
 	dialogue_line = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [ self , Stage])
 
 
@@ -209,7 +212,14 @@ func show_dialogue_responses() -> void:
 
 func wait_for_advance() -> void:
 	if skip:
-		next_line.emit()
+		# 未读文本且未开启"跳过未读"时，取消skip
+		var is_read = Main.save_data.is_line_read(chapter_name, dialogue_line.id.to_int())
+		if not Main.setting_data.skip_unread_text and not is_read:
+			skip = false
+			skip_cancelled.emit()
+			await next_line
+		else:
+			next_line.emit()
 	elif autoplay:
 		if dialogue_line.has_tag("语音"):
 			while AudioManager.audio_player_voice.playing:
