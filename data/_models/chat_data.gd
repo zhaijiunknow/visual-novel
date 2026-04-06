@@ -4,3 +4,4 @@ extends Resource
 @export var character_name: String
 @export var avatar: Texture2D
 @export var messages: Array[String]
+@export var senders: Array[String]

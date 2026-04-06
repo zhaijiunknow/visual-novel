@@ -36,7 +36,9 @@ func _ready() -> void:
 	chat_page.visible = false
 
 	back_button.pressed.connect(
-		func(): chat_page.visible = false
+		func():
+			chat_page.visible = false
+			messenger_page.visible = true
 	)
 	messenger_back_button.pressed.connect(
 		func():
@@ -115,12 +117,14 @@ func update_chat_list() -> void:
 func open_chat(chat_data: ChatData) -> void:
 	label_chat_name.text = chat_data.character_name
 	Tools.clear_children(chat_message_pool)
-	for message in chat_data.messages:
+	for i in chat_data.messages.size():
 		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 		chat_message_pool.add_child(chat_message)
+		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
 		chat_message.sender_type = Enums.SenderType.SELF \
-			if chat_data.character_name == "周腾" else Enums.SenderType.OTHER
-		chat_message.message_text.text = message
+			if sender == "周腾" else Enums.SenderType.OTHER
+		chat_message.message_text.text = chat_data.messages[i]
+	messenger_page.visible = false
 	chat_page.visible = true
 
 
@@ -136,9 +140,14 @@ func get_chat_data(character_name: String) -> ChatData:
 	return chat_data
 
 
+var active_chat_character: String = ""
+
 func add_message(character_name: String, text: String) -> void:
-	var chat_data = get_chat_data(character_name)
+	if character_name != "周腾":
+		active_chat_character = character_name
+	var chat_data = get_chat_data(active_chat_character)
 	chat_data.messages.append(text)
+	chat_data.senders.append(character_name)
 
 
 func clear_reply_selections() -> void:

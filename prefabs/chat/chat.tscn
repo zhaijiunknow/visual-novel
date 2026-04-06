@@ -38,6 +38,7 @@ unread_badge = NodePath("Control/PanelContainer")
 
 [node name="Control" type="Control" parent="." unique_id=121716470]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="ProfileImage" type="PanelContainer" parent="Control" unique_id=942689601]
 clip_children = 1
