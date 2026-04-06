@@ -1,5 +1,5 @@
 ~ start
-$> SetBackground("教室", "白天", 0, 0)
+$> SetBackground("教室", "白天", 0, 0.5)
 $> Character("余洛琛").SetOptionals("眼镜")
 余洛琛: [#昵称=广播, #隐藏头像, #身体=校服-手放下, #附加=眼镜]“……（设备调试的声音）”
 $> Character("余洛琛").SetOptionals("眼镜")
