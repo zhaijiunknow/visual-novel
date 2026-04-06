@@ -105,6 +105,7 @@ func close() -> void:
 func update_chat_list() -> void:
 	Tools.clear_children(chat_pool)
 	for chat_data in chat_data_pool:
+		chat_data.avatar = get_phone_avatar(chat_data.character_name)
 		var chat: Chat = Prefabs.chat.instantiate()
 		chat_pool.add_child(chat)
 		chat.set_chat_data(chat_data)
