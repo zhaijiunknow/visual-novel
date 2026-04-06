@@ -186,7 +186,7 @@ _data = {
 &"ShowDate": SubResource("Animation_rw8us")
 }
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "date_player", "label_month", "label_day", "label_week_day")]
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "skip_tag", "auto_tag", "date_player", "label_month", "label_day", "label_week_day")]
 layer = 100
 script = ExtResource("1_wlgfe")
 dialogue = ExtResource("2_limwj")
@@ -206,6 +206,8 @@ button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceB
 button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite")
 texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite/TextureRect_Favourite")
 voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
+skip_tag = NodePath("Tags/SkipTag")
+auto_tag = NodePath("Tags/AutoTag")
 date_player = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/DatePlayer")
 label_month = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Month")
 label_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Day")

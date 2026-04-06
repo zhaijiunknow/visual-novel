@@ -35,6 +35,9 @@ var chapter_name: String:
 
 @export var voice_buttons: Control
 
+@export var skip_tag: TextureRect
+@export var auto_tag: TextureRect
+
 @export var date_player: AnimationPlayer
 @export var label_month: Label
 @export var label_day: Label
@@ -43,6 +46,7 @@ var chapter_name: String:
 var skip: bool = false:
 	set(value):
 		skip = value
+		if skip_tag: skip_tag.visible = skip
 		if skip:
 			next_line.emit()
 		update_step_rate()
@@ -50,6 +54,7 @@ var skip: bool = false:
 var autoplay: bool = false:
 	set(value):
 		autoplay = value
+		if auto_tag: auto_tag.visible = autoplay
 		if autoplay:
 			next_line.emit()
 		update_step_rate()
