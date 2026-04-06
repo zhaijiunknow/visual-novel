@@ -44,26 +44,50 @@ var chapter_name: String:
 @export var label_day: Label
 @export var label_week_day: Label
 
-var skip: bool = false:
-	set(value):
-		skip = value
-		if skip_tag: skip_tag.visible = skip
-		if skip:
-			next_line.emit()
-		update_step_rate()
+enum AdvanceMode { MANUAL, SKIP, AUTO }
+var _mode: AdvanceMode = AdvanceMode.MANUAL
+var _idle: bool = false
 
-var autoplay: bool = false:
+var skip: bool:
+	get: return _mode == AdvanceMode.SKIP
 	set(value):
-		autoplay = value
-		if auto_tag: auto_tag.visible = autoplay
-		if autoplay:
-			next_line.emit()
-		update_step_rate()
+		if value:
+			_set_mode(AdvanceMode.SKIP)
+		elif _mode == AdvanceMode.SKIP:
+			_set_mode(AdvanceMode.MANUAL)
+
+var autoplay: bool:
+	get: return _mode == AdvanceMode.AUTO
+	set(value):
+		if value:
+			_set_mode(AdvanceMode.AUTO)
+		elif _mode == AdvanceMode.AUTO:
+			_set_mode(AdvanceMode.MANUAL)
+
+func _set_mode(mode: AdvanceMode) -> void:
+	_mode = mode
+	if skip_tag: skip_tag.visible = (_mode == AdvanceMode.SKIP)
+	if auto_tag: auto_tag.visible = (_mode == AdvanceMode.AUTO)
+	update_step_rate()
+	if _mode == AdvanceMode.SKIP and _idle:
+		next_line.emit()
+	elif _mode == AdvanceMode.AUTO and _idle:
+		_trigger_auto_advance()
+
+func _trigger_auto_advance() -> void:
+	if AudioManager.audio_player_voice.playing:
+		while AudioManager.audio_player_voice.playing:
+			await get_tree().process_frame
+			if _mode != AdvanceMode.AUTO or not _idle: return
+	if _idle and _mode == AdvanceMode.AUTO:
+		next_line.emit()
 
 func update_step_rate() -> void:
 	apply_speed_settings()
-	var rate = auto_step_rate if autoplay else normal_step_rate
-	rate = skip_step_rate if skip else rate
+	var rate = normal_step_rate
+	match _mode:
+		AdvanceMode.SKIP: rate = skip_step_rate
+		AdvanceMode.AUTO: rate = auto_step_rate
 	dialogue_label.seconds_per_step = rate
 
 func apply_speed_settings() -> void:
@@ -211,24 +235,34 @@ func show_dialogue_responses() -> void:
 
 
 func wait_for_advance() -> void:
-	if skip:
-		# 未读文本且未开启"跳过未读"时，取消skip
-		var is_read = Main.save_data.is_line_read(chapter_name, dialogue_line.id.to_int())
-		if not Main.setting_data.skip_unread_text and not is_read:
-			skip = false
-			skip_cancelled.emit()
+	match _mode:
+		AdvanceMode.SKIP:
+			var is_read = Main.save_data.is_line_read(chapter_name, dialogue_line.id.to_int())
+			if not Main.setting_data.skip_unread_text and not is_read:
+				_set_mode(AdvanceMode.MANUAL)
+				skip_cancelled.emit()
+				_idle = true
+				await next_line
+				_idle = false
+			else:
+				next_line.emit()
+		AdvanceMode.AUTO:
+			if dialogue_line.has_tag("语音"):
+				while AudioManager.audio_player_voice.playing:
+					await get_tree().process_frame
+					if _mode != AdvanceMode.AUTO: break
+			else:
+				await get_tree().create_timer(finish_pause).timeout
+			if _mode == AdvanceMode.AUTO:
+				next_line.emit()
+			else:
+				_idle = true
+				await next_line
+				_idle = false
+		_:
+			_idle = true
 			await next_line
-		else:
-			next_line.emit()
-	elif autoplay:
-		if dialogue_line.has_tag("语音"):
-			while AudioManager.audio_player_voice.playing:
-				await get_tree().process_frame
-		else:
-			await get_tree().create_timer(finish_pause).timeout
-		next_line.emit()
-	else:
-		await next_line
+			_idle = false
 
 
 # ─── 初始化 ───
@@ -242,6 +276,7 @@ func _ready() -> void:
 
 	dialogue_screen.gui_input.connect(
 		func(event: InputEvent):
+			if Game.loading: return
 			if event is InputEventMouseButton:
 				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 					if dialogue_label.is_typing:
@@ -267,6 +302,10 @@ func _ready() -> void:
 
 
 func start() -> void:
+	_mode = AdvanceMode.MANUAL
+	_idle = false
+	skip_tag.visible = false
+	auto_tag.visible = false
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [ self , Stage])
 
 
