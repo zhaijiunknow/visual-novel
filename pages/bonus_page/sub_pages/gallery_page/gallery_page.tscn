@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://co51hxdlxwgf8" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_click.tres" id="11_wc5bc"]
 [ext_resource type="Texture2D" uid="uid://dq1rxrfg8xlbl" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_hover.tres" id="12_8vyhy"]
 
-[node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool")]
+[node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s5tye")
 gallery_card_pool = NodePath("ScrollContainer/GalleryCardPool")
+gallery_view = NodePath("CanvasLayer/GalleryView")
+gallery_view_variation = NodePath("CanvasLayer/GalleryView/Variation")
+gallery_view_frame = NodePath("CanvasLayer/GalleryView/Frame")
+option_variation = NodePath("CanvasLayer/GalleryView/Frame/Option_Variation")
+button_hide = NodePath("CanvasLayer/GalleryView/Frame/Button_Hide")
+button_close = NodePath("CanvasLayer/GalleryView/Frame/Button_Close")
 
 [node name="VScrollBarEx" parent="." unique_id=504723256 node_paths=PackedStringArray("target_scroll_container") instance=ExtResource("2_8y25x")]
 layout_mode = 1
@@ -44,9 +50,11 @@ theme_override_constants/h_separation = -9
 theme_override_constants/v_separation = -10
 columns = 4
 
-[node name="GalleryView" type="TextureRect" parent="." unique_id=839419726]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=912238254]
+layer = 4
+
+[node name="GalleryView" type="TextureRect" parent="CanvasLayer" unique_id=839419726]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -56,7 +64,7 @@ texture = ExtResource("3_8y25x")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Variation" type="TextureRect" parent="GalleryView" unique_id=1247710999]
+[node name="Variation" type="TextureRect" parent="CanvasLayer/GalleryView" unique_id=1247710999]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,7 +75,7 @@ texture = ExtResource("4_xqqoh")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Frame" type="TextureRect" parent="GalleryView" unique_id=2036586571]
+[node name="Frame" type="TextureRect" parent="CanvasLayer/GalleryView" unique_id=2036586571]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -78,7 +86,7 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("5_0878j")
 
-[node name="Option_Variation" parent="GalleryView/Frame" unique_id=555581031 instance=ExtResource("6_iw6sv")]
+[node name="Option_Variation" parent="CanvasLayer/GalleryView/Frame" unique_id=555581031 instance=ExtResource("6_iw6sv")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -93,10 +101,10 @@ grow_horizontal = 2
 grow_vertical = 0
 body_part = "Body"
 
-[node name="Label" parent="GalleryView/Frame/Option_Variation" index="0" unique_id=706614607]
-text = "身体"
+[node name="Label" parent="CanvasLayer/GalleryView/Frame/Option_Variation" index="0" unique_id=706614607]
+text = "样式"
 
-[node name="Button_Hide" type="TextureButton" parent="GalleryView/Frame" unique_id=337641631]
+[node name="Button_Hide" type="TextureButton" parent="CanvasLayer/GalleryView/Frame" unique_id=337641631]
 layout_mode = 0
 offset_left = 2330.0
 offset_top = 889.0
@@ -106,7 +114,7 @@ texture_normal = ExtResource("7_u0is1")
 texture_pressed = ExtResource("8_t4biu")
 texture_hover = ExtResource("9_2doyf")
 
-[node name="Button_Close" type="TextureButton" parent="GalleryView/Frame" unique_id=2102809351]
+[node name="Button_Close" type="TextureButton" parent="CanvasLayer/GalleryView/Frame" unique_id=2102809351]
 layout_mode = 0
 offset_left = 2432.0
 offset_top = 892.0
@@ -116,4 +124,4 @@ texture_normal = ExtResource("10_73jdd")
 texture_pressed = ExtResource("11_wc5bc")
 texture_hover = ExtResource("12_8vyhy")
 
-[editable path="GalleryView/Frame/Option_Variation"]
+[editable path="CanvasLayer/GalleryView/Frame/Option_Variation"]
