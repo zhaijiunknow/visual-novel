@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://d2hqmraljwruf" path="res://pages/phone_page/phone_page.tscn" id="9_ftsea"]
 [ext_resource type="PackedScene" uid="uid://cnqqbeyauw3gt" path="res://pages/setting_page/setting_page.tscn" id="10_otnwt"]
 [ext_resource type="PackedScene" uid="uid://bwgtrbt4eb0w7" path="res://pages/confirm_page/confirm_page.tscn" id="11_confirm"]
-[ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
 [ext_resource type="PackedScene" uid="uid://c7tlr4l4j3tcp" path="res://pages/loading_page/loading_page.tscn" id="13_loading"]
+[ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
 shader = ExtResource("2_gkvkt")
@@ -80,5 +80,5 @@ visible = false
 [node name="ConfirmPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=24059510 instance=ExtResource("11_confirm")]
 visible = false
 
-[node name="LoadingPage" parent="SubViewportContainer/SubViewport/Pages" instance=ExtResource("13_loading")]
+[node name="LoadingPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=2129855162 instance=ExtResource("13_loading")]
 visible = false

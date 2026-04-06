@@ -12,7 +12,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("9_blur")
-shader_parameter/blur_amount = 3.0
+shader_parameter/blur_amount = 10.0
 shader_parameter/tint_color = Color(0, 0, 0, 0.5)
 
 [node name="ConfirmPage" type="CanvasLayer" unique_id=1000000001 node_paths=PackedStringArray("label_message", "button_confirm", "button_cancel")]

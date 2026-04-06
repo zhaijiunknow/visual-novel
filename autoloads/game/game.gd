@@ -29,7 +29,7 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		return
 	loading = true
 
-	var use_alpha = addition_mode and stage_page in page_stack
+	var use_alpha = addition_mode and (stage_page in page_stack or page == confirm_page)
 
 	# 叠加+在游戏中：无前置过渡；其他：画面变黑
 	if _transition and not use_alpha:
@@ -61,8 +61,8 @@ func go_back(_transition: bool = true):
 
 	loading = true
 
-	var use_alpha = stage_page in page_stack
 	var old_page = page_stack.pop_back()
+	var use_alpha = stage_page in page_stack or old_page == confirm_page
 
 	if _transition:
 		if use_alpha:
