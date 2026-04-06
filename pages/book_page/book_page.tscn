@@ -54,6 +54,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -266.0
+offset_bottom = -126.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -62,9 +64,6 @@ theme_override_constants/paragraph_separation = 7
 theme_override_fonts/normal_font = ExtResource("13_5hjx8")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
-text = "这是我们的故事
-我想起来了
-我要去做某些事"
 fit_content = true
 script = ExtResource("14_r2lyb")
 seconds_per_step = 0.1
@@ -86,7 +85,7 @@ offset_bottom = 1258.6079
 rotation = -0.075049154
 theme_override_constants/separation = 0
 
-[node name="BackButton" parent="." unique_id=2095390168 node_paths=PackedStringArray("target_page") instance=ExtResource("16_7e5ln")]
+[node name="BackButton" parent="." unique_id=2095390168 instance=ExtResource("16_7e5ln")]
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
@@ -95,7 +94,6 @@ offset_top = 1260.0
 offset_right = 153.0
 offset_bottom = 1331.0
 grow_vertical = 1
-target_page = NodePath("..")
 
 [node name="Buttons" type="Control" parent="." unique_id=1983019369]
 layout_mode = 3

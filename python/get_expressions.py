@@ -38,7 +38,7 @@ APP_SECRET = "7izYC4vTwwY0TOAuZ6jezhRUXjgUfWHH"   # 替换为你的 App Secret
 APP_TOKEN = "VVSGbFpmEaDwcjskj1qchmi0nAh"
 TABLE_ID = "tbl6BmpwfWlZZNql"
 VIEW_ID = None  # 不指定视图，获取所有记录
-OUTPUT_PATH = "./autoloads/expressions.gd"
+OUTPUT_PATH = "../autoloads/expressions.gd"
 
 
 class FeishuExpressionFetcher:

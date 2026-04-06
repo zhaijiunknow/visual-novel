@@ -155,6 +155,9 @@ func process_dialogue_line() -> void:
 			avatar.texture = character.texture_rect_avatar.texture
 		if dialogue_line.has_tag("身体"):
 			character.SetBody(dialogue_line.get_tag_value("身体"))
+		if dialogue_line.has_tag("附加"):
+			character.ClearOptionals()
+			character.SetOptionals(dialogue_line.get_tag_value("附加"))
 		if expression:
 			character.SetExpression(expression)
 	avatar.modulate.a = 1 if has_avatar else 0

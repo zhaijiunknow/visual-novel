@@ -93,6 +93,13 @@ def record_to_data(fields):
     action = extract_field(fields, "动作")
     body = f"{costume}-{action}" if costume and action else ""
 
+    # 附加是数组字段，直接取列表
+    optionals_raw = fields.get("附加", [])
+    if isinstance(optionals_raw, list):
+        optionals = [str(item) for item in optionals_raw if item]
+    else:
+        optionals = []
+
     return {
         "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
@@ -103,6 +110,7 @@ def record_to_data(fields):
         "hide_portrait": fields.get("隐藏立绘", False),
         "body": body,
         "expression": extract_field(fields, "表情"),
+        "optionals": optionals,
         "phone": fields.get("手机", False),
         "bg_name": extract_field(fields, "场景"),
         "time_period": extract_field(fields, "时段"),
@@ -146,6 +154,8 @@ def build_tags(data, add_delay=False):
         tags.append(f"#身体={data['body']}")
     if data["expression"] and data["expression"] != "-":
         tags.append(f"#表情={data['expression']}")
+    if data["optionals"]:
+        tags.append(f"#附加={','.join(data['optionals'])}")
     return f"[{', '.join(tags)}]" if tags else ""
 
 
@@ -191,6 +201,11 @@ def generate_do_commands(data, state, lines, tabs):
     if character and not data["hide_portrait"] and character not in state["visible_characters"]:
         lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         state["visible_characters"].add(character)
+
+    # 附加（Optionals）：角色在场时设置附加物品
+    if character and data["optionals"]:
+        optionals_str = ",".join(data["optionals"])
+        lines.append(f'{tabs}$> Character("{character}").SetOptionals("{optionals_str}")')
 
 
 # ─── 递归遍历 ───

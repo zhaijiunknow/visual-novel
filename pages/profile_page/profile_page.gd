@@ -40,9 +40,13 @@ func save_game() -> void:
 	Game.loading_page.layer = 100
 	var _texture = Game.stage_page.subviewport.get_texture()
 	var image = _texture.get_image()
+	# 按 character_image_pool 的子节点顺序保存，确保读档时顺序一致
 	var character_datas: Array[CharacterData] = []
-	for character: Character in Stage.character_array:
-		character_datas.append(character.get_character_data())
+	for character_image: Control in Game.stage_page.character_image_pool.get_children():
+		for character: Character in Stage.character_array:
+			if character.character_image == character_image:
+				character_datas.append(character.get_character_data())
+				break
 	save_thread.start(
 		func():
 			image.resize(470, 265, Image.INTERPOLATE_NEAREST)
@@ -73,11 +77,25 @@ func load_game() -> void:
 		func():
 			Game.stage_page.dialogue_line = null
 			Tools.clear_children(Game.stage_page.character_image_pool)
+			# 先添加所有角色到池中（不做动画），保持存档顺序
 			for character_data: CharacterData in profile.character_datas:
 				var character = Stage.Character(character_data.character_name)
 				character.set_character_data(character_data)
 				if character_data.position:
-					character.FadeIn(character_data.position, 0)
+					character.current_position = character_data.position
+					character.character_image = character.story_model.duplicate()
+					Game.stage_page.character_image_pool.add_child(character.character_image)
+					character.character_image.show()
+			# 所有角色就位后，一次性计算最终位置
+			var pool = Game.stage_page.character_image_pool
+			var character_count = pool.get_child_count()
+			if character_count > 0:
+				var width = pool.size.x
+				var portion_width = width / character_count
+				var offset_x = portion_width / 2
+				for image: Control in pool.get_children():
+					var position_x = image.get_index() * portion_width + offset_x
+					image.position = Vector2(position_x, 0)
 			var background_split = profile.background.split("-")
 			var background_name = background_split[0]
 			var variation_name = background_split[1]
