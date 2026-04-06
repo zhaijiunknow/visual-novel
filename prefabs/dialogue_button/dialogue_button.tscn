@@ -3,9 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://cjbxr6ahgmcqb" path="res://assets/sprites/ui/ui.sprites/menu_select.tres" id="1_mst00"]
 [ext_resource type="Script" uid="uid://db3one1avbq5b" path="res://prefabs/dialogue_button/dialogue_button.gd" id="2_4cn42"]
 [ext_resource type="Texture2D" uid="uid://decc21etivel3" path="res://assets/sprites/ui/ui.sprites/menu_skip.tres" id="3_mst00"]
-[ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="4_4cn42"]
+[ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="4_4cn42"]
 
-[node name="DialogueButton" type="TextureRect" unique_id=1310080083 node_paths=PackedStringArray("select_frame", "icon", "click_rect")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cn42"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="DialogueButton" type="TextureRect" unique_id=1310080083 node_paths=PackedStringArray("select_frame", "icon", "click_rect", "hint_panel")]
 offset_right = 76.0
 offset_bottom = 89.0
 mouse_filter = 2
@@ -14,14 +21,7 @@ script = ExtResource("2_4cn42")
 select_frame = NodePath(".")
 icon = NodePath("Icon")
 click_rect = NodePath("ClickRect")
-
-[node name="ClickRect" type="Control" parent="." unique_id=90132889]
-anchors_preset = 0
-offset_left = 9.0
-offset_top = 9.0
-offset_right = 68.0
-offset_bottom = 81.0
-mouse_filter = 2
+hint_panel = NodePath("TopPoint/HintPanel")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1758427880]
 layout_mode = 1
@@ -38,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 0
+mouse_filter = 2
 texture = ExtResource("3_mst00")
 
 [node name="TopPoint" type="Control" parent="." unique_id=2095662617]
@@ -47,8 +47,10 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="HintPanel" type="PanelContainer" parent="TopPoint" unique_id=521174603]
+self_modulate = Color(0, 0, 0, 0.3529412)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -60,9 +62,12 @@ offset_top = -30.0
 offset_right = 12.5
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4cn42")
 
 [node name="MarginContainer" type="MarginContainer" parent="TopPoint/HintPanel" unique_id=839702769]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 12
@@ -71,5 +76,13 @@ theme_override_constants/margin_bottom = 0
 [node name="Label" type="Label" parent="TopPoint/HintPanel/MarginContainer" unique_id=101408415]
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("4_4cn42")
+theme_override_fonts/font = ExtResource("4_4cn42")
+theme_override_font_sizes/font_size = 32
 text = "快进"
+
+[node name="ClickRect" type="Control" parent="." unique_id=90132889]
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 68.0
+offset_bottom = 81.0
