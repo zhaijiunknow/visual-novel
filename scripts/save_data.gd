@@ -20,6 +20,7 @@ func mark_read(chapter_name: String, line_id: int) -> void:
 		read_data_list.append(rd)
 	if line_id > rd.last_read_id:
 		rd.last_read_id = line_id
+		ResourceSaver.save(self, "user://save_data.tres")
 
 func is_line_read(chapter_name: String, line_id: int) -> bool:
 	var rd = get_read_data(chapter_name)
