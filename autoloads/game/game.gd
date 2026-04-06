@@ -22,7 +22,6 @@ var current_page: CanvasLayer:
 
 func _ready() -> void:
 	switch_to_page(main_menu, false, false)
-	AudioManager.play_theme()
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass):
 	if loading:

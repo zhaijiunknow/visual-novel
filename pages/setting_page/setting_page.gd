@@ -39,6 +39,7 @@ func _ready() -> void:
 	_load_settings()
 	_connect_signals()
 	_ready_done = true
+	visibility_changed.connect(func(): if not visible: AudioManager.audio_player_voice.stop())
 
 func _load_settings() -> void:
 	var s = Main.setting_data

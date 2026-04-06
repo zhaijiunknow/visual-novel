@@ -62,6 +62,7 @@ func replay_voice() -> void:
 
 func play_theme() -> void:
 	audio_player_music.stream = theme_music
+	theme_music.loop = true
 	audio_player_music.play()
 
 func apply_settings(settings: SettingData) -> void:
