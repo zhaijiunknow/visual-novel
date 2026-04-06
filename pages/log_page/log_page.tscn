@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="6_dc1co"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="7_aanj8"]
 
-[node name="LogPage" type="CanvasLayer" unique_id=1793174608 node_paths=PackedStringArray("log_line", "divider", "vbox_log_lines")]
+[node name="LogPage" type="CanvasLayer" unique_id=1793174608 node_paths=PackedStringArray("log_line", "divider", "vbox_log_lines", "scroll_container")]
 script = ExtResource("1_py1e1")
 log_line = NodePath("PrefabContainer/LogLine")
 divider = NodePath("PrefabContainer/Divider")
 vbox_log_lines = NodePath("ScrollContainer/MarginContainer/VBoxContainer_LogLines")
+scroll_container = NodePath("ScrollContainer")
 
 [node name="Background" type="TextureRect" parent="." unique_id=342664364]
 self_modulate = Color(1, 1, 1, 0.7294118)

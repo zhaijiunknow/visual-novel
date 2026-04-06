@@ -102,6 +102,8 @@ func load_game() -> void:
 			var variation_name = background_split[1]
 			Stage.SetBackground(background_name, variation_name, 0, 0)
 			Game.phone_page.chat_data_pool = profile.chat_datas.duplicate(true)
+			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
+			Game.log_page._suppressed = false
 	)
