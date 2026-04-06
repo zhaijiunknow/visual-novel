@@ -1685,18 +1685,18 @@
 					}
 				},
 				{
-					"filename": "chr_ge_hover.png",
+					"filename": "chr_chang_hover.png",
 					"region": {
 						"x": 2216,
 						"y": 1327,
-						"w": 278,
-						"h": 474
+						"w": 280,
+						"h": 476
 					},
 					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
 					}
 				},
 				{
@@ -1778,7 +1778,7 @@
 					"filename": "chr_yu.png",
 					"region": {
 						"x": 2165,
-						"y": 1801,
+						"y": 1803,
 						"w": 381,
 						"h": 229
 					},
@@ -1914,8 +1914,8 @@
 		{
 			"image": "ui-4.png",
 			"size": {
-				"w": 2530,
-				"h": 2033
+				"w": 2531,
+				"h": 2042
 			},
 			"sprites": [
 				{
@@ -1934,12 +1934,42 @@
 					}
 				},
 				{
-					"filename": "chr_ge_normal.png",
+					"filename": "chr_chang_normal.png",
 					"region": {
-						"x": 855,
-						"y": 0,
-						"w": 278,
-						"h": 474
+						"x": 0,
+						"y": 970,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_ge_hover.png",
+					"region": {
+						"x": 0,
+						"y": 1446,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chat/chat_example.png",
+					"region": {
+						"x": 0,
+						"y": 1922,
+						"w": 458,
+						"h": 120
 					},
 					"margin": {
 						"x": 0,
@@ -1949,10 +1979,160 @@
 					}
 				},
 				{
+					"filename": "chr_ge_normal.png",
+					"region": {
+						"x": 280,
+						"y": 970,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_kaguya_hover.png",
+					"region": {
+						"x": 280,
+						"y": 1446,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 10,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "立绘鉴赏/name_deco.png",
+					"region": {
+						"x": 458,
+						"y": 1922,
+						"w": 526,
+						"h": 119
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_kaguya_normal.png",
+					"region": {
+						"x": 560,
+						"y": 970,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 10,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_others_hover.png",
+					"region": {
+						"x": 560,
+						"y": 1446,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_others_normal.png",
+					"region": {
+						"x": 840,
+						"y": 970,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_yu_hover.png",
+					"region": {
+						"x": 840,
+						"y": 1446,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "name_decoration.png",
+					"region": {
+						"x": 984,
+						"y": 1922,
+						"w": 142,
+						"h": 88
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_yu_normal.png",
+					"region": {
+						"x": 855,
+						"y": 0,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
 					"filename": "data_background_hover.png",
 					"region": {
 						"x": 855,
-						"y": 474,
+						"y": 476,
+						"w": 571,
+						"h": 469
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "data_background_normal.png",
+					"region": {
+						"x": 1135,
+						"y": 0,
 						"w": 571,
 						"h": 469
 					},
@@ -1966,7 +2146,7 @@
 				{
 					"filename": "place_deco.png",
 					"region": {
-						"x": 1133,
+						"x": 1706,
 						"y": 0,
 						"w": 825,
 						"h": 237
@@ -1981,7 +2161,7 @@
 				{
 					"filename": "音乐鉴赏/info_decoration.png",
 					"region": {
-						"x": 1133,
+						"x": 1706,
 						"y": 237,
 						"w": 789,
 						"h": 205
@@ -1996,8 +2176,8 @@
 				{
 					"filename": "nnote.png",
 					"region": {
-						"x": 855,
-						"y": 943,
+						"x": 1706,
+						"y": 442,
 						"w": 717,
 						"h": 194
 					},
@@ -2009,147 +2189,12 @@
 					}
 				},
 				{
-					"filename": "bigchr_yu.png",
-					"region": {
-						"x": 1426,
-						"y": 442,
-						"w": 585,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bigchr_knd.png",
-					"region": {
-						"x": 1958,
-						"y": 0,
-						"w": 561,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "page_hover.png",
 					"region": {
-						"x": 1922,
-						"y": 353,
+						"x": 1426,
+						"y": 469,
 						"w": 217,
 						"h": 83
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_kaguya_hover.png",
-					"region": {
-						"x": 0,
-						"y": 970,
-						"w": 278,
-						"h": 474
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_kaguya_normal.png",
-					"region": {
-						"x": 278,
-						"y": 970,
-						"w": 278,
-						"h": 474
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_others_hover.png",
-					"region": {
-						"x": 556,
-						"y": 970,
-						"w": 278,
-						"h": 474
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/name_deco.png",
-					"region": {
-						"x": 1426,
-						"y": 795,
-						"w": 526,
-						"h": 119
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "data_background_normal.png",
-					"region": {
-						"x": 1572,
-						"y": 914,
-						"w": 571,
-						"h": 469
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bigchr_ge.png",
-					"region": {
-						"x": 2011,
-						"y": 436,
-						"w": 482,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/chat_example.png",
-					"region": {
-						"x": 2011,
-						"y": 789,
-						"w": 458,
-						"h": 120
 					},
 					"margin": {
 						"x": 0,
@@ -2161,8 +2206,8 @@
 				{
 					"filename": "page_normal.png",
 					"region": {
-						"x": 2139,
-						"y": 353,
+						"x": 1426,
+						"y": 552,
 						"w": 217,
 						"h": 83
 					},
@@ -2174,12 +2219,12 @@
 					}
 				},
 				{
-					"filename": "confirm_button_hover.png",
+					"filename": "reset_hover.png",
 					"region": {
-						"x": 2356,
-						"y": 353,
-						"w": 166,
-						"h": 76
+						"x": 1426,
+						"y": 635,
+						"w": 187,
+						"h": 69
 					},
 					"margin": {
 						"x": 0,
@@ -2189,12 +2234,12 @@
 					}
 				},
 				{
-					"filename": "chr_others_normal.png",
+					"filename": "bigchr_yu.png",
 					"region": {
-						"x": 834,
-						"y": 1137,
-						"w": 278,
-						"h": 474
+						"x": 1613,
+						"y": 636,
+						"w": 585,
+						"h": 353
 					},
 					"margin": {
 						"x": 0,
@@ -2204,12 +2249,12 @@
 					}
 				},
 				{
-					"filename": "插画鉴赏/image_click.png",
+					"filename": "reset_normal.png",
 					"region": {
-						"x": 0,
-						"y": 1444,
-						"w": 525,
-						"h": 318
+						"x": 1426,
+						"y": 704,
+						"w": 187,
+						"h": 69
 					},
 					"margin": {
 						"x": 0,
@@ -2219,57 +2264,12 @@
 					}
 				},
 				{
-					"filename": "chr_yu_hover.png",
+					"filename": "bigchr_ge.png",
 					"region": {
-						"x": 525,
-						"y": 1444,
-						"w": 278,
-						"h": 474
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_locked.png",
-					"region": {
-						"x": 0,
-						"y": 1762,
+						"x": 1126,
+						"y": 945,
 						"w": 482,
-						"h": 270
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_yu_normal.png",
-					"region": {
-						"x": 1112,
-						"y": 1137,
-						"w": 278,
-						"h": 474
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_hover.png",
-					"region": {
-						"x": 1390,
-						"y": 1383,
-						"w": 525,
-						"h": 318
+						"h": 353
 					},
 					"margin": {
 						"x": 0,
@@ -2281,8 +2281,8 @@
 				{
 					"filename": "立绘鉴赏/ico_gecheng.png",
 					"region": {
-						"x": 1390,
-						"y": 1137,
+						"x": 1426,
+						"y": 773,
 						"w": 153,
 						"h": 153
 					},
@@ -2294,10 +2294,25 @@
 					}
 				},
 				{
-					"filename": "confirm_button_normal.png",
+					"filename": "chr_ge.png",
 					"region": {
-						"x": 1390,
-						"y": 1290,
+						"x": 2198,
+						"y": 636,
+						"w": 289,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "confirm_button_hover.png",
+					"region": {
+						"x": 2198,
+						"y": 865,
 						"w": 166,
 						"h": 76
 					},
@@ -2309,12 +2324,12 @@
 					}
 				},
 				{
-					"filename": "dataimage_empty.png",
+					"filename": "confirm_button_normal.png",
 					"region": {
-						"x": 803,
-						"y": 1611,
-						"w": 469,
-						"h": 263
+						"x": 2364,
+						"y": 865,
+						"w": 166,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -2324,42 +2339,12 @@
 					}
 				},
 				{
-					"filename": "voice_title.png",
+					"filename": "exit.png",
 					"region": {
-						"x": 1915,
-						"y": 1383,
-						"w": 457,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "log_title.png",
-					"region": {
-						"x": 1915,
-						"y": 1639,
-						"w": 446,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "dataimage_frame.png",
-					"region": {
-						"x": 1272,
-						"y": 1701,
-						"w": 468,
-						"h": 154
+						"x": 2198,
+						"y": 941,
+						"w": 157,
+						"h": 54
 					},
 					"margin": {
 						"x": 0,
@@ -2371,8 +2356,8 @@
 				{
 					"filename": "立绘鉴赏/ico_kanade.png",
 					"region": {
-						"x": 1740,
-						"y": 1701,
+						"x": 2355,
+						"y": 941,
 						"w": 153,
 						"h": 153
 					},
@@ -2384,12 +2369,27 @@
 					}
 				},
 				{
-					"filename": "立绘鉴赏/ico_yuluochen.png",
+					"filename": "bigchr_knd.png",
 					"region": {
-						"x": 1740,
-						"y": 1854,
-						"w": 153,
-						"h": 153
+						"x": 1608,
+						"y": 989,
+						"w": 561,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_locked.png",
+					"region": {
+						"x": 1126,
+						"y": 1298,
+						"w": 482,
+						"h": 270
 					},
 					"margin": {
 						"x": 0,
@@ -2401,8 +2401,8 @@
 				{
 					"filename": "gallery_click_deco.png",
 					"region": {
-						"x": 1272,
-						"y": 1855,
+						"x": 2169,
+						"y": 1094,
 						"w": 353,
 						"h": 159
 					},
@@ -2416,8 +2416,8 @@
 				{
 					"filename": "start_click_deco.png",
 					"region": {
-						"x": 803,
-						"y": 1874,
+						"x": 2169,
+						"y": 1253,
 						"w": 353,
 						"h": 159
 					},
@@ -2429,12 +2429,12 @@
 					}
 				},
 				{
-					"filename": "reset_hover.png",
+					"filename": "botton_text_click.png",
 					"region": {
-						"x": 482,
-						"y": 1918,
-						"w": 187,
-						"h": 69
+						"x": 2169,
+						"y": 995,
+						"w": 150,
+						"h": 72
 					},
 					"margin": {
 						"x": 0,
@@ -2444,12 +2444,12 @@
 					}
 				},
 				{
-					"filename": "no_background.png",
+					"filename": "插画鉴赏/image_click.png",
 					"region": {
-						"x": 669,
-						"y": 1918,
-						"w": 132,
-						"h": 55
+						"x": 1608,
+						"y": 1342,
+						"w": 525,
+						"h": 318
 					},
 					"margin": {
 						"x": 0,
@@ -2459,12 +2459,12 @@
 					}
 				},
 				{
-					"filename": "button_no_background.png",
+					"filename": "dataimage_empty.png",
 					"region": {
-						"x": 669,
-						"y": 1973,
-						"w": 129,
-						"h": 54
+						"x": 1126,
+						"y": 1568,
+						"w": 469,
+						"h": 263
 					},
 					"margin": {
 						"x": 0,
@@ -2474,27 +2474,12 @@
 					}
 				},
 				{
-					"filename": "chr_knd.png",
+					"filename": "botton_text_hover.png",
 					"region": {
-						"x": 2143,
-						"y": 909,
-						"w": 342,
-						"h": 229
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_ge.png",
-					"region": {
-						"x": 2143,
-						"y": 1138,
-						"w": 289,
-						"h": 229
+						"x": 1120,
+						"y": 1831,
+						"w": 150,
+						"h": 72
 					},
 					"margin": {
 						"x": 0,
@@ -2506,8 +2491,8 @@
 				{
 					"filename": "ico_music.png",
 					"region": {
-						"x": 2361,
-						"y": 1639,
+						"x": 1126,
+						"y": 1903,
 						"w": 131,
 						"h": 130
 					},
@@ -2521,115 +2506,10 @@
 				{
 					"filename": "ico_book.png",
 					"region": {
-						"x": 2361,
-						"y": 1769,
+						"x": 1257,
+						"y": 1903,
 						"w": 130,
 						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_message.png",
-					"region": {
-						"x": 2372,
-						"y": 1367,
-						"w": 130,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "name_decoration.png",
-					"region": {
-						"x": 2372,
-						"y": 1497,
-						"w": 142,
-						"h": 88
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "exit.png",
-					"region": {
-						"x": 2372,
-						"y": 1585,
-						"w": 157,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "reset_normal.png",
-					"region": {
-						"x": 1893,
-						"y": 1895,
-						"w": 187,
-						"h": 69
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_click.png",
-					"region": {
-						"x": 2080,
-						"y": 1895,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "miracle.png",
-					"region": {
-						"x": 1893,
-						"y": 1964,
-						"w": 139,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_hover.png",
-					"region": {
-						"x": 2230,
-						"y": 1899,
-						"w": 150,
-						"h": 72
 					},
 					"margin": {
 						"x": 0,
@@ -2641,10 +2521,115 @@
 				{
 					"filename": "botton_text_normal.png",
 					"region": {
-						"x": 2380,
-						"y": 1899,
+						"x": 1270,
+						"y": 1831,
 						"w": 150,
 						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "dataimage_frame.png",
+					"region": {
+						"x": 1420,
+						"y": 1831,
+						"w": 468,
+						"h": 154
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "no_background.png",
+					"region": {
+						"x": 1387,
+						"y": 1985,
+						"w": 132,
+						"h": 55
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "miracle.png",
+					"region": {
+						"x": 1519,
+						"y": 1985,
+						"w": 139,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_no_background.png",
+					"region": {
+						"x": 1658,
+						"y": 1985,
+						"w": 129,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_yuluochen.png",
+					"region": {
+						"x": 1595,
+						"y": 1660,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_knd.png",
+					"region": {
+						"x": 2133,
+						"y": 1412,
+						"w": 342,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_hover.png",
+					"region": {
+						"x": 1888,
+						"y": 1660,
+						"w": 525,
+						"h": 318
 					},
 					"margin": {
 						"x": 0,
@@ -2658,15 +2643,45 @@
 		{
 			"image": "ui-5.png",
 			"size": {
-				"w": 446,
-				"h": 994
+				"w": 457,
+				"h": 1636
 			},
 			"sprites": [
+				{
+					"filename": "voice_title.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 457,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "log_title.png",
+					"region": {
+						"x": 0,
+						"y": 256,
+						"w": 446,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
 				{
 					"filename": "save_title.png",
 					"region": {
 						"x": 0,
-						"y": 0,
+						"y": 512,
 						"w": 446,
 						"h": 255
 					},
@@ -2681,7 +2696,7 @@
 					"filename": "set_title.png",
 					"region": {
 						"x": 0,
-						"y": 255,
+						"y": 767,
 						"w": 446,
 						"h": 255
 					},
@@ -2696,7 +2711,7 @@
 					"filename": "load_title.png",
 					"region": {
 						"x": 0,
-						"y": 510,
+						"y": 1022,
 						"w": 445,
 						"h": 255
 					},
@@ -2711,9 +2726,24 @@
 					"filename": "chr_xia.png",
 					"region": {
 						"x": 0,
-						"y": 765,
+						"y": 1277,
 						"w": 431,
 						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_message.png",
+					"region": {
+						"x": 0,
+						"y": 1506,
+						"w": 130,
+						"h": 130
 					},
 					"margin": {
 						"x": 0,
@@ -2728,6 +2758,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:740201203d135f8859c8e0368a60b518:a96884ea8e8af3bd829774c99c16cfd1:32798ac31fd349b736b93409e0bca4f4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:e8ed5105bd22e2a205ab8322ce315d69:74ff04d86f1ec6482f61b582d904b641:32798ac31fd349b736b93409e0bca4f4$"
 	}
 }

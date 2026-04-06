@@ -57,6 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SystemPage" type="Control" parent="Pages" unique_id=1184190931]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,12 +116,20 @@ offset_bottom = 52.0
 theme_override_constants/separation = 72
 
 [node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen" unique_id=933418496 instance=ExtResource("5_175jp")]
+self_modulate = Color(0.722, 0.722, 0.722, 1)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "全屏"
 selected = true
 
 [node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen" unique_id=1321865905 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "窗口"
 
 [node name="FastForward" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1607890397]
@@ -146,15 +155,27 @@ offset_bottom = 53.0
 theme_override_constants/separation = 72
 
 [node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1949140740 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "未读文本"
 
 [node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1861008268 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "选项后继续"
 
 [node name="SelectionButton3" parent="Pages/SystemPage/Controls/ScrollContainer/Content/FastForward/HBoxContainer_FastForwardMode" unique_id=1196587353 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "忽略转场"
 
 [node name="ConfirmDialogue" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=1219303697]
@@ -180,11 +201,19 @@ offset_bottom = 53.0
 theme_override_constants/separation = 72
 
 [node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation" unique_id=884711893 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "开启"
 
 [node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/ConfirmDialogue/HBoxContainer_NeedConfirmation" unique_id=1473274842 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "关闭"
 
 [node name="TextDisplaySpeed" type="Control" parent="Pages/SystemPage/Controls/ScrollContainer/Content" unique_id=139642694]
@@ -308,11 +337,19 @@ offset_bottom = 52.0
 theme_override_constants/separation = 72
 
 [node name="SelectionButton" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues" unique_id=1729314141 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "开启"
 
 [node name="SelectionButton2" parent="Pages/SystemPage/Controls/ScrollContainer/Content/SkipUnread/SettingLabel6/HBoxContainer_SkipUnreadDialogues" unique_id=684277295 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "关闭"
 
 [node name="VScrollBarEx" type="VScrollBar" parent="Pages/SystemPage/Controls" unique_id=2120888028 node_paths=PackedStringArray("target_scroll_container")]
@@ -326,7 +363,6 @@ target_scroll_container = NodePath("../ScrollContainer")
 metadata/_custom_type_script = "uid://c451u0wxoyvl7"
 
 [node name="AudioPage" type="Control" parent="Pages" unique_id=1534882373]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -427,10 +463,10 @@ offset_bottom = 575.0
 
 [node name="CharacterVoiceCards" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=1293636068]
 layout_mode = 0
-offset_left = 942.0
-offset_top = 632.0
-offset_right = 2450.0
-offset_bottom = 1090.0
+offset_left = 697.0
+offset_top = 638.0
+offset_right = 2205.0
+offset_bottom = 1096.0
 theme_override_constants/separation = 20
 
 [node name="HBoxContainer_Mute" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=114455678]
@@ -442,19 +478,26 @@ offset_bottom = 1194.0
 theme_override_constants/separation = 72
 
 [node name="SelectionButton_MuteOn" parent="Pages/AudioPage/Controls/HBoxContainer_Mute" unique_id=224466880 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "开启"
 
 [node name="SelectionButton_MuteOff" parent="Pages/AudioPage/Controls/HBoxContainer_Mute" unique_id=335577991 instance=ExtResource("5_175jp")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+click_color = Color(1, 1, 1, 0)
+click_hover = Color(1, 1, 1, 0.831)
+click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "关闭"
 
-[node name="ResetButton" type="TextureButton" parent="Pages/AudioPage/Controls" unique_id=446688002]
-layout_mode = 0
-offset_left = 2100.0
-offset_top = 1200.0
-offset_right = 2350.0
-offset_bottom = 1320.0
+[node name="ResetButton" type="TextureButton" parent="." unique_id=446688002]
+offset_left = 647.0
+offset_top = 1255.0
+offset_right = 834.0
+offset_bottom = 1324.0
 texture_normal = ExtResource("12_reset_n")
 texture_pressed = ExtResource("14_reset_c")
 texture_hover = ExtResource("13_reset_h")
