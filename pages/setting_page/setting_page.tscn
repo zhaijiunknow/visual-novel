@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://crg0cqmioy8gu" path="res://assets/sprites/ui/ui.sprites/chr_others_hover.tres" id="29_oth_h"]
 [ext_resource type="Texture2D" uid="uid://beg5uo4syck2k" path="res://assets/sprites/ui/ui.sprites/chr_others_selected.tres" id="30_oth_s"]
 
-[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "text_speed_preview", "auto_speed_preview", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
+[node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "text_speed_preview", "auto_speed_preview", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off", "reset_button")]
 script = ExtResource("1_cqmhw")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_System")
 btn_screen_fullscreen = NodePath("Pages/SystemPage/Controls/ScrollContainer/Content/ScreenMode/HBoxContainer_Screen/SelectionButton")
@@ -57,6 +57,7 @@ slider_character_voice_volume = NodePath("Pages/AudioPage/Controls/SliderEx_Char
 character_voice_card_container = NodePath("Pages/AudioPage/Controls/CharacterVoiceCards")
 btn_mute_on = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionButton_MuteOn")
 btn_mute_off = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionButton_MuteOff")
+reset_button = NodePath("ResetButton")
 
 [node name="Background2" type="TextureRect" parent="." unique_id=1987285052]
 offset_right = 2560.0

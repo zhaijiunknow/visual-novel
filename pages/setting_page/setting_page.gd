@@ -27,6 +27,7 @@ extends CanvasLayer
 @export var character_voice_card_container: HBoxContainer
 @export var btn_mute_on: SelectionButton
 @export var btn_mute_off: SelectionButton
+@export var reset_button: TextureButton
 
 var selected_character: String = ""
 var _last_preview_voice: String = ""
@@ -128,9 +129,7 @@ func _connect_signals() -> void:
 			card.character_selected.connect(_select_character_card)
 
 	# Reset
-	var reset_btn: TextureButton = get_node_or_null("Pages/AudioPage/Controls/ResetButton")
-	if reset_btn:
-		reset_btn.pressed.connect(_reset_settings)
+	reset_button.pressed.connect(_reset_settings)
 
 #region Helpers
 
