@@ -75,6 +75,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_theme")
+theme_override_font_sizes/font_size = 32
 text = "确定"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -93,13 +94,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_theme")
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 32
 text = "取消"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Preview" type="TextureRect" parent="." unique_id=1510430444]
-visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 anchors_preset = 15
 anchor_right = 1.0
