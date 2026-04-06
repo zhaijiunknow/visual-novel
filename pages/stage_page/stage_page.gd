@@ -129,9 +129,9 @@ func process_line() -> void:
 func process_phone_line() -> void:
 	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 	Game.phone_page.chat_message_pool.add_child(chat_message)
-	chat_message.sender_type = Enums.SenderType.SELF \
+	var type = Enums.SenderType.SELF \
 		if dialogue_line.character == "周腾" else Enums.SenderType.OTHER
-	chat_message.message_text.text = dialogue_line.text
+	await chat_message.setup(type, dialogue_line.text)
 	Game.phone_page.add_message(dialogue_line.character, dialogue_line.text)
 
 	if dialogue_line.responses:

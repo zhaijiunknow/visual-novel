@@ -117,15 +117,16 @@ func update_chat_list() -> void:
 func open_chat(chat_data: ChatData) -> void:
 	label_chat_name.text = chat_data.character_name
 	Tools.clear_children(chat_message_pool)
+	messenger_page.visible = false
+	chat_page.visible = true
+	chat_page.modulate.a = 0
 	for i in chat_data.messages.size():
 		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 		chat_message_pool.add_child(chat_message)
 		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
-		chat_message.sender_type = Enums.SenderType.SELF \
-			if sender == "周腾" else Enums.SenderType.OTHER
-		chat_message.message_text.text = chat_data.messages[i]
-	messenger_page.visible = false
-	chat_page.visible = true
+		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
+		await chat_message.setup(type, chat_data.messages[i])
+	chat_page.modulate.a = 1
 
 
 func get_chat_data(character_name: String) -> ChatData:

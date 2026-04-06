@@ -31,8 +31,7 @@ func _ready() -> void:
 					Game.phone_page.clear_reply_selections()
 					var message: ChatMessage = Prefabs.chat_message.instantiate()
 					Game.phone_page.chat_message_pool.add_child(message)
-					message.sender_type = Enums.SenderType.SELF
-					message.message_text.text = reply_text.text
+					await message.setup(Enums.SenderType.SELF, reply_text.text)
 					Game.phone_page.add_message("周腾", reply_text.text)
 					Game.stage_page.dialogue_line = \
 						await Game.stage_page.dialogue \
