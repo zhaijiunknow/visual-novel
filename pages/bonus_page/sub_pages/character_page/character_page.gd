@@ -79,7 +79,7 @@ func _ready() -> void:
 	
 	Stage.character_selection_index = 0
 
-func update_scale() -> void:
+func update_scale(_new_value: float = 0.0) -> void:
 	current_character.body_scale_factor = slider_size.value
 
 func update_characters() -> void:
