@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d3wcr2ok2kmqu" path="res://assets/sprites/ui/ui.sprites/chr_ge.tres" id="3_x1p1g"]
 [ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="4_cp86s"]
 [ext_resource type="Theme" uid="uid://b6wigi5ow3raq" path="res://themes/chat_theme.tres" id="5_x1p1g"]
+[ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="6_7ahqw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1p1g"]
 bg_color = Color(1, 1, 1, 1)
@@ -75,6 +76,6 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture = ExtResource("3_x1p1g")
+texture = ExtResource("6_7ahqw")
 expand_mode = 1
 stretch_mode = 6
