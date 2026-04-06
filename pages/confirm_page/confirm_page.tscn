@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene format=3 uid="uid://bwgtrbt4eb0w7"]
 
-[ext_resource type="Script" path="res://pages/confirm_page/confirm_page.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cpusvpnv73y7x" path="res://pages/confirm_page/confirm_page.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://c5d2ku7s6bdcx" path="res://assets/sprites/ui/ui.sprites/caution_background.tres" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://d1t4tcg873vln" path="res://assets/sprites/ui/ui.sprites/title.tres" id="3_title"]
-[ext_resource type="Texture2D" uid="uid://blsd0ua26chu4" path="res://assets/sprites/ui/ui.sprites/confirm_button_normal.tres" id="4_btn_normal"]
+[ext_resource type="Texture2D" uid="uid://blsd0ua26chu4" path="res://assets/sprites/ui/ui.sprites/confirm_button_click.tres" id="4_btn_normal"]
 [ext_resource type="Texture2D" uid="uid://cu1t0no2l8kfs" path="res://assets/sprites/ui/ui.sprites/confirm_button_hover.tres" id="5_btn_hover"]
-[ext_resource type="Texture2D" uid="uid://c8ywh5j8r2b5e" path="res://assets/sprites/ui/ui.sprites/confirm_button_click.tres" id="6_btn_click"]
+[ext_resource type="Texture2D" uid="uid://c8ywh5j8r2b5e" path="res://assets/sprites/ui/ui.sprites/confirm_button_normal.tres" id="6_btn_click"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="7_theme"]
+[ext_resource type="Texture2D" uid="uid://d28p8c1w1ympy" path="res://assets/temp/confirm.jpg" id="8_w2s71"]
 
-[node name="ConfirmPage" type="CanvasLayer" unique_id=1000000001 node_paths=PackedStringArray("label_title", "label_message", "button_confirm", "button_cancel")]
+[node name="ConfirmPage" type="CanvasLayer" unique_id=1000000001 node_paths=PackedStringArray("label_message", "button_confirm", "button_cancel")]
 layer = 20
 script = ExtResource("1_script")
-label_title = NodePath("Background/Label_Title")
 label_message = NodePath("Background/Label_Message")
 button_confirm = NodePath("Background/ButtonContainer/Button_Confirm")
 button_cancel = NodePath("Background/ButtonContainer/Button_Cancel")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=711786195]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,87 +24,88 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5)
 
-[node name="Background" type="TextureRect" parent="."]
-offset_left = 0.0
+[node name="Background" type="TextureRect" parent="." unique_id=1067187400]
 offset_top = 320.0
 offset_right = 2560.0
 offset_bottom = 1120.0
 texture = ExtResource("2_bg")
 stretch_mode = 4
 
-[node name="TitleTexture" type="TextureRect" parent="Background"]
+[node name="TitleTexture" type="TextureRect" parent="Background" unique_id=103050013]
 layout_mode = 0
 offset_left = 528.0
-offset_top = 40.0
+offset_top = 239.0
 offset_right = 2031.0
-offset_bottom = 137.0
+offset_bottom = 336.0
 texture = ExtResource("3_title")
 stretch_mode = 4
 
-[node name="Label_Title" type="Label" parent="Background"]
+[node name="Label_Message" type="Label" parent="Background" unique_id=225836131]
 layout_mode = 0
-offset_left = 528.0
-offset_top = 40.0
-offset_right = 2031.0
-offset_bottom = 137.0
+offset_left = 534.0
+offset_top = 343.0
+offset_right = 1999.0
+offset_bottom = 486.0
 theme = ExtResource("7_theme")
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "特别提醒"
-
-[node name="Label_Message" type="Label" parent="Background"]
-layout_mode = 0
-offset_left = 528.0
-offset_top = 320.0
-offset_right = 2031.0
-offset_bottom = 420.0
-theme = ExtResource("7_theme")
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 48
 text = "确定要回到标题界面吗？
 未保存的进度将要丢失。"
+vertical_alignment = 1
 
-[node name="ButtonContainer" type="HBoxContainer" parent="Background"]
+[node name="ButtonContainer" type="HBoxContainer" parent="Background" unique_id=771999019]
 layout_mode = 0
-offset_left = 980.0
-offset_top = 550.0
-offset_right = 1580.0
-offset_bottom = 626.0
+offset_left = 1552.0
+offset_top = 502.0
+offset_right = 2152.0
+offset_bottom = 578.0
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="Button_Cancel" type="TextureButton" parent="Background/ButtonContainer"]
+[node name="Button_Confirm" type="TextureButton" parent="Background/ButtonContainer" unique_id=579975045]
+layout_mode = 2
 texture_normal = ExtResource("4_btn_normal")
-texture_hover = ExtResource("5_btn_hover")
 texture_pressed = ExtResource("6_btn_click")
+texture_hover = ExtResource("5_btn_hover")
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="Background/ButtonContainer/Button_Cancel"]
+[node name="Label" type="Label" parent="Background/ButtonContainer/Button_Confirm" unique_id=191478928]
 layout_mode = 0
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_theme")
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "取消"
-
-[node name="Button_Confirm" type="TextureButton" parent="Background/ButtonContainer"]
-texture_normal = ExtResource("4_btn_normal")
-texture_hover = ExtResource("5_btn_hover")
-texture_pressed = ExtResource("6_btn_click")
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="Background/ButtonContainer/Button_Confirm"]
-layout_mode = 0
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("7_theme")
-horizontal_alignment = 1
-vertical_alignment = 1
 text = "确定"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button_Cancel" type="TextureButton" parent="Background/ButtonContainer" unique_id=523016300]
+layout_mode = 2
+texture_normal = ExtResource("4_btn_normal")
+texture_pressed = ExtResource("6_btn_click")
+texture_hover = ExtResource("5_btn_hover")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Background/ButtonContainer/Button_Cancel" unique_id=863203132]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_theme")
+theme_override_font_sizes/font_size = 38
+text = "取消"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Preview" type="TextureRect" parent="." unique_id=1510430444]
+visible = false
+modulate = Color(1, 1, 1, 0.36078432)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_w2s71")
+expand_mode = 1
+stretch_mode = 6

@@ -1496,6 +1496,51 @@
 					}
 				},
 				{
+					"filename": "del_click.png",
+					"region": {
+						"x": 2479,
+						"y": 1868,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_hover.png",
+					"region": {
+						"x": 2479,
+						"y": 1926,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_normal.png",
+					"region": {
+						"x": 2479,
+						"y": 1984,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "音乐鉴赏/song_hover.png",
 					"region": {
 						"x": 0,
@@ -2863,6 +2908,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:e4d32b19144ab5c6057882d7206a44ea:5787eade9aefe1568837e36c7a8187bb:32798ac31fd349b736b93409e0bca4f4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:461d56000362b493f77f4f0ca0b390d7:915eb38d36e6638516b4029ff885962b:32798ac31fd349b736b93409e0bca4f4$"
 	}
 }

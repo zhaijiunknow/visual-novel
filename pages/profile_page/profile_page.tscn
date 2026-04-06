@@ -76,7 +76,7 @@ anchor_bottom = 0.081
 offset_bottom = 1210.36
 target_scroll_container = NodePath("../ScrollContainer")
 
-[node name="BackButton" parent="." unique_id=1649292307 node_paths=PackedStringArray("target_page") instance=ExtResource("7_rond4")]
+[node name="BackButton" parent="." unique_id=1649292307 instance=ExtResource("7_rond4")]
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0
@@ -85,4 +85,3 @@ offset_top = 1260.0
 offset_right = 153.0
 offset_bottom = 1331.0
 grow_vertical = 1
-target_page = NodePath("..")
