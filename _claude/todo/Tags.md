@@ -1,0 +1,1 @@
+StagePage里面我弄了两个Tags，如果开启Skip就要显示SkipTag，关闭反之，Auto也一样
