@@ -251,6 +251,8 @@ func _select_character_card(card: CharacterVoiceCard) -> void:
 func _reset_settings() -> void:
 	Main.setting_data = SettingData.new()
 	Main.save_setting_data()
+	_ready_done = false
 	_load_settings()
+	_ready_done = true
 
 #endregion
