@@ -5,10 +5,13 @@
 [ext_resource type="Resource" uid="uid://bscr1rj1i7xmw" path="res://data/musics/1.tres" id="3_n2vnv"]
 [ext_resource type="Resource" uid="uid://bw6mujweotjus" path="res://data/musics/2.tres" id="4_xydhd"]
 [ext_resource type="AudioStream" uid="uid://cufi58bsisb2v" path="res://assets/musics/凝雪馥语.mp3" id="5_bntsi"]
+[ext_resource type="Resource" uid="uid://b65n8oitjhqmq" path="res://data/musics/3.tres" id="5_por5f"]
+[ext_resource type="Resource" uid="uid://clu2r3h4ws7d5" path="res://data/musics/4.tres" id="6_jxfme"]
+[ext_resource type="Resource" uid="uid://02xfktdj7c5w" path="res://data/musics/5.tres" id="7_fksr7"]
 
 [node name="AudioManager" type="Node" unique_id=1244309478 node_paths=PackedStringArray("audio_player_music", "audio_player_sound", "audio_player_voice", "audio_player_bonus")]
 script = ExtResource("1_j0p2n")
-playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_n2vnv"), ExtResource("4_xydhd")])
+playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_n2vnv"), ExtResource("4_xydhd"), ExtResource("5_por5f"), ExtResource("6_jxfme"), ExtResource("7_fksr7")])
 theme_music = ExtResource("5_bntsi")
 audio_player_music = NodePath("AudioPlayer_Music")
 audio_player_sound = NodePath("AudioPlayer_Sound")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://x6gh6k8uk5ya"
+path="res://.godot/imported/江城闪景_Nighttime Ver..mp3-4537483052af727238aff38ba9bcf257.mp3str"
+
+[deps]
+
+source_file="res://assets/musics/江城闪景_Nighttime Ver..mp3"
+dest_files=["res://.godot/imported/江城闪景_Nighttime Ver..mp3-4537483052af727238aff38ba9bcf257.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
