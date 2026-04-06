@@ -23,23 +23,22 @@ extends CanvasLayer
 @export var chat_data_pool: Array[ChatData]
 
 const SLIDE_DURATION: float = 0.4
+const PAGE_TRANSITION_DURATION: float = 0.25
 
 # 是否由剧情触发（ShowPhone）
 var story_mode: bool = false
 var _phone_rest_offset_top: float
 var _phone_slide_distance: float
 var _tween: Tween
+var _page_tween: Tween
+var _transitioning: bool = false
 
 func _ready() -> void:
 	_phone_rest_offset_top = phone.offset_top
 	_phone_slide_distance = -_phone_rest_offset_top  # 手机高度，即下移距离
 	chat_page.visible = false
 
-	back_button.pressed.connect(
-		func():
-			chat_page.visible = false
-			messenger_page.visible = true
-	)
+	back_button.pressed.connect(_transition_to_messenger)
 	messenger_back_button.pressed.connect(
 		func():
 			if not story_mode:
@@ -114,10 +113,13 @@ func update_chat_list() -> void:
 		)
 
 
+# ─── 页面过渡 ───
+
 func open_chat(chat_data: ChatData) -> void:
+	if _transitioning: return
 	label_chat_name.text = chat_data.character_name
 	Tools.clear_children(chat_message_pool)
-	messenger_page.visible = false
+	# 在不可见状态下加载消息，保持布局计算
 	chat_page.visible = true
 	chat_page.modulate.a = 0
 	for i in chat_data.messages.size():
@@ -126,8 +128,46 @@ func open_chat(chat_data: ChatData) -> void:
 		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
 		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
 		await chat_message.setup(type, chat_data.messages[i])
-	chat_page.modulate.a = 1
+	# 加载完成，执行过渡
+	_transition_to_chat()
 
+
+func _transition_to_chat() -> void:
+	if _transitioning: return
+	_transitioning = true
+	if _page_tween: _page_tween.kill()
+	# Chat 从略微缩小+透明淡入
+	chat_page.visible = true
+	chat_page.modulate.a = 0
+	chat_page.pivot_offset = chat_page.size / 2
+	chat_page.scale = Vector2(0.95, 0.95)
+	_page_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
+	_page_tween.tween_property(chat_page, "modulate:a", 1.0, PAGE_TRANSITION_DURATION)
+	_page_tween.tween_property(chat_page, "scale", Vector2.ONE, PAGE_TRANSITION_DURATION)
+	_page_tween.tween_property(messenger_page, "modulate:a", 0.0, PAGE_TRANSITION_DURATION * 0.6)
+	await _page_tween.finished
+	messenger_page.visible = false
+	messenger_page.modulate.a = 1.0
+	_transitioning = false
+
+
+func _transition_to_messenger() -> void:
+	if _transitioning: return
+	_transitioning = true
+	if _page_tween: _page_tween.kill()
+	messenger_page.visible = true
+	messenger_page.modulate.a = 0
+	_page_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
+	_page_tween.tween_property(messenger_page, "modulate:a", 1.0, PAGE_TRANSITION_DURATION)
+	_page_tween.tween_property(chat_page, "modulate:a", 0.0, PAGE_TRANSITION_DURATION * 0.6)
+	_page_tween.tween_property(chat_page, "scale", Vector2(0.95, 0.95), PAGE_TRANSITION_DURATION)
+	await _page_tween.finished
+	chat_page.visible = false
+	chat_page.scale = Vector2.ONE
+	_transitioning = false
+
+
+# ─── 数据管理 ───
 
 func get_chat_data(character_name: String) -> ChatData:
 	for chat_data in chat_data_pool:
