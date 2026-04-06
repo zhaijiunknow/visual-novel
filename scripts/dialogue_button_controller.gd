@@ -38,7 +38,9 @@ func _ready() -> void:
 		func (): Game.switch_to_page(Game.setting_page, true, true)
 	)
 	button_voice.clicked.connect(
-		func (): Game.switch_to_page(Game.bonus_page, true, true)
+		func ():
+			Game.bonus_page.tab_voice.select()
+			Game.switch_to_page(Game.bonus_page, true, true)
 	)
 	button_phone.clicked.connect(
 		func(): Game.phone_page.open(false)
