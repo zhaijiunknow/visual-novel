@@ -125,6 +125,10 @@ func fade_alpha(page: CanvasLayer, fade_in: bool) -> void:
 	for child: CanvasItem in page.get_children():
 		tween.tween_property(child, "modulate:a", to_a, 0.3)
 	await tween.finished
+	# 淡出后重置 alpha，避免下次非 alpha 方式打开时子节点不可见
+	if not fade_in:
+		for child: CanvasItem in page.get_children():
+			child.modulate.a = 1.0
 
 func transition(callable: Callable):
 	await fade(false)

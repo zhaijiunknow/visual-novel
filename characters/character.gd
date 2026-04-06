@@ -137,13 +137,16 @@ func set_character_data(character_data: CharacterData) -> void:
 	body_part_dict["Eyebrows"].animation = character_data.eyebrows
 	body_part_dict["Eyes"].animation = character_data.eyes
 	body_part_dict["Mouth"].animation = character_data.mouth
+	current_position = character_data.position
 	ClearOptionals()
 	for optional: String in character_data.optionals:
 		SetOptionals(optional)
+	_request_viewport_update()
 
 #region Dialogue Commands
 
 func FadeIn(position_name: String, duration: float = 0.5) -> void:
+	current_position = position_name
 	character_image = story_model.duplicate()
 	Game.stage_page.character_image_pool.add_child(character_image)
 	var character_count = Game.stage_page.character_image_pool.get_child_count()
@@ -164,6 +167,7 @@ func FadeIn(position_name: String, duration: float = 0.5) -> void:
 
 func FadeOut(duration: float = 0.5) -> void:
 	if not character_image: return
+	current_position = ""
 	await create_tween().tween_property(character_image, "modulate:a", 0, duration).finished
 	character_image.queue_free()
 
