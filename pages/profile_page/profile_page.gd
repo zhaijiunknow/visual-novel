@@ -64,6 +64,7 @@ func save_game() -> void:
 	)
 
 func load_game() -> void:
+	AudioManager.audio_player_music.stop()
 	Game.stage_page.dialogue_line = null
 	Tools.clear_children(Game.stage_page.character_image_pool)
 	var profile = Main.save_data.profiles[profile_index]
