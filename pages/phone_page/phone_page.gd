@@ -56,20 +56,17 @@ func _ready() -> void:
 	)
 	phone_icon_photo.clicked.connect(
 		func():
-			Game.bonus_page.show()
-			Game.bonus_page.layer = 2
-			Main.bonus_tab_index = 1
+			Game.bonus_page.tab_gallery.select()
+			Game.switch_to_page(Game.bonus_page, true, true)
 	)
 	phone_icon_music.clicked.connect(
 		func():
-			Game.bonus_page.show()
-			Game.bonus_page.layer = 2
-			Main.bonus_tab_index = 2
+			Game.bonus_page.tab_music.select()
+			Game.switch_to_page(Game.bonus_page, true, true)
 	)
 	phone_icon_book.clicked.connect(
 		func():
-			Game.book_page.show()
-			Game.book_page.layer = 2
+			Game.switch_to_page(Game.book_page, true, true)
 	)
 
 
@@ -110,6 +107,4 @@ func update_chat_list() -> void:
 
 
 func clear_reply_selections() -> void:
-	for child in reply_selection_pool.get_children():
-		reply_selection_pool.remove_child(child)
-		child.queue_free()
+	Tools.clear_children(reply_selection_pool)

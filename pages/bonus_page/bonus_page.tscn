@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="42_j7eld"]
 [ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="51_nu3n8"]
 
-[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page", "start_tab_item")]
+[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page", "start_tab_item", "tab_gallery", "tab_music")]
 script = ExtResource("1_kr8r3")
 music_page = NodePath("TabPages/MusicPage")
 voice_page = NodePath("TabPages/VoicePage")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_Character")
+tab_gallery = NodePath("HBoxContainer_Tabs/TabItem_Gallery")
+tab_music = NodePath("HBoxContainer_Tabs/TabItem_Music")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1301707995]
 anchors_preset = 15
