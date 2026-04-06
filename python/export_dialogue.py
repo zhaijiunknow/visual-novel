@@ -112,6 +112,7 @@ def record_to_data(fields):
         "expression": extract_field(fields, "表情"),
         "optionals": optionals,
         "phone": fields.get("手机", False),
+        "delay": extract_field(fields, "延迟"),
         "bg_name": extract_field(fields, "场景"),
         "time_period": extract_field(fields, "时段"),
         "chapter": extract_field(fields, "章节"),
@@ -137,11 +138,11 @@ def build_tree(records):
 
 # ─── dialogue 行生成 ───
 
-def build_tags(data, add_delay=False):
+def build_tags(data):
     """构建 tag 字符串"""
     tags = []
-    if add_delay:
-        tags.append("#延迟=2")
+    if data["delay"] and data["delay"] != "0":
+        tags.append(f"#延迟={data['delay']}")
     if data["phone"]:
         tags.append("#手机")
     if data["voice"]:
@@ -159,7 +160,7 @@ def build_tags(data, add_delay=False):
     return f"[{', '.join(tags)}]" if tags else ""
 
 
-def build_dialogue_line(data, add_delay=False):
+def build_dialogue_line(data):
     """构建一行 dialogue 格式的文本（不含缩进）"""
     character = data["character"]
     text = data["text"]
@@ -167,7 +168,7 @@ def build_dialogue_line(data, add_delay=False):
     if not character and not text:
         return None
 
-    tag_str = build_tags(data, add_delay)
+    tag_str = build_tags(data)
 
     if character:
         return f"{character}: {tag_str}{text}"
@@ -210,7 +211,7 @@ def generate_do_commands(data, state, lines, tabs):
 
 # ─── 递归遍历 ───
 
-def walk(record, children_map, indent, lines, state, is_response_child=False):
+def walk(record, children_map, indent, lines, state):
     """递归遍历记录树，生成 dialogue 文件内容"""
     data = record_to_data(record.get("fields", {}))
     children = children_map.get(record["record_id"], [])
@@ -219,13 +220,12 @@ def walk(record, children_map, indent, lines, state, is_response_child=False):
     if data["option"]:
         # 回应选项行 → 生成 "- 选项文本"
         lines.append(f"{tabs}- {data['option']}")
-        # 选项的子记录缩进一级，并标记为 response child（加延迟）
         for child in children:
-            walk(child, children_map, indent + 1, lines, state, is_response_child=True)
+            walk(child, children_map, indent + 1, lines, state)
     else:
         # 普通对话行：先生成 do 指令，再生成对话
         generate_do_commands(data, state, lines, tabs)
-        dialogue_line = build_dialogue_line(data, add_delay=is_response_child)
+        dialogue_line = build_dialogue_line(data)
         if dialogue_line:
             lines.append(f"{tabs}{dialogue_line}")
         for child in children:
