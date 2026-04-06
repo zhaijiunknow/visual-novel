@@ -76,7 +76,8 @@ func _ready() -> void:
 	update_characters()
 	
 	slider_size.value_changed.connect(update_scale)
-	
+	update_scale()
+
 	Stage.character_selection_index = 0
 
 func update_scale(_new_value: float = 0.0) -> void:
