@@ -64,22 +64,19 @@ func save_game() -> void:
 	)
 
 func load_game() -> void:
-	AudioManager.audio_player_music.stop()
-	Game.stage_page.dialogue_line = null
-	Tools.clear_children(Game.stage_page.character_image_pool)
 	var profile = Main.save_data.profiles[profile_index]
-	for character_data: CharacterData in profile.character_datas:
-		var character = Stage.Character(character_data.character_name)
-		character.set_character_data(character_data)
-		if character_data.position:
-			character.FadeIn(character_data.position, 0)
-	var background_split = profile.background.split("-")
-	var background_name = background_split[0]
-	var variation_name = background_split[1]
-	Stage.SetBackground(background_name, variation_name, 0, 0)
-	Game.transition(
+	Game.switch_to_page(Game.stage_page, true, false,
 		func():
-			Game.hide_all_pages()
-			Game.stage_page.show()
+			Game.stage_page.dialogue_line = null
+			Tools.clear_children(Game.stage_page.character_image_pool)
+			for character_data: CharacterData in profile.character_datas:
+				var character = Stage.Character(character_data.character_name)
+				character.set_character_data(character_data)
+				if character_data.position:
+					character.FadeIn(character_data.position, 0)
+			var background_split = profile.background.split("-")
+			var background_name = background_split[0]
+			var variation_name = background_split[1]
+			Stage.SetBackground(background_name, variation_name, 0, 0)
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
 	)

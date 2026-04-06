@@ -17,7 +17,7 @@ func _ready() -> void:
 
 	button_start.clicked.connect(
 		func():
-			Game.switch_to_page(Game.stage_page, true, true, Stage.start)
+			Game.switch_to_page(Game.stage_page, true, false, Stage.start)
 	)
 	button_load.clicked.connect(
 		func():

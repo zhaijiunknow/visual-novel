@@ -25,8 +25,6 @@ func _ready() -> void:
 		character_dict[character.name] = character
 
 func start() -> void:
-	Game.hide_all_pages()
-	Game.stage_page.show()
 	Game.stage_page.start()
 
 #region Dialogue Commands
