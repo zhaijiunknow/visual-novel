@@ -4,6 +4,7 @@ extends TextureRect
 signal toggle_changed
 signal clicked
 
+@export var hint_text: String
 @export var toggle_button: bool
 @export var select_frame: TextureRect
 @export var icon: TextureRect
