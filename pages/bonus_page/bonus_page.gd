@@ -6,6 +6,7 @@ extends CanvasLayer
 @export var start_tab_item: TabItem
 @export var tab_gallery: TabItem
 @export var tab_music: TabItem
+@export var tab_voice: TabItem
 
 func _ready() -> void:
 	start_tab_item.select()

@@ -35,7 +35,6 @@ func setup(type: Enums.SenderType, text: String, avatar: Texture2D = null) -> vo
 	message_text.text = text
 	if avatar:
 		avatar_left.texture = avatar
-		avatar_right.texture = avatar
 	# 等布局稳定后检查是否需要换行
 	await get_tree().process_frame
 	_check_overflow()

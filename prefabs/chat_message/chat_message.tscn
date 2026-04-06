@@ -63,19 +63,14 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Frame_Right" type="PanelContainer" parent="." unique_id=193997888]
-clip_children = 2
+clip_children = 1
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
 
-[node name="Avatar_Right" type="TextureRect" parent="Frame_Right" unique_id=184448799]
-material = ExtResource("1_8fcmd")
+[node name="Avatar_Right" type="TextureRect" parent="Frame_Right" unique_id=589450255]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
 texture = ExtResource("6_7ahqw")
-expand_mode = 1
-stretch_mode = 6

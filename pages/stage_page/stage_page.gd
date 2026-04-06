@@ -114,7 +114,8 @@ func process_line() -> void:
 			if dialogue_line != current: return
 
 		if "手机" in dialogue_line.tags:
-			process_phone_line()
+			await process_phone_line()
+			if dialogue_line != current: return
 			if dialogue_line.responses:
 				return
 		else:
