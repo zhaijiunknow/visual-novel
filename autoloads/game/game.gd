@@ -81,6 +81,8 @@ func go_back(_transition: bool = true):
 	loading = false
 
 func update_audio():
+	if stage_page not in page_stack:
+		AudioManager.audio_player_voice.stop()
 	if current_page == bonus_page:
 		AudioManager.audio_player_music.stop()
 		if AudioManager.audio_player_bonus.stream_paused:

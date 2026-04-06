@@ -31,8 +31,14 @@ func _ready() -> void:
 
 	option_variation.previous_button.pressed.connect(func(): variation_index -= 1)
 	option_variation.next_button.pressed.connect(func(): variation_index += 1)
-	button_hide.pressed.connect(func(): gallery_view_frame.visible = not gallery_view_frame.visible)
+	button_hide.pressed.connect(func(): gallery_view_frame.visible = false)
 	button_close.pressed.connect(close_gallery_view)
+	gallery_view.gui_input.connect(
+		func(event: InputEvent):
+			if not gallery_view_frame.visible and event is InputEventMouseButton:
+				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					gallery_view_frame.visible = true
+	)
 
 
 func open_gallery_view(card: GalleryCard, gallery_data: GalleryData) -> void:
