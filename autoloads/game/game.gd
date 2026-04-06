@@ -85,6 +85,7 @@ func update_audio():
 		AudioManager.audio_player_voice.stop()
 		Tools.clear_children(stage_page.character_image_pool)
 		phone_page.clear_all()
+		log_page.clear_all()
 	if current_page == bonus_page:
 		AudioManager.audio_player_music.stop()
 		if AudioManager.audio_player_bonus.stream_paused:

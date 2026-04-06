@@ -7,3 +7,4 @@ extends Resource
 @export var dialogue_id: String
 @export var background: String
 @export var chat_datas: Array[ChatData]
+@export var log_datas: Array[LogData]
