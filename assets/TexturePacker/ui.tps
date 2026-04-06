@@ -974,6 +974,7 @@
                 <false/>
             </struct>
             <key type="filename">../ui/手机界面/chat/ico_example.png</key>
+            <key type="filename">../ui/手机界面/头像/phone_portrait_zhouteng.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1112,6 +1113,52 @@
                 <rect>248,357,497,715</rect>
                 <key>scale9Paddings</key>
                 <rect>248,357,497,715</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/手机界面/头像/phone_portrait_changxia.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>49,49,97,97</rect>
+                <key>scale9Paddings</key>
+                <rect>49,49,97,97</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/手机界面/头像/phone_portrait_gecheng.png</key>
+            <key type="filename">../ui/手机界面/头像/phone_portrait_kanade.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>50,50,100,100</rect>
+                <key>scale9Paddings</key>
+                <rect>50,50,100,100</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/手机界面/头像/phone_portrait_yuluochen.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>77,77,153,153</rect>
+                <key>scale9Paddings</key>
+                <rect>77,77,153,153</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
