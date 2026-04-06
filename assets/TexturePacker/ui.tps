@@ -482,6 +482,25 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../ui/存读档案/del_click.png</key>
+            <key type="filename">../ui/存读档案/del_hover.png</key>
+            <key type="filename">../ui/存读档案/del_normal.png</key>
+            <key type="filename">../ui/对话界面/botton_close_click.png</key>
+            <key type="filename">../ui/对话界面/botton_close_hover.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>15,15,29,29</rect>
+                <key>scale9Paddings</key>
+                <rect>15,15,29,29</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../ui/存读档案/load_title.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -540,22 +559,6 @@
                 <rect>5,5,9,9</rect>
                 <key>scale9Paddings</key>
                 <rect>5,5,9,9</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../ui/对话界面/botton_close_click.png</key>
-            <key type="filename">../ui/对话界面/botton_close_hover.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>15,15,29,29</rect>
-                <key>scale9Paddings</key>
-                <rect>15,15,29,29</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
