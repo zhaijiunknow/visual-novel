@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.11.0</string>
+        <string>7.12.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -1176,6 +1176,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../ui/系统设置/chr_chang_hover.png</key>
+            <key type="filename">../ui/系统设置/chr_chang_normal.png</key>
             <key type="filename">../ui/系统设置/chr_chang_selected.png</key>
             <key type="filename">../ui/系统设置/chr_ge_selected.png</key>
             <key type="filename">../ui/系统设置/chr_kaguya_selected.png</key>
@@ -1618,6 +1620,55 @@
                 <rect>16,17,31,33</rect>
                 <key>scale9Paddings</key>
                 <rect>16,17,31,33</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/cancel_click.png</key>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/cancel_hover.png</key>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/cancel_normal.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>9,9,19,19</rect>
+                <key>scale9Paddings</key>
+                <rect>9,9,19,19</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/gallery_frame.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>640,261,1280,523</rect>
+                <key>scale9Paddings</key>
+                <rect>640,261,1280,523</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/hide_click.png</key>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/hide_hover.png</key>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/hide_normal.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>12,10,23,21</rect>
+                <key>scale9Paddings</key>
+                <rect>12,10,23,21</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
