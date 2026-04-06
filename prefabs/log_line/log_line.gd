@@ -7,10 +7,11 @@ extends MarginContainer
 @export var button_replay: TextureRect
 @export var button_favourite: TextureRect
 
-const COLOR_NORMAL := Color(0.7, 0.7, 0.7, 0.6)
-const COLOR_HOVER := Color(1.0, 1.0, 1.0, 0.9)
-const COLOR_PRESS := Color(0.5, 0.5, 0.5, 1.0)
-const COLOR_FAVOURITE_ON := Color(1.0, 0.85, 0.3, 1.0)
+const COLOR_NORMAL := Color(0.382, 0.382, 0.382)
+const COLOR_HOVER := Color(0.553, 0.553, 0.553)
+const COLOR_PRESS := Color(0.813, 0.813, 0.813)
+const COLOR_PLAYING := Color.WHITE
+const COLOR_FAVOURITE_ON := Color.WHITE
 const COLOR_FAVOURITE_OFF := COLOR_NORMAL
 
 var log_data: LogData
