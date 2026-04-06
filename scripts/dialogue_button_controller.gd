@@ -21,6 +21,10 @@ func _ready() -> void:
 		func ():
 			button_skip.toggled = false
 	)
+	Game.stage_page.auto_cancelled.connect(
+		func ():
+			button_auto.toggled = false
+	)
 	button_auto.toggle_changed.connect(
 		func ():
 			Game.stage_page.autoplay = button_auto.toggled

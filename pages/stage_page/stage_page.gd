@@ -3,6 +3,7 @@ extends CanvasLayer
 
 signal next_line
 signal skip_cancelled
+signal auto_cancelled
 
 @export var chapters: Array[DialogueResource]
 var chapters_dict: Dictionary[String, DialogueResource]
@@ -279,6 +280,12 @@ func _ready() -> void:
 			if Game.loading: return
 			if event is InputEventMouseButton:
 				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					if _mode != AdvanceMode.MANUAL:
+						var was_skip = (_mode == AdvanceMode.SKIP)
+						_set_mode(AdvanceMode.MANUAL)
+						if was_skip: skip_cancelled.emit()
+						else: auto_cancelled.emit()
+						return
 					if dialogue_label.is_typing:
 						dialogue_label.skip_typing()
 					next_line.emit()
