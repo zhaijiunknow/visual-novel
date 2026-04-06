@@ -45,6 +45,7 @@ theme_override_constants/v_separation = -10
 columns = 4
 
 [node name="GalleryView" type="TextureRect" parent="." unique_id=839419726]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
