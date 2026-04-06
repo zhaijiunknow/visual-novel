@@ -17,6 +17,22 @@
 [ext_resource type="Texture2D" uid="uid://b20kuhb85jy6f" path="res://assets/sprites/ui/ui.sprites/reset_hover.tres" id="13_reset_h"]
 [ext_resource type="Texture2D" uid="uid://bmky68wvcylj8" path="res://assets/sprites/ui/ui.sprites/reset_click.tres" id="14_reset_c"]
 [ext_resource type="Script" uid="uid://rj7viyjo2c77" path="res://prefabs/text_speed_preview/text_speed_preview.gd" id="15_tsp"]
+[ext_resource type="PackedScene" path="res://prefabs/character_voice_card/character_voice_card.tscn" id="16_cvc"]
+[ext_resource type="Texture2D" uid="uid://c5s28bt31rart" path="res://assets/sprites/ui/ui.sprites/chr_chang_normal.tres" id="17_e1hbt"]
+[ext_resource type="Texture2D" uid="uid://d7qvey4vwye2" path="res://assets/sprites/ui/ui.sprites/chr_yu_normal.tres" id="17_yu_n"]
+[ext_resource type="Texture2D" uid="uid://dt6b3tkueubm6" path="res://assets/sprites/ui/ui.sprites/chr_chang_hover.tres" id="18_7o4wg"]
+[ext_resource type="Texture2D" uid="uid://6h5y0pnwn6h" path="res://assets/sprites/ui/ui.sprites/chr_yu_hover.tres" id="18_yu_h"]
+[ext_resource type="Texture2D" uid="uid://djlu2i6swfk50" path="res://assets/sprites/ui/ui.sprites/chr_yu_seleted.tres" id="19_yu_s"]
+[ext_resource type="Texture2D" uid="uid://0kry84mryfs6" path="res://assets/sprites/ui/ui.sprites/chr_chang_selected.tres" id="21_xia_s"]
+[ext_resource type="Texture2D" uid="uid://ryhr7kgj2gl3" path="res://assets/sprites/ui/ui.sprites/chr_ge_normal.tres" id="22_ge_n"]
+[ext_resource type="Texture2D" uid="uid://d0kiudin7ejpl" path="res://assets/sprites/ui/ui.sprites/chr_ge_hover.tres" id="23_ge_h"]
+[ext_resource type="Texture2D" uid="uid://ddg5vwlycqkw" path="res://assets/sprites/ui/ui.sprites/chr_ge_selected.tres" id="24_ge_s"]
+[ext_resource type="Texture2D" uid="uid://ma36f4nul1kg" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_normal.tres" id="25_kag_n"]
+[ext_resource type="Texture2D" uid="uid://dwklk3ymk27ko" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_hover.tres" id="26_kag_h"]
+[ext_resource type="Texture2D" uid="uid://be83hqtglp6fw" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_selected.tres" id="27_kag_s"]
+[ext_resource type="Texture2D" uid="uid://c4mgl58nx1jgs" path="res://assets/sprites/ui/ui.sprites/chr_others_normal.tres" id="28_oth_n"]
+[ext_resource type="Texture2D" uid="uid://crg0cqmioy8gu" path="res://assets/sprites/ui/ui.sprites/chr_others_hover.tres" id="29_oth_h"]
+[ext_resource type="Texture2D" uid="uid://beg5uo4syck2k" path="res://assets/sprites/ui/ui.sprites/chr_others_selected.tres" id="30_oth_s"]
 
 [node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "text_speed_preview", "auto_speed_preview", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off")]
 script = ExtResource("1_cqmhw")
@@ -463,11 +479,51 @@ offset_bottom = 575.0
 
 [node name="CharacterVoiceCards" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=1293636068]
 layout_mode = 0
-offset_left = 697.0
-offset_top = 638.0
-offset_right = 2205.0
-offset_bottom = 1096.0
-theme_override_constants/separation = 20
+offset_left = 634.0
+offset_top = 614.0
+offset_right = 2208.0
+offset_bottom = 1108.0
+theme_override_constants/separation = 0
+
+[node name="Card_Yu" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=1607538947 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("17_yu_n")
+character_name = "余洛琛"
+texture_normal_state = ExtResource("17_yu_n")
+texture_hover_state = ExtResource("18_yu_h")
+texture_selected_state = ExtResource("19_yu_s")
+
+[node name="Card_Xia" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=1826967904 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("17_e1hbt")
+character_name = "常夏"
+texture_normal_state = ExtResource("17_e1hbt")
+texture_hover_state = ExtResource("18_7o4wg")
+texture_selected_state = ExtResource("21_xia_s")
+
+[node name="Card_Kaguya" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=1638582324 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("25_kag_n")
+character_name = "辉夜奏"
+texture_normal_state = ExtResource("25_kag_n")
+texture_hover_state = ExtResource("26_kag_h")
+texture_selected_state = ExtResource("27_kag_s")
+
+[node name="Card_Ge" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=566509110 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("22_ge_n")
+character_name = "葛城"
+texture_normal_state = ExtResource("22_ge_n")
+texture_hover_state = ExtResource("23_ge_h")
+texture_selected_state = ExtResource("24_ge_s")
+
+[node name="Card_Others" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=853903149 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("28_oth_n")
+character_name = "其他"
+texture_normal_state = ExtResource("28_oth_n")
+texture_hover_state = ExtResource("29_oth_h")
+texture_selected_state = ExtResource("30_oth_s")
 
 [node name="HBoxContainer_Mute" type="HBoxContainer" parent="Pages/AudioPage/Controls" unique_id=114455678]
 layout_mode = 0

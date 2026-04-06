@@ -1,36 +1,6 @@
 class_name SettingPage
 extends CanvasLayer
 
-const CHARACTER_CARD_SCENE = preload("res://prefabs/character_voice_card/character_voice_card.tscn")
-
-const CHAR_TEXTURES := {
-	"余洛琛": {
-		normal = preload("res://assets/sprites/ui/ui.sprites/chr_yu_normal.tres"),
-		hover = preload("res://assets/sprites/ui/ui.sprites/chr_yu_hover.tres"),
-		selected = preload("res://assets/sprites/ui/ui.sprites/chr_yu_seleted.tres"),
-	},
-	"常夏": {
-		normal = preload("res://assets/sprites/ui/ui.sprites/chr_xia.tres"),
-		hover = preload("res://assets/sprites/ui/ui.sprites/chr_xia.tres"),
-		selected = preload("res://assets/sprites/ui/ui.sprites/chr_chang_selected.tres"),
-	},
-	"葛城": {
-		normal = preload("res://assets/sprites/ui/ui.sprites/chr_ge_normal.tres"),
-		hover = preload("res://assets/sprites/ui/ui.sprites/chr_ge_hover.tres"),
-		selected = preload("res://assets/sprites/ui/ui.sprites/chr_ge_selected.tres"),
-	},
-	"辉夜奏": {
-		normal = preload("res://assets/sprites/ui/ui.sprites/chr_kaguya_normal.tres"),
-		hover = preload("res://assets/sprites/ui/ui.sprites/chr_kaguya_hover.tres"),
-		selected = preload("res://assets/sprites/ui/ui.sprites/chr_kaguya_selected.tres"),
-	},
-	"其他": {
-		normal = preload("res://assets/sprites/ui/ui.sprites/chr_others_normal.tres"),
-		hover = preload("res://assets/sprites/ui/ui.sprites/chr_others_hover.tres"),
-		selected = preload("res://assets/sprites/ui/ui.sprites/chr_others_selected.tres"),
-	},
-}
-
 @export var start_tab_item: TabItem
 
 # System page controls
@@ -63,20 +33,9 @@ var selected_character: String = ""
 func _ready() -> void:
 	if not character_voice_card_container:
 		character_voice_card_container = get_node_or_null("Pages/AudioPage/Controls/CharacterVoiceCards")
-	_create_character_voice_cards()
 	start_tab_item.select()
 	_load_settings()
 	_connect_signals()
-
-func _create_character_voice_cards() -> void:
-	for char_name in CHAR_TEXTURES:
-		var card: CharacterVoiceCard = CHARACTER_CARD_SCENE.instantiate()
-		card.character_name = char_name
-		var tex = CHAR_TEXTURES[char_name]
-		card.texture_normal_state = tex.normal
-		card.texture_hover_state = tex.hover
-		card.texture_selected_state = tex.selected
-		character_voice_card_container.add_child(card)
 
 func _load_settings() -> void:
 	var s = Main.setting_data
