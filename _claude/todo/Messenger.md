@@ -1,0 +1,3 @@
+每次退出游戏的时候Messenger的Chat和ChatMessage都是要清除的，然后读档游戏的时候要把它们都读取回来
+
+点了Phone/Messenger/ChatPool里面的Chat之后，手机画面要过渡到该Chat并且加载其消息内容呈现给玩家
