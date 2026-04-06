@@ -13,23 +13,27 @@ corner_radius_top_right = 48
 corner_radius_bottom_right = 48
 corner_radius_bottom_left = 48
 
-[node name="ChatMessage" type="HBoxContainer" unique_id=723068403 node_paths=PackedStringArray("avatar_left", "avatar_right", "bubble", "message_text")]
+[node name="ChatMessage" type="HBoxContainer" unique_id=723068403 node_paths=PackedStringArray("frame_left", "frame_right", "avatar_left", "avatar_right", "bubble", "message_text")]
 size_flags_horizontal = 0
 theme_override_constants/separation = 12
 script = ExtResource("1_afdii")
 self_bubble_color = Color(0.67058825, 0.654902, 0.7764706, 1)
-avatar_left = NodePath("Frame/Avatar_Left")
-avatar_right = NodePath("Frame2/Avatar_Right")
+frame_left = NodePath("Frame_Left")
+frame_right = NodePath("Frame_Right")
+avatar_left = NodePath("Frame_Left/Avatar_Left")
+avatar_right = NodePath("Frame_Right/Avatar_Right")
 bubble = NodePath("Bubble")
 message_text = NodePath("Bubble/MarginContainer/MessageText")
 
-[node name="Frame" type="PanelContainer" parent="." unique_id=2051978957]
+[node name="Frame_Left" type="PanelContainer" parent="." unique_id=2051978957]
 clip_children = 2
 clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
 
-[node name="Avatar_Left" type="TextureRect" parent="Frame" unique_id=245567688]
+[node name="Avatar_Left" type="TextureRect" parent="Frame_Left" unique_id=245567688]
 material = ExtResource("1_8fcmd")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -57,13 +61,15 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Frame2" type="PanelContainer" parent="." unique_id=193997888]
+[node name="Frame_Right" type="PanelContainer" parent="." unique_id=193997888]
 clip_children = 2
 clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
 
-[node name="Avatar_Right" type="TextureRect" parent="Frame2" unique_id=184448799]
+[node name="Avatar_Right" type="TextureRect" parent="Frame_Right" unique_id=184448799]
 material = ExtResource("1_8fcmd")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2

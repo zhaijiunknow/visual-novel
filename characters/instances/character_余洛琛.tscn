@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bdy13d2jq61fp" path="res://assets/sprites/characters/characters.sprites/余洛琛/附加/眼镜.tres" id="21_0ni7k"]
 [ext_resource type="Texture2D" uid="uid://b5jbqw8rh1633" path="res://assets/sprites/characters/characters.sprites/余洛琛/附加/脸红.tres" id="22_67hvi"]
 [ext_resource type="Texture2D" uid="uid://dcy6aov2d5inv" path="res://assets/sprites/characters/characters.sprites/余洛琛/附加/问号.tres" id="23_2ajgh"]
+[ext_resource type="Texture2D" uid="uid://dwc5sfrr5b5p7" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_yuluochen.tres" id="24_phone"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqr4u"]
 animations = [{
@@ -209,6 +210,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 speaking_mouth = "笑开口"
+phone_avatar = ExtResource("24_phone")
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 785.0

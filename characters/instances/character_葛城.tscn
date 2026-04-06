@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bi5vgbvl2vokd" path="res://assets/sprites/characters/characters.sprites/葛城/嘴巴/闭口微笑.tres" id="14_fkvvl"]
 [ext_resource type="Texture2D" uid="uid://kxmamdscou3u" path="res://assets/sprites/characters/characters.sprites/葛城/嘴巴/露齿笑.tres" id="15_yy802"]
 [ext_resource type="Texture2D" uid="uid://c3063a2pewowb" path="res://assets/sprites/characters/characters.sprites/葛城/附加/脸红.tres" id="16_wyfxs"]
+[ext_resource type="Texture2D" uid="uid://dqv3j843pjyyy" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_gecheng.tres" id="17_phone"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dacpq"]
 animations = [{
@@ -162,6 +163,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
 speaking_mouth = "说话"
+phone_avatar = ExtResource("17_phone")
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_top = -1414.0

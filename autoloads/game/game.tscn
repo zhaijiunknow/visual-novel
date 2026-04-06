@@ -73,6 +73,7 @@ visible = false
 
 [node name="PhonePage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1191743071 instance=ExtResource("9_ftsea")]
 visible = false
+self_avatar = null
 
 [node name="SettingPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=1362674666 instance=ExtResource("10_otnwt")]
 visible = false

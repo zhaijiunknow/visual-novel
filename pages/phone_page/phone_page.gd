@@ -20,6 +20,8 @@ extends CanvasLayer
 @export var messenger_back_button: TextureButton
 @export var label_chat_name: Label
 
+@export var self_avatar: Texture2D
+
 @export var chat_data_pool: Array[ChatData]
 
 const SLIDE_DURATION: float = 0.4
@@ -127,7 +129,8 @@ func open_chat(chat_data: ChatData) -> void:
 		chat_message_pool.add_child(chat_message)
 		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
 		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
-		await chat_message.setup(type, chat_data.messages[i])
+		var avatar = get_phone_avatar(sender)
+		await chat_message.setup(type, chat_data.messages[i], avatar)
 	# 加载完成，执行过渡
 	_transition_to_chat()
 
@@ -169,14 +172,20 @@ func _transition_to_messenger() -> void:
 
 # ─── 数据管理 ───
 
+func get_phone_avatar(character_name: String) -> Texture2D:
+	if character_name == "周腾":
+		return self_avatar
+	if Stage.character_dict.has(character_name):
+		return Stage.character_dict[character_name].phone_avatar
+	return null
+
 func get_chat_data(character_name: String) -> ChatData:
 	for chat_data in chat_data_pool:
 		if chat_data.character_name == character_name:
 			return chat_data
 	var chat_data = ChatData.new()
 	chat_data.character_name = character_name
-	if Stage.character_dict.has(character_name):
-		chat_data.avatar = Stage.character_dict[character_name].texture_rect_avatar.texture
+	chat_data.avatar = get_phone_avatar(character_name)
 	chat_data_pool.append(chat_data)
 	return chat_data
 

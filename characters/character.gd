@@ -10,6 +10,8 @@ extends Control
 @export var character_page_portrait: TextureRect
 @export var story_model: Control
 
+@export var phone_avatar: Texture2D
+
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D
 

@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6145uqtwrlj" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/说话.tres" id="16_nos6t"]
 [ext_resource type="Texture2D" uid="uid://tjmjtkr1ggjt" path="res://assets/sprites/characters/characters.sprites/辉夜奏/嘴巴/闭口.tres" id="17_8a0v5"]
 [ext_resource type="Texture2D" uid="uid://2fbuxe1i3env" path="res://assets/sprites/characters/characters.sprites/辉夜奏/附加/脸红.tres" id="18_mchy6"]
+[ext_resource type="Texture2D" uid="uid://8gusg06gb7lc" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_kanade.tres" id="19_phone"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mvhsb"]
 animations = [{
@@ -207,6 +208,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="辉夜奏" unique_id=961663325 instance=ExtResource("1_mvhsb")]
 speaking_mouth = "说话"
+phone_avatar = ExtResource("19_phone")
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 866.0

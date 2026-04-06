@@ -131,7 +131,8 @@ func process_phone_line() -> void:
 	Game.phone_page.chat_message_pool.add_child(chat_message)
 	var type = Enums.SenderType.SELF \
 		if dialogue_line.character == "周腾" else Enums.SenderType.OTHER
-	await chat_message.setup(type, dialogue_line.text)
+	var avatar = Game.phone_page.get_phone_avatar(dialogue_line.character)
+	await chat_message.setup(type, dialogue_line.text, avatar)
 	Game.phone_page.add_message(dialogue_line.character, dialogue_line.text)
 
 	if dialogue_line.responses:

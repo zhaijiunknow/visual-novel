@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
 [ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="18_31aqv"]
 [ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="19_fyc1j"]
+[ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aggdw"]
 bg_color = Color(1, 1, 1, 0.3137255)
@@ -52,6 +53,7 @@ chat_pool = NodePath("Phone/Messenger/ChatPool")
 back_button = NodePath("Phone/Chat/BackButton")
 messenger_back_button = NodePath("Phone/Messenger/BackButton")
 label_chat_name = NodePath("Phone/Chat/Label_Name")
+self_avatar = ExtResource("20_phone")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
 anchors_preset = 15
@@ -136,7 +138,6 @@ text = "07/06"
 horizontal_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -206,6 +207,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
+visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0

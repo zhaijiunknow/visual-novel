@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dec7vphpjb7rk" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑嘻嘻.tres" id="19_ykg8j"]
 [ext_resource type="Texture2D" uid="uid://ccde0kh351iqk" path="res://assets/sprites/characters/characters.sprites/常夏/嘴巴/笑开口.tres" id="20_4o7u1"]
 [ext_resource type="Texture2D" uid="uid://k5qd53jvj2hu" path="res://assets/sprites/characters/characters.sprites/常夏/附加/脸红.tres" id="21_hdqmv"]
+[ext_resource type="Texture2D" uid="uid://bg4wy88ifhjju" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_changxia.tres" id="22_phone"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mflfp"]
 animations = [{
@@ -234,6 +235,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="常夏" unique_id=401531579 instance=ExtResource("1_1d4w3")]
 speaking_mouth = "笑开口"
+phone_avatar = ExtResource("22_phone")
 
 [node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
 offset_bottom = 693.0
