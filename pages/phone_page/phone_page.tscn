@@ -35,7 +35,7 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name")]
 script = ExtResource("1_xkddf")
 home_page = NodePath("Phone/Home")
 messenger_page = NodePath("Phone/Messenger")
@@ -51,6 +51,7 @@ reply_selection_pool = NodePath("Phone/Chat/VBoxContainer/ReplySelectionPool")
 chat_pool = NodePath("Phone/Messenger/ChatPool")
 back_button = NodePath("Phone/Chat/BackButton")
 messenger_back_button = NodePath("Phone/Messenger/BackButton")
+label_chat_name = NodePath("Phone/Chat/Label_Name")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
 anchors_preset = 15

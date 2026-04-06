@@ -18,6 +18,7 @@ extends CanvasLayer
 
 @export var back_button: TextureButton
 @export var messenger_back_button: TextureButton
+@export var label_chat_name: Label
 
 @export var chat_data_pool: Array[ChatData]
 
@@ -104,6 +105,23 @@ func update_chat_list() -> void:
 		var chat: Chat = Prefabs.chat.instantiate()
 		chat_pool.add_child(chat)
 		chat.set_chat_data(chat_data)
+		chat.gui_input.connect(
+			func(event: InputEvent):
+				if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					open_chat(chat_data)
+		)
+
+
+func open_chat(chat_data: ChatData) -> void:
+	label_chat_name.text = chat_data.character_name
+	Tools.clear_children(chat_message_pool)
+	for message in chat_data.messages:
+		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
+		chat_message_pool.add_child(chat_message)
+		chat_message.sender_type = Enums.SenderType.SELF \
+			if chat_data.character_name == "周腾" else Enums.SenderType.OTHER
+		chat_message.message_text.text = message
+	chat_page.visible = true
 
 
 func get_chat_data(character_name: String) -> ChatData:
@@ -124,4 +142,11 @@ func add_message(character_name: String, text: String) -> void:
 
 
 func clear_reply_selections() -> void:
+	Tools.clear_children(reply_selection_pool)
+
+
+func clear_all() -> void:
+	chat_data_pool.clear()
+	Tools.clear_children(chat_message_pool)
+	Tools.clear_children(chat_pool)
 	Tools.clear_children(reply_selection_pool)
