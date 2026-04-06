@@ -9,6 +9,7 @@ extends TextureRect
 @export var texture_normal: Texture2D
 @export var texture_hover: Texture2D
 @export var texture_click: Texture2D
+@export var button_delete: TextureButton
 
 var hovered: bool:
 	set(value):
@@ -37,11 +38,25 @@ func _ready() -> void:
 				Game.profile_page.load_game()
 	)
 	
+	button_delete.pressed.connect(
+		func():
+			Game.confirm_page.show_confirm(
+				"删除存档",
+				"确定要删除该存档吗？\n此操作无法撤销。",
+				func():
+					Main.save_data.profiles.remove_at(get_index())
+					ResourceSaver.save(Main.save_data, Main.save_path)
+					Game.go_back()
+					Game.profile_page.update()
+			)
+			Game.switch_to_page(Game.confirm_page, true, true)
+	)
+
 	Game.profile_page.profile_index_changed.connect(
-		func ():
+		func():
 			update()
 	)
-	
+
 	update()
 	
 func update():

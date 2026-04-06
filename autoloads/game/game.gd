@@ -12,6 +12,7 @@ extends Node
 @export var phone_page: PhonePage
 @export var setting_page: SettingPage
 @export var confirm_page: ConfirmPage
+@export var loading_page: LoadingPage
 
 var page_stack: Array[CanvasLayer] = []
 var loading: bool = false

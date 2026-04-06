@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://nw3t77msgjkj" path="res://assets/sprites/ui/ui.sprites/del_click.tres" id="12_e1ony"]
 [ext_resource type="Texture2D" uid="uid://fqe5lngyfhq" path="res://assets/sprites/ui/ui.sprites/del_hover.tres" id="13_m6q2l"]
 
-[node name="SaveProfileCard" type="TextureRect" unique_id=1393657536 node_paths=PackedStringArray("texture_rect_preview", "drag_filter", "label_index", "label_chapter", "label_chapter_title")]
+[node name="SaveProfileCard" type="TextureRect" unique_id=1393657536 node_paths=PackedStringArray("texture_rect_preview", "drag_filter", "label_index", "label_chapter", "label_chapter_title", "button_delete")]
 texture = ExtResource("1_47rjm")
 stretch_mode = 4
 script = ExtResource("2_ocbxf")
@@ -26,6 +26,7 @@ label_chapter_title = NodePath("Label_ChapterTitle")
 texture_normal = ExtResource("1_47rjm")
 texture_hover = ExtResource("9_hover")
 texture_click = ExtResource("10_click")
+button_delete = NodePath("Button_Delete")
 
 [node name="DragFilter" parent="." unique_id=981783705 node_paths=PackedStringArray("target_object") instance=ExtResource("3_ocbxf")]
 target_object = NodePath("..")

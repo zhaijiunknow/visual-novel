@@ -36,13 +36,15 @@ func update() -> void:
 func save_game() -> void:
 	save_thread = Thread.new()
 	Game.loading = true
+	Game.loading_page.show()
+	Game.loading_page.layer = 100
 	var _texture = Game.stage_page.subviewport.get_texture()
 	var image = _texture.get_image()
 	var character_datas: Array[CharacterData] = []
 	for character: Character in Stage.character_array:
 		character_datas.append(character.get_character_data())
 	save_thread.start(
-		func ():
+		func():
 			image.resize(470, 265, Image.INTERPOLATE_NEAREST)
 			var resized_texture = ImageTexture.create_from_image(image)
 			if Main.save_data.profiles.size() <= profile_index:
@@ -56,10 +58,11 @@ func save_game() -> void:
 			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
 			ResourceSaver.save(Main.save_data, Main.save_path)
 			(
-				func ():
+				func():
 					save_thread.wait_to_finish()
 					save_thread = null
 					Game.loading = false
+					Game.loading_page.hide()
 					update()
 			).call_deferred()
 	)

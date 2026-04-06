@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://c8ywh5j8r2b5e" path="res://assets/sprites/ui/ui.sprites/confirm_button_normal.tres" id="6_btn_click"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="7_theme"]
 [ext_resource type="Texture2D" uid="uid://d28p8c1w1ympy" path="res://assets/temp/confirm.jpg" id="8_w2s71"]
+[ext_resource type="Shader" uid="uid://byxcwgy2cqcyh" path="res://shaders/background_blur.gdshader" id="9_blur"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
+shader = ExtResource("9_blur")
+shader_parameter/blur_amount = 3.0
+shader_parameter/tint_color = Color(0, 0, 0, 0.5)
 
 [node name="ConfirmPage" type="CanvasLayer" unique_id=1000000001 node_paths=PackedStringArray("label_message", "button_confirm", "button_cancel")]
 layer = 20
@@ -17,12 +23,12 @@ button_confirm = NodePath("Background/ButtonContainer/Button_Confirm")
 button_cancel = NodePath("Background/ButtonContainer/Button_Cancel")
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=711786195]
+material = SubResource("ShaderMaterial_blur")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
 
 [node name="Background" type="TextureRect" parent="." unique_id=1067187400]
 offset_top = 320.0
@@ -63,8 +69,8 @@ alignment = 1
 
 [node name="Button_Confirm" type="TextureButton" parent="Background/ButtonContainer" unique_id=579975045]
 layout_mode = 2
-texture_normal = ExtResource("4_btn_normal")
-texture_pressed = ExtResource("6_btn_click")
+texture_normal = ExtResource("6_btn_click")
+texture_pressed = ExtResource("4_btn_normal")
 texture_hover = ExtResource("5_btn_hover")
 stretch_mode = 4
 
@@ -82,8 +88,8 @@ vertical_alignment = 1
 
 [node name="Button_Cancel" type="TextureButton" parent="Background/ButtonContainer" unique_id=523016300]
 layout_mode = 2
-texture_normal = ExtResource("4_btn_normal")
-texture_pressed = ExtResource("6_btn_click")
+texture_normal = ExtResource("6_btn_click")
+texture_pressed = ExtResource("4_btn_normal")
 texture_hover = ExtResource("5_btn_hover")
 stretch_mode = 4
 
@@ -100,6 +106,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Preview" type="TextureRect" parent="." unique_id=1510430444]
+visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 anchors_preset = 15
 anchor_right = 1.0

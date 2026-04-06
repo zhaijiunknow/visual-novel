@@ -10,14 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://y1pmr3blgg6s" path="res://pages/log_page/log_page.tscn" id="8_vaxfo"]
 [ext_resource type="PackedScene" uid="uid://d2hqmraljwruf" path="res://pages/phone_page/phone_page.tscn" id="9_ftsea"]
 [ext_resource type="PackedScene" uid="uid://cnqqbeyauw3gt" path="res://pages/setting_page/setting_page.tscn" id="10_otnwt"]
-[ext_resource type="PackedScene" path="res://pages/confirm_page/confirm_page.tscn" id="11_confirm"]
+[ext_resource type="PackedScene" uid="uid://bwgtrbt4eb0w7" path="res://pages/confirm_page/confirm_page.tscn" id="11_confirm"]
 [ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
+[ext_resource type="PackedScene" uid="uid://c7tlr4l4j3tcp" path="res://pages/loading_page/loading_page.tscn" id="13_loading"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
 shader = ExtResource("2_gkvkt")
 shader_parameter/iterations = 0.0
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page")]
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page", "loading_page")]
 script = ExtResource("1_e2o6t")
 page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
 main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
@@ -31,6 +32,7 @@ log_page = NodePath("SubViewportContainer/SubViewport/Pages/LogPage")
 phone_page = NodePath("SubViewportContainer/SubViewport/Pages/PhonePage")
 setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 confirm_page = NodePath("SubViewportContainer/SubViewport/Pages/ConfirmPage")
+loading_page = NodePath("SubViewportContainer/SubViewport/Pages/LoadingPage")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
 material = SubResource("ShaderMaterial_2fepm")
@@ -76,4 +78,7 @@ visible = false
 visible = false
 
 [node name="ConfirmPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=24059510 instance=ExtResource("11_confirm")]
+visible = false
+
+[node name="LoadingPage" parent="SubViewportContainer/SubViewport/Pages" instance=ExtResource("13_loading")]
 visible = false
