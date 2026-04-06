@@ -6,17 +6,30 @@
 [ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="4_cp86s"]
 [ext_resource type="Theme" uid="uid://b6wigi5ow3raq" path="res://themes/chat_theme.tres" id="5_x1p1g"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1p1g"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
 [node name="ChatMessage" type="HBoxContainer" unique_id=723068403 node_paths=PackedStringArray("avatar_left", "avatar_right", "bubble", "message_text")]
 size_flags_horizontal = 0
 theme_override_constants/separation = 12
 script = ExtResource("1_afdii")
 self_bubble_color = Color(0.67058825, 0.654902, 0.7764706, 1)
-avatar_left = NodePath("Avatar_Left")
-avatar_right = NodePath("Avatar_Right")
+avatar_left = NodePath("Frame/Avatar_Left")
+avatar_right = NodePath("Frame2/Avatar_Right")
 bubble = NodePath("Bubble")
 message_text = NodePath("Bubble/MarginContainer/MessageText")
 
-[node name="Avatar_Left" type="TextureRect" parent="." unique_id=245567688]
+[node name="Frame" type="PanelContainer" parent="." unique_id=2051978957]
+clip_children = 2
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
+
+[node name="Avatar_Left" type="TextureRect" parent="Frame" unique_id=245567688]
 material = ExtResource("1_8fcmd")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -44,7 +57,13 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Avatar_Right" type="TextureRect" parent="." unique_id=184448799]
+[node name="Frame2" type="PanelContainer" parent="." unique_id=193997888]
+clip_children = 2
+clip_contents = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
+
+[node name="Avatar_Right" type="TextureRect" parent="Frame2" unique_id=184448799]
 material = ExtResource("1_8fcmd")
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
