@@ -1,0 +1,10 @@
+res://pages/phone_page/
+
+当PhonePage出现时，要有个模拟掏出手机的过渡，不过要注意我这手机sprite的下方是截断的，你看看怎么处理才合适
+
+如果玩家主动打开PhonePage的话，允许玩家点击周围来退出PhonePage，同样退出的时候要有个过渡
+如果是剧情弹出来的PhonePage的话就不能允许玩家退出PhonePage，也别允许玩家点“返回键”退到Messenger
+
+Messenger主页那边是用来显示与其它角色的手机消息的记录的
+你帮我弄个叫chat_data的resource，具体参考res://data/_models/
+然后再帮我把Messenger那边的功能都完善了吧
