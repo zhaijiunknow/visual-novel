@@ -29,6 +29,8 @@ extends CanvasLayer
 @export var btn_mute_off: SelectionButton
 
 var selected_character: String = ""
+var _last_preview_voice: String = ""
+var _ready_done: bool = false
 
 func _ready() -> void:
 	if not character_voice_card_container:
@@ -36,6 +38,7 @@ func _ready() -> void:
 	start_tab_item.select()
 	_load_settings()
 	_connect_signals()
+	_ready_done = true
 
 func _load_settings() -> void:
 	var s = Main.setting_data
@@ -109,8 +112,8 @@ func _connect_signals() -> void:
 	slider_auto_speed.value_changed.connect(func(_v): _set_setting("auto_speed", slider_auto_speed.value); auto_speed_preview.set_speed(0.05 - slider_auto_speed.value * 0.048); Main.speed_settings_changed.emit())
 	slider_music_volume.value_changed.connect(func(_v): _apply_audio())
 	slider_sound_volume.value_changed.connect(func(_v): _apply_audio())
-	slider_master_voice_volume.value_changed.connect(func(_v): _apply_audio())
-	slider_character_voice_volume.value_changed.connect(func(_v): _apply_character_volume())
+	slider_master_voice_volume.value_changed.connect(func(_v): _apply_audio(); _play_random_voice_preview())
+	slider_character_voice_volume.value_changed.connect(func(_v): _apply_character_volume(); _play_character_preview())
 
 	# Mute
 	_connect_selection_pair(btn_mute_on, btn_mute_off,
@@ -180,6 +183,50 @@ func _apply_character_volume() -> void:
 	Main.save_setting_data()
 	AudioManager.apply_settings(Main.setting_data)
 
+func _get_selected_card() -> CharacterVoiceCard:
+	for card in character_voice_card_container.get_children():
+		if card is CharacterVoiceCard and card.selected:
+			return card
+	return null
+
+func _play_character_preview() -> void:
+	var card := _get_selected_card()
+	if not card or card.preview_voices.is_empty(): return
+	AudioManager.audio_player_voice.volume_db = linear_to_db(slider_character_voice_volume.value)
+	if AudioManager.audio_player_voice.playing: return
+	var voices = card.preview_voices
+	var idx := randi() % voices.size()
+	if voices.size() > 1:
+		while voices[idx] == _last_preview_voice:
+			idx = randi() % voices.size()
+	_last_preview_voice = voices[idx]
+	AudioManager.play_voice(_voice_filename(voices[idx]))
+
+func _play_random_voice_preview() -> void:
+	var all_voices: Array[String] = []
+	for card in character_voice_card_container.get_children():
+		if card is CharacterVoiceCard:
+			for voice in card.preview_voices:
+				all_voices.append(voice)
+	if all_voices.is_empty(): return
+	AudioManager.audio_player_voice.volume_db = linear_to_db(slider_master_voice_volume.value)
+	if AudioManager.audio_player_voice.playing: return
+	var idx := randi() % all_voices.size()
+	if all_voices.size() > 1:
+		while all_voices[idx] == _last_preview_voice:
+			idx = randi() % all_voices.size()
+	_last_preview_voice = all_voices[idx]
+	AudioManager.play_voice(_voice_filename(all_voices[idx]))
+
+static func _voice_filename(path: String) -> String:
+	if path.begins_with("uid://"):
+		var uid := ResourceUID.text_to_id(path)
+		path = ResourceUID.get_id_path(uid)
+	var base := AudioManager.voice_path + "/"
+	if path.begins_with(base):
+		path = path.substr(base.length())
+	return path.trim_suffix(".wav")
+
 func _select_character_card(card: CharacterVoiceCard) -> void:
 	for c in character_voice_card_container.get_children():
 		if c is CharacterVoiceCard:
@@ -187,6 +234,19 @@ func _select_character_card(card: CharacterVoiceCard) -> void:
 	selected_character = card.character_name
 	var vol = Main.setting_data.character_volumes.get(selected_character, 1.0)
 	slider_character_voice_volume.set_value_silent(vol)
+	if not _ready_done: return
+	if card.preview_voices.is_empty():
+		AudioManager.audio_player_voice.stop()
+		return
+	var voices = card.preview_voices
+	var idx := randi() % voices.size()
+	if voices.size() > 1:
+		while voices[idx] == _last_preview_voice:
+			idx = randi() % voices.size()
+	_last_preview_voice = voices[idx]
+	AudioManager.audio_player_voice.stop()
+	AudioManager.audio_player_voice.volume_db = linear_to_db(vol)
+	AudioManager.play_voice(_voice_filename(voices[idx]))
 
 func _reset_settings() -> void:
 	Main.setting_data = SettingData.new()

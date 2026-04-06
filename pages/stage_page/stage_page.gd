@@ -171,6 +171,7 @@ func process_dialogue_line() -> void:
 		)
 		update_favourite()
 		AudioManager.play_voice(voice_name, true)
+		AudioManager.apply_character_volume(dialogue_line.character)
 	else:
 		AudioManager.audio_player_voice.stop()
 		if character:

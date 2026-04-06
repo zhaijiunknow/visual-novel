@@ -5,6 +5,7 @@ extends TextureButton
 signal character_selected(card: CharacterVoiceCard)
 
 @export var character_name: String
+@export_file("*.wav") var preview_voices: Array[String] = []
 @export var texture_normal_state: Texture2D:
 	set(value):
 		texture_normal_state = value
