@@ -25,11 +25,16 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[node name="Chat" type="PanelContainer" unique_id=1372363922]
+[node name="Chat" type="PanelContainer" unique_id=1372363922 node_paths=PackedStringArray("profile_image", "label_name", "label_preview", "label_unread_count", "unread_badge")]
 self_modulate = Color(0.9647059, 0.9647059, 0.9764706, 1)
 custom_minimum_size = Vector2(660, 128)
 theme_override_styles/panel = SubResource("StyleBoxFlat_a7ami")
 script = ExtResource("1_asp5r")
+profile_image = NodePath("Control/ProfileImage/TextureRect")
+label_name = NodePath("Control/Label")
+label_preview = NodePath("Control/Label2")
+label_unread_count = NodePath("Control/PanelContainer/Label")
+unread_badge = NodePath("Control/PanelContainer")
 
 [node name="Control" type="Control" parent="." unique_id=121716470]
 layout_mode = 2

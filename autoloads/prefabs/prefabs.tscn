@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5rk64rcej4gh" path="res://autoloads/prefabs/prefabs.gd" id="1_404k7"]
 [ext_resource type="PackedScene" uid="uid://cil2u80u3sj0p" path="res://prefabs/gallery_card/gallery_card.tscn" id="2_lljyl"]
+[ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="2_chat"]
 [ext_resource type="PackedScene" uid="uid://c1bq2ju2hboho" path="res://prefabs/chat_message/chat_message.tscn" id="3_nhaaj"]
 [ext_resource type="PackedScene" uid="uid://b8npbo41hms2w" path="res://prefabs/reply_selection/reply_selection.tscn" id="4_u4y3h"]
 [ext_resource type="PackedScene" uid="uid://ft3erxxeesae" path="res://prefabs/dialogue_selection/dialogue_selection.tscn" id="5_u4y3h"]
@@ -13,6 +14,7 @@
 [node name="Prefabs" type="Node" unique_id=1848148607]
 script = ExtResource("1_404k7")
 gallery_card = ExtResource("2_lljyl")
+chat = ExtResource("2_chat")
 chat_message = ExtResource("3_nhaaj")
 reply_selection = ExtResource("4_u4y3h")
 dialogue_selection = ExtResource("5_u4y3h")

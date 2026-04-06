@@ -35,12 +35,13 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button")]
 script = ExtResource("1_xkddf")
 home_page = NodePath("Phone/Home")
-messenger_page = NodePath("Phone/Chat")
-chat_page = NodePath("Phone/Messenger")
+messenger_page = NodePath("Phone/Messenger")
+chat_page = NodePath("Phone/Chat")
 background = NodePath("Background")
+phone = NodePath("Phone")
 phone_icon_message = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Message")
 phone_icon_photo = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Photo")
 phone_icon_music = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Music")
@@ -49,6 +50,7 @@ chat_message_pool = NodePath("Phone/Chat/VBoxContainer/ScrollContainer/ChatMessa
 reply_selection_pool = NodePath("Phone/Chat/VBoxContainer/ReplySelectionPool")
 chat_pool = NodePath("Phone/Messenger/ChatPool")
 back_button = NodePath("Phone/Chat/BackButton")
+messenger_back_button = NodePath("Phone/Messenger/BackButton")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
 anchors_preset = 15

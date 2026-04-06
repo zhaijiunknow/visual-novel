@@ -65,9 +65,9 @@ func ShowDate(month: int, day: int, week_day: String) -> void:
 	await date_player.animation_finished
 
 func ShowPhone() -> void:
-	Game.phone_page.show()
+	await Game.phone_page.open(true)
 
 func HidePhone() -> void:
-	Game.phone_page.hide()
+	await Game.phone_page.close()
 
 #endregion
