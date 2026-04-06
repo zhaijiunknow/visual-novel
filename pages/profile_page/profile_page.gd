@@ -53,6 +53,7 @@ func save_game() -> void:
 			profile.character_datas.clear()
 			profile.character_datas = character_datas
 			profile.background = Stage.current_background
+			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
 			ResourceSaver.save(Main.save_data, Main.save_path)
 			(
 				func ():
@@ -78,5 +79,6 @@ func load_game() -> void:
 			var background_name = background_split[0]
 			var variation_name = background_split[1]
 			Stage.SetBackground(background_name, variation_name, 0, 0)
+			Game.phone_page.chat_data_pool = profile.chat_datas.duplicate(true)
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
 	)

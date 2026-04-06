@@ -132,6 +132,7 @@ func process_phone_line() -> void:
 	chat_message.sender_type = Enums.SenderType.SELF \
 		if dialogue_line.character == "周腾" else Enums.SenderType.OTHER
 	chat_message.message_text.text = dialogue_line.text
+	Game.phone_page.add_message(dialogue_line.character, dialogue_line.text)
 
 	if dialogue_line.responses:
 		for response: DialogueResponse in dialogue_line.responses:

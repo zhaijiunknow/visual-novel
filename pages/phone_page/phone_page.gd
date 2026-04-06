@@ -106,5 +106,22 @@ func update_chat_list() -> void:
 		chat.set_chat_data(chat_data)
 
 
+func get_chat_data(character_name: String) -> ChatData:
+	for chat_data in chat_data_pool:
+		if chat_data.character_name == character_name:
+			return chat_data
+	var chat_data = ChatData.new()
+	chat_data.character_name = character_name
+	if Stage.character_dict.has(character_name):
+		chat_data.avatar = Stage.character_dict[character_name].texture_rect_avatar.texture
+	chat_data_pool.append(chat_data)
+	return chat_data
+
+
+func add_message(character_name: String, text: String) -> void:
+	var chat_data = get_chat_data(character_name)
+	chat_data.messages.append(text)
+
+
 func clear_reply_selections() -> void:
 	Tools.clear_children(reply_selection_pool)
