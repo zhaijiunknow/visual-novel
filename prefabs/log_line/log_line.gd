@@ -15,6 +15,7 @@ const COLOR_FAVOURITE_ON := Color.WHITE
 const COLOR_FAVOURITE_OFF := COLOR_NORMAL
 
 var log_data: LogData
+var _playing := false
 
 var character_name: String:
 	set(value):
@@ -52,9 +53,8 @@ func _ready() -> void:
 	button_favourite.mouse_filter = Control.MOUSE_FILTER_STOP
 	button_replay.modulate = COLOR_NORMAL
 	button_favourite.modulate = COLOR_FAVOURITE_OFF
-
-	button_replay.mouse_entered.connect(func(): button_replay.modulate = COLOR_HOVER)
-	button_replay.mouse_exited.connect(func(): button_replay.modulate = COLOR_NORMAL)
+	button_replay.mouse_entered.connect(func(): if not _playing: button_replay.modulate = COLOR_HOVER)
+	button_replay.mouse_exited.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL)
 	button_replay.gui_input.connect(
 		func(event: InputEvent):
 			if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -63,7 +63,16 @@ func _ready() -> void:
 				else:
 					if has_voice:
 						AudioManager.play_voice(log_data.voice_filename)
-					button_replay.modulate = COLOR_HOVER
+						_playing = true
+						button_replay.modulate = COLOR_PLAYING
+						Tools.clear_connections(AudioManager.audio_player_voice.finished)
+						AudioManager.audio_player_voice.finished.connect(
+							func():
+								_playing = false
+								button_replay.modulate = COLOR_NORMAL
+						)
+					else:
+						button_replay.modulate = COLOR_NORMAL
 	)
 
 	button_favourite.mouse_entered.connect(func(): _update_favourite_color(true))
@@ -76,7 +85,7 @@ func _ready() -> void:
 				else:
 					if has_voice:
 						_toggle_favourite()
-					_update_favourite_color(true)
+				_update_favourite_color(true)
 	)
 
 func _toggle_favourite() -> void:
