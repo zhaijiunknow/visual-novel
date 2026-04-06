@@ -128,20 +128,12 @@ func process_line() -> void:
 
 
 func process_phone_line() -> void:
-	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
-	Game.phone_page.chat_message_pool.add_child(chat_message)
-	var type = Enums.SenderType.SELF \
-		if dialogue_line.character == "周腾" else Enums.SenderType.OTHER
-	var avatar = Game.phone_page.get_phone_avatar(dialogue_line.character)
-	await chat_message.setup(type, dialogue_line.text, avatar)
-	Game.phone_page.add_message(dialogue_line.character, dialogue_line.text)
+	await Game.phone_page.show_dialogue_message(dialogue_line.character, dialogue_line.text)
 
 	if dialogue_line.responses:
-		for response: DialogueResponse in dialogue_line.responses:
-			var reply_selection: ReplySelection = Prefabs.reply_selection.instantiate()
-			reply_selection.reply_text.text = response.text
-			reply_selection.next_id = response.next_id
-			Game.phone_page.reply_selection_pool.add_child(reply_selection)
+		Game.phone_page.show_reply_options(dialogue_line.responses)
+		var next_id: String = await Game.phone_page.reply_selected
+		dialogue_line = await dialogue.get_next_dialogue_line(next_id, [self, Stage])
 
 var expression: String:
 	get:

@@ -1,6 +1,8 @@
 class_name PhonePage
 extends CanvasLayer
 
+signal reply_selected(next_id: String)
+
 @export var home_page: Control
 @export var messenger_page: Control
 @export var chat_page: Control
@@ -81,6 +83,12 @@ func open(is_story: bool = false) -> void:
 	messenger_page.visible = false
 	chat_page.visible = story_mode
 
+	# 剧情模式进入时清理聊天视图，避免多次 ShowPhone 之间消息堆积
+	if story_mode:
+		Tools.clear_children(chat_message_pool)
+		Tools.clear_children(reply_selection_pool)
+		active_chat_character = ""
+
 	show()
 
 	# 从屏幕下方滑入：整体下移 _phone_slide_distance 后 tween 回原位
@@ -114,6 +122,34 @@ func update_chat_list() -> void:
 				if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 					open_chat(chat_data)
 		)
+
+
+# ─── 剧情模式消息管理 ───
+
+func show_dialogue_message(character_name: String, text: String) -> void:
+	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
+	chat_message_pool.add_child(chat_message)
+	var type = Enums.SenderType.SELF \
+		if character_name == "周腾" else Enums.SenderType.OTHER
+	var avatar = get_phone_avatar(character_name)
+	chat_message.setup(type, text, avatar)
+	add_message(character_name, text)
+
+
+func show_reply_options(responses) -> void:
+	clear_reply_selections()
+	for response in responses:
+		var reply: ReplySelection = Prefabs.reply_selection.instantiate()
+		reply_selection_pool.add_child(reply)
+		reply.setup(response.text, response.next_id)
+		reply.reply_clicked.connect(_on_reply_clicked)
+
+
+func _on_reply_clicked(text: String, next_id: String) -> void:
+	# 数据已在信号参数中（值拷贝），不存在 freed node 风险
+	clear_reply_selections()
+	await show_dialogue_message("周腾", text)
+	reply_selected.emit(next_id)
 
 
 # ─── 页面过渡 ───

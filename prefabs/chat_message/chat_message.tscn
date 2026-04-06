@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://c1bq2ju2hboho"]
 
-[ext_resource type="Material" uid="uid://bot51sfk03r6a" path="res://shaders/circle_material.tres" id="1_8fcmd"]
 [ext_resource type="Script" uid="uid://c1ckx6g7xrm4n" path="res://prefabs/chat_message/chat_message.gd" id="1_afdii"]
-[ext_resource type="Texture2D" uid="uid://d3wcr2ok2kmqu" path="res://assets/sprites/ui/ui.sprites/chr_ge.tres" id="3_x1p1g"]
 [ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="4_cp86s"]
 [ext_resource type="Theme" uid="uid://b6wigi5ow3raq" path="res://themes/chat_theme.tres" id="5_x1p1g"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="6_7ahqw"]
@@ -26,27 +24,24 @@ avatar_right = NodePath("Frame_Right/Avatar_Right")
 bubble = NodePath("Bubble")
 message_text = NodePath("Bubble/MarginContainer/MessageText")
 
-[node name="Frame_Left" type="PanelContainer" parent="." unique_id=2051978957]
-clip_children = 2
+[node name="Frame_Left" type="PanelContainer" parent="." unique_id=1549408015]
+clip_children = 1
 clip_contents = true
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
 
-[node name="Avatar_Left" type="TextureRect" parent="Frame_Left" unique_id=245567688]
-material = ExtResource("1_8fcmd")
-custom_minimum_size = Vector2(96, 96)
+[node name="Avatar_Left" type="TextureRect" parent="Frame_Left" unique_id=120990792]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource("3_x1p1g")
+texture = ExtResource("6_7ahqw")
 expand_mode = 1
 stretch_mode = 6
 
 [node name="Bubble" type="PanelContainer" parent="." unique_id=597060984]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_styles/panel = ExtResource("4_cp86s")
 
@@ -65,12 +60,14 @@ autowrap_mode = 0
 [node name="Frame_Right" type="PanelContainer" parent="." unique_id=193997888]
 clip_children = 1
 clip_contents = true
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_x1p1g")
 
 [node name="Avatar_Right" type="TextureRect" parent="Frame_Right" unique_id=589450255]
-custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 texture = ExtResource("6_7ahqw")
+expand_mode = 1
+stretch_mode = 6

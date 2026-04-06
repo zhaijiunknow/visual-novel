@@ -21,6 +21,7 @@ func _ready() -> void:
 		func (line: DialogueLine):
 			if _suppressed: return
 			if Game.book_page.visible: return
+			if "手机" in line.tags: return
 			var voice = ""
 			if line.has_tag("语音"):
 				voice = line.get_tag_value("语音")
