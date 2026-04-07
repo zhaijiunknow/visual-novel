@@ -40,12 +40,14 @@ func SetBackground(background_name: String, variation_name: String,
 		1,
 		out_time
 	).finished
-	var target_background: Texture2D = background_data_pool.filter(
+	var target_background: BackgroundData = background_data_pool.filter(
 		func (background: BackgroundData):
 			return background.title == background_name
-	).front().variations[variation_name]
+	).front()
+	var target_texture: Texture2D = target_background.variations[variation_name]
 	current_background = "%s-%s" % [background_name, variation_name]
-	Game.stage_page.texture_rect_background.texture = target_background
+	Game.phone_page.label_location.text = target_background.location
+	Game.stage_page.texture_rect_background.texture = target_texture
 	await create_tween().tween_property(
 		Game.stage_page.texture_rect_blackscreen,
 		"modulate:a",
@@ -62,8 +64,12 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	if current_date == date_key:
 		return
 	current_date = date_key
-	Game.stage_page.label_month.text = str(month).pad_zeros(2)
-	Game.stage_page.label_day.text = str(day).pad_zeros(2)
+	var month_str = str(month).pad_zeros(2)
+	var day_str = str(day).pad_zeros(2)
+	Game.phone_page.label_phone_date.text = "%s/%s" % [month_str, day_str]
+	Game.phone_page.label_time.text = week_day
+	Game.stage_page.label_month.text = month_str
+	Game.stage_page.label_day.text = day_str
 	Game.stage_page.label_week_day.text = week_day
 	var date_player = Game.stage_page.date_player
 	date_player.play("ShowDate")

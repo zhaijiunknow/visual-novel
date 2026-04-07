@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b3pdi3vismhi6" path="res://assets/sprites/ui/ui.sprites/ico_message.tres" id="7_ctgom"]
 [ext_resource type="Texture2D" uid="uid://dp1fq12jc8cx4" path="res://assets/sprites/ui/ui.sprites/ico_image.tres" id="8_31aqv"]
 [ext_resource type="Texture2D" uid="uid://dep1qkiexxl0f" path="res://assets/sprites/ui/ui.sprites/ico_music.tres" id="9_fyc1j"]
-[ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="10_a4j41"]
+[ext_resource type="FontFile" uid="uid://blfbhkotfgwjd" path="res://assets/fonts/HarmonyOS_Sans_SC_Bold（聊天标题）.ttf" id="10_a7ami"]
 [ext_resource type="Texture2D" uid="uid://dfy5kevi7uo8k" path="res://assets/sprites/ui/ui.sprites/ico_book.tres" id="10_pdylm"]
+[ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="11_22tcg"]
 [ext_resource type="Texture2D" uid="uid://c6v2qdnum2hea" path="res://assets/sprites/ui/ui.sprites/chat/screen_background.tres" id="12_fyc1j"]
 [ext_resource type="Theme" uid="uid://b4d02lqqc61dq" path="res://themes/phone_theme.tres" id="12_m0vni"]
 [ext_resource type="Texture2D" uid="uid://cfuu8ygjd04ca" path="res://assets/sprites/ui/ui.sprites/phone_back_normal.tres" id="13_xkddf"]
@@ -36,7 +37,7 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name", "label_phone_date", "label_time", "label_location")]
 script = ExtResource("1_xkddf")
 home_page = NodePath("Phone/Home")
 messenger_page = NodePath("Phone/Messenger")
@@ -53,6 +54,9 @@ chat_pool = NodePath("Phone/Messenger/ChatPool")
 back_button = NodePath("Phone/Chat/BackButton")
 messenger_back_button = NodePath("Phone/Messenger/BackButton")
 label_chat_name = NodePath("Phone/Chat/Label_Name")
+label_phone_date = NodePath("Phone/Home/Date/Label_PhoneDate")
+label_time = NodePath("Phone/Home/Date/Label_Time")
+label_location = NodePath("Phone/Home/Date/Label_Location")
 self_avatar = ExtResource("20_phone")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
@@ -78,7 +82,6 @@ mouse_filter = 2
 texture = ExtResource("4_ctgom")
 
 [node name="Home" type="TextureRect" parent="Phone" unique_id=1033589326]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -122,20 +125,82 @@ icon = ExtResource("10_pdylm")
 title = "奇迹书"
 
 [node name="Date" type="Control" parent="Phone/Home" unique_id=1612343402]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label_PhoneDate" type="Label" parent="Phone/Home/Date" unique_id=922845864]
 layout_mode = 0
-offset_left = 170.0
-offset_top = 737.0
-offset_right = 567.0
-offset_bottom = 902.0
-theme_override_fonts/font = ExtResource("10_a4j41")
+offset_left = -195.0
+offset_top = 73.5
+offset_right = 202.0
+offset_bottom = 238.5
+theme_override_fonts/font = ExtResource("10_a7ami")
 theme_override_font_sizes/font_size = 140
 text = "07/06"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_Time" type="Label" parent="Phone/Home/Date" unique_id=1565007650]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -221.0
+offset_top = 222.5
+offset_right = -5.0
+offset_bottom = 260.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 32
+text = "周四下午"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label_Divider" type="Label" parent="Phone/Home/Date" unique_id=342388797]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 221.5
+offset_right = 115.0
+offset_bottom = 259.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 32
+text = "|"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_Location" type="Label" parent="Phone/Home/Date" unique_id=190546168]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 22.0
+offset_top = 222.5
+offset_right = 238.0
+offset_bottom = 260.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 32
+text = "江城"
+vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
 visible = false
@@ -208,6 +273,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
+visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0

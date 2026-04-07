@@ -221,10 +221,6 @@ def generate_do_commands(data, state, lines, tabs):
         lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         state["visible_characters"].add(character)
 
-    # 附加（Optionals）：角色在场时设置附加物品
-    if character and data["optionals"]:
-        optionals_str = ",".join(data["optionals"])
-        lines.append(f'{tabs}$> Character("{character}").SetOptionals("{optionals_str}")')
 
 
 # ─── 递归遍历 ───

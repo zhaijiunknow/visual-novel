@@ -21,6 +21,9 @@ signal reply_selected(next_id: String)
 @export var back_button: TextureButton
 @export var messenger_back_button: TextureButton
 @export var label_chat_name: Label
+@export var label_phone_date: Label
+@export var label_time: Label
+@export var label_location: Label
 
 @export var self_avatar: Texture2D
 
