@@ -142,7 +142,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_rw8us"]
 resource_name = "ShowDate"
-length = 4.1666665
+length = 5.266667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -150,7 +150,7 @@ tracks/0/path = NodePath("Shade:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7, 3.5666666, 4.1666665),
+"times": PackedFloat32Array(0, 0.7, 4.633333, 5.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
@@ -162,7 +162,7 @@ tracks/1/path = NodePath("YMoveContent:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 2.1666667, 3.5666666, 4.1666665),
+"times": PackedFloat32Array(0.3, 2.1666667, 4.633333, 5.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [-300.0, 0.0, 0.0, -300.0]
@@ -174,7 +174,7 @@ tracks/2/path = NodePath("XMoveContent:position:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.53333336, 2.1666667, 3.5666666, 4.1666665),
+"times": PackedFloat32Array(0.53333336, 2.1666667, 4.633333, 5.266667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [-314.0, 0.0, 0.0, -314.0]

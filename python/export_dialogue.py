@@ -2,7 +2,10 @@ import requests
 import os
 import sys
 import json
+from datetime import datetime, timezone, timedelta
 from collections import defaultdict
+
+BEIJING_TZ = timezone(timedelta(hours=8))
 from dotenv import load_dotenv
 from feishu_auth import get_tenant_token, APP_TOKEN
 
@@ -115,6 +118,9 @@ def record_to_data(fields):
         "delay": extract_field(fields, "延迟"),
         "bg_name": extract_field(fields, "场景"),
         "time_period": extract_field(fields, "时段"),
+        "date": extract_field(fields, "日期"),
+        "week_day": extract_field(fields, "星期"),
+        "time": extract_field(fields, "时间"),
         "chapter": extract_field(fields, "章节"),
     }
 
@@ -187,6 +193,18 @@ def generate_do_commands(data, state, lines, tabs):
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
 
+    # 日期变化 → SetDate（日期、星期、时间任一变化都触发）
+    if data["date"] and data["week_day"]:
+        date_key = f'{data["date"]}-{data["week_day"]}-{data["time"]}'
+        if date_key != state["date_key"]:
+            timestamp_ms = int(float(data["date"]))
+            dt = datetime.fromtimestamp(timestamp_ms / 1000, tz=BEIJING_TZ)
+            month = dt.month
+            day = dt.day
+            week_day = data["week_day"] + data["time"]
+            lines.append(f'{tabs}$> SetDate({month}, {day}, "{week_day}")')
+            state["date_key"] = date_key
+
     # 手机模式切换
     is_phone = bool(data["phone"])
     if is_phone and not state["phone_mode"]:
@@ -241,6 +259,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         "visible_characters": set(),
         "bg_name": "",
         "time_period": "",
+        "date_key": "",
         "phone_mode": False,
     }
 

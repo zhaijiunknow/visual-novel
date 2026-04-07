@@ -5,6 +5,7 @@ extends Node
 @export var gallery_data_pool: Array[GalleryData]
 
 var current_background: String
+var current_date: String
 
 signal character_selection_index_changed
 var character_selection_index: int:
@@ -56,7 +57,11 @@ func Travel() -> void:
 	Game.travel_page.visible = true
 	await Game.travel_page.visibility_changed
 
-func ShowDate(month: int, day: int, week_day: String) -> void:
+func SetDate(month: int, day: int, week_day: String) -> void:
+	var date_key := "%02d-%02d-%s" % [month, day, week_day]
+	if current_date == date_key:
+		return
+	current_date = date_key
 	Game.stage_page.label_month.text = str(month).pad_zeros(2)
 	Game.stage_page.label_day.text = str(day).pad_zeros(2)
 	Game.stage_page.label_week_day.text = week_day
