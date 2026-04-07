@@ -18,8 +18,12 @@ var favourite: bool:
 var current_collection: VoiceCollection:
 	set(value):
 		current_collection = value
-		voice_view.visible = current_collection != null
-		if not current_collection: return
+		if not current_collection:
+			voice_view.visible = false
+			return
+		voice_view.modulate.a = 0
+		voice_view.visible = true
+		create_tween().tween_property(voice_view, "modulate:a", 1.0, 0.2)
 		label_character_name.text = current_collection.character_name
 		label_chapter_number.text = current_collection.chapter_number_text
 		label_chapter_name.text = current_collection.chapter_name
