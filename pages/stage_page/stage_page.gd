@@ -168,6 +168,10 @@ var expression: String:
 		return dialogue_line.get_tag_value("表情")
 
 func process_dialogue_line() -> void:
+	# 对话框淡入
+	if dialogue_screen.modulate.a < 1:
+		await create_tween().tween_property(dialogue_screen, "modulate:a", 1.0, 0.2).finished
+
 	var has_avatar = character != null
 
 	# 角色头像
@@ -313,6 +317,7 @@ func start() -> void:
 	_idle = false
 	skip_tag.visible = false
 	auto_tag.visible = false
+	dialogue_screen.modulate.a = 0
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [ self , Stage])
 
 

@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://beupyvqe73rww" path="res://assets/sprites/ui/ui.sprites/phone_back_hover.tres" id="15_31aqv"]
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
-[ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="18_31aqv"]
 [ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="19_fyc1j"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
@@ -82,6 +81,7 @@ mouse_filter = 2
 texture = ExtResource("4_ctgom")
 
 [node name="Home" type="TextureRect" parent="Phone" unique_id=1033589326]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -280,7 +280,6 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
-visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0
@@ -330,7 +329,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_pdylm")
 
 [node name="TextureRect" type="TextureRect" parent="Phone/Messenger/ProfileImage" unique_id=881368561]
 layout_mode = 2
-texture = ExtResource("18_31aqv")
+texture = ExtResource("20_phone")
 expand_mode = 1
 stretch_mode = 6
 

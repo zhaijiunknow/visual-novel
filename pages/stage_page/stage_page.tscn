@@ -208,10 +208,10 @@ texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScre
 voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
 skip_tag = NodePath("Tags/SkipTag")
 auto_tag = NodePath("Tags/AutoTag")
-date_player = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/DatePlayer")
-label_month = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Month")
-label_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent/Label_Day")
-label_week_day = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent/Label_WeekDay")
+date_player = NodePath("SubViewportContainer/SubViewport/Date/DatePlayer")
+label_month = NodePath("SubViewportContainer/SubViewport/Date/YMoveContent/Label_Month")
+label_day = NodePath("SubViewportContainer/SubViewport/Date/YMoveContent/Label_Day")
+label_week_day = NodePath("SubViewportContainer/SubViewport/Date/XMoveContent/Label_WeekDay")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]
 anchors_preset = 15
@@ -500,101 +500,6 @@ hint_text = "主菜单"
 [node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Title" index="0" unique_id=1758427880]
 texture = ExtResource("22_0afbx")
 
-[node name="Date" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=990267552]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 287.0
-offset_bottom = 180.0
-mouse_filter = 2
-
-[node name="DatePlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=828201241]
-libraries/ = SubResource("AnimationLibrary_lda8k")
-
-[node name="Shade" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1378467412]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-offset_right = 2446.0
-offset_bottom = 1104.0
-mouse_filter = 2
-texture = ExtResource("20_rw8us")
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=72667629]
-layout_mode = 0
-offset_left = 251.0
-offset_top = 175.0
-offset_right = 504.0
-offset_bottom = 290.0
-mouse_filter = 2
-texture = ExtResource("24_lda8k")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/Shade" unique_id=1425571291]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 299.0
-offset_right = 176.0
-offset_bottom = 327.0
-mouse_filter = 2
-texture = ExtResource("25_lda8k")
-
-[node name="YMoveContent" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=1298951876]
-anchors_preset = 0
-offset_top = -300.0
-offset_bottom = -300.0
-mouse_filter = 2
-
-[node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=19742695]
-modulate = Color(0.5137255, 0.7764706, 1, 1)
-layout_mode = 0
-offset_left = 44.0
-offset_top = 73.0
-offset_right = 289.0
-offset_bottom = 250.0
-pivot_offset_ratio = Vector2(1, 0)
-theme_override_fonts/font = ExtResource("20_4x5c0")
-theme_override_font_sizes/font_size = 176
-text = "12"
-horizontal_alignment = 2
-
-[node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=585375775]
-layout_mode = 0
-offset_left = 289.0
-offset_top = 120.0
-offset_right = 313.0
-offset_bottom = 220.0
-theme_override_colors/font_color = Color(0.5137255, 0.7764706, 1, 1)
-theme_override_colors/font_outline_color = Color(0.5137255, 0.7764706, 1, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("20_4x5c0")
-theme_override_font_sizes/font_size = 100
-text = "/"
-
-[node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/YMoveContent" unique_id=1021873755]
-modulate = Color(0.5137255, 0.7764706, 1, 1)
-layout_mode = 0
-offset_left = 318.0
-offset_top = 119.0
-offset_right = 456.0
-offset_bottom = 237.0
-theme_override_fonts/font = ExtResource("20_4x5c0")
-theme_override_font_sizes/font_size = 117
-text = "03"
-
-[node name="XMoveContent" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen/Date" unique_id=834662092]
-anchors_preset = 0
-offset_left = -314.0
-offset_right = -314.0
-mouse_filter = 2
-
-[node name="Label_WeekDay" type="Label" parent="SubViewportContainer/SubViewport/DialogueScreen/Date/XMoveContent" unique_id=1042550106]
-layout_mode = 0
-offset_left = 93.0
-offset_top = 219.0
-offset_right = 285.0
-offset_bottom = 272.0
-theme_override_fonts/font = ExtResource("7_ke2v6")
-theme_override_font_sizes/font_size = 36
-text = "周四下午"
-
 [node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]
 anchors_preset = 0
 offset_right = 40.0
@@ -645,6 +550,101 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Date" type="Control" parent="SubViewportContainer/SubViewport" unique_id=990267552]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 287.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="DatePlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Date" unique_id=828201241]
+libraries/ = SubResource("AnimationLibrary_lda8k")
+
+[node name="Shade" type="TextureRect" parent="SubViewportContainer/SubViewport/Date" unique_id=1378467412]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_right = 2446.0
+offset_bottom = 1104.0
+mouse_filter = 2
+texture = ExtResource("20_rw8us")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=72667629]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 175.0
+offset_right = 504.0
+offset_bottom = 290.0
+mouse_filter = 2
+texture = ExtResource("24_lda8k")
+
+[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=1425571291]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 299.0
+offset_right = 176.0
+offset_bottom = 327.0
+mouse_filter = 2
+texture = ExtResource("25_lda8k")
+
+[node name="YMoveContent" type="Control" parent="SubViewportContainer/SubViewport/Date" unique_id=1298951876]
+anchors_preset = 0
+offset_top = -300.0
+offset_bottom = -300.0
+mouse_filter = 2
+
+[node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/Date/YMoveContent" unique_id=19742695]
+modulate = Color(0.5137255, 0.7764706, 1, 1)
+layout_mode = 0
+offset_left = 44.0
+offset_top = 73.0
+offset_right = 289.0
+offset_bottom = 250.0
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_fonts/font = ExtResource("20_4x5c0")
+theme_override_font_sizes/font_size = 176
+text = "12"
+horizontal_alignment = 2
+
+[node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/Date/YMoveContent" unique_id=585375775]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 120.0
+offset_right = 313.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0.5137255, 0.7764706, 1, 1)
+theme_override_colors/font_outline_color = Color(0.5137255, 0.7764706, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("20_4x5c0")
+theme_override_font_sizes/font_size = 100
+text = "/"
+
+[node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/Date/YMoveContent" unique_id=1021873755]
+modulate = Color(0.5137255, 0.7764706, 1, 1)
+layout_mode = 0
+offset_left = 318.0
+offset_top = 119.0
+offset_right = 456.0
+offset_bottom = 237.0
+theme_override_fonts/font = ExtResource("20_4x5c0")
+theme_override_font_sizes/font_size = 117
+text = "03"
+
+[node name="XMoveContent" type="Control" parent="SubViewportContainer/SubViewport/Date" unique_id=834662092]
+anchors_preset = 0
+offset_left = -314.0
+offset_right = -314.0
+mouse_filter = 2
+
+[node name="Label_WeekDay" type="Label" parent="SubViewportContainer/SubViewport/Date/XMoveContent" unique_id=1042550106]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 219.0
+offset_right = 285.0
+offset_bottom = 272.0
+theme_override_fonts/font = ExtResource("7_ke2v6")
+theme_override_font_sizes/font_size = 36
+text = "周四下午"
 
 [node name="Tags" type="Control" parent="." unique_id=1786234838]
 layout_mode = 3

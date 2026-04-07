@@ -197,6 +197,7 @@ func _transition_to_chat() -> void:
 func _transition_to_messenger() -> void:
 	if _transitioning: return
 	_transitioning = true
+	update_chat_list()
 	if _page_tween: _page_tween.kill()
 	messenger_page.visible = true
 	messenger_page.modulate.a = 0
