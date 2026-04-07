@@ -318,6 +318,8 @@ func start() -> void:
 	skip_tag.visible = false
 	auto_tag.visible = false
 	dialogue_screen.modulate.a = 0
+	label_character_name.text = ""
+	dialogue_label.text = ""
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [ self , Stage])
 
 
