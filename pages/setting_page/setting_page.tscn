@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnqqbeyauw3gt"]
 
 [ext_resource type="Script" uid="uid://c4buwpxs7t84t" path="res://pages/setting_page/setting_page.gd" id="1_cqmhw"]
-[ext_resource type="Texture2D" uid="uid://gsd0mrvxyqpi" path="res://assets/ui_backgrounds/common_background.jpg" id="2_cqmhw"]
+[ext_resource type="Texture2D" uid="uid://cp7tpt61m14md" path="res://assets/ui_backgrounds/frame_background.png" id="2_e1hbt"]
 [ext_resource type="Texture2D" uid="uid://dbo7821y14t2c" path="res://assets/temp/system.jpg" id="3_u8iwx"]
 [ext_resource type="PackedScene" uid="uid://2y0i8n3fcpn8" path="res://prefabs/selection_button/selection_button.tscn" id="5_175jp"]
 [ext_resource type="PackedScene" uid="uid://dshln3xvv24k4" path="res://prefabs/setting_label/setting_label.tscn" id="5_u8iwx"]
@@ -59,11 +59,11 @@ btn_mute_on = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionBut
 btn_mute_off = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionButton_MuteOff")
 reset_button = NodePath("ResetButton")
 
-[node name="Background2" type="TextureRect" parent="." unique_id=1987285052]
+[node name="Background" type="TextureRect" parent="." unique_id=1987285052]
 offset_right = 2560.0
 offset_bottom = 1440.0
 mouse_filter = 0
-texture = ExtResource("2_cqmhw")
+texture = ExtResource("2_e1hbt")
 
 [node name="Pages" type="Control" parent="." unique_id=1931831820]
 layout_mode = 3
