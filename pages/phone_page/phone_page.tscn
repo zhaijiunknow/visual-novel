@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b3pdi3vismhi6" path="res://assets/sprites/ui/ui.sprites/ico_message.tres" id="7_ctgom"]
 [ext_resource type="Texture2D" uid="uid://dp1fq12jc8cx4" path="res://assets/sprites/ui/ui.sprites/ico_image.tres" id="8_31aqv"]
 [ext_resource type="Texture2D" uid="uid://dep1qkiexxl0f" path="res://assets/sprites/ui/ui.sprites/ico_music.tres" id="9_fyc1j"]
-[ext_resource type="FontFile" uid="uid://blfbhkotfgwjd" path="res://assets/fonts/HarmonyOS_Sans_SC_Bold（聊天标题）.ttf" id="10_a7ami"]
+[ext_resource type="FontFile" uid="uid://bhspcrd06sfxp" path="res://assets/fonts/BebasNeue-Regular.ttf" id="10_a7ami"]
 [ext_resource type="Texture2D" uid="uid://dfy5kevi7uo8k" path="res://assets/sprites/ui/ui.sprites/ico_book.tres" id="10_pdylm"]
 [ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="11_22tcg"]
 [ext_resource type="Texture2D" uid="uid://c6v2qdnum2hea" path="res://assets/sprites/ui/ui.sprites/chat/screen_background.tres" id="12_fyc1j"]
@@ -135,11 +135,18 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label_PhoneDate" type="Label" parent="Phone/Home/Date" unique_id=922845864]
-layout_mode = 0
-offset_left = -195.0
-offset_top = 73.5
-offset_right = 202.0
-offset_bottom = 238.5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.5
+offset_top = 81.5
+offset_right = 198.5
+offset_bottom = 249.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_a7ami")
 theme_override_font_sizes/font_size = 140
 text = "07/06"
