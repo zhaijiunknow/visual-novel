@@ -45,20 +45,38 @@ func _ready() -> void:
 		func ():
 			if favourite:
 				Main.collection_data.voice_collections.erase(current_collection)
+				fade_out_card(current_collection)
 			else:
 				Main.collection_data.voice_collections.append(current_collection)
+				add_card(current_collection)
 			Main.save_collection_data()
 			update_favourite()
 	)
-	
+
+
+func add_card(collection: VoiceCollection) -> void:
+	var voice_card: VoiceCard = Prefabs.voice_card.instantiate()
+	voice_card.voice_collection = collection
+	voice_card_pool.add_child(voice_card)
+	voice_card.modulate.a = 0
+	create_tween().tween_property(voice_card, "modulate:a", 1.0, 0.2)
+
+
+func fade_out_card(collection: VoiceCollection) -> void:
+	for card: VoiceCard in voice_card_pool.get_children():
+		if card.voice_collection == collection:
+			var tween = create_tween()
+			tween.tween_property(card, "modulate:a", 0.0, 0.2)
+			tween.tween_callback(card.queue_free)
+			break
+
+
 func update() -> void:
 	for child in voice_card_pool.get_children():
 		voice_card_pool.remove_child(child)
 		child.queue_free()
 	for collection in Main.collection_data.voice_collections:
-		var voice_card: VoiceCard = Prefabs.voice_card.instantiate()
-		voice_card.voice_collection = collection
-		voice_card_pool.add_child(voice_card)
+		add_card(collection)
 
 func update_favourite() -> void:
 	texture_rect_favourite.texture = \

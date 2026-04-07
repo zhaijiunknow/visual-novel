@@ -51,6 +51,7 @@ grow_horizontal = 2
 mouse_filter = 2
 
 [node name="HintPanel" type="PanelContainer" parent="TopPoint" unique_id=521174603]
+visible = false
 self_modulate = Color(0.14767182, 0.14767182, 0.14767176, 1)
 layout_mode = 1
 anchors_preset = 7
