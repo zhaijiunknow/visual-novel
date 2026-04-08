@@ -1,5 +1,5 @@
 class_name DialogueButton
-extends TextureRect
+extends Control
 
 signal toggle_changed
 signal clicked
@@ -16,7 +16,8 @@ signal clicked
 @export var click_rect: Control
 @export var hint_panel: Control
 
-var color_normal = Color(1.0, 1.0, 1.0)
+var color_normal = Color(1.0, 1.0, 1.0, 0)
+var color_selected = Color(1.0, 1.0, 1.0, 1.0)
 var color_hover = Color(0.7, 0.7, 0.7)
 var color_click = Color(1.0, 1.0, 1.0)
 
@@ -25,15 +26,14 @@ var color_click = Color(1.0, 1.0, 1.0)
 @export var toggled: bool:
 	set(value):
 		toggled = value
-		if toggle_button:
-			select_frame.self_modulate = color_normal if toggled else Color.TRANSPARENT
+		_update_modulate()
 		toggle_changed.emit()
 
 var hovered: bool:
 	set(value):
 		hovered = value
 		hint_panel.visible = hovered
-		modulate = color_hover if hovered else color_normal
+		_update_modulate()
 
 var disabled: bool:
 	set(value):
@@ -41,11 +41,12 @@ var disabled: bool:
 		if disabled:
 			toggled = false
 			hovered = false
-		modulate.a = 0.3 if disabled else 1.0
+		_update_modulate()
+
+var _pressing: bool = false
 
 func _ready() -> void:
 	_hint_label.text = hint_text
-
 	hint_panel.visible = false
 
 	click_rect.mouse_entered.connect(
@@ -57,6 +58,7 @@ func _ready() -> void:
 		func ():
 			if disabled: return
 			hovered = false
+			_pressing = false
 	)
 	click_rect.gui_input.connect(
 		func (event: InputEvent):
@@ -64,12 +66,30 @@ func _ready() -> void:
 			if event is InputEventMouseButton:
 				if event.button_index == MOUSE_BUTTON_LEFT:
 					if event.is_pressed():
-						icon.modulate = color_click
+						_pressing = true
+						_update_modulate()
 						clicked.emit()
 						if toggle_button:
 							toggled = not toggled
 					if event.is_released():
-						icon.modulate = color_normal
+						_pressing = false
+						_update_modulate()
 	)
 
 	toggled = toggled
+
+
+func _update_modulate() -> void:
+	if disabled:
+		select_frame.modulate = Color(1, 1, 1, 0.3)
+		return
+	if _pressing:
+		select_frame.modulate = color_click
+		return
+	if hovered:
+		select_frame.modulate = color_hover
+		return
+	if toggle_button and toggled:
+		select_frame.modulate = color_selected
+		return
+	select_frame.modulate = color_normal

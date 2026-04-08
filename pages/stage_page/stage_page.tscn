@@ -325,82 +325,68 @@ layout_mode = 2
 hint_text = "快进游戏文本"
 toggle_button = true
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Skip" index="0" unique_id=1758427880]
-offset_left = -15.0
-offset_right = 17.0
-
 [node name="DialogueButton_Auto" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=492983354 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "自动播放"
 toggle_button = true
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Auto" index="0" unique_id=1758427880]
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Auto" index="1" unique_id=1758427880]
 texture = ExtResource("14_lda8k")
 
 [node name="DialogueButton_Save" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1987230586 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "保存游戏"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Save" index="0" unique_id=1758427880]
-offset_left = -15.0
-offset_right = 17.0
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Save" index="1" unique_id=1758427880]
 texture = ExtResource("15_217kn")
 
 [node name="DialogueButton_Load" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1391655335 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "读取存档"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Load" index="0" unique_id=1758427880]
-offset_left = -15.0
-offset_right = 17.0
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Load" index="1" unique_id=1758427880]
 texture = ExtResource("16_hovpu")
 
 [node name="DialogueButton_Log" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1330438700 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "对话记录"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Log" index="0" unique_id=1758427880]
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Log" index="1" unique_id=1758427880]
 texture = ExtResource("17_an5lx")
 
 [node name="DialogueButton_Set" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1903119149 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "系统设置"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Set" index="0" unique_id=1758427880]
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Set" index="1" unique_id=1758427880]
 texture = ExtResource("18_et2aa")
 
 [node name="DialogueButton_Voice" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1310080083 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "语音收藏"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Voice" index="0" unique_id=1758427880]
-offset_left = -15.0
-offset_top = -68.0
-offset_right = 17.0
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Voice" index="1" unique_id=1758427880]
 texture = ExtResource("19_8wbyc")
 
 [node name="DialogueButton_Phone" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=538227529 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "手机界面"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Phone" index="0" unique_id=1758427880]
-offset_left = -15.0
-offset_top = -68.0
-offset_right = 17.0
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Phone" index="1" unique_id=1758427880]
 texture = ExtResource("20_wuhph")
 
 [node name="DialogueButton_Book" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1504173714 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "奇迹书"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Book" index="0" unique_id=1758427880]
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Book" index="1" unique_id=1758427880]
 texture = ExtResource("21_1r163")
 
 [node name="DialogueButton_Title" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1703431268 instance=ExtResource("10_7jxs1")]
 layout_mode = 2
 hint_text = "主菜单"
 
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Title" index="0" unique_id=1758427880]
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Title" index="1" unique_id=1758427880]
 texture = ExtResource("22_0afbx")
 
 [node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]

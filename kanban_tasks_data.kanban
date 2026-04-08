@@ -13,7 +13,9 @@
 			"tasks": [
 				"d925061f-0f29-42b9-9e94-25348b10d064",
 				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-				"17372239-7630-48d2-a6da-0c210e1948b9"
+				"17372239-7630-48d2-a6da-0c210e1948b9",
+				"9087e660-b667-4d16-909b-39c3d04ae301",
+				"64ae94fa-ac38-4f54-802b-781dc7eed6ab"
 			]
 		},
 		{
@@ -109,6 +111,20 @@
 		{
 			"uuid": "17372239-7630-48d2-a6da-0c210e1948b9",
 			"title": "演出按钮",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "9087e660-b667-4d16-909b-39c3d04ae301",
+			"title": "全局静音包括语音",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "64ae94fa-ac38-4f54-802b-781dc7eed6ab",
+			"title": "DialogueButton Hint",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
