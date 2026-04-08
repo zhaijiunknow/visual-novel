@@ -87,23 +87,15 @@ func update_audio():
 		phone_page.clear_all()
 		log_page.clear_all()
 	if current_page == bonus_page:
-		if AudioManager.audio_player_bonus.playing or AudioManager.audio_player_bonus.stream_paused:
-			AudioManager.audio_player_music.stop()
-			if AudioManager.audio_player_bonus.stream_paused:
-				AudioManager.audio_player_bonus.stream_paused = false
-		else:
-			if main_menu in page_stack and stage_page not in page_stack:
-				if not AudioManager.audio_player_music.playing:
-					AudioManager.play_theme()
+		return
+	AudioManager.audio_player_bonus.stream_paused = true
+	if current_page == stage_page:
+		AudioManager.audio_player_music.stop()
+	elif main_menu in page_stack and stage_page not in page_stack:
+		if not AudioManager.audio_player_music.playing:
+			AudioManager.play_theme()
 	else:
-		AudioManager.audio_player_bonus.stream_paused = true
-		if current_page == stage_page:
-			AudioManager.audio_player_music.stop()
-		elif main_menu in page_stack and stage_page not in page_stack:
-			if not AudioManager.audio_player_music.playing:
-				AudioManager.play_theme()
-		else:
-			AudioManager.audio_player_music.stop()
+		AudioManager.audio_player_music.stop()
 
 func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():

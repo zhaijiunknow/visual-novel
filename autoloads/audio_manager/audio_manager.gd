@@ -34,6 +34,7 @@ func _ready() -> void:
 	audio_player_bonus.finished.connect(
 		func ():
 			track_index += 1
+			audio_player_music.stop()
 			audio_player_bonus.play()
 	)
 
@@ -68,6 +69,7 @@ func replay_voice() -> void:
 	audio_player_voice.play()
 
 func play_theme() -> void:
+	audio_player_bonus.stop()
 	audio_player_music.stream = theme_music
 	theme_music.loop = true
 	audio_player_music.play()
@@ -90,5 +92,6 @@ func apply_character_volume(character_name: String) -> void:
 
 func set_track_position_by_ratio(ratio: float):
 	var target_position = audio_player_bonus.stream.get_length() * ratio
+	audio_player_music.stop()
 	audio_player_bonus.stop()
 	audio_player_bonus.play(target_position)
