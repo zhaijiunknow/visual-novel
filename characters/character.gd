@@ -45,7 +45,7 @@ var bonus_part_index_dict: Dictionary[String, Dictionary]
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-
+	set_process_input(movable)
 	subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	texture_rect_avatar.visible = false
 	

@@ -54,6 +54,7 @@ func _update_caret() -> void:
 
 
 func _ready() -> void:
+	set_process_input(false)
 	click_rect.gui_input.connect(_on_click_rect_input)
 	set_value_silent(initial_value)
 	resized.connect(_update_caret)
@@ -63,17 +64,17 @@ func _on_click_rect_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			dragged = true
+			set_process_input(true)
 			value = event.position.x / size.x
 	elif dragged and event is InputEventMouseMotion:
 		value = event.position.x / size.x
 
 
 func _input(event: InputEvent) -> void:
-	if not dragged:
-		return
 	if event is InputEventMouseMotion:
 		var local_x: float = event.global_position.x - global_position.x
 		value = local_x / size.x
 	elif event is InputEventMouseButton:
 		if event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 			dragged = false
+			set_process_input(false)

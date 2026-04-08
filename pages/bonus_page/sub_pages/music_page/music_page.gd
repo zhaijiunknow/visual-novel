@@ -33,6 +33,12 @@ var button_pressed: bool:
 			progress_hovered = false
 
 func _ready() -> void:
+	set_process_input(false)
+	set_physics_process(false)
+	visibility_changed.connect(func():
+		set_process_input(visible)
+		set_physics_process(visible)
+	)
 	for music_data in AudioManager.playlist:
 		var track_item: TrackItem = track_item_scene.instantiate()
 		track_item.music_data = music_data
@@ -94,7 +100,6 @@ func _input(event: InputEvent) -> void:
 				button_pressed = false
 
 func _physics_process(_delta: float) -> void:
-	if not visible: return
 	var progress_ratio = audio_player.get_playback_position() \
 	/ AudioManager.current_track.track.get_length()
 	play_progress_line.set_progress(progress_ratio)

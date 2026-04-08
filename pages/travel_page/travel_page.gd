@@ -39,6 +39,8 @@ var button_pressed: bool
 var sliding: bool
 
 func _ready() -> void:
+	set_process_input(false)
+	visibility_changed.connect(func(): set_process_input(visible))
 	vbox_selections.gui_input.connect(
 		func (event: InputEvent):
 			if event is InputEventMouseButton:

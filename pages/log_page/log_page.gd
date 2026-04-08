@@ -17,6 +17,8 @@ var _drag_start_y: float = 0
 var _scroll_start: float = 0
 
 func _ready() -> void:
+	set_process_input(false)
+	visibility_changed.connect(func(): set_process_input(visible))
 	DialogueManager.got_dialogue.connect(
 		func (line: DialogueLine):
 			if _suppressed: return
@@ -29,7 +31,6 @@ func _ready() -> void:
 	)
 
 func _input(event: InputEvent) -> void:
-	if not visible: return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
