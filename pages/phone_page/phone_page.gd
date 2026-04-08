@@ -171,6 +171,10 @@ func open_chat(chat_data: ChatData) -> void:
 		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
 		var avatar = get_phone_avatar(sender)
 		await chat_message.setup(type, chat_data.messages[i], avatar)
+	# 滚动到底部
+	await get_tree().process_frame
+	var chat_scroll: ScrollContainer = chat_message_pool.get_parent()
+	chat_scroll.scroll_vertical = chat_scroll.get_v_scroll_bar().max_value
 	# 加载完成，执行过渡
 	_transition_to_chat()
 

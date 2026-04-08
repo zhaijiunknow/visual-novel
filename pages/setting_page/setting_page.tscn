@@ -74,7 +74,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SystemPage" type="Control" parent="Pages" unique_id=1184190931]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -380,6 +379,7 @@ target_scroll_container = NodePath("../ScrollContainer")
 metadata/_custom_type_script = "uid://c451u0wxoyvl7"
 
 [node name="AudioPage" type="Control" parent="Pages" unique_id=1534882373]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

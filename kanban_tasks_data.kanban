@@ -11,20 +11,23 @@
 			"uuid": "f23ef9d7-c3c4-4aff-aa8e-8ac2594f3a64",
 			"title": "Todo",
 			"tasks": [
-				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
-				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
+				"d925061f-0f29-42b9-9e94-25348b10d064",
+				"fcaf2002-394b-4fa8-a7df-6358a7972a6a"
 			]
 		},
 		{
 			"uuid": "3a851002-3900-4215-828c-a7c0799ce93c",
 			"title": "Doing",
-			"tasks": []
+			"tasks": [
+				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
+			]
 		},
 		{
 			"uuid": "5478cbd5-7192-4b2d-b425-6af96c5b5c87",
 			"title": "Done",
 			"tasks": [
 				"b6694a93-c883-4cc7-b17f-7efb426cbe69",
+				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
 				"d179b823-c983-48cc-864b-5d999ebb06d8",
 				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
 				"c53843a0-7e62-4487-a642-fe280df6c7e6",
@@ -85,6 +88,20 @@
 		{
 			"uuid": "a681b916-d0b1-46db-b09a-a8eb60d1aa69",
 			"title": "Log滚动到最新",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "d925061f-0f29-42b9-9e94-25348b10d064",
+			"title": "角色大小",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "fcaf2002-394b-4fa8-a7df-6358a7972a6a",
+			"title": "更新立绘鉴赏",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []

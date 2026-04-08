@@ -17,8 +17,12 @@ var _drag_start_y: float = 0
 var _scroll_start: float = 0
 
 func _ready() -> void:
-	set_process_input(false)
 	visibility_changed.connect(func(): set_process_input(visible))
+	visibility_changed.connect(func():
+		if visible:
+			await get_tree().process_frame
+			scroll_container.scroll_vertical = scroll_container.get_v_scroll_bar().max_value
+	)
 	DialogueManager.got_dialogue.connect(
 		func (line: DialogueLine):
 			if _suppressed: return

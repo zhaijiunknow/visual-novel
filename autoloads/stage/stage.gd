@@ -39,8 +39,8 @@ func Character(character_name: String) -> Character:
 
 func SetBackground(background_name: String, variation_name: String,
 		out_time: float = 0.5, in_time: float = 0.5) -> void:
-	var is_skip := Game.stage_page.skip
-	var skip_trans := is_skip and Main.setting_data.skip_ignore_transitions
+	var is_skip: bool = Game.stage_page.skip
+	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
 
 	if is_skip and not skip_trans:
 		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
