@@ -445,7 +445,7 @@ offset_bottom = 48.0
 texture = ExtResource("29_wuhph")
 
 [node name="TextureRect_Blackscreen" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=1839957560]
-visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
