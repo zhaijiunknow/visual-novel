@@ -51,6 +51,7 @@ render_target_update_mode = 4
 [node name="Pages" type="Node" parent="SubViewportContainer/SubViewport" unique_id=461717146]
 
 [node name="MainMenu" parent="SubViewportContainer/SubViewport/Pages" unique_id=494483393 instance=ExtResource("2_84b8o")]
+visible = false
 
 [node name="BonusPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=998352437 instance=ExtResource("3_g2bdr")]
 visible = false

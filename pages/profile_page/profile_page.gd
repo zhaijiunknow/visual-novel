@@ -76,14 +76,23 @@ func load_game() -> void:
 	var profile = Main.save_data.profiles[profile_index]
 	Game.switch_to_page(Game.stage_page, true, false,
 		func():
-			Game.stage_page.dialogue_line = null
-			Tools.clear_children(Game.stage_page.character_image_pool)
-			# 先添加所有角色到池中（不做动画），保持存档顺序
+			# 重置到初始状态
+			Game.stage_page.reset()
+			# 恢复背景（直接设置，不走 SetBackground 的过渡和清人物）
+			var background_split = profile.background.split("-")
+			var background_name = background_split[0]
+			var variation_name = background_split[1]
+			var target_background: BackgroundData = Stage.background_data_pool.filter(
+				func(bg: BackgroundData): return bg.title == background_name
+			).front()
+			Game.stage_page.texture_rect_background.texture = target_background.variations[variation_name]
+			Stage.current_background = profile.background
+			Game.phone_page.label_location.text = target_background.location
+			# 恢复角色
 			for character_data: CharacterData in profile.character_datas:
 				var character = Stage.Character(character_data.character_name)
 				character.set_character_data(character_data)
 				if character_data.position:
-					character.current_position = character_data.position
 					character.character_image = character.story_model.duplicate()
 					Game.stage_page.character_image_pool.add_child(character.character_image)
 					character.character_image.show()
@@ -97,13 +106,11 @@ func load_game() -> void:
 				for image: Control in pool.get_children():
 					var position_x = image.get_index() * portion_width + offset_x
 					image.position = Vector2(position_x, 0)
-			var background_split = profile.background.split("-")
-			var background_name = background_split[0]
-			var variation_name = background_split[1]
-			Stage.SetBackground(background_name, variation_name, 0, 0)
+			# 恢复聊天和日志
 			Game.phone_page.chat_data_pool = profile.chat_datas.duplicate(true)
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
-			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
+			# 恢复对话
+			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id, [Game.stage_page, Stage])
 			Game.log_page._suppressed = false
 	)

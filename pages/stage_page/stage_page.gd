@@ -313,14 +313,27 @@ func _ready() -> void:
 	)
 
 
-func start() -> void:
+func reset() -> void:
 	_mode = AdvanceMode.MANUAL
 	_idle = false
 	skip_tag.visible = false
 	auto_tag.visible = false
+	dialogue_line = null
 	dialogue_screen.modulate.a = 0
 	label_character_name.text = ""
 	dialogue_label.text = ""
+	dialogue_label.visible_characters = 0
+	date.modulate.a = 0
+	texture_rect_blackscreen.modulate.a = 0
+	avatar.texture = null
+	responses_menu.visible = false
+	voice_buttons.visible = false
+	AudioManager.audio_player_voice.stop()
+	Tools.clear_connections(AudioManager.audio_player_voice.finished)
+	Stage.reset()
+
+func start() -> void:
+	reset()
 	dialogue_line = await dialogue.get_next_dialogue_line("start", [ self , Stage])
 
 

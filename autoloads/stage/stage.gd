@@ -25,6 +25,11 @@ func _ready() -> void:
 	for character: Character in character_pool.get_children():
 		character_dict[character.name] = character
 
+func reset() -> void:
+	current_background = ""
+	current_date = ""
+	clear_characters()
+
 func start() -> void:
 	Game.stage_page.start()
 

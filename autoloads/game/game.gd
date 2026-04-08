@@ -84,7 +84,6 @@ func update_audio():
 	if stage_page not in page_stack:
 		AudioManager.audio_player_voice.stop()
 		stage_page._set_mode(stage_page.AdvanceMode.MANUAL)
-		Tools.clear_children(stage_page.character_image_pool)
 		phone_page.clear_all()
 		log_page.clear_all()
 	if current_page == bonus_page:
