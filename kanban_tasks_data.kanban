@@ -13,10 +13,11 @@
 			"tasks": [
 				"d925061f-0f29-42b9-9e94-25348b10d064",
 				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-				"17372239-7630-48d2-a6da-0c210e1948b9",
 				"9087e660-b667-4d16-909b-39c3d04ae301",
 				"64ae94fa-ac38-4f54-802b-781dc7eed6ab",
-				"53fc8e6d-cb13-41aa-96e0-ccbdd69c1fda"
+				"53fc8e6d-cb13-41aa-96e0-ccbdd69c1fda",
+				"c1acf6b6-3107-4cb0-a021-9b41e87d4a8b",
+				"bd8565b3-d690-4442-9d26-2e6976dc7ceb"
 			]
 		},
 		{
@@ -32,6 +33,7 @@
 				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
 				"d179b823-c983-48cc-864b-5d999ebb06d8",
 				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
+				"17372239-7630-48d2-a6da-0c210e1948b9",
 				"c53843a0-7e62-4487-a642-fe280df6c7e6",
 				"cf3c6071-e392-4d28-a09f-f3a76585542c",
 				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
@@ -133,6 +135,20 @@
 		{
 			"uuid": "53fc8e6d-cb13-41aa-96e0-ccbdd69c1fda",
 			"title": "播放问题",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "c1acf6b6-3107-4cb0-a021-9b41e87d4a8b",
+			"title": "语音播放音乐要暂停",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "bd8565b3-d690-4442-9d26-2e6976dc7ceb",
+			"title": "城挑了挑眉",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
