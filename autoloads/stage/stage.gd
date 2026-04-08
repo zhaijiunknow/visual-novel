@@ -38,13 +38,24 @@ func Character(character_name: String) -> Character:
 	return character_dict[character_name]
 
 func SetBackground(background_name: String, variation_name: String,
-	out_time: float = 0.5, in_time: float = 0.5) -> void:
-	await create_tween().tween_property(
-		Game.stage_page.texture_rect_blackscreen,
-		"modulate:a",
-		1,
-		out_time
-	).finished
+		out_time: float = 0.5, in_time: float = 0.5) -> void:
+	var is_skip := Game.stage_page.skip
+	var skip_trans := is_skip and Main.setting_data.skip_ignore_transitions
+
+	if is_skip and not skip_trans:
+		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
+		Game.stage_page.skip_cancelled.emit()
+
+	if skip_trans:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 1
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			1,
+			out_time
+		).finished
+
 	var target_background: BackgroundData = background_data_pool.filter(
 		func (background: BackgroundData):
 			return background.title == background_name
@@ -56,12 +67,16 @@ func SetBackground(background_name: String, variation_name: String,
 	# 趁黑屏清空场景人物、隐藏对话框
 	clear_characters()
 	Game.stage_page.dialogue_screen.modulate.a = 0
-	await create_tween().tween_property(
-		Game.stage_page.texture_rect_blackscreen,
-		"modulate:a",
-		0,
-		in_time
-	).finished
+
+	if skip_trans:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			0,
+			in_time
+		).finished
 
 func clear_characters() -> void:
 	Tools.clear_children(Game.stage_page.character_image_pool)
