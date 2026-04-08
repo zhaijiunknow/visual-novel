@@ -63,8 +63,7 @@ func SetBackground(background_name: String, variation_name: String,
 	).finished
 
 func clear_characters() -> void:
-	for image in Game.stage_page.character_image_pool.get_children():
-		image.queue_free()
+	Tools.clear_children(Game.stage_page.character_image_pool)
 	for character in character_array:
 		character.character_image = null
 		character.current_position = ""

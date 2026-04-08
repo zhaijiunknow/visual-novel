@@ -110,7 +110,7 @@ func load_game() -> void:
 			Game.phone_page.chat_data_pool = profile.chat_datas.duplicate(true)
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
-			# 恢复对话
-			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id, [Game.stage_page, Stage])
+			# 恢复对话（不传 extra_game_states，避免 mutations 重复执行改变已恢复的角色状态）
+			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
 			Game.log_page._suppressed = false
 	)
