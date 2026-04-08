@@ -28,6 +28,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="visual-novel"
+run/low_processor_mode=true
 run/main_scene="uid://nixyr2xle2qo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
