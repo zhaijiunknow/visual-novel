@@ -22,6 +22,7 @@ var current_page: CanvasLayer:
 		return page_stack.back() if page_stack.size() > 0 else null
 
 func _ready() -> void:
+	Tools.apply_texture_filters(page_pool)
 	switch_to_page(main_menu, false, false)
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass):
