@@ -48,12 +48,21 @@ func SetBackground(background_name: String, variation_name: String,
 	current_background = "%s-%s" % [background_name, variation_name]
 	Game.phone_page.label_location.text = target_background.location
 	Game.stage_page.texture_rect_background.texture = target_texture
+	# 趁黑屏清空场景人物
+	clear_characters()
 	await create_tween().tween_property(
 		Game.stage_page.texture_rect_blackscreen,
 		"modulate:a",
 		0,
 		in_time
 	).finished
+
+func clear_characters() -> void:
+	for image in Game.stage_page.character_image_pool.get_children():
+		image.queue_free()
+	for character in character_array:
+		character.character_image = null
+		character.current_position = ""
 
 func Travel() -> void:
 	Game.travel_page.visible = true

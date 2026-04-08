@@ -188,6 +188,7 @@ text = "Exit Game"
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=348056610]
 material = SubResource("CanvasItemMaterial_mtbyv")
 position = Vector2(0, -207)
+emitting = false
 amount = 32
 texture = ExtResource("6_mtbyv")
 lifetime = 14.68
