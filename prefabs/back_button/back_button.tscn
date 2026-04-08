@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dmeq1sti8h621" path="res://prefabs/back_button/back_button.gd" id="4_76biy"]
 
 [node name="BackButton" type="TextureButton" unique_id=1647052709]
+	texture_filter = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

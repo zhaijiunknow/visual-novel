@@ -19,6 +19,7 @@ tab_music = NodePath("HBoxContainer_Tabs/TabItem_Music")
 tab_voice = NodePath("HBoxContainer_Tabs/TabItem_Voice")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1301707995]
+	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,6 +28,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Background" type="TextureRect" parent="." unique_id=1031335720]
+	texture_filter = 3
 self_modulate = Color(1, 1, 1, 0.7176471)
 offset_right = 2560.0
 offset_bottom = 1440.0
@@ -34,6 +36,7 @@ mouse_filter = 0
 texture = ExtResource("2_n8efi")
 
 [node name="TabPages" type="Control" parent="." unique_id=583774228]
+	texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,6 +61,7 @@ visible = false
 layout_mode = 1
 
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1931057470]
+	texture_filter = 3
 offset_left = 1261.0
 offset_top = 1268.0
 offset_right = 2422.0

@@ -51,6 +51,7 @@ _data = {
 script = ExtResource("1_mieu7")
 
 [node name="Background" type="ColorRect" parent="." unique_id=874357959]
+	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -59,6 +60,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.30588236)
 
 [node name="Control" type="Control" parent="." unique_id=1107214408]
+	texture_filter = 3
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 3
@@ -86,6 +88,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("2_jy7hn")
 
 [node name="Label" type="Label" parent="Control" unique_id=375028799]
+	texture_filter = 2
 modulate = Color(0.68635553, 0.85314685, 0.996563, 1)
 layout_mode = 1
 anchors_preset = 3

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bqnnxu8fv11og" path="res://prefabs/paragraph_container/paragraph_container.gd" id="1_plfu2"]
 
 [node name="ParagraphContainer" type="MarginContainer" node_paths=PackedStringArray("box_left", "box_right")]
+	texture_filter = 3
 offset_left = 8.0
 offset_right = 8.0
 theme_override_constants/margin_bottom = 41
@@ -11,6 +12,7 @@ box_left = NodePath("HBoxContainer/BoxContainer_Left")
 box_right = NodePath("HBoxContainer/BoxContainer_Right")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+	texture_filter = 3
 layout_mode = 2
 
 [node name="BoxContainer_Left" type="BoxContainer" parent="HBoxContainer"]

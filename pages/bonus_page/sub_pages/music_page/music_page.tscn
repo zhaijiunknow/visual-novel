@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="20_dj2j6"]
 
 [node name="MusicPage" type="Control" unique_id=1084617009 node_paths=PackedStringArray("play_progress_container", "play_progress_line", "play_progress_line_ghost", "progress_hint", "play_button", "pause_button", "next_button", "previous_button", "vbox_playlist", "label_title", "richlabel_description", "label_current_time", "label_total_time")]
+	texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +43,7 @@ label_current_time = NodePath("Time/Label_CurrentTime")
 label_total_time = NodePath("Time/Label_TotalTime")
 
 [node name="Images" type="Control" parent="." unique_id=177195987]
+	texture_filter = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -70,11 +72,13 @@ offset_bottom = 432.0
 texture = ExtResource("5_vr635")
 
 [node name="Labels" type="Control" parent="." unique_id=693347294]
+	texture_filter = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Label_Title" type="Label" parent="Labels" unique_id=1651870037]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 891.0
 offset_top = 235.0
@@ -85,6 +89,7 @@ theme_override_font_sizes/font_size = 44
 text = "歌曲名称"
 
 [node name="RichTextLabel_Description" type="RichTextLabel" parent="Labels" unique_id=1913333970]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 894.0
 offset_top = 445.0
@@ -95,6 +100,7 @@ theme_override_font_sizes/normal_font_size = 31
 text = "歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介"
 
 [node name="PlayProgressContainer" type="Control" parent="." unique_id=740297171]
+	texture_filter = 3
 anchors_preset = 0
 offset_top = 1094.0
 offset_right = 1866.5
@@ -135,6 +141,7 @@ pivot_offset = Vector2(32, 33)
 texture = ExtResource("8_wb12c")
 
 [node name="Buttons" type="Control" parent="." unique_id=352439253]
+	texture_filter = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -181,6 +188,7 @@ texture_pressed = ExtResource("15_yiqbi")
 texture_hover = ExtResource("16_v2y0q")
 
 [node name="ScrollContainer_Playlist" type="ScrollContainer" parent="." unique_id=380790596]
+	texture_filter = 3
 layout_mode = 0
 offset_left = 1911.0
 offset_top = 108.0
@@ -200,11 +208,13 @@ offset_bottom = 1186.0
 target_scroll_container = NodePath("../ScrollContainer_Playlist")
 
 [node name="Time" type="Control" parent="." unique_id=724334518]
+	texture_filter = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Label_CurrentTime" type="Label" parent="Time" unique_id=1420255226]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 97.0
 offset_top = 1159.0
@@ -215,6 +225,7 @@ theme_override_font_sizes/font_size = 20
 text = "02:13"
 
 [node name="Label" type="Label" parent="Time" unique_id=1872895388]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 154.0
 offset_top = 1159.0
@@ -225,6 +236,7 @@ theme_override_font_sizes/font_size = 20
 text = "/"
 
 [node name="Label_TotalTime" type="Label" parent="Time" unique_id=1227638600]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 169.0
 offset_top = 1159.0

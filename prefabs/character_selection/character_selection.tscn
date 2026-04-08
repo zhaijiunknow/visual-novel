@@ -15,6 +15,7 @@ border_width_bottom = 1
 bg_color = Color(0, 0, 0, 0.3529412)
 
 [node name="CharacterSelection" type="Panel" unique_id=2115129008 node_paths=PackedStringArray("portrait", "blackout_shade", "hover_shade")]
+	texture_filter = 3
 offset_right = 118.0
 offset_bottom = 118.0
 rotation = 0.7853982
@@ -25,6 +26,7 @@ blackout_shade = NodePath("BlackoutShade")
 hover_shade = NodePath("HoverShade")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1994759634]
+	texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +63,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="BlackoutShade" type="Panel" parent="." unique_id=698347563]
+	texture_filter = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -72,6 +75,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
 
 [node name="HoverShade" type="Panel" parent="." unique_id=1249778295]
+	texture_filter = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15

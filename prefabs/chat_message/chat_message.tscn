@@ -13,6 +13,7 @@ corner_radius_bottom_right = 48
 corner_radius_bottom_left = 48
 
 [node name="ChatMessage" type="HBoxContainer" unique_id=723068403 node_paths=PackedStringArray("frame_left", "frame_right", "avatar_left", "avatar_right", "bubble", "message_text")]
+	texture_filter = 3
 size_flags_horizontal = 0
 theme_override_constants/separation = 12
 script = ExtResource("1_afdii")
@@ -25,6 +26,7 @@ bubble = NodePath("Bubble")
 message_text = NodePath("Bubble/MarginContainer/MessageText")
 
 [node name="Frame_Left" type="PanelContainer" parent="." unique_id=1549408015]
+	texture_filter = 3
 clip_children = 1
 clip_contents = true
 custom_minimum_size = Vector2(96, 96)
@@ -40,6 +42,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Bubble" type="PanelContainer" parent="." unique_id=597060984]
+	texture_filter = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -50,6 +53,7 @@ layout_mode = 2
 theme = ExtResource("5_x1p1g")
 
 [node name="MessageText" type="RichTextLabel" parent="Bubble/MarginContainer" unique_id=406018384]
+	texture_filter = 2
 layout_mode = 2
 theme = ExtResource("5_x1p1g")
 text = "aaa"
@@ -58,6 +62,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Frame_Right" type="PanelContainer" parent="." unique_id=193997888]
+	texture_filter = 3
 clip_children = 1
 clip_contents = true
 custom_minimum_size = Vector2(96, 96)

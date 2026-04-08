@@ -10,10 +10,3 @@ static func clear_children(node: Node) -> void:
 		node.remove_child(child)
 		child.queue_free()
 
-static func apply_texture_filters(node: Node) -> void:
-	for child in node.get_children():
-		if child is Label or child is RichTextLabel:
-			child.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-		elif child is CanvasItem:
-			child.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS
-		apply_texture_filters(child)

@@ -14,6 +14,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="VoiceCard" type="TextureRect" unique_id=1287008254 node_paths=PackedStringArray("texture_rect_portrait", "label_number", "label_text", "drag_filter")]
+	texture_filter = 3
 texture = ExtResource("1_q3tst")
 script = ExtResource("2_4vpxv")
 texture_rect_portrait = NodePath("PortraitFrame/Control/TextureRect_Portrait")
@@ -27,6 +28,7 @@ target_object = NodePath("..")
 metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
 [node name="PortraitFrame" type="PanelContainer" parent="." unique_id=1749875993]
+	texture_filter = 3
 clip_children = 1
 layout_mode = 0
 offset_left = 11.0
@@ -51,6 +53,7 @@ mouse_filter = 2
 expand_mode = 5
 
 [node name="NumberBackground" type="TextureRect" parent="." unique_id=2087905206]
+	texture_filter = 3
 layout_mode = 0
 offset_left = 31.0
 offset_top = 20.0
@@ -60,6 +63,7 @@ mouse_filter = 2
 texture = ExtResource("3_4vpxv")
 
 [node name="Label_Number" type="Label" parent="NumberBackground" unique_id=1511627438]
+	texture_filter = 2
 modulate = Color(0.4862745, 0.47843137, 0.5294118, 1)
 layout_mode = 0
 offset_left = 33.0
@@ -71,6 +75,7 @@ theme_override_font_sizes/font_size = 24
 text = "NO.01"
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
+	texture_filter = 2
 modulate = Color(0.49803922, 0.49019608, 0.5372549, 1)
 layout_mode = 0
 offset_left = 357.0

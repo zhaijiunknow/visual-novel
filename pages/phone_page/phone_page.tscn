@@ -59,6 +59,7 @@ label_location = NodePath("Phone/Home/Date/Label_Location")
 self_avatar = ExtResource("20_phone")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
+	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,6 +68,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aggdw")
 
 [node name="Phone" type="TextureRect" parent="." unique_id=219849411]
+	texture_filter = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -135,6 +137,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label_PhoneDate" type="Label" parent="Phone/Home/Date" unique_id=922845864]
+	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -154,6 +157,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label_Time" type="Label" parent="Phone/Home/Date" unique_id=1565007650]
+	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -173,6 +177,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Label_Divider" type="Label" parent="Phone/Home/Date" unique_id=342388797]
+	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -192,6 +197,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label_Location" type="Label" parent="Phone/Home/Date" unique_id=190546168]
+	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -227,6 +233,7 @@ mouse_filter = 0
 texture = ExtResource("12_fyc1j")
 
 [node name="Label_Name" type="Label" parent="Phone/Chat" unique_id=138400390]
+	texture_filter = 2
 modulate = Color(0.29709297, 0.29709294, 0.2970929, 1)
 layout_mode = 1
 anchors_preset = 5

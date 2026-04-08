@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d3ilhx5rq1w1e" path="res://prefabs/paragraph/paragraph.gd" id="2_px35a"]
 
 [node name="Paragraph" type="RichTextLabel"]
+	texture_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 7
 theme_override_constants/paragraph_separation = 7

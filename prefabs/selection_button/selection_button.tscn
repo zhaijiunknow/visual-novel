@@ -14,6 +14,7 @@ shadow_size = 1
 anti_aliasing_size = 4.161
 
 [node name="SelectionButton" type="PanelContainer" unique_id=933418496 node_paths=PackedStringArray("label_title")]
+	texture_filter = 3
 self_modulate = Color(0.72156864, 0.72156864, 0.72156864, 1)
 offset_right = 124.0
 offset_bottom = 53.0
@@ -26,12 +27,14 @@ click_selected = null
 title = "标题"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1835303418]
+	texture_filter = 3
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 2
 
 [node name="Label_Title" type="Label" parent="MarginContainer" unique_id=165872956]
+	texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_jkra5")
 theme_override_font_sizes/font_size = 30

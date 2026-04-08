@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/follow_parent_visibility.gd" id="13_fpv"]
 
 [node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close")]
+	texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,6 +38,7 @@ offset_bottom = 1188.0
 target_scroll_container = NodePath("../ScrollContainer")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1251443452]
+	texture_filter = 3
 layout_mode = 0
 offset_left = 261.0
 offset_top = 73.0

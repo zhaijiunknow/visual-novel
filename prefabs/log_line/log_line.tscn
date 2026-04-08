@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://beulww8wuml3q" path="res://assets/sprites/ui/ui.sprites/menu_star.tres" id="4_aexk2"]
 
 [node name="LogLine" type="MarginContainer" unique_id=1658264118 node_paths=PackedStringArray("vbox_character_info", "label_character_name", "rich_label_dialogue_text", "button_replay", "button_favourite")]
+	texture_filter = 3
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
@@ -17,6 +18,7 @@ button_replay = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContaine
 button_favourite = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/TextureRect2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=373279728]
+	texture_filter = 3
 layout_mode = 2
 
 [node name="VBoxContainer_CharacterInfo" type="VBoxContainer" parent="HBoxContainer" unique_id=1065376902]
@@ -25,6 +27,7 @@ layout_mode = 2
 theme_override_constants/separation = 14
 
 [node name="Label_CharacterName" type="Label" parent="HBoxContainer/VBoxContainer_CharacterInfo" unique_id=533302300]
+	texture_filter = 2
 layout_mode = 2
 theme = ExtResource("1_0rosg")
 theme_override_colors/font_color = Color(0.5647059, 0.4745098, 0.6666667, 1)
@@ -44,6 +47,7 @@ layout_mode = 2
 texture = ExtResource("4_aexk2")
 
 [node name="RichTextLabel_DialogueText" type="RichTextLabel" parent="HBoxContainer" unique_id=1812552281]
+	texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_0rosg")

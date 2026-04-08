@@ -10,6 +10,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="SliderEx" type="PanelContainer" unique_id=1465816476 node_paths=PackedStringArray("fill", "end_point", "caret", "click_rect")]
+	texture_filter = 3
 clip_children = 1
 custom_minimum_size = Vector2(0, 15)
 offset_right = 704.0
@@ -22,6 +23,7 @@ caret = NodePath("Base/Fill/EndPoint/Caret")
 click_rect = NodePath("Base/ClickRect")
 
 [node name="Base" type="ColorRect" parent="." unique_id=1968626753]
+	texture_filter = 3
 layout_mode = 2
 color = Color(0, 0, 0, 0.45490196)
 

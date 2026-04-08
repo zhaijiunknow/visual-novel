@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://h5xbqxw5brwr" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/name_deco.tres" id="14_po4xj"]
 
 [node name="CharacterPage" type="Control" unique_id=217028155 node_paths=PackedStringArray("label_character_name", "background", "character_pool", "body_part_options", "background_option", "variation_option", "slider_size", "optional_pool")]
+	texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +32,7 @@ slider_size = NodePath("SliderEx_Size")
 optional_pool = NodePath("VBoxContainer_Options/VBoxContainer_Optionals")
 
 [node name="Background" type="TextureRect" parent="." unique_id=954682134]
+	texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +43,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="TextureRect_Foreground" type="TextureRect" parent="." unique_id=2105580272]
+	texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +54,7 @@ texture = ExtResource("2_201mx")
 stretch_mode = 6
 
 [node name="CharacterSelections" type="Control" parent="." unique_id=1545850755]
+	texture_filter = 3
 anchors_preset = 0
 mouse_filter = 1
 
@@ -90,6 +94,7 @@ offset_right = 284.0
 offset_bottom = 547.0
 
 [node name="Characters" type="Control" parent="." unique_id=1346683318]
+	texture_filter = 3
 anchors_preset = 0
 offset_left = 1305.0
 offset_top = 1433.0
@@ -150,6 +155,7 @@ layout_mode = 1
 movable = true
 
 [node name="Preview" type="TextureRect" parent="." unique_id=327835344]
+	texture_filter = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -159,6 +165,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label_CharacterName" type="Label" parent="." unique_id=242887376]
+	texture_filter = 2
 layout_mode = 0
 offset_left = 201.0
 offset_top = 643.0
@@ -179,6 +186,7 @@ offset_bottom = 112.0
 texture = ExtResource("14_po4xj")
 
 [node name="VBoxContainer_Options" type="VBoxContainer" parent="." unique_id=890492560]
+	texture_filter = 3
 layout_mode = 0
 offset_left = 97.0
 offset_top = 759.0

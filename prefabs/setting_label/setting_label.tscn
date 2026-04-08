@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="2_y1y6v"]
 
 [node name="SettingLabel" type="Label" unique_id=1727516438 node_paths=PackedStringArray("label_title_en")]
+	texture_filter = 2
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 offset_right = 72.0
 offset_bottom = 53.0
@@ -15,6 +16,7 @@ script = ExtResource("2_22oop")
 label_title_en = NodePath("Label_TitleEn")
 
 [node name="Label_TitleEn" type="Label" parent="." unique_id=540625506]
+	texture_filter = 2
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 layout_mode = 1
 offset_top = -15.0

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bvdv3vne87si7" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/listname_background.tres" id="6_nbg24"]
 
 [node name="CharacterOption" type="HBoxContainer" unique_id=555581031 node_paths=PackedStringArray("label", "previous_button", "next_button", "label_option_name")]
+	texture_filter = 3
 script = ExtResource("1_nbg24")
 label = NodePath("Label")
 previous_button = NodePath("TextureButton_Previous")
@@ -15,6 +16,7 @@ next_button = NodePath("TextureButton_Next")
 label_option_name = NodePath("TextureRect/Label_OptionName")
 
 [node name="Label" type="Label" parent="." unique_id=706614607]
+	texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.2
@@ -24,6 +26,7 @@ text = "表情"
 vertical_alignment = 1
 
 [node name="TextureButton_Previous" type="TextureButton" parent="." unique_id=1867605246]
+	texture_filter = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.53
@@ -33,12 +36,14 @@ texture_hover = ExtResource("5_of8w3")
 stretch_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=848747171]
+	texture_filter = 3
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("6_nbg24")
 stretch_mode = 3
 
 [node name="Label_OptionName" type="Label" parent="TextureRect" unique_id=243116870]
+	texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,6 +59,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton_Next" type="TextureButton" parent="." unique_id=394097424]
+	texture_filter = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.53

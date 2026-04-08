@@ -13,6 +13,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="DialogueButton" type="PanelContainer" unique_id=401138624 node_paths=PackedStringArray("select_frame", "icon", "click_rect", "hint_panel", "_hint_label")]
+	texture_filter = 3
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 76.0
 offset_bottom = 89.0
@@ -25,10 +26,12 @@ hint_panel = NodePath("TopPoint/HintPanel")
 _hint_label = NodePath("TopPoint/HintPanel/MarginContainer/Label")
 
 [node name="Frame" type="TextureRect" parent="." unique_id=1005151861]
+	texture_filter = 3
 layout_mode = 2
 texture = ExtResource("1_mst00")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1758427880]
+	texture_filter = 3
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -36,6 +39,7 @@ mouse_filter = 2
 texture = ExtResource("3_mst00")
 
 [node name="TopPoint" type="Control" parent="." unique_id=2095662617]
+	texture_filter = 3
 layout_mode = 2
 mouse_filter = 2
 
@@ -65,6 +69,7 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 0
 
 [node name="Label" type="Label" parent="TopPoint/HintPanel/MarginContainer" unique_id=101408415]
+	texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_4cn42")
@@ -72,4 +77,5 @@ theme_override_font_sizes/font_size = 32
 text = "快进"
 
 [node name="ClickRect" type="Control" parent="." unique_id=90132889]
+	texture_filter = 3
 layout_mode = 2
