@@ -45,9 +45,10 @@ func _set_value(v: float, notify: bool) -> void:
 
 func _update_visuals() -> void:
 	fill.size.x = size.x * _value
+	_update_caret()
 
 
-func _process(_delta: float) -> void:
+func _update_caret() -> void:
 	if caret and end_point:
 		caret.global_position = end_point.global_position - caret.get_combined_pivot_offset()
 
@@ -55,6 +56,7 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	click_rect.gui_input.connect(_on_click_rect_input)
 	set_value_silent(initial_value)
+	resized.connect(_update_caret)
 
 
 func _on_click_rect_input(event: InputEvent) -> void:

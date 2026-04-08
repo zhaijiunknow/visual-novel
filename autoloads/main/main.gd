@@ -42,11 +42,24 @@ func has_voice_collection(filename) -> bool:
 			return collection.voice_filename == filename
 	).size() > 0
 
+var _setting_save_pending: bool = false
+var _setting_save_thread: Thread
+
 func save_collection_data() -> void:
 	ResourceSaver.save(collection_data, collection_path)
 
 func save_setting_data() -> void:
-	ResourceSaver.save(setting_data, setting_path)
+	if _setting_save_pending:
+		return
+	_setting_save_pending = true
+	if _setting_save_thread and _setting_save_thread.is_started():
+		_setting_save_thread.wait_to_finish()
+	_setting_save_thread = Thread.new()
+	_setting_save_thread.start(
+		func():
+			ResourceSaver.save(setting_data, setting_path)
+			_setting_save_pending = false
+	)
 
 func save_save_data() -> void:
 	ResourceSaver.save(save_data, save_path)

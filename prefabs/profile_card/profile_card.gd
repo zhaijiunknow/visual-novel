@@ -45,7 +45,7 @@ func _ready() -> void:
 				"确定要删除该存档吗？\n此操作无法撤销。",
 				func():
 					Main.save_data.profiles.remove_at(get_index())
-					ResourceSaver.save(Main.save_data, Main.save_path)
+					Main.save_save_data()
 					Game.go_back()
 					Game.profile_page.update()
 			)

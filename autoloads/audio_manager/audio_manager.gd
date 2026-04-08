@@ -9,8 +9,11 @@ extends Node
 
 @export_dir var voice_path: String
 
+const MAX_VOICE_CACHE := 50
+
 var current_voice: AudioStreamWAV
 var voice_cache: Dictionary = {}
+var voice_cache_order: Array[String] = []
 
 signal track_index_changed
 var track_index: int:
@@ -51,6 +54,10 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 		status = ResourceLoader.load_threaded_get_status(file_path)
 	var voice = ResourceLoader.load_threaded_get(file_path)
 	voice_cache[filename] = voice
+	voice_cache_order.append(filename)
+	while voice_cache_order.size() > MAX_VOICE_CACHE:
+		var oldest = voice_cache_order.pop_front()
+		voice_cache.erase(oldest)
 	if set_current:
 		current_voice = voice
 	audio_player_voice.stream = voice
