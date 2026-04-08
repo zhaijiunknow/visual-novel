@@ -159,6 +159,9 @@ func process_phone_line() -> void:
 	await Game.phone_page.show_dialogue_message(dialogue_line.character, dialogue_line.text)
 
 	if dialogue_line.responses:
+		if skip and not Main.setting_data.skip_after_choice:
+			_set_mode(AdvanceMode.MANUAL)
+			skip_cancelled.emit()
 		Game.phone_page.show_reply_options(dialogue_line.responses)
 		var next_id: String = await Game.phone_page.reply_selected
 		dialogue_line = await dialogue.get_next_dialogue_line(next_id, [self, Stage])
@@ -223,6 +226,9 @@ func process_dialogue_line() -> void:
 
 	# 分支或前进
 	if dialogue_line.responses:
+		if skip and not Main.setting_data.skip_after_choice:
+			_set_mode(AdvanceMode.MANUAL)
+			skip_cancelled.emit()
 		show_dialogue_responses()
 	else:
 		await wait_for_advance()
