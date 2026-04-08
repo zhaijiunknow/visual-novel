@@ -53,8 +53,9 @@ func SetBackground(background_name: String, variation_name: String,
 	current_background = "%s-%s" % [background_name, variation_name]
 	Game.phone_page.label_location.text = target_background.location
 	Game.stage_page.texture_rect_background.texture = target_texture
-	# 趁黑屏清空场景人物
+	# 趁黑屏清空场景人物、隐藏对话框
 	clear_characters()
+	Game.stage_page.dialogue_screen.modulate.a = 0
 	await create_tween().tween_property(
 		Game.stage_page.texture_rect_blackscreen,
 		"modulate:a",
