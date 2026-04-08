@@ -40,7 +40,7 @@ var chapter_name: String:
 @export var skip_tag: TextureRect
 @export var auto_tag: TextureRect
 
-@export var date_player: AnimationPlayer
+@export var date: Control
 @export var label_month: Label
 @export var label_day: Label
 @export var label_week_day: Label
@@ -273,6 +273,7 @@ func wait_for_advance() -> void:
 # ─── 初始化 ───
 
 func _ready() -> void:
+	date.modulate.a = 0
 	dialogue_label.visible_characters = 0
 	Main.speed_settings_changed.connect(update_step_rate)
 	for chapter in chapters:

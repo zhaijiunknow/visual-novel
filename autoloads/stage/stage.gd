@@ -80,9 +80,11 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	Game.stage_page.label_month.text = month_str
 	Game.stage_page.label_day.text = day_str
 	Game.stage_page.label_week_day.text = week_day
-	var date_player = Game.stage_page.date_player
-	date_player.play("ShowDate")
-	await date_player.animation_finished
+	var date_control = Game.stage_page.date
+	date_control.modulate.a = 0
+	await create_tween().tween_property(date_control, "modulate:a", 1, 0.8).finished
+	await get_tree().create_timer(2.0).timeout
+	await create_tween().tween_property(date_control, "modulate:a", 0, 0.3).finished
 
 func ShowPhone() -> void:
 	await Game.phone_page.open(true)

@@ -89,7 +89,7 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sqldi")
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "skip_tag", "auto_tag", "date_player", "label_month", "label_day", "label_week_day")]
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "skip_tag", "auto_tag", "date", "label_month", "label_day", "label_week_day")]
 layer = 100
 script = ExtResource("1_wlgfe")
 dialogue = ExtResource("2_limwj")
@@ -111,7 +111,7 @@ texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScre
 voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
 skip_tag = NodePath("Tags/SkipTag")
 auto_tag = NodePath("Tags/AutoTag")
-date_player = NodePath("")
+date = NodePath("SubViewportContainer/SubViewport/Date")
 label_month = NodePath("SubViewportContainer/SubViewport/Date/Shade/Label_Month")
 label_day = NodePath("SubViewportContainer/SubViewport/Date/Shade/Label_Day")
 label_week_day = NodePath("SubViewportContainer/SubViewport/Date/Shade/Label_WeekDay")
@@ -138,6 +138,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="Preview" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1079442569]
+visible = false
 offset_right = 2560.0
 offset_bottom = 1440.0
 texture = ExtResource("4_lda8k")
@@ -456,8 +457,6 @@ color = Color(0, 0, 0, 1)
 [node name="Date" type="Control" parent="SubViewportContainer/SubViewport" unique_id=990267552]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 287.0
-offset_bottom = 180.0
 mouse_filter = 2
 
 [node name="Shade" type="TextureRect" parent="SubViewportContainer/SubViewport/Date" unique_id=1378467412]
