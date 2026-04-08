@@ -18,7 +18,7 @@ signal clicked
 
 var color_normal = Color(1.0, 1.0, 1.0)
 var color_hover = Color(0.7, 0.7, 0.7)
-var color_click = Color(0.5, 0.5, 0.5)
+var color_click = Color(1.0, 1.0, 1.0)
 
 @export var _hint_label: Label
 

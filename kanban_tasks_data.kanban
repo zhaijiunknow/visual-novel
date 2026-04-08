@@ -12,15 +12,14 @@
 			"title": "Todo",
 			"tasks": [
 				"d925061f-0f29-42b9-9e94-25348b10d064",
-				"fcaf2002-394b-4fa8-a7df-6358a7972a6a"
+				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
+				"17372239-7630-48d2-a6da-0c210e1948b9"
 			]
 		},
 		{
 			"uuid": "3a851002-3900-4215-828c-a7c0799ce93c",
 			"title": "Doing",
-			"tasks": [
-				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "5478cbd5-7192-4b2d-b425-6af96c5b5c87",
@@ -31,7 +30,8 @@
 				"d179b823-c983-48cc-864b-5d999ebb06d8",
 				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
 				"c53843a0-7e62-4487-a642-fe280df6c7e6",
-				"cf3c6071-e392-4d28-a09f-f3a76585542c"
+				"cf3c6071-e392-4d28-a09f-f3a76585542c",
+				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
 			]
 		}
 	],
@@ -101,7 +101,14 @@
 		},
 		{
 			"uuid": "fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-			"title": "更新立绘鉴赏",
+			"title": "更新立绘鉴赏文字",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "17372239-7630-48d2-a6da-0c210e1948b9",
+			"title": "演出按钮",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
