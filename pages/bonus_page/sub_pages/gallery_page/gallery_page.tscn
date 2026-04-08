@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://da2dgb564f0ag" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_normal.tres" id="10_73jdd"]
 [ext_resource type="Texture2D" uid="uid://co51hxdlxwgf8" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_click.tres" id="11_wc5bc"]
 [ext_resource type="Texture2D" uid="uid://dq1rxrfg8xlbl" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_hover.tres" id="12_8vyhy"]
+[ext_resource type="Script" path="res://scripts/follow_parent_visibility.gd" id="13_fpv"]
 
 [node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close")]
 layout_mode = 3
@@ -52,6 +53,7 @@ columns = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=912238254]
 layer = 4
+script = ExtResource("13_fpv")
 
 [node name="GalleryView" type="TextureRect" parent="CanvasLayer" unique_id=839419726]
 visible = false
