@@ -14,7 +14,7 @@ extends Panel
 
 var selected: bool:
 	get:
-		return Stage.character_selection_index == get_index()
+		return Stage.character_selection_name == name
 
 var hovered: bool:
 	set(value):
@@ -35,9 +35,9 @@ func _ready() -> void:
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
 				if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-					Stage.character_selection_index = get_index()
+					Stage.character_selection_name = name
 	)
-	Stage.character_selection_index_changed.connect(update)
+	Stage.character_selection_name_changed.connect(update)
 	
 	update()
 

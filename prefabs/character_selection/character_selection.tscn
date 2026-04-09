@@ -9,6 +9,7 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.9764706, 0.9764706, 0.9764706, 1)
+anti_aliasing_size = 2.058
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_faxlc"]
 

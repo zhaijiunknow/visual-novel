@@ -7,11 +7,11 @@ extends Node
 var current_background: String
 var current_date: String
 
-signal character_selection_index_changed
-var character_selection_index: int:
+signal character_selection_name_changed
+var character_selection_name: String:
 	set(value):
-		character_selection_index = value
-		emit_signal("character_selection_index_changed")
+		character_selection_name = value
+		character_selection_name_changed.emit()
 
 var character_dict: Dictionary[String, Character]
 var character_array: Array[Character]:

@@ -10,9 +10,17 @@ extends Control
 @export var slider_size: SliderEx
 @export var optional_pool: Control
 
+var character_dict: Dictionary[String, Character]:
+	get:
+		var dict: Dictionary[String, Character] = {}
+		for character: Character in character_pool.get_children():
+			dict[character.name] = character
+		
+		return dict
+
 var current_character: Character:
 	get:
-		return character_pool.get_child(Stage.character_selection_index)
+		return character_dict[Stage.character_selection_name]
 
 var background_index: int:
 	set(value):
@@ -39,7 +47,8 @@ func toggle_optional(optional: Sprite2D) -> void:
 	optional.visible = not optional.visible
 
 func _ready() -> void:
-	Stage.character_selection_index_changed.connect(
+	Stage.character_selection_name = character_pool.get_child(0).name
+	Stage.character_selection_name_changed.connect(
 		func():
 			update_characters()
 			slider_size.value = current_character.body_scale_factor
@@ -77,8 +86,6 @@ func _ready() -> void:
 	
 	slider_size.value_changed.connect(update_scale)
 	update_scale()
-
-	Stage.character_selection_index = 0
 
 func update_scale(_new_value: float = 0.0) -> void:
 	current_character.body_scale_factor = slider_size.value
