@@ -142,38 +142,48 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m4mpf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ijtpr"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijtpr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbeyg"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_m4mpf")
-region = Rect2(204.88013, 89.8569, 504.6975, 488.4169)
+atlas = SubResource("ViewportTexture_ijtpr")
+region = Rect2(313.2976, 2.0356598, 683.82135, 715.5621)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jbeyg"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xm650"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xm650"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hyrk"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_jbeyg")
-region = Rect2(247.18799, 80.813, 432, 425.25)
+atlas = SubResource("ViewportTexture_xm650")
+region = Rect2(494.78357, 101.67352, 404.35803, 436.5229)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_6hyrk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_33gpk"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfoea"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_33gpk")
+region = Rect2(389.04782, 117.725395, 611.994, 549.22546)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kxphj"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
 speaking_mouth = "说话"
 phone_avatar = ExtResource("17_phone")
 
-[node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
+[node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
+offset_left = -725.0
 offset_top = -1414.0
 offset_bottom = 965.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1004, 2379)
+size = Vector2i(1252, 2379)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
-position = Vector2(468, 1249.0001)
+position = Vector2(704.9999, 1650)
+scale = Vector2(0.849, 0.849)
 sprite_frames = SubResource("SpriteFrames_dacpq")
 animation = &"默认-手放下"
 
@@ -192,14 +202,14 @@ animation = &"说话"
 [node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=1926444703]
 texture = ExtResource("16_wyfxs")
 
-[node name="Avatar" parent="." index="1" unique_id=919147274]
-texture = SubResource("AtlasTexture_ijtpr")
+[node name="Avatar" parent="." index="2" unique_id=919147274]
+texture = SubResource("AtlasTexture_jbeyg")
 
-[node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
-texture = SubResource("AtlasTexture_xm650")
+[node name="CharacterPagePortrait" parent="." index="3" unique_id=485843154]
+texture = SubResource("AtlasTexture_6hyrk")
 
-[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
-texture = SubResource("AtlasTexture_xm650")
+[node name="VoicePagePortrait" parent="." index="4" unique_id=1563069139]
+texture = SubResource("AtlasTexture_xfoea")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
-texture = SubResource("ViewportTexture_6hyrk")
+texture = SubResource("ViewportTexture_kxphj")

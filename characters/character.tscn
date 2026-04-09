@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bpa5d8jlrcd16"]
 
 [ext_resource type="Script" uid="uid://di7qgo24s04cu" path="res://characters/character.gd" id="1_e3kty"]
+[ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="2_qqr4u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_54qew"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -16,6 +17,13 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_54qew"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_3fwhk")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mdkfl"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1u1o"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_mdkfl")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -38,6 +46,19 @@ character_page_portrait = NodePath("CharacterPagePortrait")
 story_model = NodePath("StoryModel")
 body_parts = [NodePath("SubViewportContainer/SubViewport/Body"), NodePath("SubViewportContainer/SubViewport/Body/Eyebrows"), NodePath("SubViewportContainer/SubViewport/Body/Eyes"), NodePath("SubViewportContainer/SubViewport/Body/Mouth")]
 optionals_pool = NodePath("SubViewportContainer/SubViewport/Body/Optionals")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=887420507]
+layer = -1
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=758018404]
+modulate = Color(1, 1, 1, 0.6313726)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_qqr4u")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2063694038]
 layout_mode = 0
@@ -93,7 +114,7 @@ offset_left = -416.0
 offset_top = 12.0
 offset_right = 588.0
 offset_bottom = 1377.0
-texture = SubResource("AtlasTexture_54qew")
+texture = SubResource("AtlasTexture_b1u1o")
 
 [node name="StoryModel" type="Control" parent="." unique_id=816872337]
 visible = false

@@ -189,36 +189,48 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h3wkl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_lpavb"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lpavb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s1x3"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_h3wkl")
-region = Rect2(270.00244, 14.997192, 415.1543, 447.7154)
+atlas = SubResource("ViewportTexture_lpavb")
+region = Rect2(205.75847, 71.299774, 675.23627, 686.572)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2s1x3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gfdhf"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gfdhf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_iajx4"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_2s1x3")
-region = Rect2(159.43799, 13.812988, 617.625, 506.25)
+atlas = SubResource("ViewportTexture_gfdhf")
+region = Rect2(428.0478, 188.58035, 316.98157, 342.08902)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iajx4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gv6fb"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x227"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_gv6fb")
+region = Rect2(258.57336, 144.64127, 674.76276, 530.3949)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5es0l"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 speaking_mouth = "笑开口"
 phone_avatar = ExtResource("24_phone")
 
-[node name="SubViewportContainer" parent="." index="0" unique_id=2063694038]
-offset_bottom = 785.0
+[node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
+offset_left = -620.0
+offset_right = 710.0
+offset_bottom = 1062.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1004, 2137)
+size = Vector2i(1330, 2414)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
+position = Vector2(632, 1470)
+scale = Vector2(0.794, 0.794)
 sprite_frames = SubResource("SpriteFrames_qqr4u")
 animation = &"校服-手放下"
 
@@ -245,16 +257,16 @@ texture = ExtResource("22_67hvi")
 visible = false
 texture = ExtResource("23_2ajgh")
 
-[node name="Avatar" parent="." index="1" unique_id=919147274]
-texture = SubResource("AtlasTexture_lpavb")
+[node name="Avatar" parent="." index="2" unique_id=919147274]
+texture = SubResource("AtlasTexture_2s1x3")
 
-[node name="CharacterPagePortrait" parent="." index="2" unique_id=485843154]
-texture = SubResource("AtlasTexture_gfdhf")
+[node name="CharacterPagePortrait" parent="." index="3" unique_id=485843154]
+texture = SubResource("AtlasTexture_iajx4")
 
-[node name="VoicePagePortrait" parent="." index="3" unique_id=1563069139]
-texture = SubResource("AtlasTexture_gfdhf")
+[node name="VoicePagePortrait" parent="." index="4" unique_id=1563069139]
+texture = SubResource("AtlasTexture_6x227")
 
-[node name="StoryModel" parent="." index="4" unique_id=816872337]
+[node name="StoryModel" parent="." index="5" unique_id=816872337]
 offset_left = 234.0
 offset_top = 2.0
 offset_right = 234.0
@@ -264,4 +276,4 @@ offset_bottom = 2.0
 offset_left = -686.0
 offset_right = 318.0
 offset_bottom = 772.0
-texture = SubResource("ViewportTexture_iajx4")
+texture = SubResource("ViewportTexture_5es0l")
