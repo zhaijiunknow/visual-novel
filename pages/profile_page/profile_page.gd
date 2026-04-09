@@ -60,6 +60,7 @@ func save_game() -> void:
 			profile.character_datas = character_datas
 			profile.background = Stage.current_background
 			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
+			profile.active_chat_character = Game.phone_page.active_chat_character
 			profile.log_datas = Game.log_page.log_data_pool.duplicate(true)
 			ResourceSaver.save(Main.save_data, Main.save_path)
 			(
@@ -108,6 +109,8 @@ func load_game() -> void:
 					image.position = Vector2(position_x, 0)
 			# 恢复聊天和日志
 			Game.phone_page.chat_data_pool = profile.chat_datas.duplicate(true)
+			Game.phone_page.active_chat_character = profile.active_chat_character
+			Game.phone_page.reload_active_chat()
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
 			# 恢复对话（不传 extra_game_states，避免 mutations 重复执行改变已恢复的角色状态）

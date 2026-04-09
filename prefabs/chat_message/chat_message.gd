@@ -36,16 +36,20 @@ func _apply_style() -> void:
 	alignment = BoxContainer.ALIGNMENT_END if is_self else BoxContainer.ALIGNMENT_BEGIN
 
 func _apply_layout() -> void:
-	# 先不换行，让文字自然撑开
-	size_flags_horizontal = Control.SIZE_SHRINK_END if is_self else Control.SIZE_SHRINK_BEGIN
-	message_text.autowrap_mode = TextServer.AUTOWRAP_OFF
-	message_text.size = Vector2()
+	# 默认展开+换行（安全值）
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	message_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_check_shrink.call_deferred()
 
-	# deferred 再检查是否需要换行
-	_check_wrap.call_deferred()
-
-func _check_wrap() -> void:
-	var pool_width = get_parent().size.x if get_parent() else 0
-	if pool_width > 0 and size.x >= pool_width:
-		size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		message_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+func _check_shrink() -> void:
+	# 布局未就绪时保持展开（安全值）
+	if message_text.size.x <= 0:
+		return
+	# 用字体直接算文本宽度，不依赖 size.x
+	var font := message_text.get_theme_font("normal_font") as Font
+	var font_size := message_text.get_theme_font_size("normal_font_size")
+	var text_width := font.get_string_size(message_text.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+	# 文本能一行放下 → 切换为收缩模式
+	if text_width < message_text.size.x:
+		size_flags_horizontal = Control.SIZE_SHRINK_END if is_self else Control.SIZE_SHRINK_BEGIN
+		message_text.autowrap_mode = TextServer.AUTOWRAP_OFF

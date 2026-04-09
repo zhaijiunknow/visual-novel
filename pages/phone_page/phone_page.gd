@@ -137,13 +137,17 @@ func _scroll_chat_to_bottom() -> void:
 	tween.tween_property(scroll, "scroll_vertical", bar.max_value, 0.3)
 
 
-func show_dialogue_message(character_name: String, text: String) -> void:
+func _add_chat_message(character_name: String, text: String) -> void:
 	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 	chat_message_pool.add_child(chat_message)
 	var type = Enums.SenderType.SELF \
 		if character_name == "周腾" else Enums.SenderType.OTHER
 	var avatar = get_phone_avatar(character_name)
 	chat_message.setup(type, text, avatar)
+
+
+func show_dialogue_message(character_name: String, text: String) -> void:
+	_add_chat_message(character_name, text)
 	add_message(character_name, text)
 	_scroll_chat_to_bottom()
 
@@ -169,20 +173,21 @@ func _on_reply_clicked(text: String, next_id: String) -> void:
 func open_chat(chat_data: ChatData) -> void:
 	if _transitioning: return
 	label_chat_name.text = chat_data.character_name
-	Tools.clear_children(chat_message_pool)
-	# 在不可见状态下加载消息，保持布局计算
 	chat_page.visible = true
 	chat_page.modulate.a = 0
-	for i in chat_data.messages.size():
-		var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
-		chat_message_pool.add_child(chat_message)
-		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
-		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
-		var avatar = get_phone_avatar(sender)
-		await chat_message.setup(type, chat_data.messages[i], avatar)
 	await _scroll_chat_to_bottom()
-	# 加载完成，执行过渡
 	_transition_to_chat()
+
+
+func reload_active_chat() -> void:
+	Tools.clear_children(chat_message_pool)
+	if active_chat_character.is_empty():
+		return
+	var chat_data = get_chat_data(active_chat_character)
+	label_chat_name.text = chat_data.character_name
+	for i in chat_data.messages.size():
+		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
+		_add_chat_message(sender, chat_data.messages[i])
 
 
 func _transition_to_chat() -> void:
