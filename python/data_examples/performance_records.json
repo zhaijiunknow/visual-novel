@@ -1,5 +1,5 @@
 {
-  "total": 543,
+  "total": 565,
   "items": [
     {
       "fields": {
@@ -392,8 +392,11 @@
     },
     {
       "fields": {
-        "指令": "$>> HideDialogue()\n$>> SetMusic(\"等待春天\")\n$> wait(3)",
+        "场景": "教室",
+        "指令": "$>> SetMusic(\"等待春天\")\n$>> HideDialogue()\n$> wait(3)",
         "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
         "星期": [
           {
             "text": "周四",
@@ -407,7 +410,8 @@
             "type": "text"
           }
         ],
-        "章节": "章节1"
+        "章节": "章节1",
+        "音乐": "等待春天"
       },
       "id": "recvghAHXXesiQ",
       "record_id": "recvghAHXXesiQ"
@@ -4189,8 +4193,6 @@
     {
       "fields": {
         "场景": "教室",
-        "备注": "递归架构",
-        "延迟": "0",
         "手机": true,
         "文字": "我刚忙完午休电台的事情，你现在在班上吗？",
         "日期": 1761148800000,
@@ -4209,13 +4211,267 @@
             "type": "text"
           }
         ],
+        "章节": "章节1",
         "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
         "音乐": "等待春天"
       },
-      "id": "recvfh7iVLvBwI",
-      "record_id": "recvfh7iVLvBwI"
+      "id": "recvgjDdc8oU0C",
+      "record_id": "recvgjDdc8oU0C"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "找我有什么事？",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "周腾",
+        "选项": true,
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsohtC",
+      "record_id": "recvgjzctsohtC"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "“您好，我现在有事不在，一会再和您联系.”",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "周腾",
+        "选项": true,
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsXP3X",
+      "record_id": "recvgjzctsXP3X"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "其实也没什么，主要是说一下午休电台的事。",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzcts4Pk6",
+      "record_id": "recvgjzcts4Pk6"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "算了，想了一下……还是不去你班上了，免得有不必要的麻烦。",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsJm89",
+      "record_id": "recvgjzctsJm89"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "来操场找我，还是之前那个地方。",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsPj9m",
+      "record_id": "recvgjzctsPj9m"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "彳亍",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "周腾",
+        "选项": true,
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsHMsZ",
+      "record_id": "recvgjzctsHMsZ"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "“广播社指导老师刚来了一趟，给了我两个菠萝包，说我做午休电台这么辛苦，慰劳我一下。”",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsXIXu",
+      "record_id": "recvgjzctsXIXu"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "“但我只是过来帮忙的而已，加上这次满打满算也只录了三期午休电台，不至于搞这种做派吧。”",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsllEP",
+      "record_id": "recvgjzctsllEP"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "“总之，菠萝包分你一个，午休时间还有不少，现在赶紧来操场。”",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1",
+        "角色": "余洛琛",
+        "音乐": "等待春天"
+      },
+      "id": "recvgjzctsCZie",
+      "record_id": "recvgjzctsCZie"
     },
     {
       "fields": {
@@ -8013,6 +8269,138 @@
       },
       "id": "recvdnC0y4vAWr",
       "record_id": "recvdnC0y4vAWr"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "等会如果有个怪人来你们班找你，千万不要理她，无论她说什么你都说“不知道”这三个字就行了。",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjFLDSh308",
+      "record_id": "recvgjFLDSh308"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "“以前不小心埋了个错误的‘伏笔’，现在坏事找上门了……”",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjFLDSbGpW",
+      "record_id": "recvgjFLDSbGpW"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "何意味？",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "周腾",
+        "选项": true
+      },
+      "id": "recvgjFLDSUywu",
+      "record_id": "recvgjFLDSUywu"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "是不是你不小心把我给你写稿子的事情说漏了？",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "周腾",
+        "选项": true
+      },
+      "id": "recvgjFLDSiqiV",
+      "record_id": "recvgjFLDSiqiV"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "先这样，我还有事要忙，这件事以后再和你解释。",
+        "日期": 1761148800000,
+        "时段": "白天",
+        "时间": "中午",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjFLDSY07d",
+      "record_id": "recvgjFLDSY07d"
     },
     {
       "fields": {
@@ -13676,6 +14064,217 @@
     {
       "fields": {
         "场景": "教室",
+        "手机": true,
+        "文字": "你放学后应该不急着回家吃饭吧？",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjH7OHlRmm",
+      "record_id": "recvgjH7OHlRmm"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "急，很急，晚一分钟回家我都可能会饿死。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "周腾",
+        "选项": true
+      },
+      "id": "recvgjH7OHPGzl",
+      "record_id": "recvgjH7OHPGzl"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "急不急取决于你找我有什么事。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "周腾",
+        "选项": true
+      },
+      "id": "recvgjH7OHvPt3",
+      "record_id": "recvgjH7OHvPt3"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "昨天那个谁应该已经找过你了吧，你应该没被她套出话来吧。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjH7OHerAR",
+      "record_id": "recvgjH7OHerAR"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "没，我嘴没葛城那么漏风。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "周腾",
+        "选项": true
+      },
+      "id": "recvgjH7OH8ur6",
+      "record_id": "recvgjH7OH8ur6"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "不管怎么样，她会来找你麻烦是我的问题，等会我会把事情和你说清楚的。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjH7OHuO5d",
+      "record_id": "recvgjH7OHuO5d"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "放学之后，直接来同兴里找我，我在那边等你。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjH7OHLltY",
+      "record_id": "recvgjH7OHLltY"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "不回复就当你默认同意了！",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjH7OHmLmf",
+      "record_id": "recvgjH7OHmLmf"
+    },
+    {
+      "fields": {
+        "场景": "教室",
         "文字": "……",
         "日期": 1761148800000,
         "时段": "黄昏-开灯",
@@ -16226,78 +16825,7 @@
     },
     {
       "fields": {
-        "回应选项": "找我有什么事？",
         "场景": "教室",
-        "手机": true,
-        "日期": 1761148800000,
-        "时段": "白天",
-        "时间": "中午",
-        "星期": [
-          {
-            "text": "周四",
-            "type": "text"
-          }
-        ],
-        "父记录 3": [
-          {
-            "record_ids": [
-              "recvfh7iVLvBwI"
-            ],
-            "table_id": "tblCjPtCWMLcKCS7",
-            "text": "",
-            "text_arr": [
-              ""
-            ],
-            "type": "text"
-          }
-        ],
-        "角色": "周腾",
-        "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
-      },
-      "id": "recvfh7zDjoQev",
-      "record_id": "recvfh7zDjoQev"
-    },
-    {
-      "fields": {
-        "回应选项": "“您好，我现在有事不在，一会再和您联系.”",
-        "场景": "教室",
-        "手机": true,
-        "日期": 1761148800000,
-        "时段": "白天",
-        "时间": "中午",
-        "星期": [
-          {
-            "text": "周四",
-            "type": "text"
-          }
-        ],
-        "父记录 3": [
-          {
-            "record_ids": [
-              "recvfh7iVLvBwI"
-            ],
-            "table_id": "tblCjPtCWMLcKCS7",
-            "text": "",
-            "text_arr": [
-              ""
-            ],
-            "type": "text"
-          }
-        ],
-        "角色": "周腾",
-        "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
-      },
-      "id": "recvfh7LQWZHgF",
-      "record_id": "recvfh7LQWZHgF"
-    },
-    {
-      "fields": {
-        "场景": "教室",
-        "延迟": "2",
         "手机": true,
         "文字": "什么叫找你有什么事，没事就不能找你了吗？",
         "日期": 1761148800000,
@@ -16312,7 +16840,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvfh7zDjoQev"
+              "recvgjzctsohtC"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16322,18 +16850,16 @@
             "type": "text"
           }
         ],
+        "章节": "章节1",
         "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
         "音乐": "等待春天"
       },
-      "id": "recvfh7U2pd0jK",
-      "record_id": "recvfh7U2pd0jK"
+      "id": "recvgjBI4qOx6P",
+      "record_id": "recvgjBI4qOx6P"
     },
     {
       "fields": {
         "场景": "教室",
-        "延迟": "2",
         "手机": true,
         "文字": "这可不是“扣扣”，装自动回复好歹也认真一点吧……",
         "日期": 1761148800000,
@@ -16348,7 +16874,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvfh7LQWZHgF"
+              "recvgjzctsXP3X"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16358,20 +16884,18 @@
             "type": "text"
           }
         ],
+        "章节": "章节1",
         "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
         "音乐": "等待春天"
       },
-      "id": "recvfh7VMSctap",
-      "record_id": "recvfh7VMSctap"
+      "id": "recvgjE1TYaUTO",
+      "record_id": "recvgjE1TYaUTO"
     },
     {
       "fields": {
         "场景": "教室",
-        "延迟": "2",
         "手机": true,
-        "文字": "其实也没什么，主要是说一下午休电台的事。",
+        "文字": "“对了，你中午吃了没？”",
         "日期": 1761148800000,
         "时段": "白天",
         "时间": "中午",
@@ -16384,7 +16908,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvg0pX8PypaT"
+              "recvgjzctsHMsZ"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16394,20 +16918,18 @@
             "type": "text"
           }
         ],
+        "章节": "章节1",
         "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
         "音乐": "等待春天"
       },
-      "id": "recvg0okEm8Pjr",
-      "record_id": "recvg0okEm8Pjr"
+      "id": "recvgjEIZqwT5r",
+      "record_id": "recvgjEIZqwT5r"
     },
     {
       "fields": {
         "场景": "教室",
-        "延迟": "2",
         "手机": true,
-        "文字": "算了，想了一下……还是不去你班上了，免得有不必要的麻烦。",
+        "文字": "总之你别管那个人，反正别被她套话。",
         "日期": 1761148800000,
         "时段": "白天",
         "时间": "中午",
@@ -16420,7 +16942,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvfh7iVLvBwI"
+              "recvgjFLDSUywu"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16430,20 +16952,16 @@
             "type": "text"
           }
         ],
-        "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "角色": "余洛琛"
       },
-      "id": "recvg0oyVK9frr",
-      "record_id": "recvg0oyVK9frr"
+      "id": "recvgjG1Dd3ZdO",
+      "record_id": "recvgjG1Dd3ZdO"
     },
     {
       "fields": {
         "场景": "教室",
-        "延迟": "2",
         "手机": true,
-        "文字": "来操场找我，还是之前那个地方。",
+        "文字": "没有，我嘴巴严实得很，但这家伙自己喜欢查来查去的，总之你别管她就行了。",
         "日期": 1761148800000,
         "时段": "白天",
         "时间": "中午",
@@ -16456,7 +16974,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvg0pX8PypaT"
+              "recvgjFLDSiqiV"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16466,22 +16984,19 @@
             "type": "text"
           }
         ],
-        "角色": "余洛琛",
-        "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "角色": "余洛琛"
       },
-      "id": "recvg0p7HLvCMn",
-      "record_id": "recvg0p7HLvCMn"
+      "id": "recvgjG4R7GEoW",
+      "record_id": "recvgjG4R7GEoW"
     },
     {
       "fields": {
-        "回应选项": "彳亍",
         "场景": "教室",
         "手机": true,
+        "文字": "先别急着回去，我给你带吃的。",
         "日期": 1761148800000,
-        "时段": "白天",
-        "时间": "中午",
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
         "星期": [
           {
             "text": "周四",
@@ -16491,7 +17006,7 @@
         "父记录 3": [
           {
             "record_ids": [
-              "recvg0oyVK9frr"
+              "recvgjH7OHPGzl"
             ],
             "table_id": "tblCjPtCWMLcKCS7",
             "text": "",
@@ -16501,13 +17016,74 @@
             "type": "text"
           }
         ],
-        "角色": "周腾",
-        "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "角色": "余洛琛"
       },
-      "id": "recvg0pX8PypaT",
-      "record_id": "recvg0pX8PypaT"
+      "id": "recvgjHl8lAu1x",
+      "record_id": "recvgjHl8lAu1x"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "嗯……就是昨天和你说过的。",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "record_ids": [
+              "recvgjH7OHvPt3"
+            ],
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text": "",
+            "text_arr": [
+              ""
+            ],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjHq5tjLm4",
+      "record_id": "recvgjHq5tjLm4"
+    },
+    {
+      "fields": {
+        "场景": "教室",
+        "手机": true,
+        "文字": "没有就好…",
+        "日期": 1761148800000,
+        "时段": "黄昏-开灯",
+        "时间": "傍晚",
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "record_ids": [
+              "recvgjH7OH8ur6"
+            ],
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text": "",
+            "text_arr": [
+              ""
+            ],
+            "type": "text"
+          }
+        ],
+        "角色": "余洛琛"
+      },
+      "id": "recvgjHKRDVVbA",
+      "record_id": "recvgjHKRDVVbA"
     }
   ]
 }
