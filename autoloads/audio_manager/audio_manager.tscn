@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dm16uidvb5i2x" path="res://autoloads/audio_manager/audio_manager.gd" id="1_j0p2n"]
 [ext_resource type="Script" uid="uid://dd5qtcvk5r731" path="res://data/_models/music_data.gd" id="2_qhrnm"]
-[ext_resource type="Resource" uid="uid://bscr1rj1i7xmw" path="res://data/musics/1.tres" id="3_n2vnv"]
-[ext_resource type="Resource" uid="uid://bw6mujweotjus" path="res://data/musics/2.tres" id="4_xydhd"]
+[ext_resource type="Resource" uid="uid://1ejtnqyvspjp" path="res://data/musics/1_凝雪馥语.tres" id="3_jxfme"]
+[ext_resource type="Resource" uid="uid://c283rrt82gggf" path="res://data/musics/2_等待春天.tres" id="4_fksr7"]
+[ext_resource type="Resource" uid="uid://ynt5tufolibv" path="res://data/musics/3_日落综合征.tres" id="5_23v0v"]
 [ext_resource type="AudioStream" uid="uid://cufi58bsisb2v" path="res://assets/musics/凝雪馥语.mp3" id="5_bntsi"]
-[ext_resource type="Resource" uid="uid://b65n8oitjhqmq" path="res://data/musics/3.tres" id="5_por5f"]
-[ext_resource type="Resource" uid="uid://clu2r3h4ws7d5" path="res://data/musics/4.tres" id="6_jxfme"]
-[ext_resource type="Resource" uid="uid://02xfktdj7c5w" path="res://data/musics/5.tres" id="7_fksr7"]
-[ext_resource type="Resource" uid="uid://b45yghbgxciee" path="res://data/musics/6.tres" id="8_jxfme"]
+[ext_resource type="Resource" uid="uid://beet2evhreecd" path="res://data/musics/4_江城闪景 Day Ver..tres" id="6_wpaao"]
+[ext_resource type="Resource" uid="uid://cbihx1n2p3436" path="res://data/musics/5_江城闪景 Night Ver..tres" id="7_om30b"]
+[ext_resource type="Resource" uid="uid://crroiovvr1cbt" path="res://data/musics/6_时与风的徘徊.tres" id="8_vl31e"]
 
 [node name="AudioManager" type="Node" unique_id=1244309478 node_paths=PackedStringArray("audio_player_music", "audio_player_sound", "audio_player_voice")]
 script = ExtResource("1_j0p2n")
-playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_n2vnv"), ExtResource("4_xydhd"), ExtResource("5_por5f"), ExtResource("6_jxfme"), ExtResource("7_fksr7"), ExtResource("8_jxfme")])
+playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_jxfme"), ExtResource("4_fksr7"), ExtResource("5_23v0v"), ExtResource("6_wpaao"), ExtResource("7_om30b"), ExtResource("8_vl31e")])
 theme_music = ExtResource("5_bntsi")
 audio_player_music = NodePath("AudioPlayer_Music")
 audio_player_sound = NodePath("AudioPlayer_Sound")
@@ -24,4 +24,3 @@ voice_path = "res://assets/voice"
 [node name="AudioPlayer_Sound" type="AudioStreamPlayer" parent="." unique_id=2092790848]
 
 [node name="AudioPlayerr_Voice" type="AudioStreamPlayer" parent="." unique_id=1849022482]
-

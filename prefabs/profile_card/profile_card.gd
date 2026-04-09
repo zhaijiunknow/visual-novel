@@ -33,7 +33,18 @@ func _ready() -> void:
 		func ():
 			Game.profile_page.profile_index = get_index()
 			if Main.profile_mode == Main.ProfileMode.SAVE:
-				Game.profile_page.save_game()
+				# 已有存档时需要确认覆盖
+				if get_index() < Main.save_data.profiles.size():
+					Game.confirm_page.show_confirm(
+						"覆盖存档",
+						"确定要覆盖该存档吗？",
+						func():
+							Game.go_back()
+							Game.profile_page.save_game()
+					)
+					Game.switch_to_page(Game.confirm_page, true, true)
+				else:
+					Game.profile_page.save_game()
 			if Main.profile_mode == Main.ProfileMode.LOAD:
 				Game.profile_page.load_game()
 	)
