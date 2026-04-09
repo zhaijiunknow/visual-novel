@@ -74,7 +74,6 @@ func _ready() -> void:
 		func(vf: String):
 			if current_collection and vf == current_collection.voice_filename:
 				update_favourite()
-			update()
 	)
 
 
