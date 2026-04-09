@@ -95,6 +95,7 @@ func update_audio():
 	# 从主菜单进入 StagePage：停止主题音乐（游戏 BGM 由对话控制）
 	if current_page == stage_page and AudioManager._music_source == AudioManager.MusicSource.THEME:
 		AudioManager.audio_player_music.stop()
+		AudioManager._music_source = AudioManager.MusicSource.NONE
 
 func hide_all_pages() -> void:
 	for page: CanvasLayer in page_pool.get_children():
