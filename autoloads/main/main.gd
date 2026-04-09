@@ -18,6 +18,7 @@ var profile_mode: ProfileMode:
 
 signal gallery_card_index_changed
 signal speed_settings_changed
+signal voice_collection_changed(voice_filename: String)
 var gallery_card_index: int:
 	set(value):
 		gallery_card_index = value

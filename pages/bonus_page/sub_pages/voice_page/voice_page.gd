@@ -63,6 +63,13 @@ func _ready() -> void:
 				insert_card(current_collection, insert_index)
 			Main.save_collection_data()
 			update_favourite()
+			Main.voice_collection_changed.emit(current_collection.voice_filename)
+	)
+	Main.voice_collection_changed.connect(
+		func(vf: String):
+			if current_collection and vf == current_collection.voice_filename:
+				update_favourite()
+			update()
 	)
 
 

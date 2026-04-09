@@ -53,6 +53,7 @@ func _ready() -> void:
 	button_favourite.mouse_filter = Control.MOUSE_FILTER_STOP
 	button_replay.modulate = COLOR_NORMAL
 	button_favourite.modulate = COLOR_FAVOURITE_OFF
+	Main.voice_collection_changed.connect(_on_voice_collection_changed)
 	button_replay.mouse_entered.connect(func(): if not _playing: button_replay.modulate = COLOR_HOVER)
 	button_replay.mouse_exited.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL)
 	button_replay.gui_input.connect(
@@ -102,6 +103,12 @@ func _toggle_favourite() -> void:
 		collection.voice_filename = log_data.voice_filename
 		Main.collection_data.voice_collections.append(collection)
 	Main.save_collection_data()
+	Main.voice_collection_changed.emit(log_data.voice_filename)
+
+
+func _on_voice_collection_changed(vf: String) -> void:
+	if log_data and vf == log_data.voice_filename:
+		_update_favourite_color()
 
 func _update_favourite_color(hover: bool = false) -> void:
 	if not has_voice: return

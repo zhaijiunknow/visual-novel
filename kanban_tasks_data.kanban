@@ -14,7 +14,9 @@
 				"bd8565b3-d690-4442-9d26-2e6976dc7ceb",
 				"e133c4c5-b006-4229-89ba-49734b22bbb2",
 				"1dac4780-c71f-4975-8bf9-dcf326337c3e",
-				"c4e4faa7-ac95-4a95-b423-643849c7315f"
+				"c4e4faa7-ac95-4a95-b423-643849c7315f",
+				"bea9aad7-f4ce-4ab7-8198-c56b04cfaebb",
+				"1801c59e-ef26-46c4-942c-2e961d50a345"
 			]
 		},
 		{
@@ -36,7 +38,6 @@
 				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
 				"d179b823-c983-48cc-864b-5d999ebb06d8",
 				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
-				"53fc8e6d-cb13-41aa-96e0-ccbdd69c1fda",
 				"17372239-7630-48d2-a6da-0c210e1948b9",
 				"c53843a0-7e62-4487-a642-fe280df6c7e6",
 				"cf3c6071-e392-4d28-a09f-f3a76585542c",
@@ -181,6 +182,20 @@
 		{
 			"uuid": "c4e4faa7-ac95-4a95-b423-643849c7315f",
 			"title": "从StagePage回到主菜单没有播放音乐",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "bea9aad7-f4ce-4ab7-8198-c56b04cfaebb",
+			"title": "美化手机流程",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "1801c59e-ef26-46c4-942c-2e961d50a345",
+			"title": "播放问题",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []

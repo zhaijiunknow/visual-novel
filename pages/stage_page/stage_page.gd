@@ -313,6 +313,12 @@ func _ready() -> void:
 				Main.collection_data.voice_collections.append(collection)
 			Main.save_collection_data()
 			update_favourite()
+			Main.voice_collection_changed.emit(voice_name)
+	)
+	Main.voice_collection_changed.connect(
+		func(vf: String):
+			if vf == voice_name:
+				update_favourite()
 	)
 
 
