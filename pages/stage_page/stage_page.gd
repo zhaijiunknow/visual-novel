@@ -171,6 +171,7 @@ var expression: String:
 		return dialogue_line.get_tag_value("表情")
 
 func process_dialogue_line() -> void:
+	AudioManager.audio_player_voice.stop()
 	var has_avatar = character != null
 
 	# 角色表情/身体（在对话框出现前准备好）
@@ -189,16 +190,10 @@ func process_dialogue_line() -> void:
 		avatar.texture = character.texture_rect_avatar.texture
 	avatar.modulate.a = 1 if has_avatar else 0
 
-	# 角色名 / 昵称（fade in 前设好）
-	label_character_name.text = dialogue_line.get_tag_value("昵称") \
-		if dialogue_line.has_tag("昵称") else dialogue_line.character
-
-	# 对话框淡入
-	if dialogue_screen.modulate.a < 1:
-		await create_tween().tween_property(dialogue_screen, "modulate:a", 1.0, 0.2).finished
+	# 对话框淡入（ShowDialogue 内部会更新角色名、清空文字、设语音按钮）
+	await Stage.ShowDialogue()
 
 	# 语音
-	voice_buttons.visible = dialogue_line.has_tag("语音")
 	Tools.clear_connections(AudioManager.audio_player_voice.finished)
 	if dialogue_line.has_tag("语音") and character:
 		character.subviewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE

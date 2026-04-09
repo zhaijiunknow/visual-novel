@@ -38,7 +38,7 @@ func Character(character_name: String) -> Character:
 	return character_dict[character_name]
 
 func SetBackground(background_name: String, variation_name: String,
-		out_time: float = 0.5, in_time: float = 0.5) -> void:
+		out_time: float = 0.8, in_time: float = 0.8) -> void:
 	var is_skip: bool = Game.stage_page.skip
 	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
 
@@ -66,7 +66,7 @@ func SetBackground(background_name: String, variation_name: String,
 	Game.stage_page.texture_rect_background.texture = target_texture
 	# 趁黑屏清空场景人物、隐藏对话框
 	clear_characters()
-	Game.stage_page.dialogue_screen.modulate.a = 0
+	HideDialogue(0)
 
 	if skip_trans:
 		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
@@ -138,17 +138,31 @@ func StopMusic() -> void:
 	AudioManager.audio_player_music.stop()
 	AudioManager.audio_player_music.volume_db = saved_db
 
-func HideDialogue() -> void:
+func HideDialogue(duration: float = 0.4) -> void:
+	AudioManager.audio_player_voice.stop()
 	if Game.stage_page.dialogue_screen.modulate.a > 0:
-		await create_tween().tween_property(
-			Game.stage_page.dialogue_screen, "modulate:a", 0.0, 0.3
-		).finished
+		if duration > 0:
+			await create_tween().tween_property(
+				Game.stage_page.dialogue_screen, "modulate:a", 0.0, duration
+			).finished
+		else:
+			Game.stage_page.dialogue_screen.modulate.a = 0
 
-func ShowDialogue() -> void:
-	if Game.stage_page.dialogue_screen.modulate.a < 1:
-		await create_tween().tween_property(
-			Game.stage_page.dialogue_screen, "modulate:a", 1.0, 0.3
-		).finished
+func ShowDialogue(duration: float = 0.4) -> void:
+	var sp = Game.stage_page
+	# 先更新状态再呈现
+	sp.label_character_name.text = sp.dialogue_line.get_tag_value("昵称") \
+		if sp.dialogue_line.has_tag("昵称") else sp.dialogue_line.character
+	sp.dialogue_label.text = ""
+	sp.dialogue_label.visible_characters = 0
+	sp.voice_buttons.visible = sp.dialogue_line.has_tag("语音")
+	if sp.dialogue_screen.modulate.a < 1:
+		if duration > 0:
+			await create_tween().tween_property(
+				sp.dialogue_screen, "modulate:a", 1.0, duration
+			).finished
+		else:
+			sp.dialogue_screen.modulate.a = 1
 
 func ShowPhone() -> void:
 	await Game.phone_page.open(true)
