@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
 [ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="19_fyc1j"]
+[ext_resource type="Texture2D" uid="uid://brce1083bc8hr" path="res://assets/temp/phone_chat.jpg" id="20_pdylm"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aggdw"]
@@ -59,7 +60,7 @@ label_location = NodePath("Phone/Home/Date/Label_Location")
 self_avatar = ExtResource("20_phone")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
-	texture_filter = 3
+texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,7 +69,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aggdw")
 
 [node name="Phone" type="TextureRect" parent="." unique_id=219849411]
-	texture_filter = 3
+texture_filter = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -137,7 +138,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label_PhoneDate" type="Label" parent="Phone/Home/Date" unique_id=922845864]
-	texture_filter = 2
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -157,7 +158,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label_Time" type="Label" parent="Phone/Home/Date" unique_id=1565007650]
-	texture_filter = 2
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -177,7 +178,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Label_Divider" type="Label" parent="Phone/Home/Date" unique_id=342388797]
-	texture_filter = 2
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -197,7 +198,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label_Location" type="Label" parent="Phone/Home/Date" unique_id=190546168]
-	texture_filter = 2
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -216,7 +217,6 @@ text = "江城"
 vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -233,8 +233,8 @@ mouse_filter = 0
 texture = ExtResource("12_fyc1j")
 
 [node name="Label_Name" type="Label" parent="Phone/Chat" unique_id=138400390]
-	texture_filter = 2
 modulate = Color(0.29709297, 0.29709294, 0.2970929, 1)
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -251,9 +251,9 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Phone/Chat" unique_id=1994526817]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 211.0
-offset_right = 697.0
+offset_left = 59.0
+offset_top = 213.0
+offset_right = 690.0
 offset_bottom = 1261.0
 theme_override_constants/separation = 12
 
@@ -287,6 +287,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
+visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0
@@ -349,3 +350,15 @@ offset_bottom = 338.0
 
 [node name="Chat" parent="Phone/Messenger/ChatPool" unique_id=1372363922 instance=ExtResource("19_fyc1j")]
 layout_mode = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1874105938]
+visible = false
+
+[node name="ChatPreview" type="TextureRect" parent="CanvasLayer" unique_id=1759970456]
+modulate = Color(1, 1, 1, 0.65882355)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_pdylm")

@@ -46,6 +46,7 @@ func _ready() -> void:
 func play_track() -> void:
 	_playlist_paused = false
 	_music_source = MusicSource.PLAYLIST
+	audio_player_music.stream_paused = false
 	audio_player_music.stream = current_track.track
 	audio_player_music.play()
 
@@ -53,6 +54,7 @@ func resume_or_play_track() -> void:
 	if _playlist_paused:
 		_playlist_paused = false
 		_music_source = MusicSource.PLAYLIST
+		audio_player_music.stream_paused = false
 		audio_player_music.stream = current_track.track
 		audio_player_music.play(_playlist_position)
 	else:
@@ -139,10 +141,12 @@ func resume_music() -> void:
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func play_theme() -> void:
-	if _music_source == MusicSource.PLAYLIST and audio_player_music.playing:
-		_playlist_position = audio_player_music.get_playback_position()
-		_playlist_paused = true
+	if _music_source == MusicSource.PLAYLIST:
+		if audio_player_music.playing or audio_player_music.stream_paused:
+			_playlist_position = audio_player_music.get_playback_position()
+			_playlist_paused = true
 	_music_source = MusicSource.THEME
+	audio_player_music.stream_paused = false
 	audio_player_music.stream = theme_music
 	theme_music.loop = true
 	audio_player_music.play()
