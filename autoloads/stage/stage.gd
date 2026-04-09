@@ -106,6 +106,38 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	await get_tree().create_timer(2.0).timeout
 	await create_tween().tween_property(date_control, "modulate:a", 0, 0.3).finished
 
+func SetMusic(music_name: String) -> void:
+	var track_data: MusicData = AudioManager.playlist.filter(
+		func(m: MusicData): return m.title == music_name
+	).front()
+	if not track_data:
+		return
+	# 如果已经在播同一首就不重复
+	if AudioManager._music_source == AudioManager.MusicSource.PLAYLIST \
+		and AudioManager.audio_player_music.stream == track_data.track \
+		and AudioManager.audio_player_music.playing:
+		return
+	# fade out 当前音乐
+	if AudioManager.audio_player_music.playing:
+		var saved_db := AudioManager.audio_player_music.volume_db
+		await create_tween().tween_property(
+			AudioManager.audio_player_music, "volume_db", -80.0, 2.0
+		).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
+		AudioManager.audio_player_music.stop()
+		AudioManager.audio_player_music.volume_db = saved_db
+	AudioManager.track_index = AudioManager.playlist.find(track_data)
+	AudioManager.play_track()
+
+func StopMusic() -> void:
+	if not AudioManager.audio_player_music.playing:
+		return
+	var saved_db := AudioManager.audio_player_music.volume_db
+	await create_tween().tween_property(
+		AudioManager.audio_player_music, "volume_db", -80.0, 2.0
+	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
+	AudioManager.audio_player_music.stop()
+	AudioManager.audio_player_music.volume_db = saved_db
+
 func ShowPhone() -> void:
 	await Game.phone_page.open(true)
 

@@ -122,6 +122,7 @@ def record_to_data(fields):
         "week_day": extract_field(fields, "星期"),
         "time": extract_field(fields, "时间"),
         "chapter": extract_field(fields, "章节"),
+        "music": extract_field(fields, "音乐"),
     }
 
 
@@ -193,6 +194,14 @@ def generate_do_commands(data, state, lines, tabs):
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
 
+    # 音乐变化 → SetMusic / StopMusic
+    if data["music"] != state["music"]:
+        if data["music"]:
+            lines.append(f'{tabs}$> SetMusic("{data["music"]}")')
+        else:
+            lines.append(f'{tabs}$> StopMusic()')
+        state["music"] = data["music"]
+
     # 日期变化 → SetDate（日期、星期、时间任一变化都触发）
     if data["date"] and data["week_day"]:
         date_key = f'{data["date"]}-{data["week_day"]}-{data["time"]}'
@@ -257,6 +266,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         "time_period": "",
         "date_key": "",
         "phone_mode": False,
+        "music": "",
     }
 
     current_chapter = None
