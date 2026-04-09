@@ -57,7 +57,7 @@ func _ready() -> void:
 				var card = get_card(current_collection)
 				await scroll_to_card(card)
 				Main.collection_data.voice_collections.erase(current_collection)
-				fade_out_card(card)
+				await fade_out_card(card)
 			else:
 				# 恢复收藏：先插入（不可见），等布局算好，scroll到位，再淡入
 				var insert_index = _last_removed_index
@@ -65,7 +65,7 @@ func _ready() -> void:
 				var card = insert_card(current_collection, insert_index)
 				await get_tree().process_frame
 				await scroll_to_card(card)
-				fade_in_card(card)
+				await fade_in_card(card)
 			Main.save_collection_data()
 			update_favourite()
 			Main.voice_collection_changed.emit(current_collection.voice_filename)
@@ -108,11 +108,13 @@ func get_card(collection: VoiceCollection) -> VoiceCard:
 	return null
 
 func fade_in_card(card: VoiceCard) -> void:
-	create_tween().tween_property(card, "modulate:a", 1.0, 0.2)
+	var tween = create_tween()
+	tween.tween_property(card, "modulate:a", 1.0, 1.0)
+	await tween.finished
 
 func fade_out_card(card: VoiceCard) -> void:
 	var tween = create_tween()
-	tween.tween_property(card, "modulate:a", 0.0, 0.2)
+	tween.tween_property(card, "modulate:a", 0.0, 1.0)
 	tween.tween_callback(card.queue_free)
 
 
