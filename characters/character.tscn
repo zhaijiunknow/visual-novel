@@ -45,6 +45,7 @@ resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_jfi6v")
 
 [node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "character_page_portrait", "story_model", "body_parts", "optionals_pool", "character_selection", "voice_card")]
+texture_filter = 4
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
