@@ -1,5 +1,11 @@
+@tool
 class_name VoiceCard
 extends TextureRect
+
+@export var preview_texture: Texture2D:
+	set(value):
+		preview_texture = value
+		texture_rect_portrait.texture = preview_texture
 
 @export var texture_rect_portrait: TextureRect
 @export var label_number: Label
@@ -20,6 +26,7 @@ const COLOR_HOVER := Color(0.85, 0.85, 0.85, 1)
 const COLOR_PRESSED := Color(0.7, 0.7, 0.7, 1)
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	label_number.text = ("NO.%s" % get_index()).pad_zeros(2)
 	mouse_entered.connect(func(): modulate = COLOR_HOVER)
 	mouse_exited.connect(func(): modulate = COLOR_NORMAL)

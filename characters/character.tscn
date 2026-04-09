@@ -30,7 +30,21 @@ atlas = SubResource("ViewportTexture_mdkfl")
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "character_page_portrait", "story_model", "body_parts", "optionals_pool")]
+[sub_resource type="ViewportTexture" id="ViewportTexture_b1u1o"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke030"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_b1u1o")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jfi6v"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0775"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_jfi6v")
+
+[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "texture_rect_avatar", "texture_rect_model", "character_page_portrait", "story_model", "body_parts", "optionals_pool", "character_selection", "voice_card")]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -48,6 +62,8 @@ character_page_portrait = NodePath("CharacterPagePortrait")
 story_model = NodePath("StoryModel")
 body_parts = [NodePath("SubViewportContainer/SubViewport/Body"), NodePath("SubViewportContainer/SubViewport/Body/Eyebrows"), NodePath("SubViewportContainer/SubViewport/Body/Eyes"), NodePath("SubViewportContainer/SubViewport/Body/Mouth")]
 optionals_pool = NodePath("SubViewportContainer/SubViewport/Body/Optionals")
+character_selection = NodePath("CharacterSelection")
+voice_card = NodePath("VoiceCard")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=887420507]
 layer = -1
@@ -131,14 +147,17 @@ texture = SubResource("ViewportTexture_qqr4u")
 
 [node name="CharacterSelection" parent="." unique_id=2115129008 instance=ExtResource("3_3fwhk")]
 layout_mode = 0
-offset_left = 1184.0
-offset_top = -1408.0
-offset_right = 1302.0
-offset_bottom = -1290.0
+offset_left = 368.0
+offset_top = -1354.0001
+offset_right = 486.0
+offset_bottom = -1236.0001
+preview = true
+preview_texture = SubResource("AtlasTexture_ke030")
 
 [node name="VoiceCard" parent="." unique_id=1287008254 instance=ExtResource("4_mdkfl")]
 layout_mode = 0
-offset_left = 1029.0
+offset_left = 267.0
 offset_top = -1162.0
-offset_right = 1912.0
+offset_right = 1150.0
 offset_bottom = -909.0
+preview_texture = SubResource("AtlasTexture_f0775")

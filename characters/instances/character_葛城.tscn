@@ -169,6 +169,22 @@ region = Rect2(389.04782, 117.725395, 611.994, 549.22546)
 [sub_resource type="ViewportTexture" id="ViewportTexture_kxphj"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_1p7vq"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as12d"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_1p7vq")
+region = Rect2(380.89133, -30.730556, 656.21704, 651.0296)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o1vgr"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gk8n"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_o1vgr")
+region = Rect2(268.78644, 95.10542, 721.52515, 584.81506)
+
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
 speaking_mouth = "说话"
 phone_avatar = ExtResource("17_phone")
@@ -213,3 +229,9 @@ texture = SubResource("AtlasTexture_xfoea")
 
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
 texture = SubResource("ViewportTexture_kxphj")
+
+[node name="CharacterSelection" parent="." index="6" unique_id=2115129008]
+preview_texture = SubResource("AtlasTexture_as12d")
+
+[node name="VoiceCard" parent="." index="7" unique_id=1287008254]
+preview_texture = SubResource("AtlasTexture_2gk8n")

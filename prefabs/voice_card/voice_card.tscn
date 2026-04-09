@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dnxcijehsidy8" path="res://assets/sprites/ui/ui.sprites/voice_background_normal.tres" id="1_q3tst"]
 [ext_resource type="Script" uid="uid://c6tguo51d3rti" path="res://prefabs/voice_card/voice_card.gd" id="2_4vpxv"]
-[ext_resource type="Texture2D" uid="uid://csf80f5vqn6ic" path="res://assets/sprites/ui/ui.sprites/no_background.tres" id="3_4vpxv"]
 [ext_resource type="Script" uid="uid://bonnjjxt11u8k" path="res://prefabs/components/drag_filter.gd" id="3_imp03"]
 [ext_resource type="FontFile" uid="uid://6ydkdqqx8lgc" path="res://assets/fonts/Poppins-Medium（各种no）.ttf" id="4_imp03"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="6_4vpxv"]
@@ -13,12 +12,19 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vpxv"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
 [node name="VoiceCard" type="TextureRect" unique_id=1287008254 node_paths=PackedStringArray("texture_rect_portrait", "label_number", "label_text", "drag_filter")]
-	texture_filter = 3
+texture_filter = 3
 texture = ExtResource("1_q3tst")
 script = ExtResource("2_4vpxv")
 texture_rect_portrait = NodePath("PortraitFrame/Control/TextureRect_Portrait")
-label_number = NodePath("NumberBackground/Label_Number")
+label_number = NodePath("NumberContainer/Label_Number")
 label_text = NodePath("Label_Text")
 drag_filter = NodePath("DragFilter")
 
@@ -28,8 +34,8 @@ target_object = NodePath("..")
 metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
 [node name="PortraitFrame" type="PanelContainer" parent="." unique_id=1749875993]
-	texture_filter = 3
 clip_children = 1
+texture_filter = 3
 layout_mode = 0
 offset_left = 11.0
 offset_top = 8.0
@@ -52,31 +58,9 @@ grow_vertical = 0
 mouse_filter = 2
 expand_mode = 5
 
-[node name="NumberBackground" type="TextureRect" parent="." unique_id=2087905206]
-	texture_filter = 3
-layout_mode = 0
-offset_left = 31.0
-offset_top = 20.0
-offset_right = 163.0
-offset_bottom = 75.0
-mouse_filter = 2
-texture = ExtResource("3_4vpxv")
-
-[node name="Label_Number" type="Label" parent="NumberBackground" unique_id=1511627438]
-	texture_filter = 2
-modulate = Color(0.4862745, 0.47843137, 0.5294118, 1)
-layout_mode = 0
-offset_left = 33.0
-offset_top = 10.0
-offset_right = 99.0
-offset_bottom = 45.0
-theme_override_fonts/font = ExtResource("4_imp03")
-theme_override_font_sizes/font_size = 24
-text = "NO.01"
-
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
-	texture_filter = 2
 modulate = Color(0.49803922, 0.49019608, 0.5372549, 1)
+texture_filter = 2
 layout_mode = 0
 offset_left = 357.0
 offset_top = 57.0
@@ -87,3 +71,22 @@ theme_override_fonts/normal_font = ExtResource("6_4vpxv")
 theme_override_font_sizes/normal_font_size = 25
 text = "文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
 fit_content = true
+
+[node name="NumberContainer" type="PanelContainer" parent="." unique_id=525365242]
+self_modulate = Color(0, 0, 0.05490196, 0.5254902)
+layout_mode = 0
+offset_left = 41.0
+offset_top = 29.0
+offset_right = 154.0
+offset_bottom = 66.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vpxv")
+
+[node name="Label_Number" type="Label" parent="NumberContainer" unique_id=1511627438]
+modulate = Color(0.8698216, 0.8658333, 0.8883401, 1)
+texture_filter = 2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_imp03")
+theme_override_font_sizes/font_size = 24
+text = "NO.01"
+horizontal_alignment = 1
+vertical_alignment = 1
