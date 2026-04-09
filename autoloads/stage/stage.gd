@@ -138,6 +138,18 @@ func StopMusic() -> void:
 	AudioManager.audio_player_music.stop()
 	AudioManager.audio_player_music.volume_db = saved_db
 
+func HideDialogue() -> void:
+	if Game.stage_page.dialogue_screen.modulate.a > 0:
+		await create_tween().tween_property(
+			Game.stage_page.dialogue_screen, "modulate:a", 0.0, 0.3
+		).finished
+
+func ShowDialogue() -> void:
+	if Game.stage_page.dialogue_screen.modulate.a < 1:
+		await create_tween().tween_property(
+			Game.stage_page.dialogue_screen, "modulate:a", 1.0, 0.3
+		).finished
+
 func ShowPhone() -> void:
 	await Game.phone_page.open(true)
 

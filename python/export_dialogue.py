@@ -123,6 +123,7 @@ def record_to_data(fields):
         "time": extract_field(fields, "时间"),
         "chapter": extract_field(fields, "章节"),
         "music": extract_field(fields, "音乐"),
+        "commands": extract_field(fields, "指令"),
     }
 
 
@@ -223,6 +224,13 @@ def generate_do_commands(data, state, lines, tabs):
         lines.append(f"{tabs}$> wait(2)")
         lines.append(f"{tabs}$> HidePhone()")
         state["phone_mode"] = False
+
+    # 自定义指令 → 直接输出
+    if data["commands"]:
+        for cmd_line in data["commands"].split("\n"):
+            cmd_line = cmd_line.strip()
+            if cmd_line:
+                lines.append(f"{tabs}{cmd_line}")
 
     # 角色 FadeIn：有角色 + 隐藏立绘=false + 未在场
     character = data["character"]

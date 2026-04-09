@@ -1,5 +1,5 @@
 {
-  "total": 542,
+  "total": 543,
   "items": [
     {
       "fields": {
@@ -139,8 +139,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "rechOtRNVe",
       "record_id": "rechOtRNVe"
@@ -176,8 +175,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recRBxlJmi",
       "record_id": "recRBxlJmi"
@@ -212,8 +210,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvcUVjlrpvOp",
       "record_id": "recvcUVjlrpvOp"
@@ -248,8 +245,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvcUXTse8Qo9",
       "record_id": "recvcUXTse8Qo9"
@@ -284,8 +280,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvcUXW5JcfxC",
       "record_id": "recvcUXW5JcfxC"
@@ -320,8 +315,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvdnv9uFGJH3",
       "record_id": "recvdnv9uFGJH3"
@@ -356,8 +350,7 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvdnvaWIxKEL",
       "record_id": "recvdnvaWIxKEL"
@@ -392,11 +385,32 @@
           "眼镜"
         ],
         "隐藏头像": true,
-        "隐藏立绘": true,
-        "音乐": "等待春天"
+        "隐藏立绘": true
       },
       "id": "recvdnC0y4RoPK",
       "record_id": "recvdnC0y4RoPK"
+    },
+    {
+      "fields": {
+        "指令": "$>> HideDialogue()\n$>> SetMusic(\"等待春天\")\n$> wait(3)",
+        "日期": 1761148800000,
+        "星期": [
+          {
+            "text": "周四",
+            "type": "text"
+          }
+        ],
+        "父记录 3": [
+          {
+            "table_id": "tblCjPtCWMLcKCS7",
+            "text_arr": [],
+            "type": "text"
+          }
+        ],
+        "章节": "章节1"
+      },
+      "id": "recvghAHXXesiQ",
+      "record_id": "recvghAHXXesiQ"
     },
     {
       "fields": {

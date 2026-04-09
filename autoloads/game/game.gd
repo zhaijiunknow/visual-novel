@@ -91,7 +91,8 @@ func update_audio():
 	if current_page == stage_page:
 		AudioManager.audio_player_music.stop()
 	elif main_menu in page_stack and stage_page not in page_stack:
-		AudioManager.play_theme()
+		if AudioManager._music_source != AudioManager.MusicSource.THEME:
+			AudioManager.play_theme()
 	else:
 		AudioManager.audio_player_music.stop()
 
