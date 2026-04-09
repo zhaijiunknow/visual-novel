@@ -5,7 +5,6 @@ extends Node
 @export var audio_player_music: AudioStreamPlayer
 @export var audio_player_sound: AudioStreamPlayer
 @export var audio_player_voice: AudioStreamPlayer
-@export var audio_player_bonus: AudioStreamPlayer
 
 @export_dir var voice_path: String
 
@@ -15,13 +14,20 @@ var current_voice: AudioStreamWAV
 var voice_cache: Dictionary = {}
 var voice_cache_order: Array[String] = []
 
+enum MusicSource { NONE, THEME, PLAYLIST }
+var _music_source := MusicSource.NONE
+
+# playlist 暂存，用于离开 bonus 后回来 resume
+var _playlist_position := 0.0
+var _playlist_paused := false
+
+
 signal track_index_changed
 var track_index: int:
 	set(value):
 		track_index = value
 		if track_index < 0: track_index = playlist.size() - 1
 		if track_index >= playlist.size(): track_index = 0
-		audio_player_bonus.stream = current_track.track
 		track_index_changed.emit()
 
 var current_track: MusicData:
@@ -30,13 +36,27 @@ var current_track: MusicData:
 
 func _ready() -> void:
 	track_index = 0
-
-	audio_player_bonus.finished.connect(
-		func ():
-			track_index += 1
-			audio_player_music.stop()
-			audio_player_bonus.play()
+	audio_player_music.finished.connect(
+		func():
+			if _music_source == MusicSource.PLAYLIST:
+				track_index += 1
+				play_track()
 	)
+
+func play_track() -> void:
+	_playlist_paused = false
+	_music_source = MusicSource.PLAYLIST
+	audio_player_music.stream = current_track.track
+	audio_player_music.play()
+
+func resume_or_play_track() -> void:
+	if _playlist_paused:
+		_playlist_paused = false
+		_music_source = MusicSource.PLAYLIST
+		audio_player_music.stream = current_track.track
+		audio_player_music.play(_playlist_position)
+	else:
+		play_track()
 
 func play_voice(filename: String, set_current: bool = false) -> void:
 	if voice_cache.has(filename):
@@ -70,74 +90,59 @@ func replay_voice() -> void:
 
 var _music_paused := false
 var _music_position := 0.0
-var _bonus_paused := false
-var _bonus_position := 0.0
+var _paused_source := MusicSource.NONE
+var _paused_stream: AudioStream
 
 var _fade_tween: Tween
 
 func pause_music() -> void:
-	# 如果音乐正在播放，记录位置并开始 fade out
-	var is_music_playing = audio_player_music.playing
-	var is_bonus_playing = audio_player_bonus.playing
-	if is_music_playing:
-		_music_paused = true
-		_music_position = audio_player_music.get_playback_position()
-	if is_bonus_playing:
-		_bonus_paused = true
-		_bonus_position = audio_player_bonus.get_playback_position()
-	# 确保语音播完后恢复音乐
-	if _music_paused or _bonus_paused:
-		if not audio_player_voice.finished.is_connected(resume_music):
-			audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
-	# 如果当前没有在播放，不需要等
-	if not is_music_playing and not is_bonus_playing:
+	if not audio_player_music.playing:
+		# 音乐没在播放但之前有暂停记录，确保 finished 连接
+		if _music_paused:
+			if not audio_player_voice.finished.is_connected(resume_music):
+				audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
 		return
-	var music_db := audio_player_music.volume_db
-	var bonus_db := audio_player_bonus.volume_db
+	_music_paused = true
+	_music_position = audio_player_music.get_playback_position()
+	_paused_source = _music_source
+	_paused_stream = audio_player_music.stream
+	# 确保语音播完后恢复音乐
+	if not audio_player_voice.finished.is_connected(resume_music):
+		audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
+	var saved_db := audio_player_music.volume_db
 	if _fade_tween:
 		_fade_tween.kill()
-	_fade_tween = create_tween().set_parallel(true)
-	if is_music_playing:
-		_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
-			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	if is_bonus_playing:
-		_fade_tween.tween_property(audio_player_bonus, "volume_db", -80.0, 1.0) \
-			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	_fade_tween.chain().tween_callback(
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	_fade_tween.tween_callback(
 		func():
-			if is_music_playing:
-				audio_player_music.stop()
-				audio_player_music.volume_db = music_db
-			if is_bonus_playing:
-				audio_player_bonus.stop()
-				audio_player_bonus.volume_db = bonus_db
+			audio_player_music.stop()
+			audio_player_music.volume_db = saved_db
 	)
 	await _fade_tween.finished
 
 func resume_music() -> void:
-	if not _music_paused and not _bonus_paused:
+	if not _music_paused:
 		return
 	var settings = Main.setting_data
-	var target_music_db = linear_to_db(settings.music_volume) if not settings.mute_all else -80.0
-	var target_voice_db = linear_to_db(settings.voice_volume) if not settings.mute_all else -80.0
+	var target_db = linear_to_db(settings.music_volume) if not settings.mute_all else -80.0
 	if _fade_tween:
 		_fade_tween.kill()
-	_fade_tween = create_tween().set_parallel(true)
-	if _music_paused:
-		audio_player_music.volume_db = -80.0
-		audio_player_music.play(_music_position)
-		_fade_tween.tween_property(audio_player_music, "volume_db", target_music_db, 1.0) \
-			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-		_music_paused = false
-	if _bonus_paused:
-		audio_player_bonus.volume_db = -80.0
-		audio_player_bonus.play(_bonus_position)
-		_fade_tween.tween_property(audio_player_bonus, "volume_db", target_music_db, 1.0) \
-			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-		_bonus_paused = false
+	audio_player_music.stream = _paused_stream
+	audio_player_music.volume_db = -80.0
+	audio_player_music.play(_music_position)
+	_music_source = _paused_source
+	_music_paused = false
+	_fade_tween = create_tween()
+	_fade_tween.tween_property(audio_player_music, "volume_db", target_db, 1.0) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func play_theme() -> void:
-	audio_player_bonus.stop()
+	if _music_source == MusicSource.PLAYLIST and audio_player_music.playing:
+		_playlist_position = audio_player_music.get_playback_position()
+		_playlist_paused = true
+	_music_source = MusicSource.THEME
 	audio_player_music.stream = theme_music
 	theme_music.loop = true
 	audio_player_music.play()
@@ -147,12 +152,10 @@ func apply_settings(settings: SettingData) -> void:
 		audio_player_music.volume_db = -80.0
 		audio_player_sound.volume_db = -80.0
 		audio_player_voice.volume_db = -80.0
-		audio_player_bonus.volume_db = -80.0
 	else:
 		audio_player_music.volume_db = linear_to_db(settings.music_volume)
 		audio_player_sound.volume_db = linear_to_db(settings.sound_volume)
 		audio_player_voice.volume_db = linear_to_db(settings.voice_volume)
-		audio_player_bonus.volume_db = linear_to_db(settings.music_volume)
 
 func apply_character_volume(character_name: String) -> void:
 	if Main.setting_data.mute_all:
@@ -162,7 +165,6 @@ func apply_character_volume(character_name: String) -> void:
 	audio_player_voice.volume_db = linear_to_db(vol * Main.setting_data.voice_volume)
 
 func set_track_position_by_ratio(ratio: float):
-	var target_position = audio_player_bonus.stream.get_length() * ratio
+	var target_position = audio_player_music.stream.get_length() * ratio
 	audio_player_music.stop()
-	audio_player_bonus.stop()
-	audio_player_bonus.play(target_position)
+	audio_player_music.play(target_position)

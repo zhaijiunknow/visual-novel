@@ -88,12 +88,10 @@ func update_audio():
 		log_page.clear_all()
 	if current_page == bonus_page:
 		return
-	AudioManager.audio_player_bonus.stream_paused = true
 	if current_page == stage_page:
 		AudioManager.audio_player_music.stop()
 	elif main_menu in page_stack and stage_page not in page_stack:
-		if not AudioManager.audio_player_music.playing:
-			AudioManager.play_theme()
+		AudioManager.play_theme()
 	else:
 		AudioManager.audio_player_music.stop()
 

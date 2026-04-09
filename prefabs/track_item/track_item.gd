@@ -17,7 +17,7 @@ func _ready() -> void:
 	drag_filter.execute.connect(
 		func ():
 			AudioManager.track_index = get_index()
-			AudioManager.audio_player_bonus.play()
+			AudioManager.play_track()
 	)
 	AudioManager.track_index_changed.connect(update)
 	update()

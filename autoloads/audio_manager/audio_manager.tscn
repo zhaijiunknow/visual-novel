@@ -10,14 +10,13 @@
 [ext_resource type="Resource" uid="uid://02xfktdj7c5w" path="res://data/musics/5.tres" id="7_fksr7"]
 [ext_resource type="Resource" uid="uid://b45yghbgxciee" path="res://data/musics/6.tres" id="8_jxfme"]
 
-[node name="AudioManager" type="Node" unique_id=1244309478 node_paths=PackedStringArray("audio_player_music", "audio_player_sound", "audio_player_voice", "audio_player_bonus")]
+[node name="AudioManager" type="Node" unique_id=1244309478 node_paths=PackedStringArray("audio_player_music", "audio_player_sound", "audio_player_voice")]
 script = ExtResource("1_j0p2n")
 playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_n2vnv"), ExtResource("4_xydhd"), ExtResource("5_por5f"), ExtResource("6_jxfme"), ExtResource("7_fksr7"), ExtResource("8_jxfme")])
 theme_music = ExtResource("5_bntsi")
 audio_player_music = NodePath("AudioPlayer_Music")
 audio_player_sound = NodePath("AudioPlayer_Sound")
 audio_player_voice = NodePath("AudioPlayerr_Voice")
-audio_player_bonus = NodePath("AudioPlayer_Bonus")
 voice_path = "res://assets/voice"
 
 [node name="AudioPlayer_Music" type="AudioStreamPlayer" parent="." unique_id=1700763400]
@@ -26,4 +25,3 @@ voice_path = "res://assets/voice"
 
 [node name="AudioPlayerr_Voice" type="AudioStreamPlayer" parent="." unique_id=1849022482]
 
-[node name="AudioPlayer_Bonus" type="AudioStreamPlayer" parent="." unique_id=481289247]

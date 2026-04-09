@@ -18,7 +18,7 @@ extends Control
 
 var audio_player: AudioStreamPlayer:
 	get:
-		return AudioManager.audio_player_bonus
+		return AudioManager.audio_player_music
 
 var progress_hovered: bool:
 	set(value):
@@ -47,26 +47,23 @@ func _ready() -> void:
 	AudioManager.track_index_changed.connect(update_track_info)
 	play_button.pressed.connect(
 		func ():
-			AudioManager.audio_player_music.stop()
 			if audio_player.stream_paused:
 				audio_player.stream_paused = false
 			else:
-				audio_player.play()
+				AudioManager.resume_or_play_track()
 	)
 	pause_button.pressed.connect(
 		func (): audio_player.stream_paused = true
 	)
 	next_button.pressed.connect(
 		func ():
-			AudioManager.audio_player_music.stop()
 			AudioManager.track_index += 1
-			audio_player.play()
+			AudioManager.play_track()
 	)
 	previous_button.pressed.connect(
 		func ():
-			AudioManager.audio_player_music.stop()
 			AudioManager.track_index -= 1
-			audio_player.play()
+			AudioManager.play_track()
 	)
 	play_progress_container.mouse_entered.connect(
 		func (): progress_hovered = true
@@ -106,22 +103,25 @@ func _input(event: InputEvent) -> void:
 			if event.is_released():
 				button_pressed = false
 
+var is_playlist_playing: bool:
+	get:
+		return AudioManager._music_source == AudioManager.MusicSource.PLAYLIST
+
 func _physics_process(_delta: float) -> void:
-	var progress_ratio = audio_player.get_playback_position() \
-	/ AudioManager.current_track.track.get_length()
-	play_progress_line.set_progress(progress_ratio)
-	
+	var playing = is_playlist_playing and audio_player.playing
+	if playing:
+		var progress_ratio = audio_player.get_playback_position() \
+		/ AudioManager.current_track.track.get_length()
+		play_progress_line.set_progress(progress_ratio)
+		update_time_label(label_current_time, audio_player.get_playback_position())
+
 	progress_hint.global_position = play_progress_line_ghost \
 	.endpoint.global_position \
 	if progress_hovered else \
 	play_progress_line.endpoint.global_position
-	
-	pause_button.visible = audio_player.playing
-	play_button.visible = !audio_player.playing
-	
-	update_time_label(label_current_time, 
-		AudioManager.audio_player_bonus.get_playback_position()
-	)
+
+	pause_button.visible = playing
+	play_button.visible = !playing
 	
 func update_track_info() -> void:
 	label_title.text = AudioManager.current_track.title
