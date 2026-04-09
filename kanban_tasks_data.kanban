@@ -12,7 +12,9 @@
 			"title": "Todo",
 			"tasks": [
 				"bd8565b3-d690-4442-9d26-2e6976dc7ceb",
-				"e133c4c5-b006-4229-89ba-49734b22bbb2"
+				"e133c4c5-b006-4229-89ba-49734b22bbb2",
+				"1dac4780-c71f-4975-8bf9-dcf326337c3e",
+				"9411d1ef-c32f-4968-b993-0d51a2eb6ea1"
 			]
 		},
 		{
@@ -157,6 +159,20 @@
 		{
 			"uuid": "e133c4c5-b006-4229-89ba-49734b22bbb2",
 			"title": "播放BGM",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "1dac4780-c71f-4975-8bf9-dcf326337c3e",
+			"title": "必须弄个全局的signal来更新DialogueBox的语音收藏按钮",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "9411d1ef-c32f-4968-b993-0d51a2eb6ea1",
+			"title": "读档卡住",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
