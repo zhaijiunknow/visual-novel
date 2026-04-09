@@ -111,7 +111,7 @@ var finish_pause: float = 1
 
 var voice_name: String:
 	get:
-		if dialogue_line.has_tag("语音"):
+		if dialogue_line and dialogue_line.has_tag("语音"):
 			return dialogue_line.get_tag_value("语音")
 		return ""
 

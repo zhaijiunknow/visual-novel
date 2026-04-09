@@ -13,7 +13,7 @@ extends Control
 @export var texture_rect_favourite: TextureRect
 
 var favourite: bool:
-	get: return Main.has_voice_collection(current_collection.voice_filename) 
+	get: return Main.has_voice_collection(current_collection.voice_filename)
 
 var current_collection: VoiceCollection
 
@@ -52,15 +52,20 @@ func _ready() -> void:
 	button_favourite.pressed.connect(
 		func ():
 			if favourite:
+				# 取消收藏：先scroll到卡片位置，再淡出
 				_last_removed_index = get_card_index(current_collection)
-				await scroll_to_index(_last_removed_index)
+				var card = get_card(current_collection)
+				await scroll_to_card(card)
 				Main.collection_data.voice_collections.erase(current_collection)
-				fade_out_card(current_collection)
+				fade_out_card(card)
 			else:
+				# 恢复收藏：先插入（不可见），等布局算好，scroll到位，再淡入
 				var insert_index = _last_removed_index
 				Main.collection_data.voice_collections.append(current_collection)
-				await scroll_to_index(insert_index)
-				insert_card(current_collection, insert_index)
+				var card = insert_card(current_collection, insert_index)
+				await get_tree().process_frame
+				await scroll_to_card(card)
+				fade_in_card(card)
 			Main.save_collection_data()
 			update_favourite()
 			Main.voice_collection_changed.emit(current_collection.voice_filename)
@@ -82,13 +87,13 @@ func add_card(collection: VoiceCollection) -> void:
 	voice_card.modulate.a = 0
 	create_tween().tween_property(voice_card, "modulate:a", 1.0, 0.2)
 
-func insert_card(collection: VoiceCollection, index: int) -> void:
+func insert_card(collection: VoiceCollection, index: int) -> VoiceCard:
 	var voice_card: VoiceCard = Prefabs.voice_card.instantiate()
 	voice_card.voice_collection = collection
 	voice_card_pool.add_child(voice_card)
 	voice_card_pool.move_child(voice_card, mini(index, voice_card_pool.get_child_count() - 1))
 	voice_card.modulate.a = 0
-	create_tween().tween_property(voice_card, "modulate:a", 1.0, 0.2)
+	return voice_card
 
 func get_card_index(collection: VoiceCollection) -> int:
 	for card: VoiceCard in voice_card_pool.get_children():
@@ -96,14 +101,19 @@ func get_card_index(collection: VoiceCollection) -> int:
 			return card.get_index()
 	return -1
 
-
-func fade_out_card(collection: VoiceCollection) -> void:
+func get_card(collection: VoiceCollection) -> VoiceCard:
 	for card: VoiceCard in voice_card_pool.get_children():
 		if card.voice_collection == collection:
-			var tween = create_tween()
-			tween.tween_property(card, "modulate:a", 0.0, 0.2)
-			tween.tween_callback(card.queue_free)
-			break
+			return card
+	return null
+
+func fade_in_card(card: VoiceCard) -> void:
+	create_tween().tween_property(card, "modulate:a", 1.0, 0.2)
+
+func fade_out_card(card: VoiceCard) -> void:
+	var tween = create_tween()
+	tween.tween_property(card, "modulate:a", 0.0, 0.2)
+	tween.tween_callback(card.queue_free)
 
 
 func update() -> void:
@@ -113,14 +123,12 @@ func update() -> void:
 	for collection in Main.collection_data.voice_collections:
 		add_card(collection)
 
-func scroll_to_index(index: int) -> void:
+# Scroll让card的顶部对齐ScrollContainer的顶部
+# 如果card在底部（对齐顶部会超出范围），则scroll到最底部
+func scroll_to_card(card: Control) -> void:
+	if not card: return
 	var scroll: ScrollContainer = voice_card_pool.get_parent()
-	if index < 0 or voice_card_pool.get_child_count() == 0:
-		return
-	# 用现有卡片算出目标行的 y 位置
-	var ref_index = mini(index, voice_card_pool.get_child_count() - 1)
-	var ref_card: Control = voice_card_pool.get_child(ref_index)
-	var target_y = int(ref_card.position.y)
+	var target_y = int(card.position.y)
 	var max_scroll = int(voice_card_pool.size.y - scroll.size.y)
 	target_y = clampi(target_y, 0, maxi(max_scroll, 0))
 	if scroll.scroll_vertical == target_y:
