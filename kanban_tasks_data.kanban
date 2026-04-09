@@ -11,12 +11,9 @@
 			"uuid": "f23ef9d7-c3c4-4aff-aa8e-8ac2594f3a64",
 			"title": "Todo",
 			"tasks": [
-				"d925061f-0f29-42b9-9e94-25348b10d064",
-				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-				"9087e660-b667-4d16-909b-39c3d04ae301",
-				"64ae94fa-ac38-4f54-802b-781dc7eed6ab",
 				"c1acf6b6-3107-4cb0-a021-9b41e87d4a8b",
-				"bd8565b3-d690-4442-9d26-2e6976dc7ceb"
+				"bd8565b3-d690-4442-9d26-2e6976dc7ceb",
+				"e133c4c5-b006-4229-89ba-49734b22bbb2"
 			]
 		},
 		{
@@ -29,6 +26,10 @@
 			"title": "Done",
 			"tasks": [
 				"b6694a93-c883-4cc7-b17f-7efb426cbe69",
+				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
+				"9087e660-b667-4d16-909b-39c3d04ae301",
+				"64ae94fa-ac38-4f54-802b-781dc7eed6ab",
+				"d925061f-0f29-42b9-9e94-25348b10d064",
 				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
 				"d179b823-c983-48cc-864b-5d999ebb06d8",
 				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
@@ -149,6 +150,13 @@
 		{
 			"uuid": "bd8565b3-d690-4442-9d26-2e6976dc7ceb",
 			"title": "城挑了挑眉",
+			"description": "",
+			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
+			"steps": []
+		},
+		{
+			"uuid": "e133c4c5-b006-4229-89ba-49734b22bbb2",
+			"title": "播放BGM",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []

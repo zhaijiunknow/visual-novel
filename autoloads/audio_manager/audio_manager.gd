@@ -87,6 +87,9 @@ func apply_settings(settings: SettingData) -> void:
 		audio_player_bonus.volume_db = linear_to_db(settings.music_volume)
 
 func apply_character_volume(character_name: String) -> void:
+	if Main.setting_data.mute_all:
+		audio_player_voice.volume_db = -80.0
+		return
 	var vol = Main.setting_data.character_volumes.get(character_name, 1.0)
 	audio_player_voice.volume_db = linear_to_db(vol * Main.setting_data.voice_volume)
 
