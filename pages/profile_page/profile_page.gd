@@ -62,6 +62,15 @@ func save_game() -> void:
 			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
 			profile.active_chat_character = Game.phone_page.active_chat_character
 			profile.log_datas = Game.log_page.log_data_pool.duplicate(true)
+			var apm = AudioManager.audio_player_music
+			if apm.playing:
+				profile.music_path = apm.stream.resource_path
+				profile.music_position = apm.get_playback_position()
+				profile.music_source = AudioManager._music_source
+			else:
+				profile.music_path = ""
+				profile.music_position = 0.0
+				profile.music_source = AudioManager.MusicSource.NONE
 			ResourceSaver.save(Main.save_data, Main.save_path)
 			(
 				func():
@@ -113,6 +122,12 @@ func load_game() -> void:
 			Game.phone_page.reload_active_chat()
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
+			# 恢复音乐
+			if profile.music_path != "":
+				var apm = AudioManager.audio_player_music
+				apm.stream = load(profile.music_path)
+				apm.play(profile.music_position)
+				AudioManager._music_source = profile.music_source
 			# 恢复对话（不传 extra_game_states，避免 mutations 重复执行改变已恢复的角色状态）
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
 			Game.log_page._suppressed = false

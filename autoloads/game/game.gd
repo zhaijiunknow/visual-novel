@@ -86,14 +86,14 @@ func update_audio():
 		stage_page._set_mode(stage_page.AdvanceMode.MANUAL)
 		phone_page.clear_all()
 		log_page.clear_all()
+		if main_menu in page_stack:
+			if AudioManager._music_source != AudioManager.MusicSource.THEME:
+				AudioManager.play_theme()
+		return
 	if current_page == bonus_page:
 		return
-	if current_page == stage_page:
-		AudioManager.audio_player_music.stop()
-	elif main_menu in page_stack and stage_page not in page_stack:
-		if AudioManager._music_source != AudioManager.MusicSource.THEME:
-			AudioManager.play_theme()
-	else:
+	# 从主菜单进入 StagePage：停止主题音乐（游戏 BGM 由对话控制）
+	if current_page == stage_page and AudioManager._music_source == AudioManager.MusicSource.THEME:
 		AudioManager.audio_player_music.stop()
 
 func hide_all_pages() -> void:
