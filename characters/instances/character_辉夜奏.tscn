@@ -201,7 +201,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_kp7wi"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_hebva")
-region = Rect2(355.73285, 195.0487, 376.61176, 392.30396)
+region = Rect2(316.97638, 159.58612, 470.76465, 470.7647)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v55vx"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -220,10 +220,10 @@ phone_avatar = ExtResource("19_phone")
 
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -514.0
-offset_bottom = 866.0
+offset_bottom = 1564.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1041, 2218)
+size = Vector2i(1041, 2916)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(563, 1463.0001)

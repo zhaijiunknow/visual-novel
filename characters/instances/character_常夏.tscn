@@ -251,10 +251,10 @@ phone_avatar = ExtResource("22_phone")
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -684.0
 offset_right = 655.0
-offset_bottom = 693.0
+offset_bottom = 1361.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1339, 2045)
+size = Vector2i(1339, 2713)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(634, 1500)

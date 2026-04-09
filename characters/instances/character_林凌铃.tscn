@@ -292,7 +292,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_de42s"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_rh8d2")
-region = Rect2(451.89917, 92.30526, 479.86597, 459.15225)
+region = Rect2(465.33118, 121.21033, 437.28967, 430.2472)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5h074"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -311,10 +311,10 @@ speaking_mouth = "开口"
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -680.0
 offset_right = 607.0
-offset_bottom = 866.0
+offset_bottom = 1460.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1287, 2218)
+size = Vector2i(1287, 2812)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
 position = Vector2(681, 1171)

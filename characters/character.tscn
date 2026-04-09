@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://di7qgo24s04cu" path="res://characters/character.gd" id="1_e3kty"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="2_qqr4u"]
+[ext_resource type="PackedScene" uid="uid://buso3d823ic3e" path="res://prefabs/character_selection/character_selection.tscn" id="3_3fwhk"]
+[ext_resource type="PackedScene" uid="uid://c7qu2xafv1pld" path="res://prefabs/voice_card/voice_card.tscn" id="4_mdkfl"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_54qew"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -126,3 +128,17 @@ offset_left = -459.0
 offset_top = -1365.0
 offset_right = 545.0
 texture = SubResource("ViewportTexture_qqr4u")
+
+[node name="CharacterSelection" parent="." unique_id=2115129008 instance=ExtResource("3_3fwhk")]
+layout_mode = 0
+offset_left = 1184.0
+offset_top = -1408.0
+offset_right = 1302.0
+offset_bottom = -1290.0
+
+[node name="VoiceCard" parent="." unique_id=1287008254 instance=ExtResource("4_mdkfl")]
+layout_mode = 0
+offset_left = 1029.0
+offset_top = -1162.0
+offset_right = 1912.0
+offset_bottom = -909.0
