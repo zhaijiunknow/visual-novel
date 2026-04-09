@@ -106,7 +106,7 @@ def record_to_data(fields):
     return {
         "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
-        "option": extract_field(fields, "回应选项"),
+        "is_option": fields.get("选项", False),
         "voice": extract_field(fields, "语音"),
         "nickname": extract_field(fields, "昵称"),
         "hide_avatar": fields.get("隐藏头像", False),
@@ -234,7 +234,7 @@ def generate_do_commands(data, state, lines, tabs):
 
     # 角色 FadeIn：有角色 + 隐藏立绘=false + 未在场
     character = data["character"]
-    if character and not data["hide_portrait"] and character not in state["visible_characters"]:
+    if character and not data["hide_portrait"] and not data["phone"] and character not in state["visible_characters"]:
         lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         state["visible_characters"].add(character)
 
@@ -248,9 +248,9 @@ def walk(record, children_map, indent, lines, state):
     children = children_map.get(record["record_id"], [])
     tabs = "\t" * indent
 
-    if data["option"]:
-        # 回应选项行 → 生成 "- 选项文本"
-        lines.append(f"{tabs}- {data['option']}")
+    if data["is_option"]:
+        # 选项行 → 生成 "- 选项文本"
+        lines.append(f"{tabs}- {data['text']}")
         for child in children:
             walk(child, children_map, indent + 1, lines, state)
     else:
@@ -326,10 +326,10 @@ def main():
         print(f"章节分布 (根记录): {chapters}")
 
         # 统计特殊字段
-        option_count = sum(1 for r in records if extract_field(r.get("fields", {}), "回应选项"))
+        option_count = sum(1 for r in records if r.get("fields", {}).get("选项", False))
         phone_count = sum(1 for r in records if r.get("fields", {}).get("手机", False))
         parent_count = sum(1 for r in records if get_parent_id(r.get("fields", {})))
-        print(f"含回应选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
+        print(f"含选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
         return
 
     # 构建树
