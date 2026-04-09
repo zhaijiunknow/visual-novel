@@ -266,7 +266,7 @@ vertical_scroll_mode = 3
 [node name="ChatMessagePool" type="VBoxContainer" parent="Phone/Chat/VBoxContainer/ScrollContainer" unique_id=1633904550]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 16
+theme_override_constants/separation = 26
 
 [node name="ReplySelectionPool" type="VBoxContainer" parent="Phone/Chat/VBoxContainer" unique_id=256761800]
 layout_mode = 2
@@ -352,7 +352,6 @@ offset_bottom = 338.0
 layout_mode = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1874105938]
-visible = false
 
 [node name="ChatPreview" type="TextureRect" parent="CanvasLayer" unique_id=1759970456]
 modulate = Color(1, 1, 1, 0.65882355)
