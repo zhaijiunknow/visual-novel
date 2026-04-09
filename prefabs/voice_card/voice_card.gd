@@ -38,5 +38,5 @@ func _ready() -> void:
 
 	drag_filter.execute.connect(
 		func ():
-			voice_page.current_collection = voice_collection
+			voice_page.select_collection(voice_collection)
 	)

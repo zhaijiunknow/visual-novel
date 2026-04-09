@@ -75,39 +75,44 @@ var _bonus_position := 0.0
 
 var _fade_tween: Tween
 
-signal music_faded_out
-
 func pause_music() -> void:
-	_music_paused = audio_player_music.playing
-	_bonus_paused = audio_player_bonus.playing
-	if not _music_paused and not _bonus_paused:
-		music_faded_out.emit()
+	# 如果音乐正在播放，记录位置并开始 fade out
+	var is_music_playing = audio_player_music.playing
+	var is_bonus_playing = audio_player_bonus.playing
+	if is_music_playing:
+		_music_paused = true
+		_music_position = audio_player_music.get_playback_position()
+	if is_bonus_playing:
+		_bonus_paused = true
+		_bonus_position = audio_player_bonus.get_playback_position()
+	# 确保语音播完后恢复音乐
+	if _music_paused or _bonus_paused:
+		if not audio_player_voice.finished.is_connected(resume_music):
+			audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
+	# 如果当前没有在播放，不需要等
+	if not is_music_playing and not is_bonus_playing:
 		return
 	var music_db := audio_player_music.volume_db
 	var bonus_db := audio_player_bonus.volume_db
 	if _fade_tween:
 		_fade_tween.kill()
 	_fade_tween = create_tween().set_parallel(true)
-	if _music_paused:
-		_music_position = audio_player_music.get_playback_position()
+	if is_music_playing:
 		_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	if _bonus_paused:
-		_bonus_position = audio_player_bonus.get_playback_position()
+	if is_bonus_playing:
 		_fade_tween.tween_property(audio_player_bonus, "volume_db", -80.0, 1.0) \
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
 	_fade_tween.chain().tween_callback(
 		func():
-			if _music_paused:
+			if is_music_playing:
 				audio_player_music.stop()
 				audio_player_music.volume_db = music_db
-			if _bonus_paused:
+			if is_bonus_playing:
 				audio_player_bonus.stop()
 				audio_player_bonus.volume_db = bonus_db
-			music_faded_out.emit()
 	)
-	if not audio_player_voice.finished.is_connected(resume_music):
-		audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
+	await _fade_tween.finished
 
 func resume_music() -> void:
 	if not _music_paused and not _bonus_paused:
