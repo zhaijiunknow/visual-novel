@@ -29,6 +29,8 @@ var current_collection: VoiceCollection:
 		label_chapter_name.text = current_collection.chapter_name
 		label_text.text = current_collection.text
 		texture_rect_portrait.texture = Stage.Character(current_collection.character_name).texture_rect_avatar.texture
+		AudioManager.pause_music()
+		await AudioManager.music_faded_out
 		AudioManager.play_voice(current_collection.voice_filename, true)
 		update_favourite()
 
@@ -39,8 +41,13 @@ func _ready() -> void:
 				current_collection = null
 				update()
 	)
-	
-	button_replay.pressed.connect(AudioManager.replay_voice)
+
+	button_replay.pressed.connect(
+		func():
+			AudioManager.pause_music()
+			await AudioManager.music_faded_out
+			AudioManager.replay_voice()
+	)
 	button_favourite.pressed.connect(
 		func ():
 			if favourite:

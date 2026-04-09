@@ -68,6 +68,69 @@ func replay_voice() -> void:
 	audio_player_voice.stream = current_voice
 	audio_player_voice.play()
 
+var _music_paused := false
+var _music_position := 0.0
+var _bonus_paused := false
+var _bonus_position := 0.0
+
+var _fade_tween: Tween
+
+signal music_faded_out
+
+func pause_music() -> void:
+	_music_paused = audio_player_music.playing
+	_bonus_paused = audio_player_bonus.playing
+	if not _music_paused and not _bonus_paused:
+		music_faded_out.emit()
+		return
+	var music_db := audio_player_music.volume_db
+	var bonus_db := audio_player_bonus.volume_db
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween().set_parallel(true)
+	if _music_paused:
+		_music_position = audio_player_music.get_playback_position()
+		_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
+			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	if _bonus_paused:
+		_bonus_position = audio_player_bonus.get_playback_position()
+		_fade_tween.tween_property(audio_player_bonus, "volume_db", -80.0, 1.0) \
+			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	_fade_tween.chain().tween_callback(
+		func():
+			if _music_paused:
+				audio_player_music.stop()
+				audio_player_music.volume_db = music_db
+			if _bonus_paused:
+				audio_player_bonus.stop()
+				audio_player_bonus.volume_db = bonus_db
+			music_faded_out.emit()
+	)
+	if not audio_player_voice.finished.is_connected(resume_music):
+		audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
+
+func resume_music() -> void:
+	if not _music_paused and not _bonus_paused:
+		return
+	var settings = Main.setting_data
+	var target_music_db = linear_to_db(settings.music_volume) if not settings.mute_all else -80.0
+	var target_voice_db = linear_to_db(settings.voice_volume) if not settings.mute_all else -80.0
+	if _fade_tween:
+		_fade_tween.kill()
+	_fade_tween = create_tween().set_parallel(true)
+	if _music_paused:
+		audio_player_music.volume_db = -80.0
+		audio_player_music.play(_music_position)
+		_fade_tween.tween_property(audio_player_music, "volume_db", target_music_db, 1.0) \
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+		_music_paused = false
+	if _bonus_paused:
+		audio_player_bonus.volume_db = -80.0
+		audio_player_bonus.play(_bonus_position)
+		_fade_tween.tween_property(audio_player_bonus, "volume_db", target_music_db, 1.0) \
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+		_bonus_paused = false
+
 func play_theme() -> void:
 	audio_player_bonus.stop()
 	audio_player_music.stream = theme_music
