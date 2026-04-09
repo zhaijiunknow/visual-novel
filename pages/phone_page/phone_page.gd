@@ -129,6 +129,14 @@ func update_chat_list() -> void:
 
 # ─── 剧情模式消息管理 ───
 
+func _scroll_chat_to_bottom() -> void:
+	await get_tree().process_frame
+	var scroll: ScrollContainer = chat_message_pool.get_parent()
+	var bar: VScrollBar = scroll.get_v_scroll_bar()
+	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(scroll, "scroll_vertical", bar.max_value, 0.3)
+
+
 func show_dialogue_message(character_name: String, text: String) -> void:
 	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
 	chat_message_pool.add_child(chat_message)
@@ -137,6 +145,7 @@ func show_dialogue_message(character_name: String, text: String) -> void:
 	var avatar = get_phone_avatar(character_name)
 	chat_message.setup(type, text, avatar)
 	add_message(character_name, text)
+	_scroll_chat_to_bottom()
 
 
 func show_reply_options(responses) -> void:
@@ -171,10 +180,7 @@ func open_chat(chat_data: ChatData) -> void:
 		var type = Enums.SenderType.SELF if sender == "周腾" else Enums.SenderType.OTHER
 		var avatar = get_phone_avatar(sender)
 		await chat_message.setup(type, chat_data.messages[i], avatar)
-	# 滚动到底部
-	await get_tree().process_frame
-	var chat_scroll: ScrollContainer = chat_message_pool.get_parent()
-	chat_scroll.scroll_vertical = chat_scroll.get_v_scroll_bar().max_value
+	await _scroll_chat_to_bottom()
 	# 加载完成，执行过渡
 	_transition_to_chat()
 
