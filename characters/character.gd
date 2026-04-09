@@ -62,10 +62,11 @@ func _ready() -> void:
 		var part_name = body_part.name
 		body_part_dict[part_name] = body_part
 		
+		var options = Array(body_part_dict[part_name].sprite_frames.get_animation_names())
+		var current_index = options.find(body_part.animation)
 		bonus_part_index_dict[part_name] = {}
-		bonus_part_index_dict[part_name]["index"] = 0
-		bonus_part_index_dict[part_name]["options"] = \
-			Array(body_part_dict[part_name].sprite_frames.get_animation_names())
+		bonus_part_index_dict[part_name]["index"] = current_index if current_index >= 0 else 0
+		bonus_part_index_dict[part_name]["options"] = options
 	
 	sv_container.gui_input.connect(
 		func(event: InputEvent):
