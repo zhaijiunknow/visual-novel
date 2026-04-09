@@ -190,7 +190,8 @@ def generate_do_commands(data, state, lines, tabs):
     # 背景变化 → SetBackground + 清空可见角色
     if data["bg_name"] and data["time_period"]:
         if data["bg_name"] != state["bg_name"] or data["time_period"] != state["time_period"]:
-            lines.append(f'{tabs}$> SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, 0.5)')
+            duration = 0 if not state["bg_name"] else 2
+            lines.append(f'{tabs}$> SetBackground("{data["bg_name"]}", "{data["time_period"]}", 0, {duration})')
             state["bg_name"] = data["bg_name"]
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
