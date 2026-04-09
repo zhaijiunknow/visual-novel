@@ -83,7 +83,9 @@ func _ready() -> void:
 	background_index = 0
 	
 	update_characters()
-	
+	for character: Character in character_pool.get_children():
+		character.body_scale_factor = slider_size.value
+
 	slider_size.value_changed.connect(update_scale)
 	update_scale()
 
