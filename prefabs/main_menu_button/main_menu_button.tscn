@@ -9,7 +9,6 @@
 spacing_glyph = 6
 
 [node name="MainMenuButton" type="Control" unique_id=1959894228 node_paths=PackedStringArray("texture_hover", "texture_click", "click_box")]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_htbgh")
@@ -18,7 +17,6 @@ texture_click = NodePath("TextureRect_Click")
 click_box = NodePath("ClickBox")
 
 [node name="Label_Chinese" type="Label" parent="." unique_id=306491173]
-	texture_filter = 2
 layout_mode = 0
 offset_top = -15.0
 offset_right = 160.0
@@ -28,7 +26,6 @@ theme_override_font_sizes/font_size = 40
 text = "开始游戏"
 
 [node name="Label_English" type="Label" parent="." unique_id=1721478160]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 1.0
 offset_top = 40.0
@@ -40,7 +37,6 @@ theme_override_font_sizes/font_size = 12
 text = "Start Game"
 
 [node name="TextureRect_Hover" type="TextureRect" parent="." unique_id=452635565]
-	texture_filter = 3
 visible = false
 layout_mode = 0
 offset_left = -39.0
@@ -50,7 +46,6 @@ offset_bottom = 57.0
 texture = ExtResource("3_htbgh")
 
 [node name="TextureRect_Click" type="TextureRect" parent="." unique_id=1771584627]
-	texture_filter = 3
 visible = false
 layout_mode = 0
 offset_left = -94.0
@@ -60,7 +55,6 @@ offset_bottom = 100.0
 texture = ExtResource("4_jl38l")
 
 [node name="ClickBox" type="Control" parent="." unique_id=1081121905]
-	texture_filter = 3
 anchors_preset = 0
 offset_left = -3.0
 offset_top = -5.0

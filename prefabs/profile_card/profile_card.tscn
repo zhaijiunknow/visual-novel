@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://fqe5lngyfhq" path="res://assets/sprites/ui/ui.sprites/del_hover.tres" id="13_m6q2l"]
 
 [node name="SaveProfileCard" type="TextureRect" unique_id=1393657536 node_paths=PackedStringArray("texture_rect_preview", "drag_filter", "label_index", "label_chapter", "label_chapter_title", "button_delete")]
-	texture_filter = 3
 texture = ExtResource("1_47rjm")
 stretch_mode = 4
 script = ExtResource("2_ocbxf")
@@ -33,7 +32,6 @@ button_delete = NodePath("Button_Delete")
 target_object = NodePath("..")
 
 [node name="TextureRect_Preview" type="TextureRect" parent="." unique_id=1513935913]
-	texture_filter = 3
 layout_mode = 0
 offset_left = 53.0
 offset_top = 64.0
@@ -44,7 +42,6 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="TextureRect_Index" type="TextureRect" parent="." unique_id=1516255643]
-	texture_filter = 3
 layout_mode = 0
 offset_left = 19.0
 offset_top = 34.0
@@ -53,7 +50,6 @@ offset_bottom = 88.0
 texture = ExtResource("5_owy0m")
 
 [node name="Label_Index" type="Label" parent="TextureRect_Index" unique_id=1640007243]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 34.0
 offset_top = 11.0
@@ -65,7 +61,6 @@ theme_override_font_sizes/font_size = 23
 text = "NO.01"
 
 [node name="Label_Chapter" type="Label" parent="." unique_id=956372083]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 55.0
 offset_top = 346.0
@@ -77,7 +72,6 @@ theme_override_font_sizes/font_size = 19
 text = "CHAPTER 01"
 
 [node name="Label_ChapterTitle" type="Label" parent="." unique_id=777092137]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 52.0
 offset_top = 367.0
@@ -88,7 +82,6 @@ theme_override_font_sizes/font_size = 36
 text = "章节名称"
 
 [node name="Button_Delete" type="TextureButton" parent="." unique_id=660566525]
-	texture_filter = 3
 layout_mode = 0
 offset_left = 492.0
 offset_top = 34.0

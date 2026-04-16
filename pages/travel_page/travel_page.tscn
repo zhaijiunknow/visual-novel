@@ -21,7 +21,6 @@ label_place_title = NodePath("Labels/Label_PlaceTitle")
 rich_label_place_description = NodePath("Labels/RichTextLabel_PlaceDescription")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1387435711]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -45,7 +44,6 @@ mouse_filter = 2
 texture = ExtResource("3_p7mpw")
 
 [node name="VBoxContainer_Selections" type="VBoxContainer" parent="." unique_id=2033869821]
-	texture_filter = 3
 offset_left = 254.0
 offset_top = -705.0
 offset_right = 1106.0
@@ -69,7 +67,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TextureRect_SelectFrame" type="TextureRect" parent="." unique_id=1002610502]
-	texture_filter = 3
 offset_left = 135.0
 offset_top = 399.0
 offset_right = 1144.0
@@ -78,7 +75,6 @@ mouse_filter = 2
 texture = ExtResource("5_7lu08")
 
 [node name="Foreground" type="TextureRect" parent="." unique_id=72681740]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -88,7 +84,6 @@ mouse_filter = 2
 texture = ExtResource("5_fwehq")
 
 [node name="TipBar" type="TextureRect" parent="." unique_id=253047128]
-	texture_filter = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -101,7 +96,6 @@ mouse_filter = 2
 texture = ExtResource("7_vfsqv")
 
 [node name="Label" type="Label" parent="TipBar" unique_id=19584614]
-	texture_filter = 2
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -117,14 +111,12 @@ text = "选择想要前往的地点"
 horizontal_alignment = 1
 
 [node name="Labels" type="Control" parent="." unique_id=1761958050]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Label_PlaceTitle" type="Label" parent="Labels" unique_id=822828063]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 1443.0
 offset_top = 587.0
@@ -135,7 +127,6 @@ theme_override_font_sizes/font_size = 50
 text = "街道"
 
 [node name="RichTextLabel_PlaceDescription" type="RichTextLabel" parent="Labels" unique_id=1787900044]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 1443.0
 offset_top = 699.0
@@ -147,7 +138,6 @@ theme_override_font_sizes/normal_font_size = 31
 text = "场景简介"
 
 [node name="TextureButton_Confirm" type="TextureButton" parent="." unique_id=2113990024]
-	texture_filter = 3
 offset_left = 1706.0
 offset_top = 981.0
 offset_right = 1996.0

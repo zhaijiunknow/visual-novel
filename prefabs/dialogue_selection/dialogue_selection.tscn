@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://sjyph050whh7" path="res://prefabs/dialogue_selection/dialogue_selection.gd" id="4_yqjjo"]
 
 [node name="DialogueSelection" type="TextureButton" unique_id=1856522519 node_paths=PackedStringArray("label_text")]
-	texture_filter = 3
 texture_normal = ExtResource("1_yqjjo")
 texture_pressed = ExtResource("2_5jbs8")
 texture_hover = ExtResource("3_hby35")
@@ -15,7 +14,6 @@ script = ExtResource("4_yqjjo")
 label_text = NodePath("Label_Text")
 
 [node name="Label_Text" type="Label" parent="." unique_id=814802240]
-	texture_filter = 2
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5

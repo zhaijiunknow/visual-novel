@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="6_esx1e"]
 
 [node name="BonusTabItem" type="Control" unique_id=1406201431 node_paths=PackedStringArray("selected_frame", "hover_hint", "label_title_zh", "label_title_en")]
-	texture_filter = 3
 custom_minimum_size = Vector2(120, 43)
 layout_mode = 3
 anchors_preset = 0
@@ -20,7 +19,6 @@ label_title_zh = NodePath("Label_TitleZh")
 label_title_en = NodePath("Label_TitleZh/Label_TitleEn")
 
 [node name="TextureRect_SelectedFrame" type="TextureRect" parent="." unique_id=1810337636]
-	texture_filter = 3
 layout_mode = 0
 offset_left = -110.0
 offset_top = -62.0
@@ -29,7 +27,6 @@ offset_bottom = 97.0
 texture = ExtResource("2_bnil1")
 
 [node name="TextureRect_HoverHint" type="TextureRect" parent="." unique_id=12977192]
-	texture_filter = 3
 layout_mode = 0
 offset_left = -54.0
 offset_top = -24.0
@@ -38,7 +35,6 @@ offset_bottom = 54.0
 texture = ExtResource("3_3lslt")
 
 [node name="Label_TitleZh" type="Label" parent="." unique_id=2119197859]
-	texture_filter = 2
 modulate = Color(0.9098039, 0.8862745, 0.9411765, 1)
 layout_mode = 0
 offset_top = -9.0
@@ -50,7 +46,6 @@ text = "立绘鉴赏"
 horizontal_alignment = 2
 
 [node name="Label_TitleEn" type="Label" parent="Label_TitleZh" unique_id=1666782889]
-	texture_filter = 2
 modulate = Color(0.9098039, 0.8862745, 0.9411765, 1)
 layout_mode = 1
 anchors_preset = 6

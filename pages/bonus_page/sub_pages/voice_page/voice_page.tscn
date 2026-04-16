@@ -20,7 +20,6 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="VoicePage" type="Control" unique_id=21218107 node_paths=PackedStringArray("voice_card_pool", "texture_rect_portrait", "label_character_name", "label_chapter_number", "label_chapter_name", "label_text", "voice_view", "button_replay", "button_favourite", "texture_rect_favourite")]
-texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +39,6 @@ button_favourite = NodePath("VoiceView/Button_Favourite")
 texture_rect_favourite = NodePath("VoiceView/Button_Favourite/TextureRect_Favourite")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1559743973]
-texture_filter = 3
 layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1440.0
@@ -48,7 +46,6 @@ mouse_filter = 0
 
 [node name="Preview" type="TextureRect" parent="." unique_id=706821442]
 visible = false
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +55,6 @@ grow_vertical = 2
 texture = ExtResource("2_cs7ht")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1148493183]
-texture_filter = 3
 layout_mode = 0
 offset_left = 585.0
 offset_top = 113.0
@@ -87,7 +83,6 @@ offset_bottom = 793.0
 target_scroll_container = NodePath("../ScrollContainer")
 
 [node name="VoiceView" type="TextureRect" parent="." unique_id=1009249008]
-texture_filter = 3
 layout_mode = 0
 offset_left = 586.0
 offset_top = 856.0
@@ -121,7 +116,6 @@ mouse_filter = 2
 expand_mode = 5
 
 [node name="Label_CharacterName" type="Label" parent="VoiceView" unique_id=979630272]
-texture_filter = 2
 layout_mode = 0
 offset_left = 95.0
 offset_top = 247.0
@@ -135,7 +129,6 @@ text = "余洛琛"
 
 [node name="Label_ChapterName" type="Label" parent="VoiceView" unique_id=2057562331]
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
-texture_filter = 2
 layout_mode = 0
 offset_left = 571.0
 offset_top = 95.0
@@ -147,7 +140,6 @@ text = "章节名称"
 
 [node name="Label_ChapterNumber" type="Label" parent="VoiceView" unique_id=552030638]
 modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
-texture_filter = 2
 layout_mode = 0
 offset_left = 574.0
 offset_top = 74.0
@@ -159,7 +151,6 @@ text = "Chapter 01"
 uppercase = true
 
 [node name="Label_Text" type="Label" parent="VoiceView" unique_id=1650368569]
-texture_filter = 2
 layout_mode = 0
 offset_left = 575.0
 offset_top = 179.0
@@ -214,7 +205,6 @@ mouse_filter = 2
 texture = ExtResource("11_oo64q")
 
 [node name="TextureRect2" type="TextureRect" parent="." unique_id=480589434]
-texture_filter = 3
 layout_mode = 0
 offset_left = 95.0
 offset_top = 79.0

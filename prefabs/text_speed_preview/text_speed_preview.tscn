@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="4_font"]
 
 [node name="TextSpeedPreview" type="TextureRect" node_paths=PackedStringArray("dialogue_label")]
-	texture_filter = 3
 custom_minimum_size = Vector2(1732, 250)
 offset_right = 1732.0
 offset_bottom = 250.0

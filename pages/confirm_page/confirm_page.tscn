@@ -23,7 +23,6 @@ button_confirm = NodePath("Background/ButtonContainer/Button_Confirm")
 button_cancel = NodePath("Background/ButtonContainer/Button_Cancel")
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=711786195]
-	texture_filter = 3
 material = SubResource("ShaderMaterial_blur")
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,7 +31,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="TextureRect" parent="." unique_id=1067187400]
-	texture_filter = 3
 offset_top = 320.0
 offset_right = 2560.0
 offset_bottom = 1120.0
@@ -49,7 +47,6 @@ texture = ExtResource("3_title")
 stretch_mode = 4
 
 [node name="Label_Message" type="Label" parent="Background" unique_id=225836131]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 534.0
 offset_top = 343.0
@@ -78,7 +75,6 @@ texture_hover = ExtResource("5_btn_hover")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Background/ButtonContainer/Button_Confirm" unique_id=191478928]
-	texture_filter = 2
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -98,7 +94,6 @@ texture_hover = ExtResource("5_btn_hover")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Background/ButtonContainer/Button_Cancel" unique_id=863203132]
-	texture_filter = 2
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -111,7 +106,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Preview" type="TextureRect" parent="." unique_id=1510430444]
-	texture_filter = 3
 visible = false
 modulate = Color(1, 1, 1, 0.36078432)
 anchors_preset = 15

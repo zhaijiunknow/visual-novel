@@ -7,7 +7,6 @@
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="5_q4fwc"]
 
 [node name="TrackItem" type="TextureButton" unique_id=742270521 node_paths=PackedStringArray("drag_filter", "label_title")]
-	texture_filter = 3
 mouse_filter = 1
 toggle_mode = true
 texture_pressed = ExtResource("1_q4fwc")
@@ -20,7 +19,6 @@ label_title = NodePath("Label_Title")
 target_object = NodePath("..")
 
 [node name="Label_Title" type="Label" parent="." unique_id=1186747619]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 49.0
 offset_top = 14.0

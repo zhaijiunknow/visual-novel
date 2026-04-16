@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bonnjjxt11u8k" path="res://prefabs/components/drag_filter.gd" id="4_6oylf"]
 
 [node name="GalleryCard" type="TextureButton" unique_id=1091187862 node_paths=PackedStringArray("texture_rect_base", "texture_rect_variation")]
-	texture_filter = 3
 mouse_filter = 1
 toggle_mode = true
 texture_pressed = ExtResource("1_6oylf")
@@ -21,7 +20,6 @@ target_object = NodePath("..")
 metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
 [node name="TextureRect_Base" type="TextureRect" parent="." unique_id=1524271455]
-	texture_filter = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,7 +36,6 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="TextureRect_Variation" type="TextureRect" parent="." unique_id=438480789]
-	texture_filter = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -82,7 +82,6 @@ button_setting = NodePath("Buttons/MainMenuButton_Setting")
 button_quit = NodePath("Buttons/MainMenuButton_Quit")
 
 [node name="Background" type="TextureRect" parent="." unique_id=992212665]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -93,7 +92,6 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="Logo" type="TextureRect" parent="." unique_id=1981438053]
-	texture_filter = 3
 material = SubResource("ShaderMaterial_tst2v")
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,7 +106,6 @@ texture = ExtResource("3_mtbyv")
 stretch_mode = 4
 
 [node name="Buttons" type="Control" parent="." unique_id=295338161]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = 280.0

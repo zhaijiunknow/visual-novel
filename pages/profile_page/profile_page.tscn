@@ -16,7 +16,6 @@ title_save = NodePath("Titles/Title_Save")
 profile_card_pool = NodePath("ScrollContainer/GridContainer_ProfileCards")
 
 [node name="Background" type="TextureRect" parent="." unique_id=964565474]
-	texture_filter = 3
 self_modulate = Color(1, 1, 1, 0.7882353)
 offset_right = 2560.0
 offset_bottom = 1440.0
@@ -24,7 +23,6 @@ mouse_filter = 0
 texture = ExtResource("2_3v82o")
 
 [node name="PrefabContainer" type="Control" parent="." unique_id=118402228]
-	texture_filter = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -39,7 +37,6 @@ offset_right = 1167.0
 offset_bottom = 573.0
 
 [node name="Titles" type="Control" parent="." unique_id=867472270]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 offset_left = 96.0
@@ -60,7 +57,6 @@ offset_bottom = 255.0
 texture = ExtResource("5_nf4dd")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=227130680]
-	texture_filter = 3
 offset_left = 596.0
 offset_top = 104.0
 offset_right = 2353.0

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ba8ja8nle236i"]
+
+[ext_resource type="Texture2D" uid="uid://bdtxm0qm3vpk2" path="res://assets/sprites/galleries/galleries-4.png" id="1_gdbrh"]
+[ext_resource type="Texture2D" uid="uid://ws8lcdnoynh0" path="res://assets/sprites/galleries/galleries.sprites/CG4/CG04-害羞责备，说话.tres" id="2_wb83k"]
+
+[node name="TestPage" type="CanvasLayer" unique_id=648042024]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=974482972]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_gdbrh")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect" unique_id=1648995611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wb83k")

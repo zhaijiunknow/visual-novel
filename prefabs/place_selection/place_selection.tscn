@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://db874sc67otee" path="res://assets/backgrounds/1泳池-黄昏.jpg" id="3_m77lu"]
 
 [node name="PlaceSelection" type="TextureRect" unique_id=1473098296 node_paths=PackedStringArray("texture_rect_image")]
-	texture_filter = 3
 z_index = 1
 mouse_filter = 2
 texture = ExtResource("1_m77lu")
@@ -13,7 +12,6 @@ script = ExtResource("2_pgumf")
 texture_rect_image = NodePath("TextureRect_Image")
 
 [node name="TextureRect_Image" type="TextureRect" parent="." unique_id=259610537]
-	texture_filter = 3
 z_index = -1
 layout_mode = 1
 anchors_preset = 15

@@ -117,7 +117,6 @@ label_day = NodePath("SubViewportContainer/SubViewport/Date/Shade/Label_Day")
 label_week_day = NodePath("SubViewportContainer/SubViewport/Date/Shade/Label_WeekDay")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1454457358]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -237,7 +236,6 @@ grow_vertical = 0
 texture = ExtResource("8_hovpu")
 
 [node name="Label_CharacterName" type="RichTextLabel" parent="SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character" unique_id=1734914496]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 506.0
 offset_top = 230.0
@@ -473,7 +471,6 @@ mouse_filter = 2
 texture = ExtResource("25_lda8k")
 
 [node name="Label_Month" type="Label" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=19742695]
-	texture_filter = 2
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
 offset_left = 56.0
@@ -487,7 +484,6 @@ text = "12"
 horizontal_alignment = 2
 
 [node name="Label_Slash" type="Label" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=585375775]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 301.0
 offset_top = 144.0
@@ -501,7 +497,6 @@ theme_override_font_sizes/font_size = 100
 text = "/"
 
 [node name="Label_Day" type="Label" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=1021873755]
-	texture_filter = 2
 modulate = Color(0.5137255, 0.7764706, 1, 1)
 layout_mode = 0
 offset_left = 330.0
@@ -513,7 +508,6 @@ theme_override_font_sizes/font_size = 117
 text = "03"
 
 [node name="Label_WeekDay" type="Label" parent="SubViewportContainer/SubViewport/Date/Shade" unique_id=1042550106]
-	texture_filter = 2
 layout_mode = 0
 offset_left = 107.0
 offset_top = 244.0
@@ -525,7 +519,6 @@ text = "周四下午"
 horizontal_alignment = 2
 
 [node name="Tags" type="Control" parent="." unique_id=1786234838]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0

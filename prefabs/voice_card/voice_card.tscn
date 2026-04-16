@@ -20,7 +20,6 @@ corner_radius_bottom_right = 18
 corner_radius_bottom_left = 18
 
 [node name="VoiceCard" type="TextureRect" unique_id=1287008254 node_paths=PackedStringArray("texture_rect_portrait", "label_number", "label_text", "drag_filter")]
-texture_filter = 3
 texture = ExtResource("1_q3tst")
 script = ExtResource("2_4vpxv")
 texture_rect_portrait = NodePath("PortraitFrame/Control/TextureRect_Portrait")
@@ -35,7 +34,6 @@ metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
 [node name="PortraitFrame" type="PanelContainer" parent="." unique_id=1749875993]
 clip_children = 1
-texture_filter = 3
 layout_mode = 0
 offset_left = 11.0
 offset_top = 8.0
@@ -60,7 +58,6 @@ expand_mode = 5
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
 modulate = Color(0.49803922, 0.49019608, 0.5372549, 1)
-texture_filter = 2
 layout_mode = 0
 offset_left = 357.0
 offset_top = 57.0
@@ -83,7 +80,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_4vpxv")
 
 [node name="Label_Number" type="Label" parent="NumberContainer" unique_id=1511627438]
 modulate = Color(0.8698216, 0.8658333, 0.8883401, 1)
-texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_imp03")
 theme_override_font_sizes/font_size = 24

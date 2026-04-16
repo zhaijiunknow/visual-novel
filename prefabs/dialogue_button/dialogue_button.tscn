@@ -14,7 +14,6 @@ corner_radius_bottom_left = 2
 
 [node name="DialogueButton" type="Control" unique_id=1780029294 node_paths=PackedStringArray("select_frame", "icon", "click_rect", "hint_panel", "_hint_label")]
 self_modulate = Color(1, 1, 1, 0)
-texture_filter = 3
 custom_minimum_size = Vector2(78, 91.34204)
 layout_mode = 3
 anchors_preset = 0
@@ -29,7 +28,6 @@ hint_panel = NodePath("TopPoint/HintPanel")
 _hint_label = NodePath("TopPoint/HintPanel/MarginContainer/Label")
 
 [node name="Frame" type="TextureRect" parent="." unique_id=1005151861]
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +38,6 @@ texture = ExtResource("1_mst00")
 expand_mode = 1
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1758427880]
-texture_filter = 3
 layout_mode = 0
 offset_left = 24.0
 offset_top = 23.0
@@ -53,7 +50,6 @@ texture = ExtResource("3_mst00")
 expand_mode = 1
 
 [node name="TopPoint" type="Control" parent="." unique_id=2095662617]
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -89,7 +85,6 @@ theme_override_constants/margin_bottom = 3
 
 [node name="Label" type="Label" parent="TopPoint/HintPanel/MarginContainer" unique_id=101408415]
 modulate = Color(0.9019608, 0.89411765, 0.9490196, 0.84313726)
-texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("4_4cn42")
@@ -97,7 +92,6 @@ theme_override_font_sizes/font_size = 18
 text = "快进游戏文本"
 
 [node name="ClickRect" type="Control" parent="." unique_id=90132889]
-texture_filter = 3
 anchors_preset = 0
 offset_left = 8.0
 offset_top = 8.0

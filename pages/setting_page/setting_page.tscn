@@ -60,14 +60,12 @@ btn_mute_off = NodePath("Pages/AudioPage/Controls/HBoxContainer_Mute/SelectionBu
 reset_button = NodePath("ResetButton")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1987285052]
-	texture_filter = 3
 offset_right = 2560.0
 offset_bottom = 1440.0
 mouse_filter = 0
 texture = ExtResource("2_e1hbt")
 
 [node name="Pages" type="Control" parent="." unique_id=1931831820]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -556,7 +554,6 @@ click_selected = Color(0.722, 0.722, 0.722, 1)
 title = "关闭"
 
 [node name="ResetButton" type="TextureButton" parent="." unique_id=446688002]
-	texture_filter = 3
 offset_left = 647.0
 offset_top = 1255.0
 offset_right = 834.0
@@ -572,7 +569,6 @@ offset_right = 153.0
 offset_bottom = -109.0
 
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1793807246]
-	texture_filter = 3
 offset_left = 1261.0
 offset_top = 1268.0
 offset_right = 2422.0

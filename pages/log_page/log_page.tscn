@@ -15,14 +15,12 @@ vbox_log_lines = NodePath("ScrollContainer/MarginContainer/VBoxContainer_LogLine
 scroll_container = NodePath("ScrollContainer")
 
 [node name="Background" type="TextureRect" parent="." unique_id=342664364]
-	texture_filter = 3
 offset_right = 2560.0
 offset_bottom = 1440.0
 mouse_filter = 0
 texture = ExtResource("2_7xc7c")
 
 [node name="PrefabContainer" type="Control" parent="." unique_id=1708378959]
-	texture_filter = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -37,7 +35,6 @@ layout_mode = 0
 texture = ExtResource("5_6owfp")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=997502588]
-	texture_filter = 3
 offset_left = 576.0
 offset_top = 105.0
 offset_right = 2397.0

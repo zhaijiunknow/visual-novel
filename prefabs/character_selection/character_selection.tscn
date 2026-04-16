@@ -17,7 +17,6 @@ anti_aliasing_size = 2.058
 bg_color = Color(0, 0, 0, 0.3529412)
 
 [node name="CharacterSelection" type="Panel" unique_id=2115129008 node_paths=PackedStringArray("portrait", "blackout_shade", "hover_shade")]
-texture_filter = 2
 custom_minimum_size = Vector2(118, 118)
 offset_right = 118.0
 offset_bottom = 118.0
@@ -29,7 +28,6 @@ blackout_shade = NodePath("BlackoutShade")
 hover_shade = NodePath("HoverShade")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1994759634]
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +46,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_faxlc")
 
 [node name="Portrait" type="TextureRect" parent="MarginContainer/Control" unique_id=458404707]
-texture_filter = 4
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -68,7 +65,6 @@ stretch_mode = 6
 
 [node name="BlackoutShade" type="Panel" parent="." unique_id=698347563]
 visible = false
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,7 +76,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
 
 [node name="HoverShade" type="Panel" parent="." unique_id=1249778295]
 visible = false
-texture_filter = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

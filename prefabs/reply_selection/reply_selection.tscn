@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="4_jusj8"]
 
 [node name="ReplySelection" type="PanelContainer" unique_id=2091470754 node_paths=PackedStringArray("reply_text", "hover_shade", "select_shade")]
-	texture_filter = 3
 clip_children = 2
 theme_override_styles/panel = ExtResource("1_anm8c")
 script = ExtResource("2_jusj8")
@@ -15,13 +14,11 @@ hover_shade = NodePath("HoverShade")
 select_shade = NodePath("SelectShade")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1367347500]
-	texture_filter = 3
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("2_hx05g")
 
 [node name="ReplyText" type="RichTextLabel" parent="MarginContainer" unique_id=1664763826]
-	texture_filter = 2
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 mouse_filter = 2
@@ -31,14 +28,12 @@ text = "我们"
 fit_content = true
 
 [node name="HoverShade" type="ColorRect" parent="." unique_id=1002091012]
-	texture_filter = 3
 visible = false
 modulate = Color(0, 0, 0, 0.27450982)
 layout_mode = 2
 mouse_filter = 2
 
 [node name="SelectShade" type="ColorRect" parent="." unique_id=1102489161]
-	texture_filter = 3
 visible = false
 modulate = Color(0, 0, 0, 0.27450982)
 layout_mode = 2

@@ -28,7 +28,6 @@ buttons = NodePath("Buttons")
 reply_color = Color(0.24705882, 0.21568628, 0.76862746, 1)
 
 [node name="Background" type="TextureRect" parent="." unique_id=1756240891]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +36,6 @@ grow_vertical = 2
 texture = ExtResource("6_1dvnh")
 
 [node name="Foreground" type="TextureRect" parent="." unique_id=527991148]
-	texture_filter = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,14 +44,12 @@ grow_vertical = 2
 texture = ExtResource("7_pvqm7")
 
 [node name="PrefabContainer" type="Control" parent="." unique_id=1684034971]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 267.0
 offset_bottom = 140.0
 
 [node name="DialogueLabel" type="RichTextLabel" parent="PrefabContainer" unique_id=796606706]
-	texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,7 +78,6 @@ offset_right = 1442.0
 offset_bottom = 181.99998
 
 [node name="VBoxContainer_Page" type="VBoxContainer" parent="." unique_id=2087188017]
-	texture_filter = 3
 offset_left = 642.0
 offset_top = 181.99998
 offset_right = 1442.6052
@@ -101,7 +96,6 @@ offset_bottom = 1331.0
 grow_vertical = 1
 
 [node name="Buttons" type="Control" parent="." unique_id=1983019369]
-	texture_filter = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -118,7 +112,6 @@ texture_pressed = ExtResource("18_ttmkd")
 texture_hover = ExtResource("19_ju1h1")
 
 [node name="Label" type="Label" parent="Buttons/TextureButton_Previous" unique_id=1953847728]
-	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,7 +139,6 @@ texture_pressed = ExtResource("18_ttmkd")
 texture_hover = ExtResource("19_ju1h1")
 
 [node name="Label" type="Label" parent="Buttons/TextureButton_Next" unique_id=353982809]
-	texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
