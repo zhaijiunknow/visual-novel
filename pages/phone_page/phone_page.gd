@@ -139,11 +139,13 @@ func _scroll_chat_to_bottom() -> void:
 
 func _add_chat_message(character_name: String, text: String) -> void:
 	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
+	chat_message.modulate.a = 0.0
 	chat_message_pool.add_child(chat_message)
 	var type = Enums.SenderType.SELF \
 		if character_name == "周腾" else Enums.SenderType.OTHER
 	var avatar = get_phone_avatar(character_name)
 	chat_message.setup(type, text, avatar)
+	create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
 
 
 func show_dialogue_message(character_name: String, text: String) -> void:
