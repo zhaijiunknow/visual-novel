@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bl08yri3cc4ic" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/last_normal.tres" id="3_nbg24"]
 [ext_resource type="Texture2D" uid="uid://20d4j2gadm74" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/last_click.tres" id="4_fiit1"]
 [ext_resource type="Texture2D" uid="uid://m01jyjgea68u" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/last_hover.tres" id="5_of8w3"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_fiit1"]
 [ext_resource type="Texture2D" uid="uid://bvdv3vne87si7" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/listname_background.tres" id="6_nbg24"]
 
 [node name="CharacterOption" type="HBoxContainer" unique_id=555581031 node_paths=PackedStringArray("label", "previous_button", "next_button", "label_option_name")]
@@ -31,6 +32,8 @@ texture_normal = ExtResource("3_nbg24")
 texture_pressed = ExtResource("4_fiit1")
 texture_hover = ExtResource("5_of8w3")
 stretch_mode = 3
+
+[node name="InteractSound" parent="TextureButton_Previous" unique_id=1483212628 instance=ExtResource("6_fiit1")]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=848747171]
 layout_mode = 2
@@ -62,3 +65,5 @@ texture_pressed = ExtResource("4_fiit1")
 texture_hover = ExtResource("5_of8w3")
 stretch_mode = 3
 flip_h = true
+
+[node name="InteractSound" parent="TextureButton_Next" unique_id=631278417 instance=ExtResource("6_fiit1")]

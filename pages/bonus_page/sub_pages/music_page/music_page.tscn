@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dws545vxfvq21" path="res://assets/sprites/ui/ui.sprites/progress_botton_normal.tres" id="8_wb12c"]
 [ext_resource type="Texture2D" uid="uid://dspuin11mox80" path="res://assets/sprites/ui/ui.sprites/音乐鉴赏/play_hover.tres" id="9_rtpcs"]
 [ext_resource type="Texture2D" uid="uid://c5u4l42l4i1g" path="res://assets/sprites/ui/ui.sprites/音乐鉴赏/play_click.tres" id="10_8cdy3"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="11_wb12c"]
 [ext_resource type="Texture2D" uid="uid://b2rvr5t7umg88" path="res://assets/sprites/ui/ui.sprites/音乐鉴赏/pause_normal.tres" id="11_yr5d4"]
 [ext_resource type="Texture2D" uid="uid://cdyekqd34w30c" path="res://assets/sprites/ui/ui.sprites/音乐鉴赏/pause_click.tres" id="12_dja6k"]
 [ext_resource type="Texture2D" uid="uid://b0xmhny6kiumx" path="res://assets/sprites/ui/ui.sprites/音乐鉴赏/pause_hover.tres" id="13_i5qfc"]
@@ -145,9 +146,11 @@ offset_left = 855.0
 offset_top = 1139.0
 offset_right = 927.0
 offset_bottom = 1211.0
-texture_normal = ExtResource("9_rtpcs")
+texture_normal = ExtResource("10_8cdy3")
 texture_pressed = ExtResource("10_8cdy3")
 texture_hover = ExtResource("9_rtpcs")
+
+[node name="InteractSound" parent="Buttons/TextureRect_PlayButton" unique_id=1483212628 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_PauseButton" type="TextureButton" parent="Buttons" unique_id=521318393]
 layout_mode = 0
@@ -158,6 +161,8 @@ offset_bottom = 1211.0
 texture_normal = ExtResource("11_yr5d4")
 texture_pressed = ExtResource("12_dja6k")
 texture_hover = ExtResource("13_i5qfc")
+
+[node name="InteractSound" parent="Buttons/TextureRect_PauseButton" unique_id=1077917995 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_NextButton" type="TextureButton" parent="Buttons" unique_id=1569538604]
 layout_mode = 0
@@ -170,6 +175,8 @@ texture_pressed = ExtResource("15_yiqbi")
 texture_hover = ExtResource("16_v2y0q")
 flip_h = true
 
+[node name="InteractSound" parent="Buttons/TextureRect_NextButton" unique_id=443107870 instance=ExtResource("11_wb12c")]
+
 [node name="TextureRect_PreviousButton" type="TextureButton" parent="Buttons" unique_id=925621557]
 layout_mode = 0
 offset_left = 784.0
@@ -179,6 +186,8 @@ offset_bottom = 1190.0
 texture_normal = ExtResource("14_dlduw")
 texture_pressed = ExtResource("15_yiqbi")
 texture_hover = ExtResource("16_v2y0q")
+
+[node name="InteractSound" parent="Buttons/TextureRect_PreviousButton" unique_id=36509737 instance=ExtResource("11_wb12c")]
 
 [node name="ScrollContainer_Playlist" type="ScrollContainer" parent="." unique_id=380790596]
 layout_mode = 0

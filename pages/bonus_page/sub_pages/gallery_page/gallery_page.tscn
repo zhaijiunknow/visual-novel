@@ -10,9 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://b7xrilfnikpbf" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_click.tres" id="8_t4biu"]
 [ext_resource type="Texture2D" uid="uid://l6kux0uld8xr" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_hover.tres" id="9_2doyf"]
 [ext_resource type="Texture2D" uid="uid://da2dgb564f0ag" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_normal.tres" id="10_73jdd"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="11_t4biu"]
 [ext_resource type="Texture2D" uid="uid://co51hxdlxwgf8" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_click.tres" id="11_wc5bc"]
 [ext_resource type="Texture2D" uid="uid://dq1rxrfg8xlbl" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/cancel_hover.tres" id="12_8vyhy"]
 [ext_resource type="Script" uid="uid://cb2w6pi0uueka" path="res://scripts/follow_parent_visibility.gd" id="13_fpv"]
+[ext_resource type="AudioStream" uid="uid://dk32yexjuvehj" path="res://assets/system_sounds/奇迹书音效/返回音效.wav" id="15_2doyf"]
 
 [node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close")]
 layout_mode = 3
@@ -115,6 +117,8 @@ texture_normal = ExtResource("7_u0is1")
 texture_pressed = ExtResource("8_t4biu")
 texture_hover = ExtResource("9_2doyf")
 
+[node name="InteractSound" parent="CanvasLayer/GalleryView/Frame/Button_Hide" unique_id=1483212628 instance=ExtResource("11_t4biu")]
+
 [node name="Button_Close" type="TextureButton" parent="CanvasLayer/GalleryView/Frame" unique_id=2102809351]
 layout_mode = 0
 offset_left = 2432.0
@@ -124,5 +128,8 @@ offset_bottom = 933.0
 texture_normal = ExtResource("10_73jdd")
 texture_pressed = ExtResource("11_wc5bc")
 texture_hover = ExtResource("12_8vyhy")
+
+[node name="InteractSound" parent="CanvasLayer/GalleryView/Frame/Button_Close" unique_id=814037856 instance=ExtResource("11_t4biu")]
+click_sound = ExtResource("15_2doyf")
 
 [editable path="CanvasLayer/GalleryView/Frame/Option_Variation"]
