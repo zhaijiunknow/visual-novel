@@ -4,6 +4,9 @@
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="2_htbgh"]
 [ext_resource type="Texture2D" uid="uid://c32bdmf5uardd" path="res://assets/sprites/ui/ui.sprites/hover_deco.tres" id="3_htbgh"]
 [ext_resource type="Texture2D" uid="uid://b7y0sv8noxv8o" path="res://assets/sprites/ui/ui.sprites/start_click_deco.tres" id="4_jl38l"]
+[ext_resource type="PackedScene" path="res://prefabs/components/interact_sound.tscn" id="5_c0fwr"]
+[ext_resource type="AudioStream" uid="uid://cfj0wrpoe8k6j" path="res://assets/system_sounds/奇迹书音效/主界面按钮点击音效.wav" id="6_fipry"]
+[ext_resource type="AudioStream" uid="uid://bwkgf8rel13s3" path="res://assets/system_sounds/奇迹书音效/鼠标滑动音效.wav" id="6_g71bb"]
 
 [sub_resource type="FontVariation" id="FontVariation_fc0e3"]
 spacing_glyph = 6
@@ -60,3 +63,8 @@ offset_left = -3.0
 offset_top = -5.0
 offset_right = 162.0
 offset_bottom = 41.0
+
+[node name="InteractSound" parent="." unique_id=2118422204 node_paths=PackedStringArray("target") instance=ExtResource("5_c0fwr")]
+target = NodePath("../ClickBox")
+click_sound = ExtResource("6_fipry")
+hover_sound = ExtResource("6_g71bb")

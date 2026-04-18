@@ -279,7 +279,6 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
-visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0
@@ -288,7 +287,6 @@ offset_bottom = 1429.0
 texture = ExtResource("16_xkddf")
 
 [node name="Preview" type="TextureRect" parent="Phone/Messenger" unique_id=1928087168]
-visible = false
 layout_mode = 0
 offset_left = -1552.0
 offset_top = -113.0
@@ -342,3 +340,31 @@ offset_bottom = 338.0
 
 [node name="Chat" parent="Phone/Messenger/ChatPool" unique_id=1372363922 instance=ExtResource("19_fyc1j")]
 layout_mode = 2
+
+[node name="Label_Name" type="Label" parent="Phone/Messenger" unique_id=898440420]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 103.0
+offset_right = -156.0
+offset_bottom = 132.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(1, 0)
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 24
+text = "我的昵称昵称"
+horizontal_alignment = 2
+
+[node name="Label_Status" type="Label" parent="Phone/Messenger" unique_id=1660223163]
+modulate = Color(0.29411766, 0.8627451, 0.69411767, 1)
+layout_mode = 0
+offset_left = 544.0
+offset_top = 136.0
+offset_right = 572.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 14
+text = "在线"

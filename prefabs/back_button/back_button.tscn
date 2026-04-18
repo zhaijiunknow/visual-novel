@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c4o2r5c1v5joy" path="res://assets/sprites/ui/ui.sprites/back_click.tres" id="2_fp8xw"]
 [ext_resource type="Texture2D" uid="uid://bqd07mlc70tvi" path="res://assets/sprites/ui/ui.sprites/back_hover.tres" id="3_wtgn1"]
 [ext_resource type="Script" uid="uid://dmeq1sti8h621" path="res://prefabs/back_button/back_button.gd" id="4_76biy"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="5_wtgn1"]
+[ext_resource type="AudioStream" uid="uid://dk32yexjuvehj" path="res://assets/system_sounds/奇迹书音效/返回音效.wav" id="6_m10hk"]
 
 [node name="BackButton" type="TextureButton" unique_id=1647052709]
 anchors_preset = 2
@@ -16,3 +18,7 @@ texture_normal = ExtResource("1_76biy")
 texture_pressed = ExtResource("2_fp8xw")
 texture_hover = ExtResource("3_wtgn1")
 script = ExtResource("4_76biy")
+
+[node name="InteractSound" parent="." unique_id=1217025163 node_paths=PackedStringArray("target") instance=ExtResource("5_wtgn1")]
+target = NodePath("..")
+click_sound = ExtResource("6_m10hk")

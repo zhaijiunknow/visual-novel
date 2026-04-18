@@ -10,8 +10,10 @@
 [ext_resource type="FontFile" uid="uid://dgn3iice41qn8" path="res://assets/fonts/瑞美加张清平硬笔楷书.ttf" id="13_5hjx8"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="14_r2lyb"]
 [ext_resource type="PackedScene" uid="uid://cnrtv0v2fr2pd" path="res://prefabs/paragraph_container/paragraph_container.tscn" id="15_3fj4v"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="16_3fgb7"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="16_7e5ln"]
 [ext_resource type="Texture2D" uid="uid://blsusl7xbrsbd" path="res://assets/sprites/ui/ui.sprites/page_normal.tres" id="17_b4erg"]
+[ext_resource type="AudioStream" uid="uid://bupw66if3c0qp" path="res://assets/system_sounds/奇迹书音效/翻书声.wav" id="17_q4ygb"]
 [ext_resource type="Texture2D" uid="uid://b03qjme3jeruc" path="res://assets/sprites/ui/ui.sprites/page_click.tres" id="18_ttmkd"]
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
@@ -128,6 +130,10 @@ theme = ExtResource("20_nk4nf")
 theme_override_font_sizes/font_size = 26
 text = "上一页"
 
+[node name="InteractSound" parent="Buttons/TextureButton_Previous" unique_id=1483212628 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
+target = NodePath("..")
+click_sound = ExtResource("17_q4ygb")
+
 [node name="TextureButton_Next" type="TextureButton" parent="Buttons" unique_id=2063053913]
 layout_mode = 0
 offset_left = 1748.0
@@ -154,3 +160,7 @@ grow_vertical = 2
 theme = ExtResource("20_nk4nf")
 theme_override_font_sizes/font_size = 26
 text = "下一页"
+
+[node name="InteractSound" parent="Buttons/TextureButton_Next" unique_id=451269707 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
+target = NodePath("..")
+click_sound = ExtResource("17_q4ygb")

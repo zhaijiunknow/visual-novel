@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dt57ajxw80ym7" path="res://prefabs/phone_icon/phone_icon.gd" id="1_s5ofn"]
 [ext_resource type="Texture2D" uid="uid://b3pdi3vismhi6" path="res://assets/sprites/ui/ui.sprites/ico_message.tres" id="2_442nh"]
 [ext_resource type="Theme" uid="uid://b4d02lqqc61dq" path="res://themes/phone_theme.tres" id="3_442nh"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="4_qho3o"]
+[ext_resource type="AudioStream" uid="uid://bp3v705tatxsh" path="res://assets/system_sounds/奇迹书音效/手机点击音效.wav" id="5_itj0w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5ofn"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -42,3 +44,7 @@ theme = ExtResource("3_442nh")
 theme_override_font_sizes/font_size = 24
 text = "信息"
 horizontal_alignment = 1
+
+[node name="InteractSound" parent="." unique_id=1483212628 node_paths=PackedStringArray("target") instance=ExtResource("4_qho3o")]
+target = NodePath("..")
+click_sound = ExtResource("5_itj0w")

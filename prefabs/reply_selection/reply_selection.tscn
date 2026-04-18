@@ -4,6 +4,8 @@
 [ext_resource type="Theme" uid="uid://b6wigi5ow3raq" path="res://themes/chat_theme.tres" id="2_hx05g"]
 [ext_resource type="Script" uid="uid://caemdgm222eii" path="res://prefabs/reply_selection/reply_selection.gd" id="2_jusj8"]
 [ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="4_jusj8"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="5_yh42e"]
+[ext_resource type="AudioStream" uid="uid://dl8kbiuo0u7if" path="res://assets/system_sounds/奇迹书音效/手机发消息点击音效.wav" id="6_qiocc"]
 
 [node name="ReplySelection" type="PanelContainer" unique_id=2091470754 node_paths=PackedStringArray("reply_text", "hover_shade", "select_shade")]
 clip_children = 2
@@ -38,3 +40,7 @@ visible = false
 modulate = Color(0, 0, 0, 0.27450982)
 layout_mode = 2
 mouse_filter = 2
+
+[node name="InteractSound" parent="." unique_id=1483212628 node_paths=PackedStringArray("target") instance=ExtResource("5_yh42e")]
+target = NodePath("..")
+click_sound = ExtResource("6_qiocc")
