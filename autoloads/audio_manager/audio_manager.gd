@@ -67,6 +67,7 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 			current_voice = voice
 		audio_player_voice.stream = voice
 		audio_player_voice.play()
+		_duck_music()
 		return
 
 	var file_path = "%s/%s.wav" % [AudioManager.voice_path, filename]
@@ -85,10 +86,33 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 		current_voice = voice
 	audio_player_voice.stream = voice
 	audio_player_voice.play()
+	_duck_music()
 
 func replay_voice() -> void:
 	audio_player_voice.stream = current_voice
 	audio_player_voice.play()
+	_duck_music()
+
+
+var _duck_tween: Tween
+var _unducked_db: float
+
+func _duck_music() -> void:
+	if _duck_tween:
+		_duck_tween.kill()
+	_unducked_db = audio_player_music.volume_db
+	var ducked_db := linear_to_db(db_to_linear(_unducked_db) * 0.5)
+	_duck_tween = create_tween()
+	_duck_tween.tween_property(audio_player_music, "volume_db", ducked_db, 0.3)
+	# 语音播完后恢复
+	if not audio_player_voice.finished.is_connected(_unduck_music):
+		audio_player_voice.finished.connect(_unduck_music, CONNECT_ONE_SHOT)
+
+func _unduck_music() -> void:
+	if _duck_tween:
+		_duck_tween.kill()
+	_duck_tween = create_tween()
+	_duck_tween.tween_property(audio_player_music, "volume_db", _unducked_db, 0.3)
 
 var _music_paused := false
 var _music_position := 0.0
