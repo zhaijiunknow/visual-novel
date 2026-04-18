@@ -38,7 +38,7 @@ func Character(character_name: String) -> Character:
 	return character_dict[character_name]
 
 func SetBackground(background_name: String, variation_name: String,
-		out_time: float = 0.8, in_time: float = 0.8) -> void:
+		out_time: float = 1.2, in_time: float = 1.2) -> void:
 	var is_skip: bool = Game.stage_page.skip
 	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
 
@@ -102,9 +102,9 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	Game.stage_page.label_week_day.text = week_day
 	var date_control = Game.stage_page.date
 	date_control.modulate.a = 0
-	await create_tween().tween_property(date_control, "modulate:a", 1, 0.8).finished
-	await get_tree().create_timer(2.0).timeout
-	await create_tween().tween_property(date_control, "modulate:a", 0, 0.3).finished
+	await create_tween().tween_property(date_control, "modulate:a", 1, 1).finished
+	await get_tree().create_timer(3.0).timeout
+	await create_tween().tween_property(date_control, "modulate:a", 0, 1).finished
 
 func SetMusic(music_name: String) -> void:
 	var track_data: MusicData = AudioManager.playlist.filter(
