@@ -8,7 +8,7 @@ extends MarginContainer
 @export var button_favourite: TextureRect
 
 const COLOR_NORMAL := Color(0.382, 0.382, 0.382)
-const COLOR_HOVER := Color(0.553, 0.553, 0.553)
+const COLOR_HOVER_BLEND := Color(0.171, 0.171, 0.171)
 const COLOR_PRESS := Color(0.813, 0.813, 0.813)
 const COLOR_PLAYING := Color.WHITE
 const COLOR_FAVOURITE_ON := Color.WHITE
@@ -54,7 +54,7 @@ func _ready() -> void:
 	button_replay.modulate = COLOR_NORMAL
 	button_favourite.modulate = COLOR_FAVOURITE_OFF
 	Main.voice_collection_changed.connect(_on_voice_collection_changed)
-	button_replay.mouse_entered.connect(func(): if not _playing: button_replay.modulate = COLOR_HOVER)
+	button_replay.mouse_entered.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL + COLOR_HOVER_BLEND)
 	button_replay.mouse_exited.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL)
 	button_replay.gui_input.connect(
 		func(event: InputEvent):
@@ -86,7 +86,7 @@ func _ready() -> void:
 				else:
 					if has_voice:
 						_toggle_favourite()
-				_update_favourite_color(true)
+					_update_favourite_color(true)
 	)
 
 func _toggle_favourite() -> void:
@@ -113,4 +113,4 @@ func _on_voice_collection_changed(vf: String) -> void:
 func _update_favourite_color(hover: bool = false) -> void:
 	if not has_voice: return
 	var base = COLOR_FAVOURITE_ON if is_favourite else COLOR_FAVOURITE_OFF
-	button_favourite.modulate = COLOR_HOVER if hover else base
+	button_favourite.modulate = (base + COLOR_HOVER_BLEND) if hover else base
