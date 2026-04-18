@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bk3m7e5u7pad" path="res://prefabs/components/interact_sound.gd" id="1_click"]
 [ext_resource type="AudioStream" uid="uid://bwkgf8rel13s3" path="res://assets/system_sounds/奇迹书音效/鼠标滑动音效.wav" id="2_6fafj"]
+[ext_resource type="AudioStream" uid="uid://cfj0wrpoe8k6j" path="res://assets/system_sounds/奇迹书音效/主界面按钮点击音效.wav" id="2_sv7xs"]
 
 [node name="InteractSound" type="Node" unique_id=1483212628]
 script = ExtResource("1_click")
+click_sound = ExtResource("2_sv7xs")
 hover_sound = ExtResource("2_6fafj")

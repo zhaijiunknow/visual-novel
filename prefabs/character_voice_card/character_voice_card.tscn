@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://chverexd4cwle"]
 
-[ext_resource type="Script" path="res://prefabs/character_voice_card/character_voice_card.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://b7ivm5b0twp8q" path="res://prefabs/character_voice_card/character_voice_card.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="2_tm1sa"]
+[ext_resource type="AudioStream" uid="uid://cbv00i4cd5jyl" path="res://assets/system_sounds/奇迹书音效/主界面按钮点击音效2.wav" id="3_r52lj"]
 
-[node name="CharacterVoiceCard" type="TextureButton"]
+[node name="CharacterVoiceCard" type="TextureButton" unique_id=2750200]
 script = ExtResource("1_script")
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("2_tm1sa")]
+click_sound = ExtResource("3_r52lj")

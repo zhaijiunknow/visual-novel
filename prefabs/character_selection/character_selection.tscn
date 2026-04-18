@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://buso3d823ic3e"]
 
 [ext_resource type="Script" uid="uid://beghy6l0mwfw" path="res://prefabs/character_selection/character_selection.gd" id="2_bvhc2"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="2_se0ac"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dorhe"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -84,3 +85,5 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_khjfa")
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("2_se0ac")]

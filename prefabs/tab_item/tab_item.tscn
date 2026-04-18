@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c32bdmf5uardd" path="res://assets/sprites/ui/ui.sprites/hover_deco.tres" id="3_3lslt"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="5_3lslt"]
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="6_esx1e"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_ndg6v"]
 
 [node name="BonusTabItem" type="Control" unique_id=1406201431 node_paths=PackedStringArray("selected_frame", "hover_hint", "label_title_zh", "label_title_en")]
 custom_minimum_size = Vector2(120, 43)
@@ -63,3 +64,5 @@ theme_override_font_sizes/font_size = 10
 text = "Characters Gallery"
 horizontal_alignment = 2
 uppercase = true
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("6_ndg6v")]

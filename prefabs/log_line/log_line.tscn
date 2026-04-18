@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="1_0rosg"]
 [ext_resource type="Script" uid="uid://cx7f2r42rodwo" path="res://prefabs/log_line/log_line.gd" id="1_ii567"]
 [ext_resource type="Texture2D" uid="uid://b4wasfvraokwy" path="res://assets/sprites/ui/ui.sprites/menu_replay.tres" id="3_ii567"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="4_050h4"]
 [ext_resource type="Texture2D" uid="uid://beulww8wuml3q" path="res://assets/sprites/ui/ui.sprites/menu_star.tres" id="4_aexk2"]
 
 [node name="LogLine" type="MarginContainer" unique_id=1658264118 node_paths=PackedStringArray("vbox_character_info", "label_character_name", "rich_label_dialogue_text", "button_replay", "button_favourite")]
@@ -13,8 +14,8 @@ script = ExtResource("1_ii567")
 vbox_character_info = NodePath("HBoxContainer/VBoxContainer_CharacterInfo")
 label_character_name = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/Label_CharacterName")
 rich_label_dialogue_text = NodePath("HBoxContainer/RichTextLabel_DialogueText")
-button_replay = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/TextureRect")
-button_favourite = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/TextureRect2")
+button_replay = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Replay")
+button_favourite = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Collect")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=373279728]
 layout_mode = 2
@@ -35,13 +36,17 @@ text = "余洛琛"
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer" unique_id=2066627473]
+[node name="Replay" type="TextureRect" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer" unique_id=2066627473]
 layout_mode = 2
 texture = ExtResource("3_ii567")
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer" unique_id=1886742407]
+[node name="InteractSound" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Replay" unique_id=1483212628 instance=ExtResource("4_050h4")]
+
+[node name="Collect" type="TextureRect" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer" unique_id=1886742407]
 layout_mode = 2
 texture = ExtResource("4_aexk2")
+
+[node name="InteractSound" parent="HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Collect" unique_id=1882077752 instance=ExtResource("4_050h4")]
 
 [node name="RichTextLabel_DialogueText" type="RichTextLabel" parent="HBoxContainer" unique_id=1812552281]
 layout_mode = 2

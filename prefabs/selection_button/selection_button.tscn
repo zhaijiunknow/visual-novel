@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dok3lbqth63w5" path="res://prefabs/selection_button/selection_button.gd" id="1_iafw3"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="1_jkra5"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="3_tjobl"]
+[ext_resource type="AudioStream" uid="uid://cfj0wrpoe8k6j" path="res://assets/system_sounds/奇迹书音效/主界面按钮点击音效.wav" id="4_l3jo4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iafw3"]
 bg_color = Color(0.267, 0.271, 0.318, 1)
@@ -14,15 +16,12 @@ shadow_size = 1
 anti_aliasing_size = 4.161
 
 [node name="SelectionButton" type="PanelContainer" unique_id=933418496 node_paths=PackedStringArray("label_title")]
-self_modulate = Color(0.72156864, 0.72156864, 0.72156864, 1)
+self_modulate = Color(1, 1, 1, 0)
 offset_right = 124.0
 offset_bottom = 53.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_iafw3")
 script = ExtResource("1_iafw3")
 label_title = NodePath("MarginContainer/Label_Title")
-click_color = null
-click_hover = null
-click_selected = null
 title = "标题"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1835303418]
@@ -37,3 +36,6 @@ theme_override_fonts/font = ExtResource("1_jkra5")
 theme_override_font_sizes/font_size = 30
 text = "标题"
 horizontal_alignment = 1
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("3_tjobl")]
+click_sound = ExtResource("4_l3jo4")

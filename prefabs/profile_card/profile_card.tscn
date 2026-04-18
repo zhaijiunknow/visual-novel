@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cknm1as7cmxn7" path="res://assets/sprites/ui/ui.sprites/del_normal.tres" id="11_kivmn"]
 [ext_resource type="Texture2D" uid="uid://nw3t77msgjkj" path="res://assets/sprites/ui/ui.sprites/del_click.tres" id="12_e1ony"]
 [ext_resource type="Texture2D" uid="uid://fqe5lngyfhq" path="res://assets/sprites/ui/ui.sprites/del_hover.tres" id="13_m6q2l"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="14_e1ony"]
 
 [node name="SaveProfileCard" type="TextureRect" unique_id=1393657536 node_paths=PackedStringArray("texture_rect_preview", "drag_filter", "label_index", "label_chapter", "label_chapter_title", "button_delete")]
 texture = ExtResource("1_47rjm")
@@ -90,3 +91,5 @@ offset_bottom = 92.0
 texture_normal = ExtResource("11_kivmn")
 texture_pressed = ExtResource("12_e1ony")
 texture_hover = ExtResource("13_m6q2l")
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("14_e1ony")]

@@ -7,6 +7,7 @@ extends Node
 
 @export var target: Control
 @export var click_sound: AudioStream
+@export var release_sound: AudioStream
 @export var hover_sound: AudioStream
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 
 
 func _play_sound(s: AudioStream) -> void:
+	if not s: return
 	AudioManager.audio_player_sound.stream = s
 	AudioManager.audio_player_sound.play()
 
@@ -27,8 +29,11 @@ func _on_gui_input(event: InputEvent) -> void:
 	if not click_sound:
 		return
 	if event is InputEventMouseButton:
-		if event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-			_play_sound(click_sound)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.is_pressed():
+				_play_sound(click_sound)
+			if event.is_released():
+				_play_sound(release_sound)
 
 
 func _on_mouse_entered() -> void:

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bonnjjxt11u8k" path="res://prefabs/components/drag_filter.gd" id="3_imp03"]
 [ext_resource type="FontFile" uid="uid://6ydkdqqx8lgc" path="res://assets/fonts/Poppins-Medium（各种no）.ttf" id="4_imp03"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="6_4vpxv"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_imp03"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y2fy"]
 corner_radius_top_left = 12
@@ -86,3 +87,5 @@ theme_override_font_sizes/font_size = 24
 text = "NO.01"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("6_imp03")]

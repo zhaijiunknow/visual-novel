@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bg6fpa1i8irkg" path="res://prefabs/track_item/track_item.gd" id="3_bic3u"]
 [ext_resource type="PackedScene" uid="uid://cdnnwlov248c" path="res://prefabs/components/drag_filter.tscn" id="4_q4fwc"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="5_q4fwc"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_p04pl"]
 
 [node name="TrackItem" type="TextureButton" unique_id=742270521 node_paths=PackedStringArray("drag_filter", "label_title")]
 mouse_filter = 1
@@ -28,3 +29,5 @@ theme = ExtResource("5_q4fwc")
 theme_override_font_sizes/font_size = 30
 text = "歌曲名称"
 clip_text = true
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("6_p04pl")]

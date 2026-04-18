@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://1qd1ifwgiuft"]
+[gd_scene format=3 uid="uid://1qd1ifwgiuft"]
 
 [ext_resource type="Script" uid="uid://c451u0wxoyvl7" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.gd" id="1_mpri4"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="2_rgbpg"]
 
-[node name="VScrollBarEx" type="VScrollBar"]
+[node name="VScrollBarEx" type="VScrollBar" unique_id=675413224]
 anchors_preset = -1
 anchor_left = 0.95400006
 anchor_right = 0.95400006
@@ -11,3 +12,5 @@ offset_top = -0.6399994
 offset_right = 9.759766
 offset_bottom = 1327.0
 script = ExtResource("1_mpri4")
+
+[node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("2_rgbpg")]

@@ -9,6 +9,9 @@
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="7_theme"]
 [ext_resource type="Texture2D" uid="uid://d28p8c1w1ympy" path="res://assets/temp/confirm.jpg" id="8_w2s71"]
 [ext_resource type="Shader" uid="uid://byxcwgy2cqcyh" path="res://shaders/background_blur.gdshader" id="9_blur"]
+[ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="9_dujyv"]
+[ext_resource type="AudioStream" uid="uid://cbv00i4cd5jyl" path="res://assets/system_sounds/奇迹书音效/主界面按钮点击音效2.wav" id="10_uois3"]
+[ext_resource type="AudioStream" uid="uid://dk32yexjuvehj" path="res://assets/system_sounds/奇迹书音效/返回音效.wav" id="11_5xyvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blur"]
 shader = ExtResource("9_blur")
@@ -86,6 +89,9 @@ text = "确定"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="InteractSound" parent="Background/ButtonContainer/Button_Confirm" unique_id=1483212628 instance=ExtResource("9_dujyv")]
+click_sound = ExtResource("10_uois3")
+
 [node name="Button_Cancel" type="TextureButton" parent="Background/ButtonContainer" unique_id=523016300]
 layout_mode = 2
 texture_normal = ExtResource("6_btn_click")
@@ -104,6 +110,9 @@ theme_override_font_sizes/font_size = 32
 text = "取消"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InteractSound" parent="Background/ButtonContainer/Button_Cancel" unique_id=898744351 instance=ExtResource("9_dujyv")]
+click_sound = ExtResource("11_5xyvv")
 
 [node name="Preview" type="TextureRect" parent="." unique_id=1510430444]
 visible = false
