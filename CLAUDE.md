@@ -12,7 +12,7 @@ Game  → page navigation    stage_page (core)         SliderEx
 Stage → dialogue commands  bonus_page                TabItem
 AudioManager → 4 players   setting_page              CharacterVoiceCard
 Prefabs → shared refs      book/log/phone/           back_button/setting_label
-                           profile/travel/confirm
+                           profile/travel/confirm    InteractSound (component)
 ```
 
 ## Data Flow
@@ -31,6 +31,7 @@ Prefabs → shared refs      book/log/phone/           back_button/setting_label
 | Navigation | `autoloads/game/game.gd` |
 | Dialogue | `autoloads/stage/stage.gd` |
 | Audio | `autoloads/audio_manager/audio_manager.gd` |
+| Interact Sound | `prefabs/components/interact_sound.gd` |
 | Settings UI | `pages/setting_page/setting_page.gd` |
 | Data models | `data/_models/*.gd` (Resource subclasses) |
 | Save logic | `scripts/save_data.gd`, `scripts/profile_data.gd` |
@@ -58,6 +59,7 @@ Main → DialogueManager → AudioManager → Stage → Game → Prefabs → Deb
 - Bilingual labels: `title_zh` + `title_en` properties
 - Chinese comments for domain-specific logic
 - **DRY principle**: Never repeat yourself — extract shared logic into helpers, base classes, or autoloads
+- **Component pattern**: Reusable behaviors as child Node prefabs (e.g. DragFilter, InteractSound) — attach to any Control without modifying its script
 
 ## Skip/Fast-Forward System
 
@@ -71,6 +73,25 @@ Three toggleable conditions stored in `SettingData`:
 
 The skip unread ON/OFF toggle (`btn_skip_unread_text_on/off`) sets `skip_unread`.
 The three multi-select buttons set `skip_unread_text`, `skip_after_choice`, `skip_ignore_transitions`.
+
+## Sound System
+
+### InteractSound Component (`prefabs/components/interact_sound.gd`)
+
+Reusable Node prefab (like DragFilter) that adds click/hover sounds to any Control. Drop `interact_sound.tscn` as a child node — no code changes needed on the parent component.
+
+- `@export var target: Control` — defaults to parent node
+- `@export var click_sound: AudioStream` — played on left click
+- `@export var hover_sound: AudioStream` — played on mouse enter
+- Uses shared `AudioManager.audio_player_sound` (single AudioStreamPlayer, not per-instance)
+
+### Music Ducking
+
+When voice plays, music volume tween ducks to 50% over 0.3s, restores on voice finished. Handled globally in `AudioManager._duck_music()` / `_unduck_music()`. Voice page (`voice_page.gd`) additionally uses `pause_music()` / `resume_music()` for full music pause.
+
+### Chat Message Effects
+
+`phone_page.gd` `_add_chat_message()`: each ChatMessage fades in (modulate alpha 0→1, 0.3s) with 手机发消息音效.wav sound.
 
 ## Known Issues
 
