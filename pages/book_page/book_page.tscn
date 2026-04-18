@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://6r2qa0nsp5do" path="res://dialogue_manager/dialogues/page_2.dialogue" id="4_jkv06"]
 [ext_resource type="Resource" uid="uid://cju4pdtxrrfdn" path="res://dialogue_manager/dialogues/page_3.dialogue" id="5_dy41n"]
 [ext_resource type="Texture2D" uid="uid://bll0ukv6e6in5" path="res://assets/ui_backgrounds/book_background.jpg" id="6_1dvnh"]
+[ext_resource type="AudioStream" uid="uid://cn08kmw3cr3t" path="res://assets/system_sounds/奇迹书音效/写字声.wav" id="6_q4ygb"]
 [ext_resource type="Texture2D" uid="uid://cse7gjgt5acqe" path="res://assets/ui_backgrounds/book_shadow.png" id="7_pvqm7"]
 [ext_resource type="FontFile" uid="uid://dgn3iice41qn8" path="res://assets/fonts/瑞美加张清平硬笔楷书.ttf" id="13_5hjx8"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="14_r2lyb"]
@@ -18,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
 
-[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons")]
+[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "audio_player")]
 script = ExtResource("1_s06xr")
 dialogue_label = NodePath("PrefabContainer/DialogueLabel")
 pages = Array[ExtResource("2_hthhu")]([ExtResource("3_gxpof"), ExtResource("4_jkv06"), ExtResource("5_dy41n")])
@@ -28,6 +29,10 @@ button_next = NodePath("Buttons/TextureButton_Next")
 paragraph_container = NodePath("PrefabContainer/ParagraphContainer")
 buttons = NodePath("Buttons")
 reply_color = Color(0.24705882, 0.21568628, 0.76862746, 1)
+audio_player = NodePath("AudioPlayer")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1748859564]
+stream = ExtResource("6_q4ygb")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1756240891]
 anchors_preset = 15
@@ -51,18 +56,13 @@ anchors_preset = 0
 offset_right = 267.0
 offset_bottom = 140.0
 
-[node name="DialogueLabel" type="RichTextLabel" parent="PrefabContainer" unique_id=796606706]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -266.0
-offset_bottom = -126.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="DialogueLabel" type="RichTextLabel" parent="PrefabContainer" unique_id=169421759]
+layout_mode = 0
+offset_right = 266.0
+offset_bottom = 126.0
+size_flags_horizontal = 0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_constants/line_separation = 7
-theme_override_constants/paragraph_separation = 7
 theme_override_fonts/normal_font = ExtResource("13_5hjx8")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
@@ -72,20 +72,18 @@ seconds_per_step = 0.1
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 metadata/_custom_type_script = "uid://g32um0mltv5d"
 
-[node name="ParagraphContainer" parent="PrefabContainer" unique_id=1756509369 instance=ExtResource("15_3fj4v")]
+[node name="ParagraphContainer" parent="PrefabContainer" unique_id=1988455053 instance=ExtResource("15_3fj4v")]
 layout_mode = 0
-offset_left = 642.0
-offset_top = 181.99998
-offset_right = 1442.0
-offset_bottom = 181.99998
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="VBoxContainer_Page" type="VBoxContainer" parent="." unique_id=2087188017]
 offset_left = 642.0
-offset_top = 181.99998
+offset_top = 183.00002
 offset_right = 1442.6052
-offset_bottom = 1258.6079
+offset_bottom = 1316.3931
 rotation = -0.075049154
-theme_override_constants/separation = 0
+theme_override_constants/separation = 42
 
 [node name="BackButton" parent="." unique_id=2095390168 instance=ExtResource("16_7e5ln")]
 anchors_preset = 0

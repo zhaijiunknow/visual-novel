@@ -1,22 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnrtv0v2fr2pd"]
+[gd_scene format=3 uid="uid://cnrtv0v2fr2pd"]
 
 [ext_resource type="Script" uid="uid://bqnnxu8fv11og" path="res://prefabs/paragraph_container/paragraph_container.gd" id="1_plfu2"]
 
-[node name="ParagraphContainer" type="MarginContainer" node_paths=PackedStringArray("box_left", "box_right")]
+[node name="ParagraphContainer" type="PanelContainer" unique_id=1176468936 node_paths=PackedStringArray("box_left", "box_right")]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = 8.0
-offset_right = 8.0
-theme_override_constants/margin_bottom = 41
+offset_right = 12.0
+offset_bottom = 41.0
 script = ExtResource("1_plfu2")
 box_left = NodePath("HBoxContainer/BoxContainer_Left")
 box_right = NodePath("HBoxContainer/BoxContainer_Right")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1373951855]
 layout_mode = 2
 
-[node name="BoxContainer_Left" type="BoxContainer" parent="HBoxContainer"]
+[node name="BoxContainer_Left" type="BoxContainer" parent="HBoxContainer" unique_id=1517330195]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BoxContainer_Right" type="BoxContainer" parent="HBoxContainer"]
+[node name="BoxContainer_Right" type="BoxContainer" parent="HBoxContainer" unique_id=945283089]
 layout_mode = 2
 size_flags_horizontal = 3

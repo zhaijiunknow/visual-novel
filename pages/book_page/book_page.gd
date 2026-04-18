@@ -9,6 +9,7 @@ extends CanvasLayer
 @export var paragraph_container: ParagraphContainer
 @export var buttons: Control
 @export var reply_color: Color
+@export var audio_player: AudioStreamPlayer
 
 var page_index: int:
 	set(value):
@@ -43,8 +44,9 @@ func write() -> void:
 			container.box_right.add_child(label)
 		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		label.dialogue_line = line
-		label.type_out()
-		await label.finished_typing
+		label.visible_ratio = 0
+		audio_player.play()
+		await create_tween().tween_property(label, "visible_ratio", 1, audio_player.stream.get_length()).finished
 		await get_tree().create_timer(0.8).timeout
 		write()
 
