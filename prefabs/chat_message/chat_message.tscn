@@ -64,7 +64,6 @@ theme_override_constants/margin_right = 34
 theme_override_constants/margin_bottom = 12
 
 [node name="MessageText" type="RichTextLabel" parent="BubbleMargin/Bubble/MarginContainer" unique_id=1720897531]
-modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 mouse_filter = 2

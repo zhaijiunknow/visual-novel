@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
 [ext_resource type="PackedScene" uid="uid://bsvaglf0nlsdk" path="res://prefabs/chat/chat.tscn" id="19_fyc1j"]
+[ext_resource type="Texture2D" uid="uid://brce1083bc8hr" path="res://assets/temp/phone_chat.jpg" id="20_pdylm"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aggdw"]
@@ -210,6 +211,7 @@ text = "江城"
 vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -232,12 +234,12 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -360.0
-offset_top = 97.0
+offset_top = 104.0
 offset_right = 362.0
-offset_bottom = 164.0
+offset_bottom = 149.0
 grow_horizontal = 2
 theme = ExtResource("12_m0vni")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 37
 text = "角色名称"
 horizontal_alignment = 1
 
@@ -268,8 +270,8 @@ alignment = 2
 [node name="BackButton" type="TextureButton" parent="Phone/Chat" unique_id=48239441]
 layout_mode = 0
 offset_left = 618.0
-offset_top = 92.0
-offset_right = 675.0
+offset_top = 104.0
+offset_right = 663.0
 offset_bottom = 149.0
 focus_mode = 0
 texture_normal = ExtResource("13_xkddf")
@@ -279,6 +281,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
+visible = false
 layout_mode = 0
 offset_left = 159.0
 offset_top = 102.0
@@ -287,6 +290,7 @@ offset_bottom = 1429.0
 texture = ExtResource("16_xkddf")
 
 [node name="Preview" type="TextureRect" parent="Phone/Messenger" unique_id=1928087168]
+visible = false
 layout_mode = 0
 offset_left = -1552.0
 offset_top = -113.0
@@ -368,3 +372,13 @@ offset_bottom = 153.0
 theme_override_fonts/font = ExtResource("11_22tcg")
 theme_override_font_sizes/font_size = 14
 text = "在线"
+
+[node name="Preview" type="TextureRect" parent="." unique_id=265957975]
+visible = false
+modulate = Color(1, 1, 1, 0.74509805)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_pdylm")

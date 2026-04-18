@@ -28,7 +28,6 @@ func setup(type: Enums.SenderType, text: String, avatar: Texture2D = null) -> vo
 	_apply_layout.call_deferred()
 
 func _apply_style() -> void:
-	
 	avatar_left.visible = not is_self
 	avatar_right.visible = is_self
 	message_text.self_modulate = Color.WHITE if is_self else Color.BLACK
