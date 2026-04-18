@@ -146,6 +146,8 @@ func _add_chat_message(character_name: String, text: String) -> void:
 	var avatar = get_phone_avatar(character_name)
 	chat_message.setup(type, text, avatar)
 	create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
+	AudioManager.audio_player_sound.stream = preload("res://assets/system_sounds/奇迹书音效/手机发消息音效.wav")
+	AudioManager.audio_player_sound.play()
 
 
 func show_dialogue_message(character_name: String, text: String) -> void:
