@@ -218,6 +218,22 @@
             <key type="filename">../gallery/CG5/CG05-纠结苦笑.png</key>
             <key type="filename">../gallery/CG5/CG05-背景.jpg</key>
             <key type="filename">../gallery/CG5/CG05-闭眼微笑.png</key>
+            <key type="filename">../gallery/CG6/CG06-为难开口.png</key>
+            <key type="filename">../gallery/CG6/CG06-害羞沉默.png</key>
+            <key type="filename">../gallery/CG6/CG06-平静诉说.png</key>
+            <key type="filename">../gallery/CG6/CG06-正常微笑.png</key>
+            <key type="filename">../gallery/CG6/CG06-略微为难.png</key>
+            <key type="filename">../gallery/CG6/CG06-略微害羞.png</key>
+            <key type="filename">../gallery/CG6/CG06-背景.jpg</key>
+            <key type="filename">../gallery/CG6/CG06-闭口惆怅.png</key>
+            <key type="filename">../gallery/CG7/CG07-人物背景.jpg</key>
+            <key type="filename">../gallery/CG7/CG07-信心满满.png</key>
+            <key type="filename">../gallery/CG7/CG07-害羞卖萌.png</key>
+            <key type="filename">../gallery/CG7/CG07-害羞嘀咕.png</key>
+            <key type="filename">../gallery/CG7/CG07-尴尬微笑.png</key>
+            <key type="filename">../gallery/CG7/CG07-平静说话.png</key>
+            <key type="filename">../gallery/CG7/CG07-普通卖萌.png</key>
+            <key type="filename">../gallery/CG7/CG07-气急败坏.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
