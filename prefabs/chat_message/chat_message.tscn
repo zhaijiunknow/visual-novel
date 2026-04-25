@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c1ckx6g7xrm4n" path="res://prefabs/chat_message/chat_message.gd" id="1_afdii"]
 [ext_resource type="Texture2D" uid="uid://2ct14ij7kdgo" path="res://assets/sprites/ui/ui.sprites/chr_yu.tres" id="2_x1p1g"]
 [ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="4_cp86s"]
+[ext_resource type="FontFile" uid="uid://cume3135j7ij" path="res://assets/fonts/HarmonyOS_Sans_SC_Medium（聊天正文）.ttf" id="5_7ahqw"]
 [ext_resource type="Theme" uid="uid://b6wigi5ow3raq" path="res://themes/chat_theme.tres" id="5_x1p1g"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="6_7ahqw"]
 
@@ -12,6 +13,10 @@ corner_radius_top_left = 35
 corner_radius_top_right = 35
 corner_radius_bottom_right = 35
 corner_radius_bottom_left = 35
+
+[sub_resource type="FontVariation" id="FontVariation_by5q6"]
+base_font = ExtResource("5_7ahqw")
+variation_embolden = -0.3
 
 [node name="ChatMessage" type="HBoxContainer" unique_id=478098387 node_paths=PackedStringArray("frame_left", "frame_right", "avatar_left", "avatar_right", "bubble", "message_text", "bubble_margin")]
 custom_minimum_size = Vector2(200, 0)
@@ -58,18 +63,20 @@ theme_override_styles/panel = ExtResource("4_cp86s")
 [node name="MarginContainer" type="MarginContainer" parent="BubbleMargin/Bubble" unique_id=92610423]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 37
+theme_override_constants/margin_top = 13
+theme_override_constants/margin_right = 37
+theme_override_constants/margin_bottom = 13
 
 [node name="MessageText" type="RichTextLabel" parent="BubbleMargin/Bubble/MarginContainer" unique_id=1720897531]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 mouse_filter = 2
 theme = ExtResource("5_x1p1g")
-theme_override_font_sizes/normal_font_size = 32
-text = "文本内容"
+theme_override_fonts/normal_font = SubResource("FontVariation_by5q6")
+theme_override_font_sizes/normal_font_size = 30
+text = "文本内容什么问题
+文本内容"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
