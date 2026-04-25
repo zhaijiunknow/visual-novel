@@ -211,7 +211,6 @@ text = "江城"
 vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -233,15 +232,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -360.0
-offset_top = 104.0
-offset_right = 362.0
-offset_bottom = 149.0
+offset_left = -211.5
+offset_top = 81.0
+offset_right = 211.5
+offset_bottom = 174.0
 grow_horizontal = 2
 theme = ExtResource("12_m0vni")
 theme_override_font_sizes/font_size = 37
 text = "角色名称"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Phone/Chat" unique_id=1994526817]
 layout_mode = 0
@@ -270,9 +271,9 @@ alignment = 2
 [node name="BackButton" type="TextureButton" parent="Phone/Chat" unique_id=48239441]
 layout_mode = 0
 offset_left = 618.0
-offset_top = 104.0
+offset_top = 105.0
 offset_right = 663.0
-offset_bottom = 149.0
+offset_bottom = 150.0
 focus_mode = 0
 texture_normal = ExtResource("13_xkddf")
 texture_pressed = ExtResource("14_ctgom")

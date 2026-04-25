@@ -11,6 +11,7 @@ extends Control
 @export var story_model: Control
 
 @export var phone_avatar: Texture2D
+@export var phone_nickname: String = ""
 
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D

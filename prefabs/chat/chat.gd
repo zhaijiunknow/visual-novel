@@ -9,7 +9,7 @@ extends PanelContainer
 
 func set_chat_data(chat_data: ChatData) -> void:
 	profile_image.texture = chat_data.avatar
-	label_name.text = chat_data.character_name
+	label_name.text = Game.phone_page.get_phone_nickname(chat_data.character_name)
 	if chat_data.messages.size() > 0:
 		label_preview.text = chat_data.messages.back()
 	unread_badge.visible = false

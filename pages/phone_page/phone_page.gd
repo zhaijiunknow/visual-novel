@@ -179,7 +179,7 @@ func _on_reply_clicked(text: String, next_id: String) -> void:
 
 func open_chat(chat_data: ChatData) -> void:
 	if _transitioning: return
-	label_chat_name.text = chat_data.character_name
+	label_chat_name.text = get_phone_nickname(chat_data.character_name)
 	chat_page.visible = true
 	chat_page.modulate.a = 0
 	await _scroll_chat_to_bottom()
@@ -191,7 +191,7 @@ func reload_active_chat() -> void:
 	if active_chat_character.is_empty():
 		return
 	var chat_data = get_chat_data(active_chat_character)
-	label_chat_name.text = chat_data.character_name
+	label_chat_name.text = get_phone_nickname(chat_data.character_name)
 	for i in chat_data.messages.size():
 		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
 		_add_chat_message(sender, chat_data.messages[i], true)
@@ -241,6 +241,13 @@ func get_phone_avatar(character_name: String) -> Texture2D:
 	if Stage.character_dict.has(character_name):
 		return Stage.character_dict[character_name].phone_avatar
 	return null
+
+func get_phone_nickname(character_name: String) -> String:
+	if Stage.character_dict.has(character_name):
+		var nickname = Stage.character_dict[character_name].phone_nickname
+		if nickname != "":
+			return nickname
+	return character_name
 
 func get_chat_data(character_name: String) -> ChatData:
 	for chat_data in chat_data_pool:
