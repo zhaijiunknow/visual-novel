@@ -137,17 +137,20 @@ func _scroll_chat_to_bottom() -> void:
 	tween.tween_property(scroll, "scroll_vertical", bar.max_value, 0.3)
 
 
-func _add_chat_message(character_name: String, text: String) -> void:
+func _add_chat_message(character_name: String, text: String, silent: bool = false) -> void:
 	var chat_message: ChatMessage = Prefabs.chat_message.instantiate()
-	chat_message.modulate.a = 0.0
 	chat_message_pool.add_child(chat_message)
 	var type = Enums.SenderType.SELF \
 		if character_name == "周腾" else Enums.SenderType.OTHER
 	var avatar = get_phone_avatar(character_name)
 	chat_message.setup(type, text, avatar)
-	create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
-	AudioManager.audio_player_sound.stream = preload("res://assets/system_sounds/奇迹书音效/手机发消息音效.wav")
-	AudioManager.audio_player_sound.play()
+	if silent:
+		chat_message.modulate.a = 1.0
+	else:
+		chat_message.modulate.a = 0.0
+		create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
+		AudioManager.audio_player_sound.stream = preload("res://assets/system_sounds/奇迹书音效/手机发消息音效.wav")
+		AudioManager.audio_player_sound.play()
 
 
 func show_dialogue_message(character_name: String, text: String) -> void:
@@ -191,7 +194,7 @@ func reload_active_chat() -> void:
 	label_chat_name.text = chat_data.character_name
 	for i in chat_data.messages.size():
 		var sender = chat_data.senders[i] if i < chat_data.senders.size() else ""
-		_add_chat_message(sender, chat_data.messages[i])
+		_add_chat_message(sender, chat_data.messages[i], true)
 
 
 func _transition_to_chat() -> void:
