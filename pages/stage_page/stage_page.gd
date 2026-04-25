@@ -48,6 +48,7 @@ var chapter_name: String:
 enum AdvanceMode { MANUAL, SKIP, AUTO }
 var _mode: AdvanceMode = AdvanceMode.MANUAL
 var _idle: bool = false
+var _voice_finished_cb: Callable = Callable()
 
 var skip: bool:
 	get: return _mode == AdvanceMode.SKIP
@@ -194,16 +195,15 @@ func process_dialogue_line() -> void:
 	await Stage.ShowDialogue()
 
 	# 语音
-	Tools.clear_connections(AudioManager.audio_player_voice.finished)
+	_disconnect_voice_finished()
 	if dialogue_line.has_tag("语音") and character:
 		character.subviewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 		character.body_part_dict["Mouth"].animation = character.speaking_mouth
-		AudioManager.audio_player_voice.finished.connect(
-			func():
-				if not expression: return
-				character.subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
-				character.SetExpression(expression)
-		)
+		_voice_finished_cb = func():
+			if not expression: return
+			character.subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+			character.SetExpression(expression)
+		AudioManager.voice_finished.connect(_voice_finished_cb)
 		update_favourite()
 		AudioManager.play_voice(voice_name, true)
 		AudioManager.apply_character_volume(dialogue_line.character)
@@ -322,6 +322,11 @@ func _ready() -> void:
 	)
 
 
+func _disconnect_voice_finished() -> void:
+	if not _voice_finished_cb.is_null() and AudioManager.voice_finished.is_connected(_voice_finished_cb):
+		AudioManager.voice_finished.disconnect(_voice_finished_cb)
+		_voice_finished_cb = Callable()
+
 func reset() -> void:
 	_mode = AdvanceMode.MANUAL
 	_idle = false
@@ -338,7 +343,7 @@ func reset() -> void:
 	responses_menu.visible = false
 	voice_buttons.visible = false
 	AudioManager.audio_player_voice.stop()
-	Tools.clear_connections(AudioManager.audio_player_voice.finished)
+	_disconnect_voice_finished()
 	Stage.reset()
 
 func start() -> void:

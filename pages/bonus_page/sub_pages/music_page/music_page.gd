@@ -47,13 +47,13 @@ func _ready() -> void:
 	AudioManager.track_index_changed.connect(update_track_info)
 	play_button.pressed.connect(
 		func ():
-			if audio_player.stream_paused:
-				audio_player.stream_paused = false
+			if AudioManager._playlist_paused:
+				AudioManager.resume_playlist()
 			else:
 				AudioManager.resume_or_play_track()
 	)
 	pause_button.pressed.connect(
-		func (): audio_player.stream_paused = true
+		func (): AudioManager.pause_playlist()
 	)
 	next_button.pressed.connect(
 		func ():

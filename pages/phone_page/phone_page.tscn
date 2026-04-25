@@ -211,6 +211,7 @@ text = "江城"
 vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -373,6 +374,7 @@ theme_override_font_sizes/font_size = 14
 text = "在线"
 
 [node name="Preview" type="TextureRect" parent="." unique_id=265957975]
+visible = false
 modulate = Color(1, 1, 1, 0.74509805)
 anchors_preset = 15
 anchor_right = 1.0

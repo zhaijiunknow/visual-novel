@@ -42,6 +42,22 @@ func _ready() -> void:
 				track_index += 1
 				play_track()
 	)
+	# AudioManager 独占 audio_player_voice.finished
+	audio_player_voice.finished.connect(_on_voice_finished)
+
+# 外部代码连接此信号监听语音播放结束，不要直接连 audio_player_voice.finished
+signal voice_finished
+
+func _on_voice_finished() -> void:
+	voice_finished.emit()
+	if _is_ducked:
+		if _music_paused:
+			# 音乐已被 pause 接管，unduck 只清标志，不做 tween
+			_is_ducked = false
+		else:
+			_unduck_music()
+	if _music_paused:
+		resume_music()
 
 func play_track() -> void:
 	_playlist_paused = false
@@ -54,11 +70,19 @@ func resume_or_play_track() -> void:
 	if _playlist_paused:
 		_playlist_paused = false
 		_music_source = MusicSource.PLAYLIST
-		audio_player_music.stream_paused = false
 		audio_player_music.stream = current_track.track
 		audio_player_music.play(_playlist_position)
 	else:
 		play_track()
+
+func pause_playlist() -> void:
+	_playlist_position = audio_player_music.get_playback_position()
+	_playlist_paused = true
+	audio_player_music.stream_paused = true
+
+func resume_playlist() -> void:
+	_playlist_paused = false
+	audio_player_music.stream_paused = false
 
 func play_voice(filename: String, set_current: bool = false) -> void:
 	if voice_cache.has(filename):
@@ -96,21 +120,25 @@ func replay_voice() -> void:
 
 var _duck_tween: Tween
 var _unducked_db: float
+var _is_ducked := false
 
 func _duck_music() -> void:
+	if _is_ducked:
+		return
 	if _duck_tween:
 		_duck_tween.kill()
 	_unducked_db = audio_player_music.volume_db
+	_is_ducked = true
 	var ducked_db := linear_to_db(db_to_linear(_unducked_db) * 0.5)
 	_duck_tween = create_tween()
 	_duck_tween.tween_property(audio_player_music, "volume_db", ducked_db, 0.3)
-	# 语音播完后恢复
-	if not audio_player_voice.finished.is_connected(_unduck_music):
-		audio_player_voice.finished.connect(_unduck_music, CONNECT_ONE_SHOT)
 
 func _unduck_music() -> void:
+	_is_ducked = false
 	if _duck_tween:
 		_duck_tween.kill()
+	if _fade_tween:
+		_fade_tween.kill()
 	_duck_tween = create_tween()
 	_duck_tween.tween_property(audio_player_music, "volume_db", _unducked_db, 0.3)
 
@@ -122,19 +150,14 @@ var _paused_stream: AudioStream
 var _fade_tween: Tween
 
 func pause_music() -> void:
-	if not audio_player_music.playing:
-		# 音乐没在播放但之前有暂停记录，确保 finished 连接
-		if _music_paused:
-			if not audio_player_voice.finished.is_connected(resume_music):
-				audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
+	if _music_paused:
+		return
+	if not audio_player_music.playing and not audio_player_music.stream_paused:
 		return
 	_music_paused = true
 	_music_position = audio_player_music.get_playback_position()
 	_paused_source = _music_source
 	_paused_stream = audio_player_music.stream
-	# 确保语音播完后恢复音乐
-	if not audio_player_voice.finished.is_connected(resume_music):
-		audio_player_voice.finished.connect(resume_music, CONNECT_ONE_SHOT)
 	var saved_db := audio_player_music.volume_db
 	if _fade_tween:
 		_fade_tween.kill()
@@ -155,6 +178,8 @@ func resume_music() -> void:
 	var target_db = linear_to_db(settings.music_volume) if not settings.mute_all else -80.0
 	if _fade_tween:
 		_fade_tween.kill()
+	if _duck_tween:
+		_duck_tween.kill()
 	audio_player_music.stream = _paused_stream
 	audio_player_music.volume_db = -80.0
 	audio_player_music.play(_music_position)
@@ -166,9 +191,9 @@ func resume_music() -> void:
 
 func play_theme() -> void:
 	if _music_source == MusicSource.PLAYLIST:
+		_playlist_paused = true
 		if audio_player_music.playing or audio_player_music.stream_paused:
 			_playlist_position = audio_player_music.get_playback_position()
-			_playlist_paused = true
 	_music_source = MusicSource.THEME
 	audio_player_music.stream_paused = false
 	audio_player_music.stream = theme_music

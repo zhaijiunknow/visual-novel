@@ -16,6 +16,7 @@ const COLOR_FAVOURITE_OFF := COLOR_NORMAL
 
 var log_data: LogData
 var _playing := false
+var _voice_cb: Callable = Callable()
 
 var character_name: String:
 	set(value):
@@ -66,12 +67,12 @@ func _ready() -> void:
 						AudioManager.play_voice(log_data.voice_filename)
 						_playing = true
 						button_replay.modulate = COLOR_PLAYING
-						Tools.clear_connections(AudioManager.audio_player_voice.finished)
-						AudioManager.audio_player_voice.finished.connect(
-							func():
-								_playing = false
-								button_replay.modulate = COLOR_NORMAL
-						)
+						if not _voice_cb.is_null() and AudioManager.voice_finished.is_connected(_voice_cb):
+							AudioManager.voice_finished.disconnect(_voice_cb)
+						_voice_cb = func():
+							_playing = false
+							button_replay.modulate = COLOR_NORMAL
+						AudioManager.voice_finished.connect(_voice_cb)
 					else:
 						button_replay.modulate = COLOR_NORMAL
 	)
