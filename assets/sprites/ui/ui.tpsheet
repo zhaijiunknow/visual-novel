@@ -4,7 +4,7 @@
 			"image": "ui-0.png",
 			"size": {
 				"w": 2560,
-				"h": 2048
+				"h": 1969
 			},
 			"sprites": [
 				{
@@ -38,282 +38,12 @@
 					}
 				},
 				{
-					"filename": "nnote.png",
+					"filename": "音乐鉴赏/progress_line.png",
 					"region": {
 						"x": 0,
 						"y": 1849,
-						"w": 717,
-						"h": 194
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_changxia.png",
-					"region": {
-						"x": 719,
-						"y": 1849,
-						"w": 194,
-						"h": 194
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "auto.png",
-					"region": {
-						"x": 915,
-						"y": 1849,
-						"w": 484,
-						"h": 169
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/select_tip_bg.png",
-					"region": {
-						"x": 915,
-						"y": 2020,
-						"w": 158,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "date_text.png",
-					"region": {
-						"x": 1075,
-						"y": 2020,
-						"w": 80,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/next_click.png",
-					"region": {
-						"x": 1157,
-						"y": 2020,
-						"w": 27,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/next_hover.png",
-					"region": {
-						"x": 1186,
-						"y": 2020,
-						"w": 27,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/next_normal.png",
-					"region": {
-						"x": 1215,
-						"y": 2020,
-						"w": 27,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/last_click.png",
-					"region": {
-						"x": 1244,
-						"y": 2020,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/last_hover.png",
-					"region": {
-						"x": 1272,
-						"y": 2020,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/last_normal.png",
-					"region": {
-						"x": 1300,
-						"y": 2020,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_close.png",
-					"region": {
-						"x": 1328,
-						"y": 2020,
-						"w": 19,
-						"h": 19
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_2.png",
-					"region": {
-						"x": 1349,
-						"y": 2020,
-						"w": 704,
-						"h": 16
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "start.png",
-					"region": {
-						"x": 1349,
-						"y": 2038,
-						"w": 118,
-						"h": 10
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_select.png",
-					"region": {
-						"x": 1401,
-						"y": 1849,
-						"w": 167,
-						"h": 167
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_select_light.png",
-					"region": {
-						"x": 1570,
-						"y": 1849,
-						"w": 166,
-						"h": 166
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "circle_behind.png",
-					"region": {
-						"x": 1738,
-						"y": 1849,
-						"w": 69,
-						"h": 164
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "circle_front.png",
-					"region": {
-						"x": 1809,
-						"y": 1849,
-						"w": 69,
-						"h": 164
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "gallery_click_deco.png",
-					"region": {
-						"x": 1880,
-						"y": 1849,
-						"w": 353,
-						"h": 159
+						"w": 1866,
+						"h": 4
 					},
 					"margin": {
 						"x": 0,
@@ -325,8 +55,8 @@
 				{
 					"filename": "copyright.png",
 					"region": {
-						"x": 2055,
-						"y": 2010,
+						"x": 1868,
+						"y": 1849,
 						"w": 379,
 						"h": 37
 					},
@@ -338,162 +68,102 @@
 					}
 				},
 				{
+					"filename": "go_hover.png",
+					"region": {
+						"x": 2249,
+						"y": 1849,
+						"w": 290,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "divide_line.png",
+					"region": {
+						"x": 0,
+						"y": 1855,
+						"w": 1777,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "title.png",
+					"region": {
+						"x": 0,
+						"y": 1872,
+						"w": 1503,
+						"h": 97
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_1.png",
+					"region": {
+						"x": 1505,
+						"y": 1888,
+						"w": 705,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "go_normal.png",
+					"region": {
+						"x": 1505,
+						"y": 1905,
+						"w": 290,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_tip.png",
+					"region": {
+						"x": 1797,
+						"y": 1905,
+						"w": 179,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "botton_cg.png",
 					"region": {
-						"x": 2436,
-						"y": 1849,
+						"x": 1978,
+						"y": 1905,
 						"w": 120,
 						"h": 43
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_chr.png",
-					"region": {
-						"x": 2436,
-						"y": 1894,
-						"w": 120,
-						"h": 43
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "reset_click.png",
-					"region": {
-						"x": 2235,
-						"y": 1939,
-						"w": 187,
-						"h": 69
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "name_decoration.png",
-					"region": {
-						"x": 2235,
-						"y": 1849,
-						"w": 142,
-						"h": 88
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_botton_click.png",
-					"region": {
-						"x": 2424,
-						"y": 1849,
-						"w": 10,
-						"h": 67
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_botton_hover.png",
-					"region": {
-						"x": 2424,
-						"y": 1918,
-						"w": 10,
-						"h": 67
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/hide_click.png",
-					"region": {
-						"x": 2379,
-						"y": 1849,
-						"w": 39,
-						"h": 32
-					},
-					"margin": {
-						"x": 4,
-						"y": 5,
-						"w": 8,
-						"h": 9
-					}
-				},
-				{
-					"filename": "插画鉴赏/hide_normal.png",
-					"region": {
-						"x": 2379,
-						"y": 1883,
-						"w": 39,
-						"h": 32
-					},
-					"margin": {
-						"x": 4,
-						"y": 5,
-						"w": 8,
-						"h": 9
-					}
-				},
-				{
-					"filename": "botton_music.png",
-					"region": {
-						"x": 2436,
-						"y": 1939,
-						"w": 118,
-						"h": 42
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_close_click.png",
-					"region": {
-						"x": 2436,
-						"y": 1983,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_close_hover.png",
-					"region": {
-						"x": 2496,
-						"y": 1983,
-						"w": 58,
-						"h": 58
 					},
 					"margin": {
 						"x": 0,
@@ -508,7 +178,7 @@
 			"image": "ui-1.png",
 			"size": {
 				"w": 2560,
-				"h": 2045
+				"h": 2048
 			},
 			"sprites": [
 				{
@@ -527,12 +197,12 @@
 					}
 				},
 				{
-					"filename": "dialogue_box_noname.png",
+					"filename": "date_background.png",
 					"region": {
 						"x": 0,
 						"y": 588,
-						"w": 2560,
-						"h": 586
+						"w": 2446,
+						"h": 1104
 					},
 					"margin": {
 						"x": 0,
@@ -544,8 +214,8 @@
 				{
 					"filename": "deco_text.png",
 					"region": {
-						"x": 0,
-						"y": 1176,
+						"x": 2448,
+						"y": 588,
 						"w": 56,
 						"h": 718
 					},
@@ -557,12 +227,12 @@
 					}
 				},
 				{
-					"filename": "sel_click.png",
+					"filename": "menu_title.png",
 					"region": {
-						"x": 0,
-						"y": 1896,
-						"w": 1223,
-						"h": 147
+						"x": 2506,
+						"y": 588,
+						"w": 32,
+						"h": 47
 					},
 					"margin": {
 						"x": 0,
@@ -572,12 +242,27 @@
 					}
 				},
 				{
-					"filename": "character_frame.png",
+					"filename": "插画鉴赏/cancel_normal.png",
 					"region": {
-						"x": 1225,
-						"y": 1176,
-						"w": 1312,
-						"h": 242
+						"x": 2506,
+						"y": 637,
+						"w": 29,
+						"h": 29
+					},
+					"margin": {
+						"x": 4,
+						"y": 4,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "menu_save.png",
+					"region": {
+						"x": 2506,
+						"y": 668,
+						"w": 28,
+						"h": 44
 					},
 					"margin": {
 						"x": 0,
@@ -587,372 +272,12 @@
 					}
 				},
 				{
-					"filename": "data_background_click.png",
+					"filename": "音乐鉴赏/next_normal.png",
 					"region": {
-						"x": 58,
-						"y": 1420,
-						"w": 571,
-						"h": 469
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "place_deco.png",
-					"region": {
-						"x": 58,
-						"y": 1176,
-						"w": 825,
-						"h": 237
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_chang_hover.png",
-					"region": {
-						"x": 631,
-						"y": 1415,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 9,
-						"y": 9,
-						"w": 18,
-						"h": 18
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_yuluochen.png",
-					"region": {
-						"x": 913,
-						"y": 1176,
-						"w": 306,
-						"h": 306
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "data_background_hover.png",
-					"region": {
-						"x": 1221,
-						"y": 1420,
-						"w": 571,
-						"h": 469
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "dataimage_frame.png",
-					"region": {
-						"x": 1225,
-						"y": 1891,
-						"w": 468,
-						"h": 154
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_changxia.png",
-					"region": {
-						"x": 1695,
-						"y": 1891,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "data_background_normal.png",
-					"region": {
-						"x": 1794,
-						"y": 1420,
-						"w": 571,
-						"h": 469
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_gecheng.png",
-					"region": {
-						"x": 1850,
-						"y": 1891,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_kanade.png",
-					"region": {
-						"x": 2005,
-						"y": 1891,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_yuluochen.png",
-					"region": {
-						"x": 2160,
-						"y": 1891,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "reset_hover.png",
-					"region": {
-						"x": 2367,
-						"y": 1420,
-						"w": 187,
-						"h": 69
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "reset_normal.png",
-					"region": {
-						"x": 2367,
-						"y": 1491,
-						"w": 187,
-						"h": 69
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_tip.png",
-					"region": {
-						"x": 2367,
-						"y": 1562,
-						"w": 179,
-						"h": 32
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_click.png",
-					"region": {
-						"x": 2367,
-						"y": 1596,
-						"w": 178,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_hover.png",
-					"region": {
-						"x": 2367,
-						"y": 1661,
-						"w": 178,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "go_click.png",
-					"region": {
-						"x": 913,
-						"y": 1484,
-						"w": 290,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "go_hover.png",
-					"region": {
-						"x": 913,
-						"y": 1549,
-						"w": 290,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "go_normal.png",
-					"region": {
-						"x": 913,
-						"y": 1614,
-						"w": 290,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_gecheng.png",
-					"region": {
-						"x": 913,
-						"y": 1679,
-						"w": 200,
-						"h": 200
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_hover.png",
-					"region": {
-						"x": 2315,
-						"y": 1891,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "confirm_button_click.png",
-					"region": {
-						"x": 2367,
-						"y": 1726,
-						"w": 166,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "confirm_button_hover.png",
-					"region": {
-						"x": 2367,
-						"y": 1804,
-						"w": 166,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "del_click.png",
-					"region": {
-						"x": 1115,
-						"y": 1679,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "del_hover.png",
-					"region": {
-						"x": 1115,
-						"y": 1739,
-						"w": 58,
-						"h": 58
+						"x": 2506,
+						"y": 714,
+						"w": 27,
+						"h": 28
 					},
 					"margin": {
 						"x": 0,
@@ -964,40 +289,10 @@
 				{
 					"filename": "back_click.png",
 					"region": {
-						"x": 1115,
-						"y": 1799,
+						"x": 2448,
+						"y": 1308,
 						"w": 56,
 						"h": 71
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "del_normal.png",
-					"region": {
-						"x": 2448,
-						"y": 1882,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/hide_hover.png",
-					"region": {
-						"x": 2508,
-						"y": 1882,
-						"w": 47,
-						"h": 41
 					},
 					"margin": {
 						"x": 0,
@@ -1010,9 +305,159 @@
 					"filename": "back_hover.png",
 					"region": {
 						"x": 2448,
-						"y": 1942,
+						"y": 1381,
 						"w": 56,
 						"h": 71
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "textexample_background.png",
+					"region": {
+						"x": 0,
+						"y": 1694,
+						"w": 1732,
+						"h": 250
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "tip_background.png",
+					"region": {
+						"x": 0,
+						"y": 1946,
+						"w": 1058,
+						"h": 102
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "place_deco.png",
+					"region": {
+						"x": 1734,
+						"y": 1694,
+						"w": 825,
+						"h": 237
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "date_deco.png",
+					"region": {
+						"x": 1734,
+						"y": 1933,
+						"w": 253,
+						"h": 115
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "page_hover.png",
+					"region": {
+						"x": 1060,
+						"y": 1946,
+						"w": 217,
+						"h": 83
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_text_click.png",
+					"region": {
+						"x": 1279,
+						"y": 1946,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/select_tip_bg.png",
+					"region": {
+						"x": 1279,
+						"y": 2020,
+						"w": 158,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "go_click.png",
+					"region": {
+						"x": 1439,
+						"y": 1946,
+						"w": 290,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/listname_background.png",
+					"region": {
+						"x": 1439,
+						"y": 2011,
+						"w": 261,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/song_click.png",
+					"region": {
+						"x": 1989,
+						"y": 1933,
+						"w": 507,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1027,16 +472,16 @@
 			"image": "ui-2.png",
 			"size": {
 				"w": 2560,
-				"h": 2048
+				"h": 2045
 			},
 			"sprites": [
 				{
-					"filename": "date_background.png",
+					"filename": "dialogue_box_noname.png",
 					"region": {
 						"x": 0,
 						"y": 0,
-						"w": 2446,
-						"h": 1104
+						"w": 2560,
+						"h": 586
 					},
 					"margin": {
 						"x": 0,
@@ -1046,12 +491,12 @@
 					}
 				},
 				{
-					"filename": "menu_select.png",
+					"filename": "phone.png",
 					"region": {
-						"x": 2448,
-						"y": 0,
-						"w": 76,
-						"h": 89
+						"x": 0,
+						"y": 588,
+						"w": 993,
+						"h": 1429
 					},
 					"margin": {
 						"x": 0,
@@ -1061,12 +506,12 @@
 					}
 				},
 				{
-					"filename": "chat/select_ico_check.png",
+					"filename": "bar_2.png",
 					"region": {
-						"x": 2526,
-						"y": 0,
-						"w": 34,
-						"h": 32
+						"x": 0,
+						"y": 2019,
+						"w": 704,
+						"h": 16
 					},
 					"margin": {
 						"x": 0,
@@ -1076,12 +521,12 @@
 					}
 				},
 				{
-					"filename": "menu_replay.png",
+					"filename": "chat/screen_background.png",
 					"region": {
-						"x": 2526,
-						"y": 34,
-						"w": 33,
-						"h": 42
+						"x": 995,
+						"y": 588,
+						"w": 730,
+						"h": 1327
 					},
 					"margin": {
 						"x": 0,
@@ -1091,117 +536,12 @@
 					}
 				},
 				{
-					"filename": "menu_title.png",
+					"filename": "name_decoration.png",
 					"region": {
-						"x": 2526,
-						"y": 78,
-						"w": 32,
-						"h": 47
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "hover_deco.png",
-					"region": {
-						"x": 2448,
-						"y": 91,
-						"w": 75,
-						"h": 78
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/last_click.png",
-					"region": {
-						"x": 2525,
-						"y": 127,
-						"w": 35,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/last_hover.png",
-					"region": {
-						"x": 2525,
-						"y": 163,
-						"w": 35,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_deco_click.png",
-					"region": {
-						"x": 2448,
-						"y": 171,
-						"w": 73,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_book.png",
-					"region": {
-						"x": 2523,
-						"y": 199,
-						"w": 37,
-						"h": 46
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/cancel_hover.png",
-					"region": {
-						"x": 2523,
-						"y": 247,
-						"w": 37,
-						"h": 37
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_deco_hover.png",
-					"region": {
-						"x": 2448,
-						"y": 249,
-						"w": 73,
-						"h": 76
+						"x": 995,
+						"y": 1917,
+						"w": 142,
+						"h": 88
 					},
 					"margin": {
 						"x": 0,
@@ -1213,8 +553,8 @@
 				{
 					"filename": "phone_back_click.png",
 					"region": {
-						"x": 2523,
-						"y": 286,
+						"x": 995,
+						"y": 2007,
 						"w": 36,
 						"h": 35
 					},
@@ -1228,25 +568,10 @@
 				{
 					"filename": "phone_back_hover.png",
 					"region": {
-						"x": 2523,
-						"y": 323,
+						"x": 1033,
+						"y": 2007,
 						"w": 36,
 						"h": 35
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_deco_normal.png",
-					"region": {
-						"x": 2448,
-						"y": 327,
-						"w": 73,
-						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1258,8 +583,8 @@
 				{
 					"filename": "phone_back_normal.png",
 					"region": {
-						"x": 2523,
-						"y": 360,
+						"x": 1071,
+						"y": 2007,
 						"w": 36,
 						"h": 35
 					},
@@ -1271,85 +596,10 @@
 					}
 				},
 				{
-					"filename": "立绘鉴赏/last_normal.png",
-					"region": {
-						"x": 2523,
-						"y": 397,
-						"w": 35,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/pause_click.png",
-					"region": {
-						"x": 2448,
-						"y": 405,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/next_click.png",
-					"region": {
-						"x": 2522,
-						"y": 433,
-						"w": 35,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/next_hover.png",
-					"region": {
-						"x": 2522,
-						"y": 469,
-						"w": 35,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/pause_hover.png",
-					"region": {
-						"x": 2448,
-						"y": 479,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "立绘鉴赏/next_normal.png",
 					"region": {
-						"x": 2522,
-						"y": 505,
+						"x": 1109,
+						"y": 2007,
 						"w": 35,
 						"h": 34
 					},
@@ -1361,12 +611,12 @@
 					}
 				},
 				{
-					"filename": "menu_skip.png",
+					"filename": "音乐鉴赏/song_hover.png",
 					"region": {
-						"x": 2522,
-						"y": 541,
-						"w": 32,
-						"h": 44
+						"x": 1139,
+						"y": 1917,
+						"w": 507,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1376,12 +626,12 @@
 					}
 				},
 				{
-					"filename": "音乐鉴赏/pause_normal.png",
+					"filename": "botton_music.png",
 					"region": {
-						"x": 2448,
-						"y": 553,
-						"w": 72,
-						"h": 72
+						"x": 1146,
+						"y": 1995,
+						"w": 118,
+						"h": 42
 					},
 					"margin": {
 						"x": 0,
@@ -1391,207 +641,12 @@
 					}
 				},
 				{
-					"filename": "menu_auto.png",
+					"filename": "menu_replay.png",
 					"region": {
-						"x": 2522,
-						"y": 587,
-						"w": 31,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/play_click.png",
-					"region": {
-						"x": 2448,
-						"y": 627,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_log.png",
-					"region": {
-						"x": 2522,
-						"y": 633,
-						"w": 31,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_phone.png",
-					"region": {
-						"x": 2522,
-						"y": 679,
-						"w": 30,
-						"h": 46
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/play_hover.png",
-					"region": {
-						"x": 2448,
-						"y": 701,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_set.png",
-					"region": {
-						"x": 2522,
-						"y": 727,
-						"w": 29,
-						"h": 46
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/ico_example.png",
-					"region": {
-						"x": 2448,
-						"y": 775,
-						"w": 70,
-						"h": 70
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/cancel_click.png",
-					"region": {
-						"x": 2520,
-						"y": 775,
-						"w": 29,
-						"h": 29
-					},
-					"margin": {
-						"x": 4,
-						"y": 4,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
-					"filename": "插画鉴赏/cancel_normal.png",
-					"region": {
-						"x": 2520,
-						"y": 806,
-						"w": 29,
-						"h": 29
-					},
-					"margin": {
-						"x": 4,
-						"y": 4,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
-					"filename": "bar_background.png",
-					"region": {
-						"x": 2520,
-						"y": 837,
-						"w": 10,
-						"h": 1211
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_zhouteng.png",
-					"region": {
-						"x": 2448,
-						"y": 847,
-						"w": 70,
-						"h": 70
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_voice.png",
-					"region": {
-						"x": 2532,
-						"y": 837,
-						"w": 28,
-						"h": 46
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_load.png",
-					"region": {
-						"x": 2532,
-						"y": 885,
-						"w": 28,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_save.png",
-					"region": {
-						"x": 2532,
-						"y": 931,
-						"w": 28,
-						"h": 44
+						"x": 1266,
+						"y": 1995,
+						"w": 33,
+						"h": 42
 					},
 					"margin": {
 						"x": 0,
@@ -1603,8 +658,8 @@
 				{
 					"filename": "menu_star.png",
 					"region": {
-						"x": 2532,
-						"y": 977,
+						"x": 1301,
+						"y": 1995,
 						"w": 25,
 						"h": 42
 					},
@@ -1616,12 +671,12 @@
 					}
 				},
 				{
-					"filename": "progress_botton_click.png",
+					"filename": "插画鉴赏/hide_hover.png",
 					"region": {
-						"x": 2448,
-						"y": 919,
-						"w": 63,
-						"h": 66
+						"x": 1328,
+						"y": 1995,
+						"w": 47,
+						"h": 41
 					},
 					"margin": {
 						"x": 0,
@@ -1631,12 +686,42 @@
 					}
 				},
 				{
-					"filename": "progress_botton_hover.png",
+					"filename": "插画鉴赏/hide_click.png",
 					"region": {
-						"x": 2448,
-						"y": 987,
-						"w": 63,
-						"h": 66
+						"x": 1377,
+						"y": 1995,
+						"w": 39,
+						"h": 32
+					},
+					"margin": {
+						"x": 4,
+						"y": 5,
+						"w": 8,
+						"h": 9
+					}
+				},
+				{
+					"filename": "插画鉴赏/hide_normal.png",
+					"region": {
+						"x": 1418,
+						"y": 1995,
+						"w": 39,
+						"h": 32
+					},
+					"margin": {
+						"x": 4,
+						"y": 5,
+						"w": 8,
+						"h": 9
+					}
+				},
+				{
+					"filename": "音乐鉴赏/next_click.png",
+					"region": {
+						"x": 1459,
+						"y": 1995,
+						"w": 27,
+						"h": 28
 					},
 					"margin": {
 						"x": 0,
@@ -1646,117 +731,12 @@
 					}
 				},
 				{
-					"filename": "progress_botton_normal.png",
+					"filename": "音乐鉴赏/next_hover.png",
 					"region": {
-						"x": 2448,
-						"y": 1055,
-						"w": 63,
-						"h": 66
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_botton_normal.png",
-					"region": {
-						"x": 2532,
-						"y": 1021,
-						"w": 10,
-						"h": 67
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "select_outline.png",
-					"region": {
-						"x": 0,
-						"y": 1123,
-						"w": 1009,
-						"h": 649
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "divide_line.png",
-					"region": {
-						"x": 0,
-						"y": 1106,
-						"w": 1777,
-						"h": 15
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "title.png",
-					"region": {
-						"x": 1011,
-						"y": 1123,
-						"w": 1503,
-						"h": 97
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_locked.png",
-					"region": {
-						"x": 0,
-						"y": 1774,
-						"w": 482,
-						"h": 270
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "dataimage_empty.png",
-					"region": {
-						"x": 484,
-						"y": 1774,
-						"w": 469,
-						"h": 263
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/progress_line.png",
-					"region": {
-						"x": 484,
-						"y": 2039,
-						"w": 1866,
-						"h": 4
+						"x": 1488,
+						"y": 1995,
+						"w": 27,
+						"h": 28
 					},
 					"margin": {
 						"x": 0,
@@ -1768,8 +748,8 @@
 				{
 					"filename": "confirm_button_normal.png",
 					"region": {
-						"x": 2352,
-						"y": 1222,
+						"x": 1648,
+						"y": 1917,
 						"w": 166,
 						"h": 76
 					},
@@ -1781,12 +761,102 @@
 					}
 				},
 				{
-					"filename": "voice_title.png",
+					"filename": "screen_image.png",
 					"region": {
-						"x": 955,
-						"y": 1774,
-						"w": 457,
-						"h": 256
+						"x": 1727,
+						"y": 588,
+						"w": 730,
+						"h": 1327
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_normal.png",
+					"region": {
+						"x": 2459,
+						"y": 588,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_close_click.png",
+					"region": {
+						"x": 2459,
+						"y": 662,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_text_hover.png",
+					"region": {
+						"x": 1816,
+						"y": 1917,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "miracle.png",
+					"region": {
+						"x": 1816,
+						"y": 1991,
+						"w": 139,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_text_normal.png",
+					"region": {
+						"x": 1968,
+						"y": 1917,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "reset_click.png",
+					"region": {
+						"x": 2120,
+						"y": 1917,
+						"w": 187,
+						"h": 69
 					},
 					"margin": {
 						"x": 0,
@@ -1798,8 +868,8 @@
 				{
 					"filename": "gallery.png",
 					"region": {
-						"x": 2352,
-						"y": 1300,
+						"x": 2120,
+						"y": 1988,
 						"w": 158,
 						"h": 57
 					},
@@ -1813,8 +883,8 @@
 				{
 					"filename": "options.png",
 					"region": {
-						"x": 2352,
-						"y": 1359,
+						"x": 2280,
+						"y": 1988,
 						"w": 158,
 						"h": 56
 					},
@@ -1826,342 +896,12 @@
 					}
 				},
 				{
-					"filename": "bichr_xia.png",
-					"region": {
-						"x": 1011,
-						"y": 1417,
-						"w": 709,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/info_decoration.png",
-					"region": {
-						"x": 1722,
-						"y": 1417,
-						"w": 789,
-						"h": 205
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "load.png",
 					"region": {
-						"x": 2352,
-						"y": 1624,
+						"x": 2309,
+						"y": 1917,
 						"w": 158,
 						"h": 55
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bigchr_yu.png",
-					"region": {
-						"x": 1722,
-						"y": 1681,
-						"w": 585,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "no_background.png",
-					"region": {
-						"x": 1722,
-						"y": 1624,
-						"w": 132,
-						"h": 55
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "exit.png",
-					"region": {
-						"x": 1856,
-						"y": 1624,
-						"w": 157,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "miracle.png",
-					"region": {
-						"x": 2015,
-						"y": 1624,
-						"w": 139,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_no_background.png",
-					"region": {
-						"x": 2156,
-						"y": 1624,
-						"w": 129,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/left-arrow.png",
-					"region": {
-						"x": 1414,
-						"y": 1772,
-						"w": 256,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_kanade.png",
-					"region": {
-						"x": 2309,
-						"y": 1681,
-						"w": 200,
-						"h": 200
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_click.png",
-					"region": {
-						"x": 2352,
-						"y": 1883,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_hover.png",
-					"region": {
-						"x": 2309,
-						"y": 1957,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "back_normal.png",
-					"region": {
-						"x": 2461,
-						"y": 1957,
-						"w": 56,
-						"h": 71
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "start_click_deco.png",
-					"region": {
-						"x": 1011,
-						"y": 1222,
-						"w": 353,
-						"h": 159
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_star.png",
-					"region": {
-						"x": 1011,
-						"y": 1383,
-						"w": 113,
-						"h": 32
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_1.png",
-					"region": {
-						"x": 1126,
-						"y": 1383,
-						"w": 705,
-						"h": 15
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "skip.png",
-					"region": {
-						"x": 1366,
-						"y": 1222,
-						"w": 484,
-						"h": 158
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_replay.png",
-					"region": {
-						"x": 1833,
-						"y": 1382,
-						"w": 115,
-						"h": 33
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_image.png",
-					"region": {
-						"x": 1852,
-						"y": 1222,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/listname_background.png",
-					"region": {
-						"x": 1950,
-						"y": 1354,
-						"w": 261,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_music.png",
-					"region": {
-						"x": 1985,
-						"y": 1222,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_book.png",
-					"region": {
-						"x": 2118,
-						"y": 1222,
-						"w": 130,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_cancel.png",
-					"region": {
-						"x": 2213,
-						"y": 1354,
-						"w": 114,
-						"h": 33
 					},
 					"margin": {
 						"x": 0,
@@ -2175,407 +915,8 @@
 		{
 			"image": "ui-3.png",
 			"size": {
-				"w": 2557,
-				"h": 2039
-			},
-			"sprites": [
-				{
-					"filename": "phone.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 993,
-						"h": 1429
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "place_outline.png",
-					"region": {
-						"x": 0,
-						"y": 1431,
-						"w": 851,
-						"h": 567
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "logo_normal.png",
-					"region": {
-						"x": 853,
-						"y": 1431,
-						"w": 1244,
-						"h": 504
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/chat_example.png",
-					"region": {
-						"x": 2099,
-						"y": 0,
-						"w": 458,
-						"h": 120
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "tip_background.png",
-					"region": {
-						"x": 853,
-						"y": 1937,
-						"w": 1058,
-						"h": 102
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "log_title.png",
-					"region": {
-						"x": 2099,
-						"y": 122,
-						"w": 446,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "save_title.png",
-					"region": {
-						"x": 2099,
-						"y": 380,
-						"w": 446,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "set_title.png",
-					"region": {
-						"x": 2099,
-						"y": 637,
-						"w": 446,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "load_title.png",
-					"region": {
-						"x": 2099,
-						"y": 894,
-						"w": 445,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "voice_background_hover.png",
-					"region": {
-						"x": 995,
-						"y": 1151,
-						"w": 883,
-						"h": 253
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "page_click.png",
-					"region": {
-						"x": 1880,
-						"y": 0,
-						"w": 217,
-						"h": 83
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "voice_background_normal.png",
-					"region": {
-						"x": 995,
-						"y": 0,
-						"w": 883,
-						"h": 253
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "page_hover.png",
-					"region": {
-						"x": 1880,
-						"y": 85,
-						"w": 217,
-						"h": 83
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "page_normal.png",
-					"region": {
-						"x": 1880,
-						"y": 170,
-						"w": 217,
-						"h": 83
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_xia.png",
-					"region": {
-						"x": 2099,
-						"y": 1151,
-						"w": 431,
-						"h": 229
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/song_click.png",
-					"region": {
-						"x": 1913,
-						"y": 1937,
-						"w": 507,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_message.png",
-					"region": {
-						"x": 2422,
-						"y": 1382,
-						"w": 130,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_ge_selected.png",
-					"region": {
-						"x": 2099,
-						"y": 1382,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_normal.png",
-					"region": {
-						"x": 2400,
-						"y": 1514,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_kaguya_selected.png",
-					"region": {
-						"x": 995,
-						"y": 255,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bigchr_knd.png",
-					"region": {
-						"x": 995,
-						"y": 751,
-						"w": 561,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_others_selected.png",
-					"region": {
-						"x": 1296,
-						"y": 255,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/name_deco.png",
-					"region": {
-						"x": 1558,
-						"y": 751,
-						"w": 526,
-						"h": 119
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_yu_seleted.png",
-					"region": {
-						"x": 1597,
-						"y": 255,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/song_hover.png",
-					"region": {
-						"x": 1558,
-						"y": 872,
-						"w": 507,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "date_deco.png",
-					"region": {
-						"x": 1558,
-						"y": 950,
-						"w": 253,
-						"h": 115
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "ui-4.png",
-			"size": {
-				"w": 2459,
-				"h": 1998
+				"w": 2560,
+				"h": 2030
 			},
 			"sprites": [
 				{
@@ -2594,12 +935,12 @@
 					}
 				},
 				{
-					"filename": "chat/select_bg_hover.png",
+					"filename": "bar_background.png",
 					"region": {
 						"x": 1884,
 						"y": 0,
-						"w": 545,
-						"h": 120
+						"w": 10,
+						"h": 1211
 					},
 					"margin": {
 						"x": 0,
@@ -2609,12 +950,87 @@
 					}
 				},
 				{
-					"filename": "chat/select_bg_normal.png",
+					"filename": "sel_click.png",
 					"region": {
-						"x": 1884,
-						"y": 122,
-						"w": 545,
-						"h": 120
+						"x": 0,
+						"y": 1226,
+						"w": 1223,
+						"h": 147
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "data_background_click.png",
+					"region": {
+						"x": 1896,
+						"y": 0,
+						"w": 571,
+						"h": 469
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "data_background_hover.png",
+					"region": {
+						"x": 1896,
+						"y": 471,
+						"w": 571,
+						"h": 469
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "select_outline.png",
+					"region": {
+						"x": 0,
+						"y": 1375,
+						"w": 1009,
+						"h": 649
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bigchr_yu.png",
+					"region": {
+						"x": 1896,
+						"y": 942,
+						"w": 585,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_chang_selected.png",
+					"region": {
+						"x": 1011,
+						"y": 1375,
+						"w": 298,
+						"h": 494
 					},
 					"margin": {
 						"x": 0,
@@ -2626,8 +1042,8 @@
 				{
 					"filename": "插画鉴赏/image_click.png",
 					"region": {
-						"x": 1884,
-						"y": 244,
+						"x": 1311,
+						"y": 1226,
 						"w": 525,
 						"h": 318
 					},
@@ -2641,8 +1057,8 @@
 				{
 					"filename": "插画鉴赏/image_hover.png",
 					"region": {
-						"x": 1884,
-						"y": 564,
+						"x": 1311,
+						"y": 1546,
 						"w": 525,
 						"h": 318
 					},
@@ -2656,8 +1072,8 @@
 				{
 					"filename": "bigchr_ge.png",
 					"region": {
-						"x": 1884,
-						"y": 884,
+						"x": 1838,
+						"y": 1297,
 						"w": 482,
 						"h": 353
 					},
@@ -2669,12 +1085,12 @@
 					}
 				},
 				{
-					"filename": "bigdata_background.png",
+					"filename": "插画鉴赏/image_locked.png",
 					"region": {
-						"x": 0,
-						"y": 1226,
-						"w": 1867,
-						"h": 371
+						"x": 1838,
+						"y": 1652,
+						"w": 482,
+						"h": 270
 					},
 					"margin": {
 						"x": 0,
@@ -2684,12 +1100,396 @@
 					}
 				},
 				{
-					"filename": "textexample_background.png",
+					"filename": "gallery_click_deco.png",
+					"region": {
+						"x": 1011,
+						"y": 1871,
+						"w": 353,
+						"h": 159
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "start_click_deco.png",
+					"region": {
+						"x": 1366,
+						"y": 1866,
+						"w": 353,
+						"h": 159
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_changxia.png",
+					"region": {
+						"x": 2322,
+						"y": 1297,
+						"w": 194,
+						"h": 194
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_select.png",
+					"region": {
+						"x": 2322,
+						"y": 1493,
+						"w": 167,
+						"h": 167
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "circle_behind.png",
+					"region": {
+						"x": 2491,
+						"y": 1493,
+						"w": 69,
+						"h": 164
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_select_light.png",
+					"region": {
+						"x": 2322,
+						"y": 1662,
+						"w": 166,
+						"h": 166
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "confirm_button_click.png",
+					"region": {
+						"x": 2322,
+						"y": 1830,
+						"w": 166,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "circle_front.png",
+					"region": {
+						"x": 2491,
+						"y": 1659,
+						"w": 69,
+						"h": 164
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/ico_example.png",
+					"region": {
+						"x": 2490,
+						"y": 1825,
+						"w": 70,
+						"h": 70
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_replay.png",
+					"region": {
+						"x": 1721,
+						"y": 1866,
+						"w": 115,
+						"h": 33
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_deco_click.png",
+					"region": {
+						"x": 2469,
+						"y": 0,
+						"w": 73,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_star.png",
+					"region": {
+						"x": 1721,
+						"y": 1901,
+						"w": 113,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_click.png",
+					"region": {
+						"x": 1225,
+						"y": 1226,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_botton_click.png",
+					"region": {
+						"x": 1299,
+						"y": 1226,
+						"w": 10,
+						"h": 67
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/play_click.png",
+					"region": {
+						"x": 2469,
+						"y": 78,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_zhouteng.png",
+					"region": {
+						"x": 1721,
+						"y": 1935,
+						"w": 70,
+						"h": 70
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "back_normal.png",
+					"region": {
+						"x": 1225,
+						"y": 1300,
+						"w": 56,
+						"h": 71
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_close_hover.png",
+					"region": {
+						"x": 2469,
+						"y": 152,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_auto.png",
+					"region": {
+						"x": 2529,
+						"y": 152,
+						"w": 31,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_botton_hover.png",
+					"region": {
+						"x": 1884,
+						"y": 1213,
+						"w": 10,
+						"h": 67
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_log.png",
+					"region": {
+						"x": 2529,
+						"y": 198,
+						"w": 31,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_botton_normal.png",
+					"region": {
+						"x": 1299,
+						"y": 1295,
+						"w": 10,
+						"h": 67
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/cancel_hover.png",
+					"region": {
+						"x": 1793,
+						"y": 1935,
+						"w": 37,
+						"h": 37
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/next_click.png",
+					"region": {
+						"x": 1838,
+						"y": 1226,
+						"w": 35,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/next_hover.png",
+					"region": {
+						"x": 2469,
+						"y": 212,
+						"w": 35,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "ui-4.png",
+			"size": {
+				"w": 2560,
+				"h": 1954
+			},
+			"sprites": [
+				{
+					"filename": "bigdata_background.png",
 					"region": {
 						"x": 0,
-						"y": 1599,
-						"w": 1732,
-						"h": 250
+						"y": 0,
+						"w": 1867,
+						"h": 371
 					},
 					"margin": {
 						"x": 0,
@@ -2702,7 +1502,7 @@
 					"filename": "sel_hover.png",
 					"region": {
 						"x": 0,
-						"y": 1851,
+						"y": 373,
 						"w": 1223,
 						"h": 147
 					},
@@ -2714,27 +1514,12 @@
 					}
 				},
 				{
-					"filename": "sel_normal.png",
+					"filename": "data_background_normal.png",
 					"region": {
-						"x": 1225,
-						"y": 1851,
-						"w": 1223,
-						"h": 140
-					},
-					"margin": {
-						"x": 0,
-						"y": 1,
-						"w": 0,
-						"h": 7
-					}
-				},
-				{
-					"filename": "chr_yu.png",
-					"region": {
-						"x": 1734,
-						"y": 1599,
-						"w": 381,
-						"h": 229
+						"x": 1869,
+						"y": 0,
+						"w": 571,
+						"h": 469
 					},
 					"margin": {
 						"x": 0,
@@ -2744,66 +1529,12 @@
 					}
 				},
 				{
-					"filename": "chr_knd.png",
-					"region": {
-						"x": 2117,
-						"y": 1239,
-						"w": 342,
-						"h": 229
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_ge.png",
-					"region": {
-						"x": 2117,
-						"y": 1470,
-						"w": 289,
-						"h": 229
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "ui-5.png",
-			"size": {
-				"w": 2319,
-				"h": 1926
-			},
-			"sprites": [
-				{
-					"filename": "chat/screen_background.png",
+					"filename": "voice_background_hover.png",
 					"region": {
 						"x": 0,
-						"y": 0,
-						"w": 730,
-						"h": 1327
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "screen_image.png",
-					"region": {
-						"x": 732,
-						"y": 0,
-						"w": 730,
-						"h": 1327
+						"y": 522,
+						"w": 883,
+						"h": 253
 					},
 					"margin": {
 						"x": 0,
@@ -2815,8 +1546,8 @@
 				{
 					"filename": "音乐鉴赏/album.png",
 					"region": {
-						"x": 1464,
-						"y": 0,
+						"x": 0,
+						"y": 777,
 						"w": 855,
 						"h": 970
 					},
@@ -2828,11 +1559,71 @@
 					}
 				},
 				{
-					"filename": "chr_chang_selected.png",
+					"filename": "音乐鉴赏/info_decoration.png",
 					"region": {
 						"x": 0,
-						"y": 1329,
-						"w": 298,
+						"y": 1749,
+						"w": 789,
+						"h": 205
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bigchr_knd.png",
+					"region": {
+						"x": 1225,
+						"y": 373,
+						"w": 561,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bichr_xia.png",
+					"region": {
+						"x": 1788,
+						"y": 471,
+						"w": 709,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_yuluochen.png",
+					"region": {
+						"x": 885,
+						"y": 522,
+						"w": 306,
+						"h": 306
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ge_selected.png",
+					"region": {
+						"x": 857,
+						"y": 830,
+						"w": 299,
 						"h": 494
 					},
 					"margin": {
@@ -2843,10 +1634,100 @@
 					}
 				},
 				{
+					"filename": "chr_kaguya_selected.png",
+					"region": {
+						"x": 857,
+						"y": 1326,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/name_deco.png",
+					"region": {
+						"x": 1193,
+						"y": 728,
+						"w": 526,
+						"h": 119
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ling_selected.png",
+					"region": {
+						"x": 1158,
+						"y": 849,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_others_selected.png",
+					"region": {
+						"x": 1158,
+						"y": 1345,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_yu_seleted.png",
+					"region": {
+						"x": 1459,
+						"y": 849,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_chang_hover.png",
+					"region": {
+						"x": 1459,
+						"y": 1345,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
 					"filename": "chr_chang_normal.png",
 					"region": {
-						"x": 300,
-						"y": 1329,
+						"x": 1760,
+						"y": 826,
 						"w": 280,
 						"h": 476
 					},
@@ -2860,8 +1741,8 @@
 				{
 					"filename": "chr_ge_hover.png",
 					"region": {
-						"x": 582,
-						"y": 1329,
+						"x": 2042,
+						"y": 826,
 						"w": 280,
 						"h": 476
 					},
@@ -2870,13 +1751,562 @@
 						"y": 9,
 						"w": 19,
 						"h": 18
+					}
+				},
+				{
+					"filename": "auto.png",
+					"region": {
+						"x": 1760,
+						"y": 1304,
+						"w": 484,
+						"h": 169
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "dataimage_empty.png",
+					"region": {
+						"x": 1741,
+						"y": 1475,
+						"w": 469,
+						"h": 263
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "skip.png",
+					"region": {
+						"x": 1741,
+						"y": 1740,
+						"w": 484,
+						"h": 158
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_gecheng.png",
+					"region": {
+						"x": 2324,
+						"y": 826,
+						"w": 200,
+						"h": 200
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_kanade.png",
+					"region": {
+						"x": 2324,
+						"y": 1028,
+						"w": 200,
+						"h": 200
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/left-arrow.png",
+					"region": {
+						"x": 2212,
+						"y": 1475,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_gecheng.png",
+					"region": {
+						"x": 2227,
+						"y": 1733,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "page_normal.png",
+					"region": {
+						"x": 2324,
+						"y": 1230,
+						"w": 217,
+						"h": 83
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_book.png",
+					"region": {
+						"x": 2382,
+						"y": 1733,
+						"w": 130,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_select.png",
+					"region": {
+						"x": 2246,
+						"y": 1304,
+						"w": 76,
+						"h": 89
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "hover_deco.png",
+					"region": {
+						"x": 2246,
+						"y": 1395,
+						"w": 75,
+						"h": 78
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "exit.png",
+					"region": {
+						"x": 2324,
+						"y": 1315,
+						"w": 157,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_deco_hover.png",
+					"region": {
+						"x": 2442,
+						"y": 0,
+						"w": 73,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_deco_normal.png",
+					"region": {
+						"x": 1788,
+						"y": 373,
+						"w": 73,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/play_hover.png",
+					"region": {
+						"x": 2442,
+						"y": 78,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "progress_botton_hover.png",
+					"region": {
+						"x": 791,
+						"y": 1749,
+						"w": 63,
+						"h": 66
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "progress_botton_normal.png",
+					"region": {
+						"x": 1721,
+						"y": 728,
+						"w": 63,
+						"h": 66
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "start.png",
+					"region": {
+						"x": 1459,
+						"y": 1823,
+						"w": 118,
+						"h": 10
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_phone.png",
+					"region": {
+						"x": 1193,
+						"y": 522,
+						"w": 30,
+						"h": 46
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_click.png",
+					"region": {
+						"x": 2442,
+						"y": 152,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_hover.png",
+					"region": {
+						"x": 2502,
+						"y": 152,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_book.png",
+					"region": {
+						"x": 1721,
+						"y": 796,
+						"w": 37,
+						"h": 46
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_click.png",
+					"region": {
+						"x": 1760,
+						"y": 796,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_hover.png",
+					"region": {
+						"x": 857,
+						"y": 777,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_voice.png",
+					"region": {
+						"x": 2483,
+						"y": 1315,
+						"w": 28,
+						"h": 46
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_load.png",
+					"region": {
+						"x": 791,
+						"y": 1817,
+						"w": 28,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/select_ico_check.png",
+					"region": {
+						"x": 821,
+						"y": 1817,
+						"w": 34,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/last_click.png",
+					"region": {
+						"x": 2442,
+						"y": 212,
+						"w": 35,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/last_hover.png",
+					"region": {
+						"x": 2517,
+						"y": 0,
+						"w": 35,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/cancel_click.png",
+					"region": {
+						"x": 1193,
+						"y": 570,
+						"w": 29,
+						"h": 29
+					},
+					"margin": {
+						"x": 4,
+						"y": 4,
+						"w": 8,
+						"h": 8
+					}
+				}
+			]
+		},
+		{
+			"image": "ui-5.png",
+			"size": {
+				"w": 2516,
+				"h": 1925
+			},
+			"sprites": [
+				{
+					"filename": "logo_normal.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 1244,
+						"h": 504
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "character_frame.png",
+					"region": {
+						"x": 0,
+						"y": 506,
+						"w": 1312,
+						"h": 242
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "place_outline.png",
+					"region": {
+						"x": 0,
+						"y": 750,
+						"w": 851,
+						"h": 567
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "sel_normal.png",
+					"region": {
+						"x": 1246,
+						"y": 0,
+						"w": 1223,
+						"h": 140
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 7
+					}
+				},
+				{
+					"filename": "voice_background_normal.png",
+					"region": {
+						"x": 1246,
+						"y": 142,
+						"w": 883,
+						"h": 253
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "nnote.png",
+					"region": {
+						"x": 0,
+						"y": 1319,
+						"w": 717,
+						"h": 194
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
 					}
 				},
 				{
 					"filename": "chr_ge_normal.png",
 					"region": {
-						"x": 864,
-						"y": 1329,
+						"x": 853,
+						"y": 750,
 						"w": 280,
 						"h": 476
 					},
@@ -2888,10 +2318,25 @@
 					}
 				},
 				{
+					"filename": "voice_title.png",
+					"region": {
+						"x": 0,
+						"y": 1515,
+						"w": 457,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "chr_kaguya_hover.png",
 					"region": {
-						"x": 1146,
-						"y": 1329,
+						"x": 1135,
+						"y": 750,
 						"w": 280,
 						"h": 476
 					},
@@ -2900,13 +2345,43 @@
 						"y": 9,
 						"w": 19,
 						"h": 18
+					}
+				},
+				{
+					"filename": "chat/select_bg_hover.png",
+					"region": {
+						"x": 853,
+						"y": 1228,
+						"w": 545,
+						"h": 120
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "log_title.png",
+					"region": {
+						"x": 1314,
+						"y": 397,
+						"w": 446,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
 					}
 				},
 				{
 					"filename": "chr_kaguya_normal.png",
 					"region": {
-						"x": 1464,
-						"y": 972,
+						"x": 1417,
+						"y": 655,
 						"w": 280,
 						"h": 476
 					},
@@ -2918,10 +2393,55 @@
 					}
 				},
 				{
+					"filename": "save_title.png",
+					"region": {
+						"x": 1762,
+						"y": 397,
+						"w": 446,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/select_bg_normal.png",
+					"region": {
+						"x": 0,
+						"y": 1773,
+						"w": 545,
+						"h": 120
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_knd.png",
+					"region": {
+						"x": 2131,
+						"y": 142,
+						"w": 342,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "chr_others_hover.png",
 					"region": {
-						"x": 1746,
-						"y": 972,
+						"x": 1699,
+						"y": 655,
 						"w": 280,
 						"h": 476
 					},
@@ -2935,8 +2455,8 @@
 				{
 					"filename": "chr_others_normal.png",
 					"region": {
-						"x": 2028,
-						"y": 972,
+						"x": 1981,
+						"y": 654,
 						"w": 280,
 						"h": 476
 					},
@@ -2948,10 +2468,40 @@
 					}
 				},
 				{
+					"filename": "dataimage_frame.png",
+					"region": {
+						"x": 1417,
+						"y": 1133,
+						"w": 468,
+						"h": 154
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "set_title.png",
+					"region": {
+						"x": 459,
+						"y": 1515,
+						"w": 446,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "chr_yu_hover.png",
 					"region": {
-						"x": 1428,
-						"y": 1450,
+						"x": 907,
+						"y": 1350,
 						"w": 280,
 						"h": 476
 					},
@@ -2965,8 +2515,8 @@
 				{
 					"filename": "chr_yu_normal.png",
 					"region": {
-						"x": 1710,
-						"y": 1450,
+						"x": 1189,
+						"y": 1350,
 						"w": 280,
 						"h": 476
 					},
@@ -2976,6 +2526,501 @@
 						"w": 19,
 						"h": 18
 					}
+				},
+				{
+					"filename": "chr_ling_hover.png",
+					"region": {
+						"x": 1471,
+						"y": 1289,
+						"w": 278,
+						"h": 474
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ling_normal.png",
+					"region": {
+						"x": 1751,
+						"y": 1289,
+						"w": 278,
+						"h": 474
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/chat_example.png",
+					"region": {
+						"x": 1471,
+						"y": 1765,
+						"w": 458,
+						"h": 120
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ge.png",
+					"region": {
+						"x": 2210,
+						"y": 373,
+						"w": 289,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_changxia.png",
+					"region": {
+						"x": 547,
+						"y": 1772,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_kanade.png",
+					"region": {
+						"x": 702,
+						"y": 1772,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "load_title.png",
+					"region": {
+						"x": 2031,
+						"y": 1132,
+						"w": 445,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_xia.png",
+					"region": {
+						"x": 2031,
+						"y": 1389,
+						"w": 431,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_yu.png",
+					"region": {
+						"x": 2031,
+						"y": 1620,
+						"w": 381,
+						"h": 229
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_hover.png",
+					"region": {
+						"x": 719,
+						"y": 1319,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_yuluochen.png",
+					"region": {
+						"x": 2263,
+						"y": 604,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_image.png",
+					"region": {
+						"x": 2263,
+						"y": 759,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_music.png",
+					"region": {
+						"x": 2263,
+						"y": 891,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "page_click.png",
+					"region": {
+						"x": 857,
+						"y": 1828,
+						"w": 217,
+						"h": 83
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "reset_hover.png",
+					"region": {
+						"x": 1076,
+						"y": 1828,
+						"w": 187,
+						"h": 69
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "reset_normal.png",
+					"region": {
+						"x": 1265,
+						"y": 1828,
+						"w": 187,
+						"h": 69
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_message.png",
+					"region": {
+						"x": 1887,
+						"y": 1133,
+						"w": 130,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "confirm_button_hover.png",
+					"region": {
+						"x": 2263,
+						"y": 1023,
+						"w": 166,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "no_background.png",
+					"region": {
+						"x": 719,
+						"y": 1451,
+						"w": 132,
+						"h": 55
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_hover.png",
+					"region": {
+						"x": 1314,
+						"y": 655,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "progress_botton_click.png",
+					"region": {
+						"x": 1246,
+						"y": 397,
+						"w": 63,
+						"h": 66
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_normal.png",
+					"region": {
+						"x": 1931,
+						"y": 1765,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_click.png",
+					"region": {
+						"x": 1931,
+						"y": 1851,
+						"w": 178,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_hover.png",
+					"region": {
+						"x": 2111,
+						"y": 1851,
+						"w": 178,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_no_background.png",
+					"region": {
+						"x": 2291,
+						"y": 1851,
+						"w": 129,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "date_text.png",
+					"region": {
+						"x": 0,
+						"y": 1895,
+						"w": 80,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_cancel.png",
+					"region": {
+						"x": 1454,
+						"y": 1887,
+						"w": 114,
+						"h": 33
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_skip.png",
+					"region": {
+						"x": 2471,
+						"y": 0,
+						"w": 32,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_set.png",
+					"region": {
+						"x": 2210,
+						"y": 604,
+						"w": 29,
+						"h": 46
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/last_normal.png",
+					"region": {
+						"x": 857,
+						"y": 1772,
+						"w": 35,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_chr.png",
+					"region": {
+						"x": 2396,
+						"y": 759,
+						"w": 120,
+						"h": 43
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_close.png",
+					"region": {
+						"x": 1314,
+						"y": 729,
+						"w": 19,
+						"h": 19
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_normal.png",
+					"region": {
+						"x": 2263,
+						"y": 1101,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		}
@@ -2983,6 +3028,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:38c5d7d3c6bceae43cae5d8d6e351478:3544926724619fe1d7405c6d3048e7fb:32798ac31fd349b736b93409e0bca4f4$"
+		"smartupdate": "$TexturePacker:SmartUpdate:ab352770cdf7f1c40ad314c3e726aa9a:9e83681aa32a525cc320e6a951bba588:32798ac31fd349b736b93409e0bca4f4$"
 	}
 }

@@ -29,8 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://ddg5vwlycqkw" path="res://assets/sprites/ui/ui.sprites/chr_ge_selected.tres" id="24_ge_s"]
 [ext_resource type="Texture2D" uid="uid://ma36f4nul1kg" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_normal.tres" id="25_kag_n"]
 [ext_resource type="Texture2D" uid="uid://dwklk3ymk27ko" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_hover.tres" id="26_kag_h"]
+[ext_resource type="Texture2D" uid="uid://dcb54jlurc5nt" path="res://assets/sprites/ui/ui.sprites/chr_ling_normal.tres" id="26_xxemb"]
+[ext_resource type="Texture2D" uid="uid://dp2xmkicnakbr" path="res://assets/sprites/ui/ui.sprites/chr_ling_hover.tres" id="27_e3mt2"]
 [ext_resource type="Texture2D" uid="uid://be83hqtglp6fw" path="res://assets/sprites/ui/ui.sprites/chr_kaguya_selected.tres" id="27_kag_s"]
 [ext_resource type="Texture2D" uid="uid://c4mgl58nx1jgs" path="res://assets/sprites/ui/ui.sprites/chr_others_normal.tres" id="28_oth_n"]
+[ext_resource type="Texture2D" uid="uid://je2gokp6pp0x" path="res://assets/sprites/ui/ui.sprites/chr_ling_selected.tres" id="28_qffjh"]
 [ext_resource type="Texture2D" uid="uid://crg0cqmioy8gu" path="res://assets/sprites/ui/ui.sprites/chr_others_hover.tres" id="29_oth_h"]
 [ext_resource type="Texture2D" uid="uid://beg5uo4syck2k" path="res://assets/sprites/ui/ui.sprites/chr_others_selected.tres" id="30_oth_s"]
 
@@ -486,6 +489,15 @@ preview_voices = Array[String](["uid://dv6aj5ahjsskg", "uid://cwy1gt8p1w62j", "u
 texture_normal_state = ExtResource("22_ge_n")
 texture_hover_state = ExtResource("23_ge_h")
 texture_selected_state = ExtResource("24_ge_s")
+
+[node name="Card_Ge2" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=2750200 instance=ExtResource("16_cvc")]
+layout_mode = 2
+texture_normal = ExtResource("26_xxemb")
+character_name = "林凌铃"
+preview_voices = Array[String](["uid://cktcb6pba8jab", "uid://ca7mpajjiem6l", "uid://di5i0pv63by3p"])
+texture_normal_state = ExtResource("26_xxemb")
+texture_hover_state = ExtResource("27_e3mt2")
+texture_selected_state = ExtResource("28_qffjh")
 
 [node name="Card_Others" parent="Pages/AudioPage/Controls/CharacterVoiceCards" unique_id=853903149 instance=ExtResource("16_cvc")]
 layout_mode = 2

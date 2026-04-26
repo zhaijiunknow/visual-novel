@@ -1231,6 +1231,7 @@
             <key type="filename">../ui/系统设置/chr_chang_selected.png</key>
             <key type="filename">../ui/系统设置/chr_ge_selected.png</key>
             <key type="filename">../ui/系统设置/chr_kaguya_selected.png</key>
+            <key type="filename">../ui/系统设置/chr_ling_selected.png</key>
             <key type="filename">../ui/系统设置/chr_others_selected.png</key>
             <key type="filename">../ui/系统设置/chr_yu_seleted.png</key>
             <struct type="IndividualSpriteSettings">
@@ -1251,6 +1252,8 @@
             <key type="filename">../ui/系统设置/chr_ge_normal.png</key>
             <key type="filename">../ui/系统设置/chr_kaguya_hover.png</key>
             <key type="filename">../ui/系统设置/chr_kaguya_normal.png</key>
+            <key type="filename">../ui/系统设置/chr_ling_hover.png</key>
+            <key type="filename">../ui/系统设置/chr_ling_normal.png</key>
             <key type="filename">../ui/系统设置/chr_others_hover.png</key>
             <key type="filename">../ui/系统设置/chr_others_normal.png</key>
             <key type="filename">../ui/系统设置/chr_yu_hover.png</key>
