@@ -77,7 +77,7 @@ def get_all_records(token):
 def update_record(token, record_id, fields):
     url = f"https://open.feishu.cn/open-apis/bitable/v1/apps/{APP_TOKEN}/tables/{TABLE_ID}/records/{record_id}"
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
-    return requests.request("PATCH", url, headers=headers, json={"fields": fields}).json()
+    return requests.put(url, headers=headers, json={"fields": fields}).json()
 
 
 def create_record(token, fields):
@@ -118,7 +118,10 @@ def main():
         if record:
             record_id = record.get("record_id")
             print(f"  已存在 (ID: {record_id})，更新差分")
-            result = update_record(token, record_id, {"差分": parsed["variations"]})
+            # PUT 会覆盖整个 record，必须合并已有 fields
+            existing_fields = record.get("fields", {})
+            existing_fields["差分"] = parsed["variations"]
+            result = update_record(token, record_id, existing_fields)
             if result.get("code") == 0:
                 print("  OK 更新成功")
             else:
