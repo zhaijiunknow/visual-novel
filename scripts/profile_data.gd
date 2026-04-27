@@ -12,3 +12,5 @@ extends Resource
 @export var music_path: String
 @export var music_position: float
 @export var music_source: int
+@export var cg_name: String
+@export var cg_variation: String

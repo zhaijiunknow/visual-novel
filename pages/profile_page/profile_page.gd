@@ -59,6 +59,8 @@ func save_game() -> void:
 			profile.character_datas.clear()
 			profile.character_datas = character_datas
 			profile.background = Stage.current_background
+			profile.cg_name = Stage.current_cg
+			profile.cg_variation = Stage.current_cg_variation
 			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
 			profile.active_chat_character = Game.phone_page.active_chat_character
 			profile.log_datas = Game.log_page.log_data_pool.duplicate(true)
@@ -98,6 +100,22 @@ func load_game() -> void:
 			Game.stage_page.texture_rect_background.texture = target_background.variations[variation_name]
 			Stage.current_background = profile.background
 			Game.phone_page.label_location.text = target_background.location
+			# 恢复CG（直接设置，不走过渡）
+			if profile.cg_name and profile.cg_variation:
+				var target_gallery: GalleryData = Stage.gallery_data_pool.filter(
+					func(g: GalleryData): return g.resource_path.get_file().replace(".tres", "") == profile.cg_name
+				).front()
+				if target_gallery:
+					Game.stage_page.texture_rect_cg.texture = target_gallery.base
+					var var_texture: Texture2D
+					for v in target_gallery.variation:
+						if v.resource_path.get_file().replace(".tres", "") == profile.cg_variation:
+							var_texture = v
+							break
+					Game.stage_page.texture_rect_variation.texture = var_texture
+					Game.stage_page.texture_rect_cg.visible = true
+					Stage.current_cg = profile.cg_name
+					Stage.current_cg_variation = profile.cg_variation
 			# 恢复角色
 			for character_data: CharacterData in profile.character_datas:
 				var character = Stage.Character(character_data.character_name)

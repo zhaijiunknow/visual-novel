@@ -7,6 +7,7 @@ extends Node
 var current_background: String
 var current_date: String
 var current_cg: String
+var current_cg_variation: String
 
 signal character_selection_name_changed
 var character_selection_name: String:
@@ -30,6 +31,7 @@ func reset() -> void:
 	current_background = ""
 	current_date = ""
 	current_cg = ""
+	current_cg_variation = ""
 	clear_characters()
 
 func start() -> void:
@@ -96,6 +98,7 @@ func SetCG(cg_name: String, variation_name: String) -> void:
 				var_texture = v
 				break
 		Game.stage_page.texture_rect_variation.texture = var_texture
+		current_cg_variation = variation_name
 		return
 
 	# 切换到不同CG：黑屏过渡
@@ -117,6 +120,7 @@ func SetCG(cg_name: String, variation_name: String) -> void:
 		).finished
 
 	current_cg = cg_name
+	current_cg_variation = variation_name
 	Game.stage_page.texture_rect_cg.texture = target_gallery.base
 	var var_texture: Texture2D
 	for v in target_gallery.variation:
@@ -160,6 +164,7 @@ func HideCG() -> void:
 	Game.stage_page.texture_rect_cg.texture = null
 	Game.stage_page.texture_rect_variation.texture = null
 	current_cg = ""
+	current_cg_variation = ""
 
 	if skip_trans:
 		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
