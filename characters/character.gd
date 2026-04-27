@@ -49,6 +49,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	character_selection.visible = false
 	voice_card.visible = false
+	dialogue_box.visible = false
 	
 	set_process_input(movable)
 	subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
