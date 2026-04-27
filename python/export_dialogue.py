@@ -107,6 +107,7 @@ def record_to_data(fields):
         "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
         "is_option": fields.get("选项", False),
+        "hidden": fields.get("隐藏", False),
         "voice": extract_field(fields, "语音"),
         "nickname": extract_field(fields, "昵称"),
         "hide_avatar": fields.get("隐藏头像", False),
@@ -263,6 +264,12 @@ def walk(record, children_map, indent, lines, state):
     data = record_to_data(record.get("fields", {}))
     children = children_map.get(record["record_id"], [])
     tabs = "\t" * indent
+
+    if data["hidden"]:
+        # 隐藏记录：整条跳过，不生成任何 dialogue 行
+        for child in children:
+            walk(child, children_map, indent, lines, state)
+        return
 
     if data["is_option"]:
         # 选项行 → 生成 "- 选项文本"
