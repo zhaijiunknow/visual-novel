@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cnljkswx0mt6v"
-path="res://.godot/imported/再不吃就要糊了.wav-bd1e9e81ba718373550a70d1c21bd547.sample"
+path="res://.godot/imported/再不吃就要糊了.wav-3e071171ec4498ef2e11f6019e0525a5.sample"
 
 [deps]
 
-source_file="res://assets/voice/余洛琛/new/再不吃就要糊了.wav"
-dest_files=["res://.godot/imported/再不吃就要糊了.wav-bd1e9e81ba718373550a70d1c21bd547.sample"]
+source_file="res://assets/voice/余洛琛/再不吃就要糊了.wav"
+dest_files=["res://.godot/imported/再不吃就要糊了.wav-3e071171ec4498ef2e11f6019e0525a5.sample"]
 
 [params]
 

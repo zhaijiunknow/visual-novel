@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://p0j2q827hy2l"
-path="res://.godot/imported/你不吃吗.wav-8c7ae8f9aa88905da143f55ed042f345.sample"
+path="res://.godot/imported/你不吃吗.wav-970ab3bbd32f5022b25078fd8393a934.sample"
 
 [deps]
 
-source_file="res://assets/voice/余洛琛/new/你不吃吗.wav"
-dest_files=["res://.godot/imported/你不吃吗.wav-8c7ae8f9aa88905da143f55ed042f345.sample"]
+source_file="res://assets/voice/余洛琛/你不吃吗.wav"
+dest_files=["res://.godot/imported/你不吃吗.wav-970ab3bbd32f5022b25078fd8393a934.sample"]
 
 [params]
 
