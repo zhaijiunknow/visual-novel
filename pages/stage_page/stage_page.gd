@@ -51,6 +51,7 @@ enum AdvanceMode { MANUAL, SKIP, AUTO }
 var _mode: AdvanceMode = AdvanceMode.MANUAL
 var _idle: bool = false
 var _voice_finished_cb: Callable = Callable()
+var _ending: bool = false
 
 var skip: bool:
 	get: return _mode == AdvanceMode.SKIP
@@ -109,6 +110,8 @@ var dialogue_line: DialogueLine:
 		dialogue_line = value
 		if value:
 			process_line()
+		elif not _ending:
+			_on_dialogue_end()
 
 var finish_pause: float = 1
 
@@ -368,3 +371,20 @@ var current_collection: VoiceCollection:
 func update_favourite() -> void:
 	texture_rect_favourite.texture = \
 		Prefabs.texture_cancel_favourite if favourite else Prefabs.texture_set_favourite
+
+# ─── 对话结束 ───
+
+func _on_dialogue_end() -> void:
+	_ending = true
+	_disconnect_voice_finished()
+	AudioManager.audio_player_voice.stop()
+	_set_mode(AdvanceMode.MANUAL)
+	dialogue_screen.modulate.a = 0
+	responses_menu.visible = false
+	# 黑屏过渡 → 清理状态 → 切主菜单 → 淡入
+	await Game.fade(false)
+	Stage.reset()
+	reset()
+	Game.switch_to_page(Game.main_menu, false, false)
+	await Game.fade(true)
+	_ending = false
