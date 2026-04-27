@@ -51,7 +51,6 @@ enum AdvanceMode { MANUAL, SKIP, AUTO }
 var _mode: AdvanceMode = AdvanceMode.MANUAL
 var _idle: bool = false
 var _voice_finished_cb: Callable = Callable()
-var _ending: bool = false
 
 var skip: bool:
 	get: return _mode == AdvanceMode.SKIP
@@ -110,8 +109,6 @@ var dialogue_line: DialogueLine:
 		dialogue_line = value
 		if value:
 			process_line()
-		elif not _ending:
-			_on_dialogue_end()
 
 var finish_pause: float = 1
 
@@ -284,6 +281,7 @@ func _ready() -> void:
 	date.modulate.a = 0
 	dialogue_label.visible_characters = 0
 	Main.speed_settings_changed.connect(update_step_rate)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 	for chapter in chapters:
 		var _chapter_name = chapter.resource_path.get_file().split(".")[0]
 		chapters_dict[_chapter_name] = chapter
@@ -374,17 +372,10 @@ func update_favourite() -> void:
 
 # ─── 对话结束 ───
 
-func _on_dialogue_end() -> void:
-	_ending = true
+func _on_dialogue_end(_resource: DialogueResource) -> void:
 	_disconnect_voice_finished()
 	AudioManager.audio_player_voice.stop()
-	_set_mode(AdvanceMode.MANUAL)
-	# 立即遮黑（不走 tween，避免第一帧闪）
-	Game.sv_container.material.set_shader_parameter("iterations", 1)
-	dialogue_screen.modulate.a = 0
 	responses_menu.visible = false
 	Stage.reset()
 	reset()
-	Game.switch_to_page(Game.main_menu, false, false)
-	await Game.fade(true)
-	_ending = false
+	Game.switch_to_page(Game.main_menu, true, false)

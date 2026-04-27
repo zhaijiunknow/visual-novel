@@ -103,7 +103,7 @@ func hide_all_pages() -> void:
 		page.visible = false
 
 # 画面变黑过渡
-func fade(fade_in: bool) -> void:
+func fade(fade_in: bool, duration: float = 0.4) -> void:
 	var start_iteration = 1 if fade_in else 0
 	var tween = create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
@@ -111,7 +111,7 @@ func fade(fade_in: bool) -> void:
 		func(value):
 			var modifier = -1 if fade_in else 1
 			sv_container.material.set_shader_parameter("iterations", start_iteration + (value * modifier)),
-		0.0, 1.0, 0.4
+		0.0, 1.0, duration
 	).finished
 
 # alpha过渡（用于叠加页面）
