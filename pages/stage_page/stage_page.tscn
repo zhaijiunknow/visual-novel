@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://d3q3evsgl40pc" path="res://pages/stage_page/stage_page.gd" id="1_wlgfe"]
 [ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="2_limwj"]
 [ext_resource type="Texture2D" uid="uid://reggb0dey3tm" path="res://assets/backgrounds/2同兴里-白天.jpg" id="3_lqv2x"]
+[ext_resource type="Texture2D" uid="uid://d4bbh4ey4ny0o" path="res://assets/sprites/galleries/galleries.sprites/CG2/CG02-背景.tres" id="4_hovpu"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="4_lda8k"]
+[ext_resource type="Texture2D" uid="uid://b6k2t27ya3bgb" path="res://assets/sprites/galleries/galleries.sprites/CG2/CG02-正常说话.tres" id="5_an5lx"]
 [ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="7_217kn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
 [ext_resource type="Texture2D" uid="uid://bsmb4d7itelyb" path="res://assets/sprites/ui/ui.sprites/dialogue_box.tres" id="8_hovpu"]
@@ -89,7 +91,7 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_sqldi")
 
-[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "skip_tag", "auto_tag", "date", "label_month", "label_day", "label_week_day")]
+[node name="StagePage" type="CanvasLayer" unique_id=547424691 node_paths=PackedStringArray("dialogue_screen", "dialogue_label", "label_character_name", "responses_menu", "subviewport", "hbox_positions", "character_image_pool", "texture_rect_background", "texture_rect_cg", "texture_rect_variation", "texture_rect_blackscreen", "bg_common", "bg_character", "avatar", "button_replay", "button_favourite", "texture_rect_favourite", "voice_buttons", "skip_tag", "auto_tag", "date", "label_month", "label_day", "label_week_day")]
 layer = 100
 script = ExtResource("1_wlgfe")
 dialogue = ExtResource("2_limwj")
@@ -101,6 +103,8 @@ subviewport = NodePath("SubViewportContainer/SubViewport")
 hbox_positions = NodePath("SubViewportContainer/SubViewport/Positions")
 character_image_pool = NodePath("SubViewportContainer/SubViewport/CharacterImages")
 texture_rect_background = NodePath("SubViewportContainer/SubViewport/TextureRect_Background")
+texture_rect_cg = NodePath("SubViewportContainer/SubViewport/TextureRect_CG")
+texture_rect_variation = NodePath("SubViewportContainer/SubViewport/TextureRect_CG/TextureRect_Variation")
 texture_rect_blackscreen = NodePath("SubViewportContainer/SubViewport/TextureRect_Blackscreen")
 bg_common = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Common")
 bg_character = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character")
@@ -134,6 +138,21 @@ render_target_update_mode = 4
 offset_right = 2560.0
 offset_bottom = 1440.0
 texture = ExtResource("3_lqv2x")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect_CG" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=434460985]
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("4_hovpu")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect_Variation" type="TextureRect" parent="SubViewportContainer/SubViewport/TextureRect_CG" unique_id=1274621023]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 1440.0
+texture = ExtResource("5_an5lx")
 expand_mode = 1
 stretch_mode = 6
 

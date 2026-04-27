@@ -25,6 +25,8 @@ var chapter_name: String:
 @export var hbox_positions: HBoxContainer
 @export var character_image_pool: Control
 @export var texture_rect_background: TextureRect
+@export var texture_rect_cg: TextureRect
+@export var texture_rect_variation: TextureRect
 @export var texture_rect_blackscreen: ColorRect
 
 @export var bg_common: TextureRect
