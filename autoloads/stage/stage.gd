@@ -80,27 +80,7 @@ func SetBackground(background_name: String, variation_name: String,
 			in_time
 		).finished
 
-func SetCG(cg_name: String, variation_name: String,
-		out_time: float = 1.2, in_time: float = 1.2) -> void:
-	var is_skip: bool = Game.stage_page.skip
-	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
-
-	if is_skip and not skip_trans:
-		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
-		Game.stage_page.skip_cancelled.emit()
-
-	if skip_trans or out_time == 0:
-		# 跳过淡出，直接设黑屏（或不设）
-		if skip_trans:
-			Game.stage_page.texture_rect_blackscreen.modulate.a = 1
-	else:
-		await create_tween().tween_property(
-			Game.stage_page.texture_rect_blackscreen,
-			"modulate:a",
-			1,
-			out_time
-		).finished
-
+func SetCG(cg_name: String, variation_name: String) -> void:
 	var target_gallery: GalleryData = gallery_data_pool.filter(
 		func(g: GalleryData): return g.resource_path.get_file().replace(".tres", "") == cg_name
 	).front()
@@ -108,7 +88,35 @@ func SetCG(cg_name: String, variation_name: String,
 		push_warning("SetCG: 未找到 gallery %s" % cg_name)
 		return
 
-	current_cg = "%s-%s" % [cg_name, variation_name]
+	# 同一CG切换差分：直接换贴图，不走过渡
+	if current_cg == cg_name:
+		var var_texture: Texture2D
+		for v in target_gallery.variation:
+			if v.resource_path.get_file().replace(".tres", "") == variation_name:
+				var_texture = v
+				break
+		Game.stage_page.texture_rect_variation.texture = var_texture
+		return
+
+	# 切换到不同CG：黑屏过渡
+	var is_skip: bool = Game.stage_page.skip
+	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
+
+	if is_skip and not skip_trans:
+		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
+		Game.stage_page.skip_cancelled.emit()
+
+	if skip_trans:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 1
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			1,
+			1.2
+		).finished
+
+	current_cg = cg_name
 	Game.stage_page.texture_rect_cg.texture = target_gallery.base
 	var var_texture: Texture2D
 	for v in target_gallery.variation:
@@ -120,21 +128,48 @@ func SetCG(cg_name: String, variation_name: String,
 	clear_characters()
 	HideDialogue(0)
 
-	if skip_trans or in_time == 0:
+	if skip_trans:
 		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
 	else:
 		await create_tween().tween_property(
 			Game.stage_page.texture_rect_blackscreen,
 			"modulate:a",
 			0,
-			in_time
+			1.2
 		).finished
 
 func HideCG() -> void:
+	var is_skip: bool = Game.stage_page.skip
+	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
+
+	if is_skip and not skip_trans:
+		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
+		Game.stage_page.skip_cancelled.emit()
+
+	if skip_trans:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 1
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			1,
+			1.2
+		).finished
+
 	Game.stage_page.texture_rect_cg.visible = false
 	Game.stage_page.texture_rect_cg.texture = null
 	Game.stage_page.texture_rect_variation.texture = null
 	current_cg = ""
+
+	if skip_trans:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			0,
+			1.2
+		).finished
 
 func clear_characters() -> void:
 	Tools.clear_children(Game.stage_page.character_image_pool)
