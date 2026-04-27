@@ -6,31 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://d4bbh4ey4ny0o" path="res://assets/sprites/galleries/galleries.sprites/CG2/CG02-背景.tres" id="4_hovpu"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="4_lda8k"]
 [ext_resource type="Texture2D" uid="uid://b6k2t27ya3bgb" path="res://assets/sprites/galleries/galleries.sprites/CG2/CG02-正常说话.tres" id="5_an5lx"]
-[ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="7_217kn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
-[ext_resource type="Texture2D" uid="uid://bsmb4d7itelyb" path="res://assets/sprites/ui/ui.sprites/dialogue_box.tres" id="8_hovpu"]
-[ext_resource type="PackedScene" uid="uid://ojfoyxcslkhd" path="res://prefabs/dialogue_button/dialogue_button.tscn" id="10_7jxs1"]
-[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="10_lda8k"]
-[ext_resource type="Script" uid="uid://dtnp35i10ike1" path="res://scripts/dialogue_button_controller.gd" id="10_lqv2x"]
-[ext_resource type="Texture2D" uid="uid://cogpsthxtxebe" path="res://assets/sprites/ui/ui.sprites/menu_auto.tres" id="14_lda8k"]
-[ext_resource type="Texture2D" uid="uid://2wfnq8qx2pnn" path="res://assets/sprites/ui/ui.sprites/menu_save.tres" id="15_217kn"]
-[ext_resource type="Texture2D" uid="uid://dy464c6itakpi" path="res://assets/sprites/ui/ui.sprites/menu_load.tres" id="16_hovpu"]
-[ext_resource type="Texture2D" uid="uid://cm8g560301l58" path="res://assets/sprites/ui/ui.sprites/menu_log.tres" id="17_an5lx"]
-[ext_resource type="Texture2D" uid="uid://cis66niolkoqm" path="res://assets/sprites/ui/ui.sprites/menu_set.tres" id="18_et2aa"]
-[ext_resource type="Texture2D" uid="uid://blugpowixbrrs" path="res://assets/sprites/ui/ui.sprites/menu_voice.tres" id="19_8wbyc"]
+[ext_resource type="PackedScene" uid="uid://cutrq7kinwuti" path="res://prefabs/dialogue_box/dialogue_box.tscn" id="7_lda8k"]
 [ext_resource type="FontFile" uid="uid://dd1ubdqp4elpg" path="res://assets/fonts/C4v.4-Regular（日期）.otf" id="20_4x5c0"]
 [ext_resource type="Texture2D" uid="uid://dhg4we755w2or" path="res://assets/sprites/ui/ui.sprites/date_background.tres" id="20_rw8us"]
-[ext_resource type="Texture2D" uid="uid://c8wpn52llvp10" path="res://assets/sprites/ui/ui.sprites/menu_phone.tres" id="20_wuhph"]
-[ext_resource type="Texture2D" uid="uid://bwjf1rj1qofn6" path="res://assets/sprites/ui/ui.sprites/menu_book.tres" id="21_1r163"]
-[ext_resource type="Texture2D" uid="uid://ba2mnw8omf7ab" path="res://assets/sprites/ui/ui.sprites/menu_title.tres" id="22_0afbx"]
 [ext_resource type="Texture2D" uid="uid://dbdcarogid8ym" path="res://assets/sprites/ui/ui.sprites/date_deco.tres" id="24_lda8k"]
 [ext_resource type="Texture2D" uid="uid://bldpoc6aicjkp" path="res://assets/sprites/ui/ui.sprites/date_text.tres" id="25_lda8k"]
-[ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="26_an5lx"]
-[ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="27_et2aa"]
-[ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="28_8wbyc"]
 [ext_resource type="Texture2D" uid="uid://bh3ur6tue5b3l" path="res://assets/sprites/ui/ui.sprites/auto.tres" id="28_217kn"]
 [ext_resource type="Texture2D" uid="uid://be65uyih35kmk" path="res://assets/sprites/ui/ui.sprites/skip.tres" id="29_hovpu"]
-[ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="29_wuhph"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j08cx"]
 bg_color = Color(0, 0, 0, 1)
@@ -96,9 +79,9 @@ layer = 100
 script = ExtResource("1_wlgfe")
 dialogue = ExtResource("2_limwj")
 dialogue_screen = NodePath("SubViewportContainer/SubViewport/DialogueScreen")
-dialogue_label = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/DialogueLabel")
-label_character_name = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character/Label_CharacterName")
-responses_menu = NodePath("SubViewportContainer/SubViewport/DialogueScreen/ResponsesMenu")
+dialogue_label = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/DialogueLabel")
+label_character_name = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/Bg_Character/Label_CharacterName")
+responses_menu = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/ResponsesMenu")
 subviewport = NodePath("SubViewportContainer/SubViewport")
 hbox_positions = NodePath("SubViewportContainer/SubViewport/Positions")
 character_image_pool = NodePath("SubViewportContainer/SubViewport/CharacterImages")
@@ -106,13 +89,13 @@ texture_rect_background = NodePath("SubViewportContainer/SubViewport/TextureRect
 texture_rect_cg = NodePath("SubViewportContainer/SubViewport/TextureRect_CG")
 texture_rect_variation = NodePath("SubViewportContainer/SubViewport/TextureRect_CG/TextureRect_Variation")
 texture_rect_blackscreen = NodePath("SubViewportContainer/SubViewport/TextureRect_Blackscreen")
-bg_common = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Common")
-bg_character = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character")
-avatar = NodePath("SubViewportContainer/SubViewport/DialogueScreen/Avatar")
-button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Replay")
-button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite")
-texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite/TextureRect_Favourite")
-voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons")
+bg_common = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/Bg_Common")
+bg_character = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/Bg_Character")
+avatar = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/Avatar")
+button_replay = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/VoiceButtons/Button_Replay")
+button_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/VoiceButtons/Button_Favourite")
+texture_rect_favourite = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/VoiceButtons/Button_Favourite/TextureRect_Favourite")
+voice_buttons = NodePath("SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/VoiceButtons")
 skip_tag = NodePath("Tags/SkipTag")
 auto_tag = NodePath("Tags/AutoTag")
 date = NodePath("SubViewportContainer/SubViewport/Date")
@@ -226,229 +209,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_qq3yp")
 
-[node name="Bg_DialogueBox" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2091702803]
-self_modulate = Color(1, 1, 1, 0)
+[node name="DialogueBox" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2024629459 instance=ExtResource("7_lda8k")]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="Bg_Common" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox" unique_id=1721980369]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -586.0
-offset_right = 2560.0
-grow_vertical = 0
-texture = ExtResource("7_217kn")
-
-[node name="Bg_Character" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox" unique_id=761864671]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -586.0
-offset_right = 2560.0
-grow_vertical = 0
-texture = ExtResource("8_hovpu")
-
-[node name="Label_CharacterName" type="RichTextLabel" parent="SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox/Bg_Character" unique_id=1734914496]
-layout_mode = 0
-offset_left = 506.0
-offset_top = 230.0
-offset_right = 1052.0
-offset_bottom = 302.0
-mouse_filter = 1
-theme_override_colors/default_color = Color(0.92941177, 0.9019608, 0.9607843, 1)
-theme_override_fonts/normal_font = ExtResource("7_ke2v6")
-theme_override_font_sizes/normal_font_size = 49
-bbcode_enabled = true
-text = "余洛琛"
-fit_content = true
-scroll_active = false
-
-[node name="DialogueLabel" parent="SubViewportContainer/SubViewport/DialogueScreen/Bg_DialogueBox" unique_id=585223007 instance=ExtResource("10_lda8k")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_right = 0.0
-anchor_bottom = 1.0
-offset_left = 508.0
-offset_top = -246.0
-offset_right = 2072.0
-offset_bottom = -114.0
-grow_horizontal = 1
-grow_vertical = 0
-theme_override_fonts/normal_font = ExtResource("7_ke2v6")
-theme_override_font_sizes/normal_font_size = 40
-text = "文学社"
-pause_at_characters = ""
-
-[node name="Progress" type="Polygon2D" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=97073002]
-position = Vector2(2306, 1337)
-polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
-
-[node name="Avatar" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1701687384]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 533.0
-grow_vertical = 0
-mouse_filter = 2
-expand_mode = 5
-stretch_mode = 6
-
-[node name="ResponsesMenu" type="VBoxContainer" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1848378009]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -611.0
-offset_top = -259.0
-offset_right = 612.0
-offset_bottom = 37.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-theme_override_constants/separation = -19
-alignment = 1
-
-[node name="DialogueButtonController" type="Node" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1781078644 node_paths=PackedStringArray("button_skip", "button_auto", "button_save", "button_load", "button_log", "button_set", "button_voice", "button_phone", "button_book", "button_title")]
-script = ExtResource("10_lqv2x")
-button_skip = NodePath("../HBoxContainer_Buttons/DialogueButton_Skip")
-button_auto = NodePath("../HBoxContainer_Buttons/DialogueButton_Auto")
-button_save = NodePath("../HBoxContainer_Buttons/DialogueButton_Save")
-button_load = NodePath("../HBoxContainer_Buttons/DialogueButton_Load")
-button_log = NodePath("../HBoxContainer_Buttons/DialogueButton_Log")
-button_set = NodePath("../HBoxContainer_Buttons/DialogueButton_Set")
-button_voice = NodePath("../HBoxContainer_Buttons/DialogueButton_Voice")
-button_phone = NodePath("../HBoxContainer_Buttons/DialogueButton_Phone")
-button_book = NodePath("../HBoxContainer_Buttons/DialogueButton_Book")
-button_title = NodePath("../HBoxContainer_Buttons/DialogueButton_Title")
-
-[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2120074705]
-layout_mode = 0
-offset_top = 1331.0
-offset_right = 2560.0
-offset_bottom = 1420.0
-theme_override_constants/separation = 6
-alignment = 1
-
-[node name="DialogueButton_Skip" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=717129467 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "快进游戏文本"
-toggle_button = true
-
-[node name="DialogueButton_Auto" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=492983354 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "自动播放"
-toggle_button = true
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Auto" index="1" unique_id=1758427880]
-texture = ExtResource("14_lda8k")
-
-[node name="DialogueButton_Save" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1987230586 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "保存游戏"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Save" index="1" unique_id=1758427880]
-texture = ExtResource("15_217kn")
-
-[node name="DialogueButton_Load" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1391655335 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "读取存档"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Load" index="1" unique_id=1758427880]
-texture = ExtResource("16_hovpu")
-
-[node name="DialogueButton_Log" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1330438700 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "对话记录"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Log" index="1" unique_id=1758427880]
-texture = ExtResource("17_an5lx")
-
-[node name="DialogueButton_Set" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1903119149 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "系统设置"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Set" index="1" unique_id=1758427880]
-texture = ExtResource("18_et2aa")
-
-[node name="DialogueButton_Voice" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1310080083 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "语音收藏"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Voice" index="1" unique_id=1758427880]
-texture = ExtResource("19_8wbyc")
-
-[node name="DialogueButton_Phone" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=538227529 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "手机界面"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Phone" index="1" unique_id=1758427880]
-texture = ExtResource("20_wuhph")
-
-[node name="DialogueButton_Book" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1504173714 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "奇迹书"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Book" index="1" unique_id=1758427880]
-texture = ExtResource("21_1r163")
-
-[node name="DialogueButton_Title" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons" unique_id=1703431268 instance=ExtResource("10_7jxs1")]
-layout_mode = 2
-hint_text = "主菜单"
-
-[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Title" index="1" unique_id=1758427880]
-texture = ExtResource("22_0afbx")
-
-[node name="VoiceButtons" type="Control" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=1178222361]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button_Replay" type="TextureButton" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons" unique_id=521022224]
-layout_mode = 0
-offset_left = 1750.0
-offset_top = 1111.0
-offset_right = 1928.0
-offset_bottom = 1174.0
-focus_mode = 0
-texture_pressed = ExtResource("27_et2aa")
-texture_hover = ExtResource("26_an5lx")
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Replay" unique_id=1962923498]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 15.0
-offset_right = 147.0
-offset_bottom = 48.0
-texture = ExtResource("28_8wbyc")
-
-[node name="Button_Favourite" type="TextureButton" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons" unique_id=1476650330]
-layout_mode = 0
-offset_left = 1906.0
-offset_top = 1111.0
-offset_right = 2084.0
-offset_bottom = 1174.0
-focus_mode = 0
-texture_pressed = ExtResource("27_et2aa")
-texture_hover = ExtResource("26_an5lx")
-
-[node name="TextureRect_Favourite" type="TextureRect" parent="SubViewportContainer/SubViewport/DialogueScreen/VoiceButtons/Button_Favourite" unique_id=1040490949]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 15.0
-offset_right = 147.0
-offset_bottom = 48.0
-texture = ExtResource("29_wuhph")
 
 [node name="TextureRect_Blackscreen" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=1839957560]
 modulate = Color(1, 1, 1, 0)
@@ -569,13 +331,14 @@ offset_bottom = 238.0
 grow_horizontal = 0
 texture = ExtResource("29_hovpu")
 
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Skip"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Auto"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Save"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Load"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Log"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Set"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Voice"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Phone"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Book"]
-[editable path="SubViewportContainer/SubViewport/DialogueScreen/HBoxContainer_Buttons/DialogueButton_Title"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Skip"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Auto"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Save"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Load"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Log"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Set"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Voice"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Phone"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Book"]
+[editable path="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Title"]

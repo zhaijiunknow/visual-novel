@@ -164,7 +164,7 @@ viewport_path = NodePath("SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfoea"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_33gpk")
-region = Rect2(389.04782, 117.725395, 611.994, 549.22546)
+region = Rect2(384.56177, 81.27727, 550.6517, 502.14868)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_kxphj"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
@@ -183,7 +183,15 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_2gk8n"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_o1vgr")
-region = Rect2(268.78644, 95.10542, 721.52515, 584.81506)
+region = Rect2(195.3498, 106.31862, 905.21027, 661.6765)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fkvvl"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy802"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_fkvvl")
+region = Rect2(290.5854, 7.3722153, 752.5955, 728.42944)
 
 [node name="葛城" unique_id=1900529109 instance=ExtResource("1_8t5bo")]
 speaking_mouth = "说话"
@@ -235,3 +243,6 @@ preview_texture = SubResource("AtlasTexture_as12d")
 
 [node name="VoiceCard" parent="." index="7" unique_id=1287008254]
 preview_texture = SubResource("AtlasTexture_2gk8n")
+
+[node name="DialogueBox" parent="." index="8" unique_id=700312722]
+preview_texture = SubResource("AtlasTexture_yy802")

@@ -5,9 +5,6 @@ extends Control
 @export var speaking_mouth: String
 @export var sv_container: SubViewportContainer
 @export var subviewport: SubViewport
-@export var texture_rect_avatar: TextureRect
-@export var texture_rect_model: TextureRect
-@export var character_page_portrait: TextureRect
 @export var story_model: Control
 
 @export var phone_avatar: Texture2D
@@ -18,6 +15,7 @@ extends Control
 
 @export var character_selection: CharacterSelection
 @export var voice_card: VoiceCard
+@export var dialogue_box: DialogueBox
 
 var current_expression: String
 var body_part_dict: Dictionary[String, AnimatedSprite2D]
@@ -54,10 +52,6 @@ func _ready() -> void:
 	
 	set_process_input(movable)
 	subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
-	texture_rect_avatar.visible = false
-	
-	texture_rect_model.size = sv_container.size
-	texture_rect_model.position = sv_container.position
 	
 	for body_part in body_parts:
 		var part_name = body_part.name

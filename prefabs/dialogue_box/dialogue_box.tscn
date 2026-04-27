@@ -1,0 +1,260 @@
+[gd_scene format=3 uid="uid://cutrq7kinwuti"]
+
+[ext_resource type="Script" uid="uid://droy2yvr1xid3" path="res://prefabs/dialogue_box/dialogue_box.gd" id="1_1qiy6"]
+[ext_resource type="Texture2D" uid="uid://d2pf2lyg2d364" path="res://assets/sprites/ui/ui.sprites/dialogue_box_noname.tres" id="1_wsbxe"]
+[ext_resource type="Texture2D" uid="uid://bsmb4d7itelyb" path="res://assets/sprites/ui/ui.sprites/dialogue_box.tres" id="2_1qiy6"]
+[ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="3_chikj"]
+[ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="4_ljue0"]
+[ext_resource type="Script" uid="uid://dtnp35i10ike1" path="res://scripts/dialogue_button_controller.gd" id="6_jr8jn"]
+[ext_resource type="PackedScene" uid="uid://ojfoyxcslkhd" path="res://prefabs/dialogue_button/dialogue_button.tscn" id="7_hwkq6"]
+[ext_resource type="Texture2D" uid="uid://cogpsthxtxebe" path="res://assets/sprites/ui/ui.sprites/menu_auto.tres" id="8_yt3wv"]
+[ext_resource type="Texture2D" uid="uid://2wfnq8qx2pnn" path="res://assets/sprites/ui/ui.sprites/menu_save.tres" id="9_6ighm"]
+[ext_resource type="Texture2D" uid="uid://dy464c6itakpi" path="res://assets/sprites/ui/ui.sprites/menu_load.tres" id="10_melqo"]
+[ext_resource type="Texture2D" uid="uid://cm8g560301l58" path="res://assets/sprites/ui/ui.sprites/menu_log.tres" id="11_wggti"]
+[ext_resource type="Texture2D" uid="uid://cis66niolkoqm" path="res://assets/sprites/ui/ui.sprites/menu_set.tres" id="12_jh4v2"]
+[ext_resource type="Texture2D" uid="uid://blugpowixbrrs" path="res://assets/sprites/ui/ui.sprites/menu_voice.tres" id="13_huraa"]
+[ext_resource type="Texture2D" uid="uid://c8wpn52llvp10" path="res://assets/sprites/ui/ui.sprites/menu_phone.tres" id="14_0lmeb"]
+[ext_resource type="Texture2D" uid="uid://bwjf1rj1qofn6" path="res://assets/sprites/ui/ui.sprites/menu_book.tres" id="15_kmxdp"]
+[ext_resource type="Texture2D" uid="uid://ba2mnw8omf7ab" path="res://assets/sprites/ui/ui.sprites/menu_title.tres" id="16_rei1k"]
+[ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="17_me1qy"]
+[ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="18_3vosg"]
+[ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="19_74ksf"]
+[ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="20_q2k8d"]
+
+[node name="DialogueBox" type="Control" unique_id=700312722 node_paths=PackedStringArray("avatar")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_1qiy6")
+avatar = NodePath("Avatar")
+
+[node name="Bg_Common" type="TextureRect" parent="." unique_id=2105459678]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -586.0
+offset_right = 2560.0
+grow_vertical = 0
+texture = ExtResource("1_wsbxe")
+
+[node name="Bg_Character" type="TextureRect" parent="." unique_id=1812401351]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -586.0
+offset_right = 2560.0
+grow_vertical = 0
+texture = ExtResource("2_1qiy6")
+
+[node name="Label_CharacterName" type="RichTextLabel" parent="Bg_Character" unique_id=1838031648]
+layout_mode = 0
+offset_left = 506.0
+offset_top = 230.0
+offset_right = 1052.0
+offset_bottom = 302.0
+mouse_filter = 1
+theme_override_colors/default_color = Color(0.92941177, 0.9019608, 0.9607843, 1)
+theme_override_fonts/normal_font = ExtResource("3_chikj")
+theme_override_font_sizes/normal_font_size = 49
+bbcode_enabled = true
+text = "余洛琛"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLabel" parent="." unique_id=1323782511 instance=ExtResource("4_ljue0")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 508.0
+offset_top = -246.0
+offset_right = 2072.0
+offset_bottom = -114.0
+grow_horizontal = 1
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("3_chikj")
+theme_override_font_sizes/normal_font_size = 40
+text = "文学社"
+pause_at_characters = ""
+
+[node name="Progress" type="Polygon2D" parent="." unique_id=2078184422]
+position = Vector2(2306, -103)
+polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
+
+[node name="Avatar" type="TextureRect" parent="." unique_id=469737087]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_right = 533.0
+grow_vertical = 0
+mouse_filter = 2
+expand_mode = 5
+stretch_mode = 6
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="." unique_id=1064348724]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 669.0
+offset_top = -979.0
+offset_right = 1892.0
+offset_bottom = -683.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = -19
+alignment = 1
+
+[node name="DialogueButtonController" type="Node" parent="." unique_id=744838571 node_paths=PackedStringArray("button_skip", "button_auto", "button_save", "button_load", "button_log", "button_set", "button_voice", "button_phone", "button_book", "button_title")]
+script = ExtResource("6_jr8jn")
+button_skip = NodePath("../HBoxContainer_Buttons/DialogueButton_Skip")
+button_auto = NodePath("../HBoxContainer_Buttons/DialogueButton_Auto")
+button_save = NodePath("../HBoxContainer_Buttons/DialogueButton_Save")
+button_load = NodePath("../HBoxContainer_Buttons/DialogueButton_Load")
+button_log = NodePath("../HBoxContainer_Buttons/DialogueButton_Log")
+button_set = NodePath("../HBoxContainer_Buttons/DialogueButton_Set")
+button_voice = NodePath("../HBoxContainer_Buttons/DialogueButton_Voice")
+button_phone = NodePath("../HBoxContainer_Buttons/DialogueButton_Phone")
+button_book = NodePath("../HBoxContainer_Buttons/DialogueButton_Book")
+button_title = NodePath("../HBoxContainer_Buttons/DialogueButton_Title")
+
+[node name="HBoxContainer_Buttons" type="HBoxContainer" parent="." unique_id=1977368125]
+layout_mode = 0
+offset_top = -109.0
+offset_right = 2560.0
+offset_bottom = -18.0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="DialogueButton_Skip" parent="HBoxContainer_Buttons" unique_id=1780029294 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "快进游戏文本"
+toggle_button = true
+
+[node name="DialogueButton_Auto" parent="HBoxContainer_Buttons" unique_id=60089121 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "自动播放"
+toggle_button = true
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Auto" index="1" unique_id=1758427880]
+texture = ExtResource("8_yt3wv")
+
+[node name="DialogueButton_Save" parent="HBoxContainer_Buttons" unique_id=1218896424 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "保存游戏"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Save" index="1" unique_id=1758427880]
+texture = ExtResource("9_6ighm")
+
+[node name="DialogueButton_Load" parent="HBoxContainer_Buttons" unique_id=835224159 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "读取存档"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Load" index="1" unique_id=1758427880]
+texture = ExtResource("10_melqo")
+
+[node name="DialogueButton_Log" parent="HBoxContainer_Buttons" unique_id=1168611650 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "对话记录"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Log" index="1" unique_id=1758427880]
+texture = ExtResource("11_wggti")
+
+[node name="DialogueButton_Set" parent="HBoxContainer_Buttons" unique_id=70977360 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "系统设置"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Set" index="1" unique_id=1758427880]
+texture = ExtResource("12_jh4v2")
+
+[node name="DialogueButton_Voice" parent="HBoxContainer_Buttons" unique_id=1945164148 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "语音收藏"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Voice" index="1" unique_id=1758427880]
+texture = ExtResource("13_huraa")
+
+[node name="DialogueButton_Phone" parent="HBoxContainer_Buttons" unique_id=1825548998 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "手机界面"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Phone" index="1" unique_id=1758427880]
+texture = ExtResource("14_0lmeb")
+
+[node name="DialogueButton_Book" parent="HBoxContainer_Buttons" unique_id=1177635936 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "奇迹书"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Book" index="1" unique_id=1758427880]
+texture = ExtResource("15_kmxdp")
+
+[node name="DialogueButton_Title" parent="HBoxContainer_Buttons" unique_id=744792504 instance=ExtResource("7_hwkq6")]
+layout_mode = 2
+hint_text = "主菜单"
+
+[node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Title" index="1" unique_id=1758427880]
+texture = ExtResource("16_rei1k")
+
+[node name="VoiceButtons" type="Control" parent="." unique_id=1345011244]
+anchors_preset = 0
+offset_top = -1440.0
+offset_right = 40.0
+offset_bottom = -1400.0
+
+[node name="Button_Replay" type="TextureButton" parent="VoiceButtons" unique_id=1923101994]
+layout_mode = 0
+offset_left = 1750.0
+offset_top = 1111.0
+offset_right = 1928.0
+offset_bottom = 1174.0
+focus_mode = 0
+texture_pressed = ExtResource("17_me1qy")
+texture_hover = ExtResource("18_3vosg")
+
+[node name="TextureRect" type="TextureRect" parent="VoiceButtons/Button_Replay" unique_id=422608126]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 147.0
+offset_bottom = 48.0
+texture = ExtResource("19_74ksf")
+
+[node name="Button_Favourite" type="TextureButton" parent="VoiceButtons" unique_id=449360016]
+layout_mode = 0
+offset_left = 1906.0
+offset_top = 1111.0
+offset_right = 2084.0
+offset_bottom = 1174.0
+focus_mode = 0
+texture_pressed = ExtResource("17_me1qy")
+texture_hover = ExtResource("18_3vosg")
+
+[node name="TextureRect_Favourite" type="TextureRect" parent="VoiceButtons/Button_Favourite" unique_id=1184904178]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 15.0
+offset_right = 147.0
+offset_bottom = 48.0
+texture = ExtResource("20_q2k8d")
+
+[editable path="HBoxContainer_Buttons/DialogueButton_Skip"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Auto"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Save"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Load"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Log"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Set"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Voice"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Phone"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Book"]
+[editable path="HBoxContainer_Buttons/DialogueButton_Title"]

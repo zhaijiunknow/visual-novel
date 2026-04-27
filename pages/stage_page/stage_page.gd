@@ -190,7 +190,7 @@ func process_dialogue_line() -> void:
 	# 角色头像
 	avatar.texture = null
 	if has_avatar and not "隐藏头像" in dialogue_line.tags:
-		avatar.texture = character.texture_rect_avatar.texture
+		avatar.texture = character.dialogue_box.preview_texture
 	avatar.modulate.a = 1 if has_avatar else 0
 
 	# 对话框淡入（ShowDialogue 内部会更新角色名、清空文字、设语音按钮）
