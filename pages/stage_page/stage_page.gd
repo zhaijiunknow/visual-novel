@@ -379,10 +379,10 @@ func _on_dialogue_end() -> void:
 	_disconnect_voice_finished()
 	AudioManager.audio_player_voice.stop()
 	_set_mode(AdvanceMode.MANUAL)
+	# 立即遮黑（不走 tween，避免第一帧闪）
+	Game.sv_container.material.set_shader_parameter("iterations", 1)
 	dialogue_screen.modulate.a = 0
 	responses_menu.visible = false
-	# 黑屏过渡 → 清理状态 → 切主菜单 → 淡入
-	await Game.fade(false)
 	Stage.reset()
 	reset()
 	Game.switch_to_page(Game.main_menu, false, false)
