@@ -142,6 +142,7 @@ expand_mode = 1
 stretch_mode = 6
 
 [node name="TextureRect_CG" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=434460985]
+visible = false
 offset_right = 2560.0
 offset_bottom = 1440.0
 texture = ExtResource("4_hovpu")

@@ -124,6 +124,8 @@ def record_to_data(fields):
         "chapter": extract_field(fields, "章节"),
         "music": extract_field(fields, "音乐"),
         "commands": extract_field(fields, "指令"),
+        "cg_name": extract_field(fields, "CG"),
+        "cg_variation": extract_field(fields, "CG差分"),
     }
 
 
@@ -197,6 +199,17 @@ def generate_do_commands(data, state, lines, tabs):
             state["bg_name"] = data["bg_name"]
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
+
+    # CG变化 → SetCG
+    cg_key = ""
+    if data["cg_name"] and data["cg_variation"]:
+        cg_key = f'{data["cg_name"]}-{data["cg_variation"]}'
+    if cg_key != state.get("cg_key", ""):
+        if cg_key:
+            lines.append(f'{tabs}$> SetCG("{data["cg_name"]}", "{data["cg_variation"]}")')
+        else:
+            lines.append(f"{tabs}$> HideCG()")
+        state["cg_key"] = cg_key
 
     # 音乐变化 → SetMusic / StopMusic
     if data["music"] != state["music"]:

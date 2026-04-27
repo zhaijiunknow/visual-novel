@@ -6,6 +6,7 @@ extends Node
 
 var current_background: String
 var current_date: String
+var current_cg: String
 
 signal character_selection_name_changed
 var character_selection_name: String:
@@ -28,6 +29,7 @@ func _ready() -> void:
 func reset() -> void:
 	current_background = ""
 	current_date = ""
+	current_cg = ""
 	clear_characters()
 
 func start() -> void:
@@ -77,6 +79,62 @@ func SetBackground(background_name: String, variation_name: String,
 			0,
 			in_time
 		).finished
+
+func SetCG(cg_name: String, variation_name: String,
+		out_time: float = 1.2, in_time: float = 1.2) -> void:
+	var is_skip: bool = Game.stage_page.skip
+	var skip_trans: bool = is_skip and Main.setting_data.skip_ignore_transitions
+
+	if is_skip and not skip_trans:
+		Game.stage_page._set_mode(Game.stage_page.AdvanceMode.MANUAL)
+		Game.stage_page.skip_cancelled.emit()
+
+	if skip_trans or out_time == 0:
+		# 跳过淡出，直接设黑屏（或不设）
+		if skip_trans:
+			Game.stage_page.texture_rect_blackscreen.modulate.a = 1
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			1,
+			out_time
+		).finished
+
+	var target_gallery: GalleryData = gallery_data_pool.filter(
+		func(g: GalleryData): return g.resource_path.get_file().replace(".tres", "") == cg_name
+	).front()
+	if not target_gallery:
+		push_warning("SetCG: 未找到 gallery %s" % cg_name)
+		return
+
+	current_cg = "%s-%s" % [cg_name, variation_name]
+	Game.stage_page.texture_rect_cg.texture = target_gallery.base
+	var var_texture: Texture2D
+	for v in target_gallery.variation:
+		if v.resource_path.get_file().replace(".tres", "") == variation_name:
+			var_texture = v
+			break
+	Game.stage_page.texture_rect_variation.texture = var_texture
+	Game.stage_page.texture_rect_cg.visible = true
+	clear_characters()
+	HideDialogue(0)
+
+	if skip_trans or in_time == 0:
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 0
+	else:
+		await create_tween().tween_property(
+			Game.stage_page.texture_rect_blackscreen,
+			"modulate:a",
+			0,
+			in_time
+		).finished
+
+func HideCG() -> void:
+	Game.stage_page.texture_rect_cg.visible = false
+	Game.stage_page.texture_rect_cg.texture = null
+	Game.stage_page.texture_rect_variation.texture = null
+	current_cg = ""
 
 func clear_characters() -> void:
 	Tools.clear_children(Game.stage_page.character_image_pool)
