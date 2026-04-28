@@ -1,5 +1,13 @@
+@tool
 class_name VoicePage
 extends Control
+
+@export var portrait_dict: Dictionary[Enums.CharacterName, Texture2D]
+
+@export var selected_character: Enums.CharacterName:
+	set(value):
+		selected_character = value
+		texture_rect_portrait.texture = portrait_dict[selected_character]
 
 @export var voice_card_pool: Control
 @export var texture_rect_portrait: TextureRect
@@ -40,6 +48,7 @@ func play_current_voice() -> void:
 	AudioManager.play_voice(current_collection.voice_filename, true)
 
 func _ready() -> void:
+	if Engine.is_editor_hint(): return
 	visibility_changed.connect(
 		func ():
 			if visible:

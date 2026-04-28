@@ -2,10 +2,12 @@
 class_name VoiceCard
 extends TextureRect
 
-@export var preview_texture: Texture2D:
+@export var portrait_dict: Dictionary[Enums.CharacterName, Texture2D]
+
+@export var selected_character: Enums.CharacterName:
 	set(value):
-		preview_texture = value
-		texture_rect_portrait.texture = preview_texture
+		selected_character = value
+		texture_rect_portrait.texture = portrait_dict[selected_character]
 
 @export var texture_rect_portrait: TextureRect
 @export var label_number: Label
@@ -18,7 +20,7 @@ var voice_page: VoicePage:
 var voice_collection: VoiceCollection:
 	set(value):
 		voice_collection = value
-		texture_rect_portrait.texture = Stage.Character(voice_collection.character_name).texture_rect_avatar.texture
+		selected_character = Enums.CharacterName[voice_collection.character_name]
 		label_text.text = voice_collection.text
 
 const COLOR_NORMAL := Color(1, 1, 1, 1)

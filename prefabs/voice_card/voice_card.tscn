@@ -3,15 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://dnxcijehsidy8" path="res://assets/sprites/ui/ui.sprites/voice_background_normal.tres" id="1_q3tst"]
 [ext_resource type="Script" uid="uid://c6tguo51d3rti" path="res://prefabs/voice_card/voice_card.gd" id="2_4vpxv"]
 [ext_resource type="Script" uid="uid://bonnjjxt11u8k" path="res://prefabs/components/drag_filter.gd" id="3_imp03"]
+[ext_resource type="Texture2D" uid="uid://2ct14ij7kdgo" path="res://assets/sprites/ui/ui.sprites/chr_yu.tres" id="3_qdjdi"]
 [ext_resource type="FontFile" uid="uid://6ydkdqqx8lgc" path="res://assets/fonts/Poppins-Medium（各种no）.ttf" id="4_imp03"]
+[ext_resource type="Texture2D" uid="uid://bw7bmy4crvnl1" path="res://assets/sprites/ui/ui.sprites/chr_xia.tres" id="4_tpmcj"]
+[ext_resource type="Texture2D" uid="uid://b8pb21crhvkt2" path="res://assets/sprites/ui/ui.sprites/chr_knd.tres" id="5_vuw1d"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="6_4vpxv"]
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_imp03"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y2fy"]
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[ext_resource type="Texture2D" uid="uid://d3wcr2ok2kmqu" path="res://assets/sprites/ui/ui.sprites/chr_ge.tres" id="6_td440"]
+[ext_resource type="Texture2D" uid="uid://dwfgn02lekph4" path="res://assets/sprites/ui/ui.sprites/chr_ling.tres" id="7_0h51m"]
+[ext_resource type="Texture2D" uid="uid://b5v3o5x6ss4g5" path="res://assets/temp/voice.jpg" id="12_tpmcj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vpxv"]
 bg_color = Color(1, 1, 1, 1)
@@ -23,7 +23,14 @@ corner_radius_bottom_left = 18
 [node name="VoiceCard" type="TextureRect" unique_id=1287008254 node_paths=PackedStringArray("texture_rect_portrait", "label_number", "label_text", "drag_filter")]
 texture = ExtResource("1_q3tst")
 script = ExtResource("2_4vpxv")
-texture_rect_portrait = NodePath("PortraitFrame/Control/TextureRect_Portrait")
+portrait_dict = Dictionary[int, Texture2D]({
+0: ExtResource("3_qdjdi"),
+1: ExtResource("4_tpmcj"),
+2: ExtResource("5_vuw1d"),
+3: ExtResource("6_td440"),
+4: ExtResource("7_0h51m")
+})
+texture_rect_portrait = NodePath("TextureRect_Portrait")
 label_number = NodePath("NumberContainer/Label_Number")
 label_text = NodePath("Label_Text")
 drag_filter = NodePath("DragFilter")
@@ -33,38 +40,27 @@ script = ExtResource("3_imp03")
 target_object = NodePath("..")
 metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
-[node name="PortraitFrame" type="PanelContainer" parent="." unique_id=1749875993]
-clip_children = 1
+[node name="TextureRect_Portrait" type="TextureRect" parent="." unique_id=1202994218]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 8.0
-offset_right = 399.0
-offset_bottom = 240.0
+offset_left = -10.0
+offset_top = 10.0
+offset_right = 421.0
+offset_bottom = 239.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5y2fy")
-
-[node name="Control" type="Control" parent="PortraitFrame" unique_id=759831831]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextureRect_Portrait" type="TextureRect" parent="PortraitFrame/Control" unique_id=1202994218]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 349.0
-grow_vertical = 0
-mouse_filter = 2
-expand_mode = 5
+texture = ExtResource("3_qdjdi")
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
-modulate = Color(0.49803922, 0.49019608, 0.5372549, 1)
 layout_mode = 0
 offset_left = 357.0
 offset_top = 57.0
 offset_right = 835.0
 offset_bottom = 212.0
 mouse_filter = 2
+theme_override_colors/default_color = Color(0.9137255, 0.9019608, 0.94509804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.24313726)
+theme_override_constants/shadow_outline_size = 8
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
 theme_override_fonts/normal_font = ExtResource("6_4vpxv")
 theme_override_font_sizes/normal_font_size = 25
 text = "文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
@@ -89,3 +85,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InteractSound" parent="." unique_id=1483212628 instance=ExtResource("6_imp03")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=687536769]
+layer = -1
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=928795042]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -585.0
+offset_top = -385.0
+offset_right = -585.0
+offset_bottom = -385.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_tpmcj")

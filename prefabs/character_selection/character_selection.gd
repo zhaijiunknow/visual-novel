@@ -1,12 +1,5 @@
-@tool
 class_name CharacterSelection
 extends Panel
-
-@export var preview: bool
-@export var preview_texture: Texture2D:
-	set(value):
-		preview_texture = value
-		portrait.texture = preview_texture
 
 @export var portrait: TextureRect
 @export var blackout_shade: Control
@@ -22,9 +15,6 @@ var hovered: bool:
 		update()
 
 func _ready() -> void:
-	if Engine.is_editor_hint(): return
-	if not preview:
-		portrait.texture = Stage.Character(name).character_selection.preview_texture
 	mouse_entered.connect(
 		func (): hover_shade.visible = true
 	)

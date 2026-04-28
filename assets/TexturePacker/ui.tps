@@ -1305,6 +1305,7 @@
                 <false/>
             </struct>
             <key type="filename">../ui/语音收藏/bichr_xia.png</key>
+            <key type="filename">../ui/语音收藏/bigchr_ling.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -1456,6 +1457,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../ui/语音收藏/chr_ling.png</key>
             <key type="filename">../ui/语音收藏/chr_xia.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -1483,6 +1485,24 @@
                 <rect>95,57,191,115</rect>
                 <key>scale9Paddings</key>
                 <rect>95,57,191,115</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/语音收藏/detail_background_hover.png</key>
+            <key type="filename">../ui/语音收藏/detail_background_normal.png</key>
+            <key type="filename">../ui/语音收藏/voice_background_hover.png</key>
+            <key type="filename">../ui/语音收藏/voice_background_normal.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>221,63,441,127</rect>
+                <key>scale9Paddings</key>
+                <rect>221,63,441,127</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -1516,22 +1536,6 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../ui/语音收藏/voice_background_hover.png</key>
-            <key type="filename">../ui/语音收藏/voice_background_normal.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>221,63,441,127</rect>
-                <key>scale9Paddings</key>
-                <rect>221,63,441,127</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">../ui/语音收藏/voice_title.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -1544,6 +1548,21 @@
                 <rect>114,64,229,128</rect>
                 <key>scale9Paddings</key>
                 <rect>114,64,229,128</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/语音收藏/语音收藏.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>640,360,1280,720</rect>
+                <key>scale9Paddings</key>
+                <rect>640,360,1280,720</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -1759,6 +1778,7 @@
             <key type="filename">../ui/鉴赏内容/立绘鉴赏/ico_changxia.png</key>
             <key type="filename">../ui/鉴赏内容/立绘鉴赏/ico_gecheng.png</key>
             <key type="filename">../ui/鉴赏内容/立绘鉴赏/ico_kanade.png</key>
+            <key type="filename">../ui/鉴赏内容/立绘鉴赏/ico_ling.png</key>
             <key type="filename">../ui/鉴赏内容/立绘鉴赏/ico_yuluochen.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>

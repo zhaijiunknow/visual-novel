@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://bh1j660oi8dw8"]
 
 [ext_resource type="Script" uid="uid://r0777eg6rpqk" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.gd" id="1_feqe0"]
-[ext_resource type="Texture2D" uid="uid://b5v3o5x6ss4g5" path="res://assets/temp/voice.jpg" id="2_cs7ht"]
+[ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="3_jy1e2"]
+[ext_resource type="Texture2D" uid="uid://b28ikata7q7of" path="res://assets/sprites/ui/ui.sprites/bigchr_knd.tres" id="4_cs7ht"]
+[ext_resource type="Texture2D" uid="uid://chwfqsqd0bktu" path="res://assets/sprites/ui/ui.sprites/bigchr_ge.tres" id="5_n2gkn"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="5_udoh6"]
+[ext_resource type="Texture2D" uid="uid://dym4c4x0q0fti" path="res://assets/sprites/ui/ui.sprites/bigchr_yu.tres" id="6_e62bb"]
+[ext_resource type="Texture2D" uid="uid://cjdv8rx2e5lk7" path="res://assets/sprites/ui/ui.sprites/bigchr_ling.tres" id="6_inet1"]
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="6_n2gkn"]
 [ext_resource type="Texture2D" uid="uid://d3f8hfcm50sxl" path="res://assets/sprites/ui/ui.sprites/bigdata_background.tres" id="7_jy1e2"]
+[ext_resource type="Texture2D" uid="uid://b50dh866g0h8t" path="res://assets/sprites/ui/ui.sprites/语音收藏.tres" id="7_n2gkn"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="9_luv7t"]
 [ext_resource type="FontFile" uid="uid://oirjsykiv7oi" path="res://assets/fonts/Poppins-Light（英文小字）.ttf" id="10_mnlhs"]
+[ext_resource type="Texture2D" uid="uid://dawc483gu0f48" path="res://assets/sprites/ui/ui.sprites/name_decoration.tres" id="11_inet1"]
+[ext_resource type="Texture2D" uid="uid://c5ems4pqqp0q3" path="res://assets/sprites/ui/ui.sprites/character_frame.tres" id="11_n2gkn"]
 [ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="11_oo64q"]
 [ext_resource type="Texture2D" uid="uid://btyh83dxjujev" path="res://assets/sprites/ui/ui.sprites/voice_title.tres" id="11_udoh6"]
 [ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="12_feqe0"]
+[ext_resource type="Theme" uid="uid://dm5bm3o71un5e" path="res://themes/text_theme.tres" id="13_cs7ht"]
 [ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="13_f3a7m"]
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="14_n2gkn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hw4vf"]
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [node name="VoicePage" type="Control" unique_id=21218107 node_paths=PackedStringArray("voice_card_pool", "texture_rect_portrait", "label_character_name", "label_chapter_number", "label_chapter_name", "label_text", "voice_view", "button_replay", "button_favourite", "texture_rect_favourite")]
 layout_mode = 3
@@ -27,8 +29,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_feqe0")
+portrait_dict = Dictionary[int, Texture2D]({
+0: ExtResource("6_e62bb"),
+1: ExtResource("3_jy1e2"),
+2: ExtResource("4_cs7ht"),
+3: ExtResource("5_n2gkn"),
+4: ExtResource("6_inet1")
+})
 voice_card_pool = NodePath("ScrollContainer/VoiceCardPool")
-texture_rect_portrait = NodePath("VoiceView/PortraitFrame/Control/TextureRect_Portrait")
+texture_rect_portrait = NodePath("VoiceView/TextureRect_Portrait")
 label_character_name = NodePath("VoiceView/Label_CharacterName")
 label_chapter_number = NodePath("VoiceView/Label_ChapterNumber")
 label_chapter_name = NodePath("VoiceView/Label_ChapterName")
@@ -45,21 +54,20 @@ offset_bottom = 1440.0
 mouse_filter = 0
 
 [node name="Preview" type="TextureRect" parent="." unique_id=706821442]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_cs7ht")
+texture = ExtResource("7_n2gkn")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1148493183]
 layout_mode = 0
 offset_left = 585.0
 offset_top = 113.0
 offset_right = 2372.0
-offset_bottom = 817.0
+offset_bottom = 809.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -79,41 +87,53 @@ offset_bottom = -109.0
 [node name="VScrollBarEx" parent="." unique_id=269622795 node_paths=PackedStringArray("target_scroll_container") instance=ExtResource("6_n2gkn")]
 layout_mode = 1
 offset_top = 117.0
-offset_bottom = 793.0
+offset_bottom = 808.0
 target_scroll_container = NodePath("../ScrollContainer")
 
 [node name="VoiceView" type="TextureRect" parent="." unique_id=1009249008]
 layout_mode = 0
-offset_left = 586.0
-offset_top = 856.0
-offset_right = 2453.0
-offset_bottom = 1227.0
+offset_left = 592.0
+offset_top = 848.0
+offset_right = 2459.0
+offset_bottom = 1219.0
 mouse_filter = 2
 texture = ExtResource("7_jy1e2")
 
-[node name="PortraitFrame" type="PanelContainer" parent="VoiceView" unique_id=405710989]
-clip_children = 1
-layout_mode = 0
-offset_left = 11.0
-offset_top = 8.0
-offset_right = 607.0
-offset_bottom = 362.0
+[node name="TextureRect_Portrait" type="TextureRect" parent="VoiceView" unique_id=986176691]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -176.5
+offset_right = 709.0
+offset_bottom = 176.5
+grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hw4vf")
+texture = ExtResource("6_e62bb")
 
-[node name="Control" type="Control" parent="VoiceView/PortraitFrame" unique_id=657841729]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TextureRect_Portrait" type="TextureRect" parent="VoiceView/PortraitFrame/Control" unique_id=986176691]
+[node name="ShadowFrame" type="TextureRect" parent="VoiceView" unique_id=1990874687]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_right = 559.0
+offset_left = 9.0
+offset_top = -249.0
+offset_right = 1321.0
+offset_bottom = -7.0
 grow_vertical = 0
-mouse_filter = 2
-expand_mode = 5
+texture = ExtResource("11_n2gkn")
+
+[node name="Deco" type="TextureRect" parent="VoiceView" unique_id=482067542]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -128.0
+offset_right = 189.0
+offset_bottom = -40.0
+grow_vertical = 0
+texture = ExtResource("11_inet1")
 
 [node name="Label_CharacterName" type="Label" parent="VoiceView" unique_id=979630272]
 layout_mode = 0
@@ -121,30 +141,33 @@ offset_left = 95.0
 offset_top = 247.0
 offset_right = 239.0
 offset_bottom = 317.0
+theme = ExtResource("13_cs7ht")
 theme_override_colors/font_outline_color = Color(0.20784314, 0.2, 0.25490198, 1)
-theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("9_luv7t")
 theme_override_font_sizes/font_size = 48
 text = "余洛琛"
 
 [node name="Label_ChapterName" type="Label" parent="VoiceView" unique_id=2057562331]
-modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 layout_mode = 0
-offset_left = 571.0
-offset_top = 95.0
-offset_right = 715.0
-offset_bottom = 148.0
+offset_left = 572.0
+offset_top = 98.0
+offset_right = 716.0
+offset_bottom = 151.0
+theme = ExtResource("13_cs7ht")
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("9_luv7t")
 theme_override_font_sizes/font_size = 36
 text = "章节名称"
 
 [node name="Label_ChapterNumber" type="Label" parent="VoiceView" unique_id=552030638]
-modulate = Color(0.72156864, 0.6901961, 0.75686276, 1)
 layout_mode = 0
-offset_left = 574.0
-offset_top = 74.0
-offset_right = 718.0
-offset_bottom = 127.0
+offset_left = 576.0
+offset_top = 77.0
+offset_right = 680.0
+offset_bottom = 104.0
+theme = ExtResource("13_cs7ht")
+theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = ExtResource("10_mnlhs")
 theme_override_font_sizes/font_size = 19
 text = "Chapter 01"
@@ -152,18 +175,13 @@ uppercase = true
 
 [node name="Label_Text" type="Label" parent="VoiceView" unique_id=1650368569]
 layout_mode = 0
-offset_left = 575.0
-offset_top = 179.0
-offset_right = 1773.0
-offset_bottom = 302.0
-theme_override_colors/font_color = Color(0.88235295, 0.8666667, 0.92156863, 1)
-theme_override_colors/font_shadow_color = Color(0.20784314, 0.2, 0.25490198, 1)
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 0
-theme_override_constants/shadow_outline_size = 17
-theme_override_fonts/font = ExtResource("9_luv7t")
+offset_left = 555.0
+offset_top = 181.0
+offset_right = 1753.0
+offset_bottom = 304.0
+theme = ExtResource("13_cs7ht")
 theme_override_font_sizes/font_size = 36
-text = "文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
+text = "「文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
 autowrap_mode = 1
 
 [node name="Button_Replay" type="TextureButton" parent="VoiceView" unique_id=199049034]
