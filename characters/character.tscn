@@ -2,20 +2,19 @@
 
 [ext_resource type="Script" uid="uid://di7qgo24s04cu" path="res://characters/character.gd" id="1_e3kty"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="2_qqr4u"]
-[ext_resource type="PackedScene" uid="uid://c7qu2xafv1pld" path="res://prefabs/voice_card/voice_card.tscn" id="4_mdkfl"]
 [ext_resource type="PackedScene" uid="uid://cutrq7kinwuti" path="res://prefabs/dialogue_box/dialogue_box.tscn" id="5_b1u1o"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mdkfl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3fwhk"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1u1o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdkfl"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_mdkfl")
+atlas = SubResource("ViewportTexture_3fwhk")
 
-[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "story_model", "body_parts", "optionals_pool", "voice_card", "dialogue_box")]
+[node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "story_model", "body_parts", "optionals_pool", "dialogue_box")]
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -30,7 +29,6 @@ subviewport = NodePath("SubViewportContainer/SubViewport")
 story_model = NodePath("StoryModel")
 body_parts = [NodePath("SubViewportContainer/SubViewport/Body"), NodePath("SubViewportContainer/SubViewport/Body/Eyebrows"), NodePath("SubViewportContainer/SubViewport/Body/Eyes"), NodePath("SubViewportContainer/SubViewport/Body/Mouth")]
 optionals_pool = NodePath("SubViewportContainer/SubViewport/Body/Optionals")
-voice_card = NodePath("VoiceCard")
 dialogue_box = NodePath("DialogueBox")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=887420507]
@@ -84,17 +82,10 @@ offset_top = -1365.0
 offset_right = 545.0
 texture = SubResource("ViewportTexture_qqr4u")
 
-[node name="VoiceCard" parent="." unique_id=1287008254 instance=ExtResource("4_mdkfl")]
-layout_mode = 0
-offset_left = 267.0
-offset_top = -1162.0
-offset_right = 1150.0
-offset_bottom = -909.0
-
 [node name="DialogueBox" parent="." unique_id=700312722 instance=ExtResource("5_b1u1o")]
 layout_mode = 1
 offset_left = 414.0
 offset_top = -169.0
 offset_right = 414.0
 offset_bottom = -169.0
-preview_texture = SubResource("AtlasTexture_b1u1o")
+preview_texture = SubResource("AtlasTexture_mdkfl")

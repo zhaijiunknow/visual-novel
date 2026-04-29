@@ -3,7 +3,12 @@
 [ext_resource type="Script" uid="uid://d2ex0eewal7fh" path="res://pages/bonus_page/sub_pages/character_page/character_page.gd" id="1_02pp7"]
 [ext_resource type="Texture2D" uid="uid://bpnnrxr2pch6g" path="res://assets/ui_backgrounds/background_character.png" id="2_201mx"]
 [ext_resource type="PackedScene" uid="uid://buso3d823ic3e" path="res://prefabs/character_selection/character_selection.tscn" id="3_dorhe"]
+[ext_resource type="Texture2D" uid="uid://bjtw8ju4h4pft" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_kanade.tres" id="4_khjfa"]
+[ext_resource type="Texture2D" uid="uid://dqxpvn4tbvwmn" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_changxia.tres" id="5_t786o"]
+[ext_resource type="Texture2D" uid="uid://b04547jj613x" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_yuluochen.tres" id="6_58pd2"]
 [ext_resource type="PackedScene" uid="uid://bnu8yy8c7d3pj" path="res://characters/instances/character_辉夜奏.tscn" id="7_58pd2"]
+[ext_resource type="Texture2D" uid="uid://c6kccjdrghulr" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_gecheng.tres" id="7_od5st"]
+[ext_resource type="Texture2D" uid="uid://dllwgrcscresp" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_ling.tres" id="8_5lwtc"]
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="8_od5st"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="9_5lwtc"]
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="10_po4xj"]
@@ -65,8 +70,14 @@ columns = 3
 [node name="辉夜奏" parent="CharacterSelections" unique_id=449091213 instance=ExtResource("3_dorhe")]
 layout_mode = 2
 
+[node name="Portrait" parent="CharacterSelections/辉夜奏/MarginContainer/Control" parent_id_path=PackedInt32Array(449091213, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("4_khjfa")
+
 [node name="常夏" parent="CharacterSelections" unique_id=110227882 instance=ExtResource("3_dorhe")]
 layout_mode = 2
+
+[node name="Portrait" parent="CharacterSelections/常夏/MarginContainer/Control" parent_id_path=PackedInt32Array(110227882, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("5_t786o")
 
 [node name="Control" type="Control" parent="CharacterSelections" unique_id=708921907]
 layout_mode = 2
@@ -77,8 +88,14 @@ layout_mode = 2
 [node name="余洛琛" parent="CharacterSelections" unique_id=2123052684 instance=ExtResource("3_dorhe")]
 layout_mode = 2
 
+[node name="Portrait" parent="CharacterSelections/余洛琛/MarginContainer/Control" parent_id_path=PackedInt32Array(2123052684, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("6_58pd2")
+
 [node name="葛城" parent="CharacterSelections" unique_id=1471635053 instance=ExtResource("3_dorhe")]
 layout_mode = 2
+
+[node name="Portrait" parent="CharacterSelections/葛城/MarginContainer/Control" parent_id_path=PackedInt32Array(1471635053, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("7_od5st")
 
 [node name="Control3" type="Control" parent="CharacterSelections" unique_id=1406105038]
 layout_mode = 2
@@ -88,6 +105,9 @@ layout_mode = 2
 
 [node name="林凌铃" parent="CharacterSelections" unique_id=1100820711 instance=ExtResource("3_dorhe")]
 layout_mode = 2
+
+[node name="Portrait" parent="CharacterSelections/林凌铃/MarginContainer/Control" parent_id_path=PackedInt32Array(1100820711, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("8_5lwtc")
 
 [node name="Characters" type="Control" parent="." unique_id=1346683318]
 anchors_preset = 0
@@ -238,6 +258,11 @@ offset_right = 3460.0
 offset_bottom = 1175.0
 rotation = -1.5707964
 
+[editable path="CharacterSelections/辉夜奏"]
+[editable path="CharacterSelections/常夏"]
+[editable path="CharacterSelections/余洛琛"]
+[editable path="CharacterSelections/葛城"]
+[editable path="CharacterSelections/林凌铃"]
 [editable path="VBoxContainer_Options/CharacterOption_Background"]
 [editable path="VBoxContainer_Options/CharacterOption_Variation"]
 [editable path="VBoxContainer_Options/CharacterOption_Body"]

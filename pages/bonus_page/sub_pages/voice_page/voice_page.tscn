@@ -54,6 +54,7 @@ offset_bottom = 1440.0
 mouse_filter = 0
 
 [node name="Preview" type="TextureRect" parent="." unique_id=706821442]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

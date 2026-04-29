@@ -223,22 +223,6 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdyow"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_ktyj5")
-region = Rect2(318.1564, 183.65552, 596.56116, 601.7484)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_vm0ad"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uwf68"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_vm0ad")
-region = Rect2(212.0734, 227.5859, 858.2351, 672.1576)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_fbx6l"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhghm"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_fbx6l")
 region = Rect2(192.18396, 214.99954, 1080.44, 982.39453)
 
 [node name="常夏" unique_id=401531579 instance=ExtResource("1_1d4w3")]
@@ -281,11 +265,5 @@ texture = ExtResource("21_hdqmv")
 [node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
 texture = SubResource("ViewportTexture_r613x")
 
-[node name="CharacterSelection" parent="." index="3" unique_id=2115129008]
+[node name="DialogueBox" parent="." index="3" unique_id=700312722]
 preview_texture = SubResource("AtlasTexture_qdyow")
-
-[node name="VoiceCard" parent="." index="4" unique_id=1287008254]
-preview_texture = SubResource("AtlasTexture_uwf68")
-
-[node name="DialogueBox" parent="." index="5" unique_id=700312722]
-preview_texture = SubResource("AtlasTexture_uhghm")

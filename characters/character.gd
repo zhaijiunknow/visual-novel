@@ -13,8 +13,6 @@ extends Control
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D
 
-@export var character_selection: CharacterSelection
-@export var voice_card: VoiceCard
 @export var dialogue_box: DialogueBox
 
 var current_expression: String
@@ -47,8 +45,6 @@ var bonus_part_index_dict: Dictionary[String, Dictionary]
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	character_selection.visible = false
-	voice_card.visible = false
 	dialogue_box.visible = false
 	
 	set_process_input(movable)
