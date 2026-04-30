@@ -1,0 +1,184 @@
+[gd_scene format=3 uid="uid://bklo0ijs4q51e"]
+
+[ext_resource type="PackedScene" uid="uid://bpa5d8jlrcd16" path="res://characters/character.tscn" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://bxif8a85qxe2g" path="res://assets/sprites/characters/characters.sprites/广播社老师/身体/工作服-待机.tres" id="2_body"]
+[ext_resource type="Texture2D" uid="uid://6hfh0rqj81qu" path="res://assets/sprites/characters/characters.sprites/广播社老师/眉毛/悲伤.tres" id="3_eb_sad"]
+[ext_resource type="Texture2D" uid="uid://bgaobeqxog3h3" path="res://assets/sprites/characters/characters.sprites/广播社老师/眉毛/疑惑.tres" id="4_eb_conf"]
+[ext_resource type="Texture2D" uid="uid://1uloo0ffxqbe" path="res://assets/sprites/characters/characters.sprites/广播社老师/眉毛/认真.tres" id="5_eb_ser"]
+[ext_resource type="Texture2D" uid="uid://den4dc1jig2oh" path="res://assets/sprites/characters/characters.sprites/广播社老师/眉毛/默认.tres" id="6_eb_def"]
+[ext_resource type="Texture2D" uid="uid://cjirlii7u5pxc" path="res://assets/sprites/characters/characters.sprites/广播社老师/眼睛/吃惊.tres" id="7_eye_sur"]
+[ext_resource type="Texture2D" uid="uid://bgbb71xvbmq1y" path="res://assets/sprites/characters/characters.sprites/广播社老师/眼睛/悲伤.tres" id="8_eye_sad"]
+[ext_resource type="Texture2D" uid="uid://b0iuhvw7gekah" path="res://assets/sprites/characters/characters.sprites/广播社老师/眼睛/眯眼开心.tres" id="9_eye_hap"]
+[ext_resource type="Texture2D" uid="uid://cn8ntkc5wslym" path="res://assets/sprites/characters/characters.sprites/广播社老师/眼睛/默认.tres" id="10_eye_def"]
+[ext_resource type="Texture2D" uid="uid://b5my456u5p7sj" path="res://assets/sprites/characters/characters.sprites/广播社老师/嘴巴/不开口.tres" id="11_mo_clo"]
+[ext_resource type="Texture2D" uid="uid://djvfbltudkar2" path="res://assets/sprites/characters/characters.sprites/广播社老师/嘴巴/小声说话.tres" id="12_mo_whi"]
+[ext_resource type="Texture2D" uid="uid://dv5rqa3dws5qn" path="res://assets/sprites/characters/characters.sprites/广播社老师/嘴巴/开口说话.tres" id="13_mo_spk"]
+[ext_resource type="Texture2D" uid="uid://1mjqxm5yyn00" path="res://assets/sprites/characters/characters.sprites/广播社老师/嘴巴/微笑.tres" id="14_mo_smi"]
+[ext_resource type="Texture2D" uid="uid://qn5oioig36uy" path="res://assets/sprites/characters/characters.sprites/广播社老师/附加/脸红.tres" id="15_blush"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_body"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_body")
+}],
+"loop": true,
+"name": &"工作服-待机",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebrow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_eb_sad")
+}],
+"loop": true,
+"name": &"悲伤",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eb_conf")
+}],
+"loop": true,
+"name": &"疑惑",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_eb_ser")
+}],
+"loop": true,
+"name": &"认真",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_eb_def")
+}],
+"loop": true,
+"name": &"默认",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyes"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_eye_sur")
+}],
+"loop": true,
+"name": &"吃惊",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_eye_sad")
+}],
+"loop": true,
+"name": &"悲伤",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_eye_hap")
+}],
+"loop": true,
+"name": &"眯眼开心",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_eye_def")
+}],
+"loop": true,
+"name": &"默认",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mouth"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_mo_clo")
+}],
+"loop": true,
+"name": &"不开口",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_mo_whi")
+}],
+"loop": true,
+"name": &"小声说话",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_mo_spk")
+}],
+"loop": true,
+"name": &"开口说话",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_mo_smi")
+}],
+"loop": true,
+"name": &"微笑",
+"speed": 5.0
+}]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7jrw0"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0jq61"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5ytx"]
+resource_local_to_scene = true
+atlas = SubResource("ViewportTexture_0jq61")
+region = Rect2(280, 10, 760, 830)
+
+[node name="广播社老师" unique_id=-366395692 instance=ExtResource("1_base")]
+speaking_mouth = "开口说话"
+
+[node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
+offset_left = -700.0
+offset_top = -1700.0
+offset_right = 600.0
+offset_bottom = 1900.0
+
+[node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
+size = Vector2i(1300, 3600)
+
+[node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
+position = Vector2(670, 1700)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_body")
+animation = &"工作服-待机"
+
+[node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
+sprite_frames = SubResource("SpriteFrames_ebrow")
+animation = &"悲伤"
+
+[node name="Eyes" parent="SubViewportContainer/SubViewport/Body" index="1" unique_id=493810032]
+sprite_frames = SubResource("SpriteFrames_eyes")
+animation = &"默认"
+
+[node name="Mouth" parent="SubViewportContainer/SubViewport/Body" index="2" unique_id=631882318]
+sprite_frames = SubResource("SpriteFrames_mouth")
+animation = &"开口说话"
+
+[node name="脸红" type="Sprite2D" parent="SubViewportContainer/SubViewport/Body/Optionals" parent_id_path=PackedInt32Array(703917704) index="0" unique_id=1926444703]
+visible = false
+texture = ExtResource("15_blush")
+
+[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+texture = SubResource("ViewportTexture_7jrw0")
+
+[node name="DialogueBox" parent="." index="3" unique_id=700312722]
+preview_texture = SubResource("AtlasTexture_s5ytx")
