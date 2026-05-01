@@ -15,13 +15,16 @@ var current_gallery_data: GalleryData
 var variation_index: int:
 	set(value):
 		variation_index = value
+		if not current_gallery_data:
+			return
 		variation_index = posmod(variation_index, current_gallery_data.variation.size())
 		gallery_view_variation.texture = current_gallery_data.variation[variation_index]
-		option_variation.option_name = str(variation_index + 1) + "/" + str(current_gallery_data.variation.size())
+		option_variation.option_name = current_gallery_data.variation[variation_index].resource_path.get_file().get_basename()
 
 var _active_card: GalleryCard
 
 func _ready() -> void:
+	gallery_view.visible = false
 	for gallery_data in Stage.gallery_data_pool:
 		var gallery_card: GalleryCard = Prefabs.gallery_card.instantiate()
 		gallery_card.texture_rect_base.texture = gallery_data.base
