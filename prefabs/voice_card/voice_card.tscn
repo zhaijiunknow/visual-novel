@@ -30,6 +30,7 @@ portrait_dict = Dictionary[int, Texture2D]({
 3: ExtResource("6_td440"),
 4: ExtResource("7_0h51m")
 })
+selected_character = 4
 texture_rect_portrait = NodePath("TextureRect_Portrait")
 label_number = NodePath("NumberContainer/Label_Number")
 label_text = NodePath("Label_Text")
@@ -41,13 +42,14 @@ target_object = NodePath("..")
 metadata/_custom_type_script = "uid://bonnjjxt11u8k"
 
 [node name="TextureRect_Portrait" type="TextureRect" parent="." unique_id=1202994218]
-layout_mode = 0
-offset_left = -10.0
-offset_top = 10.0
-offset_right = 421.0
-offset_bottom = 239.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_qdjdi")
+texture = ExtResource("7_0h51m")
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
 layout_mode = 0

@@ -36,6 +36,7 @@ portrait_dict = Dictionary[int, Texture2D]({
 3: ExtResource("5_n2gkn"),
 4: ExtResource("6_inet1")
 })
+selected_character = 4
 voice_card_pool = NodePath("ScrollContainer/VoiceCardPool")
 texture_rect_portrait = NodePath("VoiceView/TextureRect_Portrait")
 label_character_name = NodePath("VoiceView/Label_CharacterName")
@@ -52,16 +53,6 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1440.0
 mouse_filter = 0
-
-[node name="Preview" type="TextureRect" parent="." unique_id=706821442]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_n2gkn")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1148493183]
 layout_mode = 0
@@ -110,18 +101,15 @@ offset_right = 709.0
 offset_bottom = 176.5
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("6_e62bb")
+texture = ExtResource("6_inet1")
 
 [node name="ShadowFrame" type="TextureRect" parent="VoiceView" unique_id=1990874687]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 9.0
-offset_top = -249.0
-offset_right = 1321.0
-offset_bottom = -7.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("11_n2gkn")
 
 [node name="Deco" type="TextureRect" parent="VoiceView" unique_id=482067542]
@@ -129,19 +117,19 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 47.0
+offset_left = 48.0
 offset_top = -128.0
-offset_right = 189.0
+offset_right = 190.0
 offset_bottom = -40.0
 grow_vertical = 0
 texture = ExtResource("11_inet1")
 
 [node name="Label_CharacterName" type="Label" parent="VoiceView" unique_id=979630272]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 247.0
-offset_right = 239.0
-offset_bottom = 317.0
+offset_left = 96.0
+offset_top = 249.0
+offset_right = 240.0
+offset_bottom = 319.0
 theme = ExtResource("13_cs7ht")
 theme_override_colors/font_outline_color = Color(0.20784314, 0.2, 0.25490198, 1)
 theme_override_constants/shadow_outline_size = 0
@@ -176,10 +164,10 @@ uppercase = true
 
 [node name="Label_Text" type="Label" parent="VoiceView" unique_id=1650368569]
 layout_mode = 0
-offset_left = 555.0
-offset_top = 181.0
-offset_right = 1753.0
-offset_bottom = 304.0
+offset_left = 572.0
+offset_top = 180.0
+offset_right = 1770.0
+offset_bottom = 303.0
 theme = ExtResource("13_cs7ht")
 theme_override_font_sizes/font_size = 36
 text = "「文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容"
@@ -231,3 +219,14 @@ offset_right = 552.0
 offset_bottom = 335.0
 mouse_filter = 2
 texture = ExtResource("11_udoh6")
+
+[node name="Preview" type="TextureRect" parent="." unique_id=706821442]
+visible = false
+modulate = Color(1, 1, 1, 0.5254902)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_n2gkn")
