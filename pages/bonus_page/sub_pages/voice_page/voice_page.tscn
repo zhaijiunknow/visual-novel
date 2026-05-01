@@ -36,7 +36,6 @@ portrait_dict = Dictionary[int, Texture2D]({
 3: ExtResource("5_n2gkn"),
 4: ExtResource("6_inet1")
 })
-selected_character = 4
 voice_card_pool = NodePath("ScrollContainer/VoiceCardPool")
 texture_rect_portrait = NodePath("VoiceView/TextureRect_Portrait")
 label_character_name = NodePath("VoiceView/Label_CharacterName")
@@ -101,7 +100,7 @@ offset_right = 709.0
 offset_bottom = 176.5
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("6_inet1")
+texture = ExtResource("6_e62bb")
 
 [node name="ShadowFrame" type="TextureRect" parent="VoiceView" unique_id=1990874687]
 layout_mode = 1

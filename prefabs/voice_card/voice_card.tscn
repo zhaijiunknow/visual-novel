@@ -30,7 +30,6 @@ portrait_dict = Dictionary[int, Texture2D]({
 3: ExtResource("6_td440"),
 4: ExtResource("7_0h51m")
 })
-selected_character = 4
 texture_rect_portrait = NodePath("TextureRect_Portrait")
 label_number = NodePath("NumberContainer/Label_Number")
 label_text = NodePath("Label_Text")
@@ -49,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("7_0h51m")
+texture = ExtResource("3_qdjdi")
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
 layout_mode = 0

@@ -18,19 +18,13 @@
 [ext_resource type="Resource" uid="uid://3a3ymt10val6" path="res://data/backgrounds/09_广播社门口.tres" id="11_i3l8f"]
 [ext_resource type="Script" uid="uid://lqr1upuurtst" path="res://data/_models/gallery_data.gd" id="12_gallery"]
 [ext_resource type="Resource" uid="uid://b5x4vbvjby76n" path="res://data/backgrounds/10_天台.tres" id="12_njbww"]
-[ext_resource type="Resource" uid="uid://dtspa6wybftue" path="res://data/galleries/01_余洛琛房间.tres" id="13_g1"]
 [ext_resource type="Resource" uid="uid://besb6muoar2x4" path="res://data/galleries/02_余洛琛烤肉.tres" id="14_g2"]
-[ext_resource type="Resource" uid="uid://cen4assgpd65n" path="res://data/galleries/03_泳池.tres" id="15_g3"]
-[ext_resource type="Resource" uid="uid://cyaas0wqlx0de" path="res://data/galleries/04_余洛琛操场.tres" id="16_g4"]
-[ext_resource type="Resource" uid="uid://ccwti1wp1tp2p" path="res://data/galleries/05_余洛琛咖啡.tres" id="17_g5"]
-[ext_resource type="Resource" uid="uid://cwnhb4drwret8" path="res://data/galleries/06_林凌铃天台.tres" id="18_x40q6"]
-[ext_resource type="Resource" uid="uid://v6lrsyw7ym8h" path="res://data/galleries/07_林凌铃猫娘.tres" id="19_njbww"]
 
 [node name="Stage" type="Node" unique_id=1343709308 node_paths=PackedStringArray("character_pool")]
 script = ExtResource("1_ecxui")
 character_pool = NodePath("Characters")
 background_data_pool = Array[ExtResource("4_pf3bu")]([ExtResource("3_lcqe3"), ExtResource("5_cwi0x"), ExtResource("6_lrsvv"), ExtResource("6_mpeth"), ExtResource("7_17hvl"), ExtResource("8_j48a0"), ExtResource("10_lv745"), ExtResource("10_n6isd"), ExtResource("11_i3l8f"), ExtResource("12_njbww")])
-gallery_data_pool = Array[ExtResource("12_gallery")]([ExtResource("13_g1"), ExtResource("14_g2"), ExtResource("15_g3"), ExtResource("16_g4"), ExtResource("17_g5"), ExtResource("18_x40q6"), ExtResource("19_njbww")])
+gallery_data_pool = Array[ExtResource("12_gallery")]([ExtResource("14_g2")])
 
 [node name="Characters" type="Control" parent="." unique_id=1964690209]
 modulate = Color(1, 1, 1, 0)
