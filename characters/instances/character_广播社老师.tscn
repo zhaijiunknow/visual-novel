@@ -141,7 +141,7 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5ytx"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_0jq61")
-region = Rect2(280, 10, 760, 830)
+region = Rect2(280, 10, 873.1731, 1114.4692)
 
 [node name="广播社老师" unique_id=-366395692 instance=ExtResource("1_base")]
 speaking_mouth = "开口说话"
