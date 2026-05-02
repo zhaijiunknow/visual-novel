@@ -24,7 +24,7 @@ var current_page: CanvasLayer:
 func _ready() -> void:
 	switch_to_page(main_menu, false, false)
 
-func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass):
+func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass, transition_duration: float = 0.4):
 	if loading:
 		return
 	loading = true
@@ -33,7 +33,7 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 
 	# 叠加+在游戏中：无前置过渡；其他：画面变黑
 	if _transition and not use_alpha:
-		await fade(false)
+		await fade(false, transition_duration)
 
 	if not addition_mode:
 		hide_all_pages()
@@ -49,7 +49,7 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		if use_alpha:
 			await fade_alpha(page, true)
 		else:
-			await fade(true)
+			await fade(true, transition_duration)
 	else:
 		callable.call()
 

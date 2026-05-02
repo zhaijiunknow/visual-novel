@@ -39,7 +39,7 @@ func _ready() -> void:
 	audio_player_music.finished.connect(
 		func():
 			if _music_source == MusicSource.PLAYLIST:
-				track_index += 1
+				# Stage 音乐循环播放，不切下一首
 				play_track()
 	)
 	# AudioManager 独占 audio_player_voice.finished

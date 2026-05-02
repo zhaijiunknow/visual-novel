@@ -17,12 +17,18 @@
 [ext_resource type="Texture2D" uid="uid://beupyvqe73rww" path="res://assets/sprites/ui/ui.sprites/phone_back_hover.tres" id="15_31aqv"]
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
-[ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="17_pdylm"]
 [ext_resource type="Texture2D" uid="uid://brce1083bc8hr" path="res://assets/temp/phone_chat.jpg" id="20_pdylm"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aggdw"]
 bg_color = Color(1, 1, 1, 0.3137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7ami"]
+bg_color = Color(0.67058825, 0.65882355, 0.78039217, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyc1j"]
 bg_color = Color(1, 1, 1, 1)
@@ -289,7 +295,7 @@ offset_left = 288.0
 offset_top = 1256.0
 offset_right = 445.0
 offset_bottom = 1282.0
-theme_override_styles/panel = ExtResource("17_pdylm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_a7ami")
 
 [node name="Label" type="Label" parent="Phone/Chat/TypingTip" unique_id=1332661082]
 layout_mode = 2
