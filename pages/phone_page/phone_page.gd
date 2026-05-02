@@ -25,6 +25,8 @@ signal reply_selected(next_id: String)
 @export var label_time: Label
 @export var label_location: Label
 
+@export var typing_tip: PanelContainer
+
 @export var self_avatar: Texture2D
 
 @export var chat_data_pool: Array[ChatData]
@@ -166,6 +168,7 @@ func show_reply_options(responses) -> void:
 		reply_selection_pool.add_child(reply)
 		reply.setup(response.text, response.next_id)
 		reply.reply_clicked.connect(_on_reply_clicked)
+	typing_tip.modulate.a = 1.0
 
 
 func _on_reply_clicked(text: String, next_id: String) -> void:
@@ -272,6 +275,7 @@ func add_message(character_name: String, text: String) -> void:
 
 func clear_reply_selections() -> void:
 	Tools.clear_children(reply_selection_pool)
+	typing_tip.modulate.a = 0.0
 
 
 func clear_all() -> void:

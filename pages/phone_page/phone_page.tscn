@@ -37,7 +37,7 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name", "label_phone_date", "label_time", "label_location")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name", "label_phone_date", "label_time", "label_location", "typing_tip")]
 script = ExtResource("1_xkddf")
 home_page = NodePath("Phone/Home")
 messenger_page = NodePath("Phone/Messenger")
@@ -57,6 +57,7 @@ label_chat_name = NodePath("Phone/Chat/Label_Name")
 label_phone_date = NodePath("Phone/Home/Date/Label_PhoneDate")
 label_time = NodePath("Phone/Home/Date/Label_Time")
 label_location = NodePath("Phone/Home/Date/Label_Location")
+typing_tip = NodePath("Phone/Chat/TypingTip")
 self_avatar = ExtResource("20_phone")
 
 [node name="Background" type="Panel" parent="." unique_id=1289440326]
@@ -282,6 +283,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="TypingTip" type="PanelContainer" parent="Phone/Chat" unique_id=2112320852]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 288.0
 offset_top = 1256.0
@@ -387,6 +389,7 @@ theme_override_font_sizes/font_size = 14
 text = "在线"
 
 [node name="Preview" type="TextureRect" parent="." unique_id=265957975]
+visible = false
 modulate = Color(1, 1, 1, 0.3529412)
 anchors_preset = 15
 anchor_right = 1.0
