@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://beupyvqe73rww" path="res://assets/sprites/ui/ui.sprites/phone_back_hover.tres" id="15_31aqv"]
 [ext_resource type="Texture2D" uid="uid://0wkaqcowuu33" path="res://assets/ui_backgrounds/messenger_background.png" id="16_xkddf"]
 [ext_resource type="Texture2D" uid="uid://44is5nwcexeo" path="res://assets/temp/messenger.png" id="17_ctgom"]
+[ext_resource type="StyleBox" uid="uid://db6semkjsurbl" path="res://themes/style_boxes/bubble.tres" id="17_pdylm"]
 [ext_resource type="Texture2D" uid="uid://brce1083bc8hr" path="res://assets/temp/phone_chat.jpg" id="20_pdylm"]
 [ext_resource type="Texture2D" uid="uid://be820mvro5i1o" path="res://assets/sprites/ui/ui.sprites/头像/phone_portrait_zhouteng.tres" id="20_phone"]
 
@@ -248,7 +249,7 @@ layout_mode = 0
 offset_left = 59.0
 offset_top = 213.0
 offset_right = 690.0
-offset_bottom = 1261.0
+offset_bottom = 1220.0
 theme_override_constants/separation = 12
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Phone/Chat/VBoxContainer" unique_id=54785662]
@@ -279,6 +280,21 @@ texture_pressed = ExtResource("14_ctgom")
 texture_hover = ExtResource("15_31aqv")
 ignore_texture_size = true
 stretch_mode = 4
+
+[node name="TypingTip" type="PanelContainer" parent="Phone/Chat" unique_id=2112320852]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 1256.0
+offset_right = 445.0
+offset_bottom = 1282.0
+theme_override_styles/panel = ExtResource("17_pdylm")
+
+[node name="Label" type="Label" parent="Phone/Chat/TypingTip" unique_id=1332661082]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_22tcg")
+theme_override_font_sizes/font_size = 15
+text = "正在输入文本..."
+horizontal_alignment = 1
 
 [node name="Messenger" type="TextureRect" parent="Phone" unique_id=1104856562]
 visible = false
@@ -371,8 +387,7 @@ theme_override_font_sizes/font_size = 14
 text = "在线"
 
 [node name="Preview" type="TextureRect" parent="." unique_id=265957975]
-visible = false
-modulate = Color(1, 1, 1, 0.53333336)
+modulate = Color(1, 1, 1, 0.3529412)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
