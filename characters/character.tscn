@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://di7qgo24s04cu" path="res://characters/character.gd" id="1_e3kty"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="2_qqr4u"]
+[ext_resource type="Script" uid="uid://ctu0g0fewcfjy" path="res://prefabs/components/hide_on_ready.gd" id="3_mdkfl"]
 [ext_resource type="PackedScene" uid="uid://cutrq7kinwuti" path="res://prefabs/dialogue_box/dialogue_box.tscn" id="5_b1u1o"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qqr4u"]
 viewport_path = NodePath("SubViewportContainer/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3fwhk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mdkfl"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mdkfl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1u1o"]
 resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_3fwhk")
+atlas = SubResource("ViewportTexture_mdkfl")
 
 [node name="Character" type="Control" unique_id=809289517 node_paths=PackedStringArray("sv_container", "subviewport", "story_model", "body_parts", "optionals_pool", "dialogue_box")]
 layout_mode = 3
@@ -43,6 +44,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_qqr4u")
+
+[node name="HideOnReady" type="Node" parent="CanvasLayer" unique_id=1398330184]
+script = ExtResource("3_mdkfl")
+metadata/_custom_type_script = "uid://ctu0g0fewcfjy"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2063694038]
 layout_mode = 0
@@ -82,10 +87,18 @@ offset_top = -1365.0
 offset_right = 545.0
 texture = SubResource("ViewportTexture_qqr4u")
 
+[node name="HideOnReady" type="Node" parent="StoryModel" unique_id=1090590842]
+script = ExtResource("3_mdkfl")
+metadata/_custom_type_script = "uid://ctu0g0fewcfjy"
+
 [node name="DialogueBox" parent="." unique_id=700312722 instance=ExtResource("5_b1u1o")]
 layout_mode = 1
 offset_left = 414.0
 offset_top = -169.0
 offset_right = 414.0
 offset_bottom = -169.0
-preview_texture = SubResource("AtlasTexture_mdkfl")
+preview_texture = SubResource("AtlasTexture_b1u1o")
+
+[node name="HideOnReady" type="Node" parent="DialogueBox" unique_id=1864948677]
+script = ExtResource("3_mdkfl")
+metadata/_custom_type_script = "uid://ctu0g0fewcfjy"

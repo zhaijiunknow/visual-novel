@@ -196,22 +196,6 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_hebva"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_plist")
-region = Rect2(246.98375, 62.75141, 629.57275, 634.2882)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_kp7wi"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v55vx"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_kp7wi")
-region = Rect2(210.5488, 100.175255, 731.43567, 640.6547)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_wjjxb"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqc6a"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_wjjxb")
 region = Rect2(266.75812, 62.713425, 709.0987, 818.1888)
 
 [node name="辉夜奏" unique_id=961663325 instance=ExtResource("1_mvhsb")]
@@ -247,22 +231,14 @@ animation = &"说话"
 visible = false
 texture = ExtResource("18_mchy6")
 
-[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+[node name="StoryModel" parent="." index="2" unique_id=816872337]
+visible = true
+offset_left = -63.0
+offset_right = -63.0
+pivot_offset = Vector2(113, -4)
+
+[node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
 texture = SubResource("ViewportTexture_kiw3g")
 
-[node name="CharacterSelection" parent="." index="3" unique_id=2115129008]
-offset_left = 470.0
-offset_top = -1155.0001
-offset_right = 588.0
-offset_bottom = -1037.0001
+[node name="DialogueBox" parent="." index="3" unique_id=700312722]
 preview_texture = SubResource("AtlasTexture_hebva")
-
-[node name="VoiceCard" parent="." index="4" unique_id=1287008254]
-offset_left = 379.0
-offset_top = -967.0
-offset_right = 1262.0
-offset_bottom = -714.0
-preview_texture = SubResource("AtlasTexture_v55vx")
-
-[node name="DialogueBox" parent="." index="5" unique_id=700312722]
-preview_texture = SubResource("AtlasTexture_rqc6a")

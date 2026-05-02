@@ -262,7 +262,15 @@ animation = &"笑开口"
 visible = false
 texture = ExtResource("21_hdqmv")
 
-[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+[node name="StoryModel" parent="." index="2" unique_id=816872337]
+visible = true
+offset_left = -117.0
+offset_right = -117.0
+
+[node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
+offset_left = -565.0
+offset_right = 774.0
+offset_bottom = 1348.0
 texture = SubResource("ViewportTexture_r613x")
 
 [node name="DialogueBox" parent="." index="3" unique_id=700312722]

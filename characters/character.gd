@@ -45,7 +45,6 @@ var bonus_part_index_dict: Dictionary[String, Dictionary]
 
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
-	dialogue_box.visible = false
 	
 	set_process_input(movable)
 	subviewport.render_target_update_mode = SubViewport.UPDATE_ONCE
@@ -146,24 +145,47 @@ func set_character_data(character_data: CharacterData) -> void:
 
 #region Dialogue Commands
 
+#─── 角色站位分配 ───
+
+const POSITION_SLOTS := ["LeftMost", "Left", "Center", "Right", "RightMost"]
+
+## 返回角色数量对应的槽位索引
+static func _slot_indices_for_count(count: int) -> Array:
+	match count:
+		1: return [2]           # Center
+		2: return [1, 3]         # Left, Right
+		3: return [1, 2, 3]      # Left, Center, Right
+		4: return [0, 1, 3, 4]   # LeftMost, Left, Right, RightMost
+		_: return [0, 1, 2, 3, 4] # 5 或更多：全部 5 槽
+
+## 根据当前角色数量，把 character_image_pool 里的所有子节点分配到对应槽位
+func _redistribute_characters(new_image: Control = null) -> void:
+	var pool = Game.stage_page.character_image_pool
+	var children = pool.get_children()
+	var count = children.size()
+	if count == 0:
+		return
+	var indices = _slot_indices_for_count(count)
+	for i in count:
+		var image: Control = children[i]
+		var slot_name = POSITION_SLOTS[indices[i]]
+		var target_pos: Vector2 = Game.stage_page.get_position_by_name(slot_name)
+		# 补偿 story_model 内部 TextureRect_Model 的偏移，让视觉中心对准槽位
+		var tex_rect: TextureRect = image.get_node_or_null("TextureRect_Model") as TextureRect
+		var center_off_x: float = (tex_rect.offset_left + tex_rect.offset_right) / 2.0 if tex_rect else 0.0
+		var adjusted_pos := target_pos - Vector2(center_off_x, 0)
+		if image == new_image:
+			image.global_position = adjusted_pos
+		else:
+			create_tween().tween_property(image, "global_position", adjusted_pos, 0.3)
+
 func FadeIn(position_name: String, duration: float = 0.5) -> void:
 	current_position = position_name
 	character_image = story_model.duplicate()
 	Game.stage_page.character_image_pool.add_child(character_image)
-	var character_count = Game.stage_page.character_image_pool.get_child_count()
-	var width = Game.stage_page.character_image_pool.size.x
-	var portion_width = width / character_count
-	var offset_x = portion_width / 2
-	for image: Control in Game.stage_page.character_image_pool.get_children():
-		var position_x = image.get_index() * portion_width + offset_x
-		if image == character_image:
-			image.position = Vector2(position_x, 0)
-		else:
-			create_tween().tween_property(image, "position:x", position_x, 0.3)
+	_redistribute_characters(character_image)
 	character_image.show()
 	character_image.modulate.a = 0
-	
-	#character_image.global_position = Game.stage_page.get_position_by_name(position_name)
 	await create_tween().tween_property(character_image, "modulate:a", 1, duration).finished
 
 func FadeOut(duration: float = 0.5) -> void:
@@ -171,6 +193,8 @@ func FadeOut(duration: float = 0.5) -> void:
 	current_position = ""
 	await create_tween().tween_property(character_image, "modulate:a", 0, duration).finished
 	character_image.queue_free()
+	await get_tree().process_frame
+	_redistribute_characters()
 
 func MoveTo(position_name: String, duration: float = 0.5) -> void:
 	current_position = position_name

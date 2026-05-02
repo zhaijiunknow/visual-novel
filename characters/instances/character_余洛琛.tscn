@@ -198,22 +198,6 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_gfdhf"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_2s1x3")
-region = Rect2(277.85126, -32.916084, 620.6973, 666.01056)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_iajx4"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gv6fb"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_iajx4")
-region = Rect2(199.81189, 59.661407, 759.5001, 672.1576)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_6x227"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5es0l"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_6x227")
 region = Rect2(194.94196, 46.457703, 970.89386, 1009.7415)
 
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
@@ -259,22 +243,19 @@ visible = false
 texture = ExtResource("23_2ajgh")
 
 [node name="StoryModel" parent="." index="2" unique_id=816872337]
-offset_left = 234.0
+visible = true
+offset_left = 57.0
 offset_top = 2.0
-offset_right = 234.0
+offset_right = 57.0
 offset_bottom = 2.0
+pivot_offset = Vector2(-104, -9)
 
 [node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
 offset_left = -686.0
-offset_right = 318.0
-offset_bottom = 772.0
+offset_right = 644.0
+offset_bottom = 1705.0
+pivot_offset = Vector2(594, 1362)
 texture = SubResource("ViewportTexture_lpavb")
 
-[node name="CharacterSelection" parent="." index="3" unique_id=2115129008]
+[node name="DialogueBox" parent="." index="3" unique_id=700312722]
 preview_texture = SubResource("AtlasTexture_gfdhf")
-
-[node name="VoiceCard" parent="." index="4" unique_id=1287008254]
-preview_texture = SubResource("AtlasTexture_gv6fb")
-
-[node name="DialogueBox" parent="." index="5" unique_id=700312722]
-preview_texture = SubResource("AtlasTexture_5es0l")

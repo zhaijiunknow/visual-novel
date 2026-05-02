@@ -287,22 +287,6 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_rh8d2"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_ieyld")
-region = Rect2(372.25937, 51.197487, 596.56213, 575.34094)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_de42s"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5h074"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_de42s")
-region = Rect2(359.36597, 91.44023, 650.7939, 603.6349)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_1jijr"]
-viewport_path = NodePath("../SubViewportContainer/SubViewport")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_20a5s"]
-resource_local_to_scene = true
-atlas = SubResource("ViewportTexture_1jijr")
 region = Rect2(296.5786, 66.561516, 831.69165, 827.0984)
 
 [node name="林凌铃" unique_id=809289517 instance=ExtResource("1_ivjag")]
@@ -346,14 +330,16 @@ texture = ExtResource("32_ieyld")
 visible = false
 texture = ExtResource("33_rh8d2")
 
-[node name="TextureRect_Model" parent="StoryModel" parent_id_path=PackedInt32Array(816872337) index="0" unique_id=1204109800]
+[node name="StoryModel" parent="." index="2" unique_id=816872337]
+visible = true
+pivot_offset = Vector2(-29, -6)
+
+[node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
+offset_left = -694.0
+offset_right = 593.0
+offset_bottom = 1447.0
+pivot_offset = Vector2(624, 1372)
 texture = SubResource("ViewportTexture_3ptuv")
 
-[node name="CharacterSelection" parent="." index="3" unique_id=2115129008]
+[node name="DialogueBox" parent="." index="3" unique_id=700312722]
 preview_texture = SubResource("AtlasTexture_rh8d2")
-
-[node name="VoiceCard" parent="." index="4" unique_id=1287008254]
-preview_texture = SubResource("AtlasTexture_5h074")
-
-[node name="DialogueBox" parent="." index="5" unique_id=700312722]
-preview_texture = SubResource("AtlasTexture_20a5s")
