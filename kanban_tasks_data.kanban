@@ -11,7 +11,8 @@
 			"uuid": "f23ef9d7-c3c4-4aff-aa8e-8ac2594f3a64",
 			"title": "Todo",
 			"tasks": [
-				"bea9aad7-f4ce-4ab7-8198-c56b04cfaebb"
+				"def2ee2c-314f-4962-92de-476b34ffac3e",
+				"190536e8-969a-4f7e-b9c5-93354030be79"
 			]
 		},
 		{
@@ -22,75 +23,13 @@
 		{
 			"uuid": "5478cbd5-7192-4b2d-b425-6af96c5b5c87",
 			"title": "Done",
-			"tasks": [
-				"b6694a93-c883-4cc7-b17f-7efb426cbe69",
-				"c1acf6b6-3107-4cb0-a021-9b41e87d4a8b",
-				"fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-				"9411d1ef-c32f-4968-b993-0d51a2eb6ea1",
-				"9087e660-b667-4d16-909b-39c3d04ae301",
-				"64ae94fa-ac38-4f54-802b-781dc7eed6ab",
-				"d925061f-0f29-42b9-9e94-25348b10d064",
-				"a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
-				"d179b823-c983-48cc-864b-5d999ebb06d8",
-				"bd8565b3-d690-4442-9d26-2e6976dc7ceb",
-				"e133c4c5-b006-4229-89ba-49734b22bbb2",
-				"45fec149-d376-499e-b2d5-5b3cc0a35fe6",
-				"c4e4faa7-ac95-4a95-b423-643849c7315f",
-				"1dac4780-c71f-4975-8bf9-dcf326337c3e",
-				"1801c59e-ef26-46c4-942c-2e961d50a345",
-				"17372239-7630-48d2-a6da-0c210e1948b9",
-				"c53843a0-7e62-4487-a642-fe280df6c7e6",
-				"cf3c6071-e392-4d28-a09f-f3a76585542c",
-				"a681b916-d0b1-46db-b09a-a8eb60d1aa69"
-			]
+			"tasks": []
 		}
 	],
 	"tasks": [
 		{
 			"uuid": "11f56aae-3f51-4680-9ba3-5716191ace5a",
 			"title": "New task",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "d179b823-c983-48cc-864b-5d999ebb06d8",
-			"title": "日期不显示",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "b6694a93-c883-4cc7-b17f-7efb426cbe69",
-			"title": "读档问题",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "45fec149-d376-499e-b2d5-5b3cc0a35fe6",
-			"title": "退出必须Reset场景",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "a6ce3afe-514e-4bd2-bee8-3f93b51778ad",
-			"title": "快进条件",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "cf3c6071-e392-4d28-a09f-f3a76585542c",
-			"title": "灰屏问题",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "c53843a0-7e62-4487-a642-fe280df6c7e6",
-			"title": "CanvasLayer的显示随父级",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
@@ -103,92 +42,15 @@
 			"steps": []
 		},
 		{
-			"uuid": "d925061f-0f29-42b9-9e94-25348b10d064",
-			"title": "角色大小",
+			"uuid": "def2ee2c-314f-4962-92de-476b34ffac3e",
+			"title": "音乐播放问题",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
 		},
 		{
-			"uuid": "fcaf2002-394b-4fa8-a7df-6358a7972a6a",
-			"title": "更新立绘鉴赏文字",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "17372239-7630-48d2-a6da-0c210e1948b9",
-			"title": "演出按钮",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "9087e660-b667-4d16-909b-39c3d04ae301",
-			"title": "全局静音包括语音",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "64ae94fa-ac38-4f54-802b-781dc7eed6ab",
-			"title": "DialogueButton Hint",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "c1acf6b6-3107-4cb0-a021-9b41e87d4a8b",
-			"title": "语音播放音乐要暂停",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "bd8565b3-d690-4442-9d26-2e6976dc7ceb",
-			"title": "城挑了挑眉",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "e133c4c5-b006-4229-89ba-49734b22bbb2",
-			"title": "播放BGM",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "1dac4780-c71f-4975-8bf9-dcf326337c3e",
-			"title": "必须弄个全局的signal来更新DialogueBox的语音收藏按钮",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "9411d1ef-c32f-4968-b993-0d51a2eb6ea1",
-			"title": "读档卡住",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "c4e4faa7-ac95-4a95-b423-643849c7315f",
-			"title": "从StagePage回到主菜单没有播放音乐",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "bea9aad7-f4ce-4ab7-8198-c56b04cfaebb",
-			"title": "美化手机流程",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "1801c59e-ef26-46c4-942c-2e961d50a345",
-			"title": "播放问题",
+			"uuid": "190536e8-969a-4f7e-b9c5-93354030be79",
+			"title": "开始游戏要等待",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []
