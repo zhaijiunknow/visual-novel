@@ -17,9 +17,9 @@ var variation_index: int:
 		variation_index = value
 		if not current_gallery_data:
 			return
-		variation_index = posmod(variation_index, current_gallery_data.variation.size())
-		gallery_view_variation.texture = current_gallery_data.variation[variation_index]
-		option_variation.option_name = current_gallery_data.variation[variation_index].resource_path.get_file().get_basename()
+		variation_index = posmod(variation_index, current_gallery_data.cg_variations.size())
+		gallery_view_variation.texture = current_gallery_data.cg_variations[variation_index]
+		option_variation.option_name = current_gallery_data.cg_variations[variation_index].resource_path.get_file().get_basename()
 
 var _active_card: GalleryCard
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 	for gallery_data in Stage.gallery_data_pool:
 		var gallery_card: GalleryCard = Prefabs.gallery_card.instantiate()
 		gallery_card.texture_rect_base.texture = gallery_data.base
-		gallery_card.texture_rect_variation.texture = gallery_data.variation[0]
+		gallery_card.texture_rect_variation.texture = gallery_data.cg_variations[0]
 		gallery_card_pool.add_child(gallery_card)
 		gallery_card.pressed.connect(open_gallery_view.bind(gallery_card, gallery_data))
 

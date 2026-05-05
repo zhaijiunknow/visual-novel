@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>7.12.0</string>
+        <string>8.0.0</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -194,9 +194,15 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../gallery/CG2/CG2-享受食物（无眼镜）.png</key>
+            <key type="filename">../gallery/CG2/CG2-害羞说话（无眼镜）.png</key>
+            <key type="filename">../gallery/CG2/CG2-有问题吗？.png</key>
+            <key type="filename">../gallery/CG2/CG2-正常说话.png</key>
+            <key type="filename">../gallery/CG2/CG2-略感惊讶.png</key>
+            <key type="filename">../gallery/CG2/CG2-闭眼享受.png</key>
+            <key type="filename">../gallery/CG2/CG2-默认.png</key>
             <key type="filename">../gallery/CG2/品鉴烤肉.png</key>
             <key type="filename">../gallery/CG2/平静微笑.png</key>
-            <key type="filename">../gallery/CG2/平静微笑_base.jpg</key>
             <key type="filename">../gallery/CG2/无奈诉说.png</key>
             <key type="filename">../gallery/CG2/略微羞涩.png</key>
             <key type="filename">../gallery/CG2/略感吃惊.png</key>
