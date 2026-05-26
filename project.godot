@@ -32,10 +32,6 @@ run/main_scene="uid://nixyr2xle2qo"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout="uid://unx81pwnxsyo"
-
 [autoload]
 
 Main="*res://autoloads/main/main.tscn"

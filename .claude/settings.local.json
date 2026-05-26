@@ -110,7 +110,8 @@
       "Bash(du -sh data/*)",
       "Bash(xargs ls:*)",
       "Bash(ls -lh characters/instances/*.tscn)",
-      "Bash(find assets/sprites -name *.atlas -o -name *atlas*)"
+      "Bash(find assets/sprites -name *.atlas -o -name *atlas*)",
+      "Bash(cp *)"
     ]
   }
 }
