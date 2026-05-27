@@ -3,15 +3,17 @@ import requests
 import os
 import json
 import sys
-from dotenv import load_dotenv
+from pathlib import Path
 from feishu_auth import get_tenant_token, APP_TOKEN
 
-load_dotenv("feishu.env")
 sys.stdout.reconfigure(encoding='utf-8')
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
 
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"
 BASE_URL = "https://open.feishu.cn/open-apis"
-VOICE_DIR = "/mnt/c/Users/kotta/Documents/Godot/visual-novel/assets/voice/余洛琛/new"
+VOICE_DIR = REPO_ROOT / "assets" / "voice" / "余洛琛" / "new"
 
 def search_all_records(token):
     """分页获取演出表所有记录"""

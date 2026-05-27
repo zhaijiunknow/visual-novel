@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-backgrounds_dir = Path("C:/Users/kotta/Documents/Godot/visual-novel/data/backgrounds")
+backgrounds_dir = Path("E:/Unity/visual-novel/data/backgrounds")
 tres_files = list(backgrounds_dir.glob("*.tres"))
 
 print(f"找到 {len(tres_files)} 个 .tres 文件")

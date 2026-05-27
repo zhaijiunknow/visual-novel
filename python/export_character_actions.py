@@ -3,18 +3,15 @@ import os
 import sys
 import io
 from pathlib import Path
-from dotenv import load_dotenv
+from feishu_auth import get_tenant_token, APP_TOKEN
 
 sys.stdout.reconfigure(encoding='utf-8')
-load_dotenv(Path(__file__).with_name("feishu.env"))
 
 # 设置 UTF-8 编码输出
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-# 飞书配置
-APP_ID = os.getenv("APP_ID")
-APP_SECRET = os.getenv("APP_SECRET")
-APP_TOKEN = os.getenv("APP_TOKEN")
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
 
 # 数据表ID
 ACTION_TABLE_ID = "tblfJaAJJurvAjqO"  # 动作数据表
@@ -25,15 +22,7 @@ CHARACTER_NAME_FIELD = "名称"  # 角色数据表中的角色名
 LINK_CHARACTER_FIELD = "角色"  # 动作数据表中关联角色的字段
 
 # 角色目录
-CHARACTERS_DIR = r"E:\Unity\visual-novel\characters\instances"
-
-def get_tenant_token():
-    """获取 tenant_access_token"""
-    resp = requests.post(
-        "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
-        json={"app_id": APP_ID, "app_secret": APP_SECRET}
-    )
-    return resp.json()["tenant_access_token"]
+CHARACTERS_DIR = REPO_ROOT / "characters" / "instances"
 
 def ensure_character_exists(token, character_name):
     """确保角色存在于角色数据表中，如果不存在则创建"""

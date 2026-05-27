@@ -7,15 +7,16 @@ from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 
 BEIJING_TZ = timezone(timedelta(hours=8))
-from dotenv import load_dotenv
 from feishu_auth import get_tenant_token, APP_TOKEN
 
-load_dotenv(Path(__file__).with_name("feishu.env"))
 sys.stdout.reconfigure(encoding='utf-8')
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
 
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"  # 演出表
 BASE_URL = "https://open.feishu.cn/open-apis"
-OUTPUT_DIR = r"E:\Unity\visual-novel\dialogue_manager\dialogues"
+OUTPUT_DIR = REPO_ROOT / "dialogue_manager" / "dialogues"
 
 
 def get_all_records(token):

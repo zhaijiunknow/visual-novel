@@ -111,7 +111,11 @@
       "Bash(xargs ls:*)",
       "Bash(ls -lh characters/instances/*.tscn)",
       "Bash(find assets/sprites -name *.atlas -o -name *atlas*)",
-      "Bash(cp *)"
+      "Bash(cp *)",
+      "Bash(python -m py_compile \"e:/Unity/visual-novel/python/export_dialogue.py\")",
+      "Bash(python \"e:/Unity/visual-novel/python/export_dialogue.py\" --dump)",
+      "Bash(python \"e:/Unity/visual-novel/python/dump_performance_table.py\")",
+      "Bash(python -m py_compile \"e:/Unity/visual-novel/python/export_dialogue.py\" \"e:/Unity/visual-novel/python/export_character_actions.py\" \"e:/Unity/visual-novel/python/update_backgrounds_in_feishu.py\" \"e:/Unity/visual-novel/python/upload_backgrounds_to_feishu.py\" \"e:/Unity/visual-novel/python/update_bodies.py\" \"e:/Unity/visual-novel/python/update_voices.py\" \"e:/Unity/visual-novel/python/update_matched_voices.py\" \"e:/Unity/visual-novel/python/fetch_for_matching.py\" \"e:/Unity/visual-novel/python/dump_performance_table.py\")"
     ]
   }
 }

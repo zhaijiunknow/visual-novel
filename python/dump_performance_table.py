@@ -2,15 +2,17 @@
 import json
 import sys
 import os
-from dotenv import load_dotenv
+from pathlib import Path
 from feishu_auth import get_tenant_token, APP_TOKEN
 from export_dialogue import get_all_records
 
-load_dotenv("feishu.env")
 sys.stdout.reconfigure(encoding="utf-8")
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
+
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"
-OUTPUT_PATH = os.path.join("data_examples", "performance_records.json")
+OUTPUT_PATH = REPO_ROOT / "data_examples" / "performance_records.json"
 
 
 def main():
@@ -19,6 +21,7 @@ def main():
     records = get_all_records(token)
     print(f"共 {len(records)} 条记录")
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump({"total": len(records), "items": records}, f, ensure_ascii=False, indent=2)
 

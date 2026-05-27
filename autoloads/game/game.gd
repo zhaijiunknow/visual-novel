@@ -118,16 +118,20 @@ func fade(fade_in: bool, duration: float = 0.4) -> void:
 func fade_alpha(page: CanvasLayer, fade_in: bool) -> void:
 	var from_a = 0.0 if fade_in else 1.0
 	var to_a = 1.0 if fade_in else 0.0
-	for child: CanvasItem in page.get_children():
+	var canvas_children: Array[CanvasItem] = []
+	for child in page.get_children():
+		if child is CanvasItem:
+			canvas_children.append(child)
+	for child in canvas_children:
 		child.modulate.a = from_a
 	var tween = create_tween()
 	tween.set_parallel(true)
-	for child: CanvasItem in page.get_children():
+	for child in canvas_children:
 		tween.tween_property(child, "modulate:a", to_a, 0.3)
 	await tween.finished
 	# 淡出后重置 alpha，避免下次非 alpha 方式打开时子节点不可见
 	if not fade_in:
-		for child: CanvasItem in page.get_children():
+		for child in canvas_children:
 			child.modulate.a = 1.0
 
 func transition(callable: Callable):

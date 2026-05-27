@@ -12,12 +12,10 @@ import re
 import sys
 import io
 from pathlib import Path
-from dotenv import load_dotenv
 from feishu_auth import get_tenant_token, APP_TOKEN
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-load_dotenv("feishu.env")
 
 TABLE_ID = "tblVOoD2P6EoOHYe"
 BASE_URL = "https://open.feishu.cn/open-apis"

@@ -3,15 +3,17 @@ import os
 import sys
 import io
 import json
-from dotenv import load_dotenv
+from pathlib import Path
 from pydash import _
-from feishu_auth import get_tenant_token
+from feishu_auth import get_tenant_token, APP_TOKEN
 
 sys.stdout.reconfigure(encoding='utf-8')
-load_dotenv("feishu.env")
 
 # 设置 UTF-8 编码输出
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
 
 # 数据表ID
 BODY_TABLE_ID = "tblfJaAJJurvAjqO"  # 动作数据表
@@ -22,7 +24,7 @@ CHARACTER_NAME_FIELD = "名称"  # 角色数据表中的角色名
 LINK_CHARACTER_FIELD = "角色"  # 动作数据表中关联角色的字段
 
 # 角色目录
-CHARACTERS_DIR = r"C:\Users\kotta\Documents\Godot\visual-novel\characters\instances"
+CHARACTERS_DIR = REPO_ROOT / "characters" / "instances"
 
 def ensure_character_exists(token, character_name):
     """确保角色存在于角色数据表中，如果不存在则创建"""
