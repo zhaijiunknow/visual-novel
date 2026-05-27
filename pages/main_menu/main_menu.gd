@@ -20,6 +20,7 @@ func _ready() -> void:
 			var interact_sound := button_start.get_node("InteractSound") as InteractSound
 			var sound_len: float = interact_sound.click_sound.get_length() if interact_sound and interact_sound.click_sound else 0.4
 			var fade_dur: float = sound_len / 2.0
+			Game.book_page.reset_notebook()
 			Game.switch_to_page(Game.stage_page, true, false, Stage.start, fade_dur)
 	)
 	button_load.clicked.connect(

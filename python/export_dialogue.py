@@ -106,6 +106,7 @@ def record_to_data(fields):
         optionals = []
 
     return {
+        "record_id": fields.get("ID", ""),
         "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
         "is_option": fields.get("选项", False),
@@ -118,6 +119,7 @@ def record_to_data(fields):
         "expression": extract_field(fields, "表情"),
         "optionals": optionals,
         "phone": fields.get("手机", False),
+        "book": fields.get("奇迹书", False),
         "delay": extract_field(fields, "延迟"),
         "bg_name": extract_field(fields, "场景"),
         "time_period": extract_field(fields, "时段"),
@@ -158,6 +160,8 @@ def build_tags(data):
         tags.append(f"#延迟={data['delay']}")
     if data["phone"]:
         tags.append("#手机")
+    if data["book"]:
+        tags.append("#奇迹书")
     if data["voice"]:
         tags.append(f"#语音={data['voice']}")
     if data["nickname"]:
@@ -259,6 +263,27 @@ def generate_do_commands(data, state, lines, tabs):
 
 
 
+def _book_speaker_and_side(data):
+    character = data["character"]
+    if character == "周腾":
+        return "R", "right"
+    if character in ["余洛琛", "L"]:
+        return "L", "left"
+    return character if character else "L", "left"
+
+
+def _close_book_if_needed(state, lines, tabs=""):
+    if state.get("book_mode", False):
+        lines.append(f"{tabs}$> CloseBook()")
+        state["book_mode"] = False
+
+
+def _open_book_if_needed(state, lines, tabs=""):
+    if not state.get("book_mode", False):
+        lines.append(f"{tabs}$> OpenBook()")
+        state["book_mode"] = True
+
+
 # ─── 递归遍历 ───
 
 def walk(record, children_map, indent, lines, state):
@@ -274,11 +299,21 @@ def walk(record, children_map, indent, lines, state):
         return
 
     if data["is_option"]:
+        _close_book_if_needed(state, lines, tabs)
         # 选项行 → 生成 "- 选项文本"
         lines.append(f"{tabs}- {data['text']}")
         for child in children:
             walk(child, children_map, indent + 1, lines, state)
+    elif data["book"]:
+        generate_do_commands(data, state, lines, tabs)
+        _open_book_if_needed(state, lines, tabs)
+        dialogue_line = build_dialogue_line(data)
+        if dialogue_line:
+            lines.append(f"{tabs}{dialogue_line}")
+        for child in children:
+            walk(child, children_map, indent, lines, state)
     else:
+        _close_book_if_needed(state, lines, tabs)
         # 普通对话行：先生成 do 指令，再生成对话
         generate_do_commands(data, state, lines, tabs)
         dialogue_line = build_dialogue_line(data)
@@ -299,6 +334,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         "time_period": "",
         "date_key": "",
         "phone_mode": False,
+        "book_mode": False,
         "music": "",
     }
 
@@ -315,6 +351,7 @@ def convert_chapter(roots, children_map, chapter_filter):
     if state["phone_mode"]:
         lines.append("$> wait(2)")
         lines.append("$> HidePhone()")
+    _close_book_if_needed(state, lines)
 
     lines.append("=> END")
     return "\n".join(lines)

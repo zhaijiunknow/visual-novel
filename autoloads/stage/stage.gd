@@ -268,4 +268,14 @@ func ShowPhone() -> void:
 func HidePhone() -> void:
 	await Game.phone_page.close()
 
+func OpenBook() -> void:
+	await Game.switch_to_page(Game.book_page, true, true)
+
+func CloseBook() -> void:
+	if Game.book_page.visible:
+		await Game.go_back()
+
+func WriteBook(entry_id: String, speaker: String, text: String, side: String = "", tags: Array[String] = []) -> void:
+	await Game.book_page.append_entry(entry_id, speaker, text, side, tags)
+
 #endregion
