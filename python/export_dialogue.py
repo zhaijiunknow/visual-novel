@@ -2,6 +2,7 @@ import requests
 import os
 import sys
 import json
+from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
 
@@ -9,12 +10,12 @@ BEIJING_TZ = timezone(timedelta(hours=8))
 from dotenv import load_dotenv
 from feishu_auth import get_tenant_token, APP_TOKEN
 
-load_dotenv("feishu.env")
+load_dotenv(Path(__file__).with_name("feishu.env"))
 sys.stdout.reconfigure(encoding='utf-8')
 
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"  # 演出表
 BASE_URL = "https://open.feishu.cn/open-apis"
-OUTPUT_DIR = r"C:\Users\kotta\Documents\Godot\visual-novel\dialogue_manager\dialogues"
+OUTPUT_DIR = r"E:\Unity\visual-novel\dialogue_manager\dialogues"
 
 
 def get_all_records(token):

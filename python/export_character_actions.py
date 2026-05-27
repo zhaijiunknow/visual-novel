@@ -2,10 +2,11 @@ import requests
 import os
 import sys
 import io
+from pathlib import Path
 from dotenv import load_dotenv
 
 sys.stdout.reconfigure(encoding='utf-8')
-load_dotenv("feishu.env")
+load_dotenv(Path(__file__).with_name("feishu.env"))
 
 # 设置 UTF-8 编码输出
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -24,7 +25,7 @@ CHARACTER_NAME_FIELD = "名称"  # 角色数据表中的角色名
 LINK_CHARACTER_FIELD = "角色"  # 动作数据表中关联角色的字段
 
 # 角色目录
-CHARACTERS_DIR = r"C:\Users\kotta\Documents\Godot\visual-novel\characters\instances"
+CHARACTERS_DIR = r"E:\Unity\visual-novel\characters\instances"
 
 def get_tenant_token():
     """获取 tenant_access_token"""

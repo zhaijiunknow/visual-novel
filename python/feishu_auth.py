@@ -1,9 +1,10 @@
 import requests
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from pydash import _
 
-load_dotenv("feishu.env")
+load_dotenv(Path(__file__).with_name("feishu.env"))
 
 # 飞书配置
 APP_ID = os.getenv("APP_ID")
