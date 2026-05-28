@@ -176,13 +176,16 @@ func process_phone_line() -> void:
 
 func process_book_line() -> void:
 	var side := "right" if dialogue_line.character == "周腾" else "left"
-	await Game.book_page.append_entry(
+	await Game.book_page.append_story_entry(
 		str(dialogue_line.id),
 		dialogue_line.character,
 		dialogue_line.text,
 		side,
 		[]
 	)
+	var next_line: DialogueLine = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
+	if next_line and "奇迹书" not in next_line.tags:
+		await Game.book_page.wait_for_story_close()
 	if dialogue_line.responses:
 		show_dialogue_responses()
 

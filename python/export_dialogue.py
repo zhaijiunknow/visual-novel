@@ -274,7 +274,6 @@ def _book_speaker_and_side(data):
 
 def _close_book_if_needed(state, lines, tabs=""):
     if state.get("book_mode", False):
-        lines.append(f"{tabs}$> CloseBook()")
         state["book_mode"] = False
 
 

@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
 
-[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "audio_player")]
+[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "back_button", "audio_player")]
 script = ExtResource("1_s06xr")
 dialogue_label = NodePath("PrefabContainer/DialogueLabel")
 vbox_page = NodePath("VBoxContainer_Page")
@@ -23,6 +23,7 @@ button_previous = NodePath("Buttons/TextureButton_Previous")
 button_next = NodePath("Buttons/TextureButton_Next")
 paragraph_container = NodePath("PrefabContainer/ParagraphContainer")
 buttons = NodePath("Buttons")
+back_button = NodePath("BackButton")
 reply_color = Color(0.24705882, 0.21568628, 0.76862746, 1)
 audio_player = NodePath("AudioPlayer")
 
