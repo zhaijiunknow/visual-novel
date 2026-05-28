@@ -2,11 +2,12 @@
 import requests
 import sys
 import json
-from dotenv import load_dotenv
+from pathlib import Path
 from feishu_auth import get_tenant_token, APP_TOKEN
 
-load_dotenv("feishu.env")
 sys.stdout.reconfigure(encoding='utf-8')
+
+SCRIPT_DIR = Path(__file__).resolve().parent
 
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"
 BASE_URL = "https://open.feishu.cn/open-apis"
@@ -89,7 +90,7 @@ def main():
     print(f"匹配结果: {len(MATCHES)} 条匹配, {len(UNMATCHED)} 条未匹配\n")
 
     # 显示匹配详情
-    with open("/mnt/c/Users/kotta/Documents/Godot/visual-novel/python/matching_data.json", "r", encoding="utf-8") as f:
+    with open(SCRIPT_DIR / "matching_data.json", "r", encoding="utf-8") as f:
         data = json.load(f)
 
     record_map = {r["record_id"]: r["text"] for r in data["records"]}

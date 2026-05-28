@@ -147,6 +147,11 @@ func process_line() -> void:
 			if dialogue_line != current: return
 			if dialogue_line.responses:
 				return
+		elif "奇迹书" in dialogue_line.tags:
+			await process_book_line()
+			if dialogue_line != current: return
+			if dialogue_line.responses:
+				return
 		else:
 			await process_dialogue_line()
 			if dialogue_line != current: return
@@ -168,6 +173,21 @@ func process_phone_line() -> void:
 		Game.phone_page.show_reply_options(dialogue_line.responses)
 		var next_id: String = await Game.phone_page.reply_selected
 		dialogue_line = await dialogue.get_next_dialogue_line(next_id, [self, Stage])
+
+func process_book_line() -> void:
+	var side := "right" if dialogue_line.character == "周腾" else "left"
+	await Game.book_page.append_story_entry(
+		str(dialogue_line.id),
+		dialogue_line.character,
+		dialogue_line.text,
+		side,
+		[]
+	)
+	var next_line: DialogueLine = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
+	if next_line and "奇迹书" not in next_line.tags:
+		await Game.book_page.wait_for_story_close()
+	if dialogue_line.responses:
+		show_dialogue_responses()
 
 var expression: String:
 	get:
@@ -373,6 +393,8 @@ func update_favourite() -> void:
 # ─── 对话结束 ───
 
 func _on_dialogue_end(_resource: DialogueResource) -> void:
+	if _resource != dialogue:
+		return
 	_disconnect_voice_finished()
 	AudioManager.audio_player_voice.stop()
 	responses_menu.visible = false

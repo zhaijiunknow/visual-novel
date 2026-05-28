@@ -12,7 +12,7 @@ var profile_index: int:
 		profile_index = value
 		profile_index_changed.emit()
 
-func _ready() -> void:	
+func _ready() -> void:
 	visibility_changed.connect(
 		func ():
 			title_load.visible = Main.profile_mode == Main.ProfileMode.LOAD
@@ -64,6 +64,7 @@ func save_game() -> void:
 			profile.chat_datas = Game.phone_page.chat_data_pool.duplicate(true)
 			profile.active_chat_character = Game.phone_page.active_chat_character
 			profile.log_datas = Game.log_page.log_data_pool.duplicate(true)
+			profile.notebook_data = Game.book_page.duplicate_notebook_data()
 			var apm = AudioManager.audio_player_music
 			if apm.playing:
 				profile.music_path = apm.stream.resource_path
@@ -140,6 +141,7 @@ func load_game() -> void:
 			Game.phone_page.reload_active_chat()
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
+			Game.book_page.restore_notebook_data(profile.notebook_data)
 			# 恢复音乐
 			if profile.music_path != "":
 				var apm = AudioManager.audio_player_music

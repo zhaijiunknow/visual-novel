@@ -9,6 +9,7 @@ extends Resource
 @export var chat_datas: Array[ChatData]
 @export var active_chat_character: String
 @export var log_datas: Array[LogData]
+@export var notebook_data: Resource
 @export var music_path: String
 @export var music_position: float
 @export var music_source: int

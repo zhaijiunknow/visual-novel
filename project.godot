@@ -28,13 +28,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="visual-novel"
-run/main_scene="uid://nixyr2xle2qo"
+run/main_scene="res://scenes/main_scene/main_scene.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[audio]
-
-buses/default_bus_layout="uid://unx81pwnxsyo"
 
 [autoload]
 
@@ -134,7 +130,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue_manager/dialogues/chapter_1.dialogue", "res://dialogue_manager/dialogues/chat.dialogue", "res://dialogue_manager/dialogues/example.dialogue", "res://dialogue_manager/dialogues/expressions.dialogue", "res://dialogue_manager/dialogues/page_1.dialogue", "res://dialogue_manager/dialogues/page_2.dialogue", "res://dialogue_manager/dialogues/page_3.dialogue", "res://dialogue_manager/dialogues/章节1.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue_manager/dialogues/chapter_1.dialogue", "res://dialogue_manager/dialogues/chat.dialogue", "res://dialogue_manager/dialogues/example.dialogue", "res://dialogue_manager/dialogues/expressions.dialogue", "res://dialogue_manager/dialogues/章节1.dialogue")
 
 [rendering]
 

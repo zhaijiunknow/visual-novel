@@ -15,27 +15,16 @@ import re
 import sys
 from pathlib import Path
 import json
-from dotenv import load_dotenv
+from feishu_auth import get_tenant_token, APP_TOKEN
 
 # Windows 控制台输出 UTF-8
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
 
-load_dotenv("feishu.env")
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent
 
-# 飞书配置
-APP_ID = os.getenv("APP_ID")
-APP_SECRET = os.getenv("APP_SECRET")
-APP_TOKEN = os.getenv("APP_TOKEN")
 TABLE_ID = "tblM0dppDn6ieanh"
-
-def get_tenant_token():
-    """获取 tenant_access_token"""
-    resp = requests.post(
-        "https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal",
-        json={"app_id": APP_ID, "app_secret": APP_SECRET}
-    )
-    return resp.json()["tenant_access_token"]
 
 def parse_tres_file(file_path):
     """解析 .tres 文件，提取 title 和 variations 中的时段"""
@@ -99,7 +88,7 @@ def create_record(token, fields):
     return resp.json()
 
 def main():
-    backgrounds_dir = Path("C:/Users/kotta/Documents/Godot/visual-novel/data/backgrounds")
+    backgrounds_dir = REPO_ROOT / "data" / "backgrounds"
     tres_files = list(backgrounds_dir.glob("*.tres"))
 
     print(f"找到 {len(tres_files)} 个 .tres 文件")

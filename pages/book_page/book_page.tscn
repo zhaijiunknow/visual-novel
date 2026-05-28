@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://bdyg6g7ravihq"]
 
 [ext_resource type="Script" uid="uid://dohllb8k33wi2" path="res://pages/book_page/book_page.gd" id="1_s06xr"]
-[ext_resource type="Script" uid="uid://dbs4435dsf3ry" path="res://addons/dialogue_manager/dialogue_resource.gd" id="2_hthhu"]
-[ext_resource type="Resource" uid="uid://dpdvuxgwg6q0l" path="res://dialogue_manager/dialogues/page_1.dialogue" id="3_gxpof"]
-[ext_resource type="Resource" uid="uid://6r2qa0nsp5do" path="res://dialogue_manager/dialogues/page_2.dialogue" id="4_jkv06"]
-[ext_resource type="Resource" uid="uid://cju4pdtxrrfdn" path="res://dialogue_manager/dialogues/page_3.dialogue" id="5_dy41n"]
 [ext_resource type="Texture2D" uid="uid://bll0ukv6e6in5" path="res://assets/ui_backgrounds/book_background.jpg" id="6_1dvnh"]
 [ext_resource type="AudioStream" uid="uid://cn08kmw3cr3t" path="res://assets/system_sounds/奇迹书音效/写字声.wav" id="6_q4ygb"]
 [ext_resource type="Texture2D" uid="uid://cse7gjgt5acqe" path="res://assets/ui_backgrounds/book_shadow.png" id="7_pvqm7"]
@@ -19,15 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
 
-[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "audio_player")]
+[node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "back_button", "audio_player")]
 script = ExtResource("1_s06xr")
 dialogue_label = NodePath("PrefabContainer/DialogueLabel")
-pages = Array[ExtResource("2_hthhu")]([ExtResource("3_gxpof"), ExtResource("4_jkv06"), ExtResource("5_dy41n")])
 vbox_page = NodePath("VBoxContainer_Page")
 button_previous = NodePath("Buttons/TextureButton_Previous")
 button_next = NodePath("Buttons/TextureButton_Next")
 paragraph_container = NodePath("PrefabContainer/ParagraphContainer")
 buttons = NodePath("Buttons")
+back_button = NodePath("BackButton")
 reply_color = Color(0.24705882, 0.21568628, 0.76862746, 1)
 audio_player = NodePath("AudioPlayer")
 

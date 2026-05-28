@@ -25,7 +25,9 @@ func _ready() -> void:
 	switch_to_page(main_menu, false, false)
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass, transition_duration: float = 0.4):
+	print("[Game] switch_to_page page=", page.name if page else "<null>", " transition=", _transition, " addition_mode=", addition_mode, " loading=", loading)
 	if loading:
+		print("[Game] switch_to_page aborted because loading is true")
 		return
 	loading = true
 
@@ -56,7 +58,9 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 	loading = false
 
 func go_back(_transition: bool = true):
+	print("[Game] go_back transition=", _transition, " loading=", loading, " stack_size=", page_stack.size(), " current=", current_page.name if current_page else "<null>")
 	if loading or page_stack.size() <= 1:
+		print("[Game] go_back aborted loading=", loading, " stack_size=", page_stack.size())
 		return
 
 	loading = true
@@ -118,16 +122,20 @@ func fade(fade_in: bool, duration: float = 0.4) -> void:
 func fade_alpha(page: CanvasLayer, fade_in: bool) -> void:
 	var from_a = 0.0 if fade_in else 1.0
 	var to_a = 1.0 if fade_in else 0.0
-	for child: CanvasItem in page.get_children():
+	var canvas_children: Array[CanvasItem] = []
+	for child in page.get_children():
+		if child is CanvasItem:
+			canvas_children.append(child)
+	for child in canvas_children:
 		child.modulate.a = from_a
 	var tween = create_tween()
 	tween.set_parallel(true)
-	for child: CanvasItem in page.get_children():
+	for child in canvas_children:
 		tween.tween_property(child, "modulate:a", to_a, 0.3)
 	await tween.finished
 	# 淡出后重置 alpha，避免下次非 alpha 方式打开时子节点不可见
 	if not fade_in:
-		for child: CanvasItem in page.get_children():
+		for child in canvas_children:
 			child.modulate.a = 1.0
 
 func transition(callable: Callable):
