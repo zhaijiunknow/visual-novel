@@ -199,28 +199,29 @@ rotation = -0.034906585
 pivot_offset = Vector2(37.07, 41.295)
 texture_normal = ExtResource("17_s06xr")
 
-[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=759655575]
+[node name="Label" type="RichTextLabel" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=496697025]
 modulate = Color(0.08468992, 0.08468992, 0.08468992, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.13000001
+anchor_left = 0.18800001
 anchor_top = 0.28
-anchor_right = 0.919
-anchor_bottom = 0.72300005
-offset_left = -0.04775238
-offset_top = -0.035606384
-offset_right = 0.23919678
-offset_bottom = 0.022384644
-grow_horizontal = 2
-grow_vertical = 2
+anchor_right = 0.18800001
+anchor_bottom = 0.28
+offset_left = -0.04774475
+offset_top = -0.035583496
+offset_right = 524.3662
+offset_bottom = 95.54877
+mouse_filter = 2
 theme = ExtResource("20_nk4nf")
-theme_override_fonts/font = ExtResource("18_hthhu")
-theme_override_font_sizes/font_size = 38
+theme_override_fonts/normal_font = ExtResource("18_hthhu")
+theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
+fit_content = true
+scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=2070283499 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
 target = NodePath("..")
-click_sound = ExtResource("6_q4ygb")
+click_sound = null
 
 [node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceOne" unique_id=1743503413]
 modulate = Color(1, 1, 1, 0.4392157)
@@ -269,28 +270,29 @@ rotation = 0.017453292
 pivot_offset = Vector2(39.35, 41.055)
 texture_normal = ExtResource("17_s06xr")
 
-[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=655942558]
+[node name="Label" type="RichTextLabel" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=936240335]
 modulate = Color(0.08627451, 0.08627451, 0.08627451, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.13000001
 anchor_top = 0.28
-anchor_right = 0.919
-anchor_bottom = 0.72300005
+anchor_right = 0.13000001
+anchor_bottom = 0.28
 offset_left = -0.04775238
 offset_top = -0.035606384
-offset_right = 0.23919678
-offset_bottom = 0.022384644
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 565.9522
+offset_bottom = 115.97745
+mouse_filter = 2
 theme = ExtResource("20_nk4nf")
-theme_override_fonts/font = ExtResource("18_hthhu")
-theme_override_font_sizes/font_size = 38
+theme_override_fonts/normal_font = ExtResource("18_hthhu")
+theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
+fit_content = true
+scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=73155174 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
 target = NodePath("..")
-click_sound = ExtResource("6_q4ygb")
+click_sound = null
 
 [node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceTwo" unique_id=1387941977]
 modulate = Color(1, 1, 1, 0.4392157)
@@ -338,28 +340,31 @@ rotation = -0.0052359877
 pivot_offset = Vector2(37.78, 41.195)
 texture_normal = ExtResource("17_s06xr")
 
-[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1959758890]
+[node name="Label" type="RichTextLabel" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=514752683]
 modulate = Color(0.08627451, 0.08627451, 0.08627451, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.13000001
 anchor_top = 0.28
-anchor_right = 0.919
-anchor_bottom = 0.72300005
+anchor_right = 0.13000001
+anchor_bottom = 0.28
 offset_left = -0.04775238
 offset_top = -0.035606384
-offset_right = 0.23919678
-offset_bottom = 0.022384644
+offset_right = 565.9522
+offset_bottom = 116.80228
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("20_nk4nf")
-theme_override_fonts/font = ExtResource("18_hthhu")
-theme_override_font_sizes/font_size = 38
+theme_override_fonts/normal_font = ExtResource("18_hthhu")
+theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
+fit_content = true
+scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1633958522 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
 target = NodePath("..")
-click_sound = ExtResource("6_q4ygb")
+click_sound = null
 
 [node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceThree" unique_id=2040757876]
 modulate = Color(1, 1, 1, 0.4392157)

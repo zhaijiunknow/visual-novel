@@ -180,6 +180,7 @@ func process_phone_line() -> void:
 		dialogue_line = await dialogue.get_next_dialogue_line(next_id, [self, Stage])
 
 func process_book_line() -> void:
+	print("[BookChoice] line id=", dialogue_line.id, " next_id=", dialogue_line.next_id, " tags=", dialogue_line.tags, " responses=", dialogue_line.responses.size(), " text=", dialogue_line.text)
 	var side := "right" if dialogue_line.character == "周腾" else "left"
 	await Game.book_page.append_story_entry(
 		str(dialogue_line.id),
@@ -189,16 +190,19 @@ func process_book_line() -> void:
 		[]
 	)
 	if dialogue_line.responses:
+		print("[BookChoice] show_reply_options count=", dialogue_line.responses.size())
 		if skip and not Main.setting_data.skip_after_choice:
 			_set_mode(AdvanceMode.MANUAL)
 			skip_cancelled.emit()
 		Game.book_page.show_reply_options(dialogue_line.responses)
 		var next_id: String = await Game.book_page.reply_selected
+		print("[BookChoice] selected next_id=", next_id)
 		var selected_next_line: DialogueLine = await dialogue.get_next_dialogue_line(next_id, [self, Stage])
 		if selected_next_line and "奇迹书" not in selected_next_line.tags:
 			await Game.book_page.wait_for_story_close()
 		dialogue_line = selected_next_line
 		return
+	print("[BookChoice] no responses on current book line")
 	var next_line: DialogueLine = await dialogue.get_next_dialogue_line(dialogue_line.next_id, [self, Stage])
 	if next_line and "奇迹书" not in next_line.tags:
 		await Game.book_page.wait_for_story_close()

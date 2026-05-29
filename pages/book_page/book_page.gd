@@ -84,7 +84,6 @@ func _update_navigation() -> void:
 	var allow_navigation := not _is_playing_entry and not _showing_reply_options
 	button_previous.visible = allow_navigation and page_index > 0
 	button_next.visible = allow_navigation and page_index < notebook_data.pages.size() - 1
-	buttons.visible = allow_navigation
 	back_button.visible = allow_navigation
 
 func _setup_choice_button_hover() -> void:
@@ -133,23 +132,23 @@ func show_reply_options(responses) -> void:
 		{
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceOne") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1") as TextureButton,
-			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1/Label") as Label,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1/Label") as RichTextLabel,
 		},
 		{
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2") as TextureButton,
-			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2/Label") as Label,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2/Label") as RichTextLabel,
 		},
 		{
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceThree") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3") as TextureButton,
-			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3/Label") as Label,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3/Label") as RichTextLabel,
 		},
 	]
 	for i in choice_nodes.size():
 		var root: Control = choice_nodes[i].root
 		var button: TextureButton = choice_nodes[i].button
-		var label: Label = choice_nodes[i].label
+		var label: RichTextLabel = choice_nodes[i].label
 		if root == null or button == null or label == null:
 			continue
 		if i >= responses.size():
