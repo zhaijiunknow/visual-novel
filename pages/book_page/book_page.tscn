@@ -200,6 +200,7 @@ pivot_offset = Vector2(37.07, 41.295)
 texture_normal = ExtResource("17_s06xr")
 
 [node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=759655575]
+modulate = Color(0.08468992, 0.08468992, 0.08468992, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.13000001
@@ -269,6 +270,7 @@ pivot_offset = Vector2(39.35, 41.055)
 texture_normal = ExtResource("17_s06xr")
 
 [node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=655942558]
+modulate = Color(0.08627451, 0.08627451, 0.08627451, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.13000001
@@ -337,6 +339,7 @@ pivot_offset = Vector2(37.78, 41.195)
 texture_normal = ExtResource("17_s06xr")
 
 [node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1959758890]
+modulate = Color(0.08627451, 0.08627451, 0.08627451, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.13000001
