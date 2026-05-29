@@ -45,7 +45,7 @@ func _make_card(slot_kind: ProfileCard.SlotKind, slot_index: int, profile: Profi
 	profile_card.slot_kind = slot_kind
 	profile_card.slot_index = slot_index
 	profile_card.label_index.text = index_text
-	profile_card.button_delete.visible = false
+	profile_card.button_delete.visible = slot_kind == ProfileCard.SlotKind.MANUAL or (slot_kind == ProfileCard.SlotKind.QUICK and has_quick_save())
 	profile_card.texture_rect_preview.texture = profile.preview if profile and profile.preview else profile_card.texture_rect_preview.texture
 	if profile and profile.chapter_name != "":
 		profile_card.label_chapter.text = profile.chapter_name.to_upper().replace("_", " ")
@@ -67,7 +67,7 @@ func _capture_runtime_snapshot() -> Dictionary:
 	var apm = AudioManager.audio_player_music
 	return {
 		"preview": ImageTexture.create_from_image(image),
-		"dialogue_id": Game.stage_page.dialogue_line.id if Game.stage_page.dialogue_line else "",
+		"dialogue_id": Game.stage_page.dialogue_line.next_id if Game.stage_page.dialogue_line else "start",
 		"chapter_name": Game.stage_page.chapter_name if Game.stage_page.dialogue else "",
 		"character_datas": character_datas,
 		"background": Stage.current_background,
@@ -86,7 +86,7 @@ func _capture_runtime_snapshot() -> Dictionary:
 func _apply_snapshot_to_profile(profile: ProfileData, snapshot: Dictionary) -> void:
 	profile.preview = snapshot.preview
 	profile.dialogue_id = snapshot.dialogue_id
-	profile.chapter_name = snapshot.chapter_name
+	profile.chapter_name = snapshot.chapter_name if snapshot.chapter_name != "" else (Game.stage_page.chapter_name if Game.stage_page.dialogue else "")
 	profile.character_datas = snapshot.character_datas
 	profile.background = snapshot.background
 	profile.cg_name = snapshot.cg_name
@@ -138,7 +138,10 @@ func save_game() -> void:
 	_save_profile(_ensure_manual_profile(profile_index), true)
 
 func has_quick_save() -> bool:
-	return Main.save_data.auto_profile != null and Main.save_data.auto_profile.chapter_name != ""
+	return _is_profile_usable(Main.save_data.auto_profile)
+
+func _is_profile_usable(profile: ProfileData) -> bool:
+	return profile != null and profile.dialogue_id != ""
 
 func save_quick_game() -> void:
 	if Main.save_data.auto_profile == null:
@@ -156,12 +159,13 @@ func load_quick_game() -> void:
 	load_profile(Main.save_data.auto_profile)
 
 func load_profile(profile: ProfileData) -> void:
-	if profile == null or profile.chapter_name == "" or not Game.stage_page.chapters_dict.has(profile.chapter_name):
+	if not _is_profile_usable(profile):
 		return
 	Game.switch_to_page(Game.stage_page, true, false,
 		func():
 			Game.stage_page.reset()
-			Game.stage_page.dialogue = Game.stage_page.chapters_dict[profile.chapter_name]
+			if profile.chapter_name != "" and Game.stage_page.chapters_dict.has(profile.chapter_name):
+				Game.stage_page.dialogue = Game.stage_page.chapters_dict[profile.chapter_name]
 			Game.stage_page.quick_save_progress_count = profile.quick_save_progress_count
 			if profile.background != "":
 				var background_split = profile.background.split("-")
@@ -217,6 +221,7 @@ func load_profile(profile: ProfileData) -> void:
 				apm.stream = load(profile.music_path)
 				apm.play(profile.music_position)
 				AudioManager._music_source = profile.music_source
-			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.dialogue_id)
+			var resume_key := profile.dialogue_id if profile.dialogue_id != "" else "start"
+			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage])
 			Game.log_page._suppressed = false
 	)

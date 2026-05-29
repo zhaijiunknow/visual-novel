@@ -67,21 +67,30 @@ func _on_execute() -> void:
 				Game.profile_page.save_game()
 
 func _on_delete_pressed() -> void:
-	if slot_kind != SlotKind.MANUAL:
+	if slot_kind == SlotKind.NEW_MANUAL:
 		return
-	Game.confirm_page.show_confirm(
-		"删除存档",
-		"确定要删除该存档吗？\n此操作无法撤销。",
-		func():
-			Main.save_data.profiles.remove_at(slot_index)
+	var title := "删除存档"
+	var message := "确定要删除该存档吗？\n此操作无法撤销。"
+	var action := func():
+		Main.save_data.profiles.remove_at(slot_index)
+		Main.save_save_data()
+		Game.go_back()
+		Game.profile_page.update()
+	if slot_kind == SlotKind.QUICK:
+		title = "重置快速存档"
+		message = "确定要重置快速存档吗？\n此操作无法撤销。"
+		action = func():
+			Main.save_data.auto_profile = null
 			Main.save_save_data()
 			Game.go_back()
 			Game.profile_page.update()
-	)
+			if Game.main_menu:
+				Game.main_menu._update_start_button()
+	Game.confirm_page.show_confirm(title, message, action)
 	Game.switch_to_page(Game.confirm_page, true, true)
 
 func update():
-	button_delete.visible = false
+	button_delete.visible = slot_kind == SlotKind.MANUAL or (slot_kind == SlotKind.QUICK and Game.profile_page.has_quick_save())
 	if selected:
 		texture = texture_click
 		texture_rect_preview.modulate = Color(1, 1, 1)

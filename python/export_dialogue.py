@@ -2,6 +2,7 @@ import requests
 import os
 import sys
 import json
+import re
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict
@@ -92,13 +93,13 @@ def get_parent_id(fields):
     return None
 
 
-def record_to_data(fields):
+def record_to_data(record):
     """将一条演出表记录转换为结构化数据"""
+    fields = record.get("fields", {})
     costume = extract_field(fields, "服装")
     action = extract_field(fields, "动作")
     body = f"{costume}-{action}" if costume and action else ""
 
-    # 附加是数组字段，直接取列表
     optionals_raw = fields.get("附加", [])
     if isinstance(optionals_raw, list):
         optionals = [str(item) for item in optionals_raw if item]
@@ -106,7 +107,8 @@ def record_to_data(fields):
         optionals = []
 
     return {
-        "record_id": fields.get("ID", ""),
+        "sheet_id": extract_field(fields, "ID").strip(),
+        "feishu_record_id": record.get("record_id", "") or record.get("recordId", ""),
         "character": extract_field(fields, "角色"),
         "text": extract_field(fields, "文字"),
         "is_option": fields.get("选项", False),
@@ -177,7 +179,33 @@ def build_tags(data):
     return f"[{', '.join(tags)}]" if tags else ""
 
 
-def build_dialogue_line(data):
+def sanitize_static_id(raw):
+    value = (raw or "").strip()
+    if not value:
+        return ""
+    value = re.sub(r"\s+", "_", value)
+    value = re.sub(r"[^A-Za-z0-9._-]", "_", value)
+    return value.strip("._-")
+
+
+def build_static_id(data, state, kind):
+    base = sanitize_static_id(data.get("sheet_id", ""))
+    if not base:
+        base = sanitize_static_id(data.get("feishu_record_id", ""))
+    if not base:
+        state["fallback_id_counter"] += 1
+        base = sanitize_static_id(f"{state['chapter_name']}_{kind}_{state['fallback_id_counter']:04d}")
+    candidate = f"{base}.{kind}"
+    final_id = candidate
+    suffix = 2
+    while final_id in state["used_static_ids"]:
+        final_id = f"{candidate}_{suffix}"
+        suffix += 1
+    state["used_static_ids"].add(final_id)
+    return final_id
+
+
+def build_dialogue_line(data, static_id):
     """构建一行 dialogue 格式的文本（不含缩进）"""
     character = data["character"]
     text = data["text"]
@@ -186,17 +214,17 @@ def build_dialogue_line(data):
         return None
 
     tag_str = build_tags(data)
+    id_suffix = f" [ID:{static_id}]"
 
     if character:
-        return f"{character}: {tag_str}{text}"
+        return f"{character}: {tag_str}{text}{id_suffix}"
     else:
-        return f"独白: {text}"
+        return f"独白: {text}{id_suffix}"
 
 
 def generate_do_commands(data, state, lines, tabs):
     """生成 do 指令行（背景切换、FadeIn、ShowPhone/HidePhone）"""
 
-    # 背景变化 → SetBackground + 清空可见角色
     if data["bg_name"] and data["time_period"]:
         if data["bg_name"] != state["bg_name"] or data["time_period"] != state["time_period"]:
             if not state["bg_name"]:
@@ -207,7 +235,6 @@ def generate_do_commands(data, state, lines, tabs):
             state["time_period"] = data["time_period"]
             state["visible_characters"].clear()
 
-    # CG变化 → SetCG
     cg_key = ""
     if data["cg_name"] and data["cg_variation"]:
         cg_key = f'{data["cg_name"]}-{data["cg_variation"]}'
@@ -218,7 +245,6 @@ def generate_do_commands(data, state, lines, tabs):
             lines.append(f"{tabs}$> HideCG()")
         state["cg_key"] = cg_key
 
-    # 音乐变化 → SetMusic / StopMusic
     if data["music"] != state["music"]:
         if data["music"]:
             lines.append(f'{tabs}$> SetMusic("{data["music"]}")')
@@ -226,7 +252,6 @@ def generate_do_commands(data, state, lines, tabs):
             lines.append(f'{tabs}$> StopMusic()')
         state["music"] = data["music"]
 
-    # 日期变化 → SetDate（日期、星期、时间任一变化都触发）
     if data["date"] and data["week_day"]:
         date_key = f'{data["date"]}-{data["week_day"]}-{data["time"]}'
         if date_key != state["date_key"]:
@@ -238,7 +263,6 @@ def generate_do_commands(data, state, lines, tabs):
             lines.append(f'{tabs}$> SetDate({month}, {day}, "{week_day}")')
             state["date_key"] = date_key
 
-    # 手机模式切换
     is_phone = bool(data["phone"])
     if is_phone and not state["phone_mode"]:
         lines.append(f"{tabs}$> ShowPhone()")
@@ -248,28 +272,16 @@ def generate_do_commands(data, state, lines, tabs):
         lines.append(f"{tabs}$> HidePhone()")
         state["phone_mode"] = False
 
-    # 自定义指令 → 直接输出
     if data["commands"]:
         for cmd_line in data["commands"].split("\n"):
             cmd_line = cmd_line.strip()
             if cmd_line:
                 lines.append(f"{tabs}{cmd_line}")
 
-    # 角色 FadeIn：有角色 + 隐藏立绘=false + 未在场
     character = data["character"]
     if character and not data["hide_portrait"] and not data["phone"] and character not in state["visible_characters"]:
         lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         state["visible_characters"].add(character)
-
-
-
-def _book_speaker_and_side(data):
-    character = data["character"]
-    if character == "周腾":
-        return "R", "right"
-    if character in ["余洛琛", "L"]:
-        return "L", "left"
-    return character if character else "L", "left"
 
 
 def _close_book_if_needed(state, lines, tabs=""):
@@ -287,35 +299,34 @@ def _open_book_if_needed(state, lines, tabs=""):
 
 def walk(record, children_map, indent, lines, state):
     """递归遍历记录树，生成 dialogue 文件内容"""
-    data = record_to_data(record.get("fields", {}))
+    data = record_to_data(record)
     children = children_map.get(record["record_id"], [])
     tabs = "\t" * indent
 
     if data["hidden"]:
-        # 隐藏记录：整条跳过，不生成任何 dialogue 行
         for child in children:
             walk(child, children_map, indent, lines, state)
         return
 
     if data["is_option"]:
-        _close_book_if_needed(state, lines, tabs)
-        # 选项行 → 生成 "- 选项文本"
-        lines.append(f"{tabs}- {data['text']}")
+        option_id = build_static_id(data, state, "opt")
+        lines.append(f"{tabs}- {data['text']} [ID:{option_id}]")
         for child in children:
             walk(child, children_map, indent + 1, lines, state)
     elif data["book"]:
         generate_do_commands(data, state, lines, tabs)
         _open_book_if_needed(state, lines, tabs)
-        dialogue_line = build_dialogue_line(data)
+        dialogue_id = build_static_id(data, state, "line")
+        dialogue_line = build_dialogue_line(data, dialogue_id)
         if dialogue_line:
             lines.append(f"{tabs}{dialogue_line}")
         for child in children:
             walk(child, children_map, indent, lines, state)
     else:
         _close_book_if_needed(state, lines, tabs)
-        # 普通对话行：先生成 do 指令，再生成对话
         generate_do_commands(data, state, lines, tabs)
-        dialogue_line = build_dialogue_line(data)
+        dialogue_id = build_static_id(data, state, "line")
+        dialogue_line = build_dialogue_line(data, dialogue_id)
         if dialogue_line:
             lines.append(f"{tabs}{dialogue_line}")
         for child in children:
@@ -335,18 +346,20 @@ def convert_chapter(roots, children_map, chapter_filter):
         "phone_mode": False,
         "book_mode": False,
         "music": "",
+        "used_static_ids": set(),
+        "fallback_id_counter": 0,
+        "chapter_name": chapter_filter,
     }
 
     current_chapter = None
     for root in roots:
-        data = record_to_data(root.get("fields", {}))
+        data = record_to_data(root)
         if data["chapter"]:
             current_chapter = data["chapter"]
         if current_chapter != chapter_filter:
             continue
         walk(root, children_map, 0, lines, state)
 
-    # 结束时关闭手机
     if state["phone_mode"]:
         lines.append("$> wait(2)")
         lines.append("$> HidePhone()")
@@ -367,7 +380,6 @@ def main():
     records = get_all_records(token)
     print(f"共 {len(records)} 条记录")
 
-    # --dump 模式
     if "--dump" in sys.argv:
         print("\n[DUMP] 前 5 条记录:")
         for i, record in enumerate(records[:5]):
@@ -376,7 +388,6 @@ def main():
             for k, v in fields.items():
                 print(f"  {k}: {repr(v)}")
 
-        # 统计
         roots, children_map = build_tree(records)
         print(f"\n根记录: {len(roots)}, 有子记录的父记录: {len(children_map)}")
 
@@ -386,18 +397,15 @@ def main():
             chapters[ch] = chapters.get(ch, 0) + 1
         print(f"章节分布 (根记录): {chapters}")
 
-        # 统计特殊字段
         option_count = sum(1 for r in records if r.get("fields", {}).get("选项", False))
         phone_count = sum(1 for r in records if r.get("fields", {}).get("手机", False))
         parent_count = sum(1 for r in records if get_parent_id(r.get("fields", {})))
         print(f"含选项: {option_count}, 含手机: {phone_count}, 有父记录: {parent_count}")
         return
 
-    # 构建树
     roots, children_map = build_tree(records)
     print(f"根记录: {len(roots)}, 有子记录的父记录: {len(children_map)}")
 
-    # 统计章节
     chapters = {}
     for root in roots:
         ch = extract_field(root.get("fields", {}), "章节")
@@ -405,7 +413,6 @@ def main():
             chapters[ch] = chapters.get(ch, 0) + 1
     print(f"\n章节: {chapters}")
 
-    # 确定要导出的章节
     chapter_filter = next((a for a in sys.argv[1:] if not a.startswith("--")), None)
 
     if chapter_filter:
