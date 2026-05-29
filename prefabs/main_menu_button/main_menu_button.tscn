@@ -11,13 +11,15 @@
 [sub_resource type="FontVariation" id="FontVariation_fc0e3"]
 spacing_glyph = 6
 
-[node name="MainMenuButton" type="Control" unique_id=1959894228 node_paths=PackedStringArray("texture_hover", "texture_click", "click_box")]
+[node name="MainMenuButton" type="Control" unique_id=1959894228 node_paths=PackedStringArray("texture_hover", "texture_click", "click_box", "label_chinese", "label_english")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_htbgh")
 texture_hover = NodePath("TextureRect_Hover")
 texture_click = NodePath("TextureRect_Click")
 click_box = NodePath("ClickBox")
+label_chinese = NodePath("Label_Chinese")
+label_english = NodePath("Label_English")
 
 [node name="Label_Chinese" type="Label" parent="." unique_id=306491173]
 layout_mode = 0

@@ -9,9 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://cnrtv0v2fr2pd" path="res://prefabs/paragraph_container/paragraph_container.tscn" id="15_3fj4v"]
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="16_3fgb7"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="16_7e5ln"]
+[ext_resource type="Texture2D" uid="uid://b35v4w3cckh44" path="res://assets/sprites/ui/ui.sprites/circle_behind.tres" id="16_7xsqj"]
 [ext_resource type="Texture2D" uid="uid://blsusl7xbrsbd" path="res://assets/sprites/ui/ui.sprites/page_normal.tres" id="17_b4erg"]
 [ext_resource type="AudioStream" uid="uid://bupw66if3c0qp" path="res://assets/system_sounds/奇迹书音效/翻书声.wav" id="17_q4ygb"]
+[ext_resource type="Texture2D" uid="uid://ddp4pwfwl7f8l" path="res://assets/sprites/ui/ui.sprites/nnote.tres" id="17_s06xr"]
+[ext_resource type="FontFile" uid="uid://ykhesaheseh3" path="res://assets/fonts/瑞美加张清平硬笔行书.ttf" id="18_hthhu"]
 [ext_resource type="Texture2D" uid="uid://b03qjme3jeruc" path="res://assets/sprites/ui/ui.sprites/page_click.tres" id="18_ttmkd"]
+[ext_resource type="Texture2D" uid="uid://cjmlg2ttio5na" path="res://assets/sprites/ui/ui.sprites/circle_front.tres" id="19_gxpof"]
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
 
@@ -158,3 +162,213 @@ text = "下一页"
 [node name="InteractSound" parent="Buttons/TextureButton_Next" unique_id=451269707 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
 target = NodePath("..")
 click_sound = ExtResource("17_q4ygb")
+
+[node name="ChoiceButton" type="Control" parent="Buttons" unique_id=972131717]
+z_index = 2
+anchors_preset = 0
+offset_right = 2558.0
+offset_bottom = 1441.0
+
+[node name="ChoiceOne" type="Control" parent="Buttons/ChoiceButton" unique_id=887728995]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CircleBehind" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceOne" unique_id=909935009]
+modulate = Color(1, 1, 1, 0.023529412)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 356.0
+offset_right = 72.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_7xsqj")
+
+[node name="Choice1" type="TextureButton" parent="Buttons/ChoiceButton/ChoiceOne" unique_id=1250062723]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 474.99997
+offset_right = 784.0
+offset_bottom = 669.0
+rotation = -0.034906585
+pivot_offset = Vector2(37.07, 41.295)
+texture_normal = ExtResource("17_s06xr")
+
+[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=759655575]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13000001
+anchor_top = 0.28
+anchor_right = 0.919
+anchor_bottom = 0.72300005
+offset_left = -0.04775238
+offset_top = -0.035606384
+offset_right = 0.23919678
+offset_bottom = 0.022384644
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_nk4nf")
+theme_override_fonts/font = ExtResource("18_hthhu")
+theme_override_font_sizes/font_size = 38
+text = "选项选项"
+
+[node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=2070283499 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
+target = NodePath("..")
+click_sound = ExtResource("6_q4ygb")
+
+[node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceOne" unique_id=1743503413]
+modulate = Color(1, 1, 1, 0.4392157)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = 353.0
+offset_right = 70.0
+offset_bottom = 479.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_gxpof")
+
+[node name="ChoiceTwo" type="Control" parent="Buttons/ChoiceButton" unique_id=541536349]
+anchors_preset = 0
+offset_left = 52.0
+offset_top = 198.0
+offset_right = 92.0
+offset_bottom = 238.0
+
+[node name="CircleBehind" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceTwo" unique_id=75376680]
+modulate = Color(1, 1, 1, 0.023529412)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 356.0
+offset_right = 72.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_7xsqj")
+
+[node name="Choice2" type="TextureButton" parent="Buttons/ChoiceButton/ChoiceTwo" unique_id=1566405373]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 474.99997
+offset_right = 784.0
+offset_bottom = 669.0
+rotation = 0.017453292
+pivot_offset = Vector2(39.35, 41.055)
+texture_normal = ExtResource("17_s06xr")
+
+[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=655942558]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13000001
+anchor_top = 0.28
+anchor_right = 0.919
+anchor_bottom = 0.72300005
+offset_left = -0.04775238
+offset_top = -0.035606384
+offset_right = 0.23919678
+offset_bottom = 0.022384644
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_nk4nf")
+theme_override_fonts/font = ExtResource("18_hthhu")
+theme_override_font_sizes/font_size = 38
+text = "选项选项"
+
+[node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=73155174 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
+target = NodePath("..")
+click_sound = ExtResource("6_q4ygb")
+
+[node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceTwo" unique_id=1387941977]
+modulate = Color(1, 1, 1, 0.4392157)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = 353.0
+offset_right = 70.0
+offset_bottom = 479.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_gxpof")
+
+[node name="ChoiceThree" type="Control" parent="Buttons/ChoiceButton" unique_id=1320223244]
+anchors_preset = 0
+offset_top = 418.0
+offset_right = 40.0
+offset_bottom = 458.0
+
+[node name="CircleBehind" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceThree" unique_id=897918582]
+modulate = Color(1, 1, 1, 0.023529412)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 356.0
+offset_right = 72.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_7xsqj")
+
+[node name="Choice3" type="TextureButton" parent="Buttons/ChoiceButton/ChoiceThree" unique_id=374375383]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 474.99997
+offset_right = 784.0
+offset_bottom = 669.0
+rotation = -0.0052359877
+pivot_offset = Vector2(37.78, 41.195)
+texture_normal = ExtResource("17_s06xr")
+
+[node name="Label" type="Label" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1959758890]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13000001
+anchor_top = 0.28
+anchor_right = 0.919
+anchor_bottom = 0.72300005
+offset_left = -0.04775238
+offset_top = -0.035606384
+offset_right = 0.23919678
+offset_bottom = 0.022384644
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_nk4nf")
+theme_override_fonts/font = ExtResource("18_hthhu")
+theme_override_font_sizes/font_size = 38
+text = "选项选项"
+
+[node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1633958522 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
+target = NodePath("..")
+click_sound = ExtResource("6_q4ygb")
+
+[node name="CircleFront" type="TextureRect" parent="Buttons/ChoiceButton/ChoiceThree" unique_id=2040757876]
+modulate = Color(1, 1, 1, 0.4392157)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.0
+offset_top = 353.0
+offset_right = 70.0
+offset_bottom = 479.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_gxpof")

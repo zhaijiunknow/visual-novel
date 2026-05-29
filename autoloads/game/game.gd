@@ -26,6 +26,9 @@ func _ready() -> void:
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass, transition_duration: float = 0.4):
 	print("[Game] switch_to_page page=", page.name if page else "<null>", " transition=", _transition, " addition_mode=", addition_mode, " loading=", loading)
+	if page == null:
+		push_error("[Game] switch_to_page received null page")
+		return
 	if loading:
 		print("[Game] switch_to_page aborted because loading is true")
 		return

@@ -2,6 +2,7 @@ class_name BookPage
 extends CanvasLayer
 
 signal story_interaction_closed
+signal reply_selected(next_id: String)
 
 const NotebookData = preload("res://data/_models/notebook_data.gd")
 const MAX_ENTRIES_PER_PAGE := 8
@@ -22,6 +23,7 @@ var _waiting_for_click := false
 var _render_revision := 0
 var _is_playing_entry := false
 var _awaiting_story_close := false
+var _showing_reply_options := false
 
 func _ready() -> void:
 	button_previous.pressed.connect(
@@ -38,12 +40,15 @@ func _ready() -> void:
 		func ():
 			if visible:
 				call_deferred("show_last_page")
+				call_deferred("_setup_choice_button_hover")
 			elif _awaiting_story_close:
 				_awaiting_story_close = false
 				story_interaction_closed.emit()
 	)
 	_ensure_initialized()
 	_update_navigation()
+	clear_reply_options()
+	call_deferred("_setup_choice_button_hover")
 
 func _input(event: InputEvent) -> void:
 	if not visible:
@@ -76,10 +81,125 @@ func _clear_page() -> void:
 		child.queue_free()
 
 func _update_navigation() -> void:
-	button_previous.visible = page_index > 0
-	button_next.visible = page_index < notebook_data.pages.size() - 1
-	buttons.visible = true
-	back_button.visible = not _is_playing_entry
+	var allow_navigation := not _is_playing_entry and not _showing_reply_options
+	button_previous.visible = allow_navigation and page_index > 0
+	button_next.visible = allow_navigation and page_index < notebook_data.pages.size() - 1
+	buttons.visible = allow_navigation
+	back_button.visible = allow_navigation
+
+func _setup_choice_button_hover() -> void:
+	_connect_choice_hover(
+		get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1") as TextureButton,
+		-0.034906585,
+		-0.10471976
+	)
+	_connect_choice_hover(
+		get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2") as TextureButton,
+		0.017453292,
+		-0.05235988
+	)
+	_connect_choice_hover(
+		get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3") as TextureButton,
+		-0.0052359877,
+		-0.06981317
+	)
+
+func _connect_choice_hover(choice_button: TextureButton, base_rotation: float, hover_rotation: float) -> void:
+	if choice_button == null:
+		return
+	if choice_button.has_meta("book_hover_connected"):
+		return
+	choice_button.set_meta("book_hover_connected", true)
+	choice_button.rotation = base_rotation
+	choice_button.mouse_entered.connect(func(): _tween_choice_rotation(choice_button, hover_rotation))
+	choice_button.mouse_exited.connect(func(): _tween_choice_rotation(choice_button, base_rotation))
+
+func _tween_choice_rotation(choice_button: TextureButton, target_rotation: float) -> void:
+	if choice_button == null:
+		return
+	var existing: Tween = choice_button.get_meta("book_hover_tween") if choice_button.has_meta("book_hover_tween") else null
+	if existing:
+		existing.kill()
+	var tween := create_tween()
+	choice_button.set_meta("book_hover_tween", tween)
+	tween.tween_property(choice_button, "rotation", target_rotation, 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func show_reply_options(responses) -> void:
+	clear_reply_options()
+	var choice_button = get_node_or_null("Buttons/ChoiceButton") as Control
+	if choice_button == null:
+		return
+	var choice_nodes = [
+		{
+			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceOne") as Control,
+			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1") as TextureButton,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1/Label") as Label,
+		},
+		{
+			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo") as Control,
+			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2") as TextureButton,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2/Label") as Label,
+		},
+		{
+			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceThree") as Control,
+			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3") as TextureButton,
+			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3/Label") as Label,
+		},
+	]
+	for i in choice_nodes.size():
+		var root: Control = choice_nodes[i].root
+		var button: TextureButton = choice_nodes[i].button
+		var label: Label = choice_nodes[i].label
+		if root == null or button == null or label == null:
+			continue
+		if i >= responses.size():
+			root.visible = false
+			button.disabled = true
+			continue
+		var response = responses[i]
+		root.visible = true
+		button.disabled = false
+		label.text = response.text
+		if button.has_meta("book_reply_callable"):
+			var old_callable: Callable = button.get_meta("book_reply_callable")
+			if button.pressed.is_connected(old_callable):
+				button.pressed.disconnect(old_callable)
+		var callback := func(): _on_reply_clicked(response.next_id)
+		button.set_meta("book_reply_callable", callback)
+		button.pressed.connect(callback)
+	choice_button.visible = responses.size() > 0
+	_showing_reply_options = responses.size() > 0
+	_update_navigation()
+
+func _on_reply_clicked(next_id: String) -> void:
+	clear_reply_options()
+	reply_selected.emit(next_id)
+
+func clear_reply_options() -> void:
+	var choice_button = get_node_or_null("Buttons/ChoiceButton") as Control
+	if choice_button:
+		choice_button.visible = false
+	var paths = [
+		"Buttons/ChoiceButton/ChoiceOne",
+		"Buttons/ChoiceButton/ChoiceTwo",
+		"Buttons/ChoiceButton/ChoiceThree",
+	]
+	for path in paths:
+		var root = get_node_or_null(path) as Control
+		if root == null:
+			continue
+		root.visible = false
+		for child in root.get_children():
+			if child is TextureButton:
+				var button := child as TextureButton
+				button.disabled = true
+				if button.has_meta("book_reply_callable"):
+					var old_callable: Callable = button.get_meta("book_reply_callable")
+					if button.pressed.is_connected(old_callable):
+						button.pressed.disconnect(old_callable)
+					button.remove_meta("book_reply_callable")
+	_showing_reply_options = false
+	_update_navigation()
 
 func show_page(value: int) -> void:
 	_ensure_initialized()
@@ -92,6 +212,7 @@ func _render_page(target_page_index: int, animate: bool, revision: int) -> void:
 	_ensure_initialized()
 	_clear_page()
 	_waiting_for_click = false
+	clear_reply_options()
 	_update_navigation()
 	if notebook_data.pages.is_empty():
 		return
@@ -210,6 +331,7 @@ func reset_notebook() -> void:
 	_is_playing_entry = false
 	_awaiting_story_close = false
 	_render_revision += 1
+	clear_reply_options()
 	if visible:
 		await show_last_page()
 	else:
@@ -221,5 +343,6 @@ func restore_notebook_data(data) -> void:
 	_ensure_initialized()
 	_is_playing_entry = false
 	_awaiting_story_close = false
+	clear_reply_options()
 	if visible:
 		await show_last_page()

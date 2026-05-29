@@ -15,3 +15,4 @@ extends Resource
 @export var music_source: int
 @export var cg_name: String
 @export var cg_variation: String
+@export var quick_save_progress_count: int = 0

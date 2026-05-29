@@ -6,6 +6,8 @@ signal clicked
 @export var texture_hover: TextureRect
 @export var texture_click: TextureRect
 @export var click_box: Control
+@export var label_chinese: Label
+@export var label_english: Label
 
 var selected: bool = false
 
@@ -19,7 +21,7 @@ func _ready() -> void:
 			texture_hover.visible = false
 			texture_click.visible = false
 	)
-	
+
 	click_box.gui_input.connect(
 		func (event: InputEvent):
 			if event is InputEventMouseButton:
@@ -30,3 +32,7 @@ func _ready() -> void:
 						clicked.emit()
 						texture_click.visible = false
 	)
+
+func set_titles(chinese: String, english: String) -> void:
+	label_chinese.text = chinese
+	label_english.text = english
