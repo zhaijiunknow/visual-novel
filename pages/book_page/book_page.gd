@@ -133,22 +133,26 @@ func show_reply_options(responses) -> void:
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceOne") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1") as TextureButton,
 			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceOne/Choice1/Label") as RichTextLabel,
+			"reveal_tilt": deg_to_rad(-1.2),
 		},
 		{
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2") as TextureButton,
 			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceTwo/Choice2/Label") as RichTextLabel,
+			"reveal_tilt": deg_to_rad(1.0),
 		},
 		{
 			"root": get_node_or_null("Buttons/ChoiceButton/ChoiceThree") as Control,
 			"button": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3") as TextureButton,
 			"label": get_node_or_null("Buttons/ChoiceButton/ChoiceThree/Choice3/Label") as RichTextLabel,
+			"reveal_tilt": deg_to_rad(-0.8),
 		},
 	]
 	for i in choice_nodes.size():
 		var root: Control = choice_nodes[i].root
 		var button: TextureButton = choice_nodes[i].button
 		var label: RichTextLabel = choice_nodes[i].label
+		var reveal_tilt: float = choice_nodes[i].reveal_tilt
 		if root == null or button == null or label == null:
 			continue
 		if i >= responses.size():
@@ -157,6 +161,13 @@ func show_reply_options(responses) -> void:
 			continue
 		var response = responses[i]
 		root.visible = true
+		root.modulate.a = 0.0
+		var base_position := root.position
+		root.set_meta("book_choice_base_position", base_position)
+		var base_rotation := button.rotation
+		button.set_meta("book_choice_base_rotation", base_rotation)
+		root.position = base_position + Vector2(-28, 0)
+		button.rotation = base_rotation + reveal_tilt
 		button.disabled = false
 		label.text = response.text
 		if button.has_meta("book_reply_callable"):
@@ -166,6 +177,11 @@ func show_reply_options(responses) -> void:
 		var callback := func(): _on_reply_clicked(response.next_id)
 		button.set_meta("book_reply_callable", callback)
 		button.pressed.connect(callback)
+		var tween := create_tween()
+		tween.tween_interval(i * 0.05)
+		tween.parallel().tween_property(root, "modulate:a", 1.0, 0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(root, "position", base_position, 0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(button, "rotation", base_rotation, 0.24).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	choice_button.visible = responses.size() > 0
 	_showing_reply_options = responses.size() > 0
 	_update_navigation()
@@ -188,9 +204,14 @@ func clear_reply_options() -> void:
 		if root == null:
 			continue
 		root.visible = false
+		root.modulate.a = 1.0
+		if root.has_meta("book_choice_base_position"):
+			root.position = root.get_meta("book_choice_base_position")
 		for child in root.get_children():
 			if child is TextureButton:
 				var button := child as TextureButton
+				if button.has_meta("book_choice_base_rotation"):
+					button.rotation = button.get_meta("book_choice_base_rotation")
 				button.disabled = true
 				if button.has_meta("book_reply_callable"):
 					var old_callable: Callable = button.get_meta("book_reply_callable")
