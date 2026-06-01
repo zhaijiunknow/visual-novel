@@ -204,15 +204,11 @@ func refresh_continue_state_after_save_mutation() -> void:
 
 func load_profile(profile: ProfileData) -> void:
 	if not _is_profile_usable(profile):
-		print("[LoadProfile] skipped unusable profile")
 		return
-	print("[LoadProfile] start usable=", true, " chapter=", profile.chapter_name, " dialogue_id=", profile.dialogue_id, " book_open=", profile.book_open)
 	await Game.switch_to_page(Game.stage_page, true, false,
 		func():
-			print("[LoadProfile] restoring StagePage begin")
 			Game.stage_page.reset()
 			if profile.chapter_name != "" and Game.stage_page.chapters_dict.has(profile.chapter_name):
-				print("[LoadProfile] set dialogue chapter=", profile.chapter_name)
 				Game.stage_page.dialogue = Game.stage_page.chapters_dict[profile.chapter_name]
 			Game.stage_page.quick_save_progress_count = profile.quick_save_progress_count
 			if profile.background != "":
@@ -270,21 +266,18 @@ func load_profile(profile: ProfileData) -> void:
 				AudioManager._music_source = profile.music_source
 			var resume_key := profile.dialogue_id if profile.dialogue_id != "" else "start"
 			var book_resume_key := profile.book_segment_start_id if profile.book_segment_start_id != "" else resume_key
-			print("[LoadProfile] resume_key=", resume_key, " book_segment_start_id=", profile.book_segment_start_id)
-			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage])
-			var resume_in_book: bool = Game.stage_page.dialogue_line != null and "奇迹书" in Game.stage_page.dialogue_line.tags
+			var resume_probe_line: DialogueLine = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage], DMConstants.MutationBehaviour.Skip)
+			var resume_in_book: bool = resume_probe_line != null and "奇迹书" in resume_probe_line.tags
 			if not resume_in_book:
+				Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage])
 				await Game.book_page.restore_notebook_data(profile.notebook_data)
 			else:
 				await Game.book_page.restore_notebook_data(profile.notebook_data)
 				await Game.book_page.trim_notebook_from_dialogue_id(profile.book_segment_start_id)
 				Game.stage_page.current_book_segment_start_id = profile.book_segment_start_id
-			print("[LoadProfile] stage restore complete, current_page=", Game.current_page.name if Game.current_page else "<null>")
 			Game.log_page._suppressed = false
 	)
-	print("[LoadProfile] stage switch finished, current_page=", Game.current_page.name if Game.current_page else "<null>", " loading=", Game.loading)
 	if profile.book_open:
-		print("[LoadProfile] reopening BookPage")
 		await Game.switch_to_page(Game.book_page, true, true)
 		if Game.stage_page.dialogue_line and "奇迹书" not in Game.stage_page.dialogue_line.tags:
 			await Game.book_page.restore_notebook_data(profile.notebook_data)
@@ -292,8 +285,6 @@ func load_profile(profile: ProfileData) -> void:
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.book_segment_start_id, [Game.stage_page, Stage])
 		if Game.stage_page.dialogue_line and Game.stage_page.dialogue_line.responses:
 			Game.book_page.show_reply_options(Game.stage_page.dialogue_line.responses)
-		print("[LoadProfile] BookPage reopen attempted, current_page=", Game.current_page.name if Game.current_page else "<null>")
 	else:
 		if Game.stage_page.dialogue_line and "奇迹书" not in Game.stage_page.dialogue_line.tags:
 			await Game.book_page.restore_notebook_data(profile.notebook_data)
-		print("[LoadProfile] book_open false, skip reopen")
