@@ -23,8 +23,8 @@ func _ready() -> void:
 			var interact_sound := button_start.get_node("InteractSound") as InteractSound
 			var sound_len: float = interact_sound.click_sound.get_length() if interact_sound and interact_sound.click_sound else 0.4
 			var fade_dur: float = sound_len / 2.0
-			if Game.profile_page and Game.profile_page.has_quick_save():
-				Game.profile_page.load_quick_game()
+			if Game.profile_page and Game.profile_page.has_continue_save():
+				Game.profile_page.load_continue_game()
 				return
 			Game.book_page.reset_notebook()
 			Game.switch_to_page(Game.stage_page, true, false, Stage.start, fade_dur)
@@ -51,7 +51,7 @@ func _ready() -> void:
 	)
 
 func _update_start_button() -> void:
-	if Game.profile_page and Game.profile_page.has_quick_save():
+	if Game.profile_page and Game.profile_page.has_continue_save():
 		button_start.set_titles("继续游戏", "Continue")
 	else:
 		button_start.set_titles("开始游戏", "Start Game")

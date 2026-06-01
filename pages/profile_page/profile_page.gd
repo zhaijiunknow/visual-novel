@@ -68,6 +68,7 @@ func _capture_runtime_snapshot() -> Dictionary:
 	return {
 		"preview": ImageTexture.create_from_image(image),
 		"dialogue_id": Game.stage_page.dialogue_line.next_id if Game.stage_page.dialogue_line else "start",
+		"book_segment_start_id": Game.stage_page.current_book_segment_start_id,
 		"chapter_name": Game.stage_page.chapter_name if Game.stage_page.dialogue else "",
 		"character_datas": character_datas,
 		"background": Stage.current_background,
@@ -77,6 +78,7 @@ func _capture_runtime_snapshot() -> Dictionary:
 		"active_chat_character": Game.phone_page.active_chat_character,
 		"log_datas": Game.log_page.log_data_pool.duplicate(true),
 		"notebook_data": Game.book_page.duplicate_notebook_data(),
+		"book_open": Game.book_page.visible,
 		"music_path": apm.stream.resource_path if apm.playing else "",
 		"music_position": apm.get_playback_position() if apm.playing else 0.0,
 		"music_source": AudioManager._music_source if apm.playing else AudioManager.MusicSource.NONE,
@@ -86,6 +88,7 @@ func _capture_runtime_snapshot() -> Dictionary:
 func _apply_snapshot_to_profile(profile: ProfileData, snapshot: Dictionary) -> void:
 	profile.preview = snapshot.preview
 	profile.dialogue_id = snapshot.dialogue_id
+	profile.book_segment_start_id = snapshot.book_segment_start_id
 	profile.chapter_name = snapshot.chapter_name if snapshot.chapter_name != "" else (Game.stage_page.chapter_name if Game.stage_page.dialogue else "")
 	profile.character_datas = snapshot.character_datas
 	profile.background = snapshot.background
@@ -95,10 +98,12 @@ func _apply_snapshot_to_profile(profile: ProfileData, snapshot: Dictionary) -> v
 	profile.active_chat_character = snapshot.active_chat_character
 	profile.log_datas = snapshot.log_datas
 	profile.notebook_data = snapshot.notebook_data
+	profile.book_open = snapshot.book_open
 	profile.music_path = snapshot.music_path
 	profile.music_position = snapshot.music_position
 	profile.music_source = snapshot.music_source
 	profile.quick_save_progress_count = snapshot.quick_save_progress_count
+	profile.last_saved_at_unix_ms = int(Time.get_unix_time_from_system() * 1000.0)
 
 func _ensure_manual_profile(index: int) -> ProfileData:
 	while Main.save_data.profiles.size() <= index:
@@ -143,6 +148,34 @@ func has_quick_save() -> bool:
 func _is_profile_usable(profile: ProfileData) -> bool:
 	return profile != null and profile.dialogue_id != ""
 
+func get_latest_manual_profile() -> ProfileData:
+	var best: ProfileData = null
+	for i in Main.save_data.profiles.size():
+		var profile: ProfileData = Main.save_data.profiles[i]
+		if not _is_profile_usable(profile):
+			continue
+		if best == null:
+			best = profile
+			continue
+		if profile.last_saved_at_unix_ms > best.last_saved_at_unix_ms:
+			best = profile
+		elif profile.last_saved_at_unix_ms == best.last_saved_at_unix_ms and i > Main.save_data.profiles.find(best):
+			best = profile
+	return best
+
+func get_continue_profile() -> ProfileData:
+	if has_quick_save():
+		return Main.save_data.auto_profile
+	return get_latest_manual_profile()
+
+func has_continue_save() -> bool:
+	return get_continue_profile() != null
+
+func load_continue_game() -> void:
+	var profile := get_continue_profile()
+	if profile:
+		load_profile(profile)
+
 func save_quick_game() -> void:
 	if Main.save_data.auto_profile == null:
 		Main.save_data.auto_profile = ProfileData.new()
@@ -158,13 +191,28 @@ func load_quick_game() -> void:
 		return
 	load_profile(Main.save_data.auto_profile)
 
+func refresh_continue_state_after_save_mutation() -> void:
+	if Game.main_menu:
+		Game.main_menu._update_start_button()
+	if Game.stage_page in Game.page_stack:
+		return
+	var continue_profile := get_continue_profile()
+	if continue_profile:
+		Game.book_page.restore_notebook_data(continue_profile.notebook_data)
+	else:
+		Game.book_page.reset_notebook()
+
 func load_profile(profile: ProfileData) -> void:
 	if not _is_profile_usable(profile):
+		print("[LoadProfile] skipped unusable profile")
 		return
-	Game.switch_to_page(Game.stage_page, true, false,
+	print("[LoadProfile] start usable=", true, " chapter=", profile.chapter_name, " dialogue_id=", profile.dialogue_id, " book_open=", profile.book_open)
+	await Game.switch_to_page(Game.stage_page, true, false,
 		func():
+			print("[LoadProfile] restoring StagePage begin")
 			Game.stage_page.reset()
 			if profile.chapter_name != "" and Game.stage_page.chapters_dict.has(profile.chapter_name):
+				print("[LoadProfile] set dialogue chapter=", profile.chapter_name)
 				Game.stage_page.dialogue = Game.stage_page.chapters_dict[profile.chapter_name]
 			Game.stage_page.quick_save_progress_count = profile.quick_save_progress_count
 			if profile.background != "":
@@ -215,13 +263,37 @@ func load_profile(profile: ProfileData) -> void:
 			Game.phone_page.reload_active_chat()
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
-			Game.book_page.restore_notebook_data(profile.notebook_data)
 			if profile.music_path != "":
 				var apm = AudioManager.audio_player_music
 				apm.stream = load(profile.music_path)
 				apm.play(profile.music_position)
 				AudioManager._music_source = profile.music_source
 			var resume_key := profile.dialogue_id if profile.dialogue_id != "" else "start"
+			var book_resume_key := profile.book_segment_start_id if profile.book_segment_start_id != "" else resume_key
+			print("[LoadProfile] resume_key=", resume_key, " book_segment_start_id=", profile.book_segment_start_id)
 			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage])
+			var resume_in_book: bool = Game.stage_page.dialogue_line != null and "奇迹书" in Game.stage_page.dialogue_line.tags
+			if not resume_in_book:
+				await Game.book_page.restore_notebook_data(profile.notebook_data)
+			else:
+				await Game.book_page.restore_notebook_data(profile.notebook_data)
+				await Game.book_page.trim_notebook_from_dialogue_id(profile.book_segment_start_id)
+				Game.stage_page.current_book_segment_start_id = profile.book_segment_start_id
+			print("[LoadProfile] stage restore complete, current_page=", Game.current_page.name if Game.current_page else "<null>")
 			Game.log_page._suppressed = false
 	)
+	print("[LoadProfile] stage switch finished, current_page=", Game.current_page.name if Game.current_page else "<null>", " loading=", Game.loading)
+	if profile.book_open:
+		print("[LoadProfile] reopening BookPage")
+		await Game.switch_to_page(Game.book_page, true, true)
+		if Game.stage_page.dialogue_line and "奇迹书" not in Game.stage_page.dialogue_line.tags:
+			await Game.book_page.restore_notebook_data(profile.notebook_data)
+		elif Game.stage_page.dialogue and profile.book_segment_start_id != "":
+			Game.stage_page.dialogue_line = await Game.stage_page.dialogue.get_next_dialogue_line(profile.book_segment_start_id, [Game.stage_page, Stage])
+		if Game.stage_page.dialogue_line and Game.stage_page.dialogue_line.responses:
+			Game.book_page.show_reply_options(Game.stage_page.dialogue_line.responses)
+		print("[LoadProfile] BookPage reopen attempted, current_page=", Game.current_page.name if Game.current_page else "<null>")
+	else:
+		if Game.stage_page.dialogue_line and "奇迹书" not in Game.stage_page.dialogue_line.tags:
+			await Game.book_page.restore_notebook_data(profile.notebook_data)
+		print("[LoadProfile] book_open false, skip reopen")

@@ -5,6 +5,8 @@ signal story_interaction_closed
 signal reply_selected(next_id: String)
 
 const NotebookData = preload("res://data/_models/notebook_data.gd")
+const NotebookPageData = preload("res://data/_models/notebook_page_data.gd")
+const NotebookEntryData = preload("res://data/_models/notebook_entry_data.gd")
 const MAX_ENTRIES_PER_PAGE := 8
 
 @export var dialogue_label: DialogueLabel
@@ -58,11 +60,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_waiting_for_click = false
 
-func _make_page(page_number: int) -> Dictionary:
-	return {
-		"page_index": page_number,
-		"entries": []
-	}
+func _make_page(page_number: int) -> NotebookPageData:
+	var page := NotebookPageData.new()
+	page.page_index = page_number
+	page.entries = []
+	return page
 
 func _ensure_initialized() -> void:
 	if notebook_data == null:
@@ -123,6 +125,23 @@ func _tween_choice_rotation(choice_button: TextureButton, target_rotation: float
 	choice_button.set_meta("book_hover_tween", tween)
 	tween.tween_property(choice_button, "rotation", target_rotation, 0.18).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
+func _fit_choice_label(label: RichTextLabel, max_font_size: int = 38, min_font_size: int = 24) -> void:
+	if label == null:
+		return
+	label.fit_content = false
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.bbcode_enabled = false
+	label.scroll_active = false
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("normal_font_size", max_font_size)
+	await get_tree().process_frame
+	var size := max_font_size
+	while size > min_font_size and label.get_content_height() > label.size.y:
+		size -= 2
+		label.add_theme_font_size_override("normal_font_size", size)
+		await get_tree().process_frame
+
 func show_reply_options(responses) -> void:
 	clear_reply_options()
 	var choice_button = get_node_or_null("Buttons/ChoiceButton") as Control
@@ -170,6 +189,7 @@ func show_reply_options(responses) -> void:
 		button.rotation = base_rotation + reveal_tilt
 		button.disabled = false
 		label.text = response.text
+		await _fit_choice_label(label)
 		if button.has_meta("book_reply_callable"):
 			var old_callable: Callable = button.get_meta("book_reply_callable")
 			if button.pressed.is_connected(old_callable):
@@ -236,28 +256,28 @@ func _render_page(target_page_index: int, animate: bool, revision: int) -> void:
 	_update_navigation()
 	if notebook_data.pages.is_empty():
 		return
-	var page: Dictionary = notebook_data.pages[target_page_index]
-	var entries: Array = page.get("entries", [])
+	var page: NotebookPageData = notebook_data.pages[target_page_index]
+	var entries: Array[NotebookEntryData] = page.entries
 	if entries.is_empty():
 		return
 	for entry in entries:
 		if revision != _render_revision:
 			return
-		await _append_entry(entry, animate and entry.get("side", "") == "left")
+		await _append_entry(entry, animate and entry.side == "left")
 		if revision != _render_revision:
 			return
-		if animate and entry.get("side", "") == "right":
+		if animate and entry.side == "right":
 			_waiting_for_click = true
 			while _waiting_for_click and revision == _render_revision:
 				await get_tree().process_frame
 			if revision != _render_revision:
 				return
 
-func _append_entry(entry: Dictionary, animate: bool) -> void:
+func _append_entry(entry: NotebookEntryData, animate: bool) -> void:
 	var label = dialogue_label.duplicate()
 	var container = paragraph_container.duplicate()
 	vbox_page.add_child(container)
-	var is_left = entry.get("side", "") == "left"
+	var is_left = entry.side == "left"
 	if is_left:
 		container.box_left.add_child(label)
 	else:
@@ -265,17 +285,17 @@ func _append_entry(entry: Dictionary, animate: bool) -> void:
 		label.add_theme_color_override("default_color", reply_color)
 		container.box_right.add_child(label)
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	label.text = entry.get("text", "")
+	label.text = entry.text
 	label.visible_ratio = 0 if animate else 1
 	if animate:
 		audio_player.play()
 		await create_tween().tween_property(label, "visible_ratio", 1, audio_player.stream.get_length()).finished
 		await get_tree().create_timer(0.8).timeout
 
-func _play_new_entry(entry: Dictionary) -> void:
+func _play_new_entry(entry: NotebookEntryData) -> void:
 	_is_playing_entry = true
 	_update_navigation()
-	if entry.get("side", "") == "left":
+	if entry.side == "left":
 		await _append_entry(entry, true)
 		_is_playing_entry = false
 		_update_navigation()
@@ -292,31 +312,30 @@ func append_entry(entry_id: String, speaker: String, text: String, side: String 
 	if entry_id != "" and entry_id in notebook_data.entry_ids_written:
 		return
 	var target_side = side if side != "" else ("left" if speaker == "L" else "right")
-	var current_page: Dictionary = notebook_data.pages[notebook_data.current_page_index]
-	var entries: Array = current_page.get("entries", [])
+	var current_page: NotebookPageData = notebook_data.pages[notebook_data.current_page_index]
+	var entries: Array[NotebookEntryData] = current_page.entries
 	var created_new_page := false
 	if entries.size() >= MAX_ENTRIES_PER_PAGE:
 		var next_page := _make_page(notebook_data.pages.size())
 		notebook_data.pages.append(next_page)
-		notebook_data.current_page_index = next_page.get("page_index", notebook_data.current_page_index + 1)
+		notebook_data.current_page_index = next_page.page_index
 		current_page = next_page
-		entries = current_page.get("entries", [])
+		entries = current_page.entries
 		created_new_page = true
-	var entry := {
-		"entry_id": entry_id,
-		"speaker": speaker,
-		"text": text,
-		"side": target_side,
-		"tags": tags.duplicate(),
-		"page_index": current_page.get("page_index", 0),
-		"chapter_name": Game.stage_page.chapter_name if Game.stage_page.dialogue else "",
-		"source_dialogue_id": str(Game.stage_page.dialogue_line.id) if Game.stage_page.dialogue_line else "",
-	}
+	var entry := NotebookEntryData.new()
+	entry.entry_id = entry_id
+	entry.speaker = speaker
+	entry.text = text
+	entry.side = target_side
+	entry.tags = tags.duplicate()
+	entry.page_index = current_page.page_index
+	entry.chapter_name = Game.stage_page.chapter_name if Game.stage_page.dialogue else ""
+	entry.source_dialogue_id = str(Game.stage_page.dialogue_line.id) if Game.stage_page.dialogue_line else ""
 	entries.append(entry)
-	current_page["entries"] = entries
+	current_page.entries = entries
 	if entry_id != "":
 		notebook_data.entry_ids_written.append(entry_id)
-	notebook_data.current_page_index = current_page.get("page_index", notebook_data.current_page_index)
+	notebook_data.current_page_index = current_page.page_index
 	if visible:
 		if created_new_page or page_index != notebook_data.current_page_index:
 			await show_page(notebook_data.current_page_index)
@@ -357,6 +376,44 @@ func reset_notebook() -> void:
 	else:
 		_clear_page()
 		_update_navigation()
+
+func trim_notebook_from_dialogue_id(source_dialogue_id: String) -> void:
+	if source_dialogue_id == "":
+		return
+		_ensure_initialized()
+	var new_pages: Array[NotebookPageData] = []
+	var found := false
+	for page: NotebookPageData in notebook_data.pages:
+		var new_page := NotebookPageData.new()
+		new_page.page_index = page.page_index
+		new_page.entries = []
+		for entry: NotebookEntryData in page.entries:
+			if entry.source_dialogue_id == source_dialogue_id:
+				found = true
+				break
+			new_page.entries.append(entry.duplicate(true))
+		if new_page.entries.size() > 0:
+			new_pages.append(new_page)
+		if found:
+			break
+	if found:
+		notebook_data.pages = new_pages
+		if notebook_data.pages.is_empty():
+			notebook_data.pages.append(_make_page(0))
+		notebook_data.current_page_index = notebook_data.pages.back().page_index if not notebook_data.pages.is_empty() else 0
+		var ids: Array[String] = []
+		for page: NotebookPageData in notebook_data.pages:
+			for entry: NotebookEntryData in page.entries:
+				if entry.entry_id != "":
+					ids.append(entry.entry_id)
+		notebook_data.entry_ids_written = ids
+		_render_revision += 1
+		clear_reply_options()
+		if visible:
+			await show_last_page()
+		else:
+			_clear_page()
+			_update_navigation()
 
 func restore_notebook_data(data) -> void:
 	notebook_data = data.duplicate(true) if data else NotebookData.new()

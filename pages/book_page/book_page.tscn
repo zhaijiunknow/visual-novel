@@ -216,7 +216,6 @@ theme = ExtResource("20_nk4nf")
 theme_override_fonts/normal_font = ExtResource("18_hthhu")
 theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
-fit_content = true
 scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceOne/Choice1" unique_id=2070283499 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
@@ -287,7 +286,6 @@ theme = ExtResource("20_nk4nf")
 theme_override_fonts/normal_font = ExtResource("18_hthhu")
 theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
-fit_content = true
 scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceTwo/Choice2" unique_id=73155174 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]
@@ -359,7 +357,6 @@ theme = ExtResource("20_nk4nf")
 theme_override_fonts/normal_font = ExtResource("18_hthhu")
 theme_override_font_sizes/normal_font_size = 38
 text = "选项选项"
-fit_content = true
 scroll_active = false
 
 [node name="InteractSound" parent="Buttons/ChoiceButton/ChoiceThree/Choice3" unique_id=1633958522 node_paths=PackedStringArray("target") instance=ExtResource("16_3fgb7")]

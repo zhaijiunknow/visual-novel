@@ -52,6 +52,7 @@ var _mode: AdvanceMode = AdvanceMode.MANUAL
 var _idle: bool = false
 var _voice_finished_cb: Callable = Callable()
 var quick_save_progress_count: int = 0
+var current_book_segment_start_id: String = ""
 
 var skip: bool:
 	get: return _mode == AdvanceMode.SKIP
@@ -136,6 +137,10 @@ var scene: String:
 
 func process_line() -> void:
 	var current = dialogue_line
+	if dialogue_line and "奇迹书" in dialogue_line.tags and current_book_segment_start_id == "":
+		current_book_segment_start_id = dialogue_line.id
+	elif dialogue_line and "奇迹书" not in dialogue_line.tags:
+		current_book_segment_start_id = ""
 	if not dialogue_line.text:
 		pass
 	else:
@@ -399,6 +404,7 @@ func reset() -> void:
 	_disconnect_voice_finished()
 	Stage.reset()
 	quick_save_progress_count = 0
+	current_book_segment_start_id = ""
 
 func start() -> void:
 	reset()

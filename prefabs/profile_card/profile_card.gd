@@ -76,6 +76,7 @@ func _on_delete_pressed() -> void:
 		Main.save_save_data()
 		Game.go_back()
 		Game.profile_page.update()
+		Game.profile_page.refresh_continue_state_after_save_mutation()
 	if slot_kind == SlotKind.QUICK:
 		title = "重置快速存档"
 		message = "确定要重置快速存档吗？\n此操作无法撤销。"
@@ -84,8 +85,7 @@ func _on_delete_pressed() -> void:
 			Main.save_save_data()
 			Game.go_back()
 			Game.profile_page.update()
-			if Game.main_menu:
-				Game.main_menu._update_start_button()
+			Game.profile_page.refresh_continue_state_after_save_mutation()
 	Game.confirm_page.show_confirm(title, message, action)
 	Game.switch_to_page(Game.confirm_page, true, true)
 
