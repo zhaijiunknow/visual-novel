@@ -193,6 +193,20 @@ def append_fade_out(lines, tabs, state, character):
         remove_visible_character(state, character)
 
 
+def _sync_optionals(lines, tabs, state, character, new_optionals):
+    """比较角色上一句与当前行的附加部件，附加从有→无时生成 ClearOptionals。
+
+    引擎侧（stage_page.gd）只在有 #附加 tag 时才 Clear+Set，没有 tag 就什么都不做，
+    所以上一句设过的部件（如眼镜）会一直残留。当前行没有附加时必须显式清除。
+    换一组附加（两段都不为空）：行上的 #附加 tag 会先 Clear 再 Set，无需额外指令。
+    """
+    new_list = list(new_optionals) if new_optionals else []
+    prev = state["character_optionals"].get(character)
+    state["character_optionals"][character] = new_list
+    if prev and not new_list:
+        lines.append(f'{tabs}$> Character("{character}").ClearOptionals()')
+
+
 def get_parent_id(fields):
     """提取父记录 ID"""
     parent = None
@@ -440,6 +454,11 @@ def generate_do_commands(data, state, lines, tabs):
     if data["expression"] and data["expression"] != "-" and character:
         state["character_expressions"][character] = data["expression"]
 
+    # 追踪附加部件：当前行没有附加但上一句有 → 显式 ClearOptionals。
+    # 放在 FadeIn 之前，避免角色回归时先带着旧部件闪一下再被清除
+    if character and has_portrait(character):
+        _sync_optionals(lines, tabs, state, character, data["optionals"])
+
     for entering_character in data.get("entering_portraits", []):
         append_fade_in(lines, tabs, state, entering_character)
 
@@ -514,6 +533,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         "visible_character_order": [],
         "character_bodies": {},
         "character_expressions": {},
+        "character_optionals": {},
         "bg_name": "",
         "time_period": "",
         "date_key": "",

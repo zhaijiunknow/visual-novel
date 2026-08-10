@@ -213,17 +213,24 @@ func stop_sound() -> void:
 var _sound_fade_tween: Tween
 
 var _duck_tween: Tween
-var _unducked_db: float
 var _is_ducked := false
+
+## BGM 的「真实」目标音量（dB）：只由设置推导，不随 duck/unduck 动画浮动。
+## 恢复时永远回到它，避免捕捉到动画进行中的中间值导致音量逐句「棘轮」下降。
+func _music_base_db() -> float:
+	var s: SettingData = Main.setting_data
+	if s == null or s.mute_all:
+		return -80.0
+	return linear_to_db(s.music_volume)
 
 func _duck_music() -> void:
 	if _is_ducked:
 		return
 	if _duck_tween:
 		_duck_tween.kill()
-	_unducked_db = audio_player_music.volume_db
 	_is_ducked = true
-	var ducked_db := linear_to_db(db_to_linear(_unducked_db) * 0.5)
+	# 从真实目标音量算 duck 值，绝不捕捉实时音量
+	var ducked_db := linear_to_db(db_to_linear(_music_base_db()) * 0.5)
 	_duck_tween = create_tween()
 	_duck_tween.tween_property(audio_player_music, "volume_db", ducked_db, 0.3)
 
@@ -234,7 +241,7 @@ func _unduck_music() -> void:
 	if _fade_tween:
 		_fade_tween.kill()
 	_duck_tween = create_tween()
-	_duck_tween.tween_property(audio_player_music, "volume_db", _unducked_db, 0.3)
+	_duck_tween.tween_property(audio_player_music, "volume_db", _music_base_db(), 0.3)
 
 var _music_paused := false
 var _music_position := 0.0
@@ -252,9 +259,12 @@ func pause_music() -> void:
 	_music_position = audio_player_music.get_playback_position()
 	_paused_source = _music_source
 	_paused_stream = audio_player_music.stream
-	var saved_db := audio_player_music.volume_db
+	# 用真实目标音量，避免捕捉到 duck 动画中的低值
+	var saved_db := _music_base_db()
 	if _fade_tween:
 		_fade_tween.kill()
+	if _duck_tween:
+		_duck_tween.kill()
 	_fade_tween = create_tween()
 	_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
