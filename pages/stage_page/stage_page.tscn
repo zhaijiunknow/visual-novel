@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3q3evsgl40pc" path="res://pages/stage_page/stage_page.gd" id="1_wlgfe"]
 [ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="2_limwj"]
-[ext_resource type="Texture2D" uid="uid://b8ns4nebqpayi" path="res://assets/backgrounds/4马客茂-黄昏.jpg" id="3_13c71"]
+[ext_resource type="Texture2D" uid="uid://dh2xm5eceo7uc" path="res://assets/backgrounds/7-教室-白天.jpg" id="3_13c71"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="4_lda8k"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
 [ext_resource type="PackedScene" uid="uid://cutrq7kinwuti" path="res://prefabs/dialogue_box/dialogue_box.tscn" id="7_lda8k"]
@@ -344,9 +344,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -484.0
-offset_top = 67.0
-offset_bottom = 236.0
+offset_left = -1067.0
+offset_top = -1.0
+offset_bottom = 615.0
 grow_horizontal = 0
 texture = ExtResource("28_217kn")
 
@@ -356,9 +356,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -484.0
-offset_top = 69.0
-offset_bottom = 238.0
+offset_left = -1067.0
+offset_bottom = 616.0
 grow_horizontal = 0
 texture = ExtResource("29_hovpu")
 
