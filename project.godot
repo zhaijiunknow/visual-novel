@@ -30,7 +30,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="无言初雪与奇迹书"
 run/main_scene="res://scenes/main_scene/main_scene.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-boot_splash/show_image=false
+boot_splash/bg_color=Color(0.16862746, 0.16862746, 0.16862746, 1)
+boot_splash/image="uid://bbuo46jo6fhht"
 config/icon="uid://qth2a4mp6mlh"
 config/windows_native_icon="res://assets/ico/ico_256.ico"
 

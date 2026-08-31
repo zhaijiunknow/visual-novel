@@ -53,21 +53,6 @@
 					}
 				},
 				{
-					"filename": "CG3/CG3-常夏嘟嘴.jpg",
-					"region": {
-						"x": 0,
-						"y": 378,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "CG4/CG04-正常微笑.png",
 					"region": {
 						"x": 1089,
@@ -156,6 +141,21 @@
 						"w": 3373,
 						"h": 1795
 					}
+				},
+				{
+					"filename": "CG8/CG8-眯眼开心吃菠萝包.png",
+					"region": {
+						"x": 0,
+						"y": 378,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -179,21 +179,6 @@
 						"y": 154,
 						"w": 2124,
 						"h": 1064
-					}
-				},
-				{
-					"filename": "CG3/CG3-正常嬉水.jpg",
-					"region": {
-						"x": 0,
-						"y": 412,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
 					}
 				},
 				{
@@ -300,6 +285,21 @@
 						"w": 3373,
 						"h": 1774
 					}
+				},
+				{
+					"filename": "CG8/CG8-眯眼生气.png",
+					"region": {
+						"x": 0,
+						"y": 412,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -338,21 +338,6 @@
 						"y": 1,
 						"w": 1973,
 						"h": 911
-					}
-				},
-				{
-					"filename": "CG4/CG04-背景.jpg",
-					"region": {
-						"x": 0,
-						"y": 531,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
 					}
 				},
 				{
@@ -429,6 +414,21 @@
 						"w": 3240,
 						"h": 1656
 					}
+				},
+				{
+					"filename": "CG8/CG8-眯眼笑开口.png",
+					"region": {
+						"x": 0,
+						"y": 531,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -439,21 +439,6 @@
 				"h": 3056
 			},
 			"sprites": [
-				{
-					"filename": "CG5/CG05-背景.jpg",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
 				{
 					"filename": "CG6/CG06-为难开口.png",
 					"region": {
@@ -513,6 +498,21 @@
 						"w": 3229,
 						"h": 1606
 					}
+				},
+				{
+					"filename": "CG8/CG8-笑开口不敢对视.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -569,7 +569,7 @@
 					}
 				},
 				{
-					"filename": "CG6/CG06-背景.jpg",
+					"filename": "CG8/CG8-笑说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -623,7 +623,7 @@
 					}
 				},
 				{
-					"filename": "CG7/CG07-人物背景.jpg",
+					"filename": "CG8/CG8-苦恼说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -950,11 +950,275 @@
 					}
 				}
 			]
+		},
+		{
+			"image": "galleries-19.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG3/CG3-常夏嘟嘴.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-20.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG3/CG3-正常嬉水.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-21.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG4/CG04-背景.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-22.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG5/CG05-背景.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-23.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG6/CG06-背景.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-24.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG7/CG07-人物背景.jpg",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-25.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-不敢对视说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-26.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-叹气.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-27.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-吃菠萝包.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-28.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-正常说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-29.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-生气说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
 		}
 	],
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:1f1071865cc43fd777ab251079df65d3:f332bbf95f7d4eeece37e2a32a8e30b2:81282cac30c06d9e809125a6c7a7d250$"
+		"smartupdate": "$TexturePacker:SmartUpdate:86a3adc6a9f512094c1d8f3db807ac37:c855c59ef9b286da735ca65f80a4d5b7:f45cceca93d662c8013d8a94b9741356$"
 	}
 }
