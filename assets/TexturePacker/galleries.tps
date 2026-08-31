@@ -4,7 +4,7 @@
         <key>fileFormatVersion</key>
         <int>6</int>
         <key>texturePackerVersion</key>
-        <string>8.0.0</string>
+        <string>8.0.1</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -50,7 +50,7 @@
         <key>dxtCompressionMode</key>
         <enum type="SettingsBase::DxtCompressionMode">DXT_PERCEPTUAL</enum>
         <key>ditherType</key>
-        <enum type="SettingsBase::DitherType">NearestNeighbour</enum>
+        <enum type="SettingsBase::DitherType">PngQuantLow</enum>
         <key>backgroundColor</key>
         <uint>0</uint>
         <key>libGdx</key>
@@ -74,7 +74,7 @@
         <key>textureSubPath</key>
         <string></string>
         <key>textureFormat</key>
-        <enum type="SettingsBase::TextureFormat">png</enum>
+        <enum type="SettingsBase::TextureFormat">png8</enum>
         <key>borderPadding</key>
         <uint>0</uint>
         <key>maxTextureSize</key>
@@ -143,6 +143,8 @@
         <key>autoAliasEnabled</key>
         <false/>
         <key>trimSpriteNames</key>
+        <false/>
+        <key>enableCacheBusting</key>
         <false/>
         <key>prependSmartFolderName</key>
         <false/>
@@ -239,6 +241,17 @@
             <key type="filename">../gallery/CG7/CG07-平静说话.png</key>
             <key type="filename">../gallery/CG7/CG07-普通卖萌.png</key>
             <key type="filename">../gallery/CG7/CG07-气急败坏.png</key>
+            <key type="filename">../gallery/CG8/CG8-不敢对视说话.png</key>
+            <key type="filename">../gallery/CG8/CG8-叹气.png</key>
+            <key type="filename">../gallery/CG8/CG8-吃菠萝包.png</key>
+            <key type="filename">../gallery/CG8/CG8-正常说话.png</key>
+            <key type="filename">../gallery/CG8/CG8-生气说话.png</key>
+            <key type="filename">../gallery/CG8/CG8-眯眼开心吃菠萝包.png</key>
+            <key type="filename">../gallery/CG8/CG8-眯眼生气.png</key>
+            <key type="filename">../gallery/CG8/CG8-眯眼笑开口.png</key>
+            <key type="filename">../gallery/CG8/CG8-笑开口不敢对视.png</key>
+            <key type="filename">../gallery/CG8/CG8-笑说话.png</key>
+            <key type="filename">../gallery/CG8/CG8-苦恼说话.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
