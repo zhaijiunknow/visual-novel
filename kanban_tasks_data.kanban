@@ -10,10 +10,7 @@
 		{
 			"uuid": "f23ef9d7-c3c4-4aff-aa8e-8ac2594f3a64",
 			"title": "Todo",
-			"tasks": [
-				"def2ee2c-314f-4962-92de-476b34ffac3e",
-				"190536e8-969a-4f7e-b9c5-93354030be79"
-			]
+			"tasks": []
 		},
 		{
 			"uuid": "3a851002-3900-4215-828c-a7c0799ce93c",
@@ -44,13 +41,6 @@
 		{
 			"uuid": "def2ee2c-314f-4962-92de-476b34ffac3e",
 			"title": "音乐播放问题",
-			"description": "",
-			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
-			"steps": []
-		},
-		{
-			"uuid": "190536e8-969a-4f7e-b9c5-93354030be79",
-			"title": "开始游戏要等待",
 			"description": "",
 			"category": "65db23fa-4d22-453c-957f-62f32961db4c",
 			"steps": []

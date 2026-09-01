@@ -212,7 +212,6 @@ region = Rect2(256, 128, 912, 856)
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 phone_avatar = ExtResource("24_phone")
 phone_nickname = "高三（10）班-余洛琛-12月5日"
-avatar_fixed_action = null
 
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -620.0
