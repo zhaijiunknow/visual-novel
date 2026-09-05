@@ -244,11 +244,13 @@
             <key type="filename">../gallery/CG8/CG8-不敢对视说话.png</key>
             <key type="filename">../gallery/CG8/CG8-叹气.png</key>
             <key type="filename">../gallery/CG8/CG8-吃菠萝包.png</key>
+            <key type="filename">../gallery/CG8/CG8-微笑.png</key>
             <key type="filename">../gallery/CG8/CG8-正常说话.png</key>
             <key type="filename">../gallery/CG8/CG8-生气说话.png</key>
             <key type="filename">../gallery/CG8/CG8-眯眼开心吃菠萝包.png</key>
             <key type="filename">../gallery/CG8/CG8-眯眼生气.png</key>
             <key type="filename">../gallery/CG8/CG8-眯眼笑开口.png</key>
+            <key type="filename">../gallery/CG8/CG8-眯眼闭嘴微笑.png</key>
             <key type="filename">../gallery/CG8/CG8-笑开口不敢对视.png</key>
             <key type="filename">../gallery/CG8/CG8-笑说话.png</key>
             <key type="filename">../gallery/CG8/CG8-苦恼说话.png</key>

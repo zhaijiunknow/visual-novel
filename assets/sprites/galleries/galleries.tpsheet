@@ -143,7 +143,7 @@
 					}
 				},
 				{
-					"filename": "CG8/CG8-眯眼开心吃菠萝包.png",
+					"filename": "CG8/CG8-眯眼生气.png",
 					"region": {
 						"x": 0,
 						"y": 378,
@@ -287,7 +287,7 @@
 					}
 				},
 				{
-					"filename": "CG8/CG8-眯眼生气.png",
+					"filename": "CG8/CG8-眯眼笑开口.png",
 					"region": {
 						"x": 0,
 						"y": 412,
@@ -416,7 +416,7 @@
 					}
 				},
 				{
-					"filename": "CG8/CG8-眯眼笑开口.png",
+					"filename": "CG8/CG8-眯眼闭嘴微笑.png",
 					"region": {
 						"x": 0,
 						"y": 531,
@@ -1175,7 +1175,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-正常说话.png",
+					"filename": "CG8/CG8-微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1199,7 +1199,55 @@
 			},
 			"sprites": [
 				{
+					"filename": "CG8/CG8-正常说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-30.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
 					"filename": "CG8/CG8-生气说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-31.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-眯眼开心吃菠萝包.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1219,6 +1267,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:86a3adc6a9f512094c1d8f3db807ac37:c855c59ef9b286da735ca65f80a4d5b7:f45cceca93d662c8013d8a94b9741356$"
+		"smartupdate": "$TexturePacker:SmartUpdate:27d2116c4946d8b4b9224e70704c6973:5ec73645fbda049ddf7e43696fba1764:a1167e77dcfddf049a5b8d6b44e8206a$"
 	}
 }
