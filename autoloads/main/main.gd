@@ -43,6 +43,17 @@ func has_voice_collection(filename) -> bool:
 			return collection.voice_filename == filename
 	).size() > 0
 
+func unlock_cg(cg_name: String) -> void:
+	if cg_name.is_empty():
+		return
+	if cg_name in collection_data.unlocked_cgs:
+		return
+	collection_data.unlocked_cgs.append(cg_name)
+	save_collection_data()
+
+func has_unlocked_cg(cg_name: String) -> bool:
+	return cg_name in collection_data.unlocked_cgs
+
 var _setting_save_pending: bool = false
 var _setting_save_thread: Thread
 

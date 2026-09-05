@@ -12,14 +12,16 @@ extends Control
 const TWEEN_DURATION: float = 0.3
 
 var current_gallery_data: GalleryData
+# 全屏图鉴当前可翻看的变体（整 CG 解锁后为完整 variation）
+var gallery_view_variations: Array[Texture2D] = []
 var variation_index: int:
 	set(value):
 		variation_index = value
-		if not current_gallery_data:
+		if not current_gallery_data or gallery_view_variations.is_empty():
 			return
-		variation_index = posmod(variation_index, current_gallery_data.cg_variations.size())
-		gallery_view_variation.texture = current_gallery_data.cg_variations[variation_index]
-		var raw_name = current_gallery_data.cg_variations[variation_index].resource_path.get_file().get_basename()
+		variation_index = posmod(variation_index, gallery_view_variations.size())
+		gallery_view_variation.texture = gallery_view_variations[variation_index]
+		var raw_name = gallery_view_variations[variation_index].resource_path.get_file().get_basename()
 		var dash_pos = raw_name.find("-")
 		var display_name = raw_name.substr(dash_pos + 1) if dash_pos != -1 else raw_name
 		option_variation.option_name = display_name
@@ -27,10 +29,15 @@ var _active_card: GalleryCard
 
 func _ready() -> void:
 	gallery_view.visible = false
+	# 只显示已解锁的 CG，未解锁的不占位（网格随解锁进度紧凑排列）
 	for gallery_data in Stage.gallery_data_pool:
+		var cg_name: String = gallery_data.resource_path.get_file().get_basename()
+		if not Main.has_unlocked_cg(cg_name):
+			continue
 		var gallery_card: GalleryCard = Prefabs.gallery_card.instantiate()
+		gallery_card.variations = gallery_data.variation
 		gallery_card.texture_rect_base.texture = gallery_data.base
-		gallery_card.texture_rect_variation.texture = gallery_data.cg_variations[0]
+		gallery_card.texture_rect_variation.texture = gallery_data.variation[0] if not gallery_data.variation.is_empty() else null
 		gallery_card_pool.add_child(gallery_card)
 		gallery_card.pressed.connect(open_gallery_view.bind(gallery_card, gallery_data))
 
@@ -51,6 +58,7 @@ func open_gallery_view(card: GalleryCard, gallery_data: GalleryData) -> void:
 	current_gallery_data = gallery_data
 
 	# 设置纹理
+	gallery_view_variations = card.variations
 	gallery_view.texture = gallery_data.base
 	variation_index = 0
 	gallery_view_frame.visible = true

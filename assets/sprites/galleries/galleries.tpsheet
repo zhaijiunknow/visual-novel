@@ -1199,7 +1199,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-正常说话.png",
+					"filename": "CG8/CG8-无奈.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1223,7 +1223,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-生气说话.png",
+					"filename": "CG8/CG8-正常说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1241,6 +1241,30 @@
 		},
 		{
 			"image": "galleries-31.png",
+			"size": {
+				"w": 3840,
+				"h": 2160
+			},
+			"sprites": [
+				{
+					"filename": "CG8/CG8-生气说话.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 3840,
+						"h": 2160
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "galleries-32.png",
 			"size": {
 				"w": 3840,
 				"h": 2160
@@ -1267,6 +1291,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:27d2116c4946d8b4b9224e70704c6973:5ec73645fbda049ddf7e43696fba1764:a1167e77dcfddf049a5b8d6b44e8206a$"
+		"smartupdate": "$TexturePacker:SmartUpdate:ac5ee3b5bc4227aaf86aa6a278cad831:aae1294a878e1014a92ce6e3af18d7c1:b69f87014c582e268766f13e6f4d3650$"
 	}
 }

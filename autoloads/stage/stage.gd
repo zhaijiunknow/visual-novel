@@ -146,6 +146,7 @@ func SetCG(cg_name: String, variation_name: String) -> void:
 	if not target_gallery:
 		push_warning("SetCG: 未找到 gallery %s" % cg_name)
 		return
+	Main.unlock_cg(cg_name)
 
 	# 同一CG切换差分：直接换贴图，不走过渡
 	if current_cg == cg_name:

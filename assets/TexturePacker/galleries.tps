@@ -245,6 +245,7 @@
             <key type="filename">../gallery/CG8/CG8-叹气.png</key>
             <key type="filename">../gallery/CG8/CG8-吃菠萝包.png</key>
             <key type="filename">../gallery/CG8/CG8-微笑.png</key>
+            <key type="filename">../gallery/CG8/CG8-无奈.png</key>
             <key type="filename">../gallery/CG8/CG8-正常说话.png</key>
             <key type="filename">../gallery/CG8/CG8-生气说话.png</key>
             <key type="filename">../gallery/CG8/CG8-眯眼开心吃菠萝包.png</key>
