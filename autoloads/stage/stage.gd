@@ -62,6 +62,9 @@ func reset() -> void:
 	if Game and Game.stage_page:
 		Game.stage_page.stop_background_performance()
 		Game.stage_page.stop_opening_effects()
+		Game.stage_page.texture_rect_cg.scale = Vector2.ONE
+		Game.stage_page.texture_rect_cg.pivot_offset = Vector2.ZERO
+		Game.stage_page.texture_rect_cg.position = Vector2(0, 0)
 	current_background = ""
 	current_date = ""
 	current_cg = ""
@@ -187,6 +190,8 @@ func SetCG(cg_name: String, variation_name: String) -> void:
 			break
 	Game.stage_page.texture_rect_variation.texture = var_texture
 	Game.stage_page.texture_rect_cg.visible = true
+	# Q版等小CG按数据里的倍率缩小、居中，并可上移避开 UI（base 与差分同属一节点，会一起变换）
+	_apply_cg_transform(target_gallery.cg_scale, target_gallery.cg_offset_y)
 	clear_characters()
 	HideDialogue(0)
 
@@ -199,6 +204,13 @@ func SetCG(cg_name: String, variation_name: String) -> void:
 			0,
 			1.2
 		).finished
+
+func _apply_cg_transform(cg_scale: float, offset_y: float) -> void:
+	var cg_rect: TextureRect = Game.stage_page.texture_rect_cg
+	cg_rect.pivot_offset = cg_rect.size * 0.5
+	cg_rect.scale = Vector2.ONE if cg_scale <= 0.0 else Vector2(cg_scale, cg_scale)
+	# 在缩放居中基础上整体垂直偏移（负值向上），保持水平居中
+	cg_rect.position = Vector2(0.0, offset_y)
 
 func HideCG() -> void:
 	Game.stage_page.stop_background_performance()
@@ -222,6 +234,9 @@ func HideCG() -> void:
 
 	Game.stage_page.texture_rect_cg.visible = false
 	Game.stage_page.texture_rect_cg.texture = null
+	Game.stage_page.texture_rect_cg.scale = Vector2.ONE
+	Game.stage_page.texture_rect_cg.pivot_offset = Vector2.ZERO
+	Game.stage_page.texture_rect_cg.position = Vector2(0, 0)
 	Game.stage_page.texture_rect_variation.texture = null
 	current_cg = ""
 	current_cg_variation = ""

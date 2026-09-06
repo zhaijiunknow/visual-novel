@@ -58,7 +58,9 @@ var _setting_save_pending: bool = false
 var _setting_save_thread: Thread
 
 func save_collection_data() -> void:
-	ResourceSaver.save(collection_data, collection_path)
+	var err := ResourceSaver.save(collection_data, collection_path)
+	if err != OK:
+		push_error("save_collection_data failed (%d): %s" % [err, collection_path])
 
 func save_setting_data() -> void:
 	if _setting_save_pending:

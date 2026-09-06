@@ -238,6 +238,8 @@ func load_profile(profile: ProfileData) -> void:
 							break
 					Game.stage_page.texture_rect_variation.texture = var_texture
 					Game.stage_page.texture_rect_cg.visible = true
+					# 读档恢复 Q版等小CG时也要应用缩放+偏移，和剧情内 SetCG 表现一致
+					Stage._apply_cg_transform(target_gallery.cg_scale, target_gallery.cg_offset_y)
 					Stage.current_cg = profile.cg_name
 					Stage.current_cg_variation = profile.cg_variation
 			for character_data: CharacterData in profile.character_datas:

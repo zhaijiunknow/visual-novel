@@ -647,7 +647,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-享受食物（无眼镜）.png",
+					"filename": "CG2/CG2-低头吃烤肉.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -671,7 +671,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-害羞说话（无眼镜）.png",
+					"filename": "CG2/CG2-吃烤肉.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -695,7 +695,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-有问题吗？.png",
+					"filename": "CG2/CG2-微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -719,7 +719,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-正常说话.png",
+					"filename": "CG2/CG2-眯眼微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -743,7 +743,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-略感惊讶.png",
+					"filename": "CG2/CG2-眯眼说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -767,7 +767,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-闭眼享受.png",
+					"filename": "CG2/CG2-脸红微笑i.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -791,7 +791,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-默认.png",
+					"filename": "CG2/CG2-脸红眯眼吃烤肉.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -815,7 +815,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/品鉴烤肉.png",
+					"filename": "CG2/CG2-脸红眯眼微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -839,7 +839,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/平静微笑.png",
+					"filename": "CG2/CG2-说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -863,7 +863,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/无奈诉说.png",
+					"filename": "CG3/CG3-小余害羞.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -887,7 +887,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/略微羞涩.png",
+					"filename": "CG3/CG3-常夏嘟嘴.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -911,7 +911,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/略感吃惊.png",
+					"filename": "CG3/CG3-正常嬉水.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -935,7 +935,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG3/CG3-小余害羞.jpg",
+					"filename": "CG4/CG04-背景.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -959,7 +959,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG3/CG3-常夏嘟嘴.jpg",
+					"filename": "CG5/CG05-背景.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -983,7 +983,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG3/CG3-正常嬉水.jpg",
+					"filename": "CG6/CG06-背景.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1007,7 +1007,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG4/CG04-背景.jpg",
+					"filename": "CG7/CG07-人物背景.jpg",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1031,7 +1031,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG5/CG05-背景.jpg",
+					"filename": "CG8/CG8-不敢对视说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1055,7 +1055,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG6/CG06-背景.jpg",
+					"filename": "CG8/CG8-叹气.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1079,7 +1079,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG7/CG07-人物背景.jpg",
+					"filename": "CG8/CG8-吃菠萝包.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1103,7 +1103,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-不敢对视说话.png",
+					"filename": "CG8/CG8-微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1127,7 +1127,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-叹气.png",
+					"filename": "CG8/CG8-无奈.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1151,7 +1151,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-吃菠萝包.png",
+					"filename": "CG8/CG8-正常说话.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1175,78 +1175,6 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG8/CG8-微笑.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "galleries-29.png",
-			"size": {
-				"w": 3840,
-				"h": 2160
-			},
-			"sprites": [
-				{
-					"filename": "CG8/CG8-无奈.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "galleries-30.png",
-			"size": {
-				"w": 3840,
-				"h": 2160
-			},
-			"sprites": [
-				{
-					"filename": "CG8/CG8-正常说话.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 3840,
-						"h": 2160
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "galleries-31.png",
-			"size": {
-				"w": 3840,
-				"h": 2160
-			},
-			"sprites": [
-				{
 					"filename": "CG8/CG8-生气说话.png",
 					"region": {
 						"x": 0,
@@ -1264,7 +1192,7 @@
 			]
 		},
 		{
-			"image": "galleries-32.png",
+			"image": "galleries-29.png",
 			"size": {
 				"w": 3840,
 				"h": 2160
@@ -1291,6 +1219,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:ac5ee3b5bc4227aaf86aa6a278cad831:aae1294a878e1014a92ce6e3af18d7c1:b69f87014c582e268766f13e6f4d3650$"
+		"smartupdate": "$TexturePacker:SmartUpdate:35eecc508d5f2810c0fbd931730153ae:37b6ed5af7714cd24eeca0c44b1c1f78:f45cceca93d662c8013d8a94b9741356$"
 	}
 }

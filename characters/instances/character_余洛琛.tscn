@@ -30,26 +30,18 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_6e4on")
-}],
-"loop": true,
-"name": &"常服-常服差分1",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("4_kju8n")
 }],
 "loop": true,
-"name": &"常服-常服差分2",
+"name": &"常服-托眼镜",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_j52or")
+"texture": ExtResource("3_6e4on")
 }],
 "loop": true,
-"name": &"校服-校服差分1",
+"name": &"常服-抬手",
 "speed": 5.0
 }, {
 "frames": [{
@@ -57,7 +49,15 @@ animations = [{
 "texture": ExtResource("6_tj6n1")
 }],
 "loop": true,
-"name": &"校服-校服差分2",
+"name": &"校服-托眼镜",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_j52or")
+}],
+"loop": true,
+"name": &"校服-抬手",
 "speed": 5.0
 }]
 
@@ -212,6 +212,7 @@ region = Rect2(256, 128, 912, 856)
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 phone_avatar = ExtResource("24_phone")
 phone_nickname = "高三（10）班-余洛琛-12月5日"
+avatar_fixed_action = "抬手"
 
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -620.0
@@ -225,7 +226,7 @@ size = Vector2i(1330, 3070)
 position = Vector2(764, 1643)
 scale = Vector2(0.794, 0.794)
 sprite_frames = SubResource("SpriteFrames_qqr4u")
-animation = &"常服-常服差分1"
+animation = &"常服-抬手"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_qulg7")

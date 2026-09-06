@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://iwept1rowo08" path="res://dialogue_manager/dialogues/章节1.dialogue" id="2_limwj"]
 [ext_resource type="Texture2D" uid="uid://dh2xm5eceo7uc" path="res://assets/backgrounds/7-教室-白天.jpg" id="3_13c71"]
 [ext_resource type="Texture2D" uid="uid://dr5tqh6d8nvp0" path="res://assets/temp/stage.jpg" id="4_lda8k"]
+[ext_resource type="Texture2D" uid="uid://hye07exv6r3f" path="res://assets/sprites/ui/ui.sprites/插画鉴赏/hide_normal.tres" id="6_50is1"]
 [ext_resource type="FontFile" uid="uid://c35dkyhsjoohv" path="res://assets/fonts/DreamHanSerif-W12（通用字）.ttc" id="7_ke2v6"]
 [ext_resource type="PackedScene" uid="uid://cutrq7kinwuti" path="res://prefabs/dialogue_box/dialogue_box.tscn" id="7_lda8k"]
 [ext_resource type="FontFile" uid="uid://dd1ubdqp4elpg" path="res://assets/fonts/C4v.4-Regular（日期）.otf" id="20_4x5c0"]
@@ -232,6 +233,15 @@ theme = SubResource("Theme_qq3yp")
 
 [node name="DialogueBox" parent="SubViewportContainer/SubViewport/DialogueScreen" unique_id=2024629459 instance=ExtResource("7_lda8k")]
 layout_mode = 1
+
+[node name="Icon" parent="SubViewportContainer/SubViewport/DialogueScreen/DialogueBox/HBoxContainer_Buttons/DialogueButton_Hide" parent_id_path=PackedInt32Array(2024629459, 1733050591) index="1" unique_id=1758427880]
+modulate = Color(1, 1, 1, 0.57254905)
+offset_left = 16.0
+offset_top = 13.0
+offset_right = 63.0
+offset_bottom = 57.0
+texture = ExtResource("6_50is1")
+expand_mode = 0
 
 [node name="OpeningBlurOverlay" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=1218194033]
 visible = false

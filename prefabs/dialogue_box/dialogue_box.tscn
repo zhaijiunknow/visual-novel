@@ -21,6 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="19_74ksf"]
 [ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="20_q2k8d"]
 [ext_resource type="Texture2D" uid="uid://buakxq3fk2v0q" path="res://assets/sprites/ui/ui.sprites/botton_close.tres" id="21_vfmve"]
+[ext_resource type="Shader" uid="uid://bse78htuslcne" path="res://prefabs/dialogue_box/avatar_edge_fade.gdshader" id="22_avfade"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avfade"]
+shader = ExtResource("22_avfade")
+shader_parameter/fade_width_left = 0.0
+shader_parameter/fade_width_right = 0.15
 
 [node name="DialogueBox" type="Control" unique_id=700312722 node_paths=PackedStringArray("avatar")]
 self_modulate = Color(1, 1, 1, 0)
@@ -90,6 +96,7 @@ position = Vector2(2306, -103)
 polygon = PackedVector2Array(0, 0, 10, 10, 20, 0)
 
 [node name="Avatar" type="TextureRect" parent="." unique_id=469737087]
+material = SubResource("ShaderMaterial_avfade")
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

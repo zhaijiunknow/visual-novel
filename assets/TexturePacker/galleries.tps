@@ -196,18 +196,15 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../gallery/CG2/CG2-享受食物（无眼镜）.png</key>
-            <key type="filename">../gallery/CG2/CG2-害羞说话（无眼镜）.png</key>
-            <key type="filename">../gallery/CG2/CG2-有问题吗？.png</key>
-            <key type="filename">../gallery/CG2/CG2-正常说话.png</key>
-            <key type="filename">../gallery/CG2/CG2-略感惊讶.png</key>
-            <key type="filename">../gallery/CG2/CG2-闭眼享受.png</key>
-            <key type="filename">../gallery/CG2/CG2-默认.png</key>
-            <key type="filename">../gallery/CG2/品鉴烤肉.png</key>
-            <key type="filename">../gallery/CG2/平静微笑.png</key>
-            <key type="filename">../gallery/CG2/无奈诉说.png</key>
-            <key type="filename">../gallery/CG2/略微羞涩.png</key>
-            <key type="filename">../gallery/CG2/略感吃惊.png</key>
+            <key type="filename">../gallery/CG2/CG2-低头吃烤肉.png</key>
+            <key type="filename">../gallery/CG2/CG2-吃烤肉.png</key>
+            <key type="filename">../gallery/CG2/CG2-微笑.png</key>
+            <key type="filename">../gallery/CG2/CG2-眯眼微笑.png</key>
+            <key type="filename">../gallery/CG2/CG2-眯眼说话.png</key>
+            <key type="filename">../gallery/CG2/CG2-脸红微笑i.png</key>
+            <key type="filename">../gallery/CG2/CG2-脸红眯眼吃烤肉.png</key>
+            <key type="filename">../gallery/CG2/CG2-脸红眯眼微笑.png</key>
+            <key type="filename">../gallery/CG2/CG2-说话.png</key>
             <key type="filename">../gallery/CG3/CG3-小余害羞.jpg</key>
             <key type="filename">../gallery/CG3/CG3-常夏嘟嘴.jpg</key>
             <key type="filename">../gallery/CG3/CG3-正常嬉水.jpg</key>

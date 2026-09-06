@@ -13,9 +13,13 @@ extends Node
 @export var setting_page: SettingPage
 @export var confirm_page: ConfirmPage
 @export var loading_page: LoadingPage
+@export var boot_splash: BootSplash
 
 var page_stack: Array[CanvasLayer] = []
 var loading: bool = false
+
+# 启动过场（社团 logo 淡入淡出）期间暂不自动播放主菜单 BGM，等过场结束再播
+var _defer_menu_bgm := true
 
 var current_page: CanvasLayer:
 	get:
@@ -23,6 +27,21 @@ var current_page: CanvasLayer:
 
 func _ready() -> void:
 	switch_to_page(main_menu, false, false)
+	_play_boot_splash()
+
+func _play_boot_splash() -> void:
+	if boot_splash == null:
+		# 防御：没有过场场景时正常立即播放
+		_defer_menu_bgm = false
+		update_audio()
+		return
+	boot_splash.play()
+	boot_splash.finished.connect(_on_boot_splash_finished, CONNECT_ONE_SHOT)
+
+func _on_boot_splash_finished() -> void:
+	# logo 过场播完（或点击跳过）再播放主菜单 BGM
+	_defer_menu_bgm = false
+	update_audio()
 
 func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Callable = func():pass, transition_duration: float = 0.4):
 	print("[Game] switch_to_page page=", page.name if page else "<null>", " transition=", _transition, " addition_mode=", addition_mode, " loading=", loading)
@@ -94,7 +113,7 @@ func update_audio():
 		phone_page.clear_all()
 		log_page.clear_all()
 		if main_menu in page_stack:
-			if AudioManager._music_source != AudioManager.MusicSource.THEME:
+			if not _defer_menu_bgm and AudioManager._music_source != AudioManager.MusicSource.THEME:
 				AudioManager.play_theme()
 		return
 	if current_page == bonus_page:

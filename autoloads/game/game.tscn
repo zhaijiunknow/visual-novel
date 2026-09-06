@@ -13,12 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://bwgtrbt4eb0w7" path="res://pages/confirm_page/confirm_page.tscn" id="11_confirm"]
 [ext_resource type="PackedScene" uid="uid://c7tlr4l4j3tcp" path="res://pages/loading_page/loading_page.tscn" id="13_loading"]
 [ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
+[ext_resource type="Script" path="res://scenes/main_scene/boot_splash.gd" id="14_bs"]
+[ext_resource type="Texture2D" uid="uid://bbuo46jo6fhht" path="res://assets/sprites/社团logo/lsg_night_showup.png" id="15_logo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
 shader = ExtResource("2_gkvkt")
 shader_parameter/iterations = 0.0
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page", "loading_page")]
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page", "loading_page", "boot_splash")]
 script = ExtResource("1_e2o6t")
 page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
 main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
@@ -33,6 +35,7 @@ phone_page = NodePath("SubViewportContainer/SubViewport/Pages/PhonePage")
 setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 confirm_page = NodePath("SubViewportContainer/SubViewport/Pages/ConfirmPage")
 loading_page = NodePath("SubViewportContainer/SubViewport/Pages/LoadingPage")
+boot_splash = NodePath("BootSplash")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
 material = SubResource("ShaderMaterial_2fepm")
@@ -84,3 +87,33 @@ visible = false
 
 [node name="LoadingPage" parent="SubViewportContainer/SubViewport/Pages" unique_id=2129855162 instance=ExtResource("13_loading")]
 visible = false
+
+[node name="BootSplash" type="CanvasLayer" parent="."]
+layer = 10
+script = ExtResource("14_bs")
+
+[node name="Root" type="Control" parent="BootSplash"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="BootSplash/Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16862746, 0.16862746, 0.16862746, 1)
+
+[node name="Logo" type="TextureRect" parent="BootSplash/Root"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_logo")
+expand_mode = 1
+stretch_mode = 5
