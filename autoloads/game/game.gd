@@ -66,6 +66,9 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 	page_stack.append(page)
 	page.layer = page_stack.size()
 	page.show()
+	# 从剧情进入鉴赏（bonus 附加页）前，先存档剧情 BGM，避免被鉴赏选播顶替
+	if page == bonus_page and stage_page in page_stack:
+		AudioManager.save_story_music()
 	update_audio()
 
 	if _transition:
@@ -116,6 +119,9 @@ func update_audio():
 			if not _defer_menu_bgm and AudioManager._music_source != AudioManager.MusicSource.THEME:
 				AudioManager.play_theme()
 		return
+	# 回到剧情页：恢复进鉴赏前存档的剧情 BGM（鉴赏期间没动过则不打断）
+	if current_page == stage_page:
+		AudioManager.restore_story_music()
 	if current_page == bonus_page:
 		return
 	# 从主菜单进入 StagePage：停止主题音乐（游戏 BGM 由对话控制）

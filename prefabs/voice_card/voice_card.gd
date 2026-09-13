@@ -7,7 +7,8 @@ extends TextureRect
 @export var selected_character: Enums.CharacterName:
 	set(value):
 		selected_character = value
-		texture_rect_portrait.texture = portrait_dict[selected_character]
+		# portrait_dict 未配置该角色时取到 null，留空即可，不报错
+		texture_rect_portrait.texture = portrait_dict.get(selected_character)
 
 @export var texture_rect_portrait: TextureRect
 @export var label_number: Label

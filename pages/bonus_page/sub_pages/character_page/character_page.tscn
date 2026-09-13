@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dllwgrcscresp" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_ling.tres" id="8_5lwtc"]
 [ext_resource type="PackedScene" uid="uid://crtfb3f3rs7b1" path="res://characters/instances/character_常夏.tscn" id="8_od5st"]
 [ext_resource type="PackedScene" uid="uid://dvwwuqgnvc672" path="res://characters/instances/character_余洛琛.tscn" id="9_5lwtc"]
+[ext_resource type="Texture2D" uid="uid://ct2xl4b4plnuj" path="res://assets/sprites/ui/ui.sprites/立绘鉴赏/ico_teacher.tres" id="9_58pd2"]
 [ext_resource type="PackedScene" uid="uid://couiwje1dnllu" path="res://characters/instances/character_葛城.tscn" id="10_po4xj"]
 [ext_resource type="PackedScene" uid="uid://dvavxp5xvb7m1" path="res://characters/instances/character_林凌铃.tscn" id="11_dorhe"]
 [ext_resource type="PackedScene" uid="uid://bklo0ijs4q51e" path="res://characters/instances/character_广播社老师.tscn" id="11_teacher"]
@@ -116,8 +117,11 @@ layout_mode = 2
 [node name="Portrait" parent="CharacterSelections/林凌铃/MarginContainer/Control" parent_id_path=PackedInt32Array(1100820711, 2112021901) index="0" unique_id=458404707]
 texture = ExtResource("8_5lwtc")
 
-[node name="广播社老师" parent="CharacterSelections" unique_id=1842045001 instance=ExtResource("3_dorhe")]
+[node name="广播社老师" parent="CharacterSelections" unique_id=2115129008 instance=ExtResource("3_dorhe")]
 layout_mode = 2
+
+[node name="Portrait" parent="CharacterSelections/广播社老师/MarginContainer/Control" parent_id_path=PackedInt32Array(2115129008, 2112021901) index="0" unique_id=458404707]
+texture = ExtResource("9_58pd2")
 
 [node name="Control7" type="Control" parent="CharacterSelections" unique_id=647103446]
 layout_mode = 2
@@ -281,6 +285,7 @@ rotation = -1.5707964
 [editable path="CharacterSelections/余洛琛"]
 [editable path="CharacterSelections/葛城"]
 [editable path="CharacterSelections/林凌铃"]
+[editable path="CharacterSelections/广播社老师"]
 [editable path="VBoxContainer_Options/CharacterOption_Background"]
 [editable path="VBoxContainer_Options/CharacterOption_Variation"]
 [editable path="VBoxContainer_Options/CharacterOption_Body"]

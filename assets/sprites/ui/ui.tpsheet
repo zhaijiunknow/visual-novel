@@ -4,7 +4,7 @@
 			"image": "ui-0.png",
 			"size": {
 				"w": 2560,
-				"h": 2028
+				"h": 2048
 			},
 			"sprites": [
 				{
@@ -14,6 +14,21 @@
 						"y": 0,
 						"w": 2560,
 						"h": 1440
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_1.png",
+					"region": {
+						"x": 0,
+						"y": 2030,
+						"w": 704,
+						"h": 16
 					},
 					"margin": {
 						"x": 0,
@@ -36,6 +51,21 @@
 						"w": 0,
 						"h": 0
 					}
+				},
+				{
+					"filename": "divide_line.png",
+					"region": {
+						"x": 706,
+						"y": 2030,
+						"w": 1777,
+						"h": 15
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -43,7 +73,7 @@
 			"image": "ui-1.png",
 			"size": {
 				"w": 2560,
-				"h": 2028
+				"h": 2048
 			},
 			"sprites": [
 				{
@@ -53,6 +83,21 @@
 						"y": 0,
 						"w": 2560,
 						"h": 1440
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bar_2.png",
+					"region": {
+						"x": 0,
+						"y": 2030,
+						"w": 704,
+						"h": 16
 					},
 					"margin": {
 						"x": 0,
@@ -75,6 +120,21 @@
 						"w": 0,
 						"h": 0
 					}
+				},
+				{
+					"filename": "start.png",
+					"region": {
+						"x": 706,
+						"y": 2030,
+						"w": 118,
+						"h": 10
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -86,70 +146,10 @@
 			},
 			"sprites": [
 				{
-					"filename": "back_click.png",
-					"region": {
-						"x": 1707,
-						"y": 1832,
-						"w": 56,
-						"h": 71
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "back_hover.png",
-					"region": {
-						"x": 1441,
-						"y": 1931,
-						"w": 56,
-						"h": 71
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_1.png",
-					"region": {
-						"x": 1850,
-						"y": 1913,
-						"w": 704,
-						"h": 16
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bar_2.png",
-					"region": {
-						"x": 1850,
-						"y": 1931,
-						"w": 704,
-						"h": 16
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "bar_botton_click.png",
 					"region": {
-						"x": 1850,
-						"y": 1815,
+						"x": 2547,
+						"y": 1533,
 						"w": 10,
 						"h": 67
 					},
@@ -163,8 +163,8 @@
 				{
 					"filename": "bar_botton_hover.png",
 					"region": {
-						"x": 2548,
-						"y": 1949,
+						"x": 2547,
+						"y": 1602,
 						"w": 10,
 						"h": 67
 					},
@@ -178,8 +178,8 @@
 				{
 					"filename": "bar_botton_normal.png",
 					"region": {
-						"x": 1765,
-						"y": 1832,
+						"x": 2545,
+						"y": 1671,
 						"w": 10,
 						"h": 67
 					},
@@ -206,10 +206,25 @@
 					}
 				},
 				{
+					"filename": "botton_click.png",
+					"region": {
+						"x": 1257,
+						"y": 1984,
+						"w": 178,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "botton_close.png",
 					"region": {
-						"x": 2513,
-						"y": 1587,
+						"x": 2540,
+						"y": 1855,
 						"w": 19,
 						"h": 19
 					},
@@ -221,12 +236,12 @@
 					}
 				},
 				{
-					"filename": "botton_music.png",
+					"filename": "botton_close_click.png",
 					"region": {
-						"x": 2442,
-						"y": 1857,
-						"w": 118,
-						"h": 42
+						"x": 2487,
+						"y": 1984,
+						"w": 58,
+						"h": 58
 					},
 					"margin": {
 						"x": 0,
@@ -236,12 +251,12 @@
 					}
 				},
 				{
-					"filename": "botton_normal.png",
+					"filename": "botton_close_hover.png",
 					"region": {
-						"x": 2442,
-						"y": 1779,
-						"w": 73,
-						"h": 76
+						"x": 1777,
+						"y": 1984,
+						"w": 58,
+						"h": 58
 					},
 					"margin": {
 						"x": 0,
@@ -251,12 +266,12 @@
 					}
 				},
 				{
-					"filename": "botton_set_click.png",
+					"filename": "botton_hover.png",
 					"region": {
-						"x": 1352,
-						"y": 1970,
-						"w": 73,
-						"h": 76
+						"x": 1437,
+						"y": 1984,
+						"w": 178,
+						"h": 63
 					},
 					"margin": {
 						"x": 0,
@@ -268,8 +283,8 @@
 				{
 					"filename": "chat/ico_example.png",
 					"region": {
-						"x": 1707,
-						"y": 1905,
+						"x": 2415,
+						"y": 1978,
 						"w": 70,
 						"h": 70
 					},
@@ -281,12 +296,12 @@
 					}
 				},
 				{
-					"filename": "chat/select_tip_bg.png",
+					"filename": "chat/select_bg_hover.png",
 					"region": {
-						"x": 2359,
-						"y": 2020,
-						"w": 158,
-						"h": 28
+						"x": 1868,
+						"y": 1913,
+						"w": 545,
+						"h": 120
 					},
 					"margin": {
 						"x": 0,
@@ -297,21 +312,6 @@
 				},
 				{
 					"filename": "circle_behind.png",
-					"region": {
-						"x": 1779,
-						"y": 1815,
-						"w": 69,
-						"h": 164
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "circle_front.png",
 					"region": {
 						"x": 2442,
 						"y": 1442,
@@ -326,10 +326,25 @@
 					}
 				},
 				{
+					"filename": "circle_front.png",
+					"region": {
+						"x": 2442,
+						"y": 1608,
+						"w": 69,
+						"h": 164
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "copyright.png",
 					"region": {
-						"x": 1060,
-						"y": 1931,
+						"x": 876,
+						"y": 1984,
 						"w": 379,
 						"h": 37
 					},
@@ -356,12 +371,12 @@
 					}
 				},
 				{
-					"filename": "divide_line.png",
+					"filename": "date_text.png",
 					"region": {
-						"x": 0,
-						"y": 1815,
-						"w": 1777,
-						"h": 15
+						"x": 1734,
+						"y": 1947,
+						"w": 80,
+						"h": 28
 					},
 					"margin": {
 						"x": 0,
@@ -386,10 +401,25 @@
 					}
 				},
 				{
+					"filename": "gallery.png",
+					"region": {
+						"x": 1617,
+						"y": 1984,
+						"w": 158,
+						"h": 57
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "go_click.png",
 					"region": {
-						"x": 1060,
-						"y": 1970,
+						"x": 0,
+						"y": 1984,
 						"w": 290,
 						"h": 63
 					},
@@ -401,12 +431,57 @@
 					}
 				},
 				{
-					"filename": "hover_deco.png",
+					"filename": "go_hover.png",
 					"region": {
-						"x": 2442,
-						"y": 1699,
-						"w": 75,
-						"h": 78
+						"x": 292,
+						"y": 1984,
+						"w": 290,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "go_normal.png",
+					"region": {
+						"x": 584,
+						"y": 1984,
+						"w": 290,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_hover.png",
+					"region": {
+						"x": 1734,
+						"y": 1815,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_auto.png",
+					"region": {
+						"x": 2507,
+						"y": 1855,
+						"w": 31,
+						"h": 44
 					},
 					"margin": {
 						"x": 0,
@@ -419,9 +494,39 @@
 					"filename": "menu_book.png",
 					"region": {
 						"x": 2513,
-						"y": 1491,
+						"y": 1485,
 						"w": 37,
 						"h": 46
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_load.png",
+					"region": {
+						"x": 1837,
+						"y": 1984,
+						"w": 28,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "menu_log.png",
+					"region": {
+						"x": 2507,
+						"y": 1901,
+						"w": 31,
+						"h": 44
 					},
 					"margin": {
 						"x": 0,
@@ -434,7 +539,7 @@
 					"filename": "menu_phone.png",
 					"region": {
 						"x": 2513,
-						"y": 1539,
+						"y": 1628,
 						"w": 30,
 						"h": 46
 					},
@@ -446,12 +551,12 @@
 					}
 				},
 				{
-					"filename": "menu_select.png",
+					"filename": "menu_replay.png",
 					"region": {
-						"x": 2442,
-						"y": 1608,
-						"w": 76,
-						"h": 89
+						"x": 2513,
+						"y": 1772,
+						"w": 33,
+						"h": 42
 					},
 					"margin": {
 						"x": 0,
@@ -463,8 +568,8 @@
 				{
 					"filename": "menu_set.png",
 					"region": {
-						"x": 2517,
-						"y": 1779,
+						"x": 2513,
+						"y": 1676,
 						"w": 29,
 						"h": 46
 					},
@@ -478,8 +583,8 @@
 				{
 					"filename": "menu_skip.png",
 					"region": {
-						"x": 2520,
-						"y": 1608,
+						"x": 2513,
+						"y": 1582,
 						"w": 32,
 						"h": 44
 					},
@@ -493,8 +598,8 @@
 				{
 					"filename": "menu_star.png",
 					"region": {
-						"x": 1476,
-						"y": 2004,
+						"x": 2415,
+						"y": 1913,
 						"w": 25,
 						"h": 42
 					},
@@ -509,7 +614,7 @@
 					"filename": "menu_title.png",
 					"region": {
 						"x": 2513,
-						"y": 1442,
+						"y": 1533,
 						"w": 32,
 						"h": 47
 					},
@@ -523,8 +628,8 @@
 				{
 					"filename": "menu_voice.png",
 					"region": {
-						"x": 2519,
-						"y": 1699,
+						"x": 2513,
+						"y": 1724,
 						"w": 28,
 						"h": 46
 					},
@@ -536,12 +641,12 @@
 					}
 				},
 				{
-					"filename": "no_background.png",
+					"filename": "phone_back_click.png",
 					"region": {
-						"x": 1707,
-						"y": 1981,
-						"w": 132,
-						"h": 55
+						"x": 2507,
+						"y": 1947,
+						"w": 36,
+						"h": 35
 					},
 					"margin": {
 						"x": 0,
@@ -551,27 +656,12 @@
 					}
 				},
 				{
-					"filename": "reset_click.png",
-					"region": {
-						"x": 2359,
-						"y": 1949,
-						"w": 187,
-						"h": 69
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "start.png",
+					"filename": "progress_botton_click.png",
 					"region": {
 						"x": 2442,
-						"y": 1901,
-						"w": 118,
-						"h": 10
+						"y": 1774,
+						"w": 63,
+						"h": 66
 					},
 					"margin": {
 						"x": 0,
@@ -581,12 +671,12 @@
 					}
 				},
 				{
-					"filename": "tip_background.png",
+					"filename": "progress_botton_hover.png",
 					"region": {
-						"x": 0,
-						"y": 1931,
-						"w": 1058,
-						"h": 102
+						"x": 2442,
+						"y": 1842,
+						"w": 63,
+						"h": 66
 					},
 					"margin": {
 						"x": 0,
@@ -596,12 +686,12 @@
 					}
 				},
 				{
-					"filename": "title.png",
+					"filename": "progress_botton_normal.png",
 					"region": {
-						"x": 0,
-						"y": 1832,
-						"w": 1503,
-						"h": 97
+						"x": 2442,
+						"y": 1910,
+						"w": 63,
+						"h": 66
 					},
 					"margin": {
 						"x": 0,
@@ -611,12 +701,12 @@
 					}
 				},
 				{
-					"filename": "头像/phone_portrait_gecheng.png",
+					"filename": "sel_click.png",
 					"region": {
-						"x": 1505,
-						"y": 1832,
-						"w": 200,
-						"h": 200
+						"x": 0,
+						"y": 1815,
+						"w": 1223,
+						"h": 147
 					},
 					"margin": {
 						"x": 0,
@@ -628,8 +718,8 @@
 				{
 					"filename": "插画鉴赏/cancel_click.png",
 					"region": {
-						"x": 2519,
-						"y": 1747,
+						"x": 1816,
+						"y": 1947,
 						"w": 29,
 						"h": 29
 					},
@@ -643,8 +733,8 @@
 				{
 					"filename": "插画鉴赏/cancel_hover.png",
 					"region": {
-						"x": 2520,
-						"y": 1654,
+						"x": 2507,
+						"y": 1816,
 						"w": 37,
 						"h": 37
 					},
@@ -658,8 +748,8 @@
 				{
 					"filename": "插画鉴赏/hide_hover.png",
 					"region": {
-						"x": 1427,
-						"y": 2004,
+						"x": 2513,
+						"y": 1442,
 						"w": 47,
 						"h": 41
 					},
@@ -671,27 +761,12 @@
 					}
 				},
 				{
-					"filename": "音乐鉴赏/next_click.png",
+					"filename": "音乐鉴赏/progress_line.png",
 					"region": {
-						"x": 2519,
-						"y": 2020,
-						"w": 27,
-						"h": 28
-					},
-					"margin": {
 						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/next_hover.png",
-					"region": {
-						"x": 2517,
-						"y": 1827,
-						"w": 27,
-						"h": 28
+						"y": 1978,
+						"w": 1866,
+						"h": 4
 					},
 					"margin": {
 						"x": 0,
@@ -703,8 +778,23 @@
 				{
 					"filename": "音乐鉴赏/song_click.png",
 					"region": {
-						"x": 1850,
-						"y": 1949,
+						"x": 1225,
+						"y": 1815,
+						"w": 507,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/song_hover.png",
+					"region": {
+						"x": 1225,
+						"y": 1893,
 						"w": 507,
 						"h": 76
 					},
@@ -725,12 +815,27 @@
 			},
 			"sprites": [
 				{
-					"filename": "botton_cg.png",
+					"filename": "botton_normal.png",
 					"region": {
-						"x": 2319,
-						"y": 1913,
-						"w": 120,
-						"h": 43
+						"x": 2442,
+						"y": 1613,
+						"w": 73,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_set_click.png",
+					"region": {
+						"x": 2442,
+						"y": 1691,
+						"w": 73,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -743,7 +848,7 @@
 					"filename": "botton_set_hover.png",
 					"region": {
 						"x": 2442,
-						"y": 1442,
+						"y": 1769,
 						"w": 73,
 						"h": 76
 					},
@@ -758,37 +863,7 @@
 					"filename": "button_deco_click.png",
 					"region": {
 						"x": 2442,
-						"y": 1520,
-						"w": 73,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_deco_hover.png",
-					"region": {
-						"x": 2442,
-						"y": 1598,
-						"w": 73,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_deco_normal.png",
-					"region": {
-						"x": 2442,
-						"y": 1676,
+						"y": 1847,
 						"w": 73,
 						"h": 76
 					},
@@ -815,24 +890,9 @@
 					}
 				},
 				{
-					"filename": "chat/select_bg_hover.png",
-					"region": {
-						"x": 1225,
-						"y": 1821,
-						"w": 545,
-						"h": 120
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "chat/select_bg_normal.png",
 					"region": {
-						"x": 1772,
+						"x": 1851,
 						"y": 1913,
 						"w": 545,
 						"h": 120
@@ -847,8 +907,8 @@
 				{
 					"filename": "chat/select_ico_check.png",
 					"region": {
-						"x": 1734,
-						"y": 1943,
+						"x": 2517,
+						"y": 1846,
 						"w": 34,
 						"h": 32
 					},
@@ -860,48 +920,18 @@
 					}
 				},
 				{
-					"filename": "confirm_button_click.png",
+					"filename": "chr_knd.png",
 					"region": {
-						"x": 189,
-						"y": 1970,
-						"w": 166,
-						"h": 76
+						"x": 1505,
+						"y": 1815,
+						"w": 344,
+						"h": 231
 					},
 					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "confirm_button_hover.png",
-					"region": {
-						"x": 357,
-						"y": 1970,
-						"w": 166,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "confirm_button_normal.png",
-					"region": {
-						"x": 525,
-						"y": 1970,
-						"w": 166,
-						"h": 76
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
+						"x": 36,
+						"y": 11,
+						"w": 539,
+						"h": 22
 					}
 				},
 				{
@@ -920,12 +950,12 @@
 					}
 				},
 				{
-					"filename": "gallery.png",
+					"filename": "date_deco.png",
 					"region": {
-						"x": 693,
-						"y": 1970,
-						"w": 158,
-						"h": 57
+						"x": 1060,
+						"y": 1815,
+						"w": 253,
+						"h": 115
 					},
 					"margin": {
 						"x": 0,
@@ -935,72 +965,12 @@
 					}
 				},
 				{
-					"filename": "load.png",
+					"filename": "hover_deco.png",
 					"region": {
-						"x": 1013,
-						"y": 1970,
-						"w": 158,
-						"h": 55
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_auto.png",
-					"region": {
-						"x": 2516,
-						"y": 1754,
-						"w": 31,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_load.png",
-					"region": {
-						"x": 2516,
-						"y": 1846,
-						"w": 28,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_log.png",
-					"region": {
-						"x": 2516,
-						"y": 1800,
-						"w": 31,
-						"h": 44
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "menu_replay.png",
-					"region": {
-						"x": 2516,
-						"y": 1938,
-						"w": 33,
-						"h": 42
+						"x": 2442,
+						"y": 1533,
+						"w": 75,
+						"h": 78
 					},
 					"margin": {
 						"x": 0,
@@ -1012,8 +982,8 @@
 				{
 					"filename": "menu_save.png",
 					"region": {
-						"x": 2516,
-						"y": 1892,
+						"x": 2519,
+						"y": 1584,
 						"w": 28,
 						"h": 44
 					},
@@ -1025,12 +995,12 @@
 					}
 				},
 				{
-					"filename": "options.png",
+					"filename": "menu_select.png",
 					"region": {
-						"x": 853,
-						"y": 1970,
-						"w": 158,
-						"h": 56
+						"x": 2442,
+						"y": 1442,
+						"w": 76,
+						"h": 89
 					},
 					"margin": {
 						"x": 0,
@@ -1040,12 +1010,27 @@
 					}
 				},
 				{
-					"filename": "phone_back_click.png",
+					"filename": "menu_tip.png",
 					"region": {
-						"x": 2517,
-						"y": 1442,
-						"w": 36,
-						"h": 35
+						"x": 1315,
+						"y": 1886,
+						"w": 179,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "name_decoration.png",
+					"region": {
+						"x": 2398,
+						"y": 1941,
+						"w": 142,
+						"h": 88
 					},
 					"margin": {
 						"x": 0,
@@ -1057,8 +1042,8 @@
 				{
 					"filename": "phone_back_hover.png",
 					"region": {
-						"x": 2517,
-						"y": 1479,
+						"x": 2520,
+						"y": 1442,
 						"w": 36,
 						"h": 35
 					},
@@ -1072,8 +1057,8 @@
 				{
 					"filename": "phone_back_normal.png",
 					"region": {
-						"x": 2517,
-						"y": 1516,
+						"x": 2520,
+						"y": 1479,
 						"w": 36,
 						"h": 35
 					},
@@ -1085,10 +1070,10 @@
 					}
 				},
 				{
-					"filename": "reset_hover.png",
+					"filename": "reset_click.png",
 					"region": {
-						"x": 2319,
-						"y": 1976,
+						"x": 1315,
+						"y": 1815,
 						"w": 187,
 						"h": 69
 					},
@@ -1100,12 +1085,12 @@
 					}
 				},
 				{
-					"filename": "reset_normal.png",
+					"filename": "tip_background.png",
 					"region": {
 						"x": 0,
-						"y": 1970,
-						"w": 187,
-						"h": 69
+						"y": 1815,
+						"w": 1058,
+						"h": 102
 					},
 					"margin": {
 						"x": 0,
@@ -1115,12 +1100,12 @@
 					}
 				},
 				{
-					"filename": "sel_click.png",
+					"filename": "title.png",
 					"region": {
 						"x": 0,
-						"y": 1821,
-						"w": 1223,
-						"h": 147
+						"y": 1941,
+						"w": 1503,
+						"h": 97
 					},
 					"margin": {
 						"x": 0,
@@ -1132,8 +1117,8 @@
 				{
 					"filename": "插画鉴赏/cancel_normal.png",
 					"region": {
-						"x": 2508,
-						"y": 2018,
+						"x": 2517,
+						"y": 1880,
 						"w": 29,
 						"h": 29
 					},
@@ -1142,6 +1127,36 @@
 						"y": 4,
 						"w": 8,
 						"h": 8
+					}
+				},
+				{
+					"filename": "插画鉴赏/hide_click.png",
+					"region": {
+						"x": 2520,
+						"y": 1516,
+						"w": 39,
+						"h": 32
+					},
+					"margin": {
+						"x": 4,
+						"y": 5,
+						"w": 8,
+						"h": 9
+					}
+				},
+				{
+					"filename": "插画鉴赏/hide_normal.png",
+					"region": {
+						"x": 2519,
+						"y": 1550,
+						"w": 39,
+						"h": 32
+					},
+					"margin": {
+						"x": 4,
+						"y": 5,
+						"w": 8,
+						"h": 9
 					}
 				},
 				{
@@ -1163,7 +1178,7 @@
 					"filename": "立绘鉴赏/last_click.png",
 					"region": {
 						"x": 2517,
-						"y": 1553,
+						"y": 1630,
 						"w": 35,
 						"h": 34
 					},
@@ -1178,7 +1193,7 @@
 					"filename": "立绘鉴赏/last_hover.png",
 					"region": {
 						"x": 2517,
-						"y": 1589,
+						"y": 1666,
 						"w": 35,
 						"h": 34
 					},
@@ -1193,7 +1208,7 @@
 					"filename": "立绘鉴赏/last_normal.png",
 					"region": {
 						"x": 2517,
-						"y": 1625,
+						"y": 1702,
 						"w": 35,
 						"h": 34
 					},
@@ -1208,7 +1223,7 @@
 					"filename": "立绘鉴赏/next_click.png",
 					"region": {
 						"x": 2517,
-						"y": 1661,
+						"y": 1738,
 						"w": 35,
 						"h": 34
 					},
@@ -1223,7 +1238,7 @@
 					"filename": "立绘鉴赏/next_hover.png",
 					"region": {
 						"x": 2517,
-						"y": 1697,
+						"y": 1774,
 						"w": 35,
 						"h": 34
 					},
@@ -1237,8 +1252,8 @@
 				{
 					"filename": "立绘鉴赏/next_normal.png",
 					"region": {
-						"x": 2508,
-						"y": 1982,
+						"x": 2517,
+						"y": 1810,
 						"w": 35,
 						"h": 34
 					},
@@ -1250,117 +1265,12 @@
 					}
 				},
 				{
-					"filename": "音乐鉴赏/last_click.png",
+					"filename": "音乐鉴赏/next_click.png",
 					"region": {
-						"x": 1734,
-						"y": 2007,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/next_normal.png",
-					"region": {
-						"x": 1734,
-						"y": 1977,
+						"x": 2517,
+						"y": 1911,
 						"w": 27,
 						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/pause_click.png",
-					"region": {
-						"x": 2442,
-						"y": 1754,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/pause_hover.png",
-					"region": {
-						"x": 2442,
-						"y": 1828,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/pause_normal.png",
-					"region": {
-						"x": 2442,
-						"y": 1902,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/play_click.png",
-					"region": {
-						"x": 1772,
-						"y": 1821,
-						"w": 72,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/progress_line.png",
-					"region": {
-						"x": 0,
-						"y": 1815,
-						"w": 1866,
-						"h": 4
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/song_hover.png",
-					"region": {
-						"x": 1225,
-						"y": 1943,
-						"w": 507,
-						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1375,44 +1285,14 @@
 			"image": "ui-4.png",
 			"size": {
 				"w": 2560,
-				"h": 2048
+				"h": 2044
 			},
 			"sprites": [
 				{
-					"filename": "bichr_xia.png",
-					"region": {
-						"x": 1734,
-						"y": 1442,
-						"w": 709,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "bigchr_ge.png",
-					"region": {
-						"x": 1225,
-						"y": 1694,
-						"w": 482,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "botton_cancel.png",
 					"region": {
-						"x": 2445,
-						"y": 1537,
+						"x": 2400,
+						"y": 1886,
 						"w": 114,
 						"h": 33
 					},
@@ -1424,12 +1304,12 @@
 					}
 				},
 				{
-					"filename": "botton_click.png",
+					"filename": "botton_cg.png",
 					"region": {
-						"x": 736,
-						"y": 1985,
-						"w": 178,
-						"h": 63
+						"x": 2400,
+						"y": 1672,
+						"w": 120,
+						"h": 43
 					},
 					"margin": {
 						"x": 0,
@@ -1439,12 +1319,27 @@
 					}
 				},
 				{
-					"filename": "botton_hover.png",
+					"filename": "botton_chr.png",
 					"region": {
-						"x": 916,
-						"y": 1985,
-						"w": 178,
-						"h": 63
+						"x": 2400,
+						"y": 1717,
+						"w": 120,
+						"h": 43
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_music.png",
+					"region": {
+						"x": 2400,
+						"y": 1807,
+						"w": 118,
+						"h": 42
 					},
 					"margin": {
 						"x": 0,
@@ -1456,8 +1351,8 @@
 				{
 					"filename": "botton_replay.png",
 					"region": {
-						"x": 2445,
-						"y": 1502,
+						"x": 2400,
+						"y": 1851,
 						"w": 115,
 						"h": 33
 					},
@@ -1471,8 +1366,8 @@
 				{
 					"filename": "botton_star.png",
 					"region": {
-						"x": 2445,
-						"y": 1572,
+						"x": 1182,
+						"y": 2011,
 						"w": 113,
 						"h": 32
 					},
@@ -1484,10 +1379,25 @@
 					}
 				},
 				{
+					"filename": "botton_text_click.png",
+					"region": {
+						"x": 2400,
+						"y": 1598,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
 					"filename": "botton_voice.png",
 					"region": {
-						"x": 1096,
-						"y": 1985,
+						"x": 2400,
+						"y": 1762,
 						"w": 120,
 						"h": 43
 					},
@@ -1499,12 +1409,12 @@
 					}
 				},
 				{
-					"filename": "del_normal.png",
+					"filename": "button_deco_hover.png",
 					"region": {
-						"x": 2445,
+						"x": 2400,
 						"y": 1442,
-						"w": 58,
-						"h": 58
+						"w": 73,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1514,12 +1424,12 @@
 					}
 				},
 				{
-					"filename": "go_normal.png",
+					"filename": "button_deco_normal.png",
 					"region": {
-						"x": 0,
-						"y": 1985,
-						"w": 290,
-						"h": 63
+						"x": 2400,
+						"y": 1520,
+						"w": 73,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1529,12 +1439,12 @@
 					}
 				},
 				{
-					"filename": "menu_tip.png",
+					"filename": "chat/select_tip_bg.png",
 					"region": {
-						"x": 555,
-						"y": 1985,
-						"w": 179,
-						"h": 32
+						"x": 2344,
+						"y": 2016,
+						"w": 158,
+						"h": 28
 					},
 					"margin": {
 						"x": 0,
@@ -1544,168 +1454,9 @@
 					}
 				},
 				{
-					"filename": "place_deco.png",
+					"filename": "chr_ge_selected.png",
 					"region": {
-						"x": 1709,
-						"y": 1797,
-						"w": 825,
-						"h": 237
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "sel_hover.png",
-					"region": {
-						"x": 0,
-						"y": 1694,
-						"w": 1223,
-						"h": 147
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "sel_normal.png",
-					"region": {
-						"x": 0,
-						"y": 1843,
-						"w": 1223,
-						"h": 140
-					},
-					"margin": {
-						"x": 0,
-						"y": 1,
-						"w": 0,
-						"h": 7
-					}
-				},
-				{
-					"filename": "textexample_background.png",
-					"region": {
-						"x": 0,
-						"y": 1442,
-						"w": 1732,
-						"h": 250
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/hide_normal.png",
-					"region": {
-						"x": 2505,
-						"y": 1442,
-						"w": 39,
-						"h": 32
-					},
-					"margin": {
-						"x": 4,
-						"y": 5,
-						"w": 8,
-						"h": 9
-					}
-				},
-				{
-					"filename": "立绘鉴赏/listname_background.png",
-					"region": {
-						"x": 292,
-						"y": 1985,
-						"w": 261,
-						"h": 34
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/立绘鉴赏.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 2560,
-						"h": 1440
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				}
-			]
-		},
-		{
-			"image": "ui-5.png",
-			"size": {
-				"w": 2560,
-				"h": 2032
-			},
-			"sprites": [
-				{
-					"filename": "botton_text_click.png",
-					"region": {
-						"x": 438,
-						"y": 1948,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_hover.png",
-					"region": {
-						"x": 590,
-						"y": 1948,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_text_normal.png",
-					"region": {
-						"x": 742,
-						"y": 1948,
-						"w": 150,
-						"h": 72
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_ling_selected.png",
-					"region": {
-						"x": 1246,
+						"x": 2099,
 						"y": 1442,
 						"w": 299,
 						"h": 494
@@ -1718,12 +1469,42 @@
 					}
 				},
 				{
-					"filename": "exit.png",
+					"filename": "confirm_button_click.png",
 					"region": {
-						"x": 894,
+						"x": 2362,
+						"y": 1938,
+						"w": 166,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "confirm_button_hover.png",
+					"region": {
+						"x": 846,
 						"y": 1948,
-						"w": 157,
-						"h": 54
+						"w": 166,
+						"h": 76
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "confirm_button_normal.png",
+					"region": {
+						"x": 1014,
+						"y": 1948,
+						"w": 166,
+						"h": 76
 					},
 					"margin": {
 						"x": 0,
@@ -1748,37 +1529,7 @@
 					}
 				},
 				{
-					"filename": "miracle.png",
-					"region": {
-						"x": 1053,
-						"y": 1948,
-						"w": 139,
-						"h": 54
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "name_decoration.png",
-					"region": {
-						"x": 1246,
-						"y": 1938,
-						"w": 142,
-						"h": 88
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "page_hover.png",
+					"filename": "page_click.png",
 					"region": {
 						"x": 0,
 						"y": 1948,
@@ -1793,7 +1544,7 @@
 					}
 				},
 				{
-					"filename": "page_normal.png",
+					"filename": "page_hover.png",
 					"region": {
 						"x": 219,
 						"y": 1948,
@@ -1808,12 +1559,12 @@
 					}
 				},
 				{
-					"filename": "voice_background_hover.png",
+					"filename": "page_normal.png",
 					"region": {
-						"x": 1547,
-						"y": 1442,
-						"w": 883,
-						"h": 253
+						"x": 438,
+						"y": 1948,
+						"w": 217,
+						"h": 83
 					},
 					"margin": {
 						"x": 0,
@@ -1823,12 +1574,456 @@
 					}
 				},
 				{
-					"filename": "voice_background_normal.png",
+					"filename": "place_outline.png",
 					"region": {
-						"x": 1547,
-						"y": 1697,
-						"w": 883,
-						"h": 253
+						"x": 1246,
+						"y": 1442,
+						"w": 851,
+						"h": 567
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "reset_hover.png",
+					"region": {
+						"x": 2099,
+						"y": 1974,
+						"w": 187,
+						"h": 69
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "reset_normal.png",
+					"region": {
+						"x": 657,
+						"y": 1948,
+						"w": 187,
+						"h": 69
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/listname_background.png",
+					"region": {
+						"x": 2099,
+						"y": 1938,
+						"w": 261,
+						"h": 34
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/立绘鉴赏.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 2560,
+						"h": 1440
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_click.png",
+					"region": {
+						"x": 2288,
+						"y": 2004,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_hover.png",
+					"region": {
+						"x": 2316,
+						"y": 2004,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/last_normal.png",
+					"region": {
+						"x": 2504,
+						"y": 2016,
+						"w": 26,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/next_hover.png",
+					"region": {
+						"x": 2288,
+						"y": 1974,
+						"w": 27,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/next_normal.png",
+					"region": {
+						"x": 2317,
+						"y": 1974,
+						"w": 27,
+						"h": 28
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_click.png",
+					"region": {
+						"x": 2475,
+						"y": 1442,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_hover.png",
+					"region": {
+						"x": 2475,
+						"y": 1516,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "ui-5.png",
+			"size": {
+				"w": 2560,
+				"h": 2048
+			},
+			"sprites": [
+				{
+					"filename": "back_click.png",
+					"region": {
+						"x": 470,
+						"y": 1694,
+						"w": 56,
+						"h": 71
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "back_hover.png",
+					"region": {
+						"x": 470,
+						"y": 1767,
+						"w": 56,
+						"h": 71
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "back_normal.png",
+					"region": {
+						"x": 470,
+						"y": 1840,
+						"w": 56,
+						"h": 71
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bichr_xia.png",
+					"region": {
+						"x": 528,
+						"y": 1694,
+						"w": 709,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bigchr_ge.png",
+					"region": {
+						"x": 1239,
+						"y": 1694,
+						"w": 482,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chat/chat_example.png",
+					"region": {
+						"x": 1723,
+						"y": 1913,
+						"w": 458,
+						"h": 120
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "data_background_normal.png",
+					"region": {
+						"x": 1734,
+						"y": 1442,
+						"w": 571,
+						"h": 469
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "dataimage_frame.png",
+					"region": {
+						"x": 0,
+						"y": 1694,
+						"w": 468,
+						"h": 154
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_click.png",
+					"region": {
+						"x": 2183,
+						"y": 1987,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "del_hover.png",
+					"region": {
+						"x": 2243,
+						"y": 1987,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "load.png",
+					"region": {
+						"x": 160,
+						"y": 1850,
+						"w": 158,
+						"h": 55
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "miracle.png",
+					"region": {
+						"x": 320,
+						"y": 1850,
+						"w": 139,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "options.png",
+					"region": {
+						"x": 0,
+						"y": 1850,
+						"w": 158,
+						"h": 56
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "textexample_background.png",
+					"region": {
+						"x": 0,
+						"y": 1442,
+						"w": 1732,
+						"h": 250
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_gecheng.png",
+					"region": {
+						"x": 2307,
+						"y": 1442,
+						"w": 200,
+						"h": 200
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_kanade.png",
+					"region": {
+						"x": 2307,
+						"y": 1644,
+						"w": 200,
+						"h": 200
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_select.png",
+					"region": {
+						"x": 2307,
+						"y": 1846,
+						"w": 167,
+						"h": 167
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/name_deco.png",
+					"region": {
+						"x": 0,
+						"y": 1913,
+						"w": 526,
+						"h": 119
 					},
 					"margin": {
 						"x": 0,
@@ -1851,6 +2046,51 @@
 						"w": 0,
 						"h": 0
 					}
+				},
+				{
+					"filename": "音乐鉴赏/pause_normal.png",
+					"region": {
+						"x": 2476,
+						"y": 1846,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/play_click.png",
+					"region": {
+						"x": 2476,
+						"y": 1920,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "音乐鉴赏/play_hover.png",
+					"region": {
+						"x": 2183,
+						"y": 1913,
+						"w": 72,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -1858,91 +2098,271 @@
 			"image": "ui-6.png",
 			"size": {
 				"w": 2560,
-				"h": 1920
+				"h": 2028
 			},
 			"sprites": [
 				{
-					"filename": "chr_ge.png",
+					"filename": "bigchr_knd.png",
 					"region": {
-						"x": 564,
-						"y": 1675,
-						"w": 291,
-						"h": 231
-					},
-					"margin": {
-						"x": 57,
-						"y": 11,
-						"w": 592,
-						"h": 22
-					}
-				},
-				{
-					"filename": "chr_ling.png",
-					"region": {
-						"x": 564,
+						"x": 885,
 						"y": 1442,
-						"w": 309,
+						"w": 561,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bigchr_teacher.png",
+					"region": {
+						"x": 2110,
+						"y": 1442,
+						"w": 427,
+						"h": 352
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bigchr_yu.png",
+					"region": {
+						"x": 1448,
+						"y": 1442,
+						"w": 477,
+						"h": 352
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_text_hover.png",
+					"region": {
+						"x": 0,
+						"y": 1952,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "botton_text_normal.png",
+					"region": {
+						"x": 152,
+						"y": 1952,
+						"w": 150,
+						"h": 72
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "button_no_background.png",
+					"region": {
+						"x": 597,
+						"y": 1952,
+						"w": 129,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_xia.png",
+					"region": {
+						"x": 2110,
+						"y": 1796,
+						"w": 433,
 						"h": 231
 					},
 					"margin": {
-						"x": 71,
+						"x": 9,
 						"y": 11,
-						"w": 574,
+						"w": 450,
 						"h": 22
 					}
 				},
 				{
-					"filename": "chr_others_normal.png",
+					"filename": "del_normal.png",
+					"region": {
+						"x": 944,
+						"y": 1946,
+						"w": 58,
+						"h": 58
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "exit.png",
+					"region": {
+						"x": 304,
+						"y": 1952,
+						"w": 157,
+						"h": 54
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_select_light.png",
+					"region": {
+						"x": 1927,
+						"y": 1442,
+						"w": 166,
+						"h": 166
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "no_background.png",
+					"region": {
+						"x": 463,
+						"y": 1952,
+						"w": 132,
+						"h": 55
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "sel_hover.png",
+					"region": {
+						"x": 885,
+						"y": 1797,
+						"w": 1223,
+						"h": 147
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "voice_background_hover.png",
 					"region": {
 						"x": 0,
 						"y": 1442,
-						"w": 280,
-						"h": 476
+						"w": 883,
+						"h": 253
 					},
 					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
 					}
 				},
 				{
-					"filename": "chr_yu.png",
+					"filename": "voice_background_normal.png",
 					"region": {
-						"x": 857,
-						"y": 1675,
-						"w": 324,
-						"h": 230
+						"x": 0,
+						"y": 1697,
+						"w": 883,
+						"h": 253
 					},
 					"margin": {
-						"x": 60,
-						"y": 11,
-						"w": 559,
-						"h": 23
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
 					}
 				},
 				{
-					"filename": "chr_yu_hover.png",
+					"filename": "头像/phone_portrait_changxia.png",
 					"region": {
-						"x": 282,
-						"y": 1442,
-						"w": 280,
-						"h": 476
+						"x": 728,
+						"y": 1952,
+						"w": 70,
+						"h": 70
 					},
 					"margin": {
-						"x": 10,
-						"y": 9,
-						"w": 18,
-						"h": 18
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
 					}
 				},
 				{
-					"filename": "start_click_deco.png",
+					"filename": "头像/phone_portrait_yuluochen.png",
 					"region": {
-						"x": 875,
-						"y": 1442,
-						"w": 353,
-						"h": 159
+						"x": 800,
+						"y": 1952,
+						"w": 70,
+						"h": 70
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "头像/phone_portrait_zhouteng.png",
+					"region": {
+						"x": 872,
+						"y": 1952,
+						"w": 70,
+						"h": 70
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_changxia.png",
+					"region": {
+						"x": 1927,
+						"y": 1610,
+						"w": 153,
+						"h": 153
 					},
 					"margin": {
 						"x": 0,
@@ -1972,9 +2392,189 @@
 			"image": "ui-7.png",
 			"size": {
 				"w": 2560,
-				"h": 1440
+				"h": 2008
 			},
 			"sprites": [
+				{
+					"filename": "chat/left-arrow.png",
+					"region": {
+						"x": 2279,
+						"y": 1752,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "click_deco.png",
+					"region": {
+						"x": 0,
+						"y": 1823,
+						"w": 353,
+						"h": 159
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "gallery_click_deco.png",
+					"region": {
+						"x": 355,
+						"y": 1823,
+						"w": 353,
+						"h": 159
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "nnote.png",
+					"region": {
+						"x": 1618,
+						"y": 1442,
+						"w": 717,
+						"h": 194
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "place_deco.png",
+					"region": {
+						"x": 0,
+						"y": 1442,
+						"w": 825,
+						"h": 237
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "sel_normal.png",
+					"region": {
+						"x": 0,
+						"y": 1681,
+						"w": 1223,
+						"h": 140
+					},
+					"margin": {
+						"x": 0,
+						"y": 1,
+						"w": 0,
+						"h": 7
+					}
+				},
+				{
+					"filename": "start_click_deco.png",
+					"region": {
+						"x": 710,
+						"y": 1823,
+						"w": 353,
+						"h": 159
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_click.png",
+					"region": {
+						"x": 1225,
+						"y": 1649,
+						"w": 525,
+						"h": 318
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_hover.png",
+					"region": {
+						"x": 1752,
+						"y": 1638,
+						"w": 525,
+						"h": 318
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_gecheng.png",
+					"region": {
+						"x": 2337,
+						"y": 1442,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_kanade.png",
+					"region": {
+						"x": 2337,
+						"y": 1597,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_ling.png",
+					"region": {
+						"x": 1065,
+						"y": 1823,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
 				{
 					"filename": "语音收藏.png",
 					"region": {
@@ -1989,6 +2589,21 @@
 						"w": 0,
 						"h": 0
 					}
+				},
+				{
+					"filename": "音乐鉴赏/info_decoration.png",
+					"region": {
+						"x": 827,
+						"y": 1442,
+						"w": 789,
+						"h": 205
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
 				}
 			]
 		},
@@ -1996,9 +2611,189 @@
 			"image": "ui-8.png",
 			"size": {
 				"w": 2560,
-				"h": 1440
+				"h": 2028
 			},
 			"sprites": [
+				{
+					"filename": "bigchr_ling.png",
+					"region": {
+						"x": 0,
+						"y": 1442,
+						"w": 463,
+						"h": 353
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ling.png",
+					"region": {
+						"x": 0,
+						"y": 1797,
+						"w": 309,
+						"h": 231
+					},
+					"margin": {
+						"x": 71,
+						"y": 11,
+						"w": 574,
+						"h": 22
+					}
+				},
+				{
+					"filename": "chr_yu.png",
+					"region": {
+						"x": 311,
+						"y": 1797,
+						"w": 324,
+						"h": 230
+					},
+					"margin": {
+						"x": 60,
+						"y": 11,
+						"w": 559,
+						"h": 23
+					}
+				},
+				{
+					"filename": "dataimage_empty.png",
+					"region": {
+						"x": 948,
+						"y": 1442,
+						"w": 469,
+						"h": 263
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "load_title.png",
+					"region": {
+						"x": 2027,
+						"y": 1699,
+						"w": 445,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "log_title.png",
+					"region": {
+						"x": 1419,
+						"y": 1442,
+						"w": 446,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "save_title.png",
+					"region": {
+						"x": 1579,
+						"y": 1700,
+						"w": 446,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "set_title.png",
+					"region": {
+						"x": 1867,
+						"y": 1442,
+						"w": 446,
+						"h": 255
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "voice_title.png",
+					"region": {
+						"x": 1120,
+						"y": 1707,
+						"w": 457,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_example.png",
+					"region": {
+						"x": 465,
+						"y": 1442,
+						"w": 481,
+						"h": 270
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "插画鉴赏/image_locked.png",
+					"region": {
+						"x": 637,
+						"y": 1714,
+						"w": 481,
+						"h": 270
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_yuluochen.png",
+					"region": {
+						"x": 2315,
+						"y": 1442,
+						"w": 153,
+						"h": 153
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
 				{
 					"filename": "音乐鉴赏/play_normal.png",
 					"region": {
@@ -2020,9 +2815,189 @@
 			"image": "ui-9.png",
 			"size": {
 				"w": 2560,
-				"h": 1440
+				"h": 1992
 			},
 			"sprites": [
+				{
+					"filename": "chr_chang_hover.png",
+					"region": {
+						"x": 1803,
+						"y": 1442,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_chang_normal.png",
+					"region": {
+						"x": 2085,
+						"y": 1442,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_chang_selected.png",
+					"region": {
+						"x": 903,
+						"y": 1442,
+						"w": 298,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_kaguya_selected.png",
+					"region": {
+						"x": 0,
+						"y": 1442,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_ling_selected.png",
+					"region": {
+						"x": 301,
+						"y": 1442,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_others_selected.png",
+					"region": {
+						"x": 602,
+						"y": 1442,
+						"w": 299,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_teacher_selected.png",
+					"region": {
+						"x": 1203,
+						"y": 1442,
+						"w": 298,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "chr_yu_seleted.png",
+					"region": {
+						"x": 1503,
+						"y": 1442,
+						"w": 298,
+						"h": 494
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_book.png",
+					"region": {
+						"x": 2367,
+						"y": 1860,
+						"w": 130,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_image.png",
+					"region": {
+						"x": 2367,
+						"y": 1596,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "ico_music.png",
+					"region": {
+						"x": 2367,
+						"y": 1728,
+						"w": 131,
+						"h": 130
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "立绘鉴赏/ico_teacher.png",
+					"region": {
+						"x": 2367,
+						"y": 1442,
+						"w": 153,
+						"h": 152
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
 				{
 					"filename": "音乐鉴赏/音乐鉴赏.png",
 					"region": {
@@ -2044,91 +3019,16 @@
 			"image": "ui-10.png",
 			"size": {
 				"w": 2560,
-				"h": 2028
+				"h": 2016
 			},
 			"sprites": [
 				{
-					"filename": "back_normal.png",
-					"region": {
-						"x": 2482,
-						"y": 74,
-						"w": 56,
-						"h": 71
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "bar_background.png",
 					"region": {
-						"x": 2412,
-						"y": 0,
+						"x": 0,
+						"y": 802,
 						"w": 10,
 						"h": 1211
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_chr.png",
-					"region": {
-						"x": 2424,
-						"y": 1172,
-						"w": 120,
-						"h": 43
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_close_click.png",
-					"region": {
-						"x": 2482,
-						"y": 423,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "botton_close_hover.png",
-					"region": {
-						"x": 2482,
-						"y": 483,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "button_no_background.png",
-					"region": {
-						"x": 2424,
-						"y": 1116,
-						"w": 129,
-						"h": 54
 					},
 					"margin": {
 						"x": 0,
@@ -2141,7 +3041,7 @@
 					"filename": "caution_background.png",
 					"region": {
 						"x": 0,
-						"y": 1226,
+						"y": 0,
 						"w": 2560,
 						"h": 800
 					},
@@ -2153,12 +3053,12 @@
 					}
 				},
 				{
-					"filename": "date_text.png",
+					"filename": "date_background.png",
 					"region": {
-						"x": 1884,
-						"y": 1196,
-						"w": 80,
-						"h": 28
+						"x": 12,
+						"y": 802,
+						"w": 2446,
+						"h": 1104
 					},
 					"margin": {
 						"x": 0,
@@ -2170,295 +3070,10 @@
 				{
 					"filename": "deco_text.png",
 					"region": {
-						"x": 2424,
-						"y": 0,
+						"x": 2460,
+						"y": 802,
 						"w": 56,
 						"h": 718
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "del_click.png",
-					"region": {
-						"x": 2482,
-						"y": 543,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "del_hover.png",
-					"region": {
-						"x": 2482,
-						"y": 603,
-						"w": 58,
-						"h": 58
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "go_hover.png",
-					"region": {
-						"x": 1884,
-						"y": 1131,
-						"w": 290,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_hover.png",
-					"region": {
-						"x": 2424,
-						"y": 720,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_image.png",
-					"region": {
-						"x": 2424,
-						"y": 852,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_music.png",
-					"region": {
-						"x": 2424,
-						"y": 984,
-						"w": 131,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "page_click.png",
-					"region": {
-						"x": 2176,
-						"y": 1131,
-						"w": 217,
-						"h": 83
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "progress_botton_click.png",
-					"region": {
-						"x": 2482,
-						"y": 219,
-						"w": 63,
-						"h": 66
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "progress_botton_hover.png",
-					"region": {
-						"x": 2482,
-						"y": 287,
-						"w": 63,
-						"h": 66
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "progress_botton_normal.png",
-					"region": {
-						"x": 2482,
-						"y": 355,
-						"w": 63,
-						"h": 66
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "text_page1.png",
-					"region": {
-						"x": 2173,
-						"y": 0,
-						"w": 215,
-						"h": 995
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "text_page2.png",
-					"region": {
-						"x": 1884,
-						"y": 0,
-						"w": 287,
-						"h": 1008
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_zhouteng.png",
-					"region": {
-						"x": 2482,
-						"y": 147,
-						"w": 70,
-						"h": 70
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/hide_click.png",
-					"region": {
-						"x": 2482,
-						"y": 663,
-						"w": 39,
-						"h": 32
-					},
-					"margin": {
-						"x": 4,
-						"y": 5,
-						"w": 8,
-						"h": 9
-					}
-				},
-				{
-					"filename": "立绘鉴赏/name_deco.png",
-					"region": {
-						"x": 1884,
-						"y": 1010,
-						"w": 526,
-						"h": 119
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/background.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 1882,
-						"h": 1224
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/last_hover.png",
-					"region": {
-						"x": 1966,
-						"y": 1196,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/last_normal.png",
-					"region": {
-						"x": 1994,
-						"y": 1196,
-						"w": 26,
-						"h": 28
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "音乐鉴赏/play_hover.png",
-					"region": {
-						"x": 2482,
-						"y": 0,
-						"w": 72,
-						"h": 72
 					},
 					"margin": {
 						"x": 0,
@@ -2472,90 +3087,45 @@
 		{
 			"image": "ui-11.png",
 			"size": {
-				"w": 2556,
-				"h": 1956
+				"w": 2560,
+				"h": 2044
 			},
 			"sprites": [
 				{
-					"filename": "bigchr_knd.png",
+					"filename": "chr_ge_hover.png",
 					"region": {
-						"x": 1861,
-						"y": 1106,
-						"w": 561,
-						"h": 353
+						"x": 2078,
+						"y": 1047,
+						"w": 280,
+						"h": 476
 					},
 					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
 					}
 				},
 				{
-					"filename": "chr_ge_selected.png",
+					"filename": "chr_ge_normal.png",
 					"region": {
-						"x": 1861,
-						"y": 1461,
-						"w": 299,
-						"h": 494
+						"x": 2078,
+						"y": 1525,
+						"w": 280,
+						"h": 476
 					},
 					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_kaguya_selected.png",
-					"region": {
-						"x": 2162,
-						"y": 1461,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "date_background.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 2446,
-						"h": 1104
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_book.png",
-					"region": {
-						"x": 2424,
-						"y": 1106,
-						"w": 130,
-						"h": 130
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
 					}
 				},
 				{
 					"filename": "ico_message.png",
 					"region": {
-						"x": 2424,
-						"y": 1238,
+						"x": 217,
+						"y": 1870,
 						"w": 130,
 						"h": 130
 					},
@@ -2569,8 +3139,8 @@
 				{
 					"filename": "logo_normal.png",
 					"region": {
-						"x": 0,
-						"y": 1106,
+						"x": 217,
+						"y": 1047,
 						"w": 1859,
 						"h": 821
 					},
@@ -2580,128 +3150,14 @@
 						"w": 0,
 						"h": 0
 					}
-				}
-			]
-		},
-		{
-			"image": "ui-12.png",
-			"size": {
-				"w": 2560,
-				"h": 2040
-			},
-			"sprites": [
+				},
 				{
-					"filename": "auto.png",
+					"filename": "text_page1.png",
 					"region": {
 						"x": 0,
 						"y": 1047,
-						"w": 1067,
-						"h": 616
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/chat_example.png",
-					"region": {
-						"x": 0,
-						"y": 1872,
-						"w": 458,
-						"h": 120
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_chang_selected.png",
-					"region": {
-						"x": 2138,
-						"y": 1543,
-						"w": 298,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_others_selected.png",
-					"region": {
-						"x": 2138,
-						"y": 1047,
-						"w": 299,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "dataimage_frame.png",
-					"region": {
-						"x": 791,
-						"y": 1861,
-						"w": 468,
-						"h": 154
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "date_deco.png",
-					"region": {
-						"x": 460,
-						"y": 1872,
-						"w": 253,
-						"h": 115
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "nnote.png",
-					"region": {
-						"x": 791,
-						"y": 1665,
-						"w": 717,
-						"h": 194
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "skip.png",
-					"region": {
-						"x": 1069,
-						"y": 1047,
-						"w": 1067,
-						"h": 616
+						"w": 215,
+						"h": 995
 					},
 					"margin": {
 						"x": 0,
@@ -2724,14 +3180,23 @@
 						"w": 0,
 						"h": 0
 					}
-				},
+				}
+			]
+		},
+		{
+			"image": "ui-12.png",
+			"size": {
+				"w": 2480,
+				"h": 1964
+			},
+			"sprites": [
 				{
-					"filename": "插画鉴赏/image_click.png",
+					"filename": "auto.png",
 					"region": {
-						"x": 1510,
-						"y": 1665,
-						"w": 525,
-						"h": 318
+						"x": 0,
+						"y": 1226,
+						"w": 1067,
+						"h": 616
 					},
 					"margin": {
 						"x": 0,
@@ -2741,12 +3206,162 @@
 					}
 				},
 				{
-					"filename": "立绘鉴赏/ico_select.png",
+					"filename": "chr_ge.png",
 					"region": {
-						"x": 1261,
-						"y": 1861,
-						"w": 167,
-						"h": 167
+						"x": 1069,
+						"y": 1704,
+						"w": 291,
+						"h": 231
+					},
+					"margin": {
+						"x": 57,
+						"y": 11,
+						"w": 592,
+						"h": 22
+					}
+				},
+				{
+					"filename": "chr_kaguya_hover.png",
+					"region": {
+						"x": 1884,
+						"y": 1010,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 10,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_kaguya_normal.png",
+					"region": {
+						"x": 2166,
+						"y": 1010,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 10,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_ling_hover.png",
+					"region": {
+						"x": 2173,
+						"y": 0,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_ling_normal.png",
+					"region": {
+						"x": 2173,
+						"y": 478,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_others_hover.png",
+					"region": {
+						"x": 1069,
+						"y": 1226,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_others_normal.png",
+					"region": {
+						"x": 1351,
+						"y": 1226,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 11,
+						"y": 9,
+						"w": 19,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_teacher_hover.png",
+					"region": {
+						"x": 1633,
+						"y": 1488,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_teacher_normal.png",
+					"region": {
+						"x": 1915,
+						"y": 1488,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 9,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "chr_yu_hover.png",
+					"region": {
+						"x": 2197,
+						"y": 1488,
+						"w": 280,
+						"h": 476
+					},
+					"margin": {
+						"x": 10,
+						"y": 9,
+						"w": 18,
+						"h": 18
+					}
+				},
+				{
+					"filename": "text_page2.png",
+					"region": {
+						"x": 1884,
+						"y": 0,
+						"w": 287,
+						"h": 1008
 					},
 					"margin": {
 						"x": 0,
@@ -2756,12 +3371,12 @@
 					}
 				},
 				{
-					"filename": "音乐鉴赏/info_decoration.png",
+					"filename": "音乐鉴赏/background.png",
 					"region": {
 						"x": 0,
-						"y": 1665,
-						"w": 789,
-						"h": 205
+						"y": 0,
+						"w": 1882,
+						"h": 1224
 					},
 					"margin": {
 						"x": 0,
@@ -2775,40 +3390,10 @@
 		{
 			"image": "ui-13.png",
 			"size": {
-				"w": 2456,
-				"h": 2000
+				"w": 2460,
+				"h": 2048
 			},
 			"sprites": [
-				{
-					"filename": "bigchr_ling.png",
-					"region": {
-						"x": 1727,
-						"y": 471,
-						"w": 463,
-						"h": 353
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chat/left-arrow.png",
-					"region": {
-						"x": 2192,
-						"y": 471,
-						"w": 256,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
 				{
 					"filename": "chat/screen_background.png",
 					"region": {
@@ -2825,25 +3410,25 @@
 					}
 				},
 				{
-					"filename": "chr_chang_hover.png",
+					"filename": "chr_teacher.png",
 					"region": {
-						"x": 2027,
-						"y": 826,
-						"w": 280,
-						"h": 476
+						"x": 2080,
+						"y": 1329,
+						"w": 279,
+						"h": 230
 					},
 					"margin": {
-						"x": 9,
-						"y": 9,
-						"w": 18,
-						"h": 18
+						"x": 60,
+						"y": 11,
+						"w": 604,
+						"h": 23
 					}
 				},
 				{
 					"filename": "chr_yu_normal.png",
 					"region": {
-						"x": 2006,
-						"y": 1322,
+						"x": 2080,
+						"y": 1561,
 						"w": 262,
 						"h": 458
 					},
@@ -2852,51 +3437,6 @@
 						"y": 18,
 						"w": 36,
 						"h": 36
-					}
-				},
-				{
-					"filename": "chr_yu_seleted.png",
-					"region": {
-						"x": 1727,
-						"y": 826,
-						"w": 298,
-						"h": 494
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "data_background_normal.png",
-					"region": {
-						"x": 1727,
-						"y": 0,
-						"w": 571,
-						"h": 469
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "ico_select_light.png",
-					"region": {
-						"x": 2270,
-						"y": 1304,
-						"w": 166,
-						"h": 166
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
 					}
 				},
 				{
@@ -2915,12 +3455,12 @@
 					}
 				},
 				{
-					"filename": "place_outline.png",
+					"filename": "screen_image.png",
 					"region": {
-						"x": 0,
-						"y": 1431,
-						"w": 851,
-						"h": 567
+						"x": 1727,
+						"y": 0,
+						"w": 730,
+						"h": 1327
 					},
 					"margin": {
 						"x": 0,
@@ -2932,7 +3472,7 @@
 				{
 					"filename": "select_outline.png",
 					"region": {
-						"x": 995,
+						"x": 1069,
 						"y": 1329,
 						"w": 1009,
 						"h": 649
@@ -2945,102 +3485,12 @@
 					}
 				},
 				{
-					"filename": "头像/phone_portrait_changxia.png",
+					"filename": "skip.png",
 					"region": {
-						"x": 2208,
-						"y": 1782,
-						"w": 194,
-						"h": 194
-					},
-					"margin": {
 						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_kanade.png",
-					"region": {
-						"x": 2006,
-						"y": 1782,
-						"w": 200,
-						"h": 200
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_changxia.png",
-					"region": {
-						"x": 2300,
-						"y": 0,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_gecheng.png",
-					"region": {
-						"x": 2300,
-						"y": 155,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_kanade.png",
-					"region": {
-						"x": 2300,
-						"y": 310,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_ling.png",
-					"region": {
-						"x": 2270,
-						"y": 1472,
-						"w": 153,
-						"h": 153
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "立绘鉴赏/ico_yuluochen.png",
-					"region": {
-						"x": 2270,
-						"y": 1627,
-						"w": 153,
-						"h": 153
+						"y": 1431,
+						"w": 1067,
+						"h": 616
 					},
 					"margin": {
 						"x": 0,
@@ -3054,374 +3504,14 @@
 		{
 			"image": "ui-14.png",
 			"size": {
-				"w": 2456,
-				"h": 2032
+				"w": 856,
+				"h": 972
 			},
 			"sprites": [
 				{
-					"filename": "bigchr_yu.png",
-					"region": {
-						"x": 0,
-						"y": 1329,
-						"w": 477,
-						"h": 352
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "chr_chang_normal.png",
-					"region": {
-						"x": 1589,
-						"y": 0,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 9,
-						"y": 9,
-						"w": 18,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_ge_hover.png",
-					"region": {
-						"x": 1589,
-						"y": 478,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_ge_normal.png",
-					"region": {
-						"x": 1893,
-						"y": 1189,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_kaguya_hover.png",
-					"region": {
-						"x": 1871,
-						"y": 0,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 10,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_kaguya_normal.png",
-					"region": {
-						"x": 1871,
-						"y": 478,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 10,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_knd.png",
-					"region": {
-						"x": 1651,
-						"y": 956,
-						"w": 344,
-						"h": 231
-					},
-					"margin": {
-						"x": 36,
-						"y": 11,
-						"w": 539,
-						"h": 22
-					}
-				},
-				{
-					"filename": "chr_ling_hover.png",
-					"region": {
-						"x": 2153,
-						"y": 0,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_ling_normal.png",
-					"region": {
-						"x": 2153,
-						"y": 478,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_others_hover.png",
-					"region": {
-						"x": 2175,
-						"y": 956,
-						"w": 280,
-						"h": 476
-					},
-					"margin": {
-						"x": 11,
-						"y": 9,
-						"w": 19,
-						"h": 18
-					}
-				},
-				{
-					"filename": "chr_xia.png",
-					"region": {
-						"x": 1458,
-						"y": 1487,
-						"w": 433,
-						"h": 231
-					},
-					"margin": {
-						"x": 9,
-						"y": 11,
-						"w": 450,
-						"h": 22
-					}
-				},
-				{
-					"filename": "click_deco.png",
-					"region": {
-						"x": 527,
-						"y": 1873,
-						"w": 353,
-						"h": 159
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "dataimage_empty.png",
-					"region": {
-						"x": 732,
-						"y": 972,
-						"w": 469,
-						"h": 263
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "gallery_click_deco.png",
-					"region": {
-						"x": 882,
-						"y": 1873,
-						"w": 353,
-						"h": 159
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "load_title.png",
-					"region": {
-						"x": 1237,
-						"y": 1752,
-						"w": 445,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "log_title.png",
-					"region": {
-						"x": 1203,
-						"y": 972,
-						"w": 446,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "save_title.png",
-					"region": {
-						"x": 1010,
-						"y": 1495,
-						"w": 446,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "screen_image.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 730,
-						"h": 1327
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "set_title.png",
-					"region": {
-						"x": 1421,
-						"y": 1230,
-						"w": 446,
-						"h": 255
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "voice_title.png",
-					"region": {
-						"x": 962,
-						"y": 1237,
-						"w": 457,
-						"h": 256
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "头像/phone_portrait_yuluochen.png",
-					"region": {
-						"x": 1684,
-						"y": 1720,
-						"w": 306,
-						"h": 306
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_example.png",
-					"region": {
-						"x": 479,
-						"y": 1329,
-						"w": 481,
-						"h": 270
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_hover.png",
-					"region": {
-						"x": 0,
-						"y": 1683,
-						"w": 525,
-						"h": 318
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
-					"filename": "插画鉴赏/image_locked.png",
-					"region": {
-						"x": 527,
-						"y": 1601,
-						"w": 481,
-						"h": 270
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "音乐鉴赏/album.png",
 					"region": {
-						"x": 732,
+						"x": 0,
 						"y": 0,
 						"w": 855,
 						"h": 970
@@ -3439,6 +3529,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:9e92babddcb8a97d6d11e96a1abf61bd:7b08584082e0e24de90b16589e209289:d66c61cb554faee5910726f5f9a47862$"
+		"smartupdate": "$TexturePacker:SmartUpdate:97df61721b0575720d87a3dbb08594b8:4d4b7d030c34e4bec2cdaf9f4abd10ba:d66c61cb554faee5910726f5f9a47862$"
 	}
 }

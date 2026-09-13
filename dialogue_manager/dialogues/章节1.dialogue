@@ -152,7 +152,6 @@ $> Character("葛城").FadeIn("Center")
 周腾: [#昵称=独白, #隐藏头像]…… [ID:recvdnC0y4gfDS.line]
 周腾: [#昵称=独白, #隐藏头像]“嗡嗡…”（手机振动声） [ID:recvdnC0y4IJjj.line]
 $> ShowPhone()
-$> Character("余洛琛").ClearOptionals()
 余洛琛: [#手机]我刚忙完午休电台的事情，你现在在班上吗？ [ID:recvgjDdc8oU0C.line]
 - 找我有什么事？ [ID:recvgjzctsohtC.opt]
 	余洛琛: [#延迟=2, #手机]什么叫找你有什么事，没事就不能找你了吗？ [ID:recvgjBI4qOx6P.line]
@@ -191,6 +190,8 @@ $> StopMusic()
 周腾: [#昵称=独白, #隐藏头像]至于为什么是这种奇怪的地方，我没有问过余洛琛原因。但每次见面去操场找她的时候，基本都会看到她站在这个位置，一边拨弄着头发，一边四处乱瞅。 [ID:recvdnC0y4Jhpg.line]
 $> Character("余洛琛").SetExpression("无口")
 $> Character("余洛琛").SetBody("校服-抬手")
+$> Character("余洛琛").ClearOptionals()
+$> Character("余洛琛").SetOptionals("眼镜")
 $> Character("余洛琛").FadeIn("Center")
 周腾: [#昵称=独白, #隐藏头像]这一次，正如我所想的那样，她还是在那个熟悉的地方站着，双手背在身后，不知道发呆在想些什么。 [ID:recvdnC0y4G1il.line]
 周腾: [#昵称=独白, #隐藏头像]直到我快走到了伸手就能拍到她肩膀的位置时，她才回过神来，往我这边看了两眼。 [ID:recvdnC0y4yulW.line]
@@ -270,6 +271,8 @@ $> HideCG()
 $> SetMusic("白日倚梦")
 $> Character("余洛琛").SetBody("校服-抬手")
 $> Character("余洛琛").SetExpression("害羞说话")
+$> Character("余洛琛").ClearOptionals()
+$> Character("余洛琛").SetOptionals("眼镜")
 $> Character("余洛琛").FadeIn("Center")
 余洛琛: [#语音=余洛琛/…稿子的事儿，谢谢你啊，周腾, #身体=校服-抬手, #表情=害羞说话, #结束表情=无口, #附加=眼镜]“……稿子的事儿，谢谢你啊，周腾。” [ID:recvdnC0y4Tznx.line]
 周腾: [#隐藏头像]“你叫我来就说这个？” [ID:recvdnC0y4B4gX.line]
@@ -337,7 +340,6 @@ $> Character("葛城").FadeIn("Center")
 葛城: [#语音=葛城/不会是上辈子, #身体=默认-手放下, #表情=坏笑, #结束表情=坏笑（微笑）]“不会是上辈子从狗转生过来的吧~” [ID:recvdnC0y4Qp2o.line]
 周腾: [#隐藏头像]“懒得理你，好像有人给我发短信了。” [ID:recvdnC0y4vAWr.line]
 $> ShowPhone()
-$> Character("余洛琛").ClearOptionals()
 余洛琛: [#手机]等会如果有个怪人来你们班找你，千万不要理她，无论她说什么你都说“不知道”这三个字就行了。 [ID:recvgjFLDSh308.line]
 余洛琛: [#延迟=2, #手机]“以前不小心埋了个错误的‘伏笔’，现在坏事找上门了……” [ID:recvgjFLDSbGpW.line]
 - 何意味？ [ID:recvgjFLDSUywu.opt]
@@ -606,6 +608,8 @@ $> SetMusic("江城闪景 Day Ver.")
 周腾: [#昵称=独白, #隐藏头像]也难怪余洛琛会把见面的地方选在这里，她再怎么样现在也还是文学社的一员，像她那样的文学系少女，会喜欢这样的位置再正常不过了。 [ID:recvdnC0y4eGOY.line]
 $> Character("余洛琛").SetBody("校服-抬手")
 $> Character("余洛琛").SetExpression("宠溺说话")
+$> Character("余洛琛").ClearOptionals()
+$> Character("余洛琛").SetOptionals("眼镜")
 $> Character("余洛琛").FadeIn("Center")
 余洛琛: [#语音=余洛琛/我看到你了, #身体=校服-抬手, #表情=宠溺说话, #结束表情=微笑, #附加=眼镜]“啊，我看到你了！” [ID:recvdnC0y4Qyo1.line]
 周腾: [#昵称=独白, #隐藏头像]刚准备拿手机发短信问问余洛琛的具体位置，她倒好，一眼就在人群中发现了我。 [ID:recvdnC0y4PQnc.line]
@@ -889,6 +893,8 @@ $> SetDate(10, 24, "周五夜晚")
 $> ShowDialogue()
 $> Character("余洛琛").SetBody("校服-抬手")
 $> Character("余洛琛").SetExpression("眯眼开心说话")
+$> Character("余洛琛").ClearOptionals()
+$> Character("余洛琛").SetOptionals("眼镜")
 $> Character("余洛琛").FadeIn("Center")
 余洛琛: [#语音=余洛琛/嗯~~吃饱啦吃饱啦！, #身体=校服-抬手, #表情=眯眼开心说话, #结束表情=眯眼开心说话, #附加=眼镜]“嗯~~吃饱啦吃饱啦！感觉吃一次烤肉心情都变好不少。” [ID:recviJeNDT8Fwv.line]
 余洛琛: [#语音=余洛琛/怎么样，这家店的味道还不错吧, #身体=校服-抬手, #表情=宠溺说话, #结束表情=微笑, #附加=眼镜]“怎么样，这家店的味道还不错吧？” [ID:recviJeNDTdpDQ.line]

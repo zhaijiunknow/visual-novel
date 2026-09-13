@@ -10,8 +10,8 @@ extends Control
 @export var button_close: TextureButton
 
 const TWEEN_DURATION: float = 0.3
-# 未解锁 CG 的占位格底图（复用空存档预览样式）
-const EMPTY_SLOT_TEXTURE: Texture2D = preload("res://assets/sprites/ui/ui.sprites/dataimage_empty.tres")
+# 未解锁 CG 的占位格底图
+const LOCKED_SLOT_TEXTURE: Texture2D = preload("res://assets/sprites/ui/ui.sprites/插画鉴赏/image_locked.tres")
 
 var current_gallery_data: GalleryData
 # 全屏图鉴当前可翻看的变体（整 CG 解锁后为完整 variation）
@@ -83,7 +83,7 @@ func refresh() -> void:
 		placeholder.disabled = true
 		placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		placeholder.texture_rect_variation.texture = null
-		placeholder.texture_rect_base.texture = EMPTY_SLOT_TEXTURE
+		placeholder.texture_rect_base.texture = LOCKED_SLOT_TEXTURE
 		gallery_card_pool.add_child(placeholder)
 
 

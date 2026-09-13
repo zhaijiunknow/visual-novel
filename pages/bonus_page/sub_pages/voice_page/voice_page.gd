@@ -9,7 +9,10 @@ extends Control
 		selected_character = value
 		for texture in portrait_dict:
 			portrait_dict[texture].visible = false
-		portrait_dict[selected_character].visible = true	
+		# portrait_dict 未配置该角色时取到 null，直接不显示，不报错
+		var portrait: TextureRect = portrait_dict.get(selected_character)
+		if portrait:
+			portrait.visible = true
 		
 
 @export var voice_card_pool: Control

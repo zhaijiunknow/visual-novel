@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_imp03"]
 [ext_resource type="Texture2D" uid="uid://d3wcr2ok2kmqu" path="res://assets/sprites/ui/ui.sprites/chr_ge.tres" id="6_td440"]
 [ext_resource type="Texture2D" uid="uid://dwfgn02lekph4" path="res://assets/sprites/ui/ui.sprites/chr_ling.tres" id="7_0h51m"]
+[ext_resource type="Texture2D" uid="uid://c2uc5qyfpw05h" path="res://assets/sprites/ui/ui.sprites/chr_teacher.tres" id="8_vuw1d"]
 [ext_resource type="Texture2D" uid="uid://b5v3o5x6ss4g5" path="res://assets/temp/voice.jpg" id="12_tpmcj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vpxv"]
@@ -28,7 +29,8 @@ portrait_dict = Dictionary[int, Texture2D]({
 1: ExtResource("4_tpmcj"),
 2: ExtResource("5_vuw1d"),
 3: ExtResource("6_td440"),
-4: ExtResource("7_0h51m")
+4: ExtResource("7_0h51m"),
+5: ExtResource("8_vuw1d")
 })
 texture_rect_portrait = NodePath("TextureRect_Portrait")
 label_number = NodePath("NumberContainer/Label_Number")
@@ -48,7 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_qdjdi")
+texture = ExtResource("8_vuw1d")
 
 [node name="Label_Text" type="RichTextLabel" parent="." unique_id=1888130732]
 layout_mode = 0

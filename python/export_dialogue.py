@@ -173,7 +173,7 @@ def remove_visible_character(state, character):
         state["visible_character_order"].remove(character)
 
 
-def append_fade_in(lines, tabs, state, character, body=None, expression=None):
+def append_fade_in(lines, tabs, state, character, body=None, expression=None, optionals=None):
     if has_portrait(character) and character not in state["visible_characters"]:
         # 优先用传入的 body，其次用 state 中追踪的身体
         effective_body = body if (body and body != "-") else state.get("character_bodies", {}).get(character, "")
@@ -183,6 +183,11 @@ def append_fade_in(lines, tabs, state, character, body=None, expression=None):
         effective_expression = expression if (expression and expression != "-") else state.get("character_expressions", {}).get(character, "")
         if effective_expression:
             lines.append(f'{tabs}$> Character("{character}").SetExpression("{effective_expression}")')
+        # 附加部件同样要在 FadeIn 之前准备好，否则角色会先光着入场、下一句才戴上
+        if optionals:
+            optionals_string = ",".join(optionals)
+            lines.append(f'{tabs}$> Character("{character}").ClearOptionals()')
+            lines.append(f'{tabs}$> Character("{character}").SetOptionals("{optionals_string}")')
         lines.append(f'{tabs}$> Character("{character}").FadeIn("Center")')
         add_visible_character(state, character)
 
@@ -199,12 +204,29 @@ def _sync_optionals(lines, tabs, state, character, new_optionals):
     引擎侧（stage_page.gd）只在有 #附加 tag 时才 Clear+Set，没有 tag 就什么都不做，
     所以上一句设过的部件（如眼镜）会一直残留。当前行没有附加时必须显式清除。
     换一组附加（两段都不为空）：行上的 #附加 tag 会先 Clear 再 Set，无需额外指令。
+
+    只对出现在立绘层的台词行调用；手机/奇迹书行的角色不在场上，附加列不代表"摘下"。
     """
     new_list = list(new_optionals) if new_optionals else []
     prev = state["character_optionals"].get(character)
     state["character_optionals"][character] = new_list
     if prev and not new_list:
         lines.append(f'{tabs}$> Character("{character}").ClearOptionals()')
+
+
+def _lookahead_optionals(state, character, order):
+    """该角色在本行之后的第一句台词所用的 #附加；没有后续台词时返回 None。
+
+    入场行本身通常不填附加（那一列属于本行的说话角色，例如独白行是周腾），
+    所以角色刚入场时该戴什么部件，只能向后找他自己的第一句台词。
+    """
+    events = state["next_optionals"].get(character)
+    if not events or order is None:
+        return None
+    for event_order, optionals in events:
+        if event_order > order:
+            return optionals
+    return None
 
 
 def get_parent_id(fields):
@@ -455,15 +477,24 @@ def generate_do_commands(data, state, lines, tabs):
         state["character_expressions"][character] = data["expression"]
 
     # 追踪附加部件：当前行没有附加但上一句有 → 显式 ClearOptionals。
-    # 放在 FadeIn 之前，避免角色回归时先带着旧部件闪一下再被清除
-    if character and has_portrait(character):
+    # 放在 FadeIn 之前，避免角色回归时先带着旧部件闪一下再被清除。
+    # 手机/奇迹书行的角色不在立绘层，附加列不参与追踪，也不清空已有状态
+    if character and has_portrait(character) and not data["phone"] and not data["book"]:
         _sync_optionals(lines, tabs, state, character, data["optionals"])
 
+    # 入场前把附件状态备好：本行填的附加 > 该角色下一句台词的附加 > 沿用当前状态
+    order = state["record_order"].get(data["feishu_record_id"])
     for entering_character in data.get("entering_portraits", []):
-        append_fade_in(lines, tabs, state, entering_character)
+        if entering_character == character and data["optionals"]:
+            optionals = data["optionals"]
+        else:
+            optionals = _lookahead_optionals(state, entering_character, order)
+            if not optionals:
+                optionals = state["character_optionals"].get(entering_character) or []
+        append_fade_in(lines, tabs, state, entering_character, optionals=optionals)
 
     if has_portrait(character) and character not in hidden_portraits and not data["phone"] and character not in state["visible_characters"]:
-        append_fade_in(lines, tabs, state, character, data.get("body", ""), data.get("expression", ""))
+        append_fade_in(lines, tabs, state, character, data.get("body", ""), data.get("expression", ""), optionals=data["optionals"])
 
 
 def generate_after_dialogue_commands(data, state, lines, tabs):
@@ -525,8 +556,56 @@ def walk(record, children_map, indent, lines, state):
 
 # ─── 章节导出 ───
 
+def build_record_order(roots, children_map):
+    """按 walk 的前序遍历给记录编号，用于"某角色下一句台词"这类向后查找。"""
+    ordered_records = []
+    record_order = {}
+
+    def visit(record):
+        record_id = record["record_id"]
+        record_order[record_id] = len(ordered_records)
+        ordered_records.append(record)
+        for child in children_map.get(record_id, []):
+            visit(child)
+
+    for root in roots:
+        visit(root)
+    return ordered_records, record_order
+
+
+def build_next_optionals_index(ordered_records):
+    """角色 → 按出场顺序排列的 [(顺序号, 附加列表)]，只统计立绘层的台词行。
+
+    手机/奇迹书行的角色不在立绘层，和周腾一样没有立绘，都不参与索引，
+    与 _sync_optionals 的追踪口径保持一致。
+    """
+    index = defaultdict(list)
+    for order, record in enumerate(ordered_records):
+        data = record_to_data(record)
+        character = data["character"]
+        if data["hidden"] or data["is_option"] or data["phone"] or data["book"]:
+            continue
+        if not has_portrait(character):
+            continue
+        index[character].append((order, list(data["optionals"])))
+    return index
+
+
 def convert_chapter(roots, children_map, chapter_filter):
     """将指定章节的记录树转换为 dialogue 文件内容"""
+    # 先筛出本章的根记录，再摊平成 walk 顺序，供入场时向后查找附件状态
+    chapter_roots = []
+    current_chapter = None
+    for root in roots:
+        data = record_to_data(root)
+        if data["chapter"]:
+            current_chapter = data["chapter"]
+        if current_chapter != chapter_filter:
+            continue
+        chapter_roots.append(root)
+
+    ordered_records, record_order = build_record_order(chapter_roots, children_map)
+
     lines = ["~ start"]
     state = {
         "visible_characters": set(),
@@ -534,6 +613,8 @@ def convert_chapter(roots, children_map, chapter_filter):
         "character_bodies": {},
         "character_expressions": {},
         "character_optionals": {},
+        "record_order": record_order,
+        "next_optionals": build_next_optionals_index(ordered_records),
         "bg_name": "",
         "time_period": "",
         "date_key": "",
@@ -546,13 +627,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         "chapter_name": chapter_filter,
     }
 
-    current_chapter = None
-    for root in roots:
-        data = record_to_data(root)
-        if data["chapter"]:
-            current_chapter = data["chapter"]
-        if current_chapter != chapter_filter:
-            continue
+    for root in chapter_roots:
         walk(root, children_map, 0, lines, state)
 
     if state["phone_mode"]:

@@ -128,6 +128,60 @@ func resume_playlist() -> void:
 	_playlist_paused = false
 	audio_player_music.stream_paused = false
 
+# ─── 剧情 BGM 存档：进音乐鉴赏（bonus 附加页）前保存，回剧情时恢复 ───
+var _story_music_valid := false
+var _story_music_stream: AudioStream
+var _story_music_index := -1
+var _story_music_position := 0.0
+var _story_music_db := 0.0
+var _story_music_source := MusicSource.NONE
+var _story_music_playing := false
+var _story_music_paused := false
+
+## 保存剧情当前 BGM（曲目/进度/播放态/音量），供从鉴赏返回后恢复
+func save_story_music() -> void:
+	_story_music_valid = true
+	_story_music_stream = audio_player_music.stream
+	_story_music_index = track_index
+	_story_music_db = audio_player_music.volume_db
+	_story_music_source = _music_source
+	_story_music_playing = audio_player_music.playing
+	_story_music_paused = audio_player_music.stream_paused
+	if _story_music_playing or _story_music_paused:
+		_story_music_position = audio_player_music.get_playback_position()
+	else:
+		_story_music_position = 0.0
+
+## 恢复剧情 BGM；若鉴赏期间没动过音乐则不打断，若剧情当时静默则保持静默
+func restore_story_music() -> void:
+	if not _story_music_valid:
+		return
+	_story_music_valid = false
+	# 鉴赏期间没改过音乐（还是剧情那首、仍在播）→ 不打断，任其自然延续
+	if audio_player_music.stream == _story_music_stream \
+		and _music_source == _story_music_source \
+		and not audio_player_music.stream_paused \
+		and audio_player_music.playing == _story_music_playing:
+		return
+	# 清掉鉴赏/语音遗留的暂停接管状态，交还给剧情
+	_music_paused = false
+	_paused_stream = null
+	_playlist_paused = false
+	audio_player_music.stream_paused = false
+	# 剧情当时静默：停掉鉴赏选播的 BGM，不要漏进剧情
+	if _story_music_stream == null or (not _story_music_playing and not _story_music_paused):
+		audio_player_music.stop()
+		audio_player_music.stream = null
+		_music_source = MusicSource.NONE
+		return
+	# 恢复剧情原本的曲目与进度
+	track_index = _story_music_index
+	audio_player_music.stream = _story_music_stream
+	audio_player_music.volume_db = _story_music_db
+	_music_source = _story_music_source
+	audio_player_music.play(_story_music_position)
+	audio_player_music.stream_paused = _story_music_paused
+
 func play_voice(filename: String, set_current: bool = false) -> void:
 	if voice_cache.has(filename):
 		var voice = voice_cache[filename]
