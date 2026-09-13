@@ -15,7 +15,7 @@
 **Environment:**
 - Godot Engine 4.6 - Core game engine
 - Windows Desktop target (config/features: "4.6", "GL Compatibility")
-- Resolution: 2560x1440 (custom window size 1200x600)
+- Resolution: 2560x1440 viewport, starts fullscreen (`window/size/mode=3`)
 
 **Package Manager:**
 - None (Godot handles asset imports and management internally)
@@ -75,7 +75,7 @@
 **Production:**
 - Windows Desktop target
 - OpenGL Compatibility rendering method
-- Custom window sizing (1200x600)
+- Borderless fullscreen at launch, windowed/fullscreen toggle in settings
 
 ---
 
