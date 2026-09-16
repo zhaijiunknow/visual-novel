@@ -1166,6 +1166,48 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../ui/章节图/bg_change.png</key>
+            <key type="filename">../ui/章节图/bg_nonchange.png</key>
+            <key type="filename">../ui/章节图/章节图.png</key>
+            <key type="filename">../ui/系统设置/系统设置.png</key>
+            <key type="filename">../ui/系统设置/系统设置2.png</key>
+            <key type="filename">../ui/语音收藏/语音收藏.png</key>
+            <key type="filename">../ui/鉴赏内容/background_character.png</key>
+            <key type="filename">../ui/鉴赏内容/background_full.png</key>
+            <key type="filename">../ui/鉴赏内容/frame_background.jpg</key>
+            <key type="filename">../ui/鉴赏内容/插画鉴赏/插画鉴赏.png</key>
+            <key type="filename">../ui/鉴赏内容/立绘鉴赏/立绘鉴赏.png</key>
+            <key type="filename">../ui/鉴赏内容/音乐鉴赏/play_normal.png</key>
+            <key type="filename">../ui/鉴赏内容/音乐鉴赏/音乐鉴赏.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>640,360,1280,720</rect>
+                <key>scale9Paddings</key>
+                <rect>640,360,1280,720</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../ui/章节图/chapter_info.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>82,354,165,707</rect>
+                <key>scale9Paddings</key>
+                <rect>82,354,165,707</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../ui/系统设置/bar_1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -1341,30 +1383,6 @@
                 <rect>433,63,866,125</rect>
                 <key>scale9Paddings</key>
                 <rect>433,63,866,125</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../ui/系统设置/系统设置.png</key>
-            <key type="filename">../ui/系统设置/系统设置2.png</key>
-            <key type="filename">../ui/语音收藏/语音收藏.png</key>
-            <key type="filename">../ui/鉴赏内容/background_character.png</key>
-            <key type="filename">../ui/鉴赏内容/background_full.png</key>
-            <key type="filename">../ui/鉴赏内容/frame_background.jpg</key>
-            <key type="filename">../ui/鉴赏内容/插画鉴赏/插画鉴赏.png</key>
-            <key type="filename">../ui/鉴赏内容/立绘鉴赏/立绘鉴赏.png</key>
-            <key type="filename">../ui/鉴赏内容/音乐鉴赏/play_normal.png</key>
-            <key type="filename">../ui/鉴赏内容/音乐鉴赏/音乐鉴赏.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>640,360,1280,720</rect>
-                <key>scale9Paddings</key>
-                <rect>640,360,1280,720</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -2072,6 +2090,7 @@
                     <filename>../ui/语音收藏</filename>
                     <filename>../ui/通用</filename>
                     <filename>../ui/鉴赏内容</filename>
+                    <filename>../ui/章节图</filename>
                 </array>
             </struct>
         </map>
