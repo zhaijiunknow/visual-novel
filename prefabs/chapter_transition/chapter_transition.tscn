@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cwi1gvnax36pm"]
+
+[ext_resource type="Script" uid="uid://j2tn2xo0of4" path="res://prefabs/chapter_transition/chapter_transition.gd" id="1_ct"]
+[ext_resource type="Texture2D" uid="uid://brso16lsvgyc8" path="res://assets/sprites/ui/ui.sprites/bg_change.tres" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://ca0lh25id4vih" path="res://assets/sprites/ui/ui.sprites/chapter_info.tres" id="3_info"]
+[ext_resource type="FontVariation" uid="uid://h4ra86ycx83f" path="res://assets/fonts/chapter_card_font.tres" id="4_card_font"]
+
+[node name="ChapterTransition" type="CanvasLayer" unique_id=1904413908 node_paths=PackedStringArray("root", "label_chapter", "label_title")]
+layer = 20
+script = ExtResource("1_ct")
+root = NodePath("Root")
+label_chapter = NodePath("Root/Label_Chapter")
+label_title = NodePath("Root/Label_Title")
+
+[node name="Root" type="Control" parent="." unique_id=598707618]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="Root" unique_id=2071977504]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ChapterInfo" type="TextureRect" parent="Root" unique_id=571818232]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.5
+offset_top = -707.5
+offset_right = 164.5
+offset_bottom = 707.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_info")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label_Chapter" type="Label" parent="Root" unique_id=339826476]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 539.0
+offset_bottom = 698.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.30588236, 0.44705883, 0.6156863, 1)
+theme_override_fonts/font = ExtResource("4_card_font")
+theme_override_font_sizes/font_size = 70
+text = "Chapter01"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_Title" type="Label" parent="Root" unique_id=717139964]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 673.0
+offset_bottom = 813.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.72156864, 0.6901961, 0.75686276, 1)
+theme_override_fonts/font = ExtResource("4_card_font")
+theme_override_font_sizes/font_size = 61
+text = "无言初雪与奇迹书"
+horizontal_alignment = 1
+vertical_alignment = 1

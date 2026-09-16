@@ -1,5 +1,6 @@
 ~ start
 $> PrepareBackground("教室", "白天")
+$> ShowChapterInfo('Chapter00', '半打青春与电台情歌')
 $> PlaySFX("设备调试")
 $> wait(2)
 $> PerformBackgroundPan(2.5, [{"x": 0.8, "y": 0.0, "duration": 0.0, "hold": 1}, {"x": 0.0, "y": 0.0, "duration": 55.0, "hold": 1}])

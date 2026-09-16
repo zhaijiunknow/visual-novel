@@ -1,5 +1,4 @@
 import requests
-import os
 import sys
 import json
 import re
@@ -18,6 +17,11 @@ REPO_ROOT = SCRIPT_DIR.parent
 PERFORMANCE_TABLE_ID = "tblCjPtCWMLcKCS7"  # 演出表
 BASE_URL = "https://open.feishu.cn/open-apis"
 OUTPUT_DIR = REPO_ROOT / "dialogue_manager" / "dialogues"
+# 固定输出名：stage_page.gd 的 chapter_name 取自文件名（resource_path 去掉扩展名），
+# 它同时是存档和 chapters_dict 的键，所以文件名不能跟着飞书「章节」列一起变，
+# 否则改一次表里的章节名，旧存档的 chapter_name 就对不上了。
+OUTPUT_FILENAME = "章节1.dialogue"
+OUTPUT_PATH = OUTPUT_DIR / OUTPUT_FILENAME
 PREPARE_BACKGROUND_PATTERN = re.compile(r"^\$>\s*PrepareBackground\s*\(")
 NO_PORTRAIT_CHARACTERS = {"周腾"}
 
@@ -130,6 +134,42 @@ def extract_multi_values(fields, name):
             unique_values.append(value)
             seen.add(value)
     return unique_values
+
+
+def _clean_chapter_text(value):
+    """章节文本压成单行：换行既会破坏 dialogue 行，也会破坏文件名。"""
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def split_chapter_value(raw):
+    """拆分「章节」列：`章节名|标题` → (章节名, 标题)。
+
+    章节名用于章节过滤和 dialogue 文件名（必须保持存档里的 chapter_name 不变），
+    标题只喂给章节过场卡片。没有分隔符时标题为空。
+    """
+    text = _clean_chapter_text(raw)
+    if not text:
+        return "", ""
+    for separator in ("|", "｜"):
+        if separator in text:
+            name, _, title = text.partition(separator)
+            return _clean_chapter_text(name), _clean_chapter_text(title)
+    return text, ""
+
+
+def quote_dialogue_string(value):
+    """把文本包成 dialogue 里合法的字符串字面量。
+
+    Dialogue Manager 的词法（addons/dialogue_manager/compiler/compiler_regex.gd:43）
+    是 `^&?(".*?"|'.*?')`：非贪婪、不支持反斜杠转义。所以不能转义，只能挑一个
+    文本里没出现过的引号；两种都有时退化成单引号并把撇号换成全角。
+    """
+    text = _clean_chapter_text(value)
+    if "'" not in text:
+        return f"'{text}'"
+    if '"' not in text:
+        return f'"{text}"'
+    return "'%s'" % text.replace("'", "’")
 
 
 def _split_portrait_value(value):
@@ -256,6 +296,7 @@ def record_to_data(record):
     costume = extract_field(fields, "服装")
     action = extract_field(fields, "动作")
     body = f"{costume}-{action}" if costume and action else ""
+    chapter_name, chapter_title = split_chapter_value(extract_field(fields, "章节"))
 
     optionals_raw = fields.get("附加", [])
     if isinstance(optionals_raw, list):
@@ -289,7 +330,8 @@ def record_to_data(record):
         "date": extract_field(fields, "日期"),
         "week_day": extract_field(fields, "星期"),
         "time": extract_field(fields, "时间"),
-        "chapter": extract_field(fields, "章节"),
+        "chapter": chapter_name,
+        "chapter_title": chapter_title,
         "music": extract_field(fields, "音乐"),
         "commands": extract_field(fields, "指令"),
         "cg_name": extract_field(fields, "CG"),
@@ -462,12 +504,19 @@ def generate_do_commands(data, state, lines, tabs):
         state["phone_mode"] = False
 
     if data["commands"]:
+        hoisted = state["hoisted_commands"] if data["feishu_record_id"] == state["hoist_record_id"] else ()
         for cmd_line in data["commands"].split("\n"):
             cmd_line = cmd_line.strip()
-            if cmd_line:
-                lines.append(f"{tabs}{cmd_line}")
+            if not cmd_line:
+                continue
+            if cmd_line in hoisted:
+                # 已经提到卡片之前跑过了，这里只补上它对下一条记录的影响
                 if prepares_background(cmd_line):
                     state["skip_next_set_background"] = True
+                continue
+            lines.append(f"{tabs}{cmd_line}")
+            if prepares_background(cmd_line):
+                state["skip_next_set_background"] = True
 
     # 追踪角色身体/表情（在 FadeIn 之前记录）
     character = data["character"]
@@ -591,10 +640,31 @@ def build_next_optionals_index(ordered_records):
     return index
 
 
+def _first_emitted_record(records, children_map):
+    """按 walk 的前序顺序找第一条自身会输出内容的记录。
+
+    隐藏记录自己什么都不产出，只把子记录提上来（见 walk），所以不能简单地取 roots[0]。
+    """
+    for record in records:
+        if record_to_data(record)["hidden"]:
+            found = _first_emitted_record(children_map.get(record["record_id"], []), children_map)
+            if found:
+                return found
+            continue
+        return record
+    return None
+
+
 def convert_chapter(roots, children_map, chapter_filter):
-    """将指定章节的记录树转换为 dialogue 文件内容"""
+    """将指定章节的记录树转换成一串 dialogue 行。
+
+    返回行列表而不是整份文件内容，好让 main() 把多个章节合并进同一个文件：
+    `~ start` 是 Dialogue Manager 的入口标题，一个文件只能有一个；
+    `=> END` 同理，只该在整份脚本末尾出现一次。
+    """
     # 先筛出本章的根记录，再摊平成 walk 顺序，供入场时向后查找附件状态
     chapter_roots = []
+    chapter_title = ""
     current_chapter = None
     for root in roots:
         data = record_to_data(root)
@@ -602,11 +672,30 @@ def convert_chapter(roots, children_map, chapter_filter):
             current_chapter = data["chapter"]
         if current_chapter != chapter_filter:
             continue
+        # 本章第一条填了标题的根记录决定过场卡片的标题
+        if not chapter_title and data["chapter_title"]:
+            chapter_title = data["chapter_title"]
         chapter_roots.append(root)
 
     ordered_records, record_order = build_record_order(chapter_roots, children_map)
 
-    lines = ["~ start"]
+    # 本章开头的 PrepareBackground 提到过场卡片之前执行：它会把黑幕拉满、把新背景先藏在
+    # 后面，而卡片所在的 CanvasLayer 是 layer=20，压在黑幕之上正常播放。留在卡片之后的话，
+    # 卡片淡出的那 0.8s 会先露出上一场景的背景，再硬切黑屏。
+    prelude_record = _first_emitted_record(chapter_roots, children_map)
+    prelude_lines = []
+    if prelude_record:
+        for cmd_line in record_to_data(prelude_record)["commands"].split("\n"):
+            cmd_line = cmd_line.strip()
+            if cmd_line and prepares_background(cmd_line):
+                prelude_lines.append(cmd_line)
+
+    # 章节过场：进入本章时先播卡片，播完才走第一句（见 prefabs/chapter_transition）
+    chapter_info = (
+        f"$> ShowChapterInfo({quote_dialogue_string(chapter_filter)}, "
+        f"{quote_dialogue_string(chapter_title)})"
+    )
+    lines = prelude_lines + [chapter_info]
     state = {
         "visible_characters": set(),
         "visible_character_order": [],
@@ -625,6 +714,9 @@ def convert_chapter(roots, children_map, chapter_filter):
         "used_static_ids": set(),
         "fallback_id_counter": 0,
         "chapter_name": chapter_filter,
+        # 已提到卡片之前的指令：出到这条记录时要跳过，避免重复执行
+        "hoist_record_id": prelude_record["record_id"] if prelude_record else "",
+        "hoisted_commands": set(prelude_lines),
     }
 
     for root in chapter_roots:
@@ -635,8 +727,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         lines.append("$> HidePhone()")
     _close_book_if_needed(state, lines)
 
-    lines.append("=> END")
-    return "\n".join(lines)
+    return lines
 
 
 def main():
@@ -663,7 +754,7 @@ def main():
 
         chapters = {}
         for root in roots:
-            ch = extract_field(root.get("fields", {}), "章节")
+            ch = split_chapter_value(extract_field(root.get("fields", {}), "章节"))[0]
             chapters[ch] = chapters.get(ch, 0) + 1
         print(f"章节分布 (根记录): {chapters}")
 
@@ -678,7 +769,7 @@ def main():
 
     chapters = {}
     for root in roots:
-        ch = extract_field(root.get("fields", {}), "章节")
+        ch = split_chapter_value(extract_field(root.get("fields", {}), "章节"))[0]
         if ch:
             chapters[ch] = chapters.get(ch, 0) + 1
     print(f"\n章节: {chapters}")
@@ -690,19 +781,27 @@ def main():
     else:
         chapters_to_export = chapters
 
+    # 所有章节依次合并进同一个文件：开头一个 `~ start`，末尾一个 `=> END`。
+    # 章节之间靠 ShowChapterInfo 过场卡片分隔，各章的演出状态（背景/立绘/手机）独立重置。
+    print(f"\n[2] 转换章节 → {OUTPUT_FILENAME}")
+    lines = ["~ start"]
     for ch_name, count in chapters_to_export.items():
-        print(f"\n[2] 转换章节: {ch_name} ({count} 条根记录)")
-        content = convert_chapter(roots, children_map, ch_name)
-        filepath = os.path.join(OUTPUT_DIR, f"{ch_name}.dialogue")
-        with open(filepath, "w", encoding="utf-8") as f:
-            f.write(content)
-        print(f"  已写入: {filepath}")
-        preview = content.split("\n")[:15]
-        for line in preview:
-            print(f"  | {line}")
-        total = len(content.split("\n"))
-        if total > 15:
-            print(f"  | ... (共 {total} 行)")
+        print(f"  - {ch_name} ({count} 条根记录)")
+        lines.extend(convert_chapter(roots, children_map, ch_name))
+    lines.append("=> END")
+
+    content = "\n".join(lines)
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    # newline="\n"：Windows 上文本模式默认把 \n 写成 \r\n，而仓库的 .gitattributes
+    # 是 `* text=auto eol=lf`，写 CRLF 会让整个文件在 git 里显示成全量改动。
+    with open(OUTPUT_PATH, "w", encoding="utf-8", newline="\n") as f:
+        f.write(content)
+    print(f"  已写入: {OUTPUT_PATH}")
+
+    for line in lines[:15]:
+        print(f"  | {line}")
+    if len(lines) > 15:
+        print(f"  | ... (共 {len(lines)} 行)")
 
 
 if __name__ == "__main__":

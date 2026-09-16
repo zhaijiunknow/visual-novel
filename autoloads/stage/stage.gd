@@ -279,6 +279,14 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	await get_tree().create_timer(3.0).timeout
 	await create_tween().tween_property(date_control, "modulate:a", 0, 1).finished
 
+## 章节过场：由导出脚本写在每章第一句之前（`$> ShowChapterInfo("章节1", "初雪")`）。
+## 预制体没挂上时直接返回，保证对话不会卡在这里。
+func ShowChapterInfo(chapter: String, chapter_title: String) -> void:
+	if Game.chapter_transition == null:
+		push_warning("[Stage] chapter_transition 未挂载，跳过章节过场")
+		return
+	await Game.chapter_transition.play(chapter, chapter_title)
+
 func SetMusic(music_name: String) -> void:
 	var track_data: MusicData = AudioManager.playlist.filter(
 		func(m: MusicData): return m.title == music_name

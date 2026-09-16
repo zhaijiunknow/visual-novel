@@ -15,12 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://dwnsxsn6pit1f" path="res://pages/stage_page/stage_page.tscn" id="92_dadqe"]
 [ext_resource type="Script" path="res://scenes/main_scene/boot_splash.gd" id="14_bs"]
 [ext_resource type="Texture2D" uid="uid://bbuo46jo6fhht" path="res://assets/sprites/社团logo/lsg_night_showup.png" id="15_logo"]
+[ext_resource type="PackedScene" path="res://prefabs/chapter_transition/chapter_transition.tscn" id="16_chapter"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
 shader = ExtResource("2_gkvkt")
 shader_parameter/iterations = 0.0
 
-[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page", "loading_page", "boot_splash")]
+[node name="Game" type="Node" unique_id=533485796 node_paths=PackedStringArray("page_pool", "main_menu", "sv_container", "bonus_page", "stage_page", "profile_page", "travel_page", "book_page", "log_page", "phone_page", "setting_page", "confirm_page", "loading_page", "boot_splash", "chapter_transition")]
 script = ExtResource("1_e2o6t")
 page_pool = NodePath("SubViewportContainer/SubViewport/Pages")
 main_menu = NodePath("SubViewportContainer/SubViewport/Pages/MainMenu")
@@ -36,6 +37,7 @@ setting_page = NodePath("SubViewportContainer/SubViewport/Pages/SettingPage")
 confirm_page = NodePath("SubViewportContainer/SubViewport/Pages/ConfirmPage")
 loading_page = NodePath("SubViewportContainer/SubViewport/Pages/LoadingPage")
 boot_splash = NodePath("BootSplash")
+chapter_transition = NodePath("ChapterTransition")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=612241776]
 material = SubResource("ShaderMaterial_2fepm")
@@ -117,3 +119,5 @@ grow_vertical = 2
 texture = ExtResource("15_logo")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="ChapterTransition" parent="." instance=ExtResource("16_chapter")]

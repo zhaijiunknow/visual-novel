@@ -14,6 +14,7 @@ extends Node
 @export var confirm_page: ConfirmPage
 @export var loading_page: LoadingPage
 @export var boot_splash: BootSplash
+@export var chapter_transition: ChapterTransition
 
 var page_stack: Array[CanvasLayer] = []
 var loading: bool = false
