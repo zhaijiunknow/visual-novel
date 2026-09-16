@@ -671,6 +671,22 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../ui/对话界面/menu_hide.png</key>
+            <key type="filename">../ui/对话界面/menu_skip.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>8,11,16,22</rect>
+                <key>scale9Paddings</key>
+                <rect>8,11,16,22</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../ui/对话界面/menu_load.png</key>
             <key type="filename">../ui/对话界面/menu_save.png</key>
             <struct type="IndividualSpriteSettings">
@@ -729,21 +745,6 @@
                 <rect>7,12,15,23</rect>
                 <key>scale9Paddings</key>
                 <rect>7,12,15,23</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../ui/对话界面/menu_skip.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>8,11,16,22</rect>
-                <key>scale9Paddings</key>
-                <rect>8,11,16,22</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
