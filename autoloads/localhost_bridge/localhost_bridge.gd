@@ -5,13 +5,17 @@ extends Node
 @export var port: int = 44712
 @export var max_request_bytes: int = 65536
 @export var allow_in_export: bool = true
-@export var auto_start_on_ready: bool = true
+# 默认不在启动时开服务，改成在主菜单敲作弊码启动（见 feed_cheat_key）
+@export var auto_start_on_ready: bool = false
+# 作弊码：在主菜单依次敲下这些字符即可开关服务。不写存档，仅本次运行有效
+@export var cheat_code: String = "neko"
 
 var _server: TCPServer = TCPServer.new()
 var _connections: Dictionary = {}
 var _listening: bool = false
 var _busy: bool = false
 var _last_action_result: Dictionary = {}
+var _cheat_buffer: String = ""
 
 func _ready() -> void:
 	set_process(false)
@@ -98,6 +102,29 @@ func stop_server() -> void:
 	if _listening:
 		_server.stop()
 		_listening = false
+
+# 页面把玩家敲下的字符逐个喂进来；末尾凑齐 cheat_code 就切换服务开关
+func feed_cheat_key(character: String) -> void:
+	if cheat_code.is_empty() or character.is_empty():
+		return
+	# 只保留末尾 cheat_code.length() 个字符，缓冲区不会无限增长
+	var window := cheat_code.length()
+	_cheat_buffer = (_cheat_buffer + character).to_lower().right(window)
+	if _cheat_buffer != cheat_code.to_lower():
+		return
+	_cheat_buffer = ""
+	_toggle_by_cheat_code()
+
+func _toggle_by_cheat_code() -> void:
+	if _listening:
+		stop_server()
+		print("[LocalhostBridge] Cheat code accepted: server stopped")
+		return
+	if start_server():
+		print("[LocalhostBridge] Cheat code accepted: listening on http://%s:%d" % [host, port])
+	else:
+		print("[LocalhostBridge] Cheat code accepted, but the server did not start (enabled=%s, allow_in_export=%s)"
+			% [enabled, allow_in_export])
 
 func _try_handle_request(connection_id: int, state: Dictionary) -> bool:
 	var buffer: PackedByteArray = state["buffer"]

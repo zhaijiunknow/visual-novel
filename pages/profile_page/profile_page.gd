@@ -70,6 +70,8 @@ func _capture_runtime_snapshot() -> Dictionary:
 		"dialogue_id": Game.stage_page.dialogue_line.next_id if Game.stage_page.dialogue_line else "start",
 		"book_segment_start_id": Game.stage_page.current_book_segment_start_id,
 		"chapter_name": Game.stage_page.chapter_name if Game.stage_page.dialogue else "",
+		"chapter_designation": Stage.current_chapter_designation,
+		"chapter_title": Stage.current_chapter_title,
 		"character_datas": character_datas,
 		"background": Stage.current_background,
 		"cg_name": Stage.current_cg,
@@ -90,6 +92,8 @@ func _apply_snapshot_to_profile(profile: ProfileData, snapshot: Dictionary) -> v
 	profile.dialogue_id = snapshot.dialogue_id
 	profile.book_segment_start_id = snapshot.book_segment_start_id
 	profile.chapter_name = snapshot.chapter_name if snapshot.chapter_name != "" else (Game.stage_page.chapter_name if Game.stage_page.dialogue else "")
+	profile.chapter_designation = snapshot.chapter_designation
+	profile.chapter_title = snapshot.chapter_title
 	profile.character_datas = snapshot.character_datas
 	profile.background = snapshot.background
 	profile.cg_name = snapshot.cg_name
@@ -208,6 +212,9 @@ func load_profile(profile: ProfileData) -> void:
 	await Game.switch_to_page(Game.stage_page, true, false,
 		func():
 			Game.stage_page.reset()
+			# 读档不会经过 ShowChapterInfo，章节信息从存档恢复（语音收藏的章节号/名要用）
+			Stage.current_chapter_designation = profile.chapter_designation
+			Stage.current_chapter_title = profile.chapter_title
 			if profile.chapter_name != "" and Game.stage_page.chapters_dict.has(profile.chapter_name):
 				Game.stage_page.dialogue = Game.stage_page.chapters_dict[profile.chapter_name]
 			Game.stage_page.quick_save_progress_count = profile.quick_save_progress_count

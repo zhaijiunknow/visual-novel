@@ -24,6 +24,8 @@ OUTPUT_FILENAME = "章节1.dialogue"
 OUTPUT_PATH = OUTPUT_DIR / OUTPUT_FILENAME
 PREPARE_BACKGROUND_PATTERN = re.compile(r"^\$>\s*PrepareBackground\s*\(")
 NO_PORTRAIT_CHARACTERS = {"周腾"}
+# 手机段落演完到滑出之间的停顿（秒）：导出时插在 HidePhone() 之前
+PHONE_EXIT_WAIT_SECONDS = 4
 
 
 def prepares_background(command):
@@ -430,6 +432,12 @@ def build_dialogue_line(data, static_id):
 def generate_do_commands(data, state, lines, tabs):
     """生成 do 指令行（背景切换、FadeIn、ShowPhone/HidePhone）"""
 
+    cg_key = ""
+    if data["cg_name"] and data["cg_variation"]:
+        cg_key = f'{data["cg_name"]}-{data["cg_variation"]}'
+    # 这一行要收掉上一行还挂着的 CG
+    clearing_cg = bool(state.get("cg_key", "")) and not cg_key
+
     if data["bg_name"] and data["time_period"]:
         if data["bg_name"] != state["bg_name"] or data["time_period"] != state["time_period"]:
             if state["skip_next_set_background"]:
@@ -437,7 +445,18 @@ def generate_do_commands(data, state, lines, tabs):
             else:
                 fade_to_black = parse_duration(data.get("bg_fade_to_black", ""))
                 fade_from_black = parse_duration(data.get("bg_fade_from_black", ""))
-                if fade_to_black is not None or fade_from_black is not None:
+                if clearing_cg:
+                    # 同一行既收 CG 又换背景：合成一条命令走一次黑屏。
+                    # 拆成 SetBackground + HideCG 会连出两次转场，而第一次换的背景被 CG 盖着看不见，像没反应。
+                    default_duration = 0.0 if not state["bg_name"] else 1.2
+                    out_time = fade_to_black if fade_to_black is not None else default_duration
+                    in_time = fade_from_black if fade_from_black is not None else default_duration
+                    lines.append(
+                        f'{tabs}$> HideCGWithBackground("{data["bg_name"]}", "{data["time_period"]}", '
+                        f'{format_duration(out_time)}, {format_duration(in_time)})'
+                    )
+                    state["cg_key"] = cg_key
+                elif fade_to_black is not None or fade_from_black is not None:
                     default_duration = 0.0 if not state["bg_name"] else 1.2
                     out_time = fade_to_black if fade_to_black is not None else default_duration
                     in_time = fade_from_black if fade_from_black is not None else default_duration
@@ -454,9 +473,6 @@ def generate_do_commands(data, state, lines, tabs):
             state["visible_characters"].clear()
             state["visible_character_order"].clear()
 
-    cg_key = ""
-    if data["cg_name"] and data["cg_variation"]:
-        cg_key = f'{data["cg_name"]}-{data["cg_variation"]}'
     if cg_key != state.get("cg_key", ""):
         if cg_key:
             lines.append(f'{tabs}$> SetCG("{data["cg_name"]}", "{data["cg_variation"]}")')
@@ -499,7 +515,7 @@ def generate_do_commands(data, state, lines, tabs):
         lines.append(f"{tabs}$> ShowPhone()")
         state["phone_mode"] = True
     elif not is_phone and state["phone_mode"]:
-        lines.append(f"{tabs}$> wait(2)")
+        lines.append(f"{tabs}$> wait({PHONE_EXIT_WAIT_SECONDS})")
         lines.append(f"{tabs}$> HidePhone()")
         state["phone_mode"] = False
 
@@ -723,7 +739,7 @@ def convert_chapter(roots, children_map, chapter_filter):
         walk(root, children_map, 0, lines, state)
 
     if state["phone_mode"]:
-        lines.append("$> wait(2)")
+        lines.append(f"$> wait({PHONE_EXIT_WAIT_SECONDS})")
         lines.append("$> HidePhone()")
     _close_book_if_needed(state, lines)
 

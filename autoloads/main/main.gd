@@ -43,6 +43,22 @@ func has_voice_collection(filename) -> bool:
 			return collection.voice_filename == filename
 	).size() > 0
 
+## 收藏一条语音并落盘。
+## 章节号/章节名取演出表的值（Stage 在 ShowChapterInfo 时记下的），
+## 拿不到才退回调用方给的章节名——那是对话文件名，不是表里的标题。
+func collect_voice(character_name: String, text: String, voice_filename: String,
+		fallback_chapter_name: String = "") -> void:
+	var collection := VoiceCollection.new()
+	collection.character_name = character_name
+	collection.text = text
+	collection.voice_filename = voice_filename
+	collection.chapter_designation = Stage.current_chapter_designation
+	collection.chapter_name = Stage.current_chapter_title \
+		if Stage.current_chapter_title != "" else fallback_chapter_name
+	collection_data.voice_collections.append(collection)
+	save_collection_data()
+	voice_collection_changed.emit(voice_filename)
+
 func unlock_cg(cg_name: String) -> void:
 	if cg_name.is_empty():
 		return

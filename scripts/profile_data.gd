@@ -4,6 +4,9 @@ extends Resource
 @export var preview: Texture2D
 @export var character_datas: Array[CharacterData]
 @export var chapter_name: String
+## 章节在演出表里的「章节」与「标题」；读档不会走 ShowChapterInfo，靠这两个字段恢复给 Stage
+@export var chapter_designation: String = ""
+@export var chapter_title: String = ""
 @export var dialogue_id: String
 @export var book_segment_start_id: String = ""
 @export var background: String

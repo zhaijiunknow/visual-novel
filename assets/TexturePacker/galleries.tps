@@ -201,7 +201,7 @@
             <key type="filename">../gallery/CG2/CG2-微笑.png</key>
             <key type="filename">../gallery/CG2/CG2-眯眼微笑.png</key>
             <key type="filename">../gallery/CG2/CG2-眯眼说话.png</key>
-            <key type="filename">../gallery/CG2/CG2-脸红微笑i.png</key>
+            <key type="filename">../gallery/CG2/CG2-脸红微笑.png</key>
             <key type="filename">../gallery/CG2/CG2-脸红眯眼吃烤肉.png</key>
             <key type="filename">../gallery/CG2/CG2-脸红眯眼微笑.png</key>
             <key type="filename">../gallery/CG2/CG2-说话.png</key>

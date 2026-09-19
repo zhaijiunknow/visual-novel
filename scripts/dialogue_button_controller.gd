@@ -30,6 +30,15 @@ func _ready() -> void:
 		func ():
 			Game.stage_page.autoplay = button_auto.toggled
 	)
+	# 除快进/自动本身之外，对话框上的按钮点下去一律清掉自动/快进状态。
+	# 它们都会盖一层界面（手机/存档/读档/回想/设置/收藏/奇迹书/标题/隐藏UI），
+	# 不清的话剧情会在后台接着推进，语音还会去抢共用的 audio_player_voice。
+	# 连在各自的动作之前，保证清状态发生在页面打开前。
+	for button: DialogueButton in [
+		button_save, button_load, button_log, button_set, button_voice,
+		button_phone, button_book, button_hide, button_title,
+	]:
+		button.clicked.connect(Game.stage_page.cancel_auto_and_skip)
 	button_save.clicked.connect(
 		func ():
 			Main.profile_mode = Main.ProfileMode.SAVE

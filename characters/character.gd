@@ -147,6 +147,13 @@ var min_scale_factor: float:
 signal bonus_part_index_dict_updated
 var bonus_part_index_dict: Dictionary[String, Dictionary]
 
+## 立绘鉴赏里这个角色站的剧情站位槽（LeftMost/Left/Center/Right/RightMost），单人出场默认 Center
+@export var bonus_slot: String = "Center"
+
+## 鉴赏页里容器的初始局部位置，用来撤销玩家的拖拽
+var _bonus_home_container_position: Vector2
+var _bonus_home_recorded: bool = false
+
 func _ready() -> void:
 	if Engine.is_editor_hint(): return
 	
@@ -351,5 +358,33 @@ func SetOptionals(optionals_string: String) -> void:
 		addtional_sprite.visible = true
 		_request_viewport_update()
 	_sync_avatar()
+
+#endregion
+
+#region 立绘鉴赏
+
+## 按剧情站位槽摆放：先撤销玩家的拖拽，再让容器矩形的中心对准槽位、
+## 上边缘对齐剧情里模型的上边缘（与 _get_adjusted_stage_position 同一套对位，构图和剧情一致）
+func apply_bonus_slot() -> void:
+	if not _bonus_home_recorded:
+		_bonus_home_container_position = sv_container.position
+		_bonus_home_recorded = true
+	sv_container.position = _bonus_home_container_position
+	if not (bonus_slot in POSITION_SLOTS):
+		push_warning("Character: 未知鉴赏站位 %s（%s）" % [bonus_slot, name])
+		return
+	var slot_pos: Vector2 = Game.stage_page.get_position_by_name(bonus_slot)
+	if slot_pos == Vector2.ZERO:
+		# 站位标记还没布局出坐标（都是 0），摆下去会把立绘推到屏幕外，宁可不动
+		push_warning("Character: 站位 %s 坐标为 0，跳过摆放（%s）" % [bonus_slot, name])
+		return
+	var model := story_model.get_node_or_null("TextureRect_Model") as TextureRect
+	# 剧情里 StoryModel 会被摆到 model_pos，模型矩形的上边则在其 offset_top 处
+	var model_pos := _get_adjusted_stage_position(story_model, slot_pos)
+	var container_top: float = model_pos.y + (model.offset_top if model else sv_container.position.y)
+	global_position = Vector2(
+		slot_pos.x - sv_container.position.x - sv_container.size.x / 2.0,
+		container_top - sv_container.position.y
+	)
 
 #endregion

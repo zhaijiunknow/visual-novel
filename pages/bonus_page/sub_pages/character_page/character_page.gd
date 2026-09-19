@@ -89,6 +89,25 @@ func _ready() -> void:
 	slider_size.value_changed.connect(update_scale)
 	update_scale()
 
+	# 每次进入鉴赏页都按剧情站位把角色摆好（顺带撤销玩家拖拽）
+	visibility_changed.connect(_on_visibility_changed)
+	if Game.bonus_page:
+		# 整页被 hide_all_pages() 隐藏时子页面的 visible 标志不会翻转，
+		# 所以要盯整页的可见性，否则退出鉴赏再进来不会重置
+		Game.bonus_page.visibility_changed.connect(_on_visibility_changed)
+
+func _on_visibility_changed() -> void:
+	if not visible:
+		return
+	if Game.bonus_page and not Game.bonus_page.visible:
+		return
+	# 延后一帧：站位标记在剧情页自己的 SubViewport 里，布局跑完再读
+	reset_character_positions.call_deferred()
+
+func reset_character_positions() -> void:
+	for character: Character in character_pool.get_children():
+		character.apply_bonus_slot()
+
 func update_scale(_new_value: float = 0.0) -> void:
 	current_character.body_scale_factor = slider_size.value
 

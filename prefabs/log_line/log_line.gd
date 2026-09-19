@@ -96,15 +96,13 @@ func _toggle_favourite() -> void:
 			if collection.voice_filename == log_data.voice_filename:
 				Main.collection_data.voice_collections.erase(collection)
 				break
+		Main.save_collection_data()
+		Main.voice_collection_changed.emit(log_data.voice_filename)
 	else:
-		var collection = VoiceCollection.new()
-		collection.character_name = log_data.character_name
-		collection.chapter_name = log_data.chapter_name
-		collection.text = log_data.text
-		collection.voice_filename = log_data.voice_filename
-		Main.collection_data.voice_collections.append(collection)
-	Main.save_collection_data()
-	Main.voice_collection_changed.emit(log_data.voice_filename)
+		# 章节号/章节名取演出表的值，collect_voice 内部已存档并广播
+		Main.collect_voice(
+			log_data.character_name, log_data.text, log_data.voice_filename, log_data.chapter_name
+		)
 
 
 func _on_voice_collection_changed(vf: String) -> void:

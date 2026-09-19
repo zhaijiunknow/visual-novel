@@ -41,6 +41,15 @@ func _ready() -> void:
 		func(): get_tree().quit()
 	)
 
+func _unhandled_input(event: InputEvent) -> void:
+	# 主菜单是唯一能敲作弊码的地方（LocalhostBridge 的调试服务由它开关）
+	if not visible:
+		return
+	var key_event := event as InputEventKey
+	if key_event == null or not key_event.pressed or key_event.echo or key_event.unicode < 32:
+		return
+	LocalhostBridge.feed_cheat_key(char(key_event.unicode))
+
 func _start_new_game() -> void:
 	var interact_sound := button_start.get_node("InteractSound") as InteractSound
 	var sound_len: float = interact_sound.click_sound.get_length() if interact_sound and interact_sound.click_sound else 0.4

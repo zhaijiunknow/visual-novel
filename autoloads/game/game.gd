@@ -113,7 +113,7 @@ func go_back(_transition: bool = true):
 func update_audio():
 	if stage_page not in page_stack:
 		AudioManager.audio_player_voice.stop()
-		stage_page._set_mode(stage_page.AdvanceMode.MANUAL)
+		stage_page.cancel_auto_and_skip()
 		phone_page.clear_all()
 		log_page.clear_all()
 		if main_menu in page_stack:

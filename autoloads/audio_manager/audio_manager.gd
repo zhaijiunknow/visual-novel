@@ -15,6 +15,14 @@ var current_voice: AudioStreamWAV
 var voice_cache: Dictionary = {}
 var voice_cache_order: Array[String] = []
 
+## 最近一次语音请求的序号。未缓存的语音要异步加载，
+## 加载期间玩家可能已经点了别的语音（或按了停止），迟到的旧请求不能再抢播放器。
+var _voice_request_id: int = 0
+
+## 作废所有还没加载完的语音请求：播放/停止/暂停/重播都算「最新意图」，之后回来的加载一律放弃
+func _invalidate_pending_voice_loads() -> void:
+	_voice_request_id += 1
+
 enum MusicSource { NONE, THEME, PLAYLIST }
 var _music_source := MusicSource.NONE
 
@@ -67,6 +75,7 @@ var _stage_voice_position: float = 0.0
 
 ## 覆盖页面打开时暂停当前对白语音，并恢复被 duck 的音乐
 func pause_stage_voice() -> void:
+	_invalidate_pending_voice_loads()
 	if _stage_voice_stream != null:
 		return
 	if not audio_player_voice.playing:
@@ -94,6 +103,7 @@ func resume_stage_voice() -> void:
 
 ## 主动停止语音（如设置页的预览语音），并同步恢复音乐 duck 状态
 func stop_voice() -> void:
+	_invalidate_pending_voice_loads()
 	audio_player_voice.stop()
 	if _is_ducked:
 		if _music_paused:
@@ -183,6 +193,9 @@ func restore_story_music() -> void:
 	audio_player_music.stream_paused = _story_music_paused
 
 func play_voice(filename: String, set_current: bool = false) -> void:
+	# 每次调用都占一个序号；下面异步加载回来的旧请求会被作废
+	_invalidate_pending_voice_loads()
+	var request_id := _voice_request_id
 	if voice_cache.has(filename):
 		var voice = voice_cache[filename]
 		if set_current:
@@ -196,6 +209,15 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 	if not ResourceLoader.exists(file_path):
 		push_warning("play_voice: 语音文件不存在 %s" % file_path)
 		return
+	# TODO(优化)：这段等待的根因是「播放时才加载」。未缓存的语音要现读磁盘（打包后是 .pck 解压），
+	# 而 voice_cache 上限只有 50 条、超了就淘汰，所以迟早会碰上要现加载的那句——
+	# 表现就是玩家点了语音却像没反应。上面的 _voice_request_id 只保证迟到的加载不抢走播放器，
+	# 消不掉这段等待本身。后面优化可以考虑：
+	#   ① 提前预热：对白行本来就带 #语音= tag，可以在上一句播放时先对下一句 load_threaded_request，
+	#      轮到它时直接命中缓存，等待就没了；
+	#   ② 在章节过场、加载页这类空闲时间按需预热；
+	#   ③ 重新权衡缓存上限/淘汰策略（现在是 IGNORE 全局缓存 + 自己管 50 条，全是为了内存，
+	#      而「预热」和「省内存」是互相拉扯的，得一起定）。
 	# CACHE_MODE_IGNORE：不进 Godot 全局资源缓存，避免所有播放过的语音常驻内存
 	# （晚章节内存压力→音频卡顿）；voice_cache 是唯一持有者，淘汰时自然释放
 	ResourceLoader.load_threaded_request(file_path, "", false, ResourceLoader.CACHE_MODE_IGNORE)
@@ -204,8 +226,15 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 	var status = ResourceLoader.load_threaded_get_status(file_path)
 	while status == ResourceLoader.THREAD_LOAD_IN_PROGRESS and frames < 600:
 		await get_tree().process_frame
+		# 加载期间玩家又点了别的语音：作废这次请求，否则它加载完会顶掉新点的那句
+		if request_id != _voice_request_id:
+			print("[play_voice] 放弃迟到的加载：%s" % filename)
+			return
 		frames += 1
 		status = ResourceLoader.load_threaded_get_status(file_path)
+	if request_id != _voice_request_id:
+		print("[play_voice] 放弃迟到的加载：%s" % filename)
+		return
 	var voice: AudioStream = null
 	if status != ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		voice = ResourceLoader.load_threaded_get(file_path)
@@ -226,6 +255,7 @@ func play_voice(filename: String, set_current: bool = false) -> void:
 	_duck_music()
 
 func replay_voice() -> void:
+	_invalidate_pending_voice_loads()
 	audio_player_voice.stream = current_voice
 	audio_player_voice.play()
 	_duck_music()

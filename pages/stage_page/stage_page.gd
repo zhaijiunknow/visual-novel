@@ -60,6 +60,8 @@ var _opening_reveal_tween: Tween
 var _dialogue_ui_tween: Tween
 var _dialogue_ui_hidden: bool = false
 var _dialogue_ui_restore_enabled: bool = true
+## 收 CG/过场时约定「等下一句文本就位再显示」，期间跳过脚本里的 ShowDialogue
+var _dialogue_ui_awaiting_text: bool = false
 var _bridge_sorted_dialogue_keys_cache: Dictionary = {}
 var _pending_end_expression: String = ""
 var _pending_end_expression_character: String = ""
@@ -79,6 +81,15 @@ var autoplay: bool:
 			_set_mode(AdvanceMode.AUTO)
 		elif _mode == AdvanceMode.AUTO:
 			_set_mode(AdvanceMode.MANUAL)
+
+## 退出自动/快进，并通知 UI 把按钮弹起。
+## 按钮的按下状态只跟着 skip_cancelled / auto_cancelled 走，直接改 _mode 不发信号会留下「按着」的假象。
+func cancel_auto_and_skip() -> void:
+	var was_skip := _mode == AdvanceMode.SKIP
+	var was_auto := _mode == AdvanceMode.AUTO
+	_set_mode(AdvanceMode.MANUAL)
+	if was_skip: skip_cancelled.emit()
+	if was_auto: auto_cancelled.emit()
 
 func _set_mode(mode: AdvanceMode) -> void:
 	_mode = mode
@@ -178,7 +189,27 @@ func show_dialogue_ui(duration: float = 0.2) -> void:
 func reset_dialogue_ui_hidden() -> void:
 	_dialogue_ui_hidden = false
 	_dialogue_ui_restore_enabled = true
+	_dialogue_ui_awaiting_text = false
 	_kill_dialogue_ui_tween()
+
+## 清空对话框里的文本（角色名 + 正文）
+func clear_dialogue_text() -> void:
+	label_character_name.text = ""
+	dialogue_label.text = ""
+	dialogue_label.visible_characters = 0
+
+## 收起对话框后调用：擦掉旧文本，并约定等下一句文本就位再显示。
+## 期间 Stage.ShowDialogue 会被跳过，免得把上一句的名字/空框先露出来。
+func begin_dialogue_ui_awaiting_text() -> void:
+	clear_dialogue_text()
+	_dialogue_ui_awaiting_text = true
+
+func is_dialogue_ui_awaiting_text() -> bool:
+	return _dialogue_ui_awaiting_text
+
+## 下一句开始处理：解除等待（随后 process_dialogue_line 里的 ShowDialogue 才会真的显示）
+func release_dialogue_ui_awaiting_text() -> void:
+	_dialogue_ui_awaiting_text = false
 
 func _enable_dialogue_ui_restore() -> void:
 	_dialogue_ui_restore_enabled = true
@@ -213,7 +244,8 @@ func skip_typing_from_bridge() -> bool:
 func set_mode_from_bridge(mode_name: String) -> bool:
 	match mode_name.to_lower():
 		"manual":
-			_set_mode(AdvanceMode.MANUAL)
+			# 走 cancel_auto_and_skip：单写 _mode 不会让快进/自动按钮弹起来
+			cancel_auto_and_skip()
 			return true
 		"skip":
 			_set_mode(AdvanceMode.SKIP)
@@ -749,6 +781,8 @@ func _register_quick_save_progress() -> void:
 	Game.profile_page.save_quick_game()
 
 func process_dialogue_line() -> void:
+	# 新的一句开始处理：解除「等文本」状态，下面的 ShowDialogue 才会真的显示
+	release_dialogue_ui_awaiting_text()
 	AudioManager.audio_player_voice.stop()
 
 	# 上一句的结束表情：在下一句话开始时应用到对应人物
@@ -918,16 +952,12 @@ func _ready() -> void:
 		func():
 			if favourite:
 				Main.collection_data.voice_collections.erase(current_collection)
+				Main.save_collection_data()
+				Main.voice_collection_changed.emit(voice_name)
 			else:
-				var collection = VoiceCollection.new()
-				collection.character_name = dialogue_line.character
-				collection.chapter_name = chapter_name
-				collection.text = dialogue_line.text
-				collection.voice_filename = voice_name
-				Main.collection_data.voice_collections.append(collection)
-			Main.save_collection_data()
+				# 章节号/章节名取演出表的值，collect_voice 内部已存档并广播
+				Main.collect_voice(dialogue_line.character, dialogue_line.text, voice_name, chapter_name)
 			update_favourite()
-			Main.voice_collection_changed.emit(voice_name)
 	)
 	Main.voice_collection_changed.connect(
 		func(vf: String):
@@ -936,16 +966,13 @@ func _ready() -> void:
 	)
 
 func reset() -> void:
-	_mode = AdvanceMode.MANUAL
+	# 走 cancel_auto_and_skip 而不是直接写 _mode：否则快进/自动按钮会停在按下态（读档后就露出来）
+	cancel_auto_and_skip()
 	_idle = false
 	reset_dialogue_ui_hidden()
-	skip_tag.visible = false
-	auto_tag.visible = false
 	dialogue_line = null
 	dialogue_screen.modulate.a = 0
-	label_character_name.text = ""
-	dialogue_label.text = ""
-	dialogue_label.visible_characters = 0
+	clear_dialogue_text()
 	date.modulate.a = 0
 	texture_rect_blackscreen.modulate.a = 0
 	texture_rect_cg.texture = null

@@ -767,7 +767,7 @@
 			},
 			"sprites": [
 				{
-					"filename": "CG2/CG2-脸红微笑i.png",
+					"filename": "CG2/CG2-脸红微笑.png",
 					"region": {
 						"x": 0,
 						"y": 0,
@@ -1219,6 +1219,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:35eecc508d5f2810c0fbd931730153ae:37b6ed5af7714cd24eeca0c44b1c1f78:f45cceca93d662c8013d8a94b9741356$"
+		"smartupdate": "$TexturePacker:SmartUpdate:1712821b78188139c1d1793d928e91bc:37b6ed5af7714cd24eeca0c44b1c1f78:f45cceca93d662c8013d8a94b9741356$"
 	}
 }

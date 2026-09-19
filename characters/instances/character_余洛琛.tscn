@@ -215,15 +215,15 @@ phone_nickname = "高三（10）班-余洛琛-12月5日"
 avatar_fixed_action = "抬手"
 
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
-offset_left = -620.0
-offset_right = 710.0
+offset_left = -767.0
+offset_right = 857.0
 offset_bottom = 1718.0
 
 [node name="SubViewport" parent="SubViewportContainer" index="0" unique_id=2050918912]
-size = Vector2i(1330, 3070)
+size = Vector2i(1624, 3070)
 
 [node name="Body" parent="SubViewportContainer/SubViewport" index="0" unique_id=216061573]
-position = Vector2(764, 1643)
+position = Vector2(911, 1643)
 scale = Vector2(0.794, 0.794)
 sprite_frames = SubResource("SpriteFrames_qqr4u")
 animation = &"常服-抬手"
@@ -255,9 +255,9 @@ texture = ExtResource("23_h3wkl")
 visible = true
 
 [node name="TextureRect_Model" parent="StoryModel" index="0" unique_id=1204109800]
-offset_left = -617.0
+offset_left = -764.0
 offset_top = -1364.0
-offset_right = 713.0
+offset_right = 860.0
 offset_bottom = 1706.0
 pivot_offset = Vector2(594, 1362)
 texture = SubResource("ViewportTexture_2s1x3")
