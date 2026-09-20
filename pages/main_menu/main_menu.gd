@@ -38,8 +38,17 @@ func _ready() -> void:
 			Game.switch_to_page(Game.setting_page, true, true)
 	)
 	button_quit.clicked.connect(
-		func(): get_tree().quit()
+		func(): Main.quit_game()
 	)
+	# 玩家点过什么、之后停在哪 —— 连在各自的动作之后，打的是互动之后的状态
+	for pair in [
+		[button_start, "开始游戏"], [button_load, "读取档案"], [button_bonus, "特别鉴赏"],
+		[button_book, "奇迹书"], [button_setting, "系统设置"], [button_quit, "退出游戏"],
+	]:
+		var button: MainMenuButton = pair[0]
+		var label: String = pair[1]
+		button.clicked.connect(
+			func(): print("[UI] 主菜单·%s → %s" % [label, Game.describe_state()]))
 
 func _unhandled_input(event: InputEvent) -> void:
 	# 主菜单是唯一能敲作弊码的地方（LocalhostBridge 的调试服务由它开关）

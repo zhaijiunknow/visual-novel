@@ -56,6 +56,7 @@ func get_character_enum_from_string(name: String) -> Enums.CharacterName:
 	return Enums.CharacterName.余洛琛  # 确保枚举中有 NONE 默认值
 	
 func play_current_voice() -> void:
+	print("[UI] 语音鉴赏·回放 %s → %s" % [current_collection.voice_filename, Game.describe_state()])
 	await AudioManager.pause_music()
 	AudioManager.play_voice(current_collection.voice_filename, true)
 
@@ -72,6 +73,9 @@ func _ready() -> void:
 	button_replay.pressed.connect(play_current_voice)
 	button_favourite.pressed.connect(
 		func ():
+			print("[UI] 语音鉴赏·%s %s → %s" % [
+				"取消收藏" if favourite else "收藏",
+				current_collection.voice_filename, Game.describe_state()])
 			if favourite:
 				# 取消收藏：先scroll到卡片位置，再淡出
 				_last_removed_index = get_card_index(current_collection)

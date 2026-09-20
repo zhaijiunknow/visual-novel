@@ -11,6 +11,11 @@ extends Resource
 @export var auto_speed: float = 0.5
 @export var skip_unread: bool = false
 
+# 窗口化（非全屏）时上次的窗口尺寸/位置，退出游戏时记录、下次启动直接用。
+# 尺寸为 0 表示还没记录过
+@export var windowed_size: Vector2i = Vector2i.ZERO
+@export var windowed_position: Vector2i = Vector2i.ZERO
+
 # 音频
 @export var music_volume: float = 0.4
 @export var sound_volume: float = 0.4

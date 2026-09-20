@@ -44,8 +44,18 @@ func _ready() -> void:
 
 	update()
 
+func _slot_kind_name() -> String:
+	match slot_kind:
+		SlotKind.QUICK: return "快速"
+		SlotKind.NEW_MANUAL: return "新建"
+	return "手动"
+
 func _on_execute() -> void:
 	Game.profile_page.selected_card = self
+	print("[UI] 存档卡片[%s] NO.%02d %s → %s" % [
+		_slot_kind_name(), slot_index,
+		"读档" if Main.profile_mode == Main.ProfileMode.LOAD else "存档",
+		Game.describe_state()])
 	match slot_kind:
 		SlotKind.QUICK:
 			if Main.profile_mode == Main.ProfileMode.LOAD:
@@ -69,6 +79,8 @@ func _on_execute() -> void:
 func _on_delete_pressed() -> void:
 	if slot_kind == SlotKind.NEW_MANUAL:
 		return
+	print("[UI] 删除存档卡片[%s] NO.%02d → %s" % [
+		_slot_kind_name(), slot_index, Game.describe_state()])
 	var title := "删除存档"
 	var message := "确定要删除该存档吗？\n此操作无法撤销。"
 	var action := func():

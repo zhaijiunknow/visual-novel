@@ -152,13 +152,34 @@ func get_bridge_book_state() -> Dictionary:
 		"notebook": _serialize_notebook_data(),
 	}
 
+## 调试桥的「选回复」：和玩家手点一样，按下那个选项按钮（它连的是 _on_reply_clicked），
+## 不在桥接里另写一套清理+发信号的逻辑
 func choose_reply_from_bridge(index: int = -1, next_id: String = "") -> bool:
-	var resolved_next_id := _resolve_pending_reply_next_id(index, next_id)
-	if resolved_next_id == "":
+	var button := _find_choice_button(index, next_id)
+	if button == null:
 		return false
-	clear_reply_options()
-	reply_selected.emit(resolved_next_id)
+	button.pressed.emit()
 	return true
+
+
+## 选项按钮在 Buttons/ChoiceButton/ChoiceOne/Choice1 … ChoiceThree/Choice3，顺序和 responses 一致
+func _find_choice_button(index: int, next_id: String) -> TextureButton:
+	var target_index := index
+	if target_index < 0 and next_id != "":
+		for i in pending_reply_options.size():
+			if str(pending_reply_options[i].get("next_id", "")) == next_id:
+				target_index = i
+				break
+	if target_index < 0 or target_index >= pending_reply_options.size() or target_index > 2:
+		return null
+	var container := get_node_or_null("Buttons/ChoiceButton")
+	if container == null or container.get_child_count() <= target_index:
+		return null
+	var button := container.get_child(target_index).get_node_or_null(
+		"Choice%d" % (target_index + 1)) as TextureButton
+	if button == null or button.disabled:
+		return null
+	return button
 
 func show_reply_options(responses) -> void:
 	clear_reply_options()

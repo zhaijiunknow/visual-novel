@@ -39,6 +39,10 @@ func update() -> void:
 		profile_card_pool.add_child(profile_card)
 	if Main.profile_mode == Main.ProfileMode.SAVE:
 		profile_card_pool.add_child(_make_card(ProfileCard.SlotKind.NEW_MANUAL, Main.save_data.profiles.size(), null, "NO.%02d" % [Main.save_data.profiles.size() + 1]))
+	# 记卡片数：界面"点不动"时先看这里——0 张说明卡片根本没建出来（不是点击被吃掉）
+	print("[UI] 存读档页刷新完成（%s）卡片 %d 张 → %s" % [
+		"存档" if Main.profile_mode == Main.ProfileMode.SAVE else "读档",
+		profile_card_pool.get_child_count(), Game.describe_state()])
 
 func _make_card(slot_kind: ProfileCard.SlotKind, slot_index: int, profile: ProfileData, index_text: String) -> ProfileCard:
 	var profile_card: ProfileCard = profile_card_model.duplicate()
@@ -48,8 +52,12 @@ func _make_card(slot_kind: ProfileCard.SlotKind, slot_index: int, profile: Profi
 	profile_card.button_delete.visible = slot_kind == ProfileCard.SlotKind.MANUAL or (slot_kind == ProfileCard.SlotKind.QUICK and has_quick_save())
 	profile_card.texture_rect_preview.texture = profile.preview if profile and profile.preview else profile_card.texture_rect_preview.texture
 	if profile and profile.chapter_name != "":
-		profile_card.label_chapter.text = profile.chapter_name.to_upper().replace("_", " ")
-		profile_card.label_chapter_title.text = profile.chapter_name
+		# 序号/章节名用存档里记的 chapter_designation / chapter_title（演出表里写的"第一话 / 初雪"那种）；
+		# 老存档（或没经过 ShowChapterInfo 存的档）这两个字段是空的，才退回对话文件名
+		profile_card.label_chapter.text = profile.chapter_designation if profile.chapter_designation != "" \
+			else profile.chapter_name.to_upper().replace("_", " ")
+		profile_card.label_chapter_title.text = profile.chapter_title if profile.chapter_title != "" \
+			else profile.chapter_name
 	else:
 		profile_card.label_chapter.text = "EMPTY"
 		profile_card.label_chapter_title.text = "暂无存档" if slot_kind != ProfileCard.SlotKind.NEW_MANUAL else "新存档"
@@ -143,7 +151,12 @@ func _save_profile(profile: ProfileData, show_loading: bool) -> void:
 			).call_deferred()
 	)
 
+## UI 日志：卡片/自动保存/继续 都会走到这些入口，记一行动作 + 之后的状态
+func _log_ui(action: String) -> void:
+	print("[UI] %s → %s" % [action, Game.describe_state()])
+
 func save_game() -> void:
+	_log_ui("存档 NO.%02d" % [profile_index + 1])
 	_save_profile(_ensure_manual_profile(profile_index), true)
 
 func has_quick_save() -> bool:
@@ -178,9 +191,11 @@ func has_continue_save() -> bool:
 func load_continue_game() -> void:
 	var profile := get_continue_profile()
 	if profile:
+		_log_ui("继续游戏（%s）" % ["快速存档" if profile == Main.save_data.auto_profile else "最新手动档"])
 		load_profile(profile)
 
 func save_quick_game() -> void:
+	_log_ui("快速存档（含每 20 句自动）")
 	if Main.save_data.auto_profile == null:
 		Main.save_data.auto_profile = ProfileData.new()
 	_save_profile(Main.save_data.auto_profile, false)
@@ -193,6 +208,7 @@ func load_game() -> void:
 func load_quick_game() -> void:
 	if Main.save_data.auto_profile == null:
 		return
+	_log_ui("读档（快速存档）")
 	load_profile(Main.save_data.auto_profile)
 
 func refresh_continue_state_after_save_mutation() -> void:
@@ -280,6 +296,9 @@ func load_profile(profile: ProfileData) -> void:
 				Game.stage_page.current_book_segment_start_id = profile.book_segment_start_id
 			Game.log_page._suppressed = false
 	)
+	_log_ui("读档完成（章节=%s 行=%s）" % [
+		profile.chapter_name,
+		Game.stage_page.dialogue_line.id if Game.stage_page.dialogue_line else "<无>"])
 	if profile.book_open:
 		await Game.switch_to_page(Game.book_page, true, true)
 		if Game.stage_page.dialogue_line and "奇迹书" not in Game.stage_page.dialogue_line.tags:

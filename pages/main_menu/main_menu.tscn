@@ -11,7 +11,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tst2v"]
 resource_local_to_scene = true
 shader = ExtResource("3_563vs")
-shader_parameter/x = 0.0
+shader_parameter/period = 10.000000471740119
+shader_parameter/sweep_time = 1.20000005537006
+shader_parameter/sweep_period = 2.0000000933700597
+shader_parameter/sweep_count = 2
 shader_parameter/size = 0.03
 shader_parameter/shine_color = Vector3(1, 0.94902, 0.721569)
 shader_parameter/shine_strength = 0.2010000095475
@@ -204,7 +207,6 @@ process_material = SubResource("ParticleProcessMaterial_563vs")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987219698]
 root_node = NodePath("../Logo")
 libraries/ = SubResource("AnimationLibrary_mtbyv")
-autoplay = &"shine"
 
 [editable path="Buttons/MainMenuButton_Start"]
 [editable path="Buttons/MainMenuButton_Load"]

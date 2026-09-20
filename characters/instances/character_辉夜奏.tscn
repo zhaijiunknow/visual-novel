@@ -196,7 +196,7 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 [sub_resource type="AtlasTexture" id="AtlasTexture_hebva"]
 resource_local_to_scene = true
 atlas = SubResource("ViewportTexture_plist")
-region = Rect2(224, 62.713425, 984, 1001.28656)
+region = Rect2(272, 62.713425, 1032, 1001.28656)
 
 [node name="辉夜奏" unique_id=961663325 instance=ExtResource("1_mvhsb")]
 phone_avatar = ExtResource("19_phone")

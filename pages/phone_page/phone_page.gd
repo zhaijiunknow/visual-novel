@@ -141,11 +141,13 @@ func open(is_story: bool = false, initial_chat_character: String = "") -> void:
 	# 从屏幕下方滑入：本体和外壳一起，先瞬移到屏幕外再补间回原位
 	_set_slide_offsets(1.0)
 	await _tween_slide_offsets(0.0, SLIDE_DURATION, Tween.EASE_OUT, Tween.TRANS_CUBIC)
+	print("[UI] 打开手机（%s）→ %s" % ["剧情" if story_mode else "玩家", Game.describe_state()])
 
 
 func close() -> void:
 	await _tween_slide_offsets(1.0, SLIDE_DURATION, Tween.EASE_IN, Tween.TRANS_CUBIC)
 	hide()
+	print("[UI] 关闭手机 → %s" % Game.describe_state())
 
 
 func update_chat_list() -> void:
@@ -190,7 +192,10 @@ func _add_chat_message(character_name: String, text: String, silent: bool = fals
 		chat_message.modulate.a = 1.0
 	else:
 		chat_message.modulate.a = 0.0
-		chat_message.create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
+		# 补间必须建在页面自己身上：聊天消息随时会被 clear_children 摘出树，
+		# 用 chat_message.create_tween() 会把补间绑在消息节点上，节点一离树就报
+		# "can_process: Condition !is_inside_tree() is true"。目标被释放时补间会自己失效
+		create_tween().tween_property(chat_message, "modulate:a", 1.0, 0.3)
 		AudioManager.audio_player_sound.stream = preload("res://assets/system_sounds/奇迹书音效/手机发消息音效.wav")
 		AudioManager.audio_player_sound.play()
 
@@ -214,15 +219,27 @@ func get_bridge_phone_state() -> Dictionary:
 		"chats": _serialize_chat_data_pool(),
 	}
 
+## 调试桥的「选回复」：和玩家手点一样，直接触发那个选项按钮的信号，
+## 后面的处理全交给 _on_reply_clicked，不在桥接里另写一套
 func choose_reply_from_bridge(index: int = -1, next_id: String = "") -> bool:
-	var resolved_next_id := _resolve_pending_reply_next_id(index, next_id)
-	if resolved_next_id == "":
+	var reply := _find_reply_selection(index, next_id)
+	if reply == null:
 		return false
-	var selected_text := _get_pending_reply_text(resolved_next_id)
-	clear_reply_selections()
-	await show_dialogue_message("周腾", selected_text)
-	reply_selected.emit(resolved_next_id)
+	reply.reply_clicked.emit(reply.reply_text.text, reply.next_id)
 	return true
+
+
+## 按下标（reply_selection_pool 的顺序 == 选项顺序）或 next_id 找到那个选项
+func _find_reply_selection(index: int, next_id: String) -> ReplySelection:
+	var replies := reply_selection_pool.get_children()
+	if index >= 0 and index < replies.size():
+		return replies[index] as ReplySelection
+	if next_id != "":
+		for child in replies:
+			var reply := child as ReplySelection
+			if reply != null and reply.next_id == next_id:
+				return reply
+	return null
 
 func show_reply_options(responses) -> void:
 	clear_reply_selections()

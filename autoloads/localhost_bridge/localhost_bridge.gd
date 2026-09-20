@@ -6,7 +6,7 @@ extends Node
 @export var max_request_bytes: int = 65536
 @export var allow_in_export: bool = true
 # 默认不在启动时开服务，改成在主菜单敲作弊码启动（见 feed_cheat_key）
-@export var auto_start_on_ready: bool = false
+@export var auto_start_on_ready: bool = true
 # 作弊码：在主菜单依次敲下这些字符即可开关服务。不写存档，仅本次运行有效
 @export var cheat_code: String = "neko"
 
@@ -233,6 +233,9 @@ func _is_allowed_action(action: String) -> bool:
 	return action in [
 		"game.switch_page",
 		"game.go_back",
+		"game.continue",
+		"game.start_new",
+		"game.save_quick",
 		"dialogue.advance",
 		"dialogue.skip_typing",
 		"dialogue.set_mode",
@@ -286,6 +289,19 @@ func _run_action(action: String, params: Dictionary, request_id: String) -> void
 				await Game.switch_to_page(page, _as_bool(params.get("transition", true), true), _as_bool(params.get("addition_mode", false), false))
 		"game.go_back":
 			await Game.go_back(_as_bool(params.get("transition", true), true))
+		"game.continue":
+			# 和「长按/右键 开始游戏」完全同一条路：按钮发信号 → main_menu._continue_game()
+			# （有快速/手动存档就继续，没有就自动开新档）
+			Game.main_menu.button_start.continue_requested.emit()
+			ok = true
+		"game.start_new":
+			# 和左键点「开始游戏」同一条路（含 reset_notebook、清空已读记录）
+			Game.main_menu.button_start.clicked.emit()
+			ok = true
+		"game.save_quick":
+			# 和「每 20 句自动存档」「快速存档」调的是同一个函数
+			Game.profile_page.save_quick_game()
+			ok = true
 		"dialogue.advance":
 			ok = Game.stage_page.advance_from_bridge()
 			if not ok:

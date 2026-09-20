@@ -82,6 +82,76 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		callable.call()
 
 	loading = false
+	print("[UI] 打开 %s 完成 → %s" % [page.name, describe_state()])
+
+## 给日志用的一行状态摘要：现在停在哪一页、页面栈、对话模式、当前行、还开着哪些浮层。
+## 每次 UI 互动之后打一行，「我点了 X 之后就 Y 了」这种玩家反馈能直接对上号
+func describe_state() -> String:
+	var mode := "manual"
+	if stage_page.skip:
+		mode = "skip"
+	elif stage_page.autoplay:
+		mode = "auto"
+	var overlays: PackedStringArray = []
+	for pair in [[phone_page, "手机"], [book_page, "奇迹书"], [travel_page, "旅行"], [chapter_transition, "章节过场"]]:
+		if pair[0] != null and pair[0].visible:
+			overlays.append(pair[1])
+	# 在场角色：和调试桥同一套判据（有站位的才算上场）
+	var on_stage := 0
+	for character: Character in Stage.character_array:
+		if character.get_character_data().position != "":
+			on_stage += 1
+	# 语音：正在播的是哪一条（"点了 B 但还在唱 A"要靠它和 [UI] 回放日志对不上才看得出来）
+	var voice := "无"
+	if AudioManager.audio_player_voice.playing and AudioManager.audio_player_voice.stream:
+		voice = AudioManager.audio_player_voice.stream.resource_path.get_file()
+	return "page=%s stack=[%s] loading=%s 模式=%s 行=%s 浮层=%s 窗口=%s 对话框=%s 在场角色=%d 语音=%s" % [
+		current_page.name if current_page else "<无>",
+		" > ".join(_page_stack_names()),
+		loading,
+		mode,
+		stage_page.dialogue_line.id if stage_page.dialogue_line else "<无>",
+		"、".join(overlays) if overlays.size() > 0 else "无",
+		Main.window_description(),
+		"隐藏(%.2f)" % stage_page.dialogue_screen.modulate.a if stage_page.dialogue_screen.modulate.a < 0.99 else "显示",
+		on_stage,
+		voice,
+	]
+
+func _page_stack_names() -> Array[String]:
+	var names: Array[String] = []
+	for page in page_stack:
+		names.append(page.name)
+	return names
+
+
+## Esc：关闭各种菜单。
+## 压在 page_stack 上的叠加页（设置/存档/书/回想/奖励/确认框）就是 go_back()——
+## 它自带 loading 和「只剩底层页」的保护，所以主菜单按 Esc 什么都不会发生。
+## 剧情页是所有东西的「底」，Esc 绝不能把它弹掉（弹掉会回标题并清空回想记录），
+## 所以先单独处理盖在剧情页上、又不在 page_stack 里的那几样（手机/旅行/章节过场卡）。
+func _unhandled_input(event: InputEvent) -> void:
+	var key_event := event as InputEventKey
+	if key_event == null or not key_event.pressed or key_event.echo:
+		return
+	if key_event.keycode != KEY_ESCAPE or loading:
+		return
+	if current_page == stage_page:
+		if travel_page.visible or chapter_transition.visible:
+			# 这两个由剧情自己收（旅行页按确认、章节卡点一下就过），Esc 只吃掉不做事
+			get_viewport().set_input_as_handled()
+			return
+		if phone_page.visible:
+			# 剧情里的手机和「点背景」一样不让关
+			if not phone_page.story_mode:
+				phone_page.close()
+			get_viewport().set_input_as_handled()
+			return
+		return
+	if page_stack.size() > 1:
+		go_back()
+		get_viewport().set_input_as_handled()
+
 
 func go_back(_transition: bool = true):
 	print("[Game] go_back transition=", _transition, " loading=", loading, " stack_size=", page_stack.size(), " current=", current_page.name if current_page else "<null>")
@@ -109,6 +179,8 @@ func go_back(_transition: bool = true):
 		await fade(true)
 
 	loading = false
+	print("[UI] 返回 %s 完成 → %s" % [
+		current_page.name if current_page else "<无>", describe_state()])
 
 func update_audio():
 	if stage_page not in page_stack:

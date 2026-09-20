@@ -42,4 +42,6 @@ func _ready() -> void:
 	drag_filter.execute.connect(
 		func ():
 			voice_page.select_collection(voice_collection)
+			print("[UI] 语音鉴赏·选中卡片 NO.%02d「%s」→ %s" % [
+				get_index(), voice_collection.text.left(20), Game.describe_state()])
 	)

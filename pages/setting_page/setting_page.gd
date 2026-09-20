@@ -56,10 +56,9 @@ func _load_settings() -> void:
 
 	# System
 	_select_exclusive(btn_screen_fullscreen, btn_screen_window, s.fullscreen)
-	if s.fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	# 启动时 Main._ready() 已尽早应用过一次，这里是复位/重进设置页时再对一次；
+	# 只按存档应用、不做记录，免得把玩家上次的窗口状态冲掉
+	Main.apply_window_mode(s.fullscreen, false)
 	_select_exclusive(btn_confirmation_on, btn_confirmation_off, s.need_confirmation)
 	_select_exclusive(btn_skip_unread_text_on, btn_skip_unread_text_off, s.skip_unread)
 	btn_skip_unread.selected = s.skip_unread_text
@@ -164,19 +163,18 @@ func _connect_selection_pair(btn_on: SelectionButton, btn_off: SelectionButton, 
 
 func _toggle_skip_condition(key: String, btn: SelectionButton) -> void:
 	btn.selected = not btn.selected
-	Main.setting_data.set(key, btn.selected)
-	Main.save_setting_data()
+	_set_setting(key, btn.selected)
 
+## 所有设置项改动的汇聚点：顺手记一行日志（哪一项变成了什么），内测反馈时能对上号
 func _set_setting(key: String, value) -> void:
 	Main.setting_data.set(key, value)
 	Main.save_setting_data()
+	print("[UI] 设置 %s = %s" % [key, value])
 
 func _set_fullscreen(fullscreen: bool) -> void:
 	_set_setting("fullscreen", fullscreen)
-	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	# 切模式会顺带记下窗口化状态（见 Main.apply_window_mode）
+	Main.apply_window_mode(fullscreen)
 
 func _apply_audio() -> void:
 	var s = Main.setting_data

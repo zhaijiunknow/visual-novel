@@ -4,6 +4,9 @@ extends CanvasLayer
 signal next_line
 signal skip_cancelled
 signal auto_cancelled
+## 跳过状态变化。跳过按钮的按下状态只跟信号走，所以 Ctrl 键切换跳过也必须发这个，
+## 否则会出现「跳过开着但按钮没亮」的假象
+signal skip_changed(skipping: bool)
 
 @export var chapters: Array[DialogueResource]
 var chapters_dict: Dictionary[String, DialogueResource]
@@ -60,6 +63,8 @@ var _opening_reveal_tween: Tween
 var _dialogue_ui_tween: Tween
 var _dialogue_ui_hidden: bool = false
 var _dialogue_ui_restore_enabled: bool = true
+## 滚轮累计量：攒够一格才推进/开回顾，免得高精度滚轮一次滚动推进好几句
+var _wheel_step: float = 0.0
 ## 收 CG/过场时约定「等下一句文本就位再显示」，期间跳过脚本里的 ShowDialogue
 var _dialogue_ui_awaiting_text: bool = false
 var _bridge_sorted_dialogue_keys_cache: Dictionary = {}
@@ -92,10 +97,13 @@ func cancel_auto_and_skip() -> void:
 	if was_auto: auto_cancelled.emit()
 
 func _set_mode(mode: AdvanceMode) -> void:
+	var was_skipping := _mode == AdvanceMode.SKIP
 	_mode = mode
 	if skip_tag: skip_tag.visible = (_mode == AdvanceMode.SKIP)
 	if auto_tag: auto_tag.visible = (_mode == AdvanceMode.AUTO)
 	update_step_rate()
+	if (_mode == AdvanceMode.SKIP) != was_skipping:
+		skip_changed.emit(_mode == AdvanceMode.SKIP)
 	if _mode == AdvanceMode.SKIP and _idle:
 		next_line.emit()
 	elif _mode == AdvanceMode.AUTO and _idle:
@@ -163,16 +171,123 @@ func get_bridge_dialogue_state() -> Dictionary:
 		"visible_characters": dialogue_label.visible_characters,
 		"current_book_segment_start_id": current_book_segment_start_id,
 		"can_advance": dialogue_line != null,
+		# 右键隐藏没法从外面直接看出来，给调试桥留一个只读字段
+		"dialogue_ui_hidden": _dialogue_ui_hidden,
 	}
 
+## 调试桥的「推进」：必须和玩家点击/空格走同一条路（对话框收着先放出来、快进自动先取消），
+## 否则用它测出来的行为和真实操作不一致
 func advance_from_bridge() -> bool:
 	if Game.loading or dialogue_line == null:
 		return false
+	advance_input()
+	return true
+
+
+# ─── 输入（鼠标 / 键盘）─────────────────────────────
+# 规范：左键推进 / 右键切换隐藏 / 滚轮上开历史回顾 / 滚轮下推进 / 空格推进 / Ctrl 切换跳过。
+# 页面隐藏时仍然会收到输入（所有页面都挂在 Pages/* 下），所以每个入口都要门禁「自己是当前页」，
+# 否则在主菜单点右键也会去切换对话框。
+
+## 「玩家正在操作剧情」才吃输入：剧情页在栈顶，而且没有盖在它上面的演出浮层。
+## 页面隐藏时仍然收得到输入，手机/旅行/章节过场卡又都不在 page_stack 上，
+## 所以每个入口都得过这一关（否则在旅行页滚轮会既换地点又开历史回顾）
+func is_input_active() -> bool:
+	if Game.loading or Game.current_page != self:
+		return false
+	if Game.phone_page.visible or Game.travel_page.visible or Game.chapter_transition.visible:
+		return false
+	return true
+
+
+func _on_dialogue_screen_gui_input(event: InputEvent) -> void:
+	if not is_input_active():
+		return
+	var mouse_event := event as InputEventMouseButton
+	if mouse_event == null or not mouse_event.pressed:
+		return
+	match mouse_event.button_index:
+		MOUSE_BUTTON_LEFT:
+			advance_input()
+		MOUSE_BUTTON_WHEEL_DOWN:
+			# 一格滚轮 = 一次推进。高精度滚轮/触摸板一次滚动发好几个小事件，
+			# 按 factor 攒够一格才算一次（factor 拿不到时按一格算）
+			_wheel_step += mouse_event.factor if mouse_event.factor > 0.0 else 1.0
+			if _wheel_step >= 1.0:
+				_wheel_step = 0.0
+				advance_input()
+		MOUSE_BUTTON_WHEEL_UP:
+			_wheel_step += mouse_event.factor if mouse_event.factor > 0.0 else 1.0
+			if _wheel_step >= 1.0:
+				_wheel_step = 0.0
+				open_log_page()
+		MOUSE_BUTTON_RIGHT:
+			toggle_dialogue_ui()
+
+
+## 键盘用 _unhandled_input：舞台页在 SubViewport 里，键盘事件进不到它的 _input（实测收不到），
+## 只有 _unhandled_input 能收到。代价是「有焦点的按钮」会把空格当 ui_accept 先吃掉，
+## 不过对话框上那排按钮是普通 Control（不抢焦点），只有选项/回放那类 TextureButton 会，属于窄边界
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_input_active():
+		return
+	var key_event := event as InputEventKey
+	if key_event == null or not key_event.pressed or key_event.echo:
+		return
+	match key_event.keycode:
+		# 方向键上和下与滚轮等效：上 = 开历史回顾，下 = 推进
+		KEY_SPACE, KEY_DOWN:
+			advance_input()
+		KEY_UP:
+			open_log_page()
+		KEY_CTRL:
+			# 对话框收着的时候别开快进，不然看不见 UI 的剧情会自己跑掉
+			if _dialogue_ui_hidden:
+				return
+			skip = not skip
+		_:
+			return
+	get_viewport().set_input_as_handled()
+
+
+## 「推进」的统一样子（左键 / 滚轮下 / 空格共用）：
+## 对话框收着就先放出来；快进或自动时先取消、这一步不推进；打字中先补完；否则下一句
+func advance_input() -> void:
+	if _dialogue_ui_hidden:
+		if _dialogue_ui_restore_enabled:
+			show_dialogue_ui()
+		return
+	if _mode != AdvanceMode.MANUAL:
+		var was_skip = (_mode == AdvanceMode.SKIP)
+		_set_mode(AdvanceMode.MANUAL)
+		if was_skip: skip_cancelled.emit()
+		else: auto_cancelled.emit()
+		return
 	if dialogue_label.is_typing:
 		dialogue_label.skip_typing()
-		return true
 	next_line.emit()
-	return true
+
+
+## 右键：切换对话框的隐藏 / 显示
+func toggle_dialogue_ui() -> void:
+	if _dialogue_ui_hidden:
+		if _dialogue_ui_restore_enabled:
+			show_dialogue_ui()
+		return
+	# 脚本刚收过对话框、正在等下一句文本就位时别放出来，免得露出上一句的角色名 + 空文本
+	if is_dialogue_ui_awaiting_text():
+		return
+	# 和「隐藏对话框」按钮一致：先把快进/自动停掉，否则会藏着一个还在自己跑的剧情
+	cancel_auto_and_skip()
+	hide_dialogue_ui()
+
+
+## 打开历史回顾（对话框上的「回想」按钮和滚轮上共用）。
+## 必须自己先停掉快进/自动：按钮那条路有 dialogue_button_controller 统一清，
+## 滚轮这条路没有——不停的话剧情会在历史回顾背后继续推进
+func open_log_page() -> void:
+	cancel_auto_and_skip()
+	Game.switch_to_page(Game.log_page, true, true)
 
 func hide_dialogue_ui(duration: float = 0.2) -> void:
 	if dialogue_line == null or _dialogue_ui_hidden:
@@ -241,17 +356,18 @@ func skip_typing_from_bridge() -> bool:
 	dialogue_label.skip_typing()
 	return true
 
+## 调试桥的「切模式」：和对话框上那个快进/自动按钮一样走 skip / autoplay 属性，
+## 这样按钮的按下状态、skip_changed 日志都跟真实操作一致
 func set_mode_from_bridge(mode_name: String) -> bool:
 	match mode_name.to_lower():
 		"manual":
-			# 走 cancel_auto_and_skip：单写 _mode 不会让快进/自动按钮弹起来
 			cancel_auto_and_skip()
 			return true
 		"skip":
-			_set_mode(AdvanceMode.SKIP)
+			skip = true
 			return true
 		"auto":
-			_set_mode(AdvanceMode.AUTO)
+			autoplay = true
 			return true
 		_:
 			return false
@@ -265,11 +381,25 @@ func choose_response_from_bridge(index: int = -1, next_id: String = "") -> bool:
 	if "奇迹书" in dialogue_line.tags:
 		return await Game.book_page.choose_reply_from_bridge(index, next_id)
 
-	var resolved_next_id := _resolve_response_next_id(index, next_id)
-	if resolved_next_id.is_empty():
+	# 走玩家那条路：按下 responses_menu 里对应那个选项按钮，和手点完全同一条逻辑
+	var target := _find_response_selection(index, next_id)
+	if target == null:
 		return false
-	dialogue_line = await dialogue.get_next_dialogue_line(resolved_next_id, [self, Stage])
+	target.pressed.emit()
 	return true
+
+
+## 找到要按的选项按钮：给了 index 就按下标（responses_menu 的子节点顺序 == responses 顺序），
+## 否则按 next_id 在该句的 responses 里定位
+func _find_response_selection(index: int, next_id: String) -> DialogueSelection:
+	var selections := responses_menu.get_children()
+	if index >= 0 and index < selections.size():
+		return selections[index] as DialogueSelection
+	if next_id != "":
+		for i in dialogue_line.responses.size():
+			if dialogue_line.responses[i].next_id == next_id and i < selections.size():
+				return selections[i] as DialogueSelection
+	return null
 
 func start_chapter_from_bridge(chapter_name_from_bridge: String) -> bool:
 	var target_dialogue := _resolve_bridge_chapter_dialogue(chapter_name_from_bridge)
@@ -927,25 +1057,7 @@ func _ready() -> void:
 		var _chapter_name = chapter.resource_path.get_file().split(".")[0]
 		chapters_dict[_chapter_name] = chapter
 
-	dialogue_screen.gui_input.connect(
-		func(event: InputEvent):
-			if Game.loading: return
-			if event is InputEventMouseButton:
-				if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					if _dialogue_ui_hidden:
-						if _dialogue_ui_restore_enabled:
-							show_dialogue_ui()
-						return
-					if _mode != AdvanceMode.MANUAL:
-						var was_skip = (_mode == AdvanceMode.SKIP)
-						_set_mode(AdvanceMode.MANUAL)
-						if was_skip: skip_cancelled.emit()
-						else: auto_cancelled.emit()
-						return
-					if dialogue_label.is_typing:
-						dialogue_label.skip_typing()
-					next_line.emit()
-	)
+	dialogue_screen.gui_input.connect(_on_dialogue_screen_gui_input)
 
 	button_replay.pressed.connect(AudioManager.replay_voice)
 	button_favourite.pressed.connect(
