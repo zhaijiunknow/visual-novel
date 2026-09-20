@@ -48,16 +48,10 @@ func _set_value(v: float, notify: bool) -> void:
 		value_changed.emit(_value)
 
 
+# Caret 用 anchor 挂在 EndPoint 上（EndPoint 位于 Fill 右端中点），
+# 位置由布局自动跟随，父级滚动/转场时不需要手动同步
 func _update_visuals() -> void:
 	fill.size.x = size.x * _value
-	_update_caret()
-
-
-func _update_caret() -> void:
-	if caret and end_point:
-		caret.global_position = end_point.global_position - caret.get_combined_pivot_offset()
-		if click_rect and click_rect.get_global_rect().has_point(get_global_mouse_position()):
-			_update_caret_hover_state(get_global_mouse_position())
 
 
 func _ready() -> void:
@@ -69,7 +63,7 @@ func _ready() -> void:
 	click_rect.mouse_exited.connect(_on_click_rect_mouse_exited)
 	set_value_silent(initial_value)
 	_update_caret_texture()
-	resized.connect(_update_caret)
+	resized.connect(_update_visuals)
 
 
 func _on_click_rect_input(event: InputEvent) -> void:
