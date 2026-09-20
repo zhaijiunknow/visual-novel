@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blvhcci1ldis3"
-path="res://.godot/imported/8-广播社-夜晚.jpg-fa4ed281ecb54322c4099024bd18f35d.ctex"
+path.bptc="res://.godot/imported/8-广播社-夜晚.jpg-fa4ed281ecb54322c4099024bd18f35d.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/backgrounds/8-广播社-夜晚.jpg"
-dest_files=["res://.godot/imported/8-广播社-夜晚.jpg-fa4ed281ecb54322c4099024bd18f35d.ctex"]
+dest_files=["res://.godot/imported/8-广播社-夜晚.jpg-fa4ed281ecb54322c4099024bd18f35d.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

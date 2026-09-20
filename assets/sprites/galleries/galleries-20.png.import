@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://caldephnihfrw"
-path="res://.godot/imported/galleries-20.png-4d945eefa465d1ebc49355743a2ba51a.ctex"
+path.bptc="res://.godot/imported/galleries-20.png-4d945eefa465d1ebc49355743a2ba51a.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/sprites/galleries/galleries-20.png"
-dest_files=["res://.godot/imported/galleries-20.png-4d945eefa465d1ebc49355743a2ba51a.ctex"]
+dest_files=["res://.godot/imported/galleries-20.png-4d945eefa465d1ebc49355743a2ba51a.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

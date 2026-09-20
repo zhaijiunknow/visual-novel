@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfp3gyr6wy1d2"
-path="res://.godot/imported/4马客茂-夜晚.png-2937d0167777a485b2ebd2f6d150189a.ctex"
+path.bptc="res://.godot/imported/4马客茂-夜晚.png-2937d0167777a485b2ebd2f6d150189a.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/backgrounds/4马客茂-夜晚.png"
-dest_files=["res://.godot/imported/4马客茂-夜晚.png-2937d0167777a485b2ebd2f6d150189a.ctex"]
+dest_files=["res://.godot/imported/4马客茂-夜晚.png-2937d0167777a485b2ebd2f6d150189a.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0

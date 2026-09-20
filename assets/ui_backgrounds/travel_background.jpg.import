@@ -3,20 +3,21 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpno5ncc7cp6w"
-path="res://.godot/imported/travel_background.jpg-eb5c3bdf3ee300328b8674cbf11ae596.ctex"
+path.bptc="res://.godot/imported/travel_background.jpg-eb5c3bdf3ee300328b8674cbf11ae596.bptc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/ui_backgrounds/travel_background.jpg"
-dest_files=["res://.godot/imported/travel_background.jpg-eb5c3bdf3ee300328b8674cbf11ae596.ctex"]
+dest_files=["res://.godot/imported/travel_background.jpg-eb5c3bdf3ee300328b8674cbf11ae596.bptc.ctex"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
+compress/mode=2
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
