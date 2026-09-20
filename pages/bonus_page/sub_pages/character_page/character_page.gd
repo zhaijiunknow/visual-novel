@@ -25,22 +25,32 @@ var current_character: Character:
 var background_index: int:
 	set(value):
 		background_index = value
-		var background_count = Stage.background_data_pool.size()
-		background_index = posmod(background_index, background_count)
-		background_option.option_name = background_data.title
-		var variation_key = background_data.variations.keys()[0]
+		var count := Stage.background_count()
+		if count == 0:
+			return
+		background_index = posmod(background_index, count)
+		var data := Stage.background_at(background_index)
+		if data == null:
+			return
+		background_option.option_name = data.title
+		var variation_key = data.variations.keys()[0]
 		variation_option.option_name = variation_key
-		background.texture = background_data.variations[variation_key]
+		background.texture = data.variations[variation_key]
+
+## 背景按需 load（Stage 不再开局全量持有，见 stage.gd 的 background_paths）
 var background_data: BackgroundData:
-	get: return Stage.background_data_pool[background_index]
+	get: return Stage.background_at(background_index)
 
 var variation_index: int:
 	set(value):
 		variation_index = value
-		variation_index = posmod(variation_index, background_data.variations.keys().size())
-		var variation_key = background_data.variations.keys()[variation_index]
+		var data := background_data
+		if data == null or data.variations.keys().is_empty():
+			return
+		variation_index = posmod(variation_index, data.variations.keys().size())
+		var variation_key = data.variations.keys()[variation_index]
 		variation_option.option_name = variation_key
-		background.texture = background_data.variations[variation_key]
+		background.texture = data.variations[variation_key]
 		
 
 func toggle_optional(optional: Sprite2D) -> void:
@@ -51,6 +61,11 @@ func _ready() -> void:
 	Stage.character_selection_name_changed.connect(
 		func():
 			update_characters()
+			# 切换角色也要把它摆回站位。apply_bonus_slot 会顺带撤销玩家拖拽，
+			# 否则拖过（或以前摆偏过）的角色会带着旧位置直接显示出来。
+			# 延迟一帧：首次选择发生在 _ready 里，那时布局还没跑完，
+			# 直接调会把 apply_bonus_slot 里一次性记录的 home 位置记错
+			reset_character_positions.call_deferred()
 			slider_size.value = current_character.body_scale_factor
 			for child in optional_pool.get_children():
 				optional_pool.remove_child(child)
@@ -104,7 +119,26 @@ func _on_visibility_changed() -> void:
 	# 延后一帧：站位标记在剧情页自己的 SubViewport 里，布局跑完再读
 	reset_character_positions.call_deferred()
 
+## 站位标记在剧情页里，而剧情页现在是「用到才建」的：从主菜单直接进鉴赏时，它到这一刻才被创建，
+## 里面的 HBoxContainer 还没排过版 —— 此时标记的 global_position 是场景里的旧偏移，
+## 非 0 但是错的，apply_bonus_slot 的「坐标为 0 就跳过」守卫拦不住，角色会被摆到错误位置。
+## 所以要等坐标连续两帧不变（= 布局跑完了）再摆。
+func _wait_for_stage_slots() -> void:
+	var first := character_pool.get_child(0) as Character
+	if first == null:
+		return
+	var last := Vector2.INF
+	for _attempt in 8:
+		# 用会建页的 getter —— 站位数据本来就要读剧情页，先把它建出来再等它布局
+		var stage := Game.stage_page
+		var now: Vector2 = stage.get_position_by_name(first.bonus_slot) if stage != null else Vector2.ZERO
+		if now != Vector2.ZERO and now == last:
+			return
+		last = now
+		await get_tree().process_frame
+
 func reset_character_positions() -> void:
+	await _wait_for_stage_slots()
 	for character: Character in character_pool.get_children():
 		character.apply_bonus_slot()
 

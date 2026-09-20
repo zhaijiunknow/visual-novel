@@ -61,14 +61,16 @@ func refresh() -> void:
 	for child in gallery_card_pool.get_children():
 		child.queue_free()
 	# 固定槽位：已解锁的 CG 卡排在前，未解锁的空白占位格排在后（占位格不可点击，样式参考空存档）
+	# 只 load 已解锁的 —— 未解锁的槽位只用一张公共占位图，没必要把它的图集拉进内存
 	var unlocked: Array[GalleryData] = []
-	var locked: Array[GalleryData] = []
-	for gallery_data in Stage.gallery_data_pool:
-		var cg_name: String = gallery_data.resource_path.get_file().get_basename()
-		if Main.has_unlocked_cg(cg_name):
-			unlocked.append(gallery_data)
+	var locked_count: int = 0
+	for i in Stage.gallery_count():
+		if Main.has_unlocked_cg(Stage.gallery_name_at(i)):
+			var data := Stage.gallery_at(i)
+			if data != null:
+				unlocked.append(data)
 		else:
-			locked.append(gallery_data)
+			locked_count += 1
 
 	for gallery_data in unlocked:
 		var gallery_card: GalleryCard = Prefabs.gallery_card.instantiate()
@@ -78,7 +80,7 @@ func refresh() -> void:
 		gallery_card_pool.add_child(gallery_card)
 		gallery_card.pressed.connect(open_gallery_view.bind(gallery_card, gallery_data))
 
-	for gallery_data in locked:
+	for _locked_index in locked_count:
 		var placeholder: GalleryCard = Prefabs.gallery_card.instantiate()
 		placeholder.disabled = true
 		placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE

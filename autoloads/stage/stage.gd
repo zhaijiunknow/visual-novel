@@ -31,8 +31,28 @@ class MissingCharacter:
 		pass
 
 @export var character_pool: Control
-@export var background_data_pool: Array[BackgroundData]
-@export var gallery_data_pool: Array[GalleryData]
+## 角色同样「用到才建」。原来是 6 个 Character 实例直接挂在 stage.tscn 里，
+## 开局就把它们的立绘图集全拉进显存，而一屏通常只站 1~3 个。
+## 这里只存 PackedScene：实测 6 个一起 load 只 +31 资源、+0.0 MB 显存
+## （纹理要 instantiate 才会上传，单个角色约 10.5 MB），首次 Character() 时才实例化。
+@export var character_scenes: Array[PackedScene]
+## 背景/CG 一律「用到才 load」。
+## 这两个原来是 Array[BackgroundData] / Array[GalleryData]，等于把 .tres 直接挂在场景里，
+## 开局就把 10 个背景（各 3~5 张 4K 变体）+ 8 个 CG（63 个 AtlasTexture → 整张图集）
+## 全拉进内存、永不释放；一屏其实只用得到背景 1 张 + CG 1 张。
+## 现在只存路径（纯字符串，不触发加载），查名字时再 load。
+## 不额外做缓存：贴图的引用由显示它的 TextureRect 持有，换背景/换 CG 时旧的自然释放。
+@export var background_paths: PackedStringArray
+@export var gallery_paths: PackedStringArray
+
+## 查名字用的索引。构建它绝不能 load()——那会把 .tres 引用的贴图一起拉进来
+var _background_path_by_title: Dictionary = {}
+var _background_order: PackedStringArray = []
+var _gallery_path_by_name: Dictionary = {}
+var _gallery_order: PackedStringArray = []
+var _character_scene_by_name: Dictionary = {}
+## 手机页要的昵称/头像，直接从 PackedScene 的 SceneState 读，不实例化角色
+var _phone_meta_by_name: Dictionary = {}
 
 var current_background: String
 var current_date: String
@@ -58,8 +78,131 @@ var character_array: Array[Character]:
 		return characters
 
 func _ready() -> void:
+	# 防御：万一场景里还留着角色实例，先登记进来
 	for character: Character in character_pool.get_children():
 		character_dict[character.name] = character
+	_build_character_index()
+	_build_lookup_index()
+
+
+## 建角色索引：名字 → PackedScene，外加手机页要的昵称/头像。
+## 手机字段从 SceneState 里读，绝不 instantiate —— 实例化会把该角色的立绘图集拉进显存
+func _build_character_index() -> void:
+	for scene in character_scenes:
+		if scene == null:
+			continue
+		var char_name := scene.resource_path.get_file().get_basename()
+		# character_余洛琛.tscn → 余洛琛
+		var underscore := char_name.find("_")
+		if underscore > 0:
+			char_name = char_name.substr(underscore + 1)
+		_character_scene_by_name[char_name] = scene
+		var meta := _read_phone_meta(scene)
+		if not meta.is_empty():
+			_phone_meta_by_name[char_name] = meta
+
+
+func _read_phone_meta(scene: PackedScene) -> Dictionary:
+	var state := scene.get_state()
+	var meta := {}
+	for i in state.get_node_property_count(0):
+		var prop_name := state.get_node_property_name(0, i)
+		if prop_name == "phone_nickname":
+			meta["nickname"] = state.get_node_property_value(0, i)
+		elif prop_name == "phone_avatar":
+			meta["avatar"] = state.get_node_property_value(0, i)
+	return meta
+
+
+## 建「名字 → 路径」索引。只解析文件名，绝不 load —— load 会把 .tres 引用的贴图一起拉进来
+func _build_lookup_index() -> void:
+	# 顺序按路径（也就是 01、02…）排，不能用 title 排 —— title 没有 NN_ 前缀，
+	# 按它排会把旅行页/立绘鉴赏页的浏览顺序改掉
+	var sorted_backgrounds := PackedStringArray(background_paths)
+	sorted_backgrounds.sort()
+	for path in sorted_backgrounds:
+		var title := _background_title_of(path)
+		if _background_path_by_title.has(title):
+			push_error("[Stage] 背景标题重复：%s（%s）" % [title, path])
+		_background_path_by_title[title] = path
+		_background_order.append(title)
+	var sorted_galleries := PackedStringArray(gallery_paths)
+	sorted_galleries.sort()
+	for path in sorted_galleries:
+		var cg_name := path.get_file().get_basename()
+		_gallery_path_by_name[cg_name] = path
+		_gallery_order.append(cg_name)
+
+
+## 背景标题 = 文件名去掉 "NN_" 前缀。约定 data/backgrounds/NN_标题.tres，
+## 且 .tres 里的 title 与去前缀后的文件名一致（现有 10 个已逐个核对过）
+func _background_title_of(path: String) -> String:
+	var stem := path.get_file().get_basename()
+	var underscore := stem.find("_")
+	if underscore > 0 and stem.substr(0, underscore).is_valid_int():
+		return stem.substr(underscore + 1)
+	return stem
+
+
+#region 背景 / CG 的按需加载
+
+## 按标题找背景；找不到返回 null（调用方照旧只警告、不动画面）
+func find_background(title: String) -> BackgroundData:
+	var path: String = _background_path_by_title.get(title, "")
+	if path == "":
+		return null
+	return load(path) as BackgroundData
+
+
+## 背景总数。旅行页、立绘鉴赏页要按序号浏览，顺序按文件名（01、02…）
+func background_count() -> int:
+	return _background_order.size()
+
+
+## 负数索引按 Godot 数组的语义从末尾取（旅行页的滚动列表依赖这一点）
+func background_at(index: int) -> BackgroundData:
+	var count := _background_order.size()
+	if count == 0:
+		return null
+	if index < 0:
+		index += count
+	if index < 0 or index >= count:
+		return null
+	return load(_background_path_by_title[_background_order[index]]) as BackgroundData
+
+
+## 按 CG 名找插画。SetCG 传的就是不带扩展名的文件名（如 "01_余洛琛房间"）
+func find_gallery(cg_name: String) -> GalleryData:
+	var path: String = _gallery_path_by_name.get(cg_name, "")
+	if path == "":
+		return null
+	return load(path) as GalleryData
+
+
+func gallery_count() -> int:
+	return _gallery_order.size()
+
+
+## 只取名字、不 load。插画鉴赏页判断「有没有解锁」只需要名字，
+## 未解锁的槽位用一张公共占位图，不该为它把整张图集拉进内存
+func gallery_name_at(index: int) -> String:
+	if index < 0 or index >= _gallery_order.size():
+		return ""
+	return _gallery_order[index]
+
+
+## 同 background_at，负数索引从末尾取
+func gallery_at(index: int) -> GalleryData:
+	var count := _gallery_order.size()
+	if count == 0:
+		return null
+	if index < 0:
+		index += count
+	if index < 0 or index >= count:
+		return null
+	return load(_gallery_path_by_name[_gallery_order[index]]) as GalleryData
+
+#endregion
 
 func reset() -> void:
 	if Game and Game.stage_page:
@@ -78,12 +221,62 @@ func start() -> void:
 	Game.stage_page.start()
 
 #region Dialogue Commands
+## 这个角色是不是「已知角色」（在 character_scenes 里）。
+## 用来替代以前拿 `character_dict.has()` 当「是不是真实角色」用的写法 ——
+## 那个字典现在只装「已实例化」的角色，没上场的会被误判成不存在，
+## 于是带 #语音 的句子会被静默静音（stage_page 的 character getter 就这么用的）
+func has_character(character_name: String) -> bool:
+	return character_dict.has(character_name) or _character_scene_by_name.has(character_name)
+
+
 func Character(character_name: String):
 	if character_dict.has(character_name):
 		return character_dict[character_name]
+	if _character_scene_by_name.has(character_name):
+		return _instantiate_character(character_name)
 	if not _missing_character_dict.has(character_name):
 		_missing_character_dict[character_name] = MissingCharacter.new(character_name)
 	return _missing_character_dict[character_name]
+
+
+## 首次用到某个角色时才实例化并挂进 character_pool，之后一直复用
+func _instantiate_character(character_name: String) -> Character:
+	var scene: PackedScene = _character_scene_by_name[character_name]
+	var character: Character = scene.instantiate()
+	_apply_character_overrides(character_name, character)
+	# 先登记再入树：角色的 _ready 里很可能又读 Stage.Character(...)，
+	# 那时必须拿到同一个实例，否则会再建一个、无限递归
+	character_dict[character_name] = character
+	character_pool.add_child(character)
+	return character
+
+
+## 这 4 个角色在原来的 stage.tscn 里被逐实例覆盖成「左上角锚点 + END 生长」，
+## 林凌铃、广播社老师 没被覆盖，保持 character.tscn 基类的中下对齐。
+## 立绘鉴赏页用的是同一批角色场景、但覆盖集合不同（它覆盖了辉夜奏/常夏/余洛琛），
+## 所以不能把这段烘进共享的 character_*.tscn，只能在这边按原样补回来
+const CHARACTER_TOP_LEFT_ANCHORS: Array[String] = ["余洛琛", "常夏", "葛城", "辉夜奏"]
+
+func _apply_character_overrides(character_name: String, character: Character) -> void:
+	if character_name not in CHARACTER_TOP_LEFT_ANCHORS:
+		return
+	character.anchor_left = 0.0
+	character.anchor_top = 0.0
+	character.anchor_right = 0.0
+	character.anchor_bottom = 0.0
+	character.grow_horizontal = Control.GROW_DIRECTION_END
+	character.grow_vertical = Control.GROW_DIRECTION_END
+
+
+## 手机页用的昵称 / 头像。不需要实例化角色（见 _build_character_index）
+func phone_nickname_of(character_name: String) -> String:
+	var meta: Dictionary = _phone_meta_by_name.get(character_name, {})
+	return meta.get("nickname", "")
+
+
+func phone_avatar_of(character_name: String) -> Texture2D:
+	var meta: Dictionary = _phone_meta_by_name.get(character_name, {})
+	return meta.get("avatar", null)
 
 # ─── 黑屏过渡 ───
 
@@ -113,10 +306,7 @@ func _fade_blackscreen_to(target_alpha: float, duration: float, skip_trans: bool
 
 ## 换背景本体（不含过渡）；找不到背景只警告，不动画面
 func _set_background_by_name(background_name: String, variation_name: String) -> void:
-	var target_background: BackgroundData = background_data_pool.filter(
-		func (background: BackgroundData):
-			return background.title == background_name
-	).front()
+	var target_background: BackgroundData = find_background(background_name)
 	if not target_background:
 		push_warning("SetBackground: 未找到背景 %s" % background_name)
 		return
@@ -167,10 +357,7 @@ func _apply_background(target_background: BackgroundData, variation_name: String
 func PrepareBackground(background_name: String, variation_name: String) -> void:
 	Game.stage_page.stop_background_performance()
 	Game.stage_page.stop_opening_effects(false)
-	var target_background: BackgroundData = background_data_pool.filter(
-		func (background: BackgroundData):
-			return background.title == background_name
-	).front()
+	var target_background: BackgroundData = find_background(background_name)
 	if not target_background:
 		push_warning("PrepareBackground: 未找到背景 %s" % background_name)
 		return
@@ -180,9 +367,7 @@ func PrepareBackground(background_name: String, variation_name: String) -> void:
 func SetCG(cg_name: String, variation_name: String) -> void:
 	Game.stage_page.stop_background_performance()
 	Game.stage_page.stop_opening_effects()
-	var target_gallery: GalleryData = gallery_data_pool.filter(
-		func(g: GalleryData): return g.resource_path.get_file().replace(".tres", "") == cg_name
-	).front()
+	var target_gallery: GalleryData = find_gallery(cg_name)
 	if not target_gallery:
 		push_warning("SetCG: 未找到 gallery %s" % cg_name)
 		return

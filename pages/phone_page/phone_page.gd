@@ -328,15 +328,14 @@ func _transition_to_messenger() -> void:
 func get_phone_avatar(character_name: String) -> Texture2D:
 	if character_name == "周腾":
 		return self_avatar
-	if Stage.character_dict.has(character_name):
-		return Stage.character_dict[character_name].phone_avatar
-	return null
+	# 走 Stage 的元数据（从角色场景的 SceneState 读的），
+	# 不读 character_dict —— 那会为了一个头像把整个角色实例化、把立绘图集拉进显存
+	return Stage.phone_avatar_of(character_name)
 
 func get_phone_nickname(character_name: String) -> String:
-	if Stage.character_dict.has(character_name):
-		var nickname = Stage.character_dict[character_name].phone_nickname
-		if nickname != "":
-			return nickname
+	var nickname := Stage.phone_nickname_of(character_name)
+	if nickname != "":
+		return nickname
 	return character_name
 
 func get_chat_data(character_name: String) -> ChatData:

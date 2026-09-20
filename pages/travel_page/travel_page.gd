@@ -18,7 +18,7 @@ var selected_index: int:
 		var last_index = selected_index
 		
 		var index = value
-		var background_count = Stage.background_data_pool.size()
+		var background_count = Stage.background_count()
 		if index < 0: index = background_count - 1
 		index %= background_count
 		
@@ -50,7 +50,9 @@ func _ready() -> void:
 	)
 	texture_button_confirm.pressed.connect(
 		func ():
-			Stage.background_name = Stage.background_data_pool[selected_index].title
+			var picked := Stage.background_at(selected_index)
+			if picked != null:
+				Stage.background_name = picked.title
 			visible = false
 	)
 	
@@ -86,11 +88,14 @@ func update() -> void:
 	for selection: PlaceSelection in vbox_selections.get_children():
 		var offset_index = selection.get_index() - 2
 		var target_index = selected_index + offset_index
-		target_index %= Stage.background_data_pool.size()
-		selection.texture_rect_image.texture = \
-			Stage.background_data_pool[target_index].texture
+		target_index %= Stage.background_count()
+		var preview := Stage.background_at(target_index)
+		if preview != null:
+			selection.texture_rect_image.texture = preview.texture
 	vbox_selections.global_position.y = original_y
-	
-	var selected_background = Stage.background_data_pool[selected_index]
+
+	var selected_background := Stage.background_at(selected_index)
+	if selected_background == null:
+		return
 	label_place_title.text = selected_background.title
 	rich_label_place_description.text = selected_background.description
