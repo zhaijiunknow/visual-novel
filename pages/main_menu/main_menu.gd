@@ -73,7 +73,8 @@ func _continue_game() -> void:
 	Game.profile_page.load_continue_game()
 
 func _update_start_button() -> void:
-	if Game.profile_page and Game.profile_page.has_continue_save():
+	# 走数据层查询：存档页现在是惰性创建的，不能为了问一句就把它建出来
+	if Main.has_continue_save():
 		button_start.set_titles("开始游戏", "Start / 右键继续")
 	else:
 		button_start.set_titles("开始游戏", "Start Game")

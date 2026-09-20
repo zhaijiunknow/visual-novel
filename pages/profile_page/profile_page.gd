@@ -159,34 +159,22 @@ func save_game() -> void:
 	_log_ui("存档 NO.%02d" % [profile_index + 1])
 	_save_profile(_ensure_manual_profile(profile_index), true)
 
+# 存档查询都在 Main 上（纯数据）：主菜单刷新按钮那类自动路径会调，
+# 不能为了问一句「有没有存档」就把存档页建出来
 func has_quick_save() -> bool:
-	return _is_profile_usable(Main.save_data.auto_profile)
+	return Main.is_profile_usable(Main.save_data.auto_profile)
 
 func _is_profile_usable(profile: ProfileData) -> bool:
-	return profile != null and profile.dialogue_id != ""
+	return Main.is_profile_usable(profile)
 
 func get_latest_manual_profile() -> ProfileData:
-	var best: ProfileData = null
-	for i in Main.save_data.profiles.size():
-		var profile: ProfileData = Main.save_data.profiles[i]
-		if not _is_profile_usable(profile):
-			continue
-		if best == null:
-			best = profile
-			continue
-		if profile.last_saved_at_unix_ms > best.last_saved_at_unix_ms:
-			best = profile
-		elif profile.last_saved_at_unix_ms == best.last_saved_at_unix_ms and i > Main.save_data.profiles.find(best):
-			best = profile
-	return best
+	return Main.get_latest_manual_profile()
 
 func get_continue_profile() -> ProfileData:
-	if has_quick_save():
-		return Main.save_data.auto_profile
-	return get_latest_manual_profile()
+	return Main.get_continue_profile()
 
 func has_continue_save() -> bool:
-	return get_continue_profile() != null
+	return Main.has_continue_save()
 
 func load_continue_game() -> void:
 	var profile := get_continue_profile()
@@ -239,9 +227,7 @@ func load_profile(profile: ProfileData) -> void:
 				if background_split.size() >= 2:
 					var background_name = background_split[0]
 					var variation_name = background_split[1]
-					var target_background: BackgroundData = Stage.background_data_pool.filter(
-						func(bg: BackgroundData): return bg.title == background_name
-					).front()
+					var target_background: BackgroundData = Stage.find_background(background_name)
 					if target_background:
 						Game.stage_page.texture_rect_background.texture = target_background.variations[variation_name]
 						Stage.current_background = profile.background
@@ -249,9 +235,7 @@ func load_profile(profile: ProfileData) -> void:
 			Game.stage_page.stop_background_performance()
 			Game.stage_page.stop_opening_effects()
 			if profile.cg_name != "" and profile.cg_variation != "":
-				var target_gallery: GalleryData = Stage.gallery_data_pool.filter(
-					func(g: GalleryData): return g.resource_path.get_file().replace(".tres", "") == profile.cg_name
-				).front()
+				var target_gallery: GalleryData = Stage.find_gallery(profile.cg_name)
 				if target_gallery:
 					Game.stage_page.texture_rect_cg.texture = target_gallery.base
 					var var_texture: Texture2D

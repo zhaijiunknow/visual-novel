@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://2scs52fpvg75" path="res://pages/bonus_page/bonus_page.gd" id="1_kr8r3"]
 [ext_resource type="Texture2D" uid="uid://gsd0mrvxyqpi" path="res://assets/ui_backgrounds/common_background.jpg" id="2_n8efi"]
-[ext_resource type="PackedScene" uid="uid://g2g8a8hw7t15" path="res://pages/bonus_page/sub_pages/character_page/character_page.tscn" id="3_n8efi"]
-[ext_resource type="PackedScene" uid="uid://b088cmdfmopjq" path="res://pages/bonus_page/sub_pages/gallery_page/gallery_page.tscn" id="4_yn5h1"]
-[ext_resource type="PackedScene" uid="uid://dma0o1vwd13f8" path="res://pages/bonus_page/sub_pages/music_page/music_page.tscn" id="5_mi528"]
-[ext_resource type="PackedScene" uid="uid://bh1j660oi8dw8" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.tscn" id="6_0lt8g"]
 [ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="9_yn5h1"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="42_j7eld"]
 [ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="51_nu3n8"]
@@ -15,10 +11,9 @@ shader = ExtResource("9_yn5h1")
 shader_parameter/brightness = 4.0
 shader_parameter/brightness_offset = 0.2720000604199999
 
-[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page", "start_tab_item", "tab_gallery", "tab_music", "tab_voice")]
+[node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("tab_pages", "start_tab_item", "tab_gallery", "tab_music", "tab_voice")]
 script = ExtResource("1_kr8r3")
-music_page = NodePath("TabPages/MusicPage")
-voice_page = NodePath("TabPages/VoicePage")
+tab_pages = NodePath("TabPages")
 start_tab_item = NodePath("HBoxContainer_Tabs/TabItem_Character")
 tab_gallery = NodePath("HBoxContainer_Tabs/TabItem_Gallery")
 tab_music = NodePath("HBoxContainer_Tabs/TabItem_Music")
@@ -47,29 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterPage" parent="TabPages" unique_id=1026354517 instance=ExtResource("3_n8efi")]
-visible = false
-layout_mode = 1
-
-[node name="GalleryPage" parent="TabPages" unique_id=1229634649 instance=ExtResource("4_yn5h1")]
-visible = false
-layout_mode = 1
-
-[node name="MusicPage" parent="TabPages" unique_id=1072405069 instance=ExtResource("5_mi528")]
-visible = false
-layout_mode = 1
-
-[node name="VoicePage" parent="TabPages" unique_id=2028092101 node_paths=PackedStringArray("portrait_dict") instance=ExtResource("6_0lt8g")]
-visible = false
-layout_mode = 1
-portrait_dict = {
-0: NodePath("VoiceView/TextureRect_Portrait_yu"),
-1: NodePath("VoiceView/TextureRect_Portrait_xia"),
-2: NodePath("VoiceView/TextureRect_Portrait_knd"),
-3: NodePath("VoiceView/TextureRect_Portrait_ge"),
-4: NodePath("VoiceView/TextureRect_Portrait_ling")
-}
-
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1931057470]
 offset_left = 1261.0
 offset_top = 1268.0
@@ -79,29 +51,29 @@ pivot_offset_ratio = Vector2(1, 0)
 theme_override_constants/separation = 130
 alignment = 2
 
-[node name="TabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Character" parent="HBoxContainer_Tabs" unique_id=195769207 instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "立绘鉴赏"
 title_en = "Character Gallery"
-target_tab = NodePath("../../TabPages/CharacterPage")
+lazy_page_name = &"character"
 
-[node name="TabItem_Gallery" parent="HBoxContainer_Tabs" unique_id=1048788281 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Gallery" parent="HBoxContainer_Tabs" unique_id=1048788281 instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "插画鉴赏"
 title_en = "CG Gallery"
-target_tab = NodePath("../../TabPages/GalleryPage")
+lazy_page_name = &"gallery"
 
-[node name="TabItem_Music" parent="HBoxContainer_Tabs" unique_id=883599580 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Music" parent="HBoxContainer_Tabs" unique_id=883599580 instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "音乐鉴赏"
 title_en = "Music Gallery"
-target_tab = NodePath("../../TabPages/MusicPage")
+lazy_page_name = &"music"
 
-[node name="TabItem_Voice" parent="HBoxContainer_Tabs" unique_id=1406201431 node_paths=PackedStringArray("target_tab") instance=ExtResource("51_nu3n8")]
+[node name="TabItem_Voice" parent="HBoxContainer_Tabs" unique_id=1406201431 instance=ExtResource("51_nu3n8")]
 layout_mode = 2
 title_zh = "录音鉴赏"
 title_en = "Voice Collection"
-target_tab = NodePath("../../TabPages/VoicePage")
+lazy_page_name = &"voice"
 
 [node name="BackButton" parent="." unique_id=879433762 instance=ExtResource("42_j7eld")]
 material = SubResource("ShaderMaterial_mi528")

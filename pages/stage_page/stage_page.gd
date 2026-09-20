@@ -195,7 +195,9 @@ func advance_from_bridge() -> bool:
 func is_input_active() -> bool:
 	if Game.loading or Game.current_page != self:
 		return false
-	if Game.phone_page.visible or Game.travel_page.visible or Game.chapter_transition.visible:
+	# 用 page_shown 而不是 Game.phone_page / Game.travel_page：这是每个输入事件都会走的路径，
+	# 直接读会把还没建的页面建出来（惰性实例化就白做了）
+	if Game.page_shown(&"phone") or Game.page_shown(&"travel") or Game.chapter_transition.visible:
 		return false
 	return true
 
@@ -804,7 +806,9 @@ var voice_name: String:
 
 var character: Character:
 	get:
-		if Stage.character_dict.has(dialogue_line.character):
+		# 判「是不是已知角色」，不能读 character_dict —— 它现在只装已实例化的角色，
+		# 还没上场的说话人会被判成 null，于是 #语音 被静音、头像也不显示
+		if Stage.has_character(dialogue_line.character):
 			return Stage.Character(dialogue_line.character)
 		return null
 
@@ -917,7 +921,7 @@ func process_dialogue_line() -> void:
 
 	# 上一句的结束表情：在下一句话开始时应用到对应人物
 	if _pending_end_expression and _pending_end_expression_character:
-		if Stage.character_dict.has(_pending_end_expression_character):
+		if Stage.has_character(_pending_end_expression_character):
 			Stage.Character(_pending_end_expression_character).SetExpression(_pending_end_expression)
 		_pending_end_expression = ""
 		_pending_end_expression_character = ""

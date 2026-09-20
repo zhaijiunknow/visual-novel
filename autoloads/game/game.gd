@@ -1,20 +1,34 @@
 extends Node
 
 @export var page_pool: Node
-@export var main_menu: MainMenu
 @export var sv_container: SubViewportContainer
-@export var bonus_page: BonusPage
-@export var stage_page: StagePage
-@export var profile_page: ProfilePage
-@export var travel_page: TravelPage
-@export var book_page: BookPage
-@export var log_page: LogPage
-@export var phone_page: PhonePage
-@export var setting_page: SettingPage
-@export var confirm_page: ConfirmPage
-@export var loading_page: LoadingPage
+## 这两个不是「页面」（不在 page_pool 下），保持直接在场景里
 @export var boot_splash: BootSplash
 @export var chapter_transition: ChapterTransition
+
+## 页面一律「用到才建」：开局只建 EAGER_PAGES 里那几个，其余首次访问 Game.xxx_page 时创建。
+## 属性名保持不变（Game.stage_page 等），所以全项目 200 多处调用点一行都不用改。
+const PAGE_SCENES := {
+	&"main_menu": "res://pages/main_menu/main_menu.tscn",
+	&"stage": "res://pages/stage_page/stage_page.tscn",
+	&"bonus": "res://pages/bonus_page/bonus_page.tscn",
+	&"profile": "res://pages/profile_page/profile_page.tscn",
+	&"travel": "res://pages/travel_page/travel_page.tscn",
+	&"book": "res://pages/book_page/book_page.tscn",
+	&"log": "res://pages/log_page/log_page.tscn",
+	&"phone": "res://pages/phone_page/phone_page.tscn",
+	&"setting": "res://pages/setting_page/setting_page.tscn",
+	&"confirm": "res://pages/confirm_page/confirm_page.tscn",
+	&"loading": "res://pages/loading_page/loading_page.tscn",
+}
+
+## 开局就必须存在的三个页面：
+##   log       —— _ready 里订阅了 DialogueManager.got_dialogue，建晚了会丢回想历史
+##   main_menu —— 入口页
+##   loading   —— 存档时会立刻用到，建晚了会在存档中途卡一下
+const EAGER_PAGES: Array[StringName] = [&"log", &"main_menu", &"loading"]
+
+var _pages: Dictionary = {}
 
 var page_stack: Array[CanvasLayer] = []
 var loading: bool = false
@@ -26,7 +40,78 @@ var current_page: CanvasLayer:
 	get:
 		return page_stack.back() if page_stack.size() > 0 else null
 
+# ─── 惰性页面 ───────────────────────────────────────
+# 自动触发的代码（日志、信号回调、输入处理）绝不能直接读 Game.xxx_page，
+# 否则一开局就把页面全建出来、惰性化等于白做；那种地方用 get_page() / page_shown()。
+
+var main_menu: MainMenu:
+	get: return _ensure_page(&"main_menu") as MainMenu
+var stage_page: StagePage:
+	get: return _ensure_page(&"stage") as StagePage
+var bonus_page: BonusPage:
+	get: return _ensure_page(&"bonus") as BonusPage
+var profile_page: ProfilePage:
+	get: return _ensure_page(&"profile") as ProfilePage
+var travel_page: TravelPage:
+	get: return _ensure_page(&"travel") as TravelPage
+var book_page: BookPage:
+	get: return _ensure_page(&"book") as BookPage
+var log_page: LogPage:
+	get: return _ensure_page(&"log") as LogPage
+var phone_page: PhonePage:
+	get: return _ensure_page(&"phone") as PhonePage
+var setting_page: SettingPage:
+	get: return _ensure_page(&"setting") as SettingPage
+var confirm_page: ConfirmPage:
+	get: return _ensure_page(&"confirm") as ConfirmPage
+var loading_page: LoadingPage:
+	get: return _ensure_page(&"loading") as LoadingPage
+
+
+## 惰性实例化的唯一入口
+func _ensure_page(key: StringName) -> CanvasLayer:
+	if _pages.has(key):
+		return _pages[key]
+	var scene: PackedScene = load(PAGE_SCENES[key])
+	if scene == null:
+		push_error("[Game] 页面场景加载失败：%s" % PAGE_SCENES[key])
+		return null
+	var page: CanvasLayer = scene.instantiate()
+	page.layer = 1
+	page.visible = false
+	_apply_page_overrides(key, page)
+	# 先登记再入树：页面的 _ready 里很可能又读 Game.xxx_page
+	# （比如 profile_card._ready 会读 Game.profile_page）——那时必须拿到同一个实例，
+	# 否则会再建一个、无限递归
+	_pages[key] = page
+	page_pool.add_child(page)
+	return page
+
+
+## 原来在 game.tscn 里对页面**实例**做的设置（逐实例覆盖）。惰性实例化是按场景裸建，
+## 这些覆盖会丢，所以在这里补回来
+func _apply_page_overrides(key: StringName, page: CanvasLayer) -> void:
+	if key == &"phone":
+		# 游戏里的手机不显示「自己」的头像（原来在 game.tscn 里覆盖成 null）
+		var phone := page as PhonePage
+		if phone != null:
+			phone.self_avatar = null
+
+
+## 已创建才返回（**不会**创建）。读页面状态用这个
+func get_page(key: StringName) -> CanvasLayer:
+	return _pages.get(key)
+
+
+## 已创建且正在显示。判断某个浮层开着没有用这个
+func page_shown(key: StringName) -> bool:
+	var page: CanvasLayer = _pages.get(key)
+	return page != null and page.visible
+
+
 func _ready() -> void:
+	for key in EAGER_PAGES:
+		_ensure_page(key)
 	switch_to_page(main_menu, false, false)
 	_play_boot_splash()
 
@@ -54,7 +139,8 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 		return
 	loading = true
 
-	var use_alpha = addition_mode and (stage_page in page_stack or page == confirm_page)
+	# 注意：这里不能直接读 stage_page / confirm_page（会自动建页面）→ 用 get_page()
+	var use_alpha = addition_mode and (page_stack.has(get_page(&"stage")) or page == get_page(&"confirm"))
 
 	# 叠加+在游戏中：无前置过渡；其他：画面变黑
 	if _transition and not use_alpha:
@@ -68,7 +154,7 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 	page.layer = page_stack.size()
 	page.show()
 	# 从剧情进入鉴赏（bonus 附加页）前，先存档剧情 BGM，避免被鉴赏选播顶替
-	if page == bonus_page and stage_page in page_stack:
+	if page == get_page(&"bonus") and page_stack.has(get_page(&"stage")):
 		AudioManager.save_story_music()
 	update_audio()
 
@@ -85,17 +171,22 @@ func switch_to_page(page, _transition: bool, addition_mode: bool, callable: Call
 	print("[UI] 打开 %s 完成 → %s" % [page.name, describe_state()])
 
 ## 给日志用的一行状态摘要：现在停在哪一页、页面栈、对话模式、当前行、还开着哪些浮层。
-## 每次 UI 互动之后打一行，「我点了 X 之后就 Y 了」这种玩家反馈能直接对上号
+## 每次 UI 互动之后打一行，「我点了 X 之后就 Y 了」这种玩家反馈能直接对上号。
+## 这里全程走 get_page()/page_shown()：没建的页面就是没显示，不去建它
 func describe_state() -> String:
+	var stage: StagePage = get_page(&"stage")
 	var mode := "manual"
-	if stage_page.skip:
-		mode = "skip"
-	elif stage_page.autoplay:
-		mode = "auto"
+	if stage != null:
+		if stage.skip:
+			mode = "skip"
+		elif stage.autoplay:
+			mode = "auto"
 	var overlays: PackedStringArray = []
-	for pair in [[phone_page, "手机"], [book_page, "奇迹书"], [travel_page, "旅行"], [chapter_transition, "章节过场"]]:
-		if pair[0] != null and pair[0].visible:
+	for pair in [[&"phone", "手机"], [&"book", "奇迹书"], [&"travel", "旅行"]]:
+		if page_shown(pair[0]):
 			overlays.append(pair[1])
+	if chapter_transition != null and chapter_transition.visible:
+		overlays.append("章节过场")
 	# 在场角色：和调试桥同一套判据（有站位的才算上场）
 	var on_stage := 0
 	for character: Character in Stage.character_array:
@@ -105,15 +196,22 @@ func describe_state() -> String:
 	var voice := "无"
 	if AudioManager.audio_player_voice.playing and AudioManager.audio_player_voice.stream:
 		voice = AudioManager.audio_player_voice.stream.resource_path.get_file()
+	var line_id := "<未创建>"
+	var dialogue_box := "<未创建>"
+	if stage != null:
+		line_id = stage.dialogue_line.id if stage.dialogue_line else "<无>"
+		if stage.dialogue_screen != null:
+			dialogue_box = "隐藏(%.2f)" % stage.dialogue_screen.modulate.a \
+				if stage.dialogue_screen.modulate.a < 0.99 else "显示"
 	return "page=%s stack=[%s] loading=%s 模式=%s 行=%s 浮层=%s 窗口=%s 对话框=%s 在场角色=%d 语音=%s" % [
 		current_page.name if current_page else "<无>",
 		" > ".join(_page_stack_names()),
 		loading,
 		mode,
-		stage_page.dialogue_line.id if stage_page.dialogue_line else "<无>",
+		line_id,
 		"、".join(overlays) if overlays.size() > 0 else "无",
 		Main.window_description(),
-		"隐藏(%.2f)" % stage_page.dialogue_screen.modulate.a if stage_page.dialogue_screen.modulate.a < 0.99 else "显示",
+		dialogue_box,
 		on_stage,
 		voice,
 	]
@@ -136,15 +234,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if key_event.keycode != KEY_ESCAPE or loading:
 		return
-	if current_page == stage_page:
-		if travel_page.visible or chapter_transition.visible:
+	var stage := get_page(&"stage")
+	if stage != null and current_page == stage:
+		if page_shown(&"travel") or (chapter_transition != null and chapter_transition.visible):
 			# 这两个由剧情自己收（旅行页按确认、章节卡点一下就过），Esc 只吃掉不做事
 			get_viewport().set_input_as_handled()
 			return
-		if phone_page.visible:
+		if page_shown(&"phone"):
+			var phone: PhonePage = get_page(&"phone") as PhonePage
 			# 剧情里的手机和「点背景」一样不让关
-			if not phone_page.story_mode:
-				phone_page.close()
+			if phone != null and not phone.story_mode:
+				phone.close()
 			get_viewport().set_input_as_handled()
 			return
 		return
@@ -162,7 +262,7 @@ func go_back(_transition: bool = true):
 	loading = true
 
 	var old_page = page_stack.pop_back()
-	var use_alpha = stage_page in page_stack or old_page == confirm_page
+	var use_alpha = page_stack.has(get_page(&"stage")) or old_page == get_page(&"confirm")
 
 	if _transition:
 		if use_alpha:
@@ -183,22 +283,29 @@ func go_back(_transition: bool = true):
 		current_page.name if current_page else "<无>", describe_state()])
 
 func update_audio():
-	if stage_page not in page_stack:
+	var stage := get_page(&"stage")
+	if stage == null or not page_stack.has(stage):
 		AudioManager.audio_player_voice.stop()
-		stage_page.cancel_auto_and_skip()
-		phone_page.clear_all()
-		log_page.clear_all()
-		if main_menu in page_stack:
+		# 页面没建就是没东西要清，不主动创建它们
+		if stage != null:
+			stage.cancel_auto_and_skip()
+		var phone := get_page(&"phone")
+		if phone != null:
+			phone.clear_all()
+		var logp := get_page(&"log")
+		if logp != null:
+			logp.clear_all()
+		if page_stack.has(get_page(&"main_menu")):
 			if not _defer_menu_bgm and AudioManager._music_source != AudioManager.MusicSource.THEME:
 				AudioManager.play_theme()
 		return
 	# 回到剧情页：恢复进鉴赏前存档的剧情 BGM（鉴赏期间没动过则不打断）
-	if current_page == stage_page:
+	if current_page == stage:
 		AudioManager.restore_story_music()
-	if current_page == bonus_page:
+	if current_page == get_page(&"bonus"):
 		return
 	# 从主菜单进入 StagePage：停止主题音乐（游戏 BGM 由对话控制）
-	if current_page == stage_page and AudioManager._music_source == AudioManager.MusicSource.THEME:
+	if current_page == stage and AudioManager._music_source == AudioManager.MusicSource.THEME:
 		AudioManager.audio_player_music.stop()
 		AudioManager._music_source = AudioManager.MusicSource.NONE
 

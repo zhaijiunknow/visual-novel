@@ -17,32 +17,41 @@ var _logged_skip: bool = false
 var _logged_auto: bool = false
 
 func _ready() -> void:
+	# 用父链找自己所属的剧情页：绝不能读 Game.stage_page——剧情页正在被实例化时它的子节点
+	# 会先 _ready，那时去读 Game.stage_page 会反过来触发创建（惰性实例化下无限递归）
+	var stage := _find_stage_page()
+	if stage == null:
+		# 没有所属剧情页有两种情况：角色自带的对话框（离屏预览模板）是正常的，安静跳过；
+		# 其余就是真配错了，报出来
+		if not _has_character_ancestor():
+			push_warning("[DialogueButtonController] 没找到所属的 StagePage")
+		return
 	button_skip.toggle_changed.connect(
 		func ():
-			Game.stage_page.skip = button_skip.toggled
-			button_auto.disabled = Game.stage_page.skip
+			stage.skip = button_skip.toggled
+			button_auto.disabled = stage.skip
 			# 只在真的变了时记：初始化时 disabled 的级联也会走到这里，那不是玩家操作
 			if button_skip.toggled != _logged_skip:
 				_logged_skip = button_skip.toggled
 				print("[UI] 快进 %s → %s" % ["开" if _logged_skip else "关", Game.describe_state()])
 	)
-	Game.stage_page.skip_cancelled.connect(
+	stage.skip_cancelled.connect(
 		func ():
 			button_skip.toggled = false
 	)
 	# 跳过状态变化（含 Ctrl 键切换）：按钮的按下状态跟着状态走
-	Game.stage_page.skip_changed.connect(
+	stage.skip_changed.connect(
 		func (skipping: bool):
 			button_skip.toggled = skipping
 			button_auto.disabled = skipping
 	)
-	Game.stage_page.auto_cancelled.connect(
+	stage.auto_cancelled.connect(
 		func ():
 			button_auto.toggled = false
 	)
 	button_auto.toggle_changed.connect(
 		func ():
-			Game.stage_page.autoplay = button_auto.toggled
+			stage.autoplay = button_auto.toggled
 			if button_auto.toggled != _logged_auto:
 				_logged_auto = button_auto.toggled
 				print("[UI] 自动 %s → %s" % ["开" if _logged_auto else "关", Game.describe_state()])
@@ -55,7 +64,7 @@ func _ready() -> void:
 		button_save, button_load, button_log, button_set, button_voice,
 		button_phone, button_book, button_hide, button_title,
 	]:
-		button.clicked.connect(Game.stage_page.cancel_auto_and_skip)
+		button.clicked.connect(stage.cancel_auto_and_skip)
 	button_save.clicked.connect(
 		func ():
 			Main.profile_mode = Main.ProfileMode.SAVE
@@ -66,7 +75,7 @@ func _ready() -> void:
 			Main.profile_mode = Main.ProfileMode.LOAD
 			Game.switch_to_page(Game.profile_page, true, true)
 	)
-	button_log.clicked.connect(Game.stage_page.open_log_page)
+	button_log.clicked.connect(stage.open_log_page)
 	# 对话框那排按钮：谁被点了、点完停在哪
 	for pair in [
 		[button_save, "存档"], [button_load, "读档"], [button_log, "回想"], [button_set, "设置"],
@@ -92,7 +101,7 @@ func _ready() -> void:
 		func (): Game.switch_to_page(Game.book_page, true, true)
 	)
 	button_hide.clicked.connect(
-		func (): Game.stage_page.hide_dialogue_ui()
+		func (): stage.hide_dialogue_ui()
 	)
 	button_title.clicked.connect(
 		func ():
@@ -106,3 +115,26 @@ func _ready() -> void:
 			else:
 				Game.switch_to_page(Game.main_menu, true, false)
 	)
+
+
+## 从父链往上找自己所属的 StagePage（对话框 prefab 就挂在剧情页里）
+func _find_stage_page() -> StagePage:
+	var node: Node = get_parent()
+	while node != null:
+		if node is StagePage:
+			return node as StagePage
+		node = node.get_parent()
+	return null
+
+
+## 自己是不是挂在角色自带的那份对话框里。
+## characters/character.tscn 里也有一份 DialogueBox，但它只是**离屏预览模板**——
+## character.gd 靠它的 preview_texture 取立绘贴图，它挂在 Stage 的 character_pool 下、
+## 不属于任何页面，按钮也不该连信号。所以这种「找不到 StagePage」是预期内的，不用报错。
+func _has_character_ancestor() -> bool:
+	var node: Node = get_parent()
+	while node != null:
+		if node is Character:
+			return true
+		node = node.get_parent()
+	return false

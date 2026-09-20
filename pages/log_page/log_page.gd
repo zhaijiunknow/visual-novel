@@ -36,13 +36,19 @@ func _ready() -> void:
 	DialogueManager.got_dialogue.connect(
 		func (line: DialogueLine):
 			if _suppressed: return
-			if Game.book_page.visible: return
+			# 这里每句对白都会跑，绝不能直接读 Game.book_page / Game.stage_page
+			# （会顺手把页面建出来，惰性实例化就白做了）
+			if Game.page_shown(&"book"): return
 			if "手机" in line.tags: return
 			var voice = ""
 			if line.has_tag("语音"):
 				voice = line.get_tag_value("语音")
 			var display_name := line.get_tag_value("昵称") if line.has_tag("昵称") else line.character
-			add_line(line.character, line.text, voice, Game.stage_page.chapter_name, display_name)
+			var chapter := ""
+			var stage := Game.get_page(&"stage") as StagePage
+			if stage != null:
+				chapter = stage.chapter_name
+			add_line(line.character, line.text, voice, chapter, display_name)
 	)
 
 func _input(event: InputEvent) -> void:

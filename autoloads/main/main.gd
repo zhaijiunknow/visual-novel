@@ -102,6 +102,42 @@ func save_setting_data() -> void:
 func save_save_data() -> void:
 	ResourceSaver.save(save_data, save_path)
 
+# ─── 存档查询（纯数据，不经过存档页）─────────────────────
+# 放在这里是因为：这些查询会在「主菜单刷新按钮」这类自动路径上被调用，
+# 而存档页现在是惰性创建的——不能为了问一句「有没有存档」就把它建出来
+
+## 存档槽是否可用（有内容）
+func is_profile_usable(profile: ProfileData) -> bool:
+	return profile != null and profile.dialogue_id != ""
+
+
+## 最新的手动存档槽
+func get_latest_manual_profile() -> ProfileData:
+	var best: ProfileData = null
+	for i in save_data.profiles.size():
+		var profile: ProfileData = save_data.profiles[i]
+		if not is_profile_usable(profile):
+			continue
+		if best == null:
+			best = profile
+			continue
+		if profile.last_saved_at_unix_ms > best.last_saved_at_unix_ms:
+			best = profile
+		elif profile.last_saved_at_unix_ms == best.last_saved_at_unix_ms and i > save_data.profiles.find(best):
+			best = profile
+	return best
+
+
+## 「继续游戏」用哪个槽：有快速存档就用它，否则用最新的手动档
+func get_continue_profile() -> ProfileData:
+	if is_profile_usable(save_data.auto_profile):
+		return save_data.auto_profile
+	return get_latest_manual_profile()
+
+
+func has_continue_save() -> bool:
+	return get_continue_profile() != null
+
 ## 引擎启动建窗口用的尺寸，写死在 project.godot 的 window_*_override 里（1280x720）。
 ## 这里只是它没设时的兜底
 const WINDOWED_FALLBACK_SIZE := Vector2i(1280, 720)

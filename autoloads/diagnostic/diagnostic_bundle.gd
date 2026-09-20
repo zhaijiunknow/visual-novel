@@ -135,6 +135,21 @@ static func build_snapshot_text(kind: String, stamp: String, run_id: String,
 	lines.append("内存占用: %.1f MB" % (OS.get_static_memory_usage() / 1048576.0))
 	lines.append("区域/语言: %s" % OS.get_locale())
 
+	lines.append_array(_section("内存"))
+	lines.append("静态内存（引擎对象）: %.1f MB，峰值 %.1f MB" % [
+		Performance.get_monitor(Performance.MEMORY_STATIC) / 1048576.0,
+		Performance.get_monitor(Performance.MEMORY_STATIC_MAX) / 1048576.0])
+	lines.append("纹理显存: %.1f MB" % (Performance.get_monitor(Performance.RENDER_TEXTURE_MEM_USED) / 1048576.0))
+	lines.append("视频显存: %.1f MB，缓冲显存: %.1f MB" % [
+		Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED) / 1048576.0,
+		Performance.get_monitor(Performance.RENDER_BUFFER_MEM_USED) / 1048576.0])
+	lines.append("对象 %d（资源 %d / 节点 %d / 孤儿节点 %d）" % [
+		Performance.get_monitor(Performance.OBJECT_COUNT),
+		Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),
+		Performance.get_monitor(Performance.OBJECT_NODE_COUNT),
+		Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)])
+	lines.append("语音缓存: %d 条" % AudioManager.voice_cache.size())
+
 	lines.append_array(_section("显卡"))
 	lines.append("适配器: %s" % RenderingServer.get_video_adapter_name())
 	lines.append("厂商: %s" % RenderingServer.get_video_adapter_vendor())
@@ -164,8 +179,14 @@ static func build_snapshot_text(kind: String, stamp: String, run_id: String,
 	lines.append("章节: %s / %s" % [Stage.current_chapter_designation, Stage.current_chapter_title])
 	lines.append("背景: %s，日期: %s，CG: %s（%s）" % [
 		Stage.current_background, Stage.current_date, Stage.current_cg, Stage.current_cg_variation])
-	lines.append("对白: %s" % JSON.stringify(Game.stage_page.get_bridge_dialogue_state()))
-	lines.append("语音: %s" % Game.stage_page.voice_name)
+	# 快照可能在开局（崩溃导出）就被触发，而剧情页是惰性创建的 → 没建就写 <未创建>，
+	# 不要去读 Game.stage_page 把它建出来
+	var stage := Game.get_page(&"stage") as StagePage
+	if stage != null:
+		lines.append("对白: %s" % JSON.stringify(stage.get_bridge_dialogue_state()))
+		lines.append("语音: %s" % stage.voice_name)
+	else:
+		lines.append("对白: <剧情页未创建>")
 	for line in _character_lines():
 		lines.append(line)
 
@@ -184,7 +205,8 @@ static func build_snapshot_text(kind: String, stamp: String, run_id: String,
 	lines.append("音乐: %s，播放中=%s，位置=%.1f" % [
 		music.stream.resource_path if music.stream else "<无>",
 		music.playing, music.get_playback_position() if music.playing else 0.0])
-	lines.append("语音: 播放中=%s，名称=%s" % [voice.playing, Game.stage_page.voice_name])
+	lines.append("语音: 播放中=%s，名称=%s" % [
+		voice.playing, stage.voice_name if stage != null else "<剧情页未创建>"])
 
 	lines.append_array(_section("启动参数"))
 	lines.append("引擎参数: %s" % str(OS.get_cmdline_args()))
