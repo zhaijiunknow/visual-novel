@@ -53,20 +53,18 @@ func _ready() -> void:
 	)
 	# AudioManager 独占 audio_player_voice.finished
 	audio_player_voice.finished.connect(_on_voice_finished)
+	# 开局就把存档音量应用上。这一步以前是设置页 _ready 里顺手做的（setting_page.gd 的
+	# _load_settings），但设置页改成惰性实例化后开局不再创建，于是没人应用 →
+	# 播放器停在默认的 0 dB，BGM 以满音量放出来。AudioManager 排在 Main 之后，
+	# 这时 setting_data 已经加载好了，所以放在这里最稳
+	apply_settings(Main.setting_data)
 
 # 外部代码连接此信号监听语音播放结束，不要直接连 audio_player_voice.finished
 signal voice_finished
 
 func _on_voice_finished() -> void:
 	voice_finished.emit()
-	if _is_ducked:
-		if _music_paused:
-			# 音乐已被 pause 接管，unduck 只清标志，不做 tween
-			_is_ducked = false
-		else:
-			_unduck_music()
-	if _music_paused:
-		resume_music()
+	_restore_music_after_voice()
 
 # ─── 舞台语音的暂停/恢复（设置等覆盖页面用） ───
 
@@ -83,13 +81,7 @@ func pause_stage_voice() -> void:
 	_stage_voice_stream = audio_player_voice.stream
 	_stage_voice_position = audio_player_voice.get_playback_position()
 	audio_player_voice.stop()
-	if _is_ducked:
-		if _music_paused:
-			_is_ducked = false
-		else:
-			_unduck_music()
-	if _music_paused:
-		resume_music()
+	_restore_music_after_voice()
 
 ## 覆盖页面关闭时恢复对白语音
 func resume_stage_voice() -> void:
@@ -105,13 +97,7 @@ func resume_stage_voice() -> void:
 func stop_voice() -> void:
 	_invalidate_pending_voice_loads()
 	audio_player_voice.stop()
-	if _is_ducked:
-		if _music_paused:
-			_is_ducked = false
-		else:
-			_unduck_music()
-	if _music_paused:
-		resume_music()
+	_restore_music_after_voice()
 
 func play_track() -> void:
 	_playlist_paused = false
@@ -173,9 +159,7 @@ func restore_story_music() -> void:
 		and not audio_player_music.stream_paused \
 		and audio_player_music.playing == _story_music_playing:
 		return
-	# 清掉鉴赏/语音遗留的暂停接管状态，交还给剧情
-	_music_paused = false
-	_paused_stream = null
+	# 清掉鉴赏遗留的播放列表暂停状态，交还给剧情
 	_playlist_paused = false
 	audio_player_music.stream_paused = false
 	# 剧情当时静默：停掉鉴赏选播的 BGM，不要漏进剧情
@@ -322,60 +306,15 @@ func _unduck_music() -> void:
 	_is_ducked = false
 	if _duck_tween:
 		_duck_tween.kill()
-	if _fade_tween:
-		_fade_tween.kill()
 	_duck_tween = create_tween()
 	_duck_tween.tween_property(audio_player_music, "volume_db", _music_base_db(), 0.3)
 
-var _music_paused := false
-var _music_position := 0.0
-var _paused_source := MusicSource.NONE
-var _paused_stream: AudioStream
 
-var _fade_tween: Tween
+## 语音结束（或被暂停/停止）后，把为它让路而 duck 下去的音乐还原回去
+func _restore_music_after_voice() -> void:
+	if _is_ducked:
+		_unduck_music()
 
-func pause_music() -> void:
-	if _music_paused:
-		return
-	if not audio_player_music.playing and not audio_player_music.stream_paused:
-		return
-	_music_paused = true
-	_music_position = audio_player_music.get_playback_position()
-	_paused_source = _music_source
-	_paused_stream = audio_player_music.stream
-	# 用真实目标音量，避免捕捉到 duck 动画中的低值
-	var saved_db := _music_base_db()
-	if _fade_tween:
-		_fade_tween.kill()
-	if _duck_tween:
-		_duck_tween.kill()
-	_fade_tween = create_tween()
-	_fade_tween.tween_property(audio_player_music, "volume_db", -80.0, 1.0) \
-		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	_fade_tween.tween_callback(
-		func():
-			audio_player_music.stop()
-			audio_player_music.volume_db = saved_db
-	)
-	await _fade_tween.finished
-
-func resume_music() -> void:
-	if not _music_paused:
-		return
-	var settings = Main.setting_data
-	var target_db = linear_to_db(settings.music_volume) if not settings.mute_all else -80.0
-	if _fade_tween:
-		_fade_tween.kill()
-	if _duck_tween:
-		_duck_tween.kill()
-	audio_player_music.stream = _paused_stream
-	audio_player_music.volume_db = -80.0
-	audio_player_music.play(_music_position)
-	_music_source = _paused_source
-	_music_paused = false
-	_fade_tween = create_tween()
-	_fade_tween.tween_property(audio_player_music, "volume_db", target_db, 1.0) \
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func play_theme() -> void:
 	if _music_source == MusicSource.PLAYLIST:

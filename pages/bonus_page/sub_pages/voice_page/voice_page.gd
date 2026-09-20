@@ -57,7 +57,10 @@ func get_character_enum_from_string(name: String) -> Enums.CharacterName:
 	
 func play_current_voice() -> void:
 	print("[UI] 语音鉴赏·回放 %s → %s" % [current_collection.voice_filename, Game.describe_state()])
-	await AudioManager.pause_music()
+	# 这里以前要先 await 一段 1 秒的音乐淡出，等它跑完语音才出声 —— 点一下明显像「没反应」。
+	# 现在直接播，让 play_voice 内部的 duck 去让路（0.3 秒降到 50%，语音播完自动恢复原音量），
+	# 和对话里「重播」按钮的处理一致。
+	# 离开收藏页时剧情 BGM 由 game.update_audio() 的 save/restore_story_music 负责。
 	AudioManager.play_voice(current_collection.voice_filename, true)
 
 func _ready() -> void:
