@@ -45,11 +45,12 @@ corner_radius_top_right = 128
 corner_radius_bottom_right = 128
 corner_radius_bottom_left = 128
 
-[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name", "label_phone_date", "label_time", "label_location", "typing_tip")]
+[node name="PhonePage" type="CanvasLayer" unique_id=1191743071 node_paths=PackedStringArray("home_page", "messenger_page", "chat_page", "phoneOut", "background", "phone", "phone_icon_message", "phone_icon_photo", "phone_icon_music", "phone_icon_book", "chat_message_pool", "reply_selection_pool", "chat_pool", "back_button", "messenger_back_button", "label_chat_name", "label_phone_date", "label_time", "label_location", "typing_tip")]
 script = ExtResource("1_xkddf")
 home_page = NodePath("Phone/Home")
 messenger_page = NodePath("Phone/Messenger")
 chat_page = NodePath("Phone/Chat")
+phoneOut = NodePath("PhoneOut")
 background = NodePath("Background")
 phone = NodePath("Phone")
 phone_icon_message = NodePath("Phone/Home/HBoxContainer/PhoneIcon_Message")
@@ -76,7 +77,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_aggdw")
 
-[node name="Phone" type="TextureRect" parent="." unique_id=219849411]
+[node name="Phone" type="Control" parent="." unique_id=940510039]
+layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -88,10 +90,8 @@ offset_right = -174.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
-texture = ExtResource("4_ctgom")
 
 [node name="Home" type="TextureRect" parent="Phone" unique_id=1033589326]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -220,6 +220,7 @@ text = "江城"
 vertical_alignment = 1
 
 [node name="Chat" type="TextureRect" parent="Phone" unique_id=516955828]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -401,6 +402,21 @@ offset_bottom = 153.0
 theme_override_fonts/font = ExtResource("11_22tcg")
 theme_override_font_sizes/font_size = 14
 text = "在线"
+
+[node name="PhoneOut" type="TextureRect" parent="." unique_id=553388909]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1167.0
+offset_top = -1425.0
+offset_right = -176.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("4_ctgom")
+expand_mode = 1
 
 [node name="Preview" type="TextureRect" parent="." unique_id=265957975]
 visible = false

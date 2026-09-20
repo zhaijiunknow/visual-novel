@@ -6,9 +6,10 @@ signal reply_selected(next_id: String)
 @export var home_page: Control
 @export var messenger_page: Control
 @export var chat_page: Control
+@export var phoneOut: Control
 
 @export var background: Control
-@export var phone: TextureRect
+@export var phone: Control
 @export var phone_icon_message: PhoneIcon
 @export var phone_icon_photo: PhoneIcon
 @export var phone_icon_music: PhoneIcon
@@ -37,15 +38,14 @@ const PAGE_TRANSITION_DURATION: float = 0.25
 
 # 是否由剧情触发（ShowPhone）
 var story_mode: bool = false
-var _phone_rest_offset_top: float
-var _phone_slide_distance: float
+## 跟着手机一起滑入/滑出的层（本体 + 外壳）：各自记下静止时的 offset 与滑出距离
+var _slide_parts: Array[Dictionary] = []
 var _tween: Tween
 var _page_tween: Tween
 var _transitioning: bool = false
 
 func _ready() -> void:
-	_phone_rest_offset_top = phone.offset_top
-	_phone_slide_distance = -_phone_rest_offset_top  # 手机高度，即下移距离
+	_setup_slide_parts()
 	chat_page.visible = false
 
 	back_button.pressed.connect(_transition_to_messenger)
@@ -82,6 +82,42 @@ func _ready() -> void:
 	)
 
 
+# ─── 手机外观的滑入/滑出（本体 + 外壳一起动） ───
+
+## 记录各层静止时的 offset。静止时 offset_bottom 贴着屏幕底(0)，
+## 所以 -offset_top 就是这一层的高度，也就是要滑出屏幕的距离——两层高度不同，不能共用一个位移量。
+func _setup_slide_parts() -> void:
+	for node: Control in [phone, phoneOut]:
+		var rest_top: float = node.offset_top
+		_slide_parts.append({
+			"node": node,
+			"rest_top": rest_top,
+			"rest_bottom": node.offset_bottom,
+			"distance": -rest_top,
+		})
+
+## t = 1 完全滑出屏幕，t = 0 停在静止位置。立即生效，不走动画
+func _set_slide_offsets(t: float) -> void:
+	for part in _slide_parts:
+		var node: Control = part["node"]
+		var down: float = part["distance"] * t
+		node.offset_top = part["rest_top"] + down
+		node.offset_bottom = part["rest_bottom"] + down
+
+## 从当前位置补间到 t 对应的位置
+func _tween_slide_offsets(t: float, duration: float,
+		ease: Tween.EaseType, trans: Tween.TransitionType) -> void:
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_ease(ease).set_trans(trans).set_parallel(true)
+	for part in _slide_parts:
+		var node: Control = part["node"]
+		var down: float = part["distance"] * t
+		_tween.tween_property(node, "offset_top", part["rest_top"] + down, duration)
+		_tween.tween_property(node, "offset_bottom", part["rest_bottom"] + down, duration)
+	await _tween.finished
+
+
 func open(is_story: bool = false, initial_chat_character: String = "") -> void:
 	story_mode = is_story
 	messenger_back_button.visible = not story_mode
@@ -102,22 +138,13 @@ func open(is_story: bool = false, initial_chat_character: String = "") -> void:
 
 	show()
 
-	# 从屏幕下方滑入：整体下移 _phone_slide_distance 后 tween 回原位
-	phone.offset_top = _phone_rest_offset_top + _phone_slide_distance
-	phone.offset_bottom = _phone_slide_distance
-	if _tween: _tween.kill()
-	_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	_tween.tween_property(phone, "offset_top", _phone_rest_offset_top, SLIDE_DURATION)
-	_tween.tween_property(phone, "offset_bottom", 0.0, SLIDE_DURATION)
-	await _tween.finished
+	# 从屏幕下方滑入：本体和外壳一起，先瞬移到屏幕外再补间回原位
+	_set_slide_offsets(1.0)
+	await _tween_slide_offsets(0.0, SLIDE_DURATION, Tween.EASE_OUT, Tween.TRANS_CUBIC)
 
 
 func close() -> void:
-	if _tween: _tween.kill()
-	_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
-	_tween.tween_property(phone, "offset_top", _phone_rest_offset_top + _phone_slide_distance, SLIDE_DURATION)
-	_tween.tween_property(phone, "offset_bottom", _phone_slide_distance, SLIDE_DURATION)
-	await _tween.finished
+	await _tween_slide_offsets(1.0, SLIDE_DURATION, Tween.EASE_IN, Tween.TRANS_CUBIC)
 	hide()
 
 

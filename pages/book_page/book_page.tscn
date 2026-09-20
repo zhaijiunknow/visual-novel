@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bll0ukv6e6in5" path="res://assets/ui_backgrounds/book_background.jpg" id="6_1dvnh"]
 [ext_resource type="AudioStream" uid="uid://cn08kmw3cr3t" path="res://assets/system_sounds/奇迹书音效/写字声.wav" id="6_q4ygb"]
 [ext_resource type="Texture2D" uid="uid://cse7gjgt5acqe" path="res://assets/ui_backgrounds/book_shadow.png" id="7_pvqm7"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="9_g58k7"]
 [ext_resource type="FontFile" uid="uid://dgn3iice41qn8" path="res://assets/fonts/瑞美加张清平硬笔楷书.ttf" id="13_5hjx8"]
 [ext_resource type="Script" uid="uid://g32um0mltv5d" path="res://addons/dialogue_manager/dialogue_label.gd" id="14_r2lyb"]
 [ext_resource type="PackedScene" uid="uid://cnrtv0v2fr2pd" path="res://prefabs/paragraph_container/paragraph_container.tscn" id="15_3fj4v"]
@@ -18,6 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://cjmlg2ttio5na" path="res://assets/sprites/ui/ui.sprites/circle_front.tres" id="19_gxpof"]
 [ext_resource type="Texture2D" uid="uid://bvamlxda5wg7e" path="res://assets/sprites/ui/ui.sprites/page_hover.tres" id="19_ju1h1"]
 [ext_resource type="Theme" uid="uid://de7lc2eux6hpx" path="res://themes/main.theme" id="20_nk4nf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xsqj"]
+shader = ExtResource("9_g58k7")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="BookPage" type="CanvasLayer" unique_id=139379015 node_paths=PackedStringArray("dialogue_label", "vbox_page", "button_previous", "button_next", "paragraph_container", "buttons", "back_button", "audio_player")]
 script = ExtResource("1_s06xr")
@@ -86,6 +92,7 @@ rotation = -0.075049154
 theme_override_constants/separation = 42
 
 [node name="BackButton" parent="." unique_id=2095390168 instance=ExtResource("16_7e5ln")]
+material = SubResource("ShaderMaterial_7xsqj")
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0

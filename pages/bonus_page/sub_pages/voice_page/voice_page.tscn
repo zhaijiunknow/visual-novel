@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bh1j660oi8dw8"]
 
 [ext_resource type="Script" uid="uid://r0777eg6rpqk" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.gd" id="1_feqe0"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="3_inet1"]
 [ext_resource type="Texture2D" uid="uid://6bg61v05tfeg" path="res://assets/sprites/ui/ui.sprites/bichr_xia.tres" id="3_jy1e2"]
 [ext_resource type="Texture2D" uid="uid://b28ikata7q7of" path="res://assets/sprites/ui/ui.sprites/bigchr_knd.tres" id="4_cs7ht"]
 [ext_resource type="Texture2D" uid="uid://chwfqsqd0bktu" path="res://assets/sprites/ui/ui.sprites/bigchr_ge.tres" id="5_n2gkn"]
@@ -20,6 +21,11 @@
 [ext_resource type="Theme" uid="uid://dm5bm3o71un5e" path="res://themes/text_theme.tres" id="13_cs7ht"]
 [ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="13_f3a7m"]
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="14_n2gkn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64s78"]
+shader = ExtResource("3_inet1")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="VoicePage" type="Control" unique_id=21218107 node_paths=PackedStringArray("portrait_dict", "voice_card_pool", "label_character_name", "label_chapter_number", "label_chapter_name", "label_text", "voice_view", "button_replay", "button_favourite", "texture_rect_favourite")]
 layout_mode = 3
@@ -68,6 +74,7 @@ theme_override_constants/v_separation = 16
 columns = 2
 
 [node name="BackButton" parent="." unique_id=956369186 instance=ExtResource("5_udoh6")]
+material = SubResource("ShaderMaterial_64s78")
 layout_mode = 1
 offset_left = 96.0
 offset_top = -180.0

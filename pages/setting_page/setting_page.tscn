@@ -37,6 +37,17 @@
 [ext_resource type="Texture2D" uid="uid://je2gokp6pp0x" path="res://assets/sprites/ui/ui.sprites/chr_ling_selected.tres" id="28_qffjh"]
 [ext_resource type="Texture2D" uid="uid://crg0cqmioy8gu" path="res://assets/sprites/ui/ui.sprites/chr_others_hover.tres" id="29_oth_h"]
 [ext_resource type="Texture2D" uid="uid://beg5uo4syck2k" path="res://assets/sprites/ui/ui.sprites/chr_others_selected.tres" id="30_oth_s"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="33_qffjh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ag836"]
+shader = ExtResource("33_qffjh")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n73nh"]
+shader = ExtResource("33_qffjh")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="SettingPage" type="CanvasLayer" unique_id=1362674666 node_paths=PackedStringArray("start_tab_item", "btn_screen_fullscreen", "btn_screen_window", "btn_skip_unread", "btn_skip_after_choice", "btn_skip_ignore_transitions", "btn_confirmation_on", "btn_confirmation_off", "btn_skip_unread_text_on", "btn_skip_unread_text_off", "text_speed_preview", "auto_speed_preview", "slider_text_speed", "slider_auto_speed", "slider_music_volume", "slider_sound_volume", "slider_master_voice_volume", "slider_character_voice_volume", "character_voice_card_container", "btn_mute_on", "btn_mute_off", "reset_button")]
 script = ExtResource("1_cqmhw")
@@ -539,6 +550,7 @@ layout_mode = 2
 title = "关闭"
 
 [node name="ResetButton" type="TextureButton" parent="." unique_id=446688002]
+material = SubResource("ShaderMaterial_ag836")
 offset_left = 647.0
 offset_top = 1255.0
 offset_right = 834.0
@@ -548,6 +560,7 @@ texture_pressed = ExtResource("14_reset_c")
 texture_hover = ExtResource("13_reset_h")
 
 [node name="BackButton" parent="." unique_id=967157290 instance=ExtResource("8_70vfm")]
+material = SubResource("ShaderMaterial_n73nh")
 offset_left = 97.0
 offset_top = -180.0
 offset_right = 153.0

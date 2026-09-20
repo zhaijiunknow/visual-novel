@@ -17,10 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://bwjf1rj1qofn6" path="res://assets/sprites/ui/ui.sprites/menu_book.tres" id="15_kmxdp"]
 [ext_resource type="Texture2D" uid="uid://ba2mnw8omf7ab" path="res://assets/sprites/ui/ui.sprites/menu_title.tres" id="16_rei1k"]
 [ext_resource type="Texture2D" uid="uid://wd186bg6yj0d" path="res://assets/sprites/ui/ui.sprites/botton_click.tres" id="17_me1qy"]
+[ext_resource type="Texture2D" uid="uid://by8pwa7270x6r" path="res://assets/sprites/ui/ui.sprites/menu_hide.tres" id="17_yt3wv"]
 [ext_resource type="Texture2D" uid="uid://dptcwuvdtymn8" path="res://assets/sprites/ui/ui.sprites/botton_hover.tres" id="18_3vosg"]
 [ext_resource type="Texture2D" uid="uid://ocfot3ouwomw" path="res://assets/sprites/ui/ui.sprites/botton_replay.tres" id="19_74ksf"]
 [ext_resource type="Texture2D" uid="uid://b30vxpb4y60u3" path="res://assets/sprites/ui/ui.sprites/botton_star.tres" id="20_q2k8d"]
-[ext_resource type="Texture2D" uid="uid://buakxq3fk2v0q" path="res://assets/sprites/ui/ui.sprites/botton_close.tres" id="21_vfmve"]
 [ext_resource type="Shader" uid="uid://bse78htuslcne" path="res://prefabs/dialogue_box/avatar_edge_fade.gdshader" id="22_avfade"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_avfade"]
@@ -213,7 +213,7 @@ layout_mode = 2
 hint_text = "隐藏对话框"
 
 [node name="Icon" parent="HBoxContainer_Buttons/DialogueButton_Hide" index="1" unique_id=1758427880]
-texture = ExtResource("21_vfmve")
+texture = ExtResource("17_yt3wv")
 
 [node name="DialogueButton_Title" parent="HBoxContainer_Buttons" unique_id=744792504 instance=ExtResource("7_hwkq6")]
 layout_mode = 2

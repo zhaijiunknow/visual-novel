@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://c5fnmemssfmcr" path="res://assets/sprites/ui/ui.sprites/save_title.tres" id="5_nf4dd"]
 [ext_resource type="PackedScene" uid="uid://1qd1ifwgiuft" path="res://prefabs/v_scrollbar_ex/v_scroll_bar_ex.tscn" id="6_ot1va"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="7_rond4"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="8_bswld"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nf4dd"]
+shader = ExtResource("8_bswld")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="ProfilePage" type="CanvasLayer" unique_id=899662598 node_paths=PackedStringArray("profile_card_model", "title_load", "title_save", "profile_card_pool")]
 script = ExtResource("1_bswld")
@@ -77,6 +83,7 @@ offset_bottom = 1210.36
 target_scroll_container = NodePath("../ScrollContainer")
 
 [node name="BackButton" parent="." unique_id=1649292307 instance=ExtResource("7_rond4")]
+material = SubResource("ShaderMaterial_nf4dd")
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0

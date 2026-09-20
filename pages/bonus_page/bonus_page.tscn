@@ -6,8 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://b088cmdfmopjq" path="res://pages/bonus_page/sub_pages/gallery_page/gallery_page.tscn" id="4_yn5h1"]
 [ext_resource type="PackedScene" uid="uid://dma0o1vwd13f8" path="res://pages/bonus_page/sub_pages/music_page/music_page.tscn" id="5_mi528"]
 [ext_resource type="PackedScene" uid="uid://bh1j660oi8dw8" path="res://pages/bonus_page/sub_pages/voice_page/voice_page.tscn" id="6_0lt8g"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="9_yn5h1"]
 [ext_resource type="PackedScene" uid="uid://cv3nd1gusfy8i" path="res://prefabs/back_button/back_button.tscn" id="42_j7eld"]
 [ext_resource type="PackedScene" uid="uid://cdx8bibh1j6e4" path="res://prefabs/tab_item/tab_item.tscn" id="51_nu3n8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mi528"]
+shader = ExtResource("9_yn5h1")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="BonusPage" type="CanvasLayer" unique_id=998352437 node_paths=PackedStringArray("music_page", "voice_page", "start_tab_item", "tab_gallery", "tab_music", "tab_voice")]
 script = ExtResource("1_kr8r3")
@@ -53,9 +59,16 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="VoicePage" parent="TabPages" unique_id=2028092101 instance=ExtResource("6_0lt8g")]
+[node name="VoicePage" parent="TabPages" unique_id=2028092101 node_paths=PackedStringArray("portrait_dict") instance=ExtResource("6_0lt8g")]
 visible = false
 layout_mode = 1
+portrait_dict = {
+0: NodePath("VoiceView/TextureRect_Portrait_yu"),
+1: NodePath("VoiceView/TextureRect_Portrait_xia"),
+2: NodePath("VoiceView/TextureRect_Portrait_knd"),
+3: NodePath("VoiceView/TextureRect_Portrait_ge"),
+4: NodePath("VoiceView/TextureRect_Portrait_ling")
+}
 
 [node name="HBoxContainer_Tabs" type="HBoxContainer" parent="." unique_id=1931057470]
 offset_left = 1261.0
@@ -91,6 +104,7 @@ title_en = "Voice Collection"
 target_tab = NodePath("../../TabPages/VoicePage")
 
 [node name="BackButton" parent="." unique_id=879433762 instance=ExtResource("42_j7eld")]
+material = SubResource("ShaderMaterial_mi528")
 anchors_preset = 0
 anchor_top = 0.0
 anchor_bottom = 0.0

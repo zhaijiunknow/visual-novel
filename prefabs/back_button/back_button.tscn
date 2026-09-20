@@ -6,8 +6,15 @@
 [ext_resource type="Script" uid="uid://dmeq1sti8h621" path="res://prefabs/back_button/back_button.gd" id="4_76biy"]
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="5_wtgn1"]
 [ext_resource type="AudioStream" uid="uid://dk32yexjuvehj" path="res://assets/system_sounds/奇迹书音效/返回音效.wav" id="6_m10hk"]
+[ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="7_bright"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_brightness"]
+shader = ExtResource("7_bright")
+shader_parameter/brightness = 4.0
+shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="BackButton" type="TextureButton" unique_id=1647052709]
+material = SubResource("ShaderMaterial_brightness")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
