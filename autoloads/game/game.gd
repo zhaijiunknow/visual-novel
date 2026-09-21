@@ -110,6 +110,7 @@ func page_shown(key: StringName) -> bool:
 
 
 func _ready() -> void:
+	_build_hotkeys()
 	for key in EAGER_PAGES:
 		_ensure_page(key)
 	switch_to_page(main_menu, false, false)
@@ -223,6 +224,118 @@ func _page_stack_names() -> Array[String]:
 	return names
 
 
+## ─── 面板快捷键 ───
+## 放在 Game 而不是对话框按钮那边：按钮挂在剧情页里，而页面是「用到才建」的 ——
+## 主界面时剧情页还没创建，那些按钮节点根本不存在，快捷键就没人响应。
+## 动作和对话框那排按钮调同一份（见 scripts/dialogue_button_controller.gd）。
+## 表项：[键, 面板名, 显示名, 动作, 只在剧情页]。
+## 面板名是 ASCII 的，给调试桥用（LocalhostBridge 的 game.open_panel）
+const BONUS_TAB_KEYS := [KEY_1, KEY_2, KEY_3, KEY_4]
+
+var _panel_hotkeys: Dictionary = {}
+var _panel_key_by_id: Dictionary = {}
+
+func _build_hotkeys() -> void:
+	for entry in [
+		# 存档要剧情里的进度、手机要剧情里的聊天数据，主界面打开都没意义，所以标 true
+		[KEY_S, "save", "存档", open_save, true],
+		[KEY_L, "load", "读档", open_load, false],
+		[KEY_1, "character", "立绘鉴赏", open_bonus_tab.bind(&"character"), false],
+		[KEY_2, "gallery", "插画鉴赏", open_bonus_tab.bind(&"gallery"), false],
+		[KEY_3, "music", "音乐鉴赏", open_bonus_tab.bind(&"music"), false],
+		[KEY_4, "voice", "语音鉴赏", open_bonus_tab.bind(&"voice"), false],
+		[KEY_P, "phone", "手机", open_phone, true],
+		[KEY_B, "book", "奇迹书", open_book, false],
+		[KEY_G, "settings", "设置", open_settings, false],
+	]:
+		_panel_hotkeys[entry[0]] = [entry[2], entry[3], entry[4]]
+		_panel_key_by_id[entry[1]] = entry[0]
+
+
+## 调试桥（LocalhostBridge 的 game.open_panel）用：按面板名打开，
+## 走的是和快捷键完全同一条路 —— 门禁、清自动/快进、日志都一样，
+## 所以桥接测出来的行为和按键盘等价。
+## 返回 false = 当前状态不允许（等于按了没反应），或者名字不认识
+func open_panel_by_name(panel_name: String) -> bool:
+	var keycode: int = _panel_key_by_id.get(panel_name, KEY_NONE)
+	if keycode == KEY_NONE:
+		return false
+	var key_event := InputEventKey.new()
+	key_event.keycode = keycode
+	key_event.pressed = true
+	return _handle_panel_hotkey(key_event)
+
+
+## 面板快捷键。返回 true = 这次按键已经处理掉了。
+## 只在「顶层」响应：主界面、剧情页；鉴赏页里额外放行 1~4（用来切 tab，省得去点）。
+## 其他情况（存档/设置/手机盖在上面）一律不响应，免得又叠一层。
+func _handle_panel_hotkey(key_event: InputEventKey) -> bool:
+	if loading:
+		return false
+	var entry: Array = _panel_hotkeys.get(key_event.keycode, [])
+	if entry.is_empty():
+		return false
+	var hotkey_name: String = entry[0]
+	var action: Callable = entry[1]
+	var story_only: bool = entry[2]
+	var page := current_page
+	var on_stage := page != null and page == get_page(&"stage")
+	var on_menu := page != null and page == get_page(&"main_menu")
+	var in_bonus := page != null and page == get_page(&"bonus")
+	if not (on_stage or on_menu or (in_bonus and key_event.keycode in BONUS_TAB_KEYS)):
+		return false
+	# 标了「只在剧情页」的那两个（存档 / 手机）在主界面按了没意义：没有进度可存、也没有聊天数据
+	if story_only and not on_stage:
+		return false
+	# 和点对话框按钮一样：先把自动/快进清掉，免得页面盖上来剧情还在后台推进
+	var stage: StagePage = get_page(&"stage") as StagePage
+	if stage != null:
+		stage.cancel_auto_and_skip()
+	print("[UI] 快捷键·%s → %s" % [hotkey_name, describe_state()])
+	action.call()
+	get_viewport().set_input_as_handled()
+	return true
+
+
+func open_save() -> void:
+	_open_profile(Main.ProfileMode.SAVE)
+
+func open_load() -> void:
+	_open_profile(Main.ProfileMode.LOAD)
+
+func _open_profile(mode: Main.ProfileMode) -> void:
+	Main.profile_mode = mode
+	switch_to_page(profile_page, true, true)
+
+func open_settings() -> void:
+	switch_to_page(setting_page, true, true)
+
+func open_phone() -> void:
+	phone_page.open(false)
+
+func open_book() -> void:
+	switch_to_page(book_page, true, true)
+
+
+## 跳到鉴赏页的某个 tab。已经在鉴赏页时只切 tab、不重复压栈。
+## tab_key 沿用 bonus_page 里 TabItem 的 lazy_page_name（character/gallery/music/voice）。
+## 这里才碰 bonus_page —— 表的构建不碰，所以开局不会把鉴赏页建出来
+func open_bonus_tab(tab_key: StringName) -> void:
+	var page := bonus_page
+	var tab: TabItem = null
+	match tab_key:
+		&"character": tab = page.start_tab_item
+		&"gallery": tab = page.tab_gallery
+		&"music": tab = page.tab_music
+		&"voice": tab = page.tab_voice
+	if tab == null:
+		push_warning("[Game] 找不到鉴赏 tab：%s" % tab_key)
+		return
+	tab.select()
+	if current_page != page:
+		switch_to_page(page, true, true)
+
+
 ## Esc：关闭各种菜单。
 ## 压在 page_stack 上的叠加页（设置/存档/书/回想/奖励/确认框）就是 go_back()——
 ## 它自带 loading 和「只剩底层页」的保护，所以主菜单按 Esc 什么都不会发生。
@@ -231,6 +344,8 @@ func _page_stack_names() -> Array[String]:
 func _unhandled_input(event: InputEvent) -> void:
 	var key_event := event as InputEventKey
 	if key_event == null or not key_event.pressed or key_event.echo:
+		return
+	if _handle_panel_hotkey(key_event):
 		return
 	if key_event.keycode != KEY_ESCAPE or loading:
 		return

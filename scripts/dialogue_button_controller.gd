@@ -16,6 +16,9 @@ extends Node
 var _logged_skip: bool = false
 var _logged_auto: bool = false
 
+## 所属剧情页（_ready 里用父链找到后存下来）
+var _stage: StagePage
+
 func _ready() -> void:
 	# 用父链找自己所属的剧情页：绝不能读 Game.stage_page——剧情页正在被实例化时它的子节点
 	# 会先 _ready，那时去读 Game.stage_page 会反过来触发创建（惰性实例化下无限递归）
@@ -26,6 +29,7 @@ func _ready() -> void:
 		if not _has_character_ancestor():
 			push_warning("[DialogueButtonController] 没找到所属的 StagePage")
 		return
+	_stage = stage
 	button_skip.toggle_changed.connect(
 		func ():
 			stage.skip = button_skip.toggled
@@ -65,16 +69,8 @@ func _ready() -> void:
 		button_phone, button_book, button_hide, button_title,
 	]:
 		button.clicked.connect(stage.cancel_auto_and_skip)
-	button_save.clicked.connect(
-		func ():
-			Main.profile_mode = Main.ProfileMode.SAVE
-			Game.switch_to_page(Game.profile_page, true, true)
-	)
-	button_load.clicked.connect(
-		func ():
-			Main.profile_mode = Main.ProfileMode.LOAD
-			Game.switch_to_page(Game.profile_page, true, true)
-	)
+	button_save.clicked.connect(Game.open_save)
+	button_load.clicked.connect(Game.open_load)
 	button_log.clicked.connect(stage.open_log_page)
 	# 对话框那排按钮：谁被点了、点完停在哪
 	for pair in [
@@ -86,20 +82,11 @@ func _ready() -> void:
 		var label: String = pair[1]
 		button.clicked.connect(
 			func(): print("[UI] 对话框·%s → %s" % [label, Game.describe_state()]))
-	button_set.clicked.connect(
-		func (): Game.switch_to_page(Game.setting_page, true, true)
-	)
-	button_voice.clicked.connect(
-		func ():
-			Game.bonus_page.tab_voice.select()
-			Game.switch_to_page(Game.bonus_page, true, true)
-	)
-	button_phone.clicked.connect(
-		func(): Game.phone_page.open(false)
-	)
-	button_book.clicked.connect(
-		func (): Game.switch_to_page(Game.book_page, true, true)
-	)
+	# 这几个动作都放在 Game 上：快捷键（主界面也要能用）和按钮共用同一份实现
+	button_set.clicked.connect(Game.open_settings)
+	button_voice.clicked.connect(Game.open_bonus_tab.bind(&"voice"))
+	button_phone.clicked.connect(Game.open_phone)
+	button_book.clicked.connect(Game.open_book)
 	button_hide.clicked.connect(
 		func (): stage.hide_dialogue_ui()
 	)

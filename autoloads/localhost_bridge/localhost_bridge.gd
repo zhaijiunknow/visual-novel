@@ -236,6 +236,7 @@ func _is_allowed_action(action: String) -> bool:
 		"game.continue",
 		"game.start_new",
 		"game.save_quick",
+		"game.open_panel",
 		"dialogue.advance",
 		"dialogue.skip_typing",
 		"dialogue.set_mode",
@@ -302,6 +303,13 @@ func _run_action(action: String, params: Dictionary, request_id: String) -> void
 			# 和「每 20 句自动存档」「快速存档」调的是同一个函数
 			Game.profile_page.save_quick_game()
 			ok = true
+		"game.open_panel":
+			# 面板名见 Game._build_hotkeys 的表（save/load/character/gallery/music/voice/phone/book/settings）。
+			# 走的是 Game.open_panel_by_name —— 和按快捷键完全同一条路，含门禁
+			var panel := str(params.get("panel", ""))
+			ok = Game.open_panel_by_name(panel)
+			if not ok:
+				error_message = "panel not available now: %s" % panel
 		"dialogue.advance":
 			ok = Game.stage_page.advance_from_bridge()
 			if not ok:
