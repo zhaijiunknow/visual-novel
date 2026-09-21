@@ -121,3 +121,17 @@ func close_gallery_view() -> void:
 	await tween.finished
 	gallery_view.visible = false
 	_active_card = null
+
+
+## Esc：一次只退一层。大图查看开着时，只把它收回卡片（面板留着），再按一次才由 Game 关面板。
+## 不接这一层的话，事件会落到 Game._unhandled_input，它直接把鉴赏页 go_back() 掉，
+## 大图的收回动画整个被跳过 —— 看起来就是「停一下、整页消失」。
+## 事件在树里是自下而上派发的，所以这里能先于 Game 拿到；消费掉它 Game 就不会再动。
+func _unhandled_input(event: InputEvent) -> void:
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo or key.keycode != KEY_ESCAPE:
+		return
+	if not visible or not gallery_view.visible:
+		return
+	get_viewport().set_input_as_handled()
+	close_gallery_view()
