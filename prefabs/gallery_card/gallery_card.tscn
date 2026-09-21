@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="5_6oylf"]
 
 [node name="GalleryCard" type="TextureButton" unique_id=1091187862 node_paths=PackedStringArray("texture_rect_base", "texture_rect_variation")]
+focus_mode = 0
 mouse_filter = 1
 toggle_mode = true
 texture_pressed = ExtResource("1_6oylf")

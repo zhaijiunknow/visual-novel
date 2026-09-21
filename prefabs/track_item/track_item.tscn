@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="6_p04pl"]
 
 [node name="TrackItem" type="TextureButton" unique_id=742270521 node_paths=PackedStringArray("drag_filter", "label_title")]
+focus_mode = 0
 mouse_filter = 1
 toggle_mode = true
 texture_pressed = ExtResource("1_q4fwc")

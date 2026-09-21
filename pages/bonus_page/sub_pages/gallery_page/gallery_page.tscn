@@ -108,6 +108,7 @@ grow_vertical = 0
 text = "差分"
 
 [node name="Button_Hide" type="TextureButton" parent="CanvasLayer/GalleryView/Frame" unique_id=337641631]
+focus_mode = 0
 layout_mode = 0
 offset_left = 2330.0
 offset_top = 889.0
@@ -120,6 +121,7 @@ texture_hover = ExtResource("9_2doyf")
 [node name="InteractSound" parent="CanvasLayer/GalleryView/Frame/Button_Hide" unique_id=1483212628 instance=ExtResource("11_t4biu")]
 
 [node name="Button_Close" type="TextureButton" parent="CanvasLayer/GalleryView/Frame" unique_id=2102809351]
+focus_mode = 0
 layout_mode = 0
 offset_left = 2432.0
 offset_top = 892.0

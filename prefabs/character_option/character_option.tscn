@@ -25,6 +25,7 @@ text = "表情"
 vertical_alignment = 1
 
 [node name="TextureButton_Previous" type="TextureButton" parent="." unique_id=1867605246]
+focus_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.53
@@ -57,6 +58,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureButton_Next" type="TextureButton" parent="." unique_id=394097424]
+focus_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.53

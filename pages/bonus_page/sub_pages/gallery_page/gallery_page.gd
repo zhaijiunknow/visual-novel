@@ -123,15 +123,25 @@ func close_gallery_view() -> void:
 	_active_card = null
 
 
-## Esc：一次只退一层。大图查看开着时，只把它收回卡片（面板留着），再按一次才由 Game 关面板。
-## 不接这一层的话，事件会落到 Game._unhandled_input，它直接把鉴赏页 go_back() 掉，
-## 大图的收回动画整个被跳过 —— 看起来就是「停一下、整页消失」。
-## 事件在树里是自下而上派发的，所以这里能先于 Game 拿到；消费掉它 Game 就不会再动。
+## 大图查看开着时的键盘：
+##   Esc  —— 一次只退一层：把大图收回卡片（面板留着），再按一次才由 Game 关面板。
+##           不接这一层的话事件会落到 Game._unhandled_input，它直接把鉴赏页 go_back() 掉，
+##           收回动画整个被跳过 —— 看起来就是「停一下、整页消失」。
+##   左右 —— 切差分，和面板上那对箭头同一条路（都写 variation_index，带 posmod 循环）
+## 事件在树里是自下而上派发的，所以这里能先于 Game 拿到；消费掉 Game 就不会再动。
 func _unhandled_input(event: InputEvent) -> void:
 	var key := event as InputEventKey
-	if key == null or not key.pressed or key.echo or key.keycode != KEY_ESCAPE:
+	if key == null or not key.pressed or key.echo:
 		return
 	if not visible or not gallery_view.visible:
 		return
-	get_viewport().set_input_as_handled()
-	close_gallery_view()
+	match key.keycode:
+		KEY_ESCAPE:
+			get_viewport().set_input_as_handled()
+			close_gallery_view()
+		KEY_LEFT:
+			get_viewport().set_input_as_handled()
+			variation_index -= 1
+		KEY_RIGHT:
+			get_viewport().set_input_as_handled()
+			variation_index += 1

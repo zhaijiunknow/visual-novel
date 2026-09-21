@@ -141,6 +141,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect_PlayButton" type="TextureButton" parent="Buttons" unique_id=207247409]
+focus_mode = 0
 layout_mode = 0
 offset_left = 855.0
 offset_top = 1139.0
@@ -153,6 +154,7 @@ texture_hover = ExtResource("9_rtpcs")
 [node name="InteractSound" parent="Buttons/TextureRect_PlayButton" unique_id=1483212628 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_PauseButton" type="TextureButton" parent="Buttons" unique_id=521318393]
+focus_mode = 0
 layout_mode = 0
 offset_left = 855.0
 offset_top = 1139.0
@@ -165,6 +167,7 @@ texture_hover = ExtResource("13_i5qfc")
 [node name="InteractSound" parent="Buttons/TextureRect_PauseButton" unique_id=1077917995 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_NextButton" type="TextureButton" parent="Buttons" unique_id=1569538604]
+focus_mode = 0
 layout_mode = 0
 offset_left = 975.0
 offset_top = 1162.0
@@ -178,6 +181,7 @@ flip_h = true
 [node name="InteractSound" parent="Buttons/TextureRect_NextButton" unique_id=443107870 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_PreviousButton" type="TextureButton" parent="Buttons" unique_id=925621557]
+focus_mode = 0
 layout_mode = 0
 offset_left = 784.0
 offset_top = 1162.0

@@ -45,26 +45,11 @@ func _ready() -> void:
 		vbox_playlist.add_child(track_item)
 	
 	AudioManager.track_index_changed.connect(update_track_info)
-	play_button.pressed.connect(
-		func ():
-			if AudioManager._playlist_paused:
-				AudioManager.resume_playlist()
-			else:
-				AudioManager.resume_or_play_track()
-	)
-	pause_button.pressed.connect(
-		func (): AudioManager.pause_playlist()
-	)
-	next_button.pressed.connect(
-		func ():
-			AudioManager.track_index += 1
-			AudioManager.play_track()
-	)
-	previous_button.pressed.connect(
-		func ():
-			AudioManager.track_index -= 1
-			AudioManager.play_track()
-	)
+	# 这三个动作按钮和键盘（左右/空格）共用，见下面
+	play_button.pressed.connect(_toggle_play)
+	pause_button.pressed.connect(_toggle_play)
+	next_button.pressed.connect(_next_track)
+	previous_button.pressed.connect(_previous_track)
 	play_progress_container.mouse_entered.connect(
 		func (): progress_hovered = true
 	)
@@ -102,6 +87,43 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.is_released():
 				button_pressed = false
+
+
+## 上一首 / 下一首（按钮和左右键共用）。track_index 的 setter 自带循环，越界会绕回去
+func _previous_track() -> void:
+	AudioManager.track_index -= 1
+	AudioManager.play_track()
+
+func _next_track() -> void:
+	AudioManager.track_index += 1
+	AudioManager.play_track()
+
+
+## 播放/暂停切换（播放键、暂停键、空格共用）。
+## 播放键只在没播时可见、暂停键只在播着时可见，所以两个按钮在这里都等价于各自的语义
+func _toggle_play() -> void:
+	if is_playlist_playing and audio_player.playing:
+		AudioManager.pause_playlist()
+	elif AudioManager._playlist_paused:
+		AudioManager.resume_playlist()
+	else:
+		AudioManager.resume_or_play_track()
+
+
+## 键盘：左右切曲、空格暂停/继续。
+## 必须用 _unhandled_input —— 页面在 SubViewport 里，键盘事件进不到 _input（实测收不到）
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo:
+		return
+	match key.keycode:
+		KEY_LEFT: _previous_track()
+		KEY_RIGHT: _next_track()
+		KEY_SPACE: _toggle_play()
+		_: return
+	get_viewport().set_input_as_handled()
 
 var is_playlist_playing: bool:
 	get:

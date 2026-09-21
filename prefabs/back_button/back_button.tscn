@@ -14,6 +14,7 @@ shader_parameter/brightness = 4.0
 shader_parameter/brightness_offset = 0.2720000604199999
 
 [node name="BackButton" type="TextureButton" unique_id=1647052709]
+focus_mode = 0
 material = SubResource("ShaderMaterial_brightness")
 anchors_preset = 2
 anchor_top = 1.0
