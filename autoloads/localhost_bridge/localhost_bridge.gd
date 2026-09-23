@@ -237,6 +237,7 @@ func _is_allowed_action(action: String) -> bool:
 		"game.start_new",
 		"game.save_quick",
 		"game.open_panel",
+		"game.right_click",
 		"dialogue.advance",
 		"dialogue.skip_typing",
 		"dialogue.set_mode",
@@ -310,6 +311,11 @@ func _run_action(action: String, params: Dictionary, request_id: String) -> void
 			ok = Game.open_panel_by_name(panel)
 			if not ok:
 				error_message = "panel not available now: %s" % panel
+		"game.right_click":
+			# 合成一次真的鼠标右键（见 _send_right_click）：走完整输入管线，
+			# 所以能测到「右键返回」这种只有真鼠标才走得到的行为，而不是绕过输入直接调 Game.go_back()
+			_send_right_click(params)
+			ok = true
 		"dialogue.advance":
 			ok = Game.stage_page.advance_from_bridge()
 			if not ok:
@@ -428,6 +434,32 @@ func _run_action(action: String, params: Dictionary, request_id: String) -> void
 		"finished_at_ms": _now_ms(),
 		"debug_payload": debug_payload,
 	}
+
+## 合成一次鼠标右键：先补一个移动事件让 GUI 的命中判定对上位置，再发按下/抬起。
+## 可选 x / y，不给就点窗口正中。**坐标是窗口像素**（真实 OS 鼠标事件就是这个空间）：
+## 根视图的 visible_rect 是缩放后的 2560x1440，拿它当坐标会落到窗口外面，
+## 事件会被 SubViewportContainer 直接丢掉（实测：位置越界时右键像没发出去一样）。
+func _send_right_click(params: Dictionary) -> void:
+	var window_size := Vector2(DisplayServer.window_get_size())
+	var mouse_position := Vector2(
+		float(params.get("x", window_size.x * 0.5)),
+		float(params.get("y", window_size.y * 0.5))
+	)
+	Input.warp_mouse(mouse_position)
+
+	var motion := InputEventMouseMotion.new()
+	motion.position = mouse_position
+	motion.global_position = mouse_position
+	Input.parse_input_event(motion)
+
+	for pressed: bool in [true, false]:
+		var button := InputEventMouseButton.new()
+		button.button_index = MOUSE_BUTTON_RIGHT
+		button.pressed = pressed
+		button.position = mouse_position
+		button.global_position = mouse_position
+		Input.parse_input_event(button)
+
 
 func _handle_debug_dialogue_lines_query(params: Dictionary, request_id: String) -> Dictionary:
 	var started_at_ms := _now_ms()

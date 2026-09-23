@@ -263,10 +263,14 @@ func load_profile(profile: ProfileData) -> void:
 			Game.log_page._suppressed = true
 			Game.log_page.restore(profile.log_datas.duplicate(true))
 			if profile.music_path != "":
-				var apm = AudioManager.audio_player_music
-				apm.stream = load(profile.music_path)
-				apm.play(profile.music_position)
-				AudioManager._music_source = profile.music_source
+				# 优先走播放列表恢复：track_index 跟着一起对上，播完不会跳到旧索引上的别的曲子
+				if not AudioManager.restore_track_by_path(profile.music_path, profile.music_position):
+					# 不在列表里（资源改名，或主题曲这类非列表曲目）：还是塞 stream，
+					# 但 source 要标成 NONE，否则会被"播完切下一首"那条分支接管
+					var apm = AudioManager.audio_player_music
+					apm.stream = load(profile.music_path)
+					apm.play(profile.music_position)
+					AudioManager._music_source = AudioManager.MusicSource.NONE
 			var resume_key := profile.dialogue_id if profile.dialogue_id != "" else "start"
 			var book_resume_key := profile.book_segment_start_id if profile.book_segment_start_id != "" else resume_key
 			var resume_probe_line: DialogueLine = await Game.stage_page.dialogue.get_next_dialogue_line(resume_key, [Game.stage_page, Stage], DMConstants.MutationBehaviour.Skip)

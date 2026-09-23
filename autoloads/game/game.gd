@@ -317,6 +317,18 @@ func open_book() -> void:
 	switch_to_page(book_page, true, true)
 
 
+## 需要确认的操作统一走这里：设置里开着「需要确认」就先弹二级确认框、点确认才执行 action，
+## 关掉就直接执行。剧情页「返回主菜单」和主菜单「退出游戏」共用这一份。
+## 取消＝退回上一层（ConfirmPage 的默认 on_cancel 就是 Game.go_back()），右键返回也一样。
+## title 目前只是透传（确认框的标题是美术图，见 confirm_page.tscn 的 TitleTexture）
+func confirm_or_run(title: String, message: String, action: Callable) -> void:
+	if Main.setting_data.need_confirmation:
+		confirm_page.show_confirm(title, message, action)
+		switch_to_page(confirm_page, true, true)
+	else:
+		action.call()
+
+
 ## 跳到鉴赏页的某个 tab。已经在鉴赏页时只切 tab、不重复压栈。
 ## tab_key 沿用 bonus_page 里 TabItem 的 lazy_page_name（character/gallery/music/voice）。
 ## 这里才碰 bonus_page —— 表的构建不碰，所以开局不会把鉴赏页建出来

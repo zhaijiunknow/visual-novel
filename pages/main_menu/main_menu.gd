@@ -37,9 +37,7 @@ func _ready() -> void:
 		func():
 			Game.switch_to_page(Game.setting_page, true, true)
 	)
-	button_quit.clicked.connect(
-		func(): Main.quit_game()
-	)
+	button_quit.clicked.connect(_quit_game)
 	# 玩家点过什么、之后停在哪 —— 连在各自的动作之后，打的是互动之后的状态
 	for pair in [
 		[button_start, "开始游戏"], [button_load, "读取档案"], [button_bonus, "特别鉴赏"],
@@ -58,6 +56,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if key_event == null or not key_event.pressed or key_event.echo or key_event.unicode < 32:
 		return
 	LocalhostBridge.feed_cheat_key(char(key_event.unicode))
+
+## 退出游戏。和剧情页「返回主菜单」走同一套：设置里开着「需要确认」就先弹二级确认框。
+## 点窗口 X 不走这里 —— 那是系统行为，直接退（见 Main._notification）
+func _quit_game() -> void:
+	Game.confirm_or_run("特别提醒", "确定要退出游戏吗？", func (): Main.quit_game())
 
 func _start_new_game() -> void:
 	var interact_sound := button_start.get_node("InteractSound") as InteractSound

@@ -106,6 +106,24 @@ func play_track() -> void:
 	audio_player_music.stream = current_track.track
 	audio_player_music.play()
 
+## 按存档恢复 BGM：在播放列表里按资源路径找回那一首，连同 track_index 一起对上。
+## 直接塞 stream 而不动 track_index 的话，"正在播的曲子"和"playlist[track_index]"会不一致，
+## 等这首播完，finished 里那句 play_track() 就会跳去旧索引上的另一首（读档后莫名换 BGM 的来源）。
+## 找不到（资源改名、或主题曲这类非列表曲目）返回 false，交给调用方兜底。
+func restore_track_by_path(path: String, position: float = 0.0) -> bool:
+	for i in playlist.size():
+		var track: MusicData = playlist[i]
+		if track.track == null or track.track.resource_path != path:
+			continue
+		track_index = i
+		_playlist_paused = false
+		_music_source = MusicSource.PLAYLIST
+		audio_player_music.stream_paused = false
+		audio_player_music.stream = current_track.track
+		audio_player_music.play(position)
+		return true
+	return false
+
 func resume_or_play_track() -> void:
 	if _playlist_paused:
 		_playlist_paused = false

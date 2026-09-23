@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scenes/main_scene/boot_splash.gd" id="14_bs"]
 [ext_resource type="Texture2D" uid="uid://bbuo46jo6fhht" path="res://assets/sprites/社团logo/lsg_night_showup.png" id="15_logo"]
 [ext_resource type="PackedScene" path="res://prefabs/chapter_transition/chapter_transition.tscn" id="16_chapter"]
+[ext_resource type="Script" path="res://prefabs/components/right_click_back.gd" id="17_rcb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fepm"]
 shader = ExtResource("2_gkvkt")
@@ -32,6 +33,9 @@ size = Vector2i(2560, 1440)
 render_target_update_mode = 4
 
 [node name="Pages" type="Node" parent="SubViewportContainer/SubViewport" unique_id=461717146]
+
+[node name="RightClickBack" type="Node" parent="SubViewportContainer/SubViewport"]
+script = ExtResource("17_rcb")
 
 [node name="BootSplash" type="CanvasLayer" parent="."]
 layer = 10
