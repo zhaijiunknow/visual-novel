@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://b4egn7j2tswy5" path="res://data/musics/8_Breaking time.tres" id="9_23v0v"]
 [ext_resource type="AudioStream" uid="uid://6blbagwpvil4" path="res://assets/audio/设备调试音效.wav" id="10_fksr7"]
 [ext_resource type="Resource" uid="uid://dg1yc3jprrp25" path="res://data/musics/o1_白日倚梦.tres" id="11_t8b2t"]
+[ext_resource type="Resource" uid="uid://cnjcwjhe7cxbo" path="res://data/musics/9_零散的心愿.tres" id="11_x3fpj"]
 [ext_resource type="Resource" uid="uid://bsciwf0yhlu5m" path="res://data/musics/o2_光与影的舞步.tres" id="12_x3fpj"]
 [ext_resource type="Resource" uid="uid://ji1vsa8guakx" path="res://data/musics/o3_盛夏方程式.tres" id="13_ryk8n"]
 [ext_resource type="Resource" uid="uid://bxfdsignwklbh" path="res://data/musics/o4_Le voleur d'ombres.tres" id="14_tkit1"]
@@ -20,7 +21,7 @@
 
 [node name="AudioManager" type="Node" unique_id=1244309478 node_paths=PackedStringArray("audio_player_music", "audio_player_sound", "audio_player_voice")]
 script = ExtResource("1_j0p2n")
-playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_wpaao"), ExtResource("3_jxfme"), ExtResource("4_fksr7"), ExtResource("6_wpaao"), ExtResource("7_om30b"), ExtResource("5_23v0v"), ExtResource("8_vl31e"), ExtResource("9_23v0v"), ExtResource("11_t8b2t"), ExtResource("12_x3fpj"), ExtResource("13_ryk8n"), ExtResource("14_tkit1"), ExtResource("15_h8hcc")])
+playlist = Array[ExtResource("2_qhrnm")]([ExtResource("3_wpaao"), ExtResource("3_jxfme"), ExtResource("4_fksr7"), ExtResource("6_wpaao"), ExtResource("7_om30b"), ExtResource("5_23v0v"), ExtResource("8_vl31e"), ExtResource("9_23v0v"), ExtResource("11_x3fpj"), ExtResource("11_t8b2t"), ExtResource("12_x3fpj"), ExtResource("13_ryk8n"), ExtResource("14_tkit1"), ExtResource("15_h8hcc")])
 theme_music = ExtResource("5_bntsi")
 audio_player_music = NodePath("AudioPlayer_Music")
 audio_player_sound = NodePath("AudioPlayer_Sound")
