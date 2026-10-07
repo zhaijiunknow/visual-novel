@@ -6,13 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://mopd128nba0y" path="res://prefabs/components/interact_sound.tscn" id="4_050h4"]
 [ext_resource type="Texture2D" uid="uid://beulww8wuml3q" path="res://assets/sprites/ui/ui.sprites/menu_star.tres" id="4_aexk2"]
 [ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="5_bright"]
+[ext_resource type="PackedScene" uid="uid://cdnnwlov248c" path="res://prefabs/components/drag_filter.tscn" id="6_dragf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_brightness"]
 shader = ExtResource("5_bright")
 shader_parameter/brightness = 4.0
 shader_parameter/brightness_offset = 0.2720000604199999
 
-[node name="LogLine" type="MarginContainer" unique_id=1658264118 node_paths=PackedStringArray("vbox_character_info", "label_character_name", "rich_label_dialogue_text", "button_replay", "button_favourite")]
+[node name="LogLine" type="MarginContainer" unique_id=1658264118 node_paths=PackedStringArray("vbox_character_info", "label_character_name", "rich_label_dialogue_text", "button_replay", "button_favourite", "drag_filter")]
+mouse_filter = 1
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_bottom = 24
@@ -22,6 +24,10 @@ label_character_name = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/Label
 rich_label_dialogue_text = NodePath("HBoxContainer/RichTextLabel_DialogueText")
 button_replay = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Replay")
 button_favourite = NodePath("HBoxContainer/VBoxContainer_CharacterInfo/HBoxContainer/Collect")
+drag_filter = NodePath("DragFilter")
+
+[node name="DragFilter" parent="." unique_id=1363147519 node_paths=PackedStringArray("target_object") instance=ExtResource("6_dragf")]
+target_object = NodePath("..")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=373279728]
 layout_mode = 2
@@ -65,3 +71,4 @@ theme_override_font_sizes/normal_font_size = 40
 text = "文本内容"
 fit_content = true
 scroll_active = false
+mouse_filter = 2

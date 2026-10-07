@@ -35,6 +35,7 @@ var pending_reply_options: Array[Dictionary] = []
 
 const SLIDE_DURATION: float = 0.5
 const PAGE_TRANSITION_DURATION: float = 0.25
+const CHAT_SCROLL_DURATION: float = 0.3
 
 # 是否由剧情触发（ShowPhone）
 var story_mode: bool = false
@@ -47,6 +48,10 @@ var _transitioning: bool = false
 func _ready() -> void:
 	_setup_slide_parts()
 	chat_page.visible = false
+	# 日期归 Stage 管。先拉一次（手机是惰性页面，可能在 SetDate 之后才建出来，
+	# 那次变化早就过去了、不会再发信号），之后靠信号跟着变
+	Stage.date_changed.connect(refresh_date)
+	refresh_date()
 
 	back_button.pressed.connect(_transition_to_messenger)
 	messenger_back_button.pressed.connect(
@@ -173,12 +178,36 @@ func _prime_story_chat_title(character_name: String) -> void:
 	label_chat_name.text = get_phone_nickname(character_name)
 
 
+## 滚到最新一条。
+##
+## 别只等一帧就读 max_value：ChatMessage 里的 RichTextLabel 会重算最小尺寸，
+## 而它自己还要等两帧才做收缩判定（见 chat_message._wait_then_shrink），
+## 那之前容器的总高度还是旧值 —— 滚动会停在半路，最新一条落在可视区下面。
+## 症状就是「提示音在响，但看不到新消息」。
+##
+## 读档/退出聊天页再进来时最明显：reload_active_chat 一次性灌进整段对话，
+## 只补一次滚动的差额会被放大成"整屏新消息都看不见"。
 func _scroll_chat_to_bottom() -> void:
-	await get_tree().process_frame
+	await _await_chat_layout()
 	var scroll: ScrollContainer = chat_message_pool.get_parent()
 	var bar: VScrollBar = scroll.get_v_scroll_bar()
 	var tween := create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(scroll, "scroll_vertical", bar.max_value, 0.3)
+	tween.tween_property(scroll, "scroll_vertical", bar.max_value, CHAT_SCROLL_DURATION)
+	_snap_to_bottom_when_settled(scroll, bar, tween)
+
+
+## 等聊天区布局稳定。两帧是 chat_message._wait_then_shrink 的等待量，
+## 再一帧留给它收缩后引发的 queue_sort。
+func _await_chat_layout() -> void:
+	for i in 3:
+		await get_tree().process_frame
+
+
+## 补间那 0.3s 里布局还会继续变高（收缩判定、RichTextLabel 换行都可能在这期间完成），
+## 到点后 max_value 往往又变大了 —— 补间结束时补一次底，否则差的那截就留在可视区外。
+func _snap_to_bottom_when_settled(scroll: ScrollContainer, bar: VScrollBar, tween: Tween) -> void:
+	await tween.finished
+	scroll.scroll_vertical = int(bar.max_value)
 
 
 func _add_chat_message(character_name: String, text: String, silent: bool = false) -> void:
@@ -338,6 +367,14 @@ func get_phone_nickname(character_name: String) -> String:
 		return nickname
 	return character_name
 
+
+## 从 Stage 拉当前日期（唯一数据源）。剧情还没 SetDate 过时是空标签 ——
+## 场景文件里那句 "07/06" 只是美术摆位用的占位文本，不能当真日期留着
+func refresh_date() -> void:
+	label_phone_date.text = Stage.get_date_text()
+	label_time.text = Stage.current_date_week_day
+
+
 func get_chat_data(character_name: String) -> ChatData:
 	for chat_data in chat_data_pool:
 		if chat_data.character_name == character_name:
@@ -357,6 +394,21 @@ func add_message(character_name: String, text: String) -> void:
 	var chat_data = get_chat_data(active_chat_character)
 	chat_data.messages.append(text)
 	chat_data.senders.append(character_name)
+	_refresh_chat_card(active_chat_character)
+
+
+## 消息列表页开着的时候，卡片预览要跟着最后一条走。
+## update_chat_list() 只在进列表页时跑一次，之后到达的消息不会重刷卡片 ——
+## 表现是退到列表页等消息，卡片一直停在退出那一刻的那条。
+func _refresh_chat_card(character_name: String) -> void:
+	if not messenger_page.visible:
+		return
+	for child in chat_pool.get_children():
+		var card := child as Chat
+		if card != null and card.chat_data != null \
+				and card.chat_data.character_name == character_name:
+			card.refresh_preview()
+			return
 
 func _serialize_chat_data_pool() -> Array[Dictionary]:
 	var chats: Array[Dictionary] = []

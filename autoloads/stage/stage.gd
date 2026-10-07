@@ -54,8 +54,18 @@ var _character_scene_by_name: Dictionary = {}
 ## 手机页要的昵称/头像，直接从 PackedScene 的 SceneState 读，不实例化角色
 var _phone_meta_by_name: Dictionary = {}
 
+## 日期变了（SetDate / 读档 / reset 都会发）。手机页自己订阅 ——
+## 状态留在 Stage、页面按需拉，别让 Stage 反过来引用 PhonePage 类：两边会成环，
+## 环上所有脚本的类型推断全部失效（`var x := Stage.xxx()` 报 "Cannot infer the type"）
+signal date_changed
+
 var current_background: String
+## 日期状态的唯一持有处（"10-23-周四中午"）：SetDate 拿它去重，读档也靠它恢复
 var current_date: String
+## 拆分出来的月/日/星期，手机和舞台 HUD 都从这里取。month <= 0 = 还没设过日期
+var current_date_month: int = 0
+var current_date_day: int = 0
+var current_date_week_day: String = ""
 var current_cg: String
 var current_cg_variation: String
 ## 当前章节在演出表里的「章节」与「标题」（由 ShowChapterInfo 写入），收藏语音时要用
@@ -212,7 +222,7 @@ func reset() -> void:
 		Game.stage_page.texture_rect_cg.pivot_offset = Vector2.ZERO
 		Game.stage_page.texture_rect_cg.position = Vector2(0, 0)
 	current_background = ""
-	current_date = ""
+	clear_date_state()
 	current_cg = ""
 	current_cg_variation = ""
 	clear_characters()
@@ -432,17 +442,14 @@ func Travel() -> void:
 	Game.travel_page.visible = true
 	await Game.travel_page.visibility_changed
 
+## 剧情里的日期指令：写状态 + 演日期弹窗。
+## 这里**不去重**。导出器已经保证同一天只发一次 SetDate，而章节开头的 SetDateQuiet
+## 会先把日期静默设上 —— 要是这儿因为「状态已经是这个日期」就 return，
+## 剧本里那次真正的日期弹窗（序章第 22 行）就永远不弹了。
 func SetDate(month: int, day: int, week_day: String) -> void:
-	var date_key := "%02d-%02d-%s" % [month, day, week_day]
-	if current_date == date_key:
-		return
-	current_date = date_key
-	var month_str = str(month).pad_zeros(2)
-	var day_str = str(day).pad_zeros(2)
-	Game.phone_page.label_phone_date.text = "%s/%s" % [month_str, day_str]
-	Game.phone_page.label_time.text = week_day
-	Game.stage_page.label_month.text = month_str
-	Game.stage_page.label_day.text = day_str
+	set_date_state(month, day, week_day)
+	Game.stage_page.label_month.text = "%02d" % month
+	Game.stage_page.label_day.text = "%02d" % day
 	Game.stage_page.label_week_day.text = week_day
 	var date_control = Game.stage_page.date
 	date_control.modulate.a = 0
@@ -450,18 +457,81 @@ func SetDate(month: int, day: int, week_day: String) -> void:
 	await get_tree().create_timer(3.0).timeout
 	await create_tween().tween_property(date_control, "modulate:a", 0, 1).finished
 
+
+## 章节开头的静默预设（导出器写在每章第一句之前）：只写日期状态，不演弹窗。
+## 这样开场那几条还没填日期的记录期间，手机也能显示本章的日期。
+func SetDateQuiet(month: int, day: int, week_day: String) -> void:
+	set_date_state(month, day, week_day)
+
+
+## 日期状态的唯一写入处：剧情里的 SetDate 和读档恢复都走这里。
+## 舞台 HUD 的过渡动画不在这 —— 读档不该把日期弹窗再演一遍，那是 SetDate 的事。
+func set_date_state(month: int, day: int, week_day: String) -> void:
+	current_date = "" if month <= 0 else "%02d-%02d-%s" % [month, day, week_day]
+	current_date_month = maxi(month, 0)
+	current_date_day = maxi(day, 0)
+	current_date_week_day = week_day if month > 0 else ""
+	date_changed.emit()
+
+
+## 手机上的日期文案。没设过日期时给空串 —— 手机是开场就能打开的，
+## 这里要是编一个日期出来，玩家会以为自己看的是真的
+func get_date_text() -> String:
+	if current_date_month <= 0:
+		return ""
+	return "%02d/%02d" % [current_date_month, current_date_day]
+
+
+## 清空日期（reset 用：换一局 / 回主菜单，别把上一局的日期留给下一局）
+func clear_date_state() -> void:
+	set_date_state(0, 0, "")
+
 ## 章节过场：由导出脚本写在每章第一句之前（`$> ShowChapterInfo("章节1", "初雪")`）。
 ## 预制体没挂上时直接返回，保证对话不会卡在这里。
 func ShowChapterInfo(chapter: String, chapter_title: String) -> void:
 	# 先记下来：语音收藏的章节号/章节名要用（过场缺失时也得记）
 	current_chapter_designation = chapter
 	current_chapter_title = chapter_title
+	# 重放期间不演过场卡：ChapterTransition 是挂在 game.tscn 上的 CanvasLayer（layer 20），
+	# 在 SubViewport 外面 —— 历史记录跳转时盖的那个加载页遮罩盖不到它，
+	# 演出来就是跳转开始时闪一下章节卡
+	if _is_replaying():
+		return
 	if Game.chapter_transition == null:
 		push_warning("[Stage] chapter_transition 未挂载，跳过章节过场")
 		return
 	await Game.chapter_transition.play(chapter, chapter_title)
 
+# ─── 历史记录跳转（重放）期间的静音记账 ───
+## 重放时最后一条 SetMusic 的曲名（空串 = 最后是 StopMusic）
+var _replay_music: String = ""
+## 重放期间有没有碰过音乐 —— 没碰过就别在收尾时乱切
+var _replay_music_touched: bool = false
+
+## 现在是不是在重放剧本（历史记录跳转）。PlaySFX / SetMusic / StopMusic 都看它
+func _is_replaying() -> bool:
+	var stage := Game.get_page(&"stage") as StagePage
+	return stage != null and stage.rewinding
+
+## 重放收尾：把重放期间记下的最后一次音乐真正切过去。
+## 不这么做的话，音乐要么停在跳转前的曲子，要么被重放里的换曲快放一遍
+func apply_deferred_music() -> void:
+	if not _replay_music_touched:
+		return
+	_replay_music_touched = false
+	if _replay_music.is_empty():
+		StopMusic()
+	else:
+		SetMusic(_replay_music)
+
+
 func SetMusic(music_name: String) -> void:
+	# 重放期间只记账不播：整章的换曲会把音乐快放一遍。重放收尾由
+	# apply_deferred_music() 把最后那一次真正切过去
+	if _is_replaying():
+		_replay_music = music_name
+		_replay_music_touched = true
+		return
 	var track_data: MusicData = AudioManager.playlist.filter(
 		func(m: MusicData): return m.title == music_name
 	).front()
@@ -491,6 +561,10 @@ func SetMusic(music_name: String) -> void:
 	AudioManager.play_track()
 
 func StopMusic() -> void:
+	if _is_replaying():
+		_replay_music = ""
+		_replay_music_touched = true
+		return
 	if not AudioManager.audio_player_music.playing:
 		return
 	var saved_db := AudioManager.audio_player_music.volume_db
@@ -541,6 +615,9 @@ func ShowDialogue(duration: float = 0.4) -> void:
 			sp.dialogue_screen.modulate.a = 1
 
 func PlaySFX(sound_name: String, wait_for_finish: bool = false) -> void:
+	# 历史记录跳转要重放整章剧本，期间每条音效都真放一遍就成了"噼里啪啦"快放一串
+	if _is_replaying():
+		return
 	await AudioManager.play_sound_by_name(sound_name, wait_for_finish)
 
 func RevealBackgroundWithBlur(black_fade_time: float = 0.8,

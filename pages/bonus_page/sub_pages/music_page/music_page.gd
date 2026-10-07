@@ -113,7 +113,10 @@ func _toggle_play() -> void:
 ## 键盘：左右切曲、空格暂停/继续。
 ## 必须用 _unhandled_input —— 页面在 SubViewport 里，键盘事件进不到 _input（实测收不到）
 func _unhandled_input(event: InputEvent) -> void:
-	if not visible:
+	# visible 只是这个 Control 自己的标志：bonus 页是 CanvasLayer，被切走时
+	# 子页的 visible 不会跟着变 false —— 只判 visible 的话，在剧情里按左右键照样会切 BGM。
+	# 必须连父页一起判（page_shown 不建页）
+	if not visible or not Game.page_shown(&"bonus"):
 		return
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo:

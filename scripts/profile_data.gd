@@ -20,5 +20,10 @@ extends Resource
 @export var music_source: int
 @export var cg_name: String
 @export var cg_variation: String
+## 剧情日期（舞台 HUD + 手机）。读档不会重跑 SetDate，靠这三个字段恢复给 Stage。
+## date_month = 0 表示这份存档存于加入日期字段之前 —— 恢复成空标签，别编造日期
+@export var date_month: int = 0
+@export var date_day: int = 0
+@export var date_week_day: String = ""
 @export var quick_save_progress_count: int = 0
 @export var last_saved_at_unix_ms: int = 0

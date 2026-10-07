@@ -451,6 +451,109 @@ func _extract_bridge_static_line_id(value: String) -> String:
 		return ""
 	return value.substr(id_start, id_end - id_start).strip_edges()
 
+
+# ─── 历史记录跳回某一句 ───────────────────────────────
+
+## 正在跳：重放是 await 的长流程，连点两下会重入
+var _rewinding: bool = false
+## 给 Stage 看的：重放期间不放音效、不切音乐（见 Stage.PlaySFX / SetMusic）
+var rewinding: bool:
+	get: return _rewinding
+## 重放最多走这么多句就放弃，防剧本里有环导致死循环
+const REWIND_MAX_STEPS := 20000
+## 重放期间的时间倍速：这条路上有 55 秒的背景平移、8 秒的模糊揭幕、5 段 2.4 秒的背景
+## 淡入淡出，真等完要一分半。tween 和 timer 都受 time_scale 影响，一起加速就只剩几十毫秒，
+## 而命令仍然按原顺序 await —— 顺序对了状态才对。
+const REWIND_TIME_SCALE := 100.0
+
+## 跳回历史记录里的某一句：从本章开头把 `$>` 命令按原顺序重放一遍，走到那一句为止，
+## 再从那一句继续正常推进。
+##
+## 为什么不直接在目标行落地（`start_at_from_bridge` 那种做法）：那条路走
+## `DialogueManager.get_line()`，它只解析目标行、一条 `$>` 都不执行，而 `reset()`
+## 又会把背景/CG/日期清空 —— 结果是一句落在空舞台上的台词，不是"回到那段剧情"。
+##
+## 重放**必须按原顺序 await**。试过 `MutationBehaviour.DoNotWait`（不等，快），
+## 但它会把"附带延迟副作用"的命令搞乱序：`SetBackground` 里的 `clear_characters()`
+## 要等淡出之后才发生，而 `FadeIn` 是同步就把立绘塞进池子的 —— 两者一乱序，
+## 角色池会瞬时涨过槽位数，直接踩爆 `redistribute_stage_characters` 的越界。
+## 所以走"顺序不变 + 时间加速"，可信度优先。
+func rewind_to(line_id: String, chapter_name_from_log: String = "") -> bool:
+	if _rewinding or Game.loading or Game.current_page != self:
+		return false
+	if Game.chapter_transition != null and Game.chapter_transition.visible:
+		return false
+	var target_dialogue: DialogueResource = \
+		_resolve_bridge_chapter_dialogue(chapter_name_from_log) \
+		if not chapter_name_from_log.is_empty() else dialogue
+	if target_dialogue == null:
+		return false
+	var target_id := _resolve_bridge_next_id(target_dialogue, line_id)
+	if target_id.is_empty():
+		return false
+
+	_rewinding = true
+	dialogue = target_dialogue
+	reset()
+
+	# 重放会一句句经过 got_dialogue，不挡的话整章台词都会灌进历史记录。
+	# 沿用读档那套 _suppressed，用完恢复原值（调用方可能本来就设着）
+	var log_page := Game.get_page(&"log") as LogPage
+	var log_was_suppressed := false
+	if log_page != null:
+		log_was_suppressed = log_page._suppressed
+		log_page._suppressed = true
+
+	var previous_time_scale := Engine.time_scale
+	Engine.time_scale = REWIND_TIME_SCALE
+	# 盖上不透光的加载页：重放会把整章的换背景、立绘进出、章节过场卡快速播一遍，
+	# 玩家不该看见这个过程。注意要用 cover —— 加载页那个 Background 只有 30% 不透明
+	# （存档/读档只是压暗 + 转圈），挡不住重放。
+	# 音效和音乐由 Stage 的 _is_replaying() 挡掉，重放完再切到目标那句的音乐
+	Game.loading = true
+	Game.loading_page.layer = 100
+	Game.loading_page.set_cover(true)
+	Game.loading_page.show()
+
+	var target_line: DialogueLine = null
+	var key := "start"
+	for _i in REWIND_MAX_STEPS:
+		var line: DialogueLine = await DialogueManager.get_next_dialogue_line(
+			dialogue, key, [self, Stage])
+		if line == null:
+			break
+		if line.id == target_id:
+			target_line = line
+			break
+		key = line.next_id
+
+	Engine.time_scale = previous_time_scale
+
+	# 收尾：重放里可能刚触发过章节过场卡片；对话框状态也归位
+	if Game.chapter_transition != null:
+		Game.chapter_transition.cancel()
+	stop_background_performance()
+	stop_opening_effects()
+	texture_rect_blackscreen.modulate.a = 0
+	if log_page != null:
+		log_page._suppressed = log_was_suppressed
+	_rewinding = false
+	# 音乐在 _rewinding 归位之后才切，否则又会被记账吞掉
+	Stage.apply_deferred_music()
+	# 揭盖放在最后：上面任何一步出问题都还能看到画面（失败的那条路也走这里）
+	Game.loading = false
+	Game.loading_page.hide()
+	Game.loading_page.set_cover(false)
+
+	if target_line == null:
+		push_warning("[Stage] rewind_to 没走到目标行：line_id=%s chapter=%s" % [
+			line_id, chapter_name_from_log])
+		return false
+	# 赋值即触发 process_line()，从这里按正常流程往下走（也会把这句补进历史记录）
+	dialogue_line = target_line
+	return true
+
+
 func get_bridge_dialogue_debug_lines(chapter_name_from_bridge: String = "", text_query: String = "", key_query: String = "", limit: int = 50, offset: int = 0, include_total: bool = false) -> Dictionary:
 	var target_dialogue := _resolve_bridge_debug_target_dialogue(chapter_name_from_bridge)
 	if target_dialogue == null:

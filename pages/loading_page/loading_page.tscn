@@ -47,8 +47,9 @@ _data = {
 &"blink": ExtResource("5_1occ5")
 }
 
-[node name="LoadingPage" type="CanvasLayer" unique_id=79654088]
+[node name="LoadingPage" type="CanvasLayer" unique_id=79654088 node_paths=PackedStringArray("cover")]
 script = ExtResource("1_mieu7")
+cover = NodePath("Cover")
 
 [node name="Background" type="ColorRect" parent="." unique_id=874357959]
 anchors_preset = 15
@@ -57,6 +58,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.30588236)
+
+[node name="Cover" type="ColorRect" parent="." unique_id=1937425160]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="." unique_id=1107214408]
 modulate = Color(1, 1, 1, 0)

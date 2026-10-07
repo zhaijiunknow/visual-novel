@@ -101,3 +101,11 @@ func _finish() -> void:
 	hide()
 	_finished = true
 	finished.emit()
+
+
+## 强行收掉正在播的过场、不发 finished。历史记录跳转重放剧本时会再触发一次
+## ShowChapterInfo，而那次 play() 是没人 await 的（走 DoNotWait 重放），
+## 不主动收掉就会盖在跳转后的画面上自己演完那 4 秒
+func cancel() -> void:
+	_finished = true
+	hide()

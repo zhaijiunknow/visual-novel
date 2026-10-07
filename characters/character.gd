@@ -280,7 +280,9 @@ static func redistribute_stage_characters(instant: bool = false, new_image: Cont
 	var indices = _slot_indices_for_count(count)
 	for i in count:
 		var image: Control = children[i]
-		var slot_name = POSITION_SLOTS[indices[i]]
+		# 槽位只有 5 个，角色数更多时（重放剧本、立绘没来得及回收等瞬时状态）
+		# 多出来的沿用最后一个槽 —— 以前这里会直接 indices[i] 越界报错
+		var slot_name = POSITION_SLOTS[indices[mini(i, indices.size() - 1)]]
 		var target_pos: Vector2 = Game.stage_page.get_position_by_name(slot_name)
 		var adjusted_pos := _get_adjusted_stage_position(image, target_pos)
 		if instant or image == new_image:

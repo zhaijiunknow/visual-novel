@@ -1,11 +1,19 @@
 class_name LogLine
 extends MarginContainer
 
+## 点了这一行（不是点重听/收藏按钮）→ 请求剧情跳回这一句
+signal jump_requested(data: LogData)
+
 @export var vbox_character_info: VBoxContainer
 @export var label_character_name: Label
 @export var rich_label_dialogue_text: RichTextLabel
 @export var button_replay: TextureRect
 @export var button_favourite: TextureRect
+@export var drag_filter: DragFilter
+
+## 不可跳转的条目（加 line_id 之前存的老档）压暗一点，顺便当作"点不动"的提示
+const MODULATE_NOT_JUMPABLE := 0.55
+const MODULATE_HOVER := Color(1.18, 1.18, 1.18)
 
 const COLOR_NORMAL := Color(0.382, 0.382, 0.382)
 const COLOR_HOVER_BLEND := Color(0.171, 0.171, 0.171)
@@ -40,6 +48,10 @@ var is_favourite: bool:
 				return true
 		return false
 
+## 这一条能不能跳（老存档里没有 line_id 的条目点不动）
+var is_jumpable: bool:
+	get: return log_data != null and not log_data.line_id.is_empty()
+
 func setup(data: LogData) -> void:
 	log_data = data
 	character_name = data.display_name if data.display_name else data.character_name
@@ -48,6 +60,7 @@ func setup(data: LogData) -> void:
 	button_replay.visible = show
 	button_favourite.visible = show
 	_update_favourite_color()
+	modulate.a = 1.0 if is_jumpable else MODULATE_NOT_JUMPABLE
 
 func _ready() -> void:
 	button_replay.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -55,6 +68,16 @@ func _ready() -> void:
 	button_replay.modulate = COLOR_NORMAL
 	button_favourite.modulate = COLOR_FAVOURITE_OFF
 	Main.voice_collection_changed.connect(_on_voice_collection_changed)
+	# 用 DragFilter 而不是直接听 gui_input：回想页本身支持按住拖动滚动，
+	# 直接听点击的话"拖动列表"会被当成"点了某一句"（它靠 8px 门限区分两者）
+	if drag_filter != null:
+		drag_filter.execute.connect(
+			func():
+				if is_jumpable:
+					jump_requested.emit(log_data)
+		)
+	mouse_entered.connect(func(): if is_jumpable: modulate = MODULATE_HOVER)
+	mouse_exited.connect(func(): modulate = Color.WHITE if is_jumpable else Color(1, 1, 1, MODULATE_NOT_JUMPABLE))
 	button_replay.mouse_entered.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL + COLOR_HOVER_BLEND)
 	button_replay.mouse_exited.connect(func(): if not _playing: button_replay.modulate = COLOR_NORMAL)
 	button_replay.gui_input.connect(

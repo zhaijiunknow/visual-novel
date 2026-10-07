@@ -133,7 +133,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	var key := event as InputEventKey
 	if key == null or not key.pressed or key.echo:
 		return
-	if not visible or not gallery_view.visible:
+	# 同 music_page：bonus 页是 CanvasLayer，切走后子页 visible 仍是 true，
+	# 不判父页的话在剧情里按 ESC/左右键会作用到插画鉴赏上
+	if not visible or not gallery_view.visible or not Game.page_shown(&"bonus"):
 		return
 	match key.keycode:
 		KEY_ESCAPE:

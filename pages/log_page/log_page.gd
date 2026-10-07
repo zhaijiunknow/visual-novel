@@ -48,7 +48,7 @@ func _ready() -> void:
 			var stage := Game.get_page(&"stage") as StagePage
 			if stage != null:
 				chapter = stage.chapter_name
-			add_line(line.character, line.text, voice, chapter, display_name)
+			add_line(line.character, line.text, voice, chapter, display_name, line.id)
 	)
 
 func _input(event: InputEvent) -> void:
@@ -91,13 +91,14 @@ func _scroll_by(delta: float) -> void:
 	scroll_container.scroll_vertical = int(scroll_container.scroll_vertical + delta)
 
 func add_line(character_name: String, text: String, voice_filename: String = "",
-		chapter_name: String = "", display_name: String = "") -> void:
+		chapter_name: String = "", display_name: String = "", line_id: String = "") -> void:
 	var data = LogData.new()
 	data.character_name = character_name
 	data.display_name = display_name
 	data.text = text
 	data.voice_filename = voice_filename
 	data.chapter_name = chapter_name
+	data.line_id = line_id
 	log_data_pool.append(data)
 	if log_data_pool.size() > MAX_LOG_ENTRIES:
 		log_data_pool.pop_front()
@@ -107,6 +108,7 @@ func _insert_ui(data: LogData) -> void:
 	var line: LogLine = log_line.duplicate()
 	vbox_log_lines.add_child(line)
 	line.setup(data)
+	line.jump_requested.connect(_on_jump_requested)
 	vbox_log_lines.add_child(divider.duplicate())
 	while vbox_log_lines.get_child_count() > MAX_LOG_ENTRIES * 2:
 		var old_child = vbox_log_lines.get_child(0)
@@ -114,6 +116,39 @@ func _insert_ui(data: LogData) -> void:
 		old_child.queue_free()
 	# 这里不用手动贴底：内容变高会让滚动条 max_value 变化，_on_v_scroll_changed 会接管。
 	# 隐藏时插入也不怕——显示出来时 visibility_changed 贴一次，之后照旧跟着走。
+
+
+# ─── 跳回某一句 ───────────────────────────────────────
+
+func _on_jump_requested(data: LogData) -> void:
+	if data == null or data.line_id.is_empty():
+		return
+	var index := log_data_pool.find(data)
+	if index == -1:
+		return
+	var stage := Game.get_page(&"stage") as StagePage
+	if stage == null:
+		return
+	# 先关掉回想页再跳：跳转期间剧情会重放一大段，回想页盖在上面看不到过程
+	Game.go_back(false)
+	if not await stage.rewind_to(data.line_id, data.chapter_name):
+		push_warning("[Log] 跳转失败：line_id=%s chapter=%s" % [data.line_id, data.chapter_name])
+		return
+	# 跳成功才截断：列表退回到被点的那句，重播往后重新追加，
+	# 这样列表和剧情位置始终一致，不会出现重复段落
+	truncate_to(index)
+
+## 只保留到 index（含）。UI 是「行 + 分隔线」成对插进去的，删的时候要按对对齐
+func truncate_to(index: int) -> void:
+	if index < 0 or index >= log_data_pool.size():
+		return
+	log_data_pool.resize(index + 1)
+	var keep_children := (index + 1) * 2
+	while vbox_log_lines.get_child_count() > keep_children:
+		var last := vbox_log_lines.get_child(vbox_log_lines.get_child_count() - 1)
+		vbox_log_lines.remove_child(last)
+		last.queue_free()
+	_pin_scroll_to_latest()
 
 ## 是不是已经滚到最底了。注意能滚到的最大位置是 max_value - page（max_value 含一屏的高度），
 ## 内容没超出、根本滚不动时也算「在最底」

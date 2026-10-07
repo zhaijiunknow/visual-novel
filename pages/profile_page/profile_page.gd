@@ -82,6 +82,9 @@ func _capture_runtime_snapshot() -> Dictionary:
 		"chapter_title": Stage.current_chapter_title,
 		"character_datas": character_datas,
 		"background": Stage.current_background,
+		"date_month": Stage.current_date_month,
+		"date_day": Stage.current_date_day,
+		"date_week_day": Stage.current_date_week_day,
 		"cg_name": Stage.current_cg,
 		"cg_variation": Stage.current_cg_variation,
 		"chat_datas": Game.phone_page.chat_data_pool.duplicate(true),
@@ -104,6 +107,9 @@ func _apply_snapshot_to_profile(profile: ProfileData, snapshot: Dictionary) -> v
 	profile.chapter_title = snapshot.chapter_title
 	profile.character_datas = snapshot.character_datas
 	profile.background = snapshot.background
+	profile.date_month = snapshot.date_month
+	profile.date_day = snapshot.date_day
+	profile.date_week_day = snapshot.date_week_day
 	profile.cg_name = snapshot.cg_name
 	profile.cg_variation = snapshot.cg_variation
 	profile.chat_datas = snapshot.chat_datas
@@ -232,6 +238,9 @@ func load_profile(profile: ProfileData) -> void:
 						Game.stage_page.texture_rect_background.texture = target_background.variations[variation_name]
 						Stage.current_background = profile.background
 						Game.phone_page.label_location.text = target_background.location
+			# 日期同理：读档不重跑 SetDate，不恢复的话手机和舞台 HUD 会一直是空的
+			# （老存档没有日期字段 → month = 0 → 恢复成空标签）
+			Stage.set_date_state(profile.date_month, profile.date_day, profile.date_week_day)
 			Game.stage_page.stop_background_performance()
 			Game.stage_page.stop_opening_effects()
 			if profile.cg_name != "" and profile.cg_variation != "":
