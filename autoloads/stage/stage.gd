@@ -502,27 +502,46 @@ func ShowChapterInfo(chapter: String, chapter_title: String) -> void:
 		return
 	await Game.chapter_transition.play(chapter, chapter_title)
 
-# ─── 历史记录跳转（重放）期间的静音记账 ───
-## 重放时最后一条 SetMusic 的曲名（空串 = 最后是 StopMusic）
+# ─── 历史记录跳转（重放）期间的演出记账 ───
+## 重放时最后一条音乐命令的曲名（空串 = 没有 BGM）
 var _replay_music: String = ""
-## 重放期间有没有碰过音乐 —— 没碰过就别在收尾时乱切
-var _replay_music_touched: bool = false
+## 重放时最后一条 PerformBackgroundPan 的参数（segments 为空 = 没有背景演出）
+var _replay_pan_scale: float = 1.0
+var _replay_pan_segments: Array = []
 
-## 现在是不是在重放剧本（历史记录跳转）。PlaySFX / SetMusic / StopMusic 都看它
+## 现在是不是在重放剧本（历史记录跳转）。PlaySFX / SetMusic / 演出命令都看它
 func _is_replaying() -> bool:
 	var stage := Game.get_page(&"stage") as StagePage
 	return stage != null and stage.rewinding
 
+## 重放开始前清一次记账，别把上一次跳转记下的东西带进这一次
+func begin_replay_deferrals() -> void:
+	_replay_music = ""
+	_replay_pan_scale = 1.0
+	_replay_pan_segments = []
+
 ## 重放收尾：把重放期间记下的最后一次音乐真正切过去。
-## 不这么做的话，音乐要么停在跳转前的曲子，要么被重放里的换曲快放一遍
+## 空串的两种来路都该是「没有 BGM」：
+##   ① 最后一条是 StopMusic；
+##   ② 重放全程没碰过音乐 —— 目标在章首到第一条 SetMusic 之间，那时剧本本来就没起过 BGM。
+## 少了第 ② 种的话，跳回开场会带着跳转前那首曲子（实测：真实流程开场是 src=none 静音的）。
 func apply_deferred_music() -> void:
-	if not _replay_music_touched:
-		return
-	_replay_music_touched = false
 	if _replay_music.is_empty():
 		StopMusic()
 	else:
 		SetMusic(_replay_music)
+
+
+## 重放收尾：把重放期间记下的背景演出**以正常速度**重新起一次。
+## 重放那遍是被 time_scale 快放完、再被 stop_background_performance() 清掉的 ——
+## 不补这一下，跳回开场那段缓慢的背景平移就完全看不到（背景静止）。
+## 记的是"最后一次 PerformBackgroundPan"，和音乐同一个口径；segments 为空就是没有演出。
+func apply_deferred_background_pan() -> void:
+	var segments := _replay_pan_segments
+	_replay_pan_segments = []
+	if segments.is_empty():
+		return
+	Game.stage_page.play_background_performance(_replay_pan_scale, segments)
 
 
 func SetMusic(music_name: String) -> void:
@@ -530,7 +549,6 @@ func SetMusic(music_name: String) -> void:
 	# apply_deferred_music() 把最后那一次真正切过去
 	if _is_replaying():
 		_replay_music = music_name
-		_replay_music_touched = true
 		return
 	var track_data: MusicData = AudioManager.playlist.filter(
 		func(m: MusicData): return m.title == music_name
@@ -563,7 +581,6 @@ func SetMusic(music_name: String) -> void:
 func StopMusic() -> void:
 	if _is_replaying():
 		_replay_music = ""
-		_replay_music_touched = true
 		return
 	if not AudioManager.audio_player_music.playing:
 		return
@@ -634,6 +651,13 @@ func RevealBackgroundWithBlur(black_fade_time: float = 0.8,
 	await Game.stage_page.play_blur_reveal(black_fade_time, blur_fade_time, blur_amount)
 
 func PerformBackgroundPan(scale_multiplier: float, segments: Array) -> void:
+	# 重放期间只记账不播：它是 call_deferred 的"发了不管"演出，重放那遍会被
+	# time_scale 快放完、再被收尾的 stop_background_performance() 连位移一起清掉，
+	# 结果就是跳回去背景静止不动。收尾由 apply_deferred_background_pan() 正常速度重起
+	if _is_replaying():
+		_replay_pan_scale = scale_multiplier
+		_replay_pan_segments = segments.duplicate(true)
+		return
 	if segments.is_empty():
 		Game.stage_page.stop_background_performance()
 		return
@@ -648,6 +672,10 @@ func PerformBackgroundPan(scale_multiplier: float, segments: Array) -> void:
 	Game.stage_page.play_background_performance.call_deferred(scale_multiplier, segments)
 
 func StopBackgroundPerformance(fade_duration: float = 0.8) -> void:
+	# 重放期间只清记账：目标那句本来就没有演出，收尾那次 stop 会把它收干净
+	if _is_replaying():
+		_replay_pan_segments = []
+		return
 	await Game.stage_page.stop_background_performance(true, fade_duration)
 
 func ShowPhone() -> void:

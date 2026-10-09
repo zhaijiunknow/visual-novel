@@ -82,6 +82,7 @@ offset_top = 235.0
 offset_right = 1067.0
 offset_bottom = 299.0
 theme = ExtResource("6_dlduw")
+theme_override_colors/font_color = Color(0.85882354, 0.8352941, 0.8901961, 1)
 theme_override_font_sizes/font_size = 44
 text = "歌曲名称"
 
@@ -92,6 +93,7 @@ offset_top = 445.0
 offset_right = 1681.0
 offset_bottom = 1052.0
 theme = ExtResource("6_dlduw")
+theme_override_colors/default_color = Color(0.85882354, 0.8352941, 0.8901961, 1)
 theme_override_font_sizes/normal_font_size = 31
 text = "歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介歌曲简介"
 
@@ -141,12 +143,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect_PlayButton" type="TextureButton" parent="Buttons" unique_id=207247409]
-focus_mode = 0
 layout_mode = 0
 offset_left = 855.0
 offset_top = 1139.0
 offset_right = 927.0
 offset_bottom = 1211.0
+focus_mode = 0
 texture_normal = ExtResource("10_8cdy3")
 texture_pressed = ExtResource("10_8cdy3")
 texture_hover = ExtResource("9_rtpcs")
@@ -154,12 +156,12 @@ texture_hover = ExtResource("9_rtpcs")
 [node name="InteractSound" parent="Buttons/TextureRect_PlayButton" unique_id=1483212628 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_PauseButton" type="TextureButton" parent="Buttons" unique_id=521318393]
-focus_mode = 0
 layout_mode = 0
 offset_left = 855.0
 offset_top = 1139.0
 offset_right = 927.0
 offset_bottom = 1211.0
+focus_mode = 0
 texture_normal = ExtResource("11_yr5d4")
 texture_pressed = ExtResource("12_dja6k")
 texture_hover = ExtResource("13_i5qfc")
@@ -167,12 +169,12 @@ texture_hover = ExtResource("13_i5qfc")
 [node name="InteractSound" parent="Buttons/TextureRect_PauseButton" unique_id=1077917995 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_NextButton" type="TextureButton" parent="Buttons" unique_id=1569538604]
-focus_mode = 0
 layout_mode = 0
 offset_left = 975.0
 offset_top = 1162.0
 offset_right = 1002.0
 offset_bottom = 1190.0
+focus_mode = 0
 texture_normal = ExtResource("14_dlduw")
 texture_pressed = ExtResource("15_yiqbi")
 texture_hover = ExtResource("16_v2y0q")
@@ -181,12 +183,12 @@ flip_h = true
 [node name="InteractSound" parent="Buttons/TextureRect_NextButton" unique_id=443107870 instance=ExtResource("11_wb12c")]
 
 [node name="TextureRect_PreviousButton" type="TextureButton" parent="Buttons" unique_id=925621557]
-focus_mode = 0
 layout_mode = 0
 offset_left = 784.0
 offset_top = 1162.0
 offset_right = 811.0
 offset_bottom = 1190.0
+focus_mode = 0
 texture_normal = ExtResource("14_dlduw")
 texture_pressed = ExtResource("15_yiqbi")
 texture_hover = ExtResource("16_v2y0q")

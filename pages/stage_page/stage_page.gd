@@ -495,6 +495,9 @@ func rewind_to(line_id: String, chapter_name_from_log: String = "") -> bool:
 	_rewinding = true
 	dialogue = target_dialogue
 	reset()
+	# 清一次记账（音乐 + 背景演出）：这次重放没记到的，收尾就按"没有"处理，
+	# 不能沿用上一次跳转留下的记录
+	Stage.begin_replay_deferrals()
 
 	# 重放会一句句经过 got_dialogue，不挡的话整章台词都会灌进历史记录。
 	# 沿用读档那套 _suppressed，用完恢复原值（调用方可能本来就设着）
@@ -538,8 +541,10 @@ func rewind_to(line_id: String, chapter_name_from_log: String = "") -> bool:
 	if log_page != null:
 		log_page._suppressed = log_was_suppressed
 	_rewinding = false
-	# 音乐在 _rewinding 归位之后才切，否则又会被记账吞掉
+	# 音乐和背景演出都在 _rewinding 归位之后才应用，否则又会被记账吞掉。
+	# 顺序要注意：先 stop_background_performance() 收干净，再起目标那句的演出
 	Stage.apply_deferred_music()
+	Stage.apply_deferred_background_pan()
 	# 揭盖放在最后：上面任何一步出问题都还能看到画面（失败的那条路也走这里）
 	Game.loading = false
 	Game.loading_page.hide()
@@ -1018,6 +1023,8 @@ func _register_quick_save_progress() -> void:
 	Game.profile_page.save_quick_game()
 
 func process_dialogue_line() -> void:
+	# 本句的身份。await 之后用它判断自己有没有被"跳转/读档"顶掉（见下面 ShowDialogue 后那处）
+	var current := dialogue_line
 	# 新的一句开始处理：解除「等文本」状态，下面的 ShowDialogue 才会真的显示
 	release_dialogue_ui_awaiting_text()
 	AudioManager.audio_player_voice.stop()
@@ -1058,6 +1065,11 @@ func process_dialogue_line() -> void:
 
 	# 对话框淡入（ShowDialogue 内部会更新角色名、清空文字、设语音按钮）
 	await Stage.ShowDialogue()
+	# 上面这个 await 期间可能被"历史记录跳转/读档"打断：那边会 reset()，
+	# dialogue_line 被清成 null，这条协程醒来后拿着 null 继续跑就会报
+	# 'Nonexistent function has_tag in base Nil'，还会往重放好的画面上继续改。
+	# 和 process_line 里 `if dialogue_line != current: return` 同一个套路
+	if dialogue_line != current: return
 
 	# 语音
 	if dialogue_line.has_tag("语音") and character:

@@ -7,7 +7,10 @@ extends Control
 @export var story_model: Control
 
 @export var phone_avatar: Texture2D
-@export var phone_nickname: String = ""
+## 多行：手机聊天页顶部的昵称要能手动换行（那个 Label 框高按两行留的）。
+## 普通 String 的 Inspector 是单行框 —— 在那里敲 \n 存进去的是"反斜杠+n"两个字面字符，
+## 保存场景时还会被转义成 \\n，显示出来就是原文。多行框直接按回车，存的是真换行
+@export_multiline var phone_nickname: String = ""
 
 @export var body_parts: Array[AnimatedSprite2D]
 @export var optionals_pool: Node2D
@@ -134,14 +137,23 @@ func _request_avatar_viewport_update() -> void:
 var body_scale_factor: float = 0.5:
 	set(value):
 		body_scale_factor = value
-		var scale_range = 1 - min_scale_factor
-		var s = body_scale_factor * scale_range
-		var scale_factor = min_scale_factor + s
-		sv_container.scale = Vector2(scale_factor, scale_factor)
+		_apply_body_scale()
 
-var min_scale_factor: float:
-	get:
-		return abs(sv_container.position.y) / sv_container.size.y
+## 缩放曲线：等比，**以进度 0.5 为 1×，每半格翻一倍** ——
+##   进度 0.5 → 1×（= 鉴赏页默认外观，加这个滑块之前就是这么大）
+##   进度 1   → 2×
+##   进度 0   → 0.5×
+##
+## 为什么不用线性：线性只能是"滑块顶端 = 1×"，那默认位置(0.5)就必然比原来小一圈 ——
+## 默认构图不该因为多了个缩放滑块就变掉。等比曲线让中点天然落在 1×。
+##
+## 以前这里是 `abs(sv_container.position.y) / size.y` 实时算的，还有两个毛病：
+## 拖动会改 sv_container 的 local position（_input 里写的是 global_position），
+## 基准跟着漂 —— 拖到 |y| ≥ size.y 时区间塌成 0，滑块彻底失效；
+## 而且作者摆好的位置本身就是 1352/1365 ≈ 0.99，行程不到 1%，等于一直没在缩放。
+func _apply_body_scale() -> void:
+	# 2^(2t-1)：t=0.5 时指数为 0 → 1×
+	sv_container.scale = Vector2.ONE * pow(2.0, (body_scale_factor - 0.5) * 2.0)
 
 # This is for Character Bonus only
 signal bonus_part_index_dict_updated
@@ -149,6 +161,40 @@ var bonus_part_index_dict: Dictionary[String, Dictionary]
 
 ## 立绘鉴赏里这个角色站的剧情站位槽（LeftMost/Left/Center/Right/RightMost），单人出场默认 Center
 @export var bonus_slot: String = "Center"
+
+## 立绘鉴赏里默认打开的附加（写 optionals_pool 的子节点名，比如 ["眼镜"]）。
+## 剧情里附加由台词上的 `#附加=` 标签控制，和这个互不影响
+@export var bonus_default_optionals: Array[String] = []
+
+## 立绘鉴赏里默认的身体动作（动画名，如 "校服-抬手"）。空串 = 用场景里摆的那个。
+## 剧情里由台词上的 `#身体=` 标签控制，和这个互不影响
+@export var bonus_default_body: String = ""
+
+## 把附加和身体摆成"鉴赏默认"状态。列表里没有的附加就关掉
+func apply_bonus_defaults() -> void:
+	for optional: Sprite2D in optionals_pool.get_children():
+		optional.visible = optional.name in bonus_default_optionals
+	_apply_bonus_default_body()
+	# 这里**不能**调 _request_viewport_update()：它会把这个子视口的更新模式从
+	# character.tscn 里设的 UPDATE_ALWAYS(4) 降成 UPDATE_ONCE —— 只重绘一帧，之后
+	# 视口不再更新，玩家接着切附加/切部位就都看不出变化（画廊正是靠连续重绘显示这些）。
+	# 剧情那边要 UPDATE_ONCE 是省性能，画廊反之。只同步头像那个离屏视口就够了
+	_sync_avatar()
+
+## 默认身体动作：动画存在才切，顺带把 bonus_part_index_dict 的 index 对齐 ——
+## 那个 index 是 _ready 里按场景里的动画算的，不一起改的话鉴赏页那行会显示旧名字
+func _apply_bonus_default_body() -> void:
+	if bonus_default_body.is_empty() or not body_part_dict.has("Body"):
+		return
+	var options: Array = bonus_part_index_dict.get("Body", {}).get("options", [])
+	var index: int = options.find(bonus_default_body)
+	if index < 0:
+		push_warning("Character: 鉴赏默认身体 %s 不在 %s 的动画里（%s）" % [
+			bonus_default_body, name, options])
+		return
+	body_part_dict["Body"].animation = bonus_default_body
+	bonus_part_index_dict["Body"]["index"] = index
+	bonus_part_index_dict_updated.emit()
 
 ## 鉴赏页里容器的初始局部位置，用来撤销玩家的拖拽
 var _bonus_home_container_position: Vector2

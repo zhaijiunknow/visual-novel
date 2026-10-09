@@ -211,8 +211,11 @@ region = Rect2(376, 128, 944, 856)
 
 [node name="余洛琛" unique_id=318354031 instance=ExtResource("1_pac1f")]
 phone_avatar = ExtResource("24_phone")
-phone_nickname = "高三（10）班-余洛琛-12月5日"
+phone_nickname = "高三（10）班-余洛琛-
+12月5日"
 avatar_fixed_action = "抬手"
+bonus_default_optionals = Array[String](["眼镜"])
+bonus_default_body = "<null>"
 
 [node name="SubViewportContainer" parent="." index="1" unique_id=2063694038]
 offset_left = -767.0
@@ -226,7 +229,7 @@ size = Vector2i(1624, 3070)
 position = Vector2(911, 1643)
 scale = Vector2(0.794, 0.794)
 sprite_frames = SubResource("SpriteFrames_qqr4u")
-animation = &"常服-抬手"
+animation = &"校服-抬手"
 
 [node name="Eyebrows" parent="SubViewportContainer/SubViewport/Body" index="0" unique_id=354402092]
 sprite_frames = SubResource("SpriteFrames_qulg7")

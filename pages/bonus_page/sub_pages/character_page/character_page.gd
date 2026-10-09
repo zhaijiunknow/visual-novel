@@ -56,6 +56,25 @@ var variation_index: int:
 func toggle_optional(optional: Sprite2D) -> void:
 	optional.visible = not optional.visible
 
+## 鉴赏页默认取景：教室-白天
+const DEFAULT_BACKGROUND_TITLE := "教室"
+const DEFAULT_BACKGROUND_VARIATION := "白天"
+
+## 按名字找默认背景，而不是写 `background_index = 0`：
+## 下标跟着 background_paths 的排序（见 Stage._build_lookup_index）走，
+## 以后加一个新背景就可能把 0 号顶掉，取景会莫名其妙变掉
+func select_default_background() -> void:
+	for i in Stage.background_count():
+		var data := Stage.background_at(i)
+		if data == null or data.title != DEFAULT_BACKGROUND_TITLE:
+			continue
+		background_index = i
+		var variation_index_found := data.variations.keys().find(DEFAULT_BACKGROUND_VARIATION)
+		variation_index = maxi(variation_index_found, 0)
+		return
+	# 没有「教室」就退回原来的行为（第一张）
+	background_index = 0
+
 func _ready() -> void:
 	Stage.character_selection_name = character_pool.get_child(0).name
 	Stage.character_selection_name_changed.connect(
@@ -95,7 +114,7 @@ func _ready() -> void:
 	variation_option.next_button.pressed.connect(
 		func(): variation_index += 1
 	)
-	background_index = 0
+	select_default_background()
 	
 	update_characters()
 	for character: Character in character_pool.get_children():
@@ -118,6 +137,11 @@ func _on_visibility_changed() -> void:
 		return
 	# 延后一帧：站位标记在剧情页自己的 SubViewport 里，布局跑完再读
 	reset_character_positions.call_deferred()
+	# 附加/身体也回到默认（和站位一样：玩家上次进来乱点的开关不该留到下次）。
+	# 走 update_characters() 而不是只调 apply_bonus_defaults() —— 它顺带把那几行
+	# 「部位」选项显示的名字刷成默认值，否则模型变了、下面一行还写着旧名字
+	if current_character != null:
+		update_characters()
 
 ## 站位标记在剧情页里，而剧情页现在是「用到才建」的：从主菜单直接进鉴赏时，它到这一刻才被创建，
 ## 里面的 HBoxContainer 还没排过版 —— 此时标记的 global_position 是场景里的旧偏移，
@@ -149,6 +173,8 @@ func update_characters() -> void:
 	for child: Control in character_pool.get_children():
 		child.visible = false
 	current_character.visible = true
+	# 每个角色有自己的鉴赏默认附加（比如余洛琛默认戴眼镜）；剧情里由 #附加= 标签控制
+	current_character.apply_bonus_defaults()
 	label_character_name.text = current_character.name
 	
 	for option: CharacterOption in body_part_options:
