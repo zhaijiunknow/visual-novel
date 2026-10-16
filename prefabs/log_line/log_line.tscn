@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://dx83uhi6atnbv" path="res://shaders/brightness.gdshader" id="5_bright"]
 [ext_resource type="PackedScene" uid="uid://cdnnwlov248c" path="res://prefabs/components/drag_filter.tscn" id="6_dragf"]
 [ext_resource type="Shader" path="res://shaders/log_line_highlight.gdshader" id="7_hlsh"]
+[ext_resource type="Texture2D" uid="uid://d1eovxjae416c" path="res://assets/sprites/ui/ui-2.png" id="8_flktx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_brightness"]
 shader = ExtResource("5_bright")
@@ -17,22 +18,29 @@ shader_parameter/brightness_offset = 0.2720000604199999
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hl"]
 shader = ExtResource("7_hlsh")
 shader_parameter/rect_size = Vector2(1821, 150)
+shader_parameter/flake_tex = ExtResource("8_flktx")
+shader_parameter/flake_atlas_size = Vector2(2560, 2048)
+shader_parameter/flake_region = Vector4(1352, 1970, 73, 76)
 shader_parameter/base_color = Color(0.227, 0.251, 0.439, 0.35)
+shader_parameter/snow_color = Color(0.88, 0.94, 1, 1)
+shader_parameter/miracle_gold = Color(0.89, 0.82, 0.7, 1)
 shader_parameter/aurora_color_a = Color(0.42, 0.6, 0.98, 1)
-shader_parameter/aurora_color_b = Color(0.7, 0.52, 0.98, 1)
-shader_parameter/spark_color = Color(0.88, 0.94, 1, 1)
+shader_parameter/aurora_color_b = Color(0.89, 0.82, 0.7, 1)
 shader_parameter/edge_feather_x = 56.0
 shader_parameter/edge_feather_y = 0.0
 shader_parameter/aurora_strength = 0.22
 shader_parameter/aurora_speed = 0.055
 shader_parameter/aurora_width = 0.05
 shader_parameter/aurora_hue_speed = 0.22
-shader_parameter/spark_strength = 0.18
-shader_parameter/spark_speed = 0.045
-shader_parameter/spark_scale = 26.0
-shader_parameter/scan_strength = 0.0
-shader_parameter/scan_speed = 0.08
-shader_parameter/scan_gap = 7.0
+shader_parameter/flake_strength = 0.6
+shader_parameter/flake_scale = 110.0
+shader_parameter/flake_speed = 0.5
+shader_parameter/dust_strength = 0.22
+shader_parameter/dust_scale = 34.0
+shader_parameter/gold_amount = 1.0
+shader_parameter/frost_strength = 0.45
+shader_parameter/north_strength = 0.0
+shader_parameter/north_gap = 26.0
 
 [node name="LogLine" type="MarginContainer" unique_id=1658264118 node_paths=PackedStringArray("vbox_character_info", "label_character_name", "rich_label_dialogue_text", "button_replay", "button_favourite", "drag_filter", "highlight")]
 mouse_filter = 1
