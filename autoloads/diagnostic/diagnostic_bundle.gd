@@ -66,7 +66,9 @@ static func sanitize(text: String) -> String:
 		text = text.replace(profile, "<用户目录>")
 	var user_dir := OS.get_user_data_dir()
 	if user_dir != "":
-		text = text.replace(user_dir, "<用户目录>\\Godot\\app_userdata")
+		# 正式版存档在 %APPDATA%\<游戏名>，测试版在 %APPDATA%\Godot\app_userdata\<游戏名>，
+		# 占位符不能写死 Godot\app_userdata，否则正式版的路径会被标错
+		text = text.replace(user_dir, "<用户目录>")
 	return text
 
 

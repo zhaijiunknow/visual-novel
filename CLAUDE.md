@@ -23,6 +23,20 @@ Prefabs → shared refs      book/log/phone/           back_button/setting_label
 4. `AudioManager` controls 4 AudioStreamPlayers (music, sound, voice, bonus)
 5. Persistence: `ResourceSaver.save()` → `user://*.tres`
 
+## 存档目录（测试 / 正式）
+
+代码里的存档路径一律写成 `user://xxx`，实际落盘位置由 project.godot 的特性标签覆盖决定：
+
+| 构建 | 触发条件 | user:// 实际指向 |
+|------|----------|------------------|
+| 测试 | 编辑器运行、**Debug 模板**导出 | `%APPDATA%\Godot\app_userdata\无言初雪与奇迹书` |
+| 正式 | **Release 模板**导出 | `%APPDATA%\无言初雪与奇迹书` |
+
+- 靠 `config/use_custom_user_dir.release` + `config/custom_user_dir_name.release` 实现，**判定依据是导出时选的模板，不是导出预设名**
+- 测试目录里是测试人员多轮迭代出来的存档（格式可能互不通用），**不要删、不要迁移**，后续迭代继续用它
+- 发给测试人员的包必须用 Debug 模板导出，否则会落到正式目录
+- 诊断包（`autoloads/diagnostic/`）跟着 `user://` 走，两套目录都会自动收进去
+
 ## Key Files
 
 | Purpose | Path |

@@ -37,6 +37,8 @@ boot_splash/show_image=false
 boot_splash/image="uid://bbuo46jo6fhht"
 config/icon="uid://qth2a4mp6mlh"
 config/windows_native_icon="res://assets/ico/ico_256.ico"
+config/use_custom_user_dir.release=true
+config/custom_user_dir_name.release="无言初雪与奇迹书"
 
 [audio]
 
