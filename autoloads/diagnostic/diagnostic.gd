@@ -1,10 +1,10 @@
 extends Node
 
 ## 内测用的诊断日志导出。
-## 任意页面按 E → 把「引擎日志 + 环境快照 + 设置文件」打成 zip，弹出所在文件夹并把路径复制到剪贴板；
-## 启动时若发现上次留下的运行标记（= 上次没正常退出），自动导出那一份日志，并用确认框告诉玩家路径。
+## 正式版已注释掉「按 E 手动导出排错包」的入口（见下面的 _unhandled_input），
+## 启动时若发现上次留下的运行标记（= 上次没正常退出），仍会自动导出那一份崩溃日志。
 ##
-## 正式版把 ENABLED 改成 false 就整块关掉（不写标记、不响应按键）。
+## 正式版要把整块诊断都关掉时，把 ENABLED 改成 false（不写标记、不响应按键）。
 
 const DiagnosticBundle := preload("res://autoloads/diagnostic/diagnostic_bundle.gd")
 
@@ -30,15 +30,16 @@ func _ready() -> void:
 		_export_previous_crash_log()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not ENABLED or _exporting:
-		return
-	var key := event as InputEventKey
-	if key == null or not key.pressed or key.echo or key.keycode != EXPORT_KEY:
-		return
-	# 故意不 set_input_as_handled()：主菜单的作弊码 "neko" 里也有个 e，别把它吃掉。
-	# 代价是在主菜单敲作弊码时会多导出一个包，无伤大雅
-	_export(KIND_MANUAL)
+# 正式版不提供手动按 E 导出排错包；需要内测时把整段取消注释即可
+#func _unhandled_input(event: InputEvent) -> void:
+#	if not ENABLED or _exporting:
+#		return
+#	var key := event as InputEventKey
+#	if key == null or not key.pressed or key.echo or key.keycode != EXPORT_KEY:
+#		return
+#	# 故意不 set_input_as_handled()：主菜单的作弊码 "neko" 里也有个 e，别把它吃掉。
+#	# 代价是在主菜单敲作弊码时会多导出一个包，无伤大雅
+#	_export(KIND_MANUAL)
 
 
 func _exit_tree() -> void:
