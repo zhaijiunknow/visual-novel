@@ -1253,4 +1253,7 @@ func _on_dialogue_end(_resource: DialogueResource) -> void:
 	responses_menu.visible = false
 	Stage.reset()
 	reset()
+	# 剧本结束 → 回标题。
+	# 序章的 PV/感谢图在章节末尾由 `$> PlayEndingPV()` 播完，播完会回到剧情页；
+	# 后面没有下一章时才会走到这里。
 	Game.switch_to_page(Game.main_menu, true, false)

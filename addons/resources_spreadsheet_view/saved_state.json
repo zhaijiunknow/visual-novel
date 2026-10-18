@@ -1,50 +1,50 @@
 {
   "column_properties": {
-	"res://data/backgrounds/": {
-	  "metadata/_custom_type_script": {
-		"visibility": 0.0
-	  },
-	  "resource_local_to_scene": {
-		"visibility": 0.0
-	  },
-	  "resource_name": {
-		"visibility": 0.0
-	  }
-	},
-	"res://data/galleries/": {
-	  "metadata/_custom_type_script": {
-		"visibility": 0.0
-	  },
-	  "resource_local_to_scene": {
-		"visibility": 0.0
-	  },
-	  "resource_name": {
-		"visibility": 0.0
-	  }
-	},
-	"res://data/musics/": {
-	  "metadata/_custom_type_script": {
-		"visibility": 0.0
-	  },
-	  "resource_local_to_scene": {
-		"visibility": 0.0
-	  },
-	  "resource_name": {
-		"visibility": 0.0
-	  }
-	}
+    "res://data/backgrounds/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://data/galleries/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    },
+    "res://data/musics/": {
+      "metadata/_custom_type_script": {
+        "visibility": 0.0
+      },
+      "resource_local_to_scene": {
+        "visibility": 0.0
+      },
+      "resource_name": {
+        "visibility": 0.0
+      }
+    }
   },
   "recent_paths": [
-	"res://data/backgrounds/",
-	"res://data/musics/",
+    "res://data/backgrounds/",
+    "res://data/musics/",
     "res://data/galleries/"
   ],
   "table_functions": {
-	"filter": [
+    "filter": [
       "return true"
-	],
-	"process": [
+    ],
+    "process": [
       "return value"
-	]
+    ]
   }
 }

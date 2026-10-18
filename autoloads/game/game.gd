@@ -20,6 +20,7 @@ const PAGE_SCENES := {
 	&"setting": "res://pages/setting_page/setting_page.tscn",
 	&"confirm": "res://pages/confirm_page/confirm_page.tscn",
 	&"loading": "res://pages/loading_page/loading_page.tscn",
+	&"ending": "res://pages/ending_page/ending_page.tscn",
 }
 
 ## 开局就必须存在的三个页面：
@@ -66,6 +67,8 @@ var confirm_page: ConfirmPage:
 	get: return _ensure_page(&"confirm") as ConfirmPage
 var loading_page: LoadingPage:
 	get: return _ensure_page(&"loading") as LoadingPage
+var ending_page: EndingPage:
+	get: return _ensure_page(&"ending") as EndingPage
 
 
 ## 惰性实例化的唯一入口
@@ -443,14 +446,19 @@ func hide_all_pages() -> void:
 
 # 画面变黑过渡
 func fade(fade_in: bool, duration: float = 0.4) -> void:
-	var start_iteration = 1 if fade_in else 0
+	var target := 0.0 if fade_in else 1.0
+	# 从当前黑度接着走，而不是每次从 0 重新算：
+	# 已经全黑时切页（比如感言图演完直接回标题）如果先把 iterations 拉回 0，
+	# 会把上一页的最后一帧闪出来。
+	var current: float = sv_container.material.get_shader_parameter("iterations")
+	if is_equal_approx(current, target):
+		return
 	var tween = create_tween()
 	tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	await tween.tween_method(
 		func(value):
-			var modifier = -1 if fade_in else 1
-			sv_container.material.set_shader_parameter("iterations", start_iteration + (value * modifier)),
-		0.0, 1.0, duration
+			sv_container.material.set_shader_parameter("iterations", value),
+		current, target, duration
 	).finished
 
 # alpha过渡（用于叠加页面）

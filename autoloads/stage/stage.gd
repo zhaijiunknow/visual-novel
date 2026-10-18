@@ -497,10 +497,43 @@ func ShowChapterInfo(chapter: String, chapter_title: String) -> void:
 	# 演出来就是跳转开始时闪一下章节卡
 	if _is_replaying():
 		return
+	# PV/感谢图演完之后接下一章：此刻当前页还是 EndingPage（全黑），
+	# 先把舞台切回来并淡入，再播章节卡。舞台黑幕由本章的 PrepareBackground 拉满，
+	# 这里再兜一次底 —— 否则淡入时可能露出上一章最后一帧。
+	if Game.current_page == Game.get_page(&"ending"):
+		var ending_page = Game.get_page(&"ending")
+		var fade_time: float = 1.2
+		if ending_page != null:
+			fade_time = ending_page.return_fade
+		Game.stage_page.texture_rect_blackscreen.modulate.a = 1.0
+		Game.switch_to_page(Game.stage_page, false, false)
+		await Game.fade(true, fade_time)
 	if Game.chapter_transition == null:
 		push_warning("[Stage] chapter_transition 未挂载，跳过章节过场")
 		return
 	await Game.chapter_transition.play(chapter, chapter_title)
+
+
+## 序章演完接 PV（+ 感谢图，demo 可选）。
+## 触发点在演出表里：序章最后一条的「指令」列写 `$> PlayEndingPV(true)`。
+## true = demo，PV 后接两张感谢图；`PlayEndingPV()` / false = 正式版，PV 播完直接回剧情。
+## 导出时会原样落到 dialogue 里，和 `=> END` 无关（后面接别的章节也不会提前触发）。
+## `$>` 是阻塞命令，剧情会停在这里等整段结局演出播完，再继续下一章。
+func PlayEndingPV(show_thanks_images: bool = false) -> void:
+	if _is_replaying():
+		return
+	var ending: EndingPage = Game.ending_page
+	if ending == null:
+		push_error("[Stage] EndingPage 未创建，跳过结局演出")
+		return
+	ending.show_thanks_images = show_thanks_images
+	await Game.switch_to_page(ending, true, false, ending.play)
+	await ending.finished
+	# 演完已经停在黑场，这里不切回剧情页：
+	#   · 后面还有下一章 → ShowChapterInfo 里切回舞台并淡入
+	#   · 后面直接是 => END → _on_dialogue_end 直接切主菜单
+	# 这样不会先把舞台露出来、再闪一下上一章最后一帧。
+
 
 # ─── 历史记录跳转（重放）期间的演出记账 ───
 ## 重放时最后一条音乐命令的曲名（空串 = 没有 BGM）

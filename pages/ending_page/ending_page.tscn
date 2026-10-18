@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://pages/ending_page/ending_page.gd" id="1_script"]
+[ext_resource type="VideoStream" path="res://assets/pv/奇迹书成片.ogv" id="2_pv"]
+[ext_resource type="Texture2D" path="res://assets/pv/1.jpg" id="3_thanks1"]
+[ext_resource type="Texture2D" path="res://assets/pv/2.jpg" id="4_thanks2"]
+[ext_resource type="AudioStream" path="res://assets/musics/等待春天.mp3" id="5_bgm"]
+
+[node name="EndingPage" type="CanvasLayer" node_paths=PackedStringArray("video", "image_1", "image_2", "thanks_bgm", "click_catcher")]
+script = ExtResource("1_script")
+video = NodePath("Video")
+image_1 = NodePath("Image1")
+image_2 = NodePath("Image2")
+thanks_bgm = NodePath("ThanksBGM")
+click_catcher = NodePath("ClickCatcher")
+
+[node name="Video" type="VideoStreamPlayer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stream = ExtResource("2_pv")
+expand = true
+
+[node name="Image1" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("3_thanks1")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Image2" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("4_thanks2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ClickCatcher" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ThanksBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bgm")

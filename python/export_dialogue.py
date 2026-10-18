@@ -666,30 +666,15 @@ def _first_emitted_record(records, children_map):
     return None
 
 
-def build_date_call(data, func_name="SetDate"):
-    """把记录的 日期/星期/时间 拼成一条日期指令。
+def build_date_call(data):
+    """把记录的 日期/星期/时间 拼成一条 SetDate 指令。
 
-    `日期` 是毫秒时间戳，`星期`+`时间` 拼成「周四中午」。SetDate（剧情里日期变了）
-    和 SetDateQuiet（章节开头的静默预设）共用这一份格式化。
+    `日期` 是毫秒时间戳，`星期`+`时间` 拼成「周四中午」。
     """
     timestamp_ms = int(float(data["date"]))
     dt = datetime.fromtimestamp(timestamp_ms / 1000, tz=BEIJING_TZ)
     week_day = data["week_day"] + data["time"]
-    return f'$> {func_name}({dt.month}, {dt.day}, "{week_day}")'
-
-
-def first_known_date(ordered_records):
-    """本章第一条填了日期的记录，没有就返回 None。
-
-    章节开头那几条经常不填日期 —— 序章开场是电台节目，`日期` 到第 12 条才给。
-    但玩家从第一句起就能按 P 打开手机，那之前手机日期是空的，看起来像没加载出来。
-    所以章节开头静默预设一次本章首个已知日期（见 convert_chapter）。
-    """
-    for record in ordered_records:
-        data = record_to_data(record)
-        if data["date"] and data["week_day"]:
-            return data
-    return None
+    return f'$> SetDate({dt.month}, {dt.day}, "{week_day}")'
 
 
 def convert_chapter(roots, children_map, chapter_filter):
@@ -733,16 +718,6 @@ def convert_chapter(roots, children_map, chapter_filter):
         f"{quote_dialogue_string(chapter_title)})"
     )
     lines = prelude_lines + [chapter_info]
-
-    # 章节开头静默预设本章首个已知日期。开场那几条经常不填日期（序章的电台节目就是），
-    # 但手机从第一句起就能按 P 打开，那之前日期是空的、看着像没加载出来。
-    # 只在「开场没日期、本章后面才有」时补这一行，开场就有日期的章节输出保持原样。
-    # 故意不写 state["date_key"]：日期真正变化时那套 HideDialogue/SetDate/ShowDialogue
-    # 还要照常出 —— 日期弹窗该在剧本写的地方弹，不能被这次静默预设吃掉。
-    if prelude_record and not record_to_data(prelude_record)["date"]:
-        known_date = first_known_date(ordered_records)
-        if known_date:
-            lines.append(build_date_call(known_date, "SetDateQuiet"))
 
     state = {
         "visible_characters": set(),
