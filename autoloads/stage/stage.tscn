@@ -13,7 +13,7 @@ script = ExtResource("1_ecxui")
 character_pool = NodePath("Characters")
 character_scenes = Array[PackedScene]([ExtResource("2_3kwj0"), ExtResource("3_a221a"), ExtResource("9_uutle"), ExtResource("10_cwi0x"), ExtResource("11_ag5rj"), ExtResource("11_teacher")])
 background_paths = PackedStringArray("res://data/backgrounds/01_泳池.tres", "res://data/backgrounds/02_同兴里.tres", "res://data/backgrounds/03_操场.tres", "res://data/backgrounds/04_马客茂.tres", "res://data/backgrounds/05_客厅.tres", "res://data/backgrounds/06_教学楼.tres", "res://data/backgrounds/07_教室.tres", "res://data/backgrounds/08_广播社.tres", "res://data/backgrounds/09_广播社门口.tres", "res://data/backgrounds/10_天台.tres")
-gallery_paths = PackedStringArray("res://data/galleries/01_余洛琛房间.tres", "res://data/galleries/02_余洛琛烤肉.tres", "res://data/galleries/03_泳池.tres", "res://data/galleries/04_余洛琛操场.tres", "res://data/galleries/05_余洛琛咖啡.tres", "res://data/galleries/06_林凌铃天台.tres", "res://data/galleries/07_林凌铃猫娘.tres", "res://data/galleries/08_Q版余洛琛菠萝包.tres")
+gallery_paths = PackedStringArray("res://data/galleries/01_余洛琛房间.tres", "res://data/galleries/02_余洛琛烤肉.tres", "res://data/galleries/03_泳池.tres", "res://data/galleries/04_余洛琛操场.tres", "res://data/galleries/05_余洛琛咖啡.tres", "res://data/galleries/06_林凌铃天台.tres", "res://data/galleries/07_林凌铃猫娘.tres", "res://data/galleries/08_Q版余洛琛菠萝包.tres", "res://data/galleries/00_PV.tres")
 
 [node name="Characters" type="Control" parent="." unique_id=1964690209]
 modulate = Color(1, 1, 1, 0)

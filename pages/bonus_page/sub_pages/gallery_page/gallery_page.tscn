@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://cb2w6pi0uueka" path="res://scripts/follow_parent_visibility.gd" id="13_fpv"]
 [ext_resource type="AudioStream" uid="uid://dk32yexjuvehj" path="res://assets/system_sounds/奇迹书音效/返回音效.wav" id="15_2doyf"]
 
-[node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close")]
+[node name="GalleryPage" type="Control" unique_id=2070320143 node_paths=PackedStringArray("gallery_card_pool", "gallery_view", "gallery_view_variation", "gallery_view_frame", "option_variation", "button_hide", "button_close", "video_view")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,7 @@ gallery_view_frame = NodePath("CanvasLayer/GalleryView/Frame")
 option_variation = NodePath("CanvasLayer/GalleryView/Frame/Option_Variation")
 button_hide = NodePath("CanvasLayer/GalleryView/Frame/Button_Hide")
 button_close = NodePath("CanvasLayer/GalleryView/Frame/Button_Close")
+video_view = NodePath("CanvasLayer/VideoView")
 
 [node name="VScrollBarEx" parent="." unique_id=504723256 node_paths=PackedStringArray("target_scroll_container") instance=ExtResource("2_8y25x")]
 layout_mode = 1
@@ -133,5 +134,15 @@ texture_hover = ExtResource("12_8vyhy")
 
 [node name="InteractSound" parent="CanvasLayer/GalleryView/Frame/Button_Close" unique_id=814037856 instance=ExtResource("11_t4biu")]
 click_sound = ExtResource("15_2doyf")
+
+[node name="VideoView" type="VideoStreamPlayer" parent="CanvasLayer" unique_id=1698031873]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+expand = true
 
 [editable path="CanvasLayer/GalleryView/Frame/Option_Variation"]

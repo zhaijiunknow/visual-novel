@@ -8,14 +8,18 @@ extends Control
 @export var option_variation: CharacterOption
 @export var button_hide: TextureButton
 @export var button_close: TextureButton
+@export var video_view: VideoStreamPlayer
 
 const TWEEN_DURATION: float = 0.3
 # 未解锁 CG 的占位格底图
 const LOCKED_SLOT_TEXTURE: Texture2D = preload("res://assets/sprites/ui/ui.sprites/插画鉴赏/image_locked.tres")
+# PV 鉴赏卡：直接可见（不做 CG 那套解锁限制），文件在 data/galleries/00_PV.tres
+const PV_GALLERY_NAME := "00_PV"
 
 var current_gallery_data: GalleryData
 # 全屏图鉴当前可翻看的变体（整 CG 解锁后为完整 variation）
 var gallery_view_variations: Array[Texture2D] = []
+var _paused_music_for_video: bool = false
 var variation_index: int:
 	set(value):
 		variation_index = value
@@ -37,12 +41,16 @@ func _ready() -> void:
 		func():
 			if visible:
 				refresh()
+			else:
+				_close_video_view()
 	)
 
 	option_variation.previous_button.pressed.connect(func(): variation_index -= 1)
 	option_variation.next_button.pressed.connect(func(): variation_index += 1)
 	button_hide.pressed.connect(func(): gallery_view_frame.visible = false)
 	button_close.pressed.connect(close_gallery_view)
+	video_view.finished.connect(_close_video_view)
+	video_view.gui_input.connect(_on_video_gui_input)
 	gallery_view.gui_input.connect(
 		func(event: InputEvent):
 			if not gallery_view_frame.visible and event is InputEventMouseButton:
@@ -52,6 +60,7 @@ func _ready() -> void:
 
 
 func refresh() -> void:
+	_close_video_view()
 	_active_card = null
 	# 若正打开全屏视图，先收起，避免下次关闭时引用已释放的卡
 	if gallery_view.visible:
@@ -65,7 +74,8 @@ func refresh() -> void:
 	var unlocked: Array[GalleryData] = []
 	var locked_count: int = 0
 	for i in Stage.gallery_count():
-		if Main.has_unlocked_cg(Stage.gallery_name_at(i)):
+		var gallery_name := Stage.gallery_name_at(i)
+		if Main.has_unlocked_cg(gallery_name) or gallery_name == PV_GALLERY_NAME:
 			var data := Stage.gallery_at(i)
 			if data != null:
 				unlocked.append(data)
@@ -90,6 +100,9 @@ func refresh() -> void:
 
 
 func open_gallery_view(card: GalleryCard, gallery_data: GalleryData) -> void:
+	if gallery_data.video != null:
+		_open_video_view(gallery_data)
+		return
 	_active_card = card
 	current_gallery_data = gallery_data
 
@@ -123,6 +136,43 @@ func close_gallery_view() -> void:
 	_active_card = null
 
 
+# ─── PV 回放 ─────────────────────────────────────────
+
+## 视频卡：整屏播放 PV，点击 / Esc / 放完都回到鉴赏网格。
+## 播放期间暂停鉴赏页的 BGM，关掉后恢复。
+func _open_video_view(gallery_data: GalleryData) -> void:
+	current_gallery_data = gallery_data
+	_active_card = null
+	gallery_view.visible = false
+	gallery_view_frame.visible = false
+	video_view.stream = gallery_data.video
+	var volume: float = 0.0 if Main.setting_data.mute_all else Main.setting_data.music_volume
+	video_view.volume_db = linear_to_db(volume) if volume > 0.0 else -80.0
+	_paused_music_for_video = AudioManager.audio_player_music.playing
+	if _paused_music_for_video:
+		AudioManager.audio_player_music.stream_paused = true
+	video_view.visible = true
+	video_view.play()
+
+func _close_video_view() -> void:
+	if video_view == null:
+		return
+	if video_view.visible or video_view.is_playing():
+		video_view.stop()
+		video_view.visible = false
+	if _paused_music_for_video:
+		AudioManager.audio_player_music.stream_paused = false
+		_paused_music_for_video = false
+
+func _on_video_gui_input(event: InputEvent) -> void:
+	var mouse_event := event as InputEventMouseButton
+	if mouse_event == null or not mouse_event.pressed:
+		return
+	if mouse_event.button_index == MOUSE_BUTTON_LEFT:
+		get_viewport().set_input_as_handled()
+		_close_video_view()
+
+
 ## 大图查看开着时的键盘：
 ##   Esc  —— 一次只退一层：把大图收回卡片（面板留着），再按一次才由 Game 关面板。
 ##           不接这一层的话事件会落到 Game._unhandled_input，它直接把鉴赏页 go_back() 掉，
@@ -135,7 +185,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	# 同 music_page：bonus 页是 CanvasLayer，切走后子页 visible 仍是 true，
 	# 不判父页的话在剧情里按 ESC/左右键会作用到插画鉴赏上
-	if not visible or not gallery_view.visible or not Game.page_shown(&"bonus"):
+	if not visible or not Game.page_shown(&"bonus"):
+		return
+	if video_view.visible:
+		if key.keycode == KEY_ESCAPE:
+			get_viewport().set_input_as_handled()
+			_close_video_view()
+		return
+	if not gallery_view.visible:
 		return
 	match key.keycode:
 		KEY_ESCAPE:
