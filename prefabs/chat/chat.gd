@@ -13,7 +13,11 @@ var chat_data: ChatData
 func set_chat_data(data: ChatData) -> void:
 	chat_data = data
 	profile_image.texture = data.avatar
-	label_name.text = Game.phone_page.get_phone_nickname(data.character_name)
+	# 列表卡片只显示昵称第一行：phone_nickname 可能带换行备注
+	# （如余洛琛的「高三（10）班-余洛琛-\n12月5日」），换行会把下面的消息预览顶掉。
+	# 聊天窗口标题仍用完整昵称（Label_Name 自带 autowrap，不受影响）。
+	var nickname: String = Game.phone_page.get_phone_nickname(data.character_name)
+	label_name.text = nickname.get_slice("\n", 0).strip_edges()
 	unread_badge.visible = false
 	refresh_preview()
 

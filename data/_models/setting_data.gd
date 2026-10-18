@@ -17,8 +17,9 @@ extends Resource
 @export var windowed_position: Vector2i = Vector2i.ZERO
 
 # 音频
-@export var music_volume: float = 0.4
-@export var sound_volume: float = 0.4
-@export var voice_volume: float = 0.5
+# 默认背景音乐三分之一，人声/音效拉满
+@export var music_volume: float = 0.33333334
+@export var sound_volume: float = 1.0
+@export var voice_volume: float = 1.0
 @export var character_volumes: Dictionary = {}
 @export var mute_all: bool = false
