@@ -168,9 +168,15 @@ static func build_snapshot_text(kind: String, stamp: String, run_id: String,
 	lines.append("窗口: %s @ %s，模式 %s" % [
 		DisplayServer.window_get_size(), DisplayServer.window_get_position(),
 		_window_mode_name(DisplayServer.window_get_mode())])
-	lines.append("设置里记录的窗口化矩形: %s @ %s（全屏=%s）" % [
-		Main.setting_data.windowed_size, Main.setting_data.windowed_position,
-		Main.setting_data.fullscreen])
+	# 设置文件读坏时 Main.setting_data 会是 null —— 而这恰恰是玩家最需要日志的时刻，
+	# 所以快照必须能容忍它：以前这里直接读属性，null 一路喂进下面的 %.3f 格式化，
+	# 把「崩溃日志导出」本身干崩（0xC0000005），连包都出不来
+	var settings: SettingData = Main.setting_data
+	if settings != null:
+		lines.append("设置里记录的窗口化矩形: %s @ %s（全屏=%s）" % [
+			settings.windowed_size, settings.windowed_position, settings.fullscreen])
+	else:
+		lines.append("设置里记录的窗口化矩形: <setting_data 未加载>")
 
 	lines.append_array(_section("页面"))
 	lines.append("当前页: %s" % (Game.current_page.name if Game.current_page else "<无>"))
@@ -193,13 +199,22 @@ static func build_snapshot_text(kind: String, stamp: String, run_id: String,
 		lines.append(line)
 
 	lines.append_array(_section("设置"))
-	var s: SettingData = Main.setting_data
-	lines.append("全屏=%s 未读跳过=%s 选项后继续=%s 忽略转场=%s 需要确认=%s" % [
-		s.fullscreen, s.skip_unread, s.skip_after_choice, s.skip_ignore_transitions, s.need_confirmation])
-	lines.append("文本速度=%.3f 自动速度=%.3f 跳过未读文本=%s 静音=%s" % [
-		s.text_speed, s.auto_speed, s.skip_unread_text, s.mute_all])
-	lines.append("音量: 音乐=%.3f 音效=%.3f 语音=%.3f" % [s.music_volume, s.sound_volume, s.voice_volume])
-	lines.append("角色音量: %s" % JSON.stringify(s.character_volumes))
+	# 数值参数一律过 float()：设置文件被读成非数值时，格式化失败会让这一行变空、
+	# 甚至把整条导出流程带崩（以前的 0xC0000005 就是从 null 喂进 %.3f 进来的）
+	if settings != null:
+		lines.append("全屏=%s 未读跳过=%s 选项后继续=%s 忽略转场=%s 需要确认=%s" % [
+			settings.fullscreen, settings.skip_unread, settings.skip_after_choice,
+			settings.skip_ignore_transitions, settings.need_confirmation])
+		lines.append("文本速度=%.3f 自动速度=%.3f 跳过未读文本=%s 静音=%s" % [
+			float(settings.text_speed), float(settings.auto_speed),
+			settings.skip_unread_text, settings.mute_all])
+		lines.append("音量: 音乐=%.3f 音效=%.3f 语音=%.3f" % [
+			float(settings.music_volume), float(settings.sound_volume),
+			float(settings.voice_volume)])
+		lines.append("角色音量: %s" % JSON.stringify(settings.character_volumes))
+	else:
+		# 这一行本身就是线索：玩家报「音量不对 / 全屏失效 / 一开就崩」时先看这里
+		lines.append("设置: <setting_data.tres 读取失败，本次运行使用默认值>")
 
 	lines.append_array(_section("音频"))
 	var music := AudioManager.audio_player_music

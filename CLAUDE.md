@@ -111,8 +111,28 @@ When voice plays, music volume tween ducks to 50% over 0.3s, restores on voice f
 
 - Node paths in .tscn files are fragile (use `@export` NodePaths)
 - Large dialogue files loaded synchronously
-- No unit test coverage
 - Per-character voice volumes saved but not applied during gameplay
+
+## Testing
+
+`tests/` holds a dependency-free regression suite (headless, exit code 0/1):
+
+```powershell
+Godot_v4.6.2-stable_win64.exe\Godot_v4.6.2-stable_win64_console.exe `
+  --headless --path . res://tests/regression_test.tscn
+```
+
+It pins the 2026-10 crash chain (half-written `user://*.tres` → `null` global → diagnostic export
+0xC0000005): corrupt-file recovery, atomic save, null-safe diagnostic snapshot. Run it before
+exporting a build. See `tests/README.md` for coverage and the manual cold-start e2e recipe.
+
+## Persistence Rules
+
+- Global load paths must never yield `null`: go through `Main._read_resource()`, which backs a broken
+  file up to `*.bad` and leaves the default value in place
+- All disk writes go through `Main._save_resource_atomic()` (`.tmp.tres` + rename). Never call
+  `ResourceSaver.save()` straight to a live save path — an interrupted write leaves a half file that
+  blocks every later launch
 
 ## Where to Add
 

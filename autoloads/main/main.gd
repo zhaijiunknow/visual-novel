@@ -28,12 +28,19 @@ var gallery_card_index: int:
 var expression_dict: Dictionary
 
 func _ready() -> void:
-	if FileAccess.file_exists(save_path):
-		save_data = load(save_path)
-	if FileAccess.file_exists(collection_path):
-		collection_data = load(collection_path)
-	if FileAccess.file_exists(setting_path):
-		setting_data = load(setting_path)
+	# 读档一律「读到好档才替换全局」。以前是三行 `xxx = load(path)`，而 load() 解析失败
+	# 返回的是 null，于是 Main.setting_data 变成 null 之后：音量没应用、窗口模式没应用，
+	# 崩溃日志导出还会把 null 喂进 %.3f 格式化 —— 直接把进程打成 0xC0000005。
+	# 现在读坏了只留默认值 + 把坏文件备份成 *.bad，玩家最多回到初始设置，不会连游戏都开不了
+	var loaded_save = _read_resource(save_path)
+	if loaded_save is SaveData:
+		save_data = loaded_save
+	var loaded_collection = _read_resource(collection_path)
+	if loaded_collection is CollectionData:
+		collection_data = loaded_collection
+	var loaded_setting = _read_resource(setting_path)
+	if loaded_setting is SettingData:
+		setting_data = loaded_setting
 
 	# 按存档把窗口摆到上次的位置。实测两个坑：
 	#   1) 直接在 _ready 里设会被引擎在 autoload 加载期间自己摆的那次覆盖掉，所以等一帧
@@ -44,6 +51,30 @@ func _ready() -> void:
 	apply_window_mode(setting_data.fullscreen, false)
 
 	#expression_dict = JSON.parse_string()
+
+## 读一个 user:// 下的存档资源。
+## 文件不存在 → null（调用方保持默认值，等于新玩家）。
+## 文件存在但解析失败（半截写入 / 手改坏）→ 备份成 *.bad 并返回 null，
+## 这样下一次启动不会一直读到坏档，玩家要找回数据也还能从 .bad 里捞
+func _read_resource(path: String) -> Resource:
+	if not FileAccess.file_exists(path):
+		return null
+	var loaded := ResourceLoader.load(path)
+	if loaded != null:
+		return loaded
+	push_warning("%s 读取失败（文件可能写了一半），已备份为 .bad，本次使用默认值" % path)
+	_backup_broken(path)
+	return null
+
+
+## 把读不出来的存档另存一份 *.bad 再从原位删掉，避免「每次启动都读坏档」
+func _backup_broken(path: String) -> void:
+	var bytes := FileAccess.get_file_as_bytes(path)
+	var backup := FileAccess.open(path + ".bad", FileAccess.WRITE)
+	if backup != null:
+		backup.store_buffer(bytes)
+		backup.close()
+	DirAccess.remove_absolute(path)
 
 func has_voice_collection(filename) -> bool:
 	return collection_data.voice_collections.filter(
@@ -81,8 +112,26 @@ func has_unlocked_cg(cg_name: String) -> bool:
 var _setting_save_pending: bool = false
 var _setting_save_thread: Thread
 
+## 存档一律「先写 .tmp.tres，再改名覆盖」。
+## 直接 ResourceSaver.save 到正式路径是「截断 + 边写边落盘」，玩家强退 / 崩溃 / 断电
+## 正好落在写的半路，就会留下半截 .tres —— 下次启动 load() 解析失败，就是这次线上问题的起点。
+## 临时文件后缀必须是 .tres，否则 ResourceSaver 不认格式
+func _save_resource_atomic(resource: Resource, path: String) -> Error:
+	if resource == null:
+		return ERR_INVALID_PARAMETER
+	var tmp_path := path.get_basename() + ".tmp.tres"
+	var err := ResourceSaver.save(resource, tmp_path)
+	if err != OK:
+		DirAccess.remove_absolute(tmp_path)
+		return err
+	# Windows 的 rename 不覆盖已存在的目标文件，所以先删旧的。
+	# 万一正好死在这两步之间，最坏结果是丢掉设置（下次按默认值起来），而不是读到坏档
+	if FileAccess.file_exists(path):
+		DirAccess.remove_absolute(path)
+	return DirAccess.rename_absolute(tmp_path, path)
+
 func save_collection_data() -> void:
-	var err := ResourceSaver.save(collection_data, collection_path)
+	var err := _save_resource_atomic(collection_data, collection_path)
 	if err != OK:
 		push_error("save_collection_data failed (%d): %s" % [err, collection_path])
 
@@ -92,15 +141,19 @@ func save_setting_data() -> void:
 	_setting_save_pending = true
 	if _setting_save_thread and _setting_save_thread.is_started():
 		_setting_save_thread.wait_to_finish()
+	# 抓一份局部引用：写盘期间玩家可能又把 setting_data 换掉
+	var data: SettingData = setting_data
 	_setting_save_thread = Thread.new()
 	_setting_save_thread.start(
 		func():
-			ResourceSaver.save(setting_data, setting_path)
+			_save_resource_atomic(data, setting_path)
 			_setting_save_pending = false
 	)
 
 func save_save_data() -> void:
-	ResourceSaver.save(save_data, save_path)
+	var err := _save_resource_atomic(save_data, save_path)
+	if err != OK:
+		push_error("save_save_data failed (%d): %s" % [err, save_path])
 
 # ─── 存档查询（纯数据，不经过存档页）─────────────────────
 # 放在这里是因为：这些查询会在「主菜单刷新按钮」这类自动路径上被调用，
@@ -235,7 +288,7 @@ func save_setting_data_and_wait() -> void:
 	if _setting_save_thread and _setting_save_thread.is_started():
 		_setting_save_thread.wait_to_finish()
 	_setting_save_pending = false
-	var err := ResourceSaver.save(setting_data, setting_path)
+	var err := _save_resource_atomic(setting_data, setting_path)
 	if err != OK:
 		push_error("save_setting_data_and_wait failed (%d): %s" % [err, setting_path])
 
